@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "^10"
+  },
+  "scripts": {
+    "dev": "next ./ -p 8000",
+    "build": "next build",
+    "start": "next start -p 4000",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint '**/*.js'"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "@apollo/react-ssr": "^3.1.3",
+    "apollo-boost": "^0.4.4",
+    "google-map-react": "^1.1.5",
+    "graphql": "^14.5.8",
+    "isomorphic-unfetch": "^3.0.0",
+    "moment": "^2.24.0",
+    "next": "^9.1.1",
+    "nprogress": "^0.2.0",
+    "polished": "^3.4.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-facebook": "^8.0.4",
+    "react-scroll-parallax": "^2.2.0",
+    "styled-components": "^4.4.0",
+    "styled-components-modifiers": "^1.2.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.19.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "fslightbox-react": "^1.4.2",
+    "jest": "^24.9.0",
+    "now": "^16.3.1",
+    "prettier-eslint": "^9.0.0"
+  },
+  "name": "that-website",
+  "author": "that conference",
+  "description": "THATConference.com",
+  "license": "gpl-3.0",
+  "keywords": [
+    "node, web, nextjs, now, react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thatconference/that-website.git"
+  }
+}
