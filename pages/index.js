@@ -11,7 +11,7 @@ import Map from '../components/shared/Map';
 import NewsletterSignup from '../components/NewsletterSignup';
 import SocialLinks from '../components/SocialLinks';
 import Testimonials from '../components/Testimonials';
-import { below } from '../utilities/breakpoint';
+import { below, siteInfo } from '../utilities';
 
 const Title = styled.h2`
   font-size: 2.8rem;
@@ -107,13 +107,13 @@ const home = props => (
       <Hero
         imagePath={HeroImages[Math.floor(Math.random() * HeroImages.length)]}
         fullHeight="true"
-        heading="Sand Bar and Island Grill"
+        heading={siteInfo.name}
         href="/menu"
         label="Menu"
       >
         <StackedSocialLinks />
         <PhoneNumber>
-          <a href="tel:1-262-877-9500">(262) 877-9500</a>
+          <a href={`tel:${siteInfo.linkPhone}`}>{siteInfo.formattedPhone}</a>
         </PhoneNumber>
         <StackedLocation icon="location" align="center">
           <a
@@ -121,7 +121,7 @@ const home = props => (
             target="_blank"
             rel="noreferrer noopener"
           >
-            3101 E. Lakeshore Dr., Twin Lakes, WI 53181
+            {siteInfo.address}
           </a>
         </StackedLocation>
       </Hero>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 
 const HighlightBlock = styled.div`
   order: ${({ align }) => (align === 'left' ? 0 : 2)};

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ParallaxBanner } from 'react-scroll-parallax';
 import Icon from './shared/Icon';
 import LinkButton from './shared/LinkButton';
-import { above, below } from '../utilities/breakpoint';
+import { above, below } from '../utilities';
 
 const HeroImage = styled.div`
   height: ${({ fullHeight }) => (fullHeight ? '100vh' : '37vh')};

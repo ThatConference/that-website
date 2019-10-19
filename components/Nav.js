@@ -4,7 +4,7 @@ import { isAbsolute } from 'path';
 
 import IconText from './shared/IconText';
 import NavItem from './NavItem';
-import { above, below } from '../utilities/breakpoint';
+import { above, below, siteInfo } from '../utilities';
 
 const NavList = styled.div`
   display: flex;
@@ -55,9 +55,9 @@ const Nav = ({ className }) => {
         style={{ position: 'absolute', top: 0, width: '10rem' }}
       />
 
-      <ButtonLink href="tel:1-262-877-9500">
+      <ButtonLink href={`tel:${siteInfo.linkPhone}`}>
         <IconText icon="phone" align="right">
-          (262) 877-9500
+          {siteInfo.formattedPhone}
         </IconText>
       </ButtonLink>
 

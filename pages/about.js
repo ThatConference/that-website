@@ -3,11 +3,11 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 import ContentSection from '../components/ContentSection';
 import Hero from '../components/Hero';
 import HighlightImage from '../components/HighlightImage';
-import LinkButton from '../components/LinkButton';
+import LinkButton from '../components/shared/LinkButton';
 
 const ContentDetail = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ const about = props => (
         <Hero
           imagePath="/static/images/home-entrance.jpg"
           heading="Sand Bar and Island Grill"
-          href="tel:1-262-877-9500"
+          href={`tel:${siteInfo.linkPhone}`}
           label="Call for Reservations"
         />
 

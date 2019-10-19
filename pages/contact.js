@@ -8,7 +8,7 @@ import Hero from '../components/Hero';
 import IconText from '../components/shared/IconText';
 import Map from '../components/shared/Map';
 import SocialLinks from '../components/SocialLinks';
-import { above, below } from '../utilities/breakpoint';
+import { above, below, siteInfo } from '../utilities';
 
 const DetailDiv = styled.div`
   
@@ -84,23 +84,23 @@ const contact = props => (
       <>
         <Hero
           imagePath="/static/images/conversation.jpg"
-          heading="Sand Bar and Island Grill"
-          href="tel:1-262-877-9500"
+          heading={siteInfo.name}
+          href={`tel:${siteInfo.linkPhone}`}
           label="Call for Reservations"
         />
         <ContentSection title="Contact Us">
           <DetailDiv>
             <Label>Email</Label>
             <IconText icon="email" align="center">
-              <a href="mailto:eat@sandbarandislandgrill.com">
-                eat@sandbarandislandgrill.com
-              </a>
+              <a href={`mailto:${siteInfo.email}`}>{siteInfo.email}</a>
             </IconText>
           </DetailDiv>
           <DetailDiv>
             <Label>Phone</Label>
             <IconText icon="phone" align="center">
-              <a href="tel:1-262-877-9500">(262) 877-9500</a>
+              <a href={`tel:${siteInfo.linkPhone}`}>
+                {siteInfo.formattedPhone}
+              </a>
             </IconText>
           </DetailDiv>
           <DetailDiv>
@@ -110,11 +110,8 @@ const contact = props => (
                 href="https://goo.gl/maps/9fvZcNvVcsiJ82Hj6"
                 target="_blank"
                 rel="noreferrer noopener"
-              >
-                3101 E. Lakeshore Dr.,
-                <br />
-                Twin Lakes, WI 53181
-              </a>
+                dangerouslySetInnerHTML={{ __html: siteInfo.multilineAddress }}
+              />
             </IconText>
           </DetailDiv>
         </ContentSection>

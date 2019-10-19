@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Icon from './shared/Icon';
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 
 const SocialLinksContainer = styled.div`
   display: flex;

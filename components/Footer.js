@@ -4,7 +4,7 @@ import { applyStyleModifiers } from 'styled-components-modifiers';
 import moment from 'moment';
 import MobileFooter from './MobileFooter';
 import SocialLinks from './SocialLinks';
-import { above, below } from '../utilities/breakpoint';
+import { above, below, siteInfo } from '../utilities';
 
 const FOOTER_MODIFIERS = {
   site: ({ theme }) => `
@@ -115,7 +115,7 @@ const Footer = ({ className }) => {
         <FooterColumn>
           <Heading>Phone</Heading>
           <Text>
-            <a href="tel:1-262-877-9500">(262) 877-9500</a>
+            <a href={`tel:${siteInfo.linkPhone}`}>{siteInfo.formattedPhone}</a>
           </Text>
         </FooterColumn>
         <FooterColumn>
@@ -125,11 +125,8 @@ const Footer = ({ className }) => {
               href="https://goo.gl/maps/9fvZcNvVcsiJ82Hj6"
               target="_blank"
               rel="noreferrer noopener"
-            >
-              3101 E. Lakeshore Dr.,
-              <br />
-              Twin Lakes, WI 53181
-            </a>
+              dangerouslySetInnerHTML={{ __html: siteInfo.multilineAddress }}
+            />
           </Text>
         </FooterColumn>
         <FooterColumn>
