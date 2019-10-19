@@ -28,8 +28,8 @@ const Heading = styled.h3`
   text-transform: uppercase;
   font-size: 1.5rem;
   line-height: 2;
-  color: ${({ theme }) => theme.colors.orange};
-  border: 3px solid ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.primary};
+  border: 3px solid ${({ theme }) => theme.colors.primary};
   text-align: center;
   width: 100%;
 `;

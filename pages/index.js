@@ -3,15 +3,13 @@ import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import ContentSection from '../components/ContentSection';
-import FeaturedDishes from '../components/FeaturedDishes';
 import Gallery from '../components/Gallery';
 import Hero from '../components/Hero';
 import HighlightImage from '../components/HighlightImage';
-import IconText from '../components/IconText';
-import Map from '../components/Map';
+import IconText from '../components/shared/IconText';
+import Map from '../components/shared/Map';
 import NewsletterSignup from '../components/NewsletterSignup';
 import SocialLinks from '../components/SocialLinks';
-import Specials from '../components/Specials';
 import Testimonials from '../components/Testimonials';
 import { below } from '../utilities/breakpoint';
 
@@ -29,7 +27,7 @@ const Fancy = styled.span`
   font-size: 4.2rem;
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const PhoneNumber = styled.div`
@@ -39,7 +37,7 @@ const PhoneNumber = styled.div`
   a {
     color: ${({ theme }) => theme.colors.light};
     &:hover {
-      color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 
@@ -71,7 +69,7 @@ const StackedLocation = styled(IconText)`
   a {
     color: ${({ theme }) => theme.colors.light};
     &:hover {
-      color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 `;
@@ -148,8 +146,6 @@ const home = props => (
         </ContentDetail>
       </ContentSection>
 
-      <FeaturedDishes />
-      <Specials />
       <NewsletterSignup />
       <Testimonials />
       <Gallery />

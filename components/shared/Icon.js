@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import svgs from '../utilities/svgs';
+import { svgs } from '../../utilities';
 
 const Svg = styled.svg`
   width: auto;

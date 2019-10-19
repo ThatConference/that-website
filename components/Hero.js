@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ParallaxBanner } from 'react-scroll-parallax';
-import Icon from './Icon';
-import LinkButton from './LinkButton';
+import Icon from './shared/Icon';
+import LinkButton from './shared/LinkButton';
 import { above, below } from '../utilities/breakpoint';
 
 const HeroImage = styled.div`

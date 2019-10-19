@@ -5,8 +5,8 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 import ContentSection from '../components/ContentSection';
 import Hero from '../components/Hero';
-import IconText from '../components/IconText';
-import Map from '../components/Map';
+import IconText from '../components/shared/IconText';
+import Map from '../components/shared/Map';
 import SocialLinks from '../components/SocialLinks';
 import { above, below } from '../utilities/breakpoint';
 
@@ -30,12 +30,12 @@ const DetailDiv = styled.div`
     line-height: 1.5;
     color: ${({ theme }) => theme.colors.dark};
 
-    &:hover: ${({ theme }) => theme.colors.orange};
+    &:hover: ${({ theme }) => theme.colors.primary};
   }
 
   svg {
     height: 2rem;
-    fill: ${({ theme }) => theme.colors.orange};
+    fill: ${({ theme }) => theme.colors.primary};
     padding-right: 1rem;
   }
 `;
@@ -47,7 +47,7 @@ const Label = styled.label`
   margin: 0 0 1rem 0;
   line-height: 1.7;
   background-color: ${({ theme }) => theme.colors.light};
-  color: ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.primary};
   text-align: center;
 
   ${below.med`

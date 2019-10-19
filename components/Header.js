@@ -57,7 +57,7 @@ export default styled(Header)`
 
   &::before {
     content: '';
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.backgroundColor};
     transition: all 0.3s;
     transform: translateY(-100%);
     z-index: -1;
@@ -77,7 +77,7 @@ export default styled(Header)`
       }
 
       &:hover {
-        color: ${({ theme }) => theme.colors.orange};
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
 

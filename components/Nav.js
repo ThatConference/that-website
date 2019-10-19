@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { isAbsolute } from 'path';
 
-import IconText from './IconText';
+import IconText from './shared/IconText';
 import NavItem from './NavItem';
 import { above, below } from '../utilities/breakpoint';
 
@@ -62,9 +62,6 @@ const Nav = ({ className }) => {
       </ButtonLink>
 
       <NavList>
-        <NavListItem>
-          <NavItem title="menu" href="/menu" />
-        </NavListItem>
         <NavListItem>
           <NavItem title="gallery" href="/gallery" />
         </NavListItem>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import ContentSection from './ContentSection';
-import Icon from './Icon';
+import Icon from './shared/Icon';
 
 const REVIEWS = [
   {
@@ -50,7 +50,7 @@ const Review = styled.div`
     width: 3rem;
     height: 3rem;
     position: relative;
-    fill: ${({ theme }) => theme.colors.orange};
+    fill: ${({ theme }) => theme.colors.primary};
 
     &:hover {
       cursor: pointer;
@@ -112,8 +112,8 @@ const Dot = styled.span`
   display: inline-block;
   margin: 0.5rem;
 
-  &.orange {
-    background-color: ${({ theme }) => theme.colors.orange};
+  &.primary {
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   &:hover {
@@ -122,7 +122,7 @@ const Dot = styled.span`
 `;
 
 const Highlight = styled.span`
-  color: ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 800;
 `;
 
@@ -179,7 +179,7 @@ const Testimonials = ({ className }) => {
           return (
             <Dot
               onClick={() => setReviewIndex(index)}
-              className={index === reviewIndex ? 'orange' : ''}
+              className={index === reviewIndex ? 'primary' : ''}
             />
           );
         })}

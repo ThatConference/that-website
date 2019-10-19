@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import Icon from './Icon';
+import Icon from './shared/Icon';
 import NavItem from './NavItem';
 import SocialLinks from './SocialLinks';
 import { above, below } from '../utilities/breakpoint';
