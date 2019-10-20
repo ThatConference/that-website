@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ContentSection from './ContentSection';
 
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 
 const Text = styled.p`
   line-height: 1.8;

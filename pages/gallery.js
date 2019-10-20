@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import Lightbox from 'fslightbox-react';
-import { above } from '../utilities/breakpoint';
+import { above } from '../utilities';
 
 import ContentSection from '../components/ContentSection';
 import Hero from '../components/Hero';
@@ -62,7 +62,7 @@ const about = props => {
           <Hero
             imagePath="/static/images/aerial.jpg"
             heading="Sand Bar and Island Grill"
-            href="tel:1-262-877-9500"
+            href={`tel:${siteInfo.linkPhone}`}
             label="Call for Reservations"
           />
 

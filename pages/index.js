@@ -3,17 +3,15 @@ import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import ContentSection from '../components/ContentSection';
-import FeaturedDishes from '../components/FeaturedDishes';
 import Gallery from '../components/Gallery';
 import Hero from '../components/Hero';
 import HighlightImage from '../components/HighlightImage';
-import IconText from '../components/IconText';
-import Map from '../components/Map';
+import IconText from '../components/shared/IconText';
+import Map from '../components/shared/Map';
 import NewsletterSignup from '../components/NewsletterSignup';
 import SocialLinks from '../components/SocialLinks';
-import Specials from '../components/Specials';
 import Testimonials from '../components/Testimonials';
-import { below } from '../utilities/breakpoint';
+import { below, siteInfo } from '../utilities';
 
 const Title = styled.h2`
   font-size: 2.8rem;
@@ -29,7 +27,7 @@ const Fancy = styled.span`
   font-size: 4.2rem;
   font-family: 'Great Vibes', cursive;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.orange};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const PhoneNumber = styled.div`
@@ -39,7 +37,7 @@ const PhoneNumber = styled.div`
   a {
     color: ${({ theme }) => theme.colors.light};
     &:hover {
-      color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 
@@ -71,7 +69,7 @@ const StackedLocation = styled(IconText)`
   a {
     color: ${({ theme }) => theme.colors.light};
     &:hover {
-      color: ${({ theme }) => theme.colors.orange};
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
 `;
@@ -109,13 +107,13 @@ const home = props => (
       <Hero
         imagePath={HeroImages[Math.floor(Math.random() * HeroImages.length)]}
         fullHeight="true"
-        heading="Sand Bar and Island Grill"
+        heading={siteInfo.name}
         href="/menu"
         label="Menu"
       >
         <StackedSocialLinks />
         <PhoneNumber>
-          <a href="tel:1-262-877-9500">(262) 877-9500</a>
+          <a href={`tel:${siteInfo.linkPhone}`}>{siteInfo.formattedPhone}</a>
         </PhoneNumber>
         <StackedLocation icon="location" align="center">
           <a
@@ -123,7 +121,7 @@ const home = props => (
             target="_blank"
             rel="noreferrer noopener"
           >
-            3101 E. Lakeshore Dr., Twin Lakes, WI 53181
+            {siteInfo.address}
           </a>
         </StackedLocation>
       </Hero>
@@ -148,8 +146,6 @@ const home = props => (
         </ContentDetail>
       </ContentSection>
 
-      <FeaturedDishes />
-      <Specials />
       <NewsletterSignup />
       <Testimonials />
       <Gallery />

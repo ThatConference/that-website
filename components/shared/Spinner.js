@@ -13,7 +13,7 @@ const Svg = styled.svg`
   height: 50px;
 
   circle {
-    stroke: ${({ theme }) => theme.colors.orange};
+    stroke: ${({ theme }) => theme.colors.primary};
     stroke-linecap: round;
     -webkit-animation: dash 1.5s ease-in-out infinite;
     animation: dash 1.5s ease-in-out infinite;

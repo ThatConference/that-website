@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 
 const Container = styled.div`
   padding: 5rem;
   background-color: ${props =>
-    props.color ? props.theme.colors[props.color] : props.theme.colors.white};
+  props.color ? props.theme.colors[props.color] : props.theme.colors.backgroundColor};
   position: relative;
   display: block;
   overflow: hidden;
@@ -57,7 +57,7 @@ const Title = styled.h2`
   }
 
   .highlight {
-    color: ${({ theme }) => theme.colors.orange};
+    color: ${({ theme }) => theme.colors.primary};
   }
 
   ${below.med`

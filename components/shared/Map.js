@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-
+import baseTheme from '../../styles/baseTheme';
 import MapMarker from './MapMarker';
 
 const customStyles = [
   {
     featureType: 'administrative',
     elementType: 'geometry.fill',
-    stylers: [{ visibility: 'on' }, { color: '#000000' }],
+    stylers: [{ visibility: 'on' }, { color: baseTheme.colors.black }],
   },
   {
     featureType: 'administrative',
     elementType: 'labels.text.fill',
-    stylers: [{ color: '#444444' }],
+    stylers: [{ color: baseTheme.colors.fonts.dark }],
   },
   {
     featureType: 'administrative',
     elementType: 'labels.icon',
-    stylers: [{ hue: '#ff0000' }],
+    stylers: [{ hue: baseTheme.colors.primary }],
   },
   {
     featureType: 'administrative.province',
@@ -27,7 +27,7 @@ const customStyles = [
   {
     featureType: 'landscape',
     elementType: 'all',
-    stylers: [{ color: '#f2f2f2' }],
+    stylers: [{ color: baseTheme.colors.maps.landscape }],
   },
   {
     featureType: 'landscape.man_made',
@@ -62,7 +62,7 @@ const customStyles = [
   {
     featureType: 'water',
     elementType: 'all',
-    stylers: [{ color: '#ff9100' }, { visibility: 'on' }],
+    stylers: [{ color: baseTheme.colors.maps.water }, { visibility: 'on' }],
   },
 ];
 

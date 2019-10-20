@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { below } from '../utilities/breakpoint';
+import { below } from '../utilities';
 
 const HighlightBlock = styled.div`
   order: ${({ align }) => (align === 'left' ? 0 : 2)};
@@ -15,9 +15,9 @@ const FeaturedImage = styled.img`
   height: ${({ height }) => height || '20rem'};
   position: relative;
 
-  -webkit-box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.orange};
-  -moz-box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.orange};
-  box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.orange};
+  -webkit-box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.primary};
+  -moz-box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.primary};
+  box-shadow: 10px 10px 0px -2px ${({ theme }) => theme.colors.primary};
 
   ${below.small`
     max-width: 30rem;

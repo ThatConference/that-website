@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from './Icon';
-import { below } from '../utilities/breakpoint';
+import Icon from './shared/Icon';
+import { below } from '../utilities';
 
 const SocialLinksContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const SocialLinksContainer = styled.div`
 
     &:hover {
       svg {
-        fill: ${({ theme }) => theme.colors.orange};
+        fill: ${({ theme }) => theme.colors.primary};
       }
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentSection from './ContentSection';
-import { above, below } from '../utilities/breakpoint';
+import { above, below } from '../utilities';
 
 const ImageContainer = styled.a`
   display: flex;
