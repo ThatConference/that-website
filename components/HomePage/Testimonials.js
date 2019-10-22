@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import ContentSection from './ContentSection';
-import Icon from './shared/Icon';
+import ContentSection from '../shared/ContentSection';
+import Icon from '../shared/Icon';
 
 const REVIEWS = [
   {

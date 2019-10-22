@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { isAbsolute } from 'path';
 
-import IconText from './shared/IconText';
+import IconText from '../shared/IconText';
 import NavItem from './NavItem';
-import { above, below, siteInfo } from '../utilities';
+import { above, below, siteInfo } from '../../utilities';
 
 const NavList = styled.div`
   display: flex;

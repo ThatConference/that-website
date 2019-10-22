@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { below } from '../utilities';
+import { below } from '../../utilities';
 
 const Container = styled.div`
   padding: 5rem;
   background-color: ${props =>
-  props.color ? props.theme.colors[props.color] : props.theme.colors.backgroundColor};
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.backgroundColor};
   position: relative;
   display: block;
   overflow: hidden;

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { above, below } from '../utilities/breakpoint.js';
+import { above, below } from '../../utilities/breakpoint.js';
 
 const StyledLink = styled.a`
   text-transform: uppercase;

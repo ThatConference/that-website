@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import { below } from '../utilities';
-import ContentSection from '../components/ContentSection';
-import Hero from '../components/Hero';
-import HighlightImage from '../components/HighlightImage';
+import ContentSection from '../components/shared/ContentSection';
+import Hero from '../components/shared/Hero';
+import HighlightImage from '../components/shared/HighlightImage';
 import LinkButton from '../components/shared/LinkButton';
 
 const ContentDetail = styled.div`

@@ -3,11 +3,11 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import ContentSection from '../components/ContentSection';
-import Hero from '../components/Hero';
+import ContentSection from '../components/shared/ContentSection';
+import Hero from '../components/shared/Hero';
 import IconText from '../components/shared/IconText';
 import Map from '../components/shared/Map';
-import SocialLinks from '../components/SocialLinks';
+import SocialLinks from '../components/shared/SocialLinks';
 import { above, below, siteInfo } from '../utilities';
 
 const DetailDiv = styled.div`

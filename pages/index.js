@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
-import ContentSection from '../components/ContentSection';
-import Gallery from '../components/Gallery';
-import Hero from '../components/Hero';
-import HighlightImage from '../components/HighlightImage';
+import ContentSection from '../components/shared/ContentSection';
+import Gallery from '../components/HomePage/Gallery';
+import Hero from '../components/shared/Hero';
+import HighlightImage from '../components/shared/HighlightImage';
 import IconText from '../components/shared/IconText';
 import Map from '../components/shared/Map';
-import NewsletterSignup from '../components/NewsletterSignup';
-import SocialLinks from '../components/SocialLinks';
-import Testimonials from '../components/Testimonials';
+import NewsletterSignup from '../components/HomePage/NewsletterSignup';
+import SocialLinks from '../components/shared/SocialLinks';
+import Testimonials from '../components/HomePage/Testimonials';
 import { below, siteInfo } from '../utilities';
 
 const Title = styled.h2`
