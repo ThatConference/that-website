@@ -28,9 +28,9 @@
     "react-dom": "^16.10.2",
     "react-facebook": "^8.0.4",
     "react-scroll-parallax": "^2.2.0",
-    "react-styled-flexboxgrid": "^3.1.0",
     "styled-components": "^4.4.0",
-    "styled-components-modifiers": "^1.2.5"
+    "styled-components-modifiers": "^1.2.5",
+    "styled-css-grid": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

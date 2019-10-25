@@ -5,52 +5,58 @@ import { GA_TRACKING_ID } from '../lib/gtag';
 
 const Meta = () => (
   <Head profile="http://www.w3.org/2005/10/profile">
-    <title key="title">Sand Bar and Island Grill!</title>
+    <title key="title">THAT Conference - Wisconsin Dells, WI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
-    <link rel="icon" type="image/png" href="/static/favicon.png" />
+    <link rel="icon" type="image/png" href="favicon.png" />
 
-    <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+    <link rel="stylesheet" type="text/css" href="/nprogress.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
     />
 
     <meta
       name="description"
-      content="A Tropical Oasis in the least likely of places!"
+      content="THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells."
     />
     <meta
       name="keywords"
-      content="TIKI Bar, Resturant, Twin Lakes, Lake Elizabeth"
+      content="tech conference, tech, technology, conference, midwest tech, midwest, summer camp for geeks"
     />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Sand Bar And Island Grill" />
+    <meta property="og:title" content="THAT Conference - Wisconsin Dells, WI" />
     <meta
       property="og:description"
       content="A Tropical Oasis in the least likely of places!"
     />
     <meta property="og:url" content="https://sandbarandislandgrill.com/" />
-    <meta property="og:site_name" content="Sand Bar And Island Grill" />
+    <meta
+      property="og:site_name"
+      content="THAT Conference - Wisconsin Dells, WI"
+    />
     {/* <meta property="og:image" content="" /> */}
     <meta property="og:locale" content="en_US" />
 
-    {/* <meta name="twitter:site" content="@SandBar" />
-    <meta name="twitter:title" content="FILL ME OUT" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@thatconference" />
     <meta
-      name="twitter:description"
-      content="A Tropical Oasis in the least likely of places!"
+      name="twitter:title"
+      content="THAT Conference - Wisconsin Dells, WI"
     />
     <meta
-      name="twitter:image"
-      content="https://www.sandbarandislandgrill.com/images/icons/opengraph.jpg"
-    /> */}
+      name="twitter:card"
+      content="Over four days, folks of diverse technology backgrounds and expertise levels gather to take advantage of multiple learning mediums to maximize one’s community and career advancements."
+    />
+    <meta
+      name="twitter:description"
+      content="THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells."
+    />
+    <meta name="twitter:image" content="THAT Conference - WI.png" />
 
     <script
       async

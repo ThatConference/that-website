@@ -53,7 +53,7 @@ const Title = styled.h2`
   margin-bottom: ${props => (props.subtitle ? '0' : '3rem')};
 
   .normal {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 2.8rem;
   }

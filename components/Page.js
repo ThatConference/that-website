@@ -14,6 +14,7 @@ const StyledPage = styled.div`
 
 const CorePage = styled.div`
   height: 100vh;
+  width: 100vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;

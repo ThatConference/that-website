@@ -19,7 +19,7 @@ const Title = styled.h2`
   margin-top: 0;
   line-height: 1.2;
   font-weight: 400;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   margin-bottom: 0.5rem;
 `;
 
