@@ -3,6 +3,7 @@ import React from 'react';
 import { Grid, Cell } from 'styled-css-grid';
 import { above, below, siteInfo } from '../../utilities';
 import MobileFooter from './MobileFooter';
+import SocialLinks from '../shared/SocialLinks';
 
 const Footer = ({ className }) => {
   return (
@@ -11,7 +12,9 @@ const Footer = ({ className }) => {
         <Cell width={8}>
           All Rights Reserved. Copyright 2019 THAT Conference.
         </Cell>
-        <Cell width={3}>socials</Cell>
+        <Cell width={3}>
+          <SocialLinks />
+        </Cell>
         <Cell width={1}>arrow</Cell>
       </Grid>
       <MobileFooter />

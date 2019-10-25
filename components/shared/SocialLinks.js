@@ -9,13 +9,19 @@ const SocialLinksContainer = styled.div`
   justify-content: center;
 
   a {
+    height: 3rem;
+
     ${below.med`
       margin-bottom: 1rem;
     `};
 
+    svg {
+      fill: ${({ theme }) => theme.colors.highlight};
+    }
+
     &:hover {
       svg {
-        fill: ${({ theme }) => theme.colors.primary};
+        fill: ${({ theme }) => theme.colors.highlight};
       }
     }
   }
