@@ -24,6 +24,7 @@ const InnerPage = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 2rem;
 `;
 
 export default props => {

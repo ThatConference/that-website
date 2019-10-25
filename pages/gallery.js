@@ -7,7 +7,6 @@ import Lightbox from 'fslightbox-react';
 import { above } from '../utilities';
 
 import ContentSection from '../components/shared/ContentSection';
-import Hero from '../components/shared/Hero';
 
 // import 'react-image-lightbox/style.css';
 
@@ -59,13 +58,6 @@ const about = props => {
       </Head>
       <ParallaxProvider>
         <>
-          <Hero
-            imagePath="/static/images/aerial.jpg"
-            heading="Sand Bar and Island Grill"
-            href={`tel:${siteInfo.linkPhone}`}
-            label="Call for Reservations"
-          />
-
           <ContentSection title="Gallery">
             <ContentDetail>
               {IMAGES.map((item, index) => {
