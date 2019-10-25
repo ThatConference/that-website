@@ -95,21 +95,4 @@ export default styled(Header)`
     width: 100%;
     position: absolute;
   }
-
-  &.scrolled {
-    a {
-      color: ${({ theme }) => theme.colors.dark};
-      svg {
-        fill: ${({ theme }) => theme.colors.dark};
-      }
-
-      &:hover {
-        color: ${({ theme }) => theme.colors.primary};
-      }
-    }
-
-    &::before {
-      transform: translateY(0) !important;
-    }
-  }
 `;
