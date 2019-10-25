@@ -5,7 +5,6 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 import { below } from '../utilities';
 import ContentSection from '../components/shared/ContentSection';
-import Hero from '../components/shared/Hero';
 import HighlightImage from '../components/shared/HighlightImage';
 import LinkButton from '../components/shared/LinkButton';
 
@@ -41,13 +40,6 @@ const about = props => (
     </Head>
     <ParallaxProvider>
       <>
-        <Hero
-          imagePath="/static/images/home-entrance.jpg"
-          heading="Sand Bar and Island Grill"
-          href={`tel:${siteInfo.linkPhone}`}
-          label="Call for Reservations"
-        />
-
         <ContentSection title="How We Got Started">
           <ContentDetail>
             <HighlightImage

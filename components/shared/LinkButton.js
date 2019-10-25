@@ -16,8 +16,7 @@ const OutlineLink = styled.a`
 
   p {
     color: ${({ color, theme }) =>
-      color ? theme.colors[color] : theme.colors.light};
-    text-transform: uppercase;
+      color ? theme.colors[color] : theme.colors.fonts.light};
     margin: 0.7rem;
     text-align: center;
   }

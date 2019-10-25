@@ -5,9 +5,23 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import MessageBar from './MessageBar';
 import Nav from '../Nav';
+import LinkButton from '../shared/LinkButton';
 
 const PageHeader = styled.div`
+  margin: 6rem 2rem 0 2rem;
   width: 100%;
+  height: 10rem;
+  display: flex;
+  align-items: flex-end;
+`;
+
+const Logo = styled.img`
+  height: 100%;
+`;
+
+const ActionButton = styled(LinkButton)`
+  margin: 0;
+  background-color: ${({ theme }) => theme.colors.thatBlue};
 `;
 
 router.onRouteChangeStart = () => {
@@ -47,8 +61,13 @@ const Header = ({ className }) => {
     <header className={[className, scrolled()].join(' ')}>
       <MessageBar />
       <PageHeader>
-        <p>new logo</p>
+        <Logo src="/svgs/THATConference-WI-2020.svg" />
         <Nav />
+        <ActionButton
+          href="/"
+          label="Join Our Mailing List"
+          borderColor="thatBlue"
+        />
       </PageHeader>
     </header>
   );
