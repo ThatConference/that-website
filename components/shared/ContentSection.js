@@ -82,8 +82,6 @@ const ContentSection = props => {
   return (
     <Container color={props.color}>
       <ContainerInner>
-        <Title subtitle={props.subtitle}>{props.title}</Title>
-        {props.subtitle && <Subtitle>{props.subtitle}</Subtitle>}
         <DetailContainer>{props.children}</DetailContainer>
       </ContainerInner>
     </Container>

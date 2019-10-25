@@ -22,6 +22,23 @@ const becomeAPartner = props => (
         </Cell>
       </Grid>
     </ContentSection>
+
+    <ContentSection color="primary">
+      <Grid columns={12}>
+        <Cell width={6}>
+          <StandardBodyCopy>
+            THAT Conference is the “Summer Camp for Geeks” that combines
+            technology, networking, social events and exposure in an
+            inspirational, family friendly environment at the The Kalahari
+            Resort in Wisconsin Dells. Over four days, 1700 folks of diverse
+            technology backgrounds and expertise levels gather to take advantage
+            of multiple learning mediums to maximize one’s community and career
+            advancements.
+          </StandardBodyCopy>
+        </Cell>
+        <Cell width={6} />
+      </Grid>
+    </ContentSection>
   </div>
 );
 
