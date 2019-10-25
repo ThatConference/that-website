@@ -19,4 +19,5 @@ export default styled(MessageBar)`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.fonts.light};
+  position: fixed;
 `;

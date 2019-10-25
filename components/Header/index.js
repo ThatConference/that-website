@@ -61,7 +61,6 @@ export default styled(Header)`
   padding: 0;
   background-color: transparent;
   z-index: 1;
-  position: fixed;
   width: 100vw;
 
   &::before {
