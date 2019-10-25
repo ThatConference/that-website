@@ -3,7 +3,12 @@ import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState, useRef } from 'react';
 
-import Nav from '../Nav/Nav';
+import MessageBar from './MessageBar';
+import Nav from '../Nav';
+
+const PageHeader = styled.div`
+  width: 100%;
+`;
 
 router.onRouteChangeStart = () => {
   nprogress.start();
@@ -40,16 +45,20 @@ const Header = ({ className }) => {
 
   return (
     <header className={[className, scrolled()].join(' ')}>
-      <Nav />
+      <MessageBar />
+      <PageHeader>
+        <p>new logo</p>
+        <Nav />
+      </PageHeader>
     </header>
   );
 };
 
 export default styled(Header)`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0;
   background-color: transparent;
   z-index: 1;
   position: fixed;

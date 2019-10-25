@@ -48,19 +48,6 @@ const ButtonLink = styled.a`
 const Nav = ({ className }) => {
   return (
     <nav className={className}>
-      <NavItem
-        title="home"
-        href="/"
-        image="/static/images/sand-bar-logo.png"
-        style={{ position: 'absolute', top: 0, width: '10rem' }}
-      />
-
-      <ButtonLink href={`tel:${siteInfo.linkPhone}`}>
-        <IconText icon="phone" align="right">
-          {siteInfo.formattedPhone}
-        </IconText>
-      </ButtonLink>
-
       <NavList>
         <NavListItem>
           <NavItem title="gallery" href="/gallery" />
