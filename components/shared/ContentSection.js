@@ -37,7 +37,7 @@ const DetailContainer = styled.div`
 
 const ContainerInner = styled.div`
   margin: auto;
-  max-width: 90rem;
+  max-width: 140rem;
 
   ${below.xsmall`
     max-width: 30rem;
