@@ -17,10 +17,6 @@ const Svg = styled.svg`
   &.left {
     transform: rotate(-180deg);
   }
-
-  &.medium {
-    fill: ${({ theme }) => theme.colors.medium};
-  }
 `;
 
 const Icon = props => {
