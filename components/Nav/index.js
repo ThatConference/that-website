@@ -11,9 +11,7 @@ const NavList = styled.div`
   flex-direction: row;
   width: 100%;
   flex-wrap: no-wrap;
-  justify-content: flex-end;
   align-items: center;
-  margin: 1.2rem 0;
 
   ${below.med`
     display: none;
@@ -50,13 +48,25 @@ const Nav = ({ className }) => {
     <nav className={className}>
       <NavList>
         <NavListItem>
-          <NavItem title="gallery" href="/gallery" />
+          <NavItem title="Schedule" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="contact" href="/contact" />
+          <NavItem title="Speakers" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="about" href="/about" />
+          <NavItem title="Sponsors" href="/" />
+        </NavListItem>
+        <NavListItem>
+          <NavItem title="Campers" href="/" />
+        </NavListItem>
+        <NavListItem>
+          <NavItem title="Play Your Trip" href="/" />
+        </NavListItem>
+        <NavListItem>
+          <NavItem title="Shop" href="/" />
+        </NavListItem>
+        <NavListItem>
+          <NavItem title="Contact" href="/" />
         </NavListItem>
       </NavList>
     </nav>

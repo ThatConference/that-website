@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { ParallaxProvider } from 'react-scroll-parallax';
 
 import ContentSection from '../components/shared/ContentSection';
-import Hero from '../components/shared/Hero';
 import IconText from '../components/shared/IconText';
-import Map from '../components/shared/Map';
 import SocialLinks from '../components/shared/SocialLinks';
 import { above, below, siteInfo } from '../utilities';
 
@@ -82,12 +80,6 @@ const contact = props => (
     </Head>
     <ParallaxProvider>
       <>
-        <Hero
-          imagePath="/static/images/conversation.jpg"
-          heading={siteInfo.name}
-          href={`tel:${siteInfo.linkPhone}`}
-          label="Call for Reservations"
-        />
         <ContentSection title="Contact Us">
           <DetailDiv>
             <Label>Email</Label>
@@ -116,7 +108,6 @@ const contact = props => (
           </DetailDiv>
         </ContentSection>
         <Socials />
-        <Map />
       </>
     </ParallaxProvider>
   </>

@@ -5,14 +5,15 @@ import styled from 'styled-components';
 import { above, below } from '../../utilities/breakpoint.js';
 
 const StyledLink = styled.a`
-  text-transform: uppercase;
   font-size: 1.4rem;
   text-align: center;
   color: ${props =>
-    props.color ? props.theme.colors[props.color] : props.theme.colors.light};
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
 
   &:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.highlight};
   }
 
   ${below.med`
