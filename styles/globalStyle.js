@@ -4,7 +4,7 @@ import { normalize } from 'polished';
 const GlobalStyle = createGlobalStyle`
   ${normalize()};
   html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     height: 100%;
 
