@@ -2,10 +2,15 @@ const baseTheme = {
   colors: {
     backgroundColor: '#ffffff',
 
-    primary: '#fd7e14',
-    secondary: '#028472',
-    tertiary: '#FE5F55',
-    highlight: '#F4F7BE',
+    primary: '#1F2A63',
+    secondary: '#16215A',
+    tertiary: '#FF834D',
+    highlight: '#FF834D',
+
+    thatBlue: '#26529A',
+    gray: '#555555',
+    white: '#FFFFFF',
+    offWhite: '#F7F7F7',
 
     // standard user messaging
     success: '#28a745',
@@ -13,15 +18,9 @@ const baseTheme = {
     warning: '#ffc107',
     danger: '#dc3545',
 
-    // grays
-    light: '#f8f9fa',
-    medium: '#d6d6d6',
-    dark: '#343a40',
-    black: '#393939',
-
     fonts: {
-      light: '#777',
-      dark: '#393939',
+      light: '#FFFFFF',
+      dark: '#555555',
     },
 
     maps: {
