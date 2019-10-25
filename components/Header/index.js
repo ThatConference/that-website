@@ -3,7 +3,7 @@ import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState, useRef } from 'react';
 
-import Nav from './Nav';
+import Nav from '../Nav/Nav';
 
 router.onRouteChangeStart = () => {
   nprogress.start();

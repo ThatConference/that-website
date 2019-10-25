@@ -26,8 +26,8 @@ const baseTheme = {
 
     maps: {
       landscape: '#f2f2f2',
-      water: '#ff9100'
-    }
+      water: '#ff9100',
+    },
   },
 };
 

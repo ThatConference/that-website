@@ -6,8 +6,8 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import Lightbox from 'fslightbox-react';
 import { above } from '../utilities';
 
-import ContentSection from '../components/ContentSection';
-import Hero from '../components/Hero';
+import ContentSection from '../components/shared/ContentSection';
+import Hero from '../components/shared/Hero';
 
 // import 'react-image-lightbox/style.css';
 

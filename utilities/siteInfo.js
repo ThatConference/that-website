@@ -5,4 +5,5 @@ export const siteInfo = {
   email: 'eat@aweosmeness.io',
   formattedPhone: '(262) 877-9500',
   linkPhone: '1-262-877-9500',
+  logoPath: '/static/images/sand-bar-logo.png',
 };

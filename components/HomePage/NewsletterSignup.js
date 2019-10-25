@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContentSection from './ContentSection';
+import ContentSection from '../shared/ContentSection';
 
-import { below } from '../utilities';
+import { below } from '../../utilities';
 
 const Text = styled.p`
   line-height: 1.8;

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from './shared/Icon';
-import { below } from '../utilities';
+import Icon from './Icon';
+import { below } from '../../utilities';
 
 const SocialLinksContainer = styled.div`
   display: flex;

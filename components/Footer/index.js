@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { applyStyleModifiers } from 'styled-components-modifiers';
 import moment from 'moment';
 import MobileFooter from './MobileFooter';
-import SocialLinks from './SocialLinks';
-import { above, below, siteInfo } from '../utilities';
+import SocialLinks from '../shared/SocialLinks';
+import { above, below, siteInfo } from '../../utilities';
 
 const FOOTER_MODIFIERS = {
   site: ({ theme }) => `
@@ -13,7 +13,7 @@ const FOOTER_MODIFIERS = {
   `,
 };
 
-const SandBarLogo = styled.img`
+const Logo = styled.img`
   display: block;
   width: 40%;
   height: auto;
@@ -111,7 +111,7 @@ const Footer = ({ className }) => {
   return (
     <footer className={className}>
       <section>
-        <SandBarLogo src="/static/images/sand-bar-logo.png" />
+        <Logo src={siteInfo.logoPath} />
         <FooterColumn>
           <Heading>Phone</Heading>
           <Text>
@@ -140,7 +140,7 @@ const Footer = ({ className }) => {
       </section>
       <FooterSocials />
       <Trademark>
-        © {moment().year()} Sand Bar And Island Grill ™, Made with ❤️ by{' '}
+        © {moment().year()} {siteInfo.name} ™, Made with ❤️ by{' '}
         <a
           href="http://unspecified.io"
           target="_blank"
