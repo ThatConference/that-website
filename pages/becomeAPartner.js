@@ -27,6 +27,7 @@ const becomeAPartner = props => (
       <Grid columns={12}>
         <Cell width={6}>
           <StandardBodyCopy>
+            <h2>SUMMER CAMP FOR GEEKS</h2>
             THAT Conference is the “Summer Camp for Geeks” that combines
             technology, networking, social events and exposure in an
             inspirational, family friendly environment at the The Kalahari
