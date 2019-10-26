@@ -12,12 +12,14 @@ const WhatToExpectImage = styled.img`
 
 const WhatToExpectSection = ({ src, title }) => {
   return (
-    <div>
+    <div style={{ marginBottom: '80px' }}>
       <CenteredDiv style={{ height: '120px' }}>
         <WhatToExpectImage src={src} />
       </CenteredDiv>
       <CenteredDiv>
-        <span className="medium-copy-body">{title}</span>
+        <span className="medium-body-copy" style={{ fontWeight: 'bold' }}>
+          {title}
+        </span>
       </CenteredDiv>
     </div>
   );
@@ -25,9 +27,14 @@ const WhatToExpectSection = ({ src, title }) => {
 
 const WhatToExpect = props => {
   return (
-    <Grid columns={12} style={{ width: '100%', textAlign: 'center' }}>
+    <Grid
+      columns={12}
+      style={{ width: '100%', textAlign: 'center', marginTop: '65px' }}
+    >
       <Cell width={12}>
-        <h4>Here's What You Can Expect At That Conference</h4>
+        <h3 className="font-dark">
+          Here's What You Can Expect At That Conference
+        </h3>
       </Cell>
       <Cell width={3}>
         <WhatToExpectSection

@@ -71,6 +71,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
   }
 
+  .font-dark {
+    color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
   ::-moz-selection { background: ${({ theme }) => theme.colors.primary}; }
   ::selection { background: ${({ theme }) => theme.colors.primary}; }
 `;
