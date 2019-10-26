@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Hero from '../components/HomePage/Hero';
+import LearnMore from '../components/HomePage/LearnMore';
 import ContentSection from '../components/shared/ContentSection';
 import HighlightImage from '../components/shared/HighlightImage';
 import IconText from '../components/shared/IconText';
@@ -42,6 +43,7 @@ const AccentImage = styled.img`
 const home = props => (
   <>
     <Hero />
+    <LearnMore />
 
     <ContentSection
       title={[
