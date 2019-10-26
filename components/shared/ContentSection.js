@@ -4,9 +4,13 @@ import { below } from '../../utilities';
 const Container = styled.div`
   padding: 5rem;
   background-color: ${props =>
-    props.color
-      ? props.theme.colors[props.color]
+    props.backgroundColor
+      ? props.theme.colors[props.backgroundColor]
       : props.theme.colors.backgroundColor};
+  color: ${props =>
+    props.fontColor
+      ? props.theme.colors.fonts[props.fontColor]
+      : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
   overflow: hidden;
@@ -80,10 +84,11 @@ const Subtitle = styled.h3`
 
 const ContentSection = props => {
   return (
-    <Container color={props.color}>
+    <Container
+      backgroundColor={props.backgroundColor}
+      fontColor={props.fontColor}
+    >
       <ContainerInner>
-        <Title subtitle={props.subtitle}>{props.title}</Title>
-        {props.subtitle && <Subtitle>{props.subtitle}</Subtitle>}
         <DetailContainer>{props.children}</DetailContainer>
       </ContainerInner>
     </Container>
