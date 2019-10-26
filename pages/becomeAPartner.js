@@ -42,14 +42,23 @@ const becomeAPartner = props => (
             of multiple learning mediums to maximize one’s community and career
             advancements.
           </StandardBodyCopy>
-          <ActionButton
-            href="/"
-            label="Join Our Mailing List"
-            borderColor="thatBlue"
-          />
+          <Grid columns={12}>
+            <Cell width={4} />
+            <Cell width={4}>
+              <ActionButton
+                href="/"
+                label="Join Our Mailing List"
+                borderColor="thatBlue"
+              />
+            </Cell>
+            <Cell width={4} />
+          </Grid>
         </Cell>
-        <Cell width={6}>
-          <SasquatchImage src="/images/sasquatch_kayaking.png" />
+        {/* This seems smelly? */}
+        <Cell style={{ textAlign: 'center' }} width={6}>
+          <div>
+            <SasquatchImage src="/images/sasquatch_kayaking.png" />
+          </div>
         </Cell>
       </Grid>
     </ContentSection>
