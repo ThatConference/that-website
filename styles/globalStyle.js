@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: franklin-gothic-urw-comp, sans-serif;   
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.primary};
+    line-height: 0.9;
   }
 
   h4, h5 {
@@ -36,7 +37,6 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: 11rem;
-    line-height: 0.9;
   }
 
   h2 {
@@ -61,6 +61,7 @@ const GlobalStyle = createGlobalStyle`
 
   .large-body-copy {
     font-size: 2.4rem;
+    line-height: 1.5;
   }
 
   .medium-body-copy {

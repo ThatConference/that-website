@@ -29,8 +29,8 @@ const Icon = props => {
       viewBox={`0 0 ${props.height || '24'} ${props.width || '24'}`}
     >
       <title>{svgs[props.icon].title}</title>
-      {svgs[props.icon].path.map(item => {
-        return <path d={item} />;
+      {svgs[props.icon].path.map((item, index) => {
+        return <path key={index} d={item} />;
       })}
     </Svg>
   );

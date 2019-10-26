@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import Hero from '../components/HomePage/Hero';
 import LearnMore from '../components/HomePage/LearnMore';
+import SpeakerHighlight from '../components/HomePage/SpeakerHighlight';
+import WhatToExpect from '../components/shared/WhatToExpect';
 import ContentSection from '../components/shared/ContentSection';
 import HighlightImage from '../components/shared/HighlightImage';
 import IconText from '../components/shared/IconText';
@@ -44,6 +46,8 @@ const home = props => (
   <>
     <Hero />
     <LearnMore />
+    <WhatToExpect />
+    <SpeakerHighlight />
 
     <ContentSection
       title={[
