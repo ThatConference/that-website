@@ -1,8 +1,14 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../components/shared/ContentSection';
 import PageHeader from '../components/shared/PageHeader';
 import StandardBodyCopy from '../components/shared/StandardBodyCopy';
+import ActionButton from '../components/shared/LinkButton';
+
+const SasquatchImage = styled.img`
+  width: 500px;
+`;
 
 const becomeAPartner = props => (
   <div>
@@ -36,8 +42,15 @@ const becomeAPartner = props => (
             of multiple learning mediums to maximize one’s community and career
             advancements.
           </StandardBodyCopy>
+          <ActionButton
+            href="/"
+            label="Join Our Mailing List"
+            borderColor="thatBlue"
+          />
         </Cell>
-        <Cell width={6} />
+        <Cell width={6}>
+          <SasquatchImage src="/images/sasquatch_kayaking.png" />
+        </Cell>
       </Grid>
     </ContentSection>
   </div>
