@@ -23,8 +23,52 @@ const GlobalStyle = createGlobalStyle`
     line-height: 2;
   }
 
+  h1, h2, h3 {
+    font-family: franklin-gothic-urw-comp, sans-serif;   
+    text-transform: uppercase;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  h4, h5 {
+    font-family: franklin-gothic-urw, sans-serif;
+    color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  h1 {
+    font-size: 11rem;
+    line-height: 0.9;
+  }
+
+  h2 {
+    font-size: 10rem;
+  }
+
+  h3 {
+    font-size: 4.5rem;
+  }
+
+  h4 {
+   font-size: 2.4rem;
+  }
+
   a {
     text-decoration: none;
+  }
+  
+  p { 
+    color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  .large-body-copy {
+    font-size: 2.4rem;
+  }
+
+  .medium-body-copy {
+    font-size: 1.8rem;
+  }
+
+  .small-body-copy {
+    font-size: 1.6rem;
   }
 
   ::-moz-selection { background: ${({ theme }) => theme.colors.primary}; }

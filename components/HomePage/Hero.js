@@ -9,8 +9,19 @@ import SocialLinks from '../shared/SocialLinks';
 
 import { below } from '../../utilities';
 
-const DateLocation = styled.h2``;
-const Slogan = styled.h1``;
+const DateLocation = styled.h2`
+  color: ${({ theme }) => theme.colors.tertiary};
+  font-size: 1.8rem;
+  font-family: franklin-gothic-urw, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  margin: 0;
+`;
+
+const Slogan = styled.h1`
+  margin: 0 0 2rem 0;
+`;
+
 const Description = styled.p`
   width: 50%;
   margin: auto;
@@ -22,7 +33,7 @@ const ActionButtons = styled.div`
 `;
 
 const HeroImage = styled.img`
-  width: 100%;
+  width: 90%;
 `;
 
 const HeroSocials = styled(SocialLinks)`
@@ -61,8 +72,18 @@ const Hero = ({ className }) => {
           </DateLocation>
           <Slogan>Summer Camp For Geeks</Slogan>
           <ActionButtons>
-            <LinkButton href="/" label="Ticket Options" color="primary" />
-            <LinkButton href="/" label="Sponsor Us" color="primary" />
+            <LinkButton
+              href="/"
+              label="Ticket Options"
+              color="thatBlue"
+              borderColor="thatBlue"
+            />
+            <LinkButton
+              href="/"
+              label="Sponsor Us"
+              color="thatBlue"
+              borderColor="thatBlue"
+            />
           </ActionButtons>
         </Cell>
         <Cell width={6}>
@@ -80,7 +101,7 @@ const Hero = ({ className }) => {
 };
 
 export default styled(Hero)`
-  width: 80vw;
-  max-width: 100rem;
-  margin: auto;
+  max-width: 130rem;
+  margin: 3rem auto;
+  padding: 0 2rem;
 `;
