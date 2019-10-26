@@ -9,7 +9,6 @@ import { above, below, siteInfo } from '../../utilities';
 const NavList = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
   flex-wrap: no-wrap;
   align-items: center;
 
@@ -75,7 +74,6 @@ const Nav = ({ className }) => {
 
 export default styled(Nav)`
   display: flex;
-  width: 100%;
   flex-wrap: no-wrap;
   align-items: center;
   justify-content: space-between;

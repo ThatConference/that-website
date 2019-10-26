@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Hero from '../components/HomePage/Hero';
 import ContentSection from '../components/shared/ContentSection';
 import HighlightImage from '../components/shared/HighlightImage';
 import IconText from '../components/shared/IconText';
 import NewsletterSignup from '../components/HomePage/NewsletterSignup';
-import SocialLinks from '../components/shared/SocialLinks';
 import { below, siteInfo } from '../utilities';
 
 const Title = styled.h2`
@@ -16,29 +16,6 @@ const Title = styled.h2`
   font-weight: 400;
   font-family: 'Open Sans', sans-serif;
   margin-bottom: 0.5rem;
-`;
-
-const StackedSocialLinks = styled(SocialLinks)`
-  order: 1;
-
-  ${below.med`
-    max-height: 3rem;
-  `};
-
-  ${below.large`
-    order: 2;
-    max-height: 4rem;
-  `};
-`;
-
-const StackedLocation = styled(IconText)`
-  order: 3;
-  a {
-    color: ${({ theme }) => theme.colors.light};
-    &:hover {
-      color: ${({ theme }) => theme.colors.primary};
-    }
-  }
 `;
 
 const ContentBlock = styled.div`
@@ -64,16 +41,7 @@ const AccentImage = styled.img`
 
 const home = props => (
   <>
-    <StackedSocialLinks />
-    <StackedLocation icon="location" align="center">
-      <a
-        href="https://goo.gl/maps/9fvZcNvVcsiJ82Hj6"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        {siteInfo.address}
-      </a>
-    </StackedLocation>
+    <Hero />
 
     <ContentSection
       title={[
@@ -82,7 +50,6 @@ const home = props => (
         <span className="normal"> In The Least Likely Of Places</span>,
       ]}
     >
-      <AccentImage src="../static/images/tiki-bar.png" />
       <ContentDetail>
         <p>
           The Sand Bar & Island Grill is a waterfront, "open-air" establishment
@@ -91,7 +58,7 @@ const home = props => (
           resident who has spent a great deal of his time on Florida's Suncoast
           in the Tampa Bay/Clearwater area.
         </p>
-        <HighlightImage src="../static/images/conversation.jpg" />
+        <HighlightImage src="" />
       </ContentDetail>
     </ContentSection>
 
