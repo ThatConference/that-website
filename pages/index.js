@@ -42,6 +42,12 @@ const AccentImage = styled.img`
   top: 18%;
 `;
 
+const BottomImage = styled.img`
+  object-fit: cover;
+  width: 100vw;
+  height: 45rem;
+`;
+
 const home = props => (
   <>
     <Hero />
@@ -69,6 +75,7 @@ const home = props => (
     </ContentSection>
 
     <NewsletterSignup />
+    <BottomImage src="./images/mess_hall.png" />
   </>
 );
 
