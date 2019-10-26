@@ -15,7 +15,11 @@ const Svg = styled.svg`
   }
 
   &.left {
-    transform: rotate(-180deg);
+    transform: rotate(-270deg);
+  }
+
+  &.right {
+    transform: rotate(-90deg);
   }
 `;
 
