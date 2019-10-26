@@ -42,17 +42,14 @@ const becomeAPartner = props => (
             of multiple learning mediums to maximize one’s community and career
             advancements.
           </StandardBodyCopy>
-          <Grid columns={12}>
-            <Cell width={4} />
-            <Cell width={4}>
-              <ActionButton
-                href="/"
-                label="Join Our Mailing List"
-                borderColor="thatBlue"
-              />
-            </Cell>
-            <Cell width={4} />
-          </Grid>
+          <div>
+            {/* This will jump to prospectus for below */}
+            <ActionButton
+              href="/foo"
+              borderColor="thatBlue"
+              label="Get the Prospectus"
+            />
+          </div>
         </Cell>
         {/* This seems smelly? */}
         <Cell style={{ textAlign: 'center' }} width={6}>
