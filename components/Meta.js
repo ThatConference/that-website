@@ -11,10 +11,7 @@ const Meta = () => (
     <link rel="icon" type="image/png" href="favicon.png" />
 
     <link rel="stylesheet" type="text/css" href="/nprogress.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://use.typekit.net/tyl7iga.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"

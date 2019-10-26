@@ -4,7 +4,7 @@ const baseTheme = {
 
     primary: '#1F2A63',
     secondary: '#16215A',
-    tertiary: '#FF834D',
+    tertiary: '#F74646',
     highlight: '#FF834D',
 
     thatBlue: '#26529A',
