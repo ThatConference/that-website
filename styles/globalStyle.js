@@ -75,6 +75,14 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.fonts.dark};
   }
 
+  .font-light {
+    color: ${({ theme }) => theme.colors.fonts.light};
+  }
+
+  .centered-text {
+    text-align: center;
+  }
+
   ::-moz-selection { background: ${({ theme }) => theme.colors.primary}; }
   ::selection { background: ${({ theme }) => theme.colors.primary}; }
 `;
