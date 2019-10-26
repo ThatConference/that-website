@@ -23,9 +23,11 @@ const Slogan = styled.h1`
 `;
 
 const Description = styled.p`
-  width: 50%;
+  width: 90%;
   margin: auto;
   text-align: center;
+  padding-top: 2rem;
+  max-width: 110rem;
 `;
 
 const ActionButtons = styled.div`
@@ -47,6 +49,8 @@ const GET_EVENTS = gql`
     events {
       id
       name
+      startDate
+      endDate
       venue {
         city
         state
@@ -87,11 +91,11 @@ const Hero = ({ className }) => {
           </ActionButtons>
         </Cell>
         <Cell width={6}>
-          <HeroImage src="images/clark-stage.jpg" />
+          <HeroImage src="images/clark_stage.jpg" />
         </Cell>
       </Grid>
       <HeroSocials flexDirection="column" />
-      <Description>
+      <Description className="large-body-copy">
         Over four days, folks of diverse technology backgrounds and expertise
         levels gather to take advantage of multiple learning mediums to maximize
         one’s community and career advancements.
