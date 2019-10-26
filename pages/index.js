@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Hero from '../components/HomePage/Hero';
 import LearnMore from '../components/HomePage/LearnMore';
 import SpeakerHighlight from '../components/HomePage/SpeakerHighlight';
+import Testimonials from '../components/HomePage/Testimonials';
 import WhatToExpect from '../components/shared/WhatToExpect';
 import ContentSection from '../components/shared/ContentSection';
 import HighlightImage from '../components/shared/HighlightImage';
@@ -54,26 +55,7 @@ const home = props => (
     <LearnMore />
     <WhatToExpect />
     <SpeakerHighlight />
-
-    <ContentSection
-      title={[
-        <span className="normal">A </span>,
-        <span className="highlight">Tropical Oasis</span>,
-        <span className="normal"> In The Least Likely Of Places</span>,
-      ]}
-    >
-      <ContentDetail>
-        <p>
-          The Sand Bar & Island Grill is a waterfront, "open-air" establishment
-          located in the Lake Elizabeth marina literally a few feet away from
-          the shore. It was founded in 2009 by Carlo DiCarlo, a Twin Lakes
-          resident who has spent a great deal of his time on Florida's Suncoast
-          in the Tampa Bay/Clearwater area.
-        </p>
-        <HighlightImage src="" />
-      </ContentDetail>
-    </ContentSection>
-
+    <Testimonials />
     <NewsletterSignup />
     <BottomImage src="./images/mess_hall.png" />
   </>
