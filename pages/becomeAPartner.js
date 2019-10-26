@@ -23,7 +23,7 @@ const becomeAPartner = props => (
       </Grid>
     </ContentSection>
 
-    <ContentSection color="primary">
+    <ContentSection backgroundColor="primary" fontColor="light">
       <Grid columns={12}>
         <Cell width={6}>
           <StandardBodyCopy>
