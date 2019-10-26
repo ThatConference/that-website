@@ -9,7 +9,6 @@ import LinkButton from '../shared/LinkButton';
 
 const PageHeader = styled.div`
   margin: 6rem 2rem 0 2rem;
-  width: 100%;
   height: 10rem;
   display: flex;
   align-items: flex-end;

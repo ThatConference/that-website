@@ -23,8 +23,8 @@ const Footer = ({ className }) => {
 };
 
 export default styled(Footer)`
-  padding: 1rem;
-  width: 100%;
+  padding: 1.7rem;
+  width: 100vw;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.fonts.light};
 `;
