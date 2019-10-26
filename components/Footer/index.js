@@ -83,7 +83,6 @@ class Footer extends Component {
 
 export default styled(Footer)`
   display: flex;
-  width: 100%;
   align-items: center;
   padding: 0 2rem;
 `;

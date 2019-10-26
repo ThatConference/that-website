@@ -101,12 +101,7 @@ const MobileFooter = ({ className }) => {
         More
       </NavLink>
       <FullNav mobileMenuOpen={mobileMenuOpen}>
-        <NavItem
-          title="home"
-          href="/"
-          image="/static/images/sand-bar-logo.png"
-          imageWidth="13rem"
-        />
+        <NavItem title="home" href="/" image="" imageWidth="13rem" />
         <CloseIcon
           icon="close"
           height="80"
