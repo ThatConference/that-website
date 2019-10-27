@@ -19,7 +19,7 @@ const DateLocation = styled.h2`
 `;
 
 const Slogan = styled.h1`
-  margin: 0 0 2rem 0;
+  margin: 1.8rem 0 3rem 0;
   max-width: 60rem;
 `;
 
@@ -54,7 +54,8 @@ const Button = styled(LinkButton)`
 
 const HeroImage = styled.img`
   width: 90%;
-  max-width: 60rem;
+  max-width: 58rem;
+  object-fit: cover;
 `;
 
 const HeroSocials = styled(SocialLinks)`
@@ -77,6 +78,7 @@ const HeroSocials = styled(SocialLinks)`
 const Main = styled.div`
   display: flex;
   flex-direction: row;
+  margin: auto;
 
   ${below.large`
     flex-direction: column;
@@ -86,7 +88,7 @@ const Main = styled.div`
 const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 2rem;
+  margin-right: 4rem;
 `;
 
 // const GET_EVENTS = gql`
