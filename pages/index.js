@@ -6,6 +6,7 @@ import LearnMore from '../components/HomePage/LearnMore';
 import MeetCampers from '../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../components/HomePage/SpeakerHighlight';
 import Testimonials from '../components/HomePage/Testimonials';
+import ContentSection from '../components/shared/ContentSection';
 import WhatToExpect from '../components/shared/WhatToExpect';
 import NewsletterSignup from '../components/HomePage/NewsletterSignup';
 import { below, siteInfo } from '../utilities';
@@ -51,7 +52,9 @@ const home = props => (
   <>
     <Hero />
     <LearnMore />
-    <WhatToExpect />
+    <ContentSection>
+      <WhatToExpect />
+    </ContentSection>
     <SpeakerHighlight />
     <Testimonials />
     <NewsletterSignup />

@@ -26,12 +26,17 @@ const Description = styled.p`
   width: 90%;
   margin: auto;
   text-align: center;
-  padding-top: 2rem;
+  padding: 3rem 0;
   max-width: 110rem;
 `;
 
 const ActionButtons = styled.div`
   display: flex;
+  justify-content: flex-start;
+`;
+
+const Button = styled(LinkButton)`
+  margin: 0 2rem 0 0;
 `;
 
 const HeroImage = styled.img`
@@ -76,13 +81,13 @@ const Hero = ({ className }) => {
           </DateLocation>
           <Slogan>Summer Camp For Geeks</Slogan>
           <ActionButtons>
-            <LinkButton
+            <Button
               href="/"
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
             />
-            <LinkButton
+            <Button
               href="/"
               label="Sponsor Us"
               color="thatBlue"
