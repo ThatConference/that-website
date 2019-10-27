@@ -11,6 +11,8 @@ const HighlightImage = styled.img`
   width: 100%;
   padding: 0 5rem;
   max-width: 60rem;
+  object-fit: cover;
+  height: 100%;
 `;
 
 const ButtonRow = styled.div`
