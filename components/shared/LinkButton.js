@@ -24,14 +24,16 @@ const OutlineLink = styled.a`
 
 const LinkButton = props => {
   return (
-    <OutlineLink
-      href={props.href}
-      color={props.color}
-      className={props.className}
-      borderColor={props.borderColor}
-    >
-      <p>{props.label}</p>
-    </OutlineLink>
+    <div style={{ display: 'flex' }}>
+      <OutlineLink
+        href={props.href}
+        color={props.color}
+        className={props.className}
+        borderColor={props.borderColor}
+      >
+        <p>{props.label}</p>
+      </OutlineLink>
+    </div>
   );
 };
 

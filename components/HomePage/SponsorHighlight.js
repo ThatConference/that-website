@@ -71,7 +71,7 @@ const TextBlock = styled.div`
 `;
 
 const ActionButton = styled(LinkButton)`
-  margin: 0 2rem 0 0;
+  margin: 0 0 0 2rem;
 `;
 
 const SponsorHighlight = ({ className }) => {
