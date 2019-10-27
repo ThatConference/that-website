@@ -42,6 +42,7 @@ const DetailContainer = styled.div`
 const ContainerInner = styled.div`
   margin: auto;
   max-width: 140rem;
+  width: 87vw;
 
   ${below.xsmall`
     max-width: 30rem;
@@ -99,9 +100,7 @@ const ContentSection = props => {
       className={props.className}
     >
       {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>
-        <DetailContainer>{props.children}</DetailContainer>
-      </ContainerInner>
+      <ContainerInner>{props.children}</ContainerInner>
     </Container>
   );
 };
