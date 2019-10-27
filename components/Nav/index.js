@@ -59,7 +59,7 @@ const Nav = ({ className }) => {
           <NavItem title="Campers" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Play Your Trip" href="/" />
+          <NavItem title="Plan Your Trip" href="/" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Shop" href="/" />
