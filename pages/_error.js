@@ -3,7 +3,10 @@ import sentry from '../lib/sentry';
 
 function Error({ statusCode }) {
   const { Sentry } = sentry();
-  Sentry.captureEvent('doing the thing');
+  Sentry.captureEvent('this is an event');
+  Sentry.captureException({ message: 'broke' });
+  Sentry.captureMessage('making a message');
+
   console.log('done did the thing');
 
   return (
