@@ -5,6 +5,7 @@ import Hero from '../components/HomePage/Hero';
 import LearnMore from '../components/HomePage/LearnMore';
 import MeetCampers from '../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../components/HomePage/SpeakerHighlight';
+import SponsorHighlight from '../components/HomePage/SponsorHighlight';
 import Testimonials from '../components/HomePage/Testimonials';
 import ContentSection from '../components/shared/ContentSection';
 import WhatToExpect from '../components/shared/WhatToExpect';
@@ -54,6 +55,7 @@ const home = props => (
     <LearnMore />
     <WhatToExpect />
     <SpeakerHighlight />
+    <SponsorHighlight />
     <Testimonials />
     <NewsletterSignup />
     <MeetCampers />

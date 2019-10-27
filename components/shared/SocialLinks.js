@@ -39,7 +39,7 @@ const SocialLinks = ({ className, flexDirection }) => {
   const iconHeight = '38';
   const iconWidth = '38';
   const rowOrColumn = flexDirection || 'row';
-  console.log('rowOrColumn', rowOrColumn);
+
   return (
     <SocialLinksContainer className={className} rowOrColumn={rowOrColumn}>
       <a

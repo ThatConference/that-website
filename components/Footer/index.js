@@ -26,7 +26,7 @@ const Title = styled.p`
 `;
 
 const Logo = styled.img`
-  height: 100%;
+  height: 10rem;
 `;
 
 const NavLink = styled.a`
@@ -90,9 +90,10 @@ export default styled(Footer)`
   display: flex;
   align-items: center;
   padding: 0 2rem;
-  height: 10rem;
+  min-height: 18rem;
 
   ${below.med`
     flex-direction: column;
+    min-height: 33rem;
   `};
 `;

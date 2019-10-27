@@ -1,24 +1,28 @@
 import styled from 'styled-components';
 import React from 'react';
-import { Grid, Cell } from 'styled-css-grid';
 import { above, below } from '../../utilities';
-import MobileFooter from './MobileFooter';
 import SocialLinks from '../shared/SocialLinks';
+
+const Copyright = styled.p`
+  color: ${({ theme }) => theme.colors.fonts.light};
+  margin: 0;
+`;
+
+const DesignedBy = styled.p`
+  color: ${({ theme }) => theme.colors.fonts.light};
+  align-self: flex-start;
+  margin: 0;
+`;
 
 const Footer = ({ className }) => {
   return (
-    <>
-      <Grid columns={12} gap="2px" className={className}>
-        <Cell width={8}>
-          All Rights Reserved. Copyright 2019 THAT Conference.
-        </Cell>
-        <Cell width={3}>
-          <SocialLinks />
-        </Cell>
-        <Cell width={1}>arrow</Cell>
-      </Grid>
-      <MobileFooter />
-    </>
+    <div className={className}>
+      <Copyright>
+        All Rights Reserved. Copyright 2019 THAT Conference. Version 4.0.
+      </Copyright>
+      <DesignedBy>Site by Drift.</DesignedBy>
+      <SocialLinks />
+    </div>
   );
 };
 
@@ -26,5 +30,11 @@ export default styled(Footer)`
   padding: 1.7rem;
   width: 100vw;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.fonts.light};
+
+  display: flex;
+  justify-content: space-between;
+
+  ${below.med`
+    flex-direction: column;
+  `};
 `;
