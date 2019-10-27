@@ -6,8 +6,7 @@ import LinkButton from '../components/shared/LinkButton';
 const genericError = (
   <>
     <h2>Whoops</h2>
-    <h4>but... </h4>
-    <LinkButton href="/" label="Go Now" />
+    <p>Well that's not good.</p>
   </>
 );
 
@@ -17,9 +16,14 @@ const pageNotFound = requestedUrl => {
   return (
     <>
       <h2>Page not found</h2>
-      <p>maybe it's on our old site</p>
+      <p>
+        Truth be told, were building a new website. In fact this is it but we
+        don't have all the pieces completed yet.
+      </p>
 
-      <LinkButton href={scrubbedUrl} label="Go Now" />
+      <p>Don't worry, we still have our old Website around.</p>
+
+      <LinkButton href={scrubbedUrl} label="Yes, take me now!" />
     </>
   );
 };
