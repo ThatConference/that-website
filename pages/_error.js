@@ -1,6 +1,11 @@
 import React from 'react';
+import sentry from '../lib/sentry';
 
 function Error({ statusCode }) {
+  const { Sentry } = sentry();
+  Sentry.captureEvent('doing the thing');
+  console.log('done did the thing');
+
   return (
     <p>
       {statusCode
