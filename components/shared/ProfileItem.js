@@ -42,5 +42,6 @@ export default styled(ProfileItem)`
 
   img {
     margin-bottom: 2.3rem;
+    object-fit: cover;
   }
 `;
