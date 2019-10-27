@@ -1,21 +1,40 @@
 import React from 'react';
-import sentry from '../lib/sentry';
+import _ from 'lodash';
 
-function Error({ statusCode }) {
-  const { Sentry } = sentry();
+import ContentSection from '../components/shared/ContentSection';
+import LinkButton from '../components/shared/LinkButton';
+
+const genericError = (
+  <>
+    <h2>Whoops</h2>
+    <h4>but... </h4>
+    <LinkButton href="/" label="Go Now" />
+  </>
+);
+
+const pageNotFound = headers => {
+  const scrubbedUrl = _.replace(headers.referer, 'www', 'old');
 
   return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
-    </p>
+    <>
+      <h2>Page not found</h2>
+      <p>maybe it's on our old site</p>
+
+      <LinkButton href={scrubbedUrl} label="Go Now" />
+    </>
   );
+};
+
+function Error({ statusCode, headers }) {
+  const errorBlock = statusCode === 404 ? pageNotFound(headers) : genericError;
+  return <ContentSection>{errorBlock}</ContentSection>;
 }
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err, req }) => {
+  console.log('req headers', req.headers);
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+
+  return { statusCode, headers: req.headers };
 };
 
 export default Error;
