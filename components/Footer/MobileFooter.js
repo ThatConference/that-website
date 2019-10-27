@@ -92,10 +92,6 @@ const MobileFooter = ({ className }) => {
         <Icon icon="foodDrink" height="80" width="80" />
         Menu
       </NavLink>
-      <NavLink href="/contact">
-        <Icon icon="quote" height="70" width="70" className="lower-little" />
-        Contact Us
-      </NavLink>
       <NavLink onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
         <Icon icon="hamburgerMenu" height="12" width="12" className="lower" />
         More
@@ -120,18 +116,6 @@ const MobileFooter = ({ className }) => {
           title="gallery"
           color="highlight"
           href="/gallery"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-        <NavItem
-          title="contact"
-          color="highlight"
-          href="/contact"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-        <NavItem
-          title="about"
-          color="highlight"
-          href="/about"
           onClick={() => setMobileMenuOpen(false)}
         />
         <MobileSocialLinks />

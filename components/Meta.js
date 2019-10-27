@@ -30,9 +30,9 @@ const Meta = () => (
     <meta property="og:title" content="THAT Conference - Wisconsin Dells, WI" />
     <meta
       property="og:description"
-      content="A Tropical Oasis in the least likely of places!"
+      content="THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells."
     />
-    <meta property="og:url" content="https://sandbarandislandgrill.com/" />
+    <meta property="og:url" content="https://thatconference.com/" />
     <meta
       property="og:site_name"
       content="THAT Conference - Wisconsin Dells, WI"
