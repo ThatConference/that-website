@@ -57,7 +57,7 @@ class Footer extends Component {
             <FooterNavColumn>
               <Title>Links</Title>
               <NavLink href="/">Schedule</NavLink>
-              <NavLink href="/">Become a Partner</NavLink>
+              <NavLink href="/become-a-partner">Become a Partner</NavLink>
               <NavLink href="/">Conference Map</NavLink>
               <NavLink href="/">Contact Us</NavLink>
             </FooterNavColumn>
