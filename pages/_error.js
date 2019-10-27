@@ -32,9 +32,11 @@ function Error({ statusCode, requestedUrl }) {
 
 Error.getInitialProps = ({ res, err, req }) => {
   console.log('req headers', req.url);
+
+  const requestedUrl = req.url;
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
-  return { statusCode, headers: req.headers };
+  return { statusCode, requestedUrl };
 };
 
 export default Error;
