@@ -1,11 +1,6 @@
 import React from 'react';
-import { Sentry } from '../lib/sentry';
-import whoKnows from '../lib/sentry';
 
 function Error({ statusCode }) {
-  console.log('CLARK >>', Sentry);
-  console.log('whoKnows >>', whoKnows);
-  Sentry.captureMessage('Error Page Hit');
   return (
     <p>
       {statusCode
