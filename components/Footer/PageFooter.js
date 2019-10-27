@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Grid, Cell } from 'styled-css-grid';
-import { above, below, siteInfo } from '../../utilities';
+import { above, below } from '../../utilities';
 import MobileFooter from './MobileFooter';
 import SocialLinks from '../shared/SocialLinks';
 
