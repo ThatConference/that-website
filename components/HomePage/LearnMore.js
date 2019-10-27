@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
-import ActionButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton';
 
 import { below } from '../../utilities';
 
@@ -40,6 +40,10 @@ const SideDetail = styled.div`
   margin-right: 2rem;
 `;
 
+const ActionButton = styled(LinkButton)`
+  margin: 0 1rem;
+`;
+
 const LearnMore = ({ className }) => {
   return (
     <ContentSection className={className}>
@@ -57,19 +61,11 @@ const LearnMore = ({ className }) => {
           <ButtonRow>
             <ActionButton
               href="/"
-              label="Join Our Mailing List"
+              label="Professional Track"
               borderColor="thatBlue"
             />
-            <ActionButton
-              href="/"
-              label="Join Our Mailing List"
-              borderColor="thatBlue"
-            />
-            <ActionButton
-              href="/"
-              label="Join Our Mailing List"
-              borderColor="thatBlue"
-            />
+            <ActionButton href="/" label="Kids Track" borderColor="thatBlue" />
+            <ActionButton href="/" label="FAQ" borderColor="thatBlue" />
           </ButtonRow>
         </SideDetail>
       </Main>
