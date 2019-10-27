@@ -62,7 +62,7 @@ const MeetCampers = ({ className }) => {
         <ProfileItem
           imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/carrie-sell.jpg"
           size="100"
-          name="Carrie sell"
+          name="Carrie Sell"
         />
         <ProfileItem
           imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/sara-gibbons.jpg"
@@ -98,6 +98,11 @@ const MeetCampers = ({ className }) => {
           imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/greg-levenhagen.jpg"
           size="100"
           name="Greg Levenhagen"
+        />
+        <ProfileItem
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/erin-gemoll.jpg"
+          size="100"
+          name="Erin Gemoll"
         />
         <ProfileItem
           imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/mat-bolwerk.jpg"
