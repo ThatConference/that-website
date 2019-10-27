@@ -3,7 +3,6 @@ import sentry from '../lib/sentry';
 
 function Error({ statusCode }) {
   const { Sentry } = sentry();
-  Sentry.captureEvent('error page hit');
 
   return (
     <p>
