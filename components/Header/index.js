@@ -5,13 +5,16 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import MessageBar from './MessageBar';
 import Nav from '../Nav';
+import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
 const PageHeader = styled.div`
-  margin: 6rem 2rem 0 2rem;
+  margin-top: 1rem;
   height: 10rem;
   display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
 
 const Logo = styled.img`
@@ -21,6 +24,10 @@ const Logo = styled.img`
 const ActionButton = styled(LinkButton)`
   margin: 0;
   background-color: ${({ theme }) => theme.colors.thatBlue};
+`;
+
+const HeaderSection = styled(ContentSection)`
+  padding-bottom: 0.5rem;
 `;
 
 router.onRouteChangeStart = () => {
@@ -59,15 +66,21 @@ const Header = ({ className }) => {
   return (
     <header className={[className, scrolled()].join(' ')}>
       <MessageBar />
-      <PageHeader>
-        <Logo src="/svgs/THATConference-WI-2020.svg" />
-        <Nav />
-        <ActionButton
-          href="/"
-          label="Join Our Mailing List"
-          borderColor="thatBlue"
-        />
-      </PageHeader>
+      <HeaderSection>
+        <PageHeader>
+          <Logo src="/svgs/THATConference-WI-2020.svg" />
+          {/* <Nav /> */}
+          <div style={{ flexGrow: 2 }} />
+          <div>
+            <ActionButton
+              href="/"
+              label="Join Our Mailing List"
+              borderColor="thatBlue"
+              color="white"
+            />
+          </div>
+        </PageHeader>
+      </HeaderSection>
     </header>
   );
 };

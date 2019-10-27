@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OutlineLink = styled.a`
-  border: 3px solid
+const OutlineLink = styled.button`
+  border: 2px solid
     ${({ borderColor, theme }) =>
       borderColor ? theme.colors[borderColor] : theme.colors.primary};
   margin: auto;
@@ -10,14 +10,13 @@ const OutlineLink = styled.a`
   min-width: 20rem;
 
   &:hover {
-    background-color: ${({ borderColor, theme }) =>
-      borderColor ? theme.colors[borderColor] : theme.colors.primary};
+    cursor: pointer;
   }
 
   p {
     color: ${({ color, theme }) =>
-      color ? theme.colors[color] : theme.colors.fonts.light};
-    margin: 0.7rem;
+      color ? theme.colors[color] : theme.colors.primary};
+    margin: 1.3rem;
     text-align: center;
   }
 `;

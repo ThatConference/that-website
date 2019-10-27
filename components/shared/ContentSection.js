@@ -84,10 +84,10 @@ const Subtitle = styled.h3`
 
 const Trees = styled.img`
   position: absolute;
-  top: -5rem;
+  top: -8rem;
   z-index: 10;
-  width: 11rem;
-  left: 48vw;
+  width: 17rem;
+  left: 44vw;
   overflow: visible;
 `;
 
@@ -96,6 +96,7 @@ const ContentSection = props => {
     <Container
       backgroundColor={props.backgroundColor}
       fontColor={props.fontColor}
+      className={props.className}
     >
       {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
       <ContainerInner>
