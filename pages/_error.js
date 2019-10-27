@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton';
@@ -12,8 +11,8 @@ const genericError = (
   </>
 );
 
-const pageNotFound = headers => {
-  const scrubbedUrl = _.replace(headers.referer, 'www', 'old');
+const pageNotFound = requestedUrl => {
+  const scrubbedUrl = `https://old.thatconference.com/${requestedUrl}`;
 
   return (
     <>
@@ -25,13 +24,14 @@ const pageNotFound = headers => {
   );
 };
 
-function Error({ statusCode, headers }) {
-  const errorBlock = statusCode === 404 ? pageNotFound(headers) : genericError;
+function Error({ statusCode, requestedUrl }) {
+  const errorBlock =
+    statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
   return <ContentSection>{errorBlock}</ContentSection>;
 }
 
 Error.getInitialProps = ({ res, err, req }) => {
-  console.log('req headers', req.headers);
+  console.log('req headers', req.url);
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
   return { statusCode, headers: req.headers };
