@@ -11,6 +11,22 @@ const HighlightImage = styled.img`
   transform: scaleX(-1);
 `;
 
+const Main = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  ${below.large`
+    flex-direction: column;
+    align-items: center;
+  `};
+`;
+
+const SideDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+`;
+
 class NewsletterSignUp extends Component {
   componentDidMount() {
     const script = document.createElement('script');
@@ -24,14 +40,12 @@ class NewsletterSignUp extends Component {
   render() {
     return (
       <ContentSection className={this.props.className}>
-        <Grid columns={12}>
-          <Cell width={6}>
+        <Main>
+          <SideDetail>
             <div className="_form_16" />
-          </Cell>
-          <Cell width={6}>
-            <HighlightImage src="/images/bear_with_megaphone.png" />
-          </Cell>
-        </Grid>
+          </SideDetail>
+          <HighlightImage src="/images/bear_with_megaphone.png" />
+        </Main>
       </ContentSection>
     );
   }

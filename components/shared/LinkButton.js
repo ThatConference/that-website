@@ -8,6 +8,7 @@ const OutlineLink = styled.button`
   margin: auto;
   margin-top: 2rem;
   min-width: 20rem;
+  background-color: ${({ theme }) => theme.colors.white};
 
   &:hover {
     cursor: pointer;

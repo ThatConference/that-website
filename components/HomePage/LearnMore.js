@@ -10,21 +10,40 @@ import { below } from '../../utilities';
 const HighlightImage = styled.img`
   width: 100%;
   padding: 0 5rem;
+  max-width: 60rem;
 `;
 
 const ButtonRow = styled.div`
   display: flex;
+
+  ${below.med`
+    flex-direction: column;
+    align-items: center;
+  `};
+`;
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  ${below.large`
+    flex-direction: column;
+    align-items: center;
+  `};
+`;
+
+const SideDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
 `;
 
 const LearnMore = ({ className }) => {
   return (
     <ContentSection className={className}>
-      <Grid columns={12}>
-        <Cell width={6}>
-          <HighlightImage src="/images/bear_with_drone.png" />
-        </Cell>
-
-        <Cell width={6}>
+      <Main>
+        <HighlightImage src="/images/bear_with_drone.png" />
+        <SideDetail>
           <StandardBodyCopy>
             An inclusive, multi-day event for anyone passionate about learning
             and sharing all things mobile, web, cloud, IoT, and technology.
@@ -50,8 +69,8 @@ const LearnMore = ({ className }) => {
               borderColor="thatBlue"
             />
           </ButtonRow>
-        </Cell>
-      </Grid>
+        </SideDetail>
+      </Main>
     </ContentSection>
   );
 };

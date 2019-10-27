@@ -1,37 +1,44 @@
 import styled from 'styled-components';
 import React from 'react';
-import { Grid, Cell } from 'styled-css-grid';
-import { above, below, siteInfo } from '../../utilities';
+import { below } from '../../utilities';
 
-const StyledCell = styled(Cell)`
-  padding: 1rem;
-  text-align: center;
-`;
-
-const DarkCell = styled(Cell)`
-  padding: 1rem;
+const Message = styled.p`
   background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.fonts.light};
+
+  ${below.med`
+    display: none;
+  `};
+`;
+const Location = styled.p`
+  flex-grow: 2;
+  color: ${({ theme }) => theme.colors.fonts.light};
+  text-align: right;
+
+  ${below.med`
+    text-align: center;
+  `};
 `;
 
 const MessageBar = ({ className }) => {
   return (
-    <Grid columns={12} gap="2px" className={className}>
-      <DarkCell width={2}>Call for Speakers soon!</DarkCell>
-      <StyledCell width={7} style={{ textAlign: 'right' }}>
-        THAT Conference
-      </StyledCell>
-      <StyledCell width={2}>Wisconsin Dells</StyledCell>
-      <DarkCell width={1}>arrow</DarkCell>
-    </Grid>
+    <div className={className}>
+      <Message>Call for Speakers starts January!</Message>
+      <Location>THAT Conference - Wisconsin Dells, WI</Location>
+    </div>
   );
 };
 
 export default styled(MessageBar)`
-  padding: 1rem;
-  width: 100%;
+  width: 100vw;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.fonts.light};
   position: fixed;
   z-index: 20;
   padding: 0;
+  display: flex;
+
+  p {
+    margin: 0;
+    padding: 1rem 2rem;
+  }
 `;

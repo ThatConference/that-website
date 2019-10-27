@@ -8,6 +8,9 @@ const FooterNav = styled.div`
   display: flex;
   flex-direction: row;
   flex-grow: 2;
+
+  // do not display until site is built out
+  display: none;
 `;
 const FooterNavColumn = styled.div`
   display: flex;
@@ -85,4 +88,8 @@ export default styled(Footer)`
   display: flex;
   align-items: center;
   padding: 0 2rem;
+
+  ${below.med`
+    flex-direction: column;
+  `};
 `;

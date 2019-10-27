@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     text-transform: uppercase;
     color: ${({ theme }) => theme.colors.primary};
     line-height: 0.9;
+    margin: 1rem;
   }
 
   h4, h5 {

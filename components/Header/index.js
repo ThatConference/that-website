@@ -1,12 +1,13 @@
 import router from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MessageBar from './MessageBar';
 import Nav from '../Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import { below } from '../../utilities';
 
 const PageHeader = styled.div`
   margin-top: 1rem;
@@ -24,6 +25,10 @@ const Logo = styled.img`
 const ActionButton = styled(LinkButton)`
   margin: 0;
   background-color: ${({ theme }) => theme.colors.thatBlue};
+
+  ${below.med`
+    display: none;
+  `};
 `;
 
 const HeaderSection = styled(ContentSection)`

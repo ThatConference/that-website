@@ -10,28 +10,37 @@ import { below } from '../../utilities';
 const ProfileRow = styled.div`
   display: flex;
   margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  ${below.small`
+    flex-direction: column;
+    margin-top: 2rem;
+  `};
+`;
+
+const TitleRow = styled.div`
+  flex-direction: row;
+
+  ${below.small`
+    flex-direction: column;
+  `};
 `;
 
 const SpeakerHighlight = ({ className }) => {
   return (
     <ContentSection>
-      <Grid columns={12}>
-        <Cell width={6}>
-          <h3>
-            Find Inspiration From Hallway Conversations or Industry Leaders
-          </h3>
-        </Cell>
-        <Cell width={6}>
-          <div style={{ display: 'flex' }}>
-            <LinkButton
-              href="/"
-              label="Meet The Speakers"
-              color="thatBlue"
-              borderColor="thatBlue"
-            />
-          </div>
-        </Cell>
-      </Grid>
+      <TitleRow>
+        <h3>Find Inspiration From Hallway Conversations or Industry Leaders</h3>
+        <div style={{ display: 'flex' }}>
+          <LinkButton
+            href="/"
+            label="Meet The Speakers"
+            color="thatBlue"
+            borderColor="thatBlue"
+          />
+        </div>
+      </TitleRow>
       <ProfileRow>
         <ProfileItem
           imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
