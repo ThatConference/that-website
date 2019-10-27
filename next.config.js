@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const nextSourceMaps = require('@zeit/next-source-maps');
 
 module.exports = nextSourceMaps({
-  useFileSystemPublicRoutes: false,
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
