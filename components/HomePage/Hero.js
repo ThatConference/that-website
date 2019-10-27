@@ -77,7 +77,7 @@ const Hero = ({ className }) => {
       <Grid columns={12}>
         <Cell width={6}>
           <DateLocation>
-            August 5 - 8, 2020 - Kalahari Resort, Wisconsin Dells, WI
+            August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
           <Slogan>Summer Camp For Geeks</Slogan>
           <ActionButtons>
