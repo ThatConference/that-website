@@ -23,7 +23,7 @@ const Location = styled.p`
 const MessageBar = ({ className }) => {
   return (
     <div className={className}>
-      <Message>Call for Speakers starts January!</Message>
+      <Message>Call for Speakers starts January 1st!</Message>
       <Location>THAT Conference - Wisconsin Dells, WI</Location>
     </div>
   );
