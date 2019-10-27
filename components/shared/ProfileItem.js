@@ -10,10 +10,10 @@ const Title = styled.p``;
 
 const Company = styled.p``;
 
-const ProfileItem = ({ className, imageUrl }) => {
+const ProfileItem = ({ className, imageUrl, size }) => {
   return (
     <div className={className}>
-      <RoundImage imageUrl={imageUrl} size="150" />
+      <RoundImage imageUrl={imageUrl} size={size} />
       <Name>Jaimee Newberry</Name>
       <Title>Co-founder</Title>
       <Company>Picture This Clothing</Company>
