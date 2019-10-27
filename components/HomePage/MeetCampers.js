@@ -15,11 +15,24 @@ const ProfileRow = styled.div`
 `;
 
 const TitleRow = styled.div`
+  display: flex;
   flex-direction: row;
+  padding-bottom: 2rem;
+  align-items: center;
 
   ${below.small`
     flex-direction: column;
   `};
+`;
+
+const Header = styled.h3`
+  width: 50vw;
+`;
+
+const HeaderButton = styled(LinkButton)`
+  button {
+    margin-top: 0;
+  }
 `;
 
 const MeetCampers = ({ className }) => {
@@ -30,7 +43,7 @@ const MeetCampers = ({ className }) => {
       hasTrees="true"
     >
       <TitleRow>
-        <h3>Meet THAT Crew!</h3>
+        <Header>Meet THAT Crew!</Header>
         <div style={{ display: 'flex' }}>
           <LinkButton
             href="/"
@@ -42,40 +55,59 @@ const MeetCampers = ({ className }) => {
       </TitleRow>
       <ProfileRow>
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/clark-sell.jpg"
           size="100"
+          name="Clark Sell"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/carrie-sell.jpg"
           size="100"
+          name="Carrie sell"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/sara-gibbons.jpg"
           size="100"
+          name="Sara Gibbons"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/brett-slaski.jpg"
           size="100"
+          name="Brett Slaski"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/keith-burnell.jpg"
           size="100"
+          name="Keith Burnell"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/aaron-douglas.jpg"
           size="100"
+          name="Aaron Douglas"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/mike-cook.jpg"
           size="100"
+          name="Mike Cook"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/brandon-martinez.jpg"
           size="100"
+          name="Brandon Martinez"
         />
         <ProfileItem
-          imageUrl="https://www.thatconference.com/cloud/profilephotos/Jaimee-Newberry-3ceaf5c4-c9c0-4090-8b9e-ef0d042c995f-636934538862544161.jpg?w=350&h=350&scale=canvas&format=jpg&quality=70"
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/greg-levenhagen.jpg"
           size="100"
+          name="Greg Levenhagen"
+        />
+        <ProfileItem
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/mat-bolwerk.jpg"
+          size="100"
+          name="Mat Bolwerk"
+        />
+        <ProfileItem
+          imageUrl="https://res.cloudinary.com/that-conference/image/upload/v1572198396/headshot/staff/emily-davis.jpg"
+          size="100"
+          name="Emily Davis"
         />
       </ProfileRow>
     </ContentSection>

@@ -25,6 +25,10 @@ const Title = styled.p`
   margin: 0;
 `;
 
+const Logo = styled.img`
+  height: 100%;
+`;
+
 const NavLink = styled.a`
   margin: 0;
   color: ${({ theme }) => theme.colors.fonts.dark};
@@ -35,8 +39,6 @@ const NavLink = styled.a`
     color: ${({ theme }) => theme.colors.highlight};
   }
 `;
-
-// const Footer = ({ className }) => {
 
 class Footer extends Component {
   componentDidMount() {
@@ -52,7 +54,7 @@ class Footer extends Component {
     return (
       <>
         <div className={this.props.className}>
-          <img src="/svgs/THATConference-WI-2020.svg" />
+          <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           <FooterNav>
             <FooterNavColumn>
               <Title>Links</Title>
@@ -88,6 +90,7 @@ export default styled(Footer)`
   display: flex;
   align-items: center;
   padding: 0 2rem;
+  height: 10rem;
 
   ${below.med`
     flex-direction: column;

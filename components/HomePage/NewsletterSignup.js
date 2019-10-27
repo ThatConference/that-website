@@ -7,13 +7,17 @@ import { below } from '../../utilities';
 const HighlightImage = styled.img`
   width: 100%;
   padding: 0 5rem;
+  max-width: 60rem;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  object-fit: cover;
+  height: 100%;
 `;
 
 const Main = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
   ${below.large`
     flex-direction: column;
@@ -25,6 +29,7 @@ const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
+  width: 30vw;
 `;
 
 class NewsletterSignUp extends Component {

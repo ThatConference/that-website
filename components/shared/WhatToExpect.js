@@ -17,9 +17,15 @@ const HighlightBlock = styled.div`
   justify-content: center;
 `;
 
+const StyledBlock = styled.div`
+  margin: 3rem 2rem;
+  width: 20%;
+  min-width: 19rem;
+`;
+
 const WhatToExpectSection = ({ src, title }) => {
   return (
-    <div style={{ marginBottom: '8rem', width: '24%', minWidth: '19rem' }}>
+    <StyledBlock>
       <CenteredDiv style={{ height: '12rem' }}>
         <WhatToExpectImage src={src} />
       </CenteredDiv>
@@ -28,13 +34,13 @@ const WhatToExpectSection = ({ src, title }) => {
           {title}
         </span>
       </CenteredDiv>
-    </div>
+    </StyledBlock>
   );
 };
 
-const WhatToExpect = props => {
+const WhatToExpect = ({ className }) => {
   return (
-    <>
+    <ContentSection className={className}>
       <h3
         className="font-dark"
         style={{ textAlign: 'center', paddingBottom: '2rem' }}
@@ -75,8 +81,8 @@ const WhatToExpect = props => {
           title="Array of Tech Stacks"
         />
       </HighlightBlock>
-    </>
+    </ContentSection>
   );
 };
 
-export default WhatToExpect;
+export default styled(WhatToExpect)``;

@@ -10,7 +10,7 @@ import LinkButton from '../shared/LinkButton';
 import { below } from '../../utilities';
 
 const PageHeader = styled.div`
-  margin-top: 1rem;
+  margin-top: 2rem;
   height: 10rem;
   display: flex;
   justify-content: space-between;
@@ -73,7 +73,7 @@ const Header = ({ className }) => {
       <MessageBar />
       <HeaderSection>
         <PageHeader>
-          <Logo src="/svgs/THATConference-WI-2020.svg" />
+          <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           {/* <Nav /> */}
           <div style={{ flexGrow: 2 }} />
           <div>
@@ -94,7 +94,7 @@ export default styled(Header)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0;
+  padding: 0 0 2rem 0;
   background-color: transparent;
   z-index: 1;
   width: 100vw;
