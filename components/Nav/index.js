@@ -4,7 +4,7 @@ import { isAbsolute } from 'path';
 
 import IconText from '../shared/IconText';
 import NavItem from './NavItem';
-import { above, below, siteInfo } from '../../utilities';
+import { above, below } from '../../utilities';
 
 const NavList = styled.div`
   display: flex;

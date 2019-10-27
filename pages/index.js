@@ -9,7 +9,7 @@ import Testimonials from '../components/HomePage/Testimonials';
 import ContentSection from '../components/shared/ContentSection';
 import WhatToExpect from '../components/shared/WhatToExpect';
 import NewsletterSignup from '../components/HomePage/NewsletterSignup';
-import { below, siteInfo } from '../utilities';
+import { below } from '../utilities';
 
 const Title = styled.h2`
   font-size: 2.8rem;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { Component } from 'react';
 import { Grid, Cell } from 'styled-css-grid';
-import { above, below, siteInfo } from '../../utilities';
+import { above, below } from '../../utilities';
 import PageFooter from './PageFooter';
 
 const FooterNav = styled.div`
