@@ -11,7 +11,7 @@ const genericError = (
 );
 
 const pageNotFound = requestedUrl => {
-  const scrubbedUrl = `https://old.thatconference.com/${requestedUrl}`;
+  const scrubbedUrl = `https://old.thatconference.com${requestedUrl}`;
 
   return (
     <>
