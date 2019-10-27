@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const OutlineLink = styled.button`
+const OutlineLink = styled.a`
   border: 2px solid
     ${({ borderColor, theme }) =>
       borderColor ? theme.colors[borderColor] : theme.colors.primary};

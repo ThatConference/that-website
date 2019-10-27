@@ -76,7 +76,7 @@ const Header = ({ className }) => {
           <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           {/* <Nav /> */}
           <div style={{ flexGrow: 2 }} />
-          <div>
+          <div style={{ display: 'flex' }}>
             <ActionButton
               href="/"
               label="Join Our Mailing List"
