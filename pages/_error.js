@@ -1,9 +1,11 @@
 import React from 'react';
-import sentry from '../lib/sentry';
+import { Sentry } from '../lib/sentry';
+import whoKnows from '../lib/sentry';
 
 function Error({ statusCode }) {
-  console.log('sentry', sentry);
-  sentry.Sentry.captureMessage('Error Page Hit');
+  console.log('CLARK >>', Sentry);
+  console.log('whoKnows >>', whoKnows);
+  Sentry.captureMessage('Error Page Hit');
   return (
     <p>
       {statusCode
