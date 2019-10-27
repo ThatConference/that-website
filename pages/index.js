@@ -3,12 +3,10 @@ import styled from 'styled-components';
 
 import Hero from '../components/HomePage/Hero';
 import LearnMore from '../components/HomePage/LearnMore';
+import MeetCampers from '../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../components/HomePage/SpeakerHighlight';
 import Testimonials from '../components/HomePage/Testimonials';
 import WhatToExpect from '../components/shared/WhatToExpect';
-import ContentSection from '../components/shared/ContentSection';
-import HighlightImage from '../components/shared/HighlightImage';
-import IconText from '../components/shared/IconText';
 import NewsletterSignup from '../components/HomePage/NewsletterSignup';
 import { below, siteInfo } from '../utilities';
 
@@ -57,6 +55,7 @@ const home = props => (
     <SpeakerHighlight />
     <Testimonials />
     <NewsletterSignup />
+    <MeetCampers />
     <BottomImage src="./images/mess_hall.png" />
   </>
 );

@@ -13,7 +13,7 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
-  overflow: hidden;
+  // overflow: hidden;
   width: 100vw;
 
   ${below.xsmall`
@@ -82,12 +82,22 @@ const Subtitle = styled.h3`
   top: -0.8rem;
 `;
 
+const Trees = styled.img`
+  position: absolute;
+  top: -5rem;
+  z-index: 10;
+  width: 11rem;
+  left: 48vw;
+  overflow: visible;
+`;
+
 const ContentSection = props => {
   return (
     <Container
       backgroundColor={props.backgroundColor}
       fontColor={props.fontColor}
     >
+      {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
       <ContainerInner>
         <DetailContainer>{props.children}</DetailContainer>
       </ContainerInner>
