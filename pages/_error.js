@@ -1,8 +1,9 @@
 import React from 'react';
-import { Sentry } from '../lib/sentry';
+import sentry from '../lib/sentry';
 
 function Error({ statusCode }) {
-  Sentry.captureMessage('Error Page Hit');
+  console.log('sentry', sentry);
+  sentry.Sentry.captureMessage('Error Page Hit');
   return (
     <p>
       {statusCode
