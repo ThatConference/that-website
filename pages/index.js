@@ -52,9 +52,7 @@ const home = props => (
   <>
     <Hero />
     <LearnMore />
-    <ContentSection>
-      <WhatToExpect />
-    </ContentSection>
+    <WhatToExpect />
     <SpeakerHighlight />
     <Testimonials />
     <NewsletterSignup />

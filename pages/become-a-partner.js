@@ -90,9 +90,7 @@ const becomeAPartner = props => (
       </Grid>
     </ContentSection>
 
-    <ContentSection>
-      <WhatToExpect />
-    </ContentSection>
+    <WhatToExpect />
 
     <ContentSection>
       <p
