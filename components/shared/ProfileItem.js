@@ -4,19 +4,26 @@ import RoundImage from './RoundImage';
 
 import { below } from '../../utilities';
 
-const Name = styled.p``;
+const Name = styled.p`
+  font-weight: 600;
+  font-size: 2rem;
+  padding-bottom: 0.5rem;
+`;
 
-const Title = styled.p``;
+const Title = styled.p`
+  font-weight: 600;
+  font-size: 1.6rem;
+`;
 
 const Company = styled.p``;
 
-const ProfileItem = ({ className, imageUrl, size }) => {
+const ProfileItem = ({ className, imageUrl, size, name, title, company }) => {
   return (
     <div className={className}>
       <RoundImage imageUrl={imageUrl} size={size} />
-      <Name>Jaimee Newberry</Name>
-      <Title>Co-founder</Title>
-      <Company>Picture This Clothing</Company>
+      <Name>{name}</Name>
+      <Title>{title}</Title>
+      <Company>{company}</Company>
     </div>
   );
 };
@@ -25,7 +32,7 @@ export default styled(ProfileItem)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 2rem;
   position: relative;
 
   p {
