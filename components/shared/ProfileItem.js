@@ -6,24 +6,37 @@ import { below } from '../../utilities';
 
 const Name = styled.p`
   font-weight: 600;
-  font-size: 2rem;
   padding-bottom: 0.5rem;
+  font-size: ${({ fontSize }) => fontSize};
 `;
 
 const Title = styled.p`
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: ${({ fontSize }) => fontSize};
 `;
 
-const Company = styled.p``;
+const Company = styled.p`
+  font-weight: 400;
+  font-size: ${({ fontSize }) => fontSize};
+`;
 
-const ProfileItem = ({ className, imageUrl, size, name, title, company }) => {
+const ProfileItem = ({
+  className,
+  imageUrl,
+  size,
+  name,
+  title,
+  company,
+  nameFontSize,
+}) => {
+  const baseFontSize = nameFontSize || '2';
+
   return (
     <div className={className}>
       <RoundImage imageUrl={imageUrl} size={size} />
-      <Name>{name}</Name>
-      <Title>{title}</Title>
-      <Company>{company}</Company>
+      <Name fontSize={baseFontSize}>{name}</Name>
+      <Title fontSize={baseFontSize - 0.2}>{title}</Title>
+      <Company fontSize={baseFontSize - 0.2}>{company}</Company>
     </div>
   );
 };
