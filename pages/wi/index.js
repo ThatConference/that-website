@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Head from 'next/head';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
@@ -51,6 +52,9 @@ const BottomImage = styled.img`
 
 const home = props => (
   <>
+    <Head>
+      <title key="title">THAT Conference - Wisconsin Dells, WI</title>
+    </Head>
     <Hero />
     <LearnMore />
     <WhatToExpect />

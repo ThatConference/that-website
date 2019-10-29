@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton';
@@ -31,7 +32,14 @@ const pageNotFound = requestedUrl => {
 function Error({ statusCode, requestedUrl }) {
   const errorBlock =
     statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
-  return <ContentSection>{errorBlock}</ContentSection>;
+  return (
+    <>
+      <Head>
+        <title key="title">Oh No! - THAT Conference</title>
+      </Head>
+      <ContentSection>{errorBlock}</ContentSection>;
+    </>
+  );
 }
 
 Error.getInitialProps = ({ res, err, req }) => {
