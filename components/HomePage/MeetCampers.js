@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const CAMPERS = [
   {
@@ -104,12 +104,13 @@ const MeetCampers = ({ className }) => {
       className={className}
       backgroundColor="offWhite"
       hasTrees="true"
+      id="meet-campers"
     >
       <TitleRow>
         <Header>Meet THAT Crew!</Header>
         <div style={{ display: 'flex' }}>
           <LinkButton
-            href="/"
+            href={DEFAULT_WIP_PAGE}
             label="Contribute to THAT Community"
             color="thatBlue"
             borderColor="thatBlue"

@@ -98,6 +98,7 @@ const ContentSection = props => {
       backgroundColor={props.backgroundColor}
       fontColor={props.fontColor}
       className={props.className}
+      id={props.id}
     >
       {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
       <ContainerInner>{props.children}</ContainerInner>

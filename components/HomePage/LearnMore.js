@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
 import LinkButton from '../shared/LinkButton';
 
-import { below } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const HighlightImage = styled.img`
   width: 100%;
@@ -46,7 +46,7 @@ const ActionButton = styled(LinkButton)`
 
 const LearnMore = ({ className }) => {
   return (
-    <ContentSection className={className}>
+    <ContentSection className={className} id="learn-more">
       <Main>
         <HighlightImage src="/images/bear_with_drone.png" />
         <SideDetail>
@@ -60,12 +60,20 @@ const LearnMore = ({ className }) => {
           </StandardBodyCopy>
           <ButtonRow>
             <ActionButton
-              href="/"
+              href={DEFAULT_WIP_PAGE}
               label="Professional Track"
               borderColor="thatBlue"
             />
-            <ActionButton href="/" label="Kids Track" borderColor="thatBlue" />
-            <ActionButton href="/" label="FAQ" borderColor="thatBlue" />
+            <ActionButton
+              href={DEFAULT_WIP_PAGE}
+              label="Kids Track"
+              borderColor="thatBlue"
+            />
+            <ActionButton
+              href={DEFAULT_WIP_PAGE}
+              label="FAQ"
+              borderColor="thatBlue"
+            />
           </ButtonRow>
         </SideDetail>
       </Main>
