@@ -90,6 +90,18 @@ const Trees = styled.img`
   width: 17rem;
   left: 44vw;
   overflow: visible;
+
+  ${below.med`
+    left: 40vw;
+  `};
+
+  ${below.small`
+    left: 35vw;
+  `};
+
+  ${below.xsmall`
+    left: 27vw;
+  `};
 `;
 
 const ContentSection = props => {
