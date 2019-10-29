@@ -75,7 +75,7 @@ const becomeAPartner = props => (
           <div>
             {/* This will jump to prospectus for below */}
             <ActionButton
-              href="/foo"
+              href="/become-a-partner#more-info"
               borderColor="thatBlue"
               label="Get the Prospectus"
             />
@@ -129,7 +129,7 @@ const becomeAPartner = props => (
       </div>
     </ContentSection>
 
-    <ContentSection backgroundColor="primary" fontColor="light">
+    <ContentSection backgroundColor="primary" fontColor="light" id="more-info">
       <Grid columns={12}>
         <Cell width={6}>
           <div>

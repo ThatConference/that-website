@@ -76,7 +76,7 @@ const ActionButton = styled(LinkButton)`
 
 const SponsorHighlight = ({ className }) => {
   return (
-    <ContentSection className={className}>
+    <ContentSection className={className} id="sponsors">
       <Main>
         <HighlightImage src="/images/octopus_with_flag.png" />
         <SideDetail>

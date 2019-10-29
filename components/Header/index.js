@@ -18,6 +18,10 @@ const PageHeader = styled.div`
   width: 100%;
 `;
 
+const LogoLink = styled.a`
+  height: 100%;
+`;
+
 const Logo = styled.img`
   height: 100%;
 `;
@@ -73,12 +77,14 @@ const Header = ({ className }) => {
       <MessageBar />
       <HeaderSection>
         <PageHeader>
-          <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+          <LogoLink href="/">
+            <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+          </LogoLink>
           {/* <Nav /> */}
           <div style={{ flexGrow: 2 }} />
           <div style={{ display: 'flex' }}>
             <ActionButton
-              href="/"
+              href="#newsletter"
               label="Join Our Mailing List"
               borderColor="thatBlue"
               color="white"

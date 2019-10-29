@@ -44,7 +44,7 @@ class NewsletterSignUp extends Component {
 
   render() {
     return (
-      <ContentSection className={this.props.className}>
+      <ContentSection className={this.props.className} id="newsletter-signup">
         <Main>
           <SideDetail>
             <div className="_form_16" />

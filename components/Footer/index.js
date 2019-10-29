@@ -53,8 +53,10 @@ class Footer extends Component {
   render() {
     return (
       <>
-        <div className={this.props.className}>
-          <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+        <div className={this.props.className} id="newsletter">
+          <a href="/">
+            <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+          </a>
           <FooterNav>
             <FooterNavColumn>
               <Title>Links</Title>

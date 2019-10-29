@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const ProfileRow = styled.div`
   display: flex;
@@ -35,14 +35,14 @@ const Header = styled.h3`
 
 const SpeakerHighlight = ({ className }) => {
   return (
-    <ContentSection>
+    <ContentSection className={className} id="speakers">
       <TitleRow>
         <Header>
           Find Inspiration From Hallway Conversations or Industry Leaders
         </Header>
         <div style={{ display: 'flex' }}>
           <LinkButton
-            href="/"
+            href={DEFAULT_WIP_PAGE}
             label="Meet The Speakers"
             color="thatBlue"
             borderColor="thatBlue"

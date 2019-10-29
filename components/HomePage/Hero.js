@@ -7,7 +7,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
 
-import { below } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -122,7 +122,7 @@ const Hero = ({ className }) => {
           <Slogan>Summer Camp For Geeks</Slogan>
           <ActionButtons>
             <Button
-              href="/"
+              href={DEFAULT_WIP_PAGE}
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
