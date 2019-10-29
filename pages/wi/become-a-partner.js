@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
+import Head from 'next/head';
+
 import ContentSection from '../../components/shared/ContentSection';
 import ActionButton from '../../components/shared/LinkButton';
 import WhatToExpect from '../../components/shared/WhatToExpect';
@@ -36,6 +38,10 @@ class ScriptInjector extends Component {
 
 const becomeAPartner = props => (
   <div>
+    <Head>
+      <title key="title">Become a Partner - THAT Conference</title>
+    </Head>
+
     <ContentSection>
       <Grid columns={12}>
         <Cell width={6}>
