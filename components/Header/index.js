@@ -1,4 +1,4 @@
-import router from 'next/router';
+import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
@@ -51,6 +51,19 @@ router.onRouteChangeError = () => {
   nprogress.done();
 };
 
+const HeaderLogo = () => {
+  const theRouter = useRouter();
+  console.log(theRouter);
+  if (theRouter.route === '/wi' || theRouter.route === '/tx') {
+    return <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+  }
+  return (
+    <LogoLink href="/">
+      <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+    </LogoLink>
+  );
+};
+
 const Header = ({ className }) => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -77,9 +90,7 @@ const Header = ({ className }) => {
       <MessageBar />
       <HeaderSection>
         <PageHeader>
-          <LogoLink href="/">
-            <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
-          </LogoLink>
+          <HeaderLogo />
           {/* <Nav /> */}
           <div style={{ flexGrow: 2 }} />
           <div style={{ display: 'flex' }}>
