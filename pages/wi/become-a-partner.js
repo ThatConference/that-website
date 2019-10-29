@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import ContentSection from '../components/shared/ContentSection';
-import ActionButton from '../components/shared/LinkButton';
-import WhatToExpect from '../components/shared/WhatToExpect';
+import ContentSection from '../../components/shared/ContentSection';
+import ActionButton from '../../components/shared/LinkButton';
+import WhatToExpect from '../../components/shared/WhatToExpect';
 
 const SasquatchCanoeImage = styled.img`
   width: 100%;
@@ -75,7 +75,7 @@ const becomeAPartner = props => (
           <div>
             {/* This will jump to prospectus for below */}
             <ActionButton
-              href="/become-a-partner#more-info"
+              href="/wi/become-a-partner#more-info"
               borderColor="thatBlue"
               label="Get the Prospectus"
             />
