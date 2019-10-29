@@ -7,9 +7,18 @@ import ContentSection from '../../components/shared/ContentSection';
 import ActionButton from '../../components/shared/LinkButton';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 
+const PartnerH3 = styled.h3`
+  margin-bottom: 25px;
+  margin-left: 0;
+`;
+
 const SasquatchCanoeImage = styled.img`
   width: 100%;
   margin-left: 50px;
+`;
+
+const GetTheProspectusButton = styled(ActionButton)`
+  margin-left: 0;
 `;
 
 const SasquatchStandingImage = styled.img`
@@ -61,13 +70,13 @@ const becomeAPartner = props => (
       </Grid>
     </ContentSection>
 
-    <ContentSection backgroundColor="primary" fontColor="light">
+    <ContentSection backgroundColor="primary" fontColor="light" hasTrees="true">
       <Grid columns={12}>
         <Cell width={6}>
           <div>
-            <h3 style={{ color: 'white', marginBottom: 0 }}>
+            <PartnerH3 style={{ color: 'white' }}>
               SUMMER CAMP FOR GEEKS
-            </h3>
+            </PartnerH3>
             <span className="large-body-copy">
               THAT Conference is the “Summer Camp for Geeks” that combines
               technology, networking, social events and exposure in an
@@ -80,10 +89,13 @@ const becomeAPartner = props => (
           </div>
           <div>
             {/* This will jump to prospectus for below */}
-            <ActionButton
+            <GetTheProspectusButton
               href="/wi/become-a-partner#more-info"
-              borderColor="thatBlue"
+              borderColor="white"
+              color="white"
+              backgroundColor="primary"
               label="Get the Prospectus"
+              className="float-left"
             />
           </div>
         </Cell>
@@ -117,9 +129,9 @@ const becomeAPartner = props => (
           </Cell>
           <Cell width={6}>
             <div style={{ maxWidth: '650px' }}>
-              <h3 className="font-dark" style={{ marginBottom: 0 }}>
+              <PartnerH3 className="font-dark">
                 Enabling Meaningful Interaction
-              </h3>
+              </PartnerH3>
               <span className="medium-body-copy">
                 We incorporate multiple networking opportunities and social
                 events to enable meaningful interactions with you and attendees.
@@ -139,9 +151,7 @@ const becomeAPartner = props => (
       <Grid columns={12}>
         <Cell width={6}>
           <div>
-            <h3 style={{ color: 'white', marginBottom: 0 }}>
-              Get The Prospectus
-            </h3>
+            <PartnerH3 style={{ color: 'white' }}>Get The Prospectus</PartnerH3>
             <span className="small-body-copy">
               The opportunities are endless when it comes to your partnership
               goals. Let’s partner and make those goals a reality. Provide your

@@ -8,7 +8,8 @@ const OutlineLink = styled.a`
   margin: auto;
   margin-top: 2rem;
   min-width: 20rem;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor ? theme.colors[backgroundColor] : theme.colors.white};
 
   &:hover {
     cursor: pointer;
@@ -30,6 +31,7 @@ const LinkButton = props => {
         color={props.color}
         className={props.className}
         borderColor={props.borderColor}
+        backgroundColor={props.backgroundColor}
       >
         <p>{props.label}</p>
       </OutlineLink>
