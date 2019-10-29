@@ -75,7 +75,7 @@ const becomeAPartner = props => (
           <div>
             {/* This will jump to prospectus for below */}
             <ActionButton
-              href="/become-a-partner#more-info"
+              href="/wi/become-a-partner#more-info"
               borderColor="thatBlue"
               label="Get the Prospectus"
             />
