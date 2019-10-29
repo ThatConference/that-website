@@ -53,7 +53,6 @@ router.onRouteChangeError = () => {
 
 const HeaderLogo = () => {
   const theRouter = useRouter();
-  console.log(theRouter);
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
     return <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />;
   }
