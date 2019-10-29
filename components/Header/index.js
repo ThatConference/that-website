@@ -22,7 +22,7 @@ const LogoLink = styled.a`
   height: 100%;
 `;
 
-const Logo = styled.img`
+const StyledLogo = styled.img`
   height: 100%;
 `;
 
@@ -51,14 +51,18 @@ router.onRouteChangeError = () => {
   nprogress.done();
 };
 
+const Logo = () => {
+  return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+};
+
 const HeaderLogo = () => {
   const theRouter = useRouter();
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
-    return <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+    return <Logo />;
   }
   return (
     <LogoLink href="/">
-      <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
+      <Logo />
     </LogoLink>
   );
 };
