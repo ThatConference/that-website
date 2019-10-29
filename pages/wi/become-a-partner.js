@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import Head from 'next/head';
+import { below } from '../../utilities/breakpoint';
 
 import ContentSection from '../../components/shared/ContentSection';
 import ActionButton from '../../components/shared/LinkButton';
@@ -15,10 +16,19 @@ const PartnerH3 = styled.h3`
 const SasquatchCanoeImage = styled.img`
   width: 100%;
   margin-left: 50px;
+
+  ${below.small`
+    margin-left: 0;
+    width: 90%;
+  `};
 `;
 
 const GetTheProspectusButton = styled(ActionButton)`
   margin-left: 0;
+
+  ${below.small`
+    margin: 25px auto;
+  `};
 `;
 
 const SasquatchStandingImage = styled.img`
@@ -27,7 +37,17 @@ const SasquatchStandingImage = styled.img`
 
 const SasquatchCloseUpCanoeImage = styled.img`
   margin-top: 50px;
-  height: 400px;
+  height: 300px;
+
+  ${below.large`
+    height: 200px;
+  `};
+`;
+
+const NeedInfoH4 = styled.h4`
+  margin-bottom: 0;
+  margin-top: 60px;
+  margin-left: 20px;
 `;
 
 class ScriptInjector extends Component {
@@ -52,13 +72,13 @@ const becomeAPartner = props => (
     </Head>
 
     <ContentSection>
-      <Grid columns={12}>
-        <Cell width={6}>
+      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+        <Cell>
           <h1 style={{ marginTop: 0, marginRight: '100px' }}>
             Become a Camp Partner
           </h1>
         </Cell>
-        <Cell width={6}>
+        <Cell>
           <p className="medium-body-copy">
             We believe that by partnering with our sponsors not only can we help
             enable your goals but it also creates a more engaging environment
@@ -71,8 +91,8 @@ const becomeAPartner = props => (
     </ContentSection>
 
     <ContentSection backgroundColor="primary" fontColor="light" hasTrees="true">
-      <Grid columns={12}>
-        <Cell width={6}>
+      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+        <Cell>
           <div>
             <PartnerH3 style={{ color: 'white' }}>
               SUMMER CAMP FOR GEEKS
@@ -88,7 +108,6 @@ const becomeAPartner = props => (
             </span>
           </div>
           <div>
-            {/* This will jump to prospectus for below */}
             <GetTheProspectusButton
               href="/wi/become-a-partner#more-info"
               borderColor="white"
@@ -99,8 +118,7 @@ const becomeAPartner = props => (
             />
           </div>
         </Cell>
-        {/* This seems smelly? */}
-        <Cell style={{ textAlign: 'center' }} width={6}>
+        <Cell style={{ textAlign: 'center' }}>
           <div>
             <SasquatchCanoeImage src="/images/sasquatch_kayaking.png" />
           </div>
@@ -123,11 +141,11 @@ const becomeAPartner = props => (
 
     <ContentSection>
       <div style={{ marginBottom: '70px' }}>
-        <Grid columns={12}>
-          <Cell width={6} className="centered-text">
+        <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+          <Cell centered>
             <SasquatchStandingImage src="/images/sasquatch_with_badge.png" />
           </Cell>
-          <Cell width={6}>
+          <Cell>
             <div style={{ maxWidth: '650px' }}>
               <PartnerH3 className="font-dark">
                 Enabling Meaningful Interaction
@@ -148,8 +166,8 @@ const becomeAPartner = props => (
     </ContentSection>
 
     <ContentSection backgroundColor="primary" fontColor="light" id="more-info">
-      <Grid columns={12}>
-        <Cell width={6}>
+      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+        <Cell>
           <div>
             <PartnerH3 style={{ color: 'white' }}>Get The Prospectus</PartnerH3>
             <span className="small-body-copy">
@@ -165,14 +183,11 @@ const becomeAPartner = props => (
             <SasquatchCloseUpCanoeImage src="/images/sasquatch_close_up.png" />
           </div>
         </Cell>
-        <Cell width={6}>
-          <div style={{ paddingLeft: '40px' }}>
-            <h4
-              className="font-light"
-              style={{ marginBottom: 0, marginTop: '60px', marginLeft: '20px' }}
-            >
+        <Cell>
+          <div>
+            <NeedInfoH4 className="font-light">
               WE NEED A LITTLE INFO FIRST
-            </h4>
+            </NeedInfoH4>
             <ScriptInjector />
           </div>
         </Cell>

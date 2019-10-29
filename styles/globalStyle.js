@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
+import { below } from '../utilities/breakpoint';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize()};
@@ -38,18 +39,34 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: 11rem;
+
+    ${below.med`
+      font-size: 9rem;
+    `};
   }
 
   h2 {
     font-size: 10rem;
+
+    ${below.med`
+      font-size: 8.5rem;
+    `};
   }
 
   h3 {
     font-size: 4.5rem;
+
+    ${below.med`
+      font-size: 4rem;
+    `};
   }
 
   h4 {
    font-size: 2.4rem;
+
+   ${below.med`
+      font-size: 2rem;
+    `};
   }
 
   a {
