@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import ContentSection from '../components/shared/ContentSection';
-import ActionButton from '../components/shared/LinkButton';
-import WhatToExpect from '../components/shared/WhatToExpect';
+import ContentSection from '../../components/shared/ContentSection';
+import ActionButton from '../../components/shared/LinkButton';
+import WhatToExpect from '../../components/shared/WhatToExpect';
 
 const SasquatchCanoeImage = styled.img`
   width: 100%;

@@ -74,7 +74,7 @@ const ActionButton = styled(LinkButton)`
   margin: 0 0 0 2rem;
 `;
 
-const SponsorHighlight = ({ className }) => {
+const SponsorHighlight = ({ className, eventSlug }) => {
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
@@ -99,7 +99,10 @@ const SponsorHighlight = ({ className }) => {
               We partner with industry leading organizations and companies that
               are looking to connect with software developers and practitioners.
             </p>
-            <ActionButton href="become-a-partner" label="Let's Partner Up" />
+            <ActionButton
+              href={`${eventSlug}/become-a-partner`}
+              label="Let's Partner Up"
+            />
           </TextBlock>
         </SideDetail>
       </Main>
