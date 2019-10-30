@@ -63,7 +63,7 @@ const home = props => (
     <Testimonials />
     <NewsletterSignup />
     <MeetCampers />
-    <BottomImage src="./images/mess_hall.png" />
+    <BottomImage src="./images/mess-hall.jpg" />
   </>
 );
 
