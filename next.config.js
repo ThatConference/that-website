@@ -20,10 +20,10 @@ const sourceMaps = nextSourceMaps({
 });
 
 module.exports = {
-  publicRuntimeConfig: {
+  env: {
     API_GATEWAY: 'https://us-central1-all-that.cloudfunctions.net/graphGateway',
     WI_PROSPECTUS_URL:
-      'https://storage.cloud.google.com/that-bucket/2020_THATConference_Prospectus.pdf',
+      'https://storage.googleapis.com/that-bucket/2020_THATConference_Prospectus.pdf',
   },
   ...sourceMaps,
 };
