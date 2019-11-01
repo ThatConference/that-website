@@ -1,7 +1,8 @@
 const webpack = require('webpack');
+
 const nextSourceMaps = require('@zeit/next-source-maps');
 
-module.exports = nextSourceMaps({
+const sourceMaps = nextSourceMaps({
   webpack: (config, { isServer, buildId }) => {
     config.plugins.push(
       new webpack.DefinePlugin({
@@ -10,9 +11,19 @@ module.exports = nextSourceMaps({
     );
 
     if (!isServer) {
+      // eslint-disable-next-line no-param-reassign
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
 
     return config;
   },
 });
+
+module.exports = {
+  publicRuntimeConfig: {
+    API_GATEWAY: 'https://us-central1-all-that.cloudfunctions.net/graphGateway',
+    WI_PROSPECTUS_URL:
+      'https://storage.cloud.google.com/that-bucket/2020_THATConference_Prospectus.pdf',
+  },
+  ...sourceMaps,
+};
