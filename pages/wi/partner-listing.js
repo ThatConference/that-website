@@ -154,7 +154,7 @@ const partnerListing = props => {
               style={{ display: 'flex', textAlign: 'left', marginTop: '20px;' }}
             >
               <LinkButton
-                href="/become-a-partner"
+                href="/wi/become-a-partner"
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"
