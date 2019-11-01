@@ -80,10 +80,10 @@ const Testimonials = ({ className }) => {
             iconClass="left"
             className={testimonialIndex === 0 ? 'inactive' : ''}
             onClick={
-              testimonialIndex < TESTIMONIALS.length - 1
+              testimonialIndex > 0 
                 ? () => {
                     console.log('left', testimonialIndex);
-                    setTestimonialIndex(testimonialIndex + 1);
+                    setTestimonialIndex(testimonialIndex - 1);
                   }
                 : false
             }
