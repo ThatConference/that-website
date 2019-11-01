@@ -36,7 +36,8 @@
     "sentry-testkit": "^3.0.2",
     "styled-components": "^4.4.0",
     "styled-components-modifiers": "^1.2.5",
-    "styled-css-grid": "^1.2.1"
+    "styled-css-grid": "^1.2.1",
+    "webpack": "^4.41.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
