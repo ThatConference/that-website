@@ -17,7 +17,7 @@ const CorePage = styled.div`
   width: 100vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-gap: 10px;
+  grid-gap: 0;
 `;
 
 const InnerPage = styled.div`
