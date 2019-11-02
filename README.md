@@ -4,7 +4,10 @@
 
 * `pages` directory contains a file for each page of the site. 
 * `components` directory is where you will find all compoenents used across all pages. 
-* `shared` contains components used across multiple pages. 
+* `shared` contains components used across multiple pages.
+* `public`
+* `styles` 
+* `elements`
 
 Any components specific to a page are grouped together in the same folder. 
 
