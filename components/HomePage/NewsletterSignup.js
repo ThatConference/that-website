@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
+import NewsletterSignUpForm from '../shared/NewsletterSignupForm';
 import { below } from '../../utilities';
 
 const HighlightImage = styled.img`
@@ -32,28 +33,17 @@ const SideDetail = styled.div`
   width: 30vw;
 `;
 
-class NewsletterSignUp extends Component {
-  componentDidMount() {
-    const script = document.createElement('script');
-
-    script.src = 'https://thatconference.activehosted.com/f/embed.php?id=16';
-    script.async = true;
-
-    document.body.appendChild(script);
-  }
-
-  render() {
-    return (
-      <ContentSection className={this.props.className} id="newsletter-signup">
-        <Main>
-          <SideDetail>
-            <div className="_form_16" />
-          </SideDetail>
-          <HighlightImage src="/images/bear_with_megaphone.png" />
-        </Main>
-      </ContentSection>
-    );
-  }
-}
+const NewsletterSignUp = ({ className }) => {
+  return (
+    <ContentSection className={className} id="newsletter-signup">
+      <Main>
+        <SideDetail>
+          <NewsletterSignUpForm title="Join our community, sign up for our newsletter" />
+        </SideDetail>
+        <HighlightImage src="/images/bear_with_megaphone.png" />
+      </Main>
+    </ContentSection>
+  );
+};
 
 export default styled(NewsletterSignUp)``;
