@@ -69,6 +69,14 @@ const GlobalStyle = createGlobalStyle`
     `};
   }
 
+  h5 {
+   font-size: 1.8rem;
+
+   ${below.med`
+      font-size: 1.4rem;
+    `};
+  }
+
   a {
     text-decoration: none;
   }
@@ -104,6 +112,12 @@ const GlobalStyle = createGlobalStyle`
 
   ::-moz-selection { background: ${({ theme }) => theme.colors.primary}; }
   ::selection { background: ${({ theme }) => theme.colors.primary}; }
+
+  form {
+    input {
+      padding: 1rem;
+    }
+  }
 `;
 
 export default GlobalStyle;

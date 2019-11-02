@@ -1,8 +1,10 @@
+import React from 'react';
 import styled from 'styled-components';
-import React, { Component } from 'react';
 import { Grid, Cell } from 'styled-css-grid';
 import { above, below } from '../../utilities';
 import PageFooter from './PageFooter';
+import ContentSection from '../shared/ContentSection';
+import NewsletterSignUpForm from '../shared/NewsletterSignupForm';
 
 const FooterNav = styled.div`
   display: flex;
@@ -40,20 +42,18 @@ const NavLink = styled.a`
   }
 `;
 
-class Footer extends Component {
-  componentDidMount() {
-    const script = document.createElement('script');
+const Detail = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+`;
 
-    script.src = 'https://thatconference.activehosted.com/f/embed.php?id=16';
-    script.async = true;
-
-    document.body.appendChild(script);
-  }
-
-  render() {
-    return (
-      <>
-        <div className={this.props.className} id="newsletter">
+const Footer = ({ className }) => {
+  return (
+    <>
+      <ContentSection className={className} id="newsletter">
+        <Detail>
           <a href="/">
             <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           </a>
@@ -80,19 +80,20 @@ class Footer extends Component {
               <NavLink href="/">Other Policies</NavLink>
             </FooterNavColumn>
           </FooterNav>
-          <div className="_form_16" />
-        </div>
-        <PageFooter />
-      </>
-    );
-  }
-}
+          <NewsletterSignUpForm title="Join our community, sign up for our newsletter" />
+        </Detail>
+      </ContentSection>
+      <PageFooter />
+    </>
+  );
+};
 
 export default styled(Footer)`
   display: flex;
   align-items: center;
   padding: 0 2rem;
   min-height: 18rem;
+  background-color: ${({ theme }) => theme.colors.offWhite};
 
   ${below.med`
     flex-direction: column;
