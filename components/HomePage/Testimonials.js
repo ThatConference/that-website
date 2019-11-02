@@ -80,12 +80,11 @@ const Testimonials = ({ className }) => {
             iconClass="left"
             className={testimonialIndex === 0 ? 'inactive' : ''}
             onClick={
-              testimonialIndex > 0 
+              testimonialIndex > 0
                 ? () => {
-                    console.log('left', testimonialIndex);
                     setTestimonialIndex(testimonialIndex - 1);
                   }
-                : false
+                : () => {}
             }
           />
           <SquareButton
@@ -97,10 +96,9 @@ const Testimonials = ({ className }) => {
             onClick={
               testimonialIndex < TESTIMONIALS.length - 1
                 ? () => {
-                    console.log('right', testimonialIndex);
                     setTestimonialIndex(testimonialIndex + 1);
                   }
-                : false
+                : () => {}
             }
           />
         </Cell>
