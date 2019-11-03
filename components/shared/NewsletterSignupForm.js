@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { textInputs } from 'polished';
+import SquareButton from './SquareButton';
 
 const FormContainer = styled.div`
   display: flex;
@@ -9,71 +9,103 @@ const FormContainer = styled.div`
   justify-content: center;
 `;
 
-const ActiveCampaignForm = styled.form`
-  ._form-content {
-    display: flex;
-    width: 100%;
-
-    ._form_element {
-      flex-grow: 2;
-    }
-  }
-
-  input {
-    min-width: 100%;
-  }
-
-  button {
-    visibility: hidden;
-
-    &:after {
-      content: '';
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewbox='0 0 30 30' transform='rotate(-90)' fill='white'><path d='M12,16c-0.3,0-0.5-0.1-0.7-0.3L5.2,9.6C4.8,9.2,4.9,8.6,5.3,8.2c0.4-0.3,0.9-0.3,1.3,0l5.4,5.4l5.4-5.4 c0.4-0.4,1.1-0.3,1.4,0.1c0.3,0.4,0.3,0.9,0,1.3l-6.1,6.1C12.5,15.9,12.3,16,12,16z' /></svg>");
-      background-repeat: no-repeat;
-      visibility: visible;
-      background-color: ${({ theme }) => theme.colors.thatBlue};
-      color: ${({ theme }) => theme.colors.white};
-      padding: 1rem;
-      border: none;
-      margin-left: 1rem;
-      display: block;
-      height: 3.75rem;
-      width: 3.75rem;
-      position: relative;
-      top: -2.3rem;
-      background-position: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-`;
-
 const Title = styled.h5`
   text-transform: uppercase;
   margin: 0;
+  margin-bottom: 0.7rem;
+  color: ${({ theme }) => theme.colors.fonts.dark};
 `;
 
-const InputsRow = styled.div``;
+const Subtitle = styled.p`
+  margin: 0;
+  line-height: 1.2;
+  margin: 0.7rem 0 1.4rem 0;
+`;
+
+const InputsRow = styled.div`
+  width: 100%;
+  display: flex;
+
+  input {
+    flex-grow: 2;
+    margin-right: 0.7rem;
+  }
+`;
+
+const ThankYouBlock = styled.p`
+  margin: 0;
+  line-height: 1.4;
+  text-align: center;
+`;
 
 class NewsletterSignUpForm extends Component {
-  componentDidMount() {
-    const script = document.createElement('script');
+  constructor(props) {
+    super(props);
 
-    script.src = 'https://thatconference.activehosted.com/f/embed.php?id=16';
-    script.async = true;
+    this.state = {
+      formSubmitted: false,
+    };
 
-    document.body.appendChild(script);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    fetch('https://thatconference.activehosted.com/proc.php', {
+      method: 'POST',
+      body: data,
+      mode: 'no-cors',
+    })
+      .then(response => {
+        this.setState({ formSubmitted: true });
+        setTimeout(() => {
+          this.setState({ formSubmitted: false });
+        }, 5000);
+      })
+      .catch(error => console.log('Request failed', error));
   }
 
   render() {
+    const { formSubmitted } = this.state;
+    const { className, headerType, style, subtitle, title } = this.props;
+
     return (
-      <FormContainer className={this.props.className}>
-        <Title>{this.props.title}</Title>
-        <InputsRow>
-          <ActiveCampaignForm className="_form_16" />
-        </InputsRow>
+      <FormContainer className={className} style={style}>
+        <Title as={headerType} dangerouslySetInnerHTML={{ __html: title }} />
+
+        {subtitle && <Subtitle>{subtitle}</Subtitle>}
+
+        {formSubmitted && (
+          <ThankYouBlock>
+            <strong>THANK YOU</strong> for joining our mailing list!
+            <br />
+            Check your inbox for a confirmation.
+          </ThankYouBlock>
+        )}
+
+        {!formSubmitted && (
+          <form onSubmit={this.onSubmit}>
+            <input type="hidden" name="u" value="16" />
+            <input type="hidden" name="f" value="16" />
+            <input type="hidden" name="s" />
+            <input type="hidden" name="c" value="0" />
+            <input type="hidden" name="m" value="0" />
+            <input type="hidden" name="act" value="sub" />
+            <input type="hidden" name="v" value="2" />
+
+            <InputsRow>
+              <input
+                type="text"
+                name="email"
+                placeholder="ex: hello@youareawesome.com"
+                required
+              />
+              <SquareButton icon="arrow" iconClass="right" />
+            </InputsRow>
+          </form>
+        )}
       </FormContainer>
     );
   }

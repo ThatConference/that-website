@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import NewsletterSignUpForm from '../shared/NewsletterSignupForm';
 import { below } from '../../utilities';
@@ -13,6 +12,12 @@ const HighlightImage = styled.img`
   transform: scaleX(-1);
   object-fit: cover;
   height: 100%;
+
+  ${below.large`
+    max-height: 22rem;
+    object-fit: contain;
+    margin-top: 1.5rem;
+  `};
 `;
 
 const Main = styled.div`
@@ -31,6 +36,16 @@ const SideDetail = styled.div`
   flex-direction: column;
   margin-right: 2rem;
   width: 30vw;
+
+  ${below.large`
+    width: 70vw;
+    align-self: flex-start;
+  `};
+
+  ${below.small`
+    width: 90%;
+    align-self: flex-start;
+  `};
 `;
 
 const NewsletterSignUp = ({ className }) => {
@@ -38,7 +53,11 @@ const NewsletterSignUp = ({ className }) => {
     <ContentSection className={className} id="newsletter-signup">
       <Main>
         <SideDetail>
-          <NewsletterSignUpForm title="Join our community, sign up for our newsletter" />
+          <NewsletterSignUpForm
+            headerType="h3"
+            title="Join our community<br/>sign up for our newsletter"
+            subtitle="Sign up for secrets, poetry, theories on black holes, and other important conference info, dates and inspiration."
+          />
         </SideDetail>
         <HighlightImage src="/images/bear_with_megaphone.png" />
       </Main>
