@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../../components/shared/ContentSection';
 import LinkButton from '../../components/shared/LinkButton';
+import { below } from '../../utilities/breakpoint';
 
 const GET_PARTNERS = gql`
   query getPartners {
@@ -25,6 +26,12 @@ const RobotImage = styled.img`
   float: right;
   margin-top: -200px;
   margin-right: 35px;
+
+  ${below.med`
+    margin-top: 20px;
+    margin-right: unset;
+    height: 400px;
+  `};
 `;
 
 const PartnerLevelTitle = styled.h3`
