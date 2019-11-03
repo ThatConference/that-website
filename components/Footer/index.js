@@ -47,6 +47,18 @@ const Detail = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
+
+  ${below.med`
+    flex-direction: column;
+    align-items: center;
+  `};
+`;
+
+const StyledNewsletterSignUpForm = styled(NewsletterSignUpForm)`
+  ${below.med`
+    margin-top: 3rem;
+  `};
 `;
 
 const Footer = ({ className }) => {
@@ -80,7 +92,7 @@ const Footer = ({ className }) => {
               <NavLink href="/">Other Policies</NavLink>
             </FooterNavColumn>
           </FooterNav>
-          <NewsletterSignUpForm title="Join our community, sign up for our newsletter" />
+          <StyledNewsletterSignUpForm title="Join our community, sign up for our newsletter" />
         </Detail>
       </ContentSection>
       <PageFooter />
@@ -96,7 +108,6 @@ export default styled(Footer)`
   background-color: ${({ theme }) => theme.colors.offWhite};
 
   ${below.med`
-    flex-direction: column;
     min-height: 33rem;
   `};
 `;

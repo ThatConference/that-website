@@ -35,6 +35,7 @@ const GlobalStyle = createGlobalStyle`
   h4, h5 {
     font-family: franklin-gothic-urw, sans-serif;
     color: ${({ theme }) => theme.colors.fonts.dark};
+    line-height: 1.4;
   }
 
   h1 {
