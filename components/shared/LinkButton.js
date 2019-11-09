@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import * as gtag from '../../lib/gtag';
 
 const OutlineLink = styled.a`
   border: 2px solid
@@ -24,10 +25,20 @@ const OutlineLink = styled.a`
 `;
 
 const LinkButton = props => {
+  const clickTracking = e => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'link button',
+      label: props.label,
+    });
+  };
+
   return (
     <div style={{ display: 'flex' }}>
       <OutlineLink
         href={props.href}
+        onClick={clickTracking}
         color={props.color}
         className={props.className}
         borderColor={props.borderColor}

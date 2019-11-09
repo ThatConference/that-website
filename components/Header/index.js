@@ -56,12 +56,21 @@ const Logo = () => {
 };
 
 const HeaderLogo = () => {
+  const clickTracking = () => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'header',
+      label: 'logo',
+    });
+  };
+
   const theRouter = useRouter();
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
     return <Logo />;
   }
   return (
-    <LogoLink href="/">
+    <LogoLink href="/" onClick={clickTracking}>
       <Logo />
     </LogoLink>
   );

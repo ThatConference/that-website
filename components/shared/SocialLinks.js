@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import Icon from './Icon';
 import { below } from '../../utilities';
+import * as gtag from '../../lib/gtag';
+
+const SOCIALS = [
+  {
+    href: 'https://www.facebook.com/ThatConference/',
+    icon: {
+      name: 'facebook',
+    },
+  },
+  {
+    href: 'https://www.instagram.com/thatconference/',
+    icon: {
+      name: 'instagram',
+    },
+  },
+  {
+    href: 'https://twitter.com/ThatConference',
+    icon: {
+      name: 'twitter',
+    },
+  },
+  {
+    href: 'https://medium.com/that-conference',
+    icon: {
+      name: 'medium',
+    },
+  },
+  {
+    href: 'https://www.youtube.com/thatconference/',
+    icon: {
+      name: 'youtube',
+      height: 70,
+      width: 70,
+    },
+  },
+];
 
 const SocialLinksContainer = styled.div`
   display: flex;
@@ -40,43 +76,34 @@ const SocialLinks = ({ className, flexDirection }) => {
   const iconWidth = '38';
   const rowOrColumn = flexDirection || 'row';
 
+  const clickTracking = label => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'social',
+      label,
+    });
+  };
+
   return (
     <SocialLinksContainer className={className} rowOrColumn={rowOrColumn}>
-      <a
-        href="https://www.facebook.com/ThatConference/"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <Icon icon="facebook" height={iconHeight} width={iconWidth} />
-      </a>
-      <a
-        href="https://www.instagram.com/thatconference/"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <Icon icon="instagram" height={iconHeight} width={iconWidth} />
-      </a>
-      <a
-        href="https://twitter.com/ThatConference"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <Icon icon="twitter" height={iconHeight} width={iconWidth} />
-      </a>
-      <a
-        href="https://medium.com/that-conference"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <Icon icon="medium" height={iconHeight} width={iconWidth} />
-      </a>
-      <a
-        href="https://www.youtube.com/thatconference/"
-        target="_blank"
-        rel="noreferrer noopener"
-      >
-        <Icon icon="youtube" height="70" width="70" />
-      </a>
+      {SOCIALS.map((item, index) => {
+        return (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            key={index}
+            onClick={() => clickTracking(item.icon.name)}
+          >
+            <Icon
+              icon={item.icon.name}
+              height={item.icon.height || iconHeight}
+              width={item.icon.width || iconWidth}
+            />
+          </a>
+        );
+      })}
     </SocialLinksContainer>
   );
 };
