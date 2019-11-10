@@ -5,6 +5,7 @@ import { above, below } from '../../utilities';
 import PageFooter from './PageFooter';
 import ContentSection from '../shared/ContentSection';
 import NewsletterSignUpForm from '../shared/NewsletterSignupForm';
+import * as gtag from '../../lib/gtag';
 
 const FooterNav = styled.div`
   display: flex;
@@ -62,34 +63,73 @@ const StyledNewsletterSignUpForm = styled(NewsletterSignUpForm)`
 `;
 
 const Footer = ({ className }) => {
+  const clickTracking = label => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'footer',
+      label,
+    });
+  };
+
   return (
     <>
       <ContentSection className={className} id="newsletter">
         <Detail>
-          <a href="/">
+          <a href="/" onClick={() => clickTracking('logo')}>
             <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           </a>
           <FooterNav>
             <FooterNavColumn>
               <Title>Links</Title>
-              <NavLink href="/">Schedule</NavLink>
-              <NavLink href="/wi/become-a-partner">Become a Partner</NavLink>
-              <NavLink href="/">Conference Map</NavLink>
-              <NavLink href="/">Contact Us</NavLink>
+              <NavLink href="/" onClick={() => clickTracking('schedule')}>
+                Schedule
+              </NavLink>
+              <NavLink
+                href="/wi/become-a-partner"
+                onClick={() => clickTracking('become a partner')}
+              >
+                Become a Partner
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('map')}>
+                Conference Map
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('contact')}>
+                Contact Us
+              </NavLink>
             </FooterNavColumn>
             <FooterNavColumn>
               <Title>Plan Your Trip</Title>
-              <NavLink href="/">Important Dates</NavLink>
-              <NavLink href="/">Travel Information</NavLink>
-              <NavLink href="/">Handbooks</NavLink>
-              <NavLink href="/">FAQ</NavLink>
+              <NavLink
+                href="/"
+                onClick={() => clickTracking('important dates')}
+              >
+                Important Dates
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('travel info')}>
+                Travel Information
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('handbook')}>
+                Handbooks
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('faq')}>
+                FAQ
+              </NavLink>
             </FooterNavColumn>
             <FooterNavColumn>
               <Title>Links</Title>
-              <NavLink href="/">Terms of Use</NavLink>
-              <NavLink href="/">Copyright Policy</NavLink>
-              <NavLink href="/">Privacy Policy</NavLink>
-              <NavLink href="/">Other Policies</NavLink>
+              <NavLink href="/" onClick={() => clickTracking('terms')}>
+                Terms of Use
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('copyright')}>
+                Copyright Policy
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('privacy')}>
+                Privacy Policy
+              </NavLink>
+              <NavLink href="/" onClick={() => clickTracking('policies')}>
+                Other Policies
+              </NavLink>
             </FooterNavColumn>
           </FooterNav>
           <StyledNewsletterSignUpForm title="Join our community, sign up for our newsletter" />
