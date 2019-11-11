@@ -1,9 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContentSection from '../components/shared/ContentSection';
 import Head from 'next/head';
+import ContentSection from '../components/shared/ContentSection';
 
 const WorkInProgress = ({ className }) => {
+  const clickTracking = label => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'WIP',
+      label: 'build site',
+    });
+  };
+
   return (
     <>
       <Head>
@@ -21,6 +30,7 @@ const WorkInProgress = ({ className }) => {
           href="https://github.com/ThatConference/that-website"
           target="_blank"
           rel="noreferrer noopener"
+          onClick={clickTracking}
         >
           https://github.com/ThatConference/that-website
         </a>
