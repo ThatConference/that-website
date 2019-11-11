@@ -56,7 +56,7 @@ const partnerDetail = ({ query }) => {
   return (
     <div>
       <ContentSection>
-        <Grid columns="1fr" rows="1fr">
+        <Grid columns="1fr" rows="1fr" style={{ height: '866px' }}>
           <Cell center middle>
             <BackToPartnersLink href="/wi/partner-listing">
               {'<'}-- Back to Partners
