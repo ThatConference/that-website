@@ -15,7 +15,7 @@
 
 There are many ways you can contibute, here are just some of the broader items we love to have help from the community on:
 
-- Find a bug, report a bug... if/when you find something please let us know! We cound om your eyes to spot things we miss. Open an issue and will will follow up and prioritize.
+- Find a bug, report a bug... if/when you find something please let us know! We count on your eyes to spot things we miss. Open an issue and will will follow up and prioritize.
 - Grab an issue to fix. See an open issue you would like to tackle? Go for it! Assign yourself the issue and get started.
 - Review open pull requests. If there an an open PR of changes, review it! Eyes anbd feedback on incoming work is appreciated by all!
 
