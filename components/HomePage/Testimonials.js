@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SquareButton from '../shared/SquareButton';
 
-import { below } from '../../utilities';
+import { gridRepeat } from '../../utilities';
 
 const TESTIMONIALS = [
   {
@@ -65,8 +65,8 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <Grid columns="repeat(auto-fit,minmax(400px,1fr))" style={{direction: "rtl"}}>
-        <Cell >
+      <Grid columns={gridRepeat.xsmall} style={{ direction: 'rtl' }}>
+        <Cell>
           <HighlightImage src={testimonial.imageUrl}  />
         </Cell>
         <Cell style={{direction: "ltr"}}>
