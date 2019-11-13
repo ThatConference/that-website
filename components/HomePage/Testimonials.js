@@ -65,7 +65,7 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))" style={{direction: "rtl"}}>
+      <Grid columns="repeat(auto-fit,minmax(400px,1fr))" style={{direction: "rtl"}}>
         <Cell >
           <HighlightImage src={testimonial.imageUrl}  />
         </Cell>
