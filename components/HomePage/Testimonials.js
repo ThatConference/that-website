@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SquareButton from '../shared/SquareButton';
 
-import { below } from '../../utilities';
+import { gridRepeat } from '../../utilities';
 
 const TESTIMONIALS = [
   {
@@ -35,8 +35,7 @@ const TESTIMONIALS = [
 ];
 
 const HighlightImage = styled.img`
-  width: 85%;
-  padding: 0 5rem;
+  width: 100%;
 `;
 
 const Detail = styled.div`
@@ -66,8 +65,11 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <Grid columns={12}>
-        <Cell width={5}>
+      <Grid columns={gridRepeat.xsmall} style={{ direction: 'rtl' }}>
+        <Cell>
+          <HighlightImage src={testimonial.imageUrl}  />
+        </Cell>
+        <Cell style={{direction: "ltr"}}>
           <Detail>
             <Quotation>"</Quotation>
             <Quote dangerouslySetInnerHTML={{ __html: testimonial.quote }} />
@@ -101,9 +103,6 @@ const Testimonials = ({ className }) => {
                 : () => {}
             }
           />
-        </Cell>
-        <Cell width={7}>
-          <HighlightImage src={testimonial.imageUrl} />
         </Cell>
       </Grid>
     </ContentSection>
