@@ -5,6 +5,12 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../../components/shared/ContentSection';
 import LinkButton from '../../components/shared/LinkButton';
+import Icon from '../../components/shared/Icon';
+
+import HeroSection from '../../components/PartnerDetail/HeroSection';
+import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
+import AboutGoalsSection from '../../components/PartnerDetail/AboutGoalsSection';
+import PresentationsJobsSection from '../../components/PartnerDetail/PresentationsJobsSection';
 
 const GET_PARTNER = gql`
   query getPartner($partnerId: ID!) {
@@ -12,6 +18,7 @@ const GET_PARTNER = gql`
       id
       year
       companyName
+      companyLogo
       heroImage
       website
       goals
@@ -36,41 +43,94 @@ const GET_PARTNER = gql`
   }
 `;
 
-const BackToPartnersLink = styled.a`
-  font-size: 14px;
-  position: absolute;
-  float: left;
-  top: 0;
-  margin-top: 50px;
-  margin-left: 50px;
-`;
-
 const partnerDetail = ({ query }) => {
+  let partner = null;
   const { loading, error, data } = useQuery(GET_PARTNER, {
     variables: { partnerId: query.id },
+    onCompleted(d) {
+      partner = d.partner;
+      let hostName = new URL(partner.website).hostname;
+      if (hostName.toLowerCase().startsWith('www.')) {
+        hostName = hostName.replace('www.', '');
+      }
+      partner.hostName = hostName;
+      partner.aboutUs =
+        'We help you connect your brand and audience through smarter strategy, better brands, awesome website design, and content focused marketing campaigns that build communities and grow your business.';
+      partner.goals = [
+        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt uyam erat, sed diam voluptua. At vero eos ettempor ividsun leabr.',
+        'Hlitr, sed diam nonumy eirmod tempor invidunt uyam erat, sed diam. ',
+      ];
+      partner.presentations = [
+        {
+          id: 'some-session-slug',
+          speaker: [
+            {
+              slug: 'bailey-kanisch',
+              name: 'Bailey Kanisch',
+              headshotUrl:
+                'https://storage.googleapis.com/that-bucket/headshots/thatstaff/clark-sell.jpg',
+            },
+          ],
+          title: "Accessibility: A Walk in Someone Else's Shoes",
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet',
+        },
+        {
+          id: 'some-session-slug2',
+          speaker: [
+            {
+              slug: 'martin-hooper',
+              name: 'Martin Hooper',
+              headshotUrl:
+                'https://storage.googleapis.com/that-bucket/headshots/thatstaff/sara-gibbons.jpg',
+            },
+          ],
+          title: "Accessibility: A Walk in Someone Else's Shoes Part Deux",
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet',
+        },
+      ];
+      partner.jobs = [
+        {
+          id: 'some-job-slug',
+          title: 'User Experience Researcher',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt uyam erat, sed diam voluptua. At vero eos ettempor ividsun leabr.',
+        },
+        {
+          id: 'some-job-slug2',
+          title: 'Infrastructure Program Management Lead',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt uyam erat, sed diam voluptua. At vero eos ettempor ividsun leabr.',
+        },
+      ];
+      return partner;
+    },
   });
 
   if (loading) return null;
   if (error) return null;
 
   return (
-    <div>
-      <ContentSection>
-        <Grid columns="1fr" rows="1fr" style={{ height: '866px' }}>
-          <Cell center middle>
-            <BackToPartnersLink href="/wi/partner-listing">
-              {'<'}-- Back to Partners
-            </BackToPartnersLink>
-            <h3>{data.partner.companyName}</h3>
-            <LinkButton
-              href={data.partner.website}
-              label="Connect with Us"
-              color="thatBlue"
-              borderColor="thatBlue"
-            />
-          </Cell>
-        </Grid>
-      </ContentSection>
+    <div style={{ paddingBottom: '40px' }}>
+      <HeroSection
+        companyName={data.partner.companyName}
+        heroImageUrl={data.partner.heroImage}
+        connectWithUsUrl={data.partner.website}
+        location="wi"
+      />
+
+      <MainLogoSection partner={data.partner} />
+      <AboutGoalsSection
+        companyName={data.partner.companyName}
+        about={data.partner.aboutUs}
+        goals={data.partner.goals}
+      />
+      <PresentationsJobsSection
+        companyName={data.partner.companyName}
+        presentations={data.partner.presentations}
+        jobs={data.partner.jobs}
+      />
     </div>
   );
 };
