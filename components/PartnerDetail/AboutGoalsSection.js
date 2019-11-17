@@ -15,6 +15,7 @@ const MainSection = styled(ContentSection)`
   ${below.med`
     padding-top: 2rem;
     margin-right: 0;
+    margin-left: 0;
   `};
 `;
 
@@ -30,6 +31,23 @@ const StyledP = styled.p`
 
 const AboutCell = styled(Cell)`
   margin-right: 7.5rem;
+
+  ${below.med`
+    margin-right: 0;
+  `};
+`;
+
+const Goals = styled(Cell)`
+  ${below.med`
+    // margin-right: 3rem;
+  `};
+`;
+
+const GoalsList = styled.ul`
+  padding-inline-start: 2rem;
+  ${below.med`
+    // margin-right: 3rem;
+  `};
 `;
 
 const AboutPiece = ({ companyName, about }) => {
@@ -43,14 +61,14 @@ const AboutPiece = ({ companyName, about }) => {
 
 const GoalsPiece = ({ goals }) => {
   return (
-    <Cell>
+    <Goals>
       <PartnerDetailSubHeading>Our Goals</PartnerDetailSubHeading>
-      <ul>
+      <GoalsList>
         {goals.map(goal => (
           <li key={goal}>{goal}</li>
         ))}
-      </ul>
-    </Cell>
+      </GoalsList>
+    </Goals>
   );
 };
 

@@ -37,7 +37,7 @@ const BackToPartnersLink = styled.a`
   }
 
   ${below.med`
-   margin-left: 0;
+    margin-left: -25px;
   `};
 `;
 

@@ -17,17 +17,27 @@ const MainSection = styled(ContentSection)`
   ${below.med`
     padding-top: 2rem;
     margin-left: 0;
+    margin-right: 0;
   `};
 `;
 
 const StyledGrid = styled(Grid)`
   margin-bottom: 5rem;
+
+  ${below.med`
+    grid-template-columns: 10rem 1fr;
+  `};
 `;
 
 const StyledCell = styled(Cell)`
   padding-right: 3rem;
   padding-left: 3rem;
   padding-top: 0;
+
+  ${below.med`
+    padding-right:0;
+    padding-left:0;
+  `};
 `;
 
 const Title = styled.h5`
@@ -51,6 +61,11 @@ const SpeakerName = styled.p`
   margin-right: 4rem;
   line-height: 1;
   color: ${({ theme }) => theme.colors.fonts.dark};
+
+  ${below.med`
+    margin-left:0;
+    margin-right:1px;
+  `};
 `;
 
 const ViewLink = styled.a`

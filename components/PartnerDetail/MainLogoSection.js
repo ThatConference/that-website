@@ -22,7 +22,11 @@ const MainSection = styled(ContentSection)`
   `};
 `;
 
-const MainLogoGrid = styled(Grid)``;
+const MainLogoGrid = styled(Grid)`
+  ${below.med`
+    display: block;
+  `};
+`;
 
 const MainLogoCell = styled(Cell)`
   line-height: 1.2;
@@ -72,9 +76,11 @@ const PartnerSocialLink = styled.a`
 `;
 
 const VisitUs = styled.h5`
+  font-family: 'Open Sans', sans-serif;
   margin-bottom: 0;
   margin-top: 0.5rem;
   font-size: 1.5rem;
+  font-weight: bold;
 `;
 
 const Name = styled.p`

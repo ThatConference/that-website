@@ -137,7 +137,7 @@ const partnerListing = props => {
         <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'PIONEER') {
-              return renderPartner(value, '60.9rem', '38.7rem', '37.3rem');
+              return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
           })}
         </Partners>
