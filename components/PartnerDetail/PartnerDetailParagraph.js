@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const PartnerDetailParagraph = styled.p`
-  font-family: franklin-gothic-urw, sans-serif;
-  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 export default PartnerDetailParagraph;

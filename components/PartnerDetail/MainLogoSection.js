@@ -4,25 +4,25 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import Icon from '../shared/Icon';
+import RoundImage from '../shared/RoundImage';
+
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
 
 import { below } from '../../utilities';
 
 const MainSection = styled(ContentSection)`
   padding: 0;
-  padding-top: 100px;
-  padding-bottom: 20px;
+  padding-top: 10rem;
+  padding-bottom: 2rem;
   background-color: ${({ theme }) => theme.colors.lightGray};
 
   ${below.med`
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   `};
 `;
 
-const MainLogoGrid = styled(Grid)`
-  // padding: 0 0 0 75px;
-`;
+const MainLogoGrid = styled(Grid)``;
 
 const MainLogoCell = styled(Cell)`
   line-height: 1.2;
@@ -33,13 +33,64 @@ const MainLogoCell = styled(Cell)`
 `;
 
 const MainLogo = styled.img`
-  height: 175px;
+  height: 17.5rem;
+`;
+
+const PartnerSocialsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: ${({ justification }) => justification};
+  margin-top: 1rem;
+
+  ${below.med`
+    justify-content: left;
+  `};
+`;
+
+const PartnerSocialLink = styled.a`
+  height: 3.5rem;
+  background-color: ${({ theme }) => theme.colors.highlight};
+  border-radius: 3.5rem;
+  height: 3.5rem;
+  background-color: ${({ theme }) => theme.colors.highlight};
+  border-radius: 3.5rem;
+  margin-right: 0.2rem;
+  margin-top: 0;
+
+  svg {
+    position: relative;
+    top: 0.6rem;
+    left: 0.6rem;
+    fill: ${({ theme }) => theme.colors.white};
+  }
+
+  &:hover {
+    svg {
+      fill: ${({ theme }) => theme.colors.white};
+    }
+  }
 `;
 
 const VisitUs = styled.h5`
   margin-bottom: 0;
-  margin-top: 5px;
+  margin-top: 0.5rem;
   font-size: 1.5rem;
+`;
+
+const Name = styled.p`
+  font-family: franklin-gothic-urw, sans-serif;
+  line-height: 1;
+  color: ${({ theme }) => theme.colors.fonts.dark};
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+`;
+
+const Title = styled.p`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  padding-right: 3rem;
+  color: ${({ theme }) => theme.colors.fonts.dark};
 `;
 
 const LogoWithInfo = ({ partner, justification }) => {
@@ -63,9 +114,29 @@ const JustLogo = ({ partner }) => {
   );
 };
 
+const renderWho = who => {
+  return (
+    <Cell key={who.name}>
+      <Grid columns="9rem 1fr">
+        <Cell>
+          <RoundImage
+            imageUrl={who.headshotUrl}
+            size="80"
+            showAccentLine={false}
+          />
+        </Cell>
+        <Cell>
+          <Name>{who.name}</Name>
+          <Title>{who.title}</Title>
+        </Cell>
+      </Grid>
+    </Cell>
+  );
+};
+
 const LogoAndSayHi = ({ partner }) => {
   return (
-    <MainLogoGrid columns="repeat(auto-fit,minmax(250px,1fr))">
+    <MainLogoGrid columns="67.5rem 1fr">
       <MainLogoCell>
         <LogoWithInfo partner={partner} justification="left" />
       </MainLogoCell>
@@ -73,46 +144,15 @@ const LogoAndSayHi = ({ partner }) => {
         <PartnerDetailSubHeading>
           Who to Say Hi to During THAT Conference
         </PartnerDetailSubHeading>
-        {/* todo: not sure where this data is coming from */}
+        <Grid columns="repeat(auto-fit,minmax(22rem,1fr))">
+          {partner.whoToSayHiTo.map(w => {
+            return renderWho(w);
+          })}
+        </Grid>
       </Cell>
     </MainLogoGrid>
   );
 };
-
-const PartnerSocialsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: ${({ justification }) => justification};
-  margin-top: 10px;
-
-  ${below.med`
-    justify-content: left;
-  `};
-`;
-
-const PartnerSocialLink = styled.a`
-  height: 3.5rem;
-  background-color: ${({ theme }) => theme.colors.highlight};
-  border-radius: 3.5rem;
-  height: 3.5rem;
-  background-color: ${({ theme }) => theme.colors.highlight};
-  border-radius: 3.5rem;
-  margin-right: 2px;
-  margin-top: 0;
-
-  svg {
-    position: relative;
-    top: 0.6rem;
-    left: 0.6rem;
-    fill: ${({ theme }) => theme.colors.white};
-  }
-
-  &:hover {
-    svg {
-      fill: ${({ theme }) => theme.colors.white};
-    }
-  }
-`;
 
 const PartnerSocials = ({ partner, justification }) => {
   return (

@@ -9,29 +9,35 @@ import { below } from '../../utilities';
 
 const MainSection = styled(ContentSection)`
   padding: 0;
-  padding-top: 100px;
-  margin-left: 30px;
+  padding-top: 7rem;
+  margin-left: 3rem;
 
   ${below.med`
-    padding-top: 20px;
+    padding-top: 2rem;
     margin-right: 0;
   `};
 `;
 
 const StyledP = styled.p`
-  padding-right: 10px;
+  padding-right: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 0;
 
   ${below.med`
     margin-top: 0;
   `};
 `;
 
+const AboutCell = styled(Cell)`
+  margin-right: 7.5rem;
+`;
+
 const AboutPiece = ({ companyName, about }) => {
   return (
-    <Cell>
+    <AboutCell>
       <PartnerDetailSubHeading>About {companyName}</PartnerDetailSubHeading>
       <StyledP>{about}</StyledP>
-    </Cell>
+    </AboutCell>
   );
 };
 
@@ -51,7 +57,7 @@ const GoalsPiece = ({ goals }) => {
 const AboutGoalsSection = ({ companyName, about, goals }) => {
   return (
     <MainSection>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         {about && <AboutPiece companyName={companyName} about={about} />}
         {goals && <GoalsPiece goals={goals} />}
       </Grid>

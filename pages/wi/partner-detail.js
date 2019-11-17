@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Grid, Cell } from 'styled-css-grid';
-import ContentSection from '../../components/shared/ContentSection';
-import LinkButton from '../../components/shared/LinkButton';
-import Icon from '../../components/shared/Icon';
 
 import HeroSection from '../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
@@ -43,6 +39,10 @@ const GET_PARTNER = gql`
   }
 `;
 
+const MainDiv = styled.div`
+  padding-bottom: 4rem;
+`;
+
 const partnerDetail = ({ query }) => {
   let partner = null;
   const { loading, error, data } = useQuery(GET_PARTNER, {
@@ -54,6 +54,44 @@ const partnerDetail = ({ query }) => {
         hostName = hostName.replace('www.', '');
       }
       partner.hostName = hostName;
+      partner.whoToSayHiTo = [
+        {
+          name: 'Clark Sell',
+          title: 'Does the Things With a Longer Title',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/clark-sell.jpg',
+        },
+        {
+          name: 'Carrie Sell',
+          title: 'Does the Things',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/carrie-sell.jpg',
+        },
+        {
+          name: 'Sara Gibbons',
+          title: 'Does the Things',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/sara-gibbons.jpg',
+        },
+        {
+          name: 'Brett Slaski',
+          title: 'Does the Things',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/brett-slaski.jpg',
+        },
+        {
+          name: 'Aaron Douglas',
+          title: 'Does the Things',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/aaron-douglas.jpg',
+        },
+        {
+          name: 'Mike Cook',
+          title: 'Does the Things',
+          headshotUrl:
+            'https://storage.googleapis.com/that-bucket/headshots/thatstaff/mike-cook.jpg',
+        },
+      ];
       partner.aboutUs =
         'We help you connect your brand and audience through smarter strategy, better brands, awesome website design, and content focused marketing campaigns that build communities and grow your business.';
       partner.goals = [
@@ -112,7 +150,7 @@ const partnerDetail = ({ query }) => {
   if (error) return null;
 
   return (
-    <div style={{ paddingBottom: '40px' }}>
+    <MainDiv>
       <HeroSection
         companyName={data.partner.companyName}
         heroImageUrl={data.partner.heroImage}
@@ -131,7 +169,7 @@ const partnerDetail = ({ query }) => {
         presentations={data.partner.presentations}
         jobs={data.partner.jobs}
       />
-    </div>
+    </MainDiv>
   );
 };
 

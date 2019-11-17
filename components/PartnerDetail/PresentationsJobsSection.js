@@ -12,65 +12,74 @@ import { below } from '../../utilities';
 
 const MainSection = styled(ContentSection)`
   padding: 0;
-  padding-top: 40px;
+  padding-top: 4rem;
 
   ${below.med`
-    padding-top: 20px;
+    padding-top: 2rem;
     margin-left: 0;
   `};
 `;
 
+const StyledGrid = styled(Grid)`
+  margin-bottom: 5rem;
+`;
+
 const StyledCell = styled(Cell)`
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 3rem;
+  padding-left: 3rem;
   padding-top: 0;
 `;
 
 const Title = styled.h5`
   margin-bottom: 0;
+  margin-top: 0;
 `;
 
 const SpeakerCell = styled(Cell)`
-  padding-left: 5px;
-  padding-right: 5px;
-
-  span {
-    display: none;
-  }
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 `;
 
 const SpeakerImage = styled(RoundImage)`
-  margin-top: 2.75em;
+  margin-top: 0.5rem;
 `;
 
 const SpeakerName = styled.p`
   margin-top: 0;
   font-family: franklin-gothic-urw, sans-serif;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 4rem;
+  margin-right: 4rem;
   line-height: 1;
   color: ${({ theme }) => theme.colors.fonts.dark};
 `;
 
 const ViewLink = styled.a`
-  font-size: 14px;
+  font-size: 1.4rem;
   float: left;
   color: ${({ theme }) => theme.colors.thatBlue};
   img {
     vertical-align: middle;
-    height: 20px;
-    margin-left: 10px;
+    height: 2rem;
+    margin-left: 1rem;
   }
+`;
+
+const JobDiv = styled.div`
+  margin-bottom: 5rem;
 `;
 
 const renderPresentation = presentation => {
   return (
-    <Grid columns="150px 1fr" key={presentation.id}>
+    <StyledGrid columns="15rem 1fr" key={presentation.id}>
       <SpeakerCell center>
         {presentation.speaker.map(speaker => {
           return (
             <div key={speaker.slug}>
-              <SpeakerImage imageUrl={speaker.headshotUrl} size="80" />
+              <SpeakerImage
+                imageUrl={speaker.headshotUrl}
+                size="80"
+                showAccentLine={false}
+              />
               <SpeakerName>{speaker.name}</SpeakerName>
             </div>
           );
@@ -86,16 +95,16 @@ const renderPresentation = presentation => {
           <img src="/svgs/forward-arrow.svg" alt="View Talk" />
         </ViewLink>
       </Cell>
-    </Grid>
+    </StyledGrid>
   );
 };
 
 const renderJob = job => {
   return (
-    <div key={job.id}>
+    <JobDiv key={job.id}>
       <Title>{job.title}</Title>
       <PartnerDetailParagraph>{job.description}</PartnerDetailParagraph>
-    </div>
+    </JobDiv>
   );
 };
 
@@ -119,7 +128,7 @@ const JobsPiece = ({ jobs }) => {
       {jobs.map(job => {
         return renderJob(job);
       })}
-      <ViewLink href="/" style={{ marginTop: '20px' }}>
+      <ViewLink href="/">
         <span>View all Job Listings</span>
         <img src="/svgs/forward-arrow.svg" alt="View all Job Listings" />
       </ViewLink>
@@ -130,7 +139,7 @@ const JobsPiece = ({ jobs }) => {
 const PresentationsJobsSection = ({ companyName, presentations, jobs }) => {
   return (
     <MainSection>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         {presentations && (
           <PresentationsPiece
             companyName={companyName}

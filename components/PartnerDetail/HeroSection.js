@@ -13,27 +13,27 @@ const HeroContentSection = styled(ContentSection)`
 `;
 
 const HeroGrid = styled(Grid)`
-  height: 866px;
+  height: 86.6rem;
 
   ${below.med`
-    height: 433px;
+    height: 43.3rem;
   `};
 `;
 
 const BackToPartnersLink = styled.a`
-  font-size: 14px;
+  font-size: 1.4rem;
   position: absolute;
   float: left;
   top: 0;
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 5rem;
+  margin-left: 5rem;
   color: ${({ theme }) => theme.colors.fonts.light};
 
   img {
     vertical-align: middle;
   }
   span {
-    margin-left: 5px;
+    margin-left: 0.5rem;
   }
 
   ${below.med`
@@ -61,7 +61,7 @@ const HeroSection = ({
   const backToPartnerUrl = `/${loc}/partner-listing`;
   const heroUrl = heroImageUrl || '/images/partner_hero_default.jpg';
   // const heroUrl = '/images/partner_hero_default.jpg';
-  const background = `linear-gradient(rgba(17, 53, 95, 0.45), rgba(17, 53, 95, 0.45)),
+  const background = `linear-gradient(rgba(17, 53, 95, 0.65), rgba(17, 53, 95, 0.65)),
     url('${heroUrl}');`;
 
   return (

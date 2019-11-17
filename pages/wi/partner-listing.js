@@ -41,99 +41,51 @@ const PartnerLevelTitle = styled.h3`
   text-transform: uppercase;
 `;
 
-const PartnerImageContainer = styled.div`
+const Partners = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
+
+const ImageContainer = styled.div`
   margin-top: 50px;
   text-align: center;
   display: grid;
   background-color: #fafafa;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
 `;
 
-const PartnerImage = styled.img`
+const Image = styled.img`
   margin: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  max-width: ${({ maxWidth }) => maxWidth};
 `;
 
-const PioneerImageContainer = styled(PartnerImageContainer)`
-  width: 609px;
-  height: 387px;
-`;
-
-const PioneerImage = styled(PartnerImage)`
-  max-width: 373px;
-`;
-
-const ExplorerImageContainer = styled(PartnerImageContainer)`
-  width: 399px;
-  height: 255px;
-`;
-
-const ExplorerImage = styled(PartnerImage)`
-  max-width: 280px;
-`;
-
-const ScoutImageContainer = styled(PartnerImageContainer)`
-  width: 312px;
-  height: 203px;
-`;
-
-const ScoutImage = styled(PartnerImage)`
-  max-width: 215px;
-`;
-
-const PatronImageContainer = styled(PartnerImageContainer)`
-  width: 257px;
-  height: 167px;
-`;
-
-const PatronImage = styled(PartnerImage)`
-  max-width: 177px;
-`;
-
-const MediaImageContainer = styled(PartnerImageContainer)`
-  width: 257px;
-  height: 167px;
-`;
-
-const renderPioneerPartner = partner => {
+const renderPartner = (
+  partner,
+  containerWidth,
+  containerHeight,
+  imageMaxWidth,
+) => {
+  const url = `/wi/partner-detail?id=${partner.id}`;
   return (
-    <PioneerImageContainer key={partner.id}>
-      <PioneerImage src={partner.companyLogo} alt={partner.companyName} />
-    </PioneerImageContainer>
-  );
-};
-
-const renderExplorerPartner = partner => {
-  return (
-    <ExplorerImageContainer key={partner.id}>
-      <ExplorerImage src={partner.companyLogo} alt={partner.companyName} />
-    </ExplorerImageContainer>
-  );
-};
-
-const renderScoutPartner = partner => {
-  return (
-    <ScoutImageContainer key={partner.id}>
-      <ScoutImage src={partner.companyLogo} alt={partner.companyName} />
-    </ScoutImageContainer>
-  );
-};
-
-const renderPatronPartner = partner => {
-  return (
-    <PatronImageContainer key={partner.id}>
-      <PatronImage src={partner.companyLogo} alt={partner.companyName} />
-    </PatronImageContainer>
-  );
-};
-
-const renderMediaPartner = partner => {
-  return (
-    <MediaImageContainer key={partner.id}>
-      <PatronImage src={partner.companyLogo} alt={partner.companyName} />
-    </MediaImageContainer>
+    <ImageContainer
+      width={containerWidth}
+      height={containerHeight}
+      key={partner.id}
+    >
+      <a href={url}>
+        <Image
+          maxWidth={imageMaxWidth}
+          src={partner.companyLogo}
+          alt={partner.companyName}
+        />
+      </a>
+    </ImageContainer>
   );
 };
 
@@ -182,83 +134,53 @@ const partnerListing = props => {
       </ContentSection>
       <ContentSection>
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
+        <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'PIONEER') {
-              return renderPioneerPartner(value);
+              return renderPartner(value, '60.9rem', '38.7rem', '37.3rem');
             }
           })}
-        </div>
+        </Partners>
       </ContentSection>
       <ContentSection>
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
+        <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'EXPLORER') {
-              return renderExplorerPartner(value);
+              return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
           })}
-        </div>
+        </Partners>
       </ContentSection>
       <ContentSection>
         <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
+        <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'SCOUT') {
-              return renderScoutPartner(value);
+              return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
           })}
-        </div>
+        </Partners>
       </ContentSection>
       <ContentSection>
         <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
+        <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'PATRON') {
-              return renderPatronPartner(value);
+              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
           })}
-        </div>
+        </Partners>
       </ContentSection>
       <ContentSection>
         <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-          }}
-        >
+        <Partners>
           {data.partners.map(value => {
             if (value.partnershipLevel === 'MEDIA') {
-              return renderMediaPartner(value);
+              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
           })}
-        </div>
+        </Partners>
       </ContentSection>
     </div>
   );
