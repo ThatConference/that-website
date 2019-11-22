@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
+import React from 'react';
 import Head from 'next/head';
 import Markdown from 'markdown-to-jsx';
 
