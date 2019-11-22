@@ -10,11 +10,12 @@ const AccentLine = styled.span`
   top: ${({ size }) => size * 3.5}rem;
 `;
 
-const RoundImage = ({ className, imageUrl, size }) => {
+const RoundImage = ({ className, imageUrl, size, showAccentLine }) => {
+  const showAccent = showAccentLine === null || showAccentLine !== false;
   return (
     <>
       <img src={imageUrl} className={className} />
-      <AccentLine size={size / 40} />
+      {showAccent && <AccentLine size={size / 40} />}
     </>
   );
 };
