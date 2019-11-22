@@ -103,22 +103,20 @@ const MeetCampers = ({ className }) => {
           />
         </div>
       </TitleRow>
-        <Grid columns={gridRepeat.xxsmall} alignContent="center">
-
-        {CAMPERS.map((item, index) => {
+      <Grid columns={gridRepeat.xxsmall} alignContent="center">
+        {CAMPERS.map(item => {
           return (
-            <Cell >
+            <Cell key={item.name}>
               <ProfileItem
                 imageUrl={item.imageUrl}
                 titleSize="1.4"
                 size="100"
                 name={item.name}
-                key={index}
               />
             </Cell>
           );
         })}
-        </Grid>
+      </Grid>
     </ContentSection>
   );
 };
