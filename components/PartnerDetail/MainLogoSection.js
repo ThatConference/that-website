@@ -92,7 +92,6 @@ const Name = styled.p`
 `;
 
 const Title = styled.p`
-  font-family: 'Open Sans', sans-serif;
   font-size: 1.2rem;
   line-height: 1.2;
   padding-right: 3rem;

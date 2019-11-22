@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import Icon from '../shared/Icon';
 
 import { below } from '../../utilities';
 
@@ -29,7 +30,7 @@ const BackToPartnersLink = styled.a`
   margin-left: 5rem;
   color: ${({ theme }) => theme.colors.fonts.light};
 
-  img {
+  svg {
     vertical-align: middle;
   }
   span {
@@ -39,6 +40,10 @@ const BackToPartnersLink = styled.a`
   ${below.med`
     margin-left: -25px;
   `};
+`;
+
+const BackArrow = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
 `;
 
 const HeroPartnerName = styled.h3`
@@ -58,9 +63,8 @@ const HeroSection = ({
   location,
 }) => {
   const loc = location || 'wi';
-  const backToPartnerUrl = `/${loc}/partner-listing`;
+  const backToPartnerUrl = `/${loc}/partners`;
   const heroUrl = heroImageUrl || '/images/partner_hero_default.jpg';
-  // const heroUrl = '/images/partner_hero_default.jpg';
   const background = `linear-gradient(rgba(17, 53, 95, 0.65), rgba(17, 53, 95, 0.65)),
     url('${heroUrl}');`;
 
@@ -69,7 +73,13 @@ const HeroSection = ({
       <HeroGrid columns="1fr" rows="1fr">
         <Cell center middle>
           <BackToPartnersLink href={backToPartnerUrl}>
-            <img src="/svgs/back-arrow.svg" alt="Back to Partners" />
+            <BackArrow
+              icon="backArrow"
+              height="25px"
+              width="25px"
+              viewBoxHeight="100"
+              viewBoxWidth="100"
+            />
             <span>Back to Partners</span>
           </BackToPartnersLink>
           <HeroPartnerName>{companyName}</HeroPartnerName>

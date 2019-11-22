@@ -21,7 +21,6 @@ const MainSection = styled(ContentSection)`
 
 const StyledP = styled.p`
   padding-right: 1rem;
-  font-family: 'Open Sans', sans-serif;
   margin-top: 0;
 
   ${below.med`

@@ -21,16 +21,22 @@ const GET_PARTNERS = gql`
   }
 `;
 
+const Header = styled.h1`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 50px;
+`;
+
 const RobotImage = styled.img`
-  height: 500px;
+  height: 50rem;
   float: right;
-  margin-top: -200px;
-  margin-right: 35px;
+  margin-top: -20rem;
+  margin-right: 3.5rem;
 
   ${below.med`
-    margin-top: 20px;
+    margin-top: 2rem;
     margin-right: unset;
-    height: 400px;
+    height: 40rem;
   `};
 `;
 
@@ -48,7 +54,7 @@ const Partners = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  margin-top: 50px;
+  margin-top: 5rem;
   text-align: center;
   display: grid;
   background-color: #fafafa;
@@ -63,6 +69,12 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
   max-width: ${({ maxWidth }) => maxWidth};
+`;
+
+const BecomeAPartner = styled.div`
+  display: flex;
+  text-align: left;
+  margin-top: 2rem;
 `;
 
 const renderPartner = (
@@ -98,27 +110,17 @@ const partnerListing = props => {
   return (
     <div>
       <ContentSection>
-        <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+        <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <h1
-              style={{
-                marginTop: 0,
-                marginBottom: 0,
-                marginRight: '50px',
-              }}
-            >
-              2019 Sponsors & Partners
-            </h1>
-            <div
-              style={{ display: 'flex', textAlign: 'left', marginTop: '20px;' }}
-            >
+            <Header>2019 Sponsors & Partners</Header>
+            <BecomeAPartner>
               <LinkButton
                 href="/wi/become-a-partner"
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"
               />
-            </div>
+            </BecomeAPartner>
             <RobotImage src="/images/robot.png" />
           </Cell>
           <Cell>

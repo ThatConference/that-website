@@ -24,13 +24,18 @@ const Svg = styled.svg`
 `;
 
 const Icon = props => {
+  console.log(props.fill);
   return (
     <Svg
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
       onClick={props.onClick}
-      viewBox={`0 0 ${props.height || '24'} ${props.width || '24'}`}
+      height={props.height}
+      width={props.width}
+      viewBox={`0 0 ${props.viewBoxHeight ||
+        props.height ||
+        '24'} ${props.viewBoxWidth || props.width || '24'}`}
     >
       <title>{svgs[props.icon].title}</title>
       {svgs[props.icon].path.map((item, index) => {

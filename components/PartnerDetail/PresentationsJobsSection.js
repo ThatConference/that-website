@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-
 import RoundImage from '../shared/RoundImage';
+import Icon from '../shared/Icon';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
-import PartnerDetailParagraph from './PartnerDetailParagraph';
 
 import { below } from '../../utilities';
 
@@ -72,11 +71,15 @@ const ViewLink = styled.a`
   font-size: 1.4rem;
   float: left;
   color: ${({ theme }) => theme.colors.thatBlue};
-  img {
+  svg {
     vertical-align: middle;
     height: 2rem;
     margin-left: 1rem;
   }
+`;
+
+const ForwardArrow = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
 const JobDiv = styled.div`
@@ -102,12 +105,16 @@ const renderPresentation = presentation => {
       </SpeakerCell>
       <Cell>
         <Title>{presentation.title}</Title>
-        <PartnerDetailParagraph>
-          {presentation.description}
-        </PartnerDetailParagraph>
+        <p>{presentation.description}</p>
         <ViewLink href="/">
           <span>View Talk</span>
-          <img src="/svgs/forward-arrow.svg" alt="View Talk" />
+          <ForwardArrow
+            icon="forwardArrow"
+            height="25px"
+            width="25px"
+            viewBoxHeight="100"
+            viewBoxWidth="100"
+          />
         </ViewLink>
       </Cell>
     </StyledGrid>
@@ -118,7 +125,7 @@ const renderJob = job => {
   return (
     <JobDiv key={job.id}>
       <Title>{job.title}</Title>
-      <PartnerDetailParagraph>{job.description}</PartnerDetailParagraph>
+      <p>{job.description}</p>
     </JobDiv>
   );
 };
@@ -145,7 +152,13 @@ const JobsPiece = ({ jobs }) => {
       })}
       <ViewLink href="/">
         <span>View all Job Listings</span>
-        <img src="/svgs/forward-arrow.svg" alt="View all Job Listings" />
+        <ForwardArrow
+          icon="forwardArrow"
+          height="25px"
+          width="25px"
+          viewBoxHeight="100"
+          viewBoxWidth="100"
+        />
       </ViewLink>
     </StyledCell>
   );
