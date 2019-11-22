@@ -20,6 +20,7 @@ const sourceMaps = nextSourceMaps({
 });
 
 module.exports = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   env: {
     API_GATEWAY: 'https://us-central1-all-that.cloudfunctions.net/graphGateway',
     WI_PROSPECTUS_URL:
