@@ -60,9 +60,11 @@ const ImageContainer = styled.div`
   background-color: #fafafa;
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  position: relative;
 `;
 
 const Image = styled.img`
+  position: absolute;
   margin: auto;
   top: 0;
   left: 0;
