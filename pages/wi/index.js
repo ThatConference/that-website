@@ -8,6 +8,7 @@ import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
 import MeetCampers from '../../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
+import Timeline from '../../components/HomePage/Timeline';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
@@ -66,6 +67,7 @@ const home = props => {
       <LearnMore />
       <WhatToExpect />
       <SpeakerHighlight />
+      <Timeline event={event} />
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />
       <NewsletterSignup />
