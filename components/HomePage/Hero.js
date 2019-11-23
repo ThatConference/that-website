@@ -128,7 +128,7 @@ const Hero = ({ className }) => {
               borderColor="thatBlue"
             />
             <Button
-              href="wi/partners/become"
+              href="wi/become-a-partner"
               label="Sponsor Us"
               color="thatBlue"
               borderColor="thatBlue"

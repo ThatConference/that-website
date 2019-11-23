@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import HeroSection from '../../../components/PartnerDetail/HeroSection';
-import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
-import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
-import PresentationsJobsSection from '../../../components/PartnerDetail/PresentationsJobsSection';
+import HeroSection from '../../components/PartnerDetail/HeroSection';
+import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
+import AboutGoalsSection from '../../components/PartnerDetail/AboutGoalsSection';
+import PresentationsJobsSection from '../../components/PartnerDetail/PresentationsJobsSection';
 
 const GET_PARTNER = gql`
   query getPartnerBySlug($slug: String!) {

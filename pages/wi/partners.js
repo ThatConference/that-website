@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import ContentSection from '../../../components/shared/ContentSection';
-import LinkButton from '../../../components/shared/LinkButton';
-import { below } from '../../../utilities/breakpoint';
+import ContentSection from '../../components/shared/ContentSection';
+import LinkButton from '../../components/shared/LinkButton';
+import { below } from '../../utilities/breakpoint';
 
 const GET_PARTNERS = gql`
   query getPartners {
@@ -86,7 +86,7 @@ const renderPartner = (
   containerHeight,
   imageMaxWidth,
 ) => {
-  const url = `/wi/partners/details?partner=${partner.slug}`;
+  const url = `/wi/partner-details?partner=${partner.slug}`;
   return (
     <ImageContainer
       width={containerWidth}
@@ -118,7 +118,7 @@ const partnerListing = props => {
             <Header>2019 Sponsors & Partners</Header>
             <BecomeAPartner>
               <LinkButton
-                href="/wi/partners/become"
+                href="/wi/become-a-partner"
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"

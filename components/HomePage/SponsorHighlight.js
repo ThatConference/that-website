@@ -100,7 +100,7 @@ const SponsorHighlight = ({ className, eventSlug }) => {
               are looking to connect with software developers and practitioners.
             </p>
             <ActionButton
-              href={`${eventSlug}/partners/become`}
+              href={`${eventSlug}/become-a-partner`}
               label="Let's Partner Up"
             />
           </TextBlock>
