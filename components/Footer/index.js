@@ -86,7 +86,7 @@ const Footer = ({ className }) => {
                 Schedule
               </NavLink>
               <NavLink
-                href="/wi/become-a-partner"
+                href="/wi/partners/become"
                 onClick={() => clickTracking('become a partner')}
               >
                 Become a Partner
