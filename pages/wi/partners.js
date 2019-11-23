@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -11,6 +12,7 @@ const GET_PARTNERS = gql`
   query getPartners {
     partners {
       id
+      slug
       year
       partnershipLevel
       companyName
@@ -85,20 +87,21 @@ const renderPartner = (
   containerHeight,
   imageMaxWidth,
 ) => {
-  const url = `/wi/partner-detail?id=${partner.id}`;
   return (
     <ImageContainer
       width={containerWidth}
       height={containerHeight}
       key={partner.id}
     >
-      <a href={url}>
-        <Image
-          maxWidth={imageMaxWidth}
-          src={partner.companyLogo}
-          alt={partner.companyName}
-        />
-      </a>
+      <Link href="/wi/partner/[slug]" as={`/wi/partner/${partner.slug}`}>
+        <a>
+          <Image
+            maxWidth={imageMaxWidth}
+            src={partner.companyLogo}
+            alt={partner.companyName}
+          />
+        </a>
+      </Link>
     </ImageContainer>
   );
 };
