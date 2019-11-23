@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import Head from 'next/head';
-import { below } from '../../utilities/breakpoint';
+import { below } from '../../../utilities/breakpoint';
 
-import ContentSection from '../../components/shared/ContentSection';
-import ActionButton from '../../components/shared/LinkButton';
-import WhatToExpect from '../../components/shared/WhatToExpect';
+import ContentSection from '../../../components/shared/ContentSection';
+import ActionButton from '../../../components/shared/LinkButton';
+import WhatToExpect from '../../../components/shared/WhatToExpect';
 
 const PartnerH3 = styled.h3`
   margin-bottom: 25px;
@@ -109,7 +109,7 @@ const becomeAPartner = props => (
           </div>
           <div>
             <GetTheProspectusButton
-              href="/wi/become-a-partner#more-info"
+              href="/wi/partners/become#more-info"
               borderColor="white"
               color="white"
               backgroundColor="primary"
