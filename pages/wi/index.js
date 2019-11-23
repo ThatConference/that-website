@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
@@ -8,40 +10,32 @@ import MeetCampers from '../../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
-import ContentSection from '../../components/shared/ContentSection';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
-import { below } from '../../utilities';
 
-const Title = styled.h2`
-  font-size: 2.8rem;
-  text-align: center;
-  margin-top: 0;
-  line-height: 1.2;
-  font-weight: 400;
-  font-family: 'Open Sans', sans-serif;
-  margin-bottom: 0.5rem;
-`;
-
-const ContentBlock = styled.div`
-  margin: auto;
-  max-width: 1000px;
-`;
-
-const ContentDetail = styled.div`
-  display: flex;
-
-  ${below.med`
-    text-align: center;
-    flex-direction: column;
-    width: 100%;
-  `};
-`;
-
-const AccentImage = styled.img`
-  position: absolute;
-  left: -10rem;
-  top: 18%;
+const GET_EVENT = gql`
+  query getEvent($eventId: ID!) {
+    event(id: $eventId) {
+      id
+      name
+      slogan
+      startDate
+      endDate
+      venue {
+        id
+        name
+        address
+        city
+        state
+        zip
+      }
+      milestones {
+        title
+        description
+        dueDate
+      }
+    }
+  }
 `;
 
 const BottomImage = styled.img`
@@ -50,21 +44,35 @@ const BottomImage = styled.img`
   height: 45rem;
 `;
 
-const home = props => (
-  <>
-    <Head>
-      <title key="title">THAT Conference - Wisconsin Dells, WI</title>
-    </Head>
-    <Hero />
-    <LearnMore />
-    <WhatToExpect />
-    <SpeakerHighlight />
-    <SponsorHighlight eventSlug="/wi" />
-    <Testimonials />
-    <NewsletterSignup />
-    <MeetCampers />
-    <BottomImage src="./images/mess-hall.jpg" />
-  </>
-);
+const home = props => {
+  const { loading, error, data } = useQuery(GET_EVENT, {
+    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    onCompleted(d) {
+      return d;
+    },
+  });
+
+  if (loading) return null;
+  if (error) return null;
+
+  const { event } = data;
+
+  return (
+    <>
+      <Head>
+        <title key="title">THAT Conference - Wisconsin Dells, WI</title>
+      </Head>
+      <Hero event={event} />
+      <LearnMore />
+      <WhatToExpect />
+      <SpeakerHighlight />
+      <SponsorHighlight eventSlug="/wi" />
+      <Testimonials />
+      <NewsletterSignup />
+      <MeetCampers />
+      <BottomImage src="./images/mess-hall.jpg" />
+    </>
+  );
+};
 
 export default home;
