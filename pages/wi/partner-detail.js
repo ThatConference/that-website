@@ -9,9 +9,10 @@ import AboutGoalsSection from '../../components/PartnerDetail/AboutGoalsSection'
 import PresentationsJobsSection from '../../components/PartnerDetail/PresentationsJobsSection';
 
 const GET_PARTNER = gql`
-  query getPartner($partnerId: ID!) {
-    partner(id: $partnerId) {
+  query getPartner($partnerSlug: String!) {
+    partner(slug: $partnerSlug) {
       id
+      slug
       year
       companyName
       companyLogo
@@ -46,7 +47,7 @@ const MainDiv = styled.div`
 const partnerDetail = ({ query }) => {
   let partner = null;
   const { loading, error, data } = useQuery(GET_PARTNER, {
-    variables: { partnerId: query.id },
+    variables: { partnerSlug: query.partner },
     onCompleted(d) {
       partner = d.partner;
       let hostName = new URL(partner.website).hostname;

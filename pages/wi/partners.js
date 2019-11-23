@@ -11,6 +11,7 @@ const GET_PARTNERS = gql`
   query getPartners {
     partners {
       id
+      slug
       year
       partnershipLevel
       companyName
@@ -85,7 +86,7 @@ const renderPartner = (
   containerHeight,
   imageMaxWidth,
 ) => {
-  const url = `/wi/partner-detail?id=${partner.id}`;
+  const url = `/wi/partner-detail?partner=${partner.slug}`;
   return (
     <ImageContainer
       width={containerWidth}
