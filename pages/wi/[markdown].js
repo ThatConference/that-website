@@ -20,7 +20,7 @@ const someVariables = {
 // `;
 
 const pocMarkdown = props => {
-  console.log(`xxxxxxxxx ${md}`);
+  console.log(`xxxxxxxxx ${md}`, props);
   return (
     <div>
       <Head>
@@ -30,10 +30,22 @@ const pocMarkdown = props => {
       <ContentSection>
         <h1>POC: Markdown</h1>
         {/* <Markdown>{md}</Markdown> */}
-        <Markdown>{md}</Markdown>
+        <Markdown>{props.markdownContent}</Markdown>
       </ContentSection>
     </div>
   );
+};
+
+pocMarkdown.getInitialProps = async function(context) {
+  const slug = context.query.markdown;
+
+  const markdownContent = require(`../../markdown/${slug}.md`).default;
+  console.log('markdownContent:', markdownContent);
+
+  return {
+    slug,
+    markdownContent,
+  };
 };
 
 export default pocMarkdown;
