@@ -8,7 +8,10 @@ import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const _ = require('lodash');
 
+const AccentColor = '#05d69e';
+
 const Main = styled(ContentSection)`
+  margin-top: 10rem;
   padding-top: 1rem;
   height: 80rem;
 `;
@@ -36,7 +39,7 @@ const TicketCountdown = styled.div`
   color: ${({ theme }) => theme.colors.fonts.light};
 
   span {
-    color: #05d69e;
+    color: ${AccentColor};
   }
 `;
 
@@ -52,14 +55,14 @@ const Timeline = styled.section`
 `;
 
 const Marker = styled.span`
-  height: 25px;
-  width: 25px;
+  height: 2.5rem;
+  width: 2.5rem;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
   display: inline-block;
 
   &.past {
-    background-color: #05d69e;
+    background-color: ${AccentColor};
   }
 `;
 
@@ -72,8 +75,8 @@ const Line = styled.hr`
   margin-bottom: 1rem;
 
   &.past {
-    border-color: #05d69e;
-    background-color: #05d69e;
+    border-color: ${AccentColor};
+    background-color: ${AccentColor};
   }
 `;
 
@@ -116,11 +119,14 @@ const TimelineSection = ({ event, className }) => {
     .orderBy('due')
     .value();
 
+  const DaysLeft = 23;
+
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
       <SectionHeading>Grab Your Tickets</SectionHeading>
       <TicketCountdown>
-        Only <span>23 Days</span> left to grab your tickets to THAT Conference
+        Only <span>{DaysLeft} Days</span> left to grab your tickets to THAT
+        Conference
       </TicketCountdown>
       <GrabTickets
         href={DEFAULT_WIP_PAGE}
