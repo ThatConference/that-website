@@ -1,17 +1,19 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import HeroSection from '../../components/PartnerDetail/HeroSection';
-import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
-import AboutGoalsSection from '../../components/PartnerDetail/AboutGoalsSection';
-import PresentationsJobsSection from '../../components/PartnerDetail/PresentationsJobsSection';
+import HeroSection from '../../../components/PartnerDetail/HeroSection';
+import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
+import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
+import PresentationsJobsSection from '../../../components/PartnerDetail/PresentationsJobsSection';
 
 const GET_PARTNER = gql`
-  query getPartner($partnerId: ID!) {
-    partner(id: $partnerId) {
+  query getPartnerBySlug($slug: String!) {
+    partnerBySlug(slug: $slug) {
       id
+      slug
       year
       companyName
       companyLogo
@@ -43,12 +45,13 @@ const MainDiv = styled.div`
   padding-bottom: 4rem;
 `;
 
-const partnerDetail = ({ query }) => {
-  let partner = null;
+function PartnerDetail() {
+  const router = useRouter();
+
   const { loading, error, data } = useQuery(GET_PARTNER, {
-    variables: { partnerId: query.id },
+    variables: { slug: router.query.slug },
     onCompleted(d) {
-      partner = d.partner;
+      const [partner] = d.partnerBySlug;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -61,32 +64,30 @@ const partnerDetail = ({ query }) => {
   if (loading) return null;
   if (error) return null;
 
+  const partner = data.partnerBySlug[0];
+
   return (
     <MainDiv>
       <HeroSection
-        companyName={data.partner.companyName}
-        heroImageUrl={data.partner.heroImage}
-        connectWithUsUrl={data.partner.website}
+        companyName={partner.companyName}
+        heroImageUrl={partner.heroImage}
+        connectWithUsUrl={partner.website}
         location="wi"
       />
 
-      <MainLogoSection partner={data.partner} />
+      <MainLogoSection partner={data.partnerBySlug[0]} />
       <AboutGoalsSection
-        companyName={data.partner.companyName}
-        about={data.partner.aboutUs}
-        goals={data.partner.goals}
+        companyName={partner.companyName}
+        about={partner.aboutUs}
+        goals={partner.goals}
       />
       <PresentationsJobsSection
-        companyName={data.partner.companyName}
-        presentations={data.partner.presentations}
-        jobs={data.partner.jobs}
+        companyName={partner.companyName}
+        presentations={partner.presentations}
+        jobs={partner.jobs}
       />
     </MainDiv>
   );
-};
+}
 
-partnerDetail.getInitialProps = ({ query }) => {
-  return { query };
-};
-
-export default partnerDetail;
+export default PartnerDetail;
