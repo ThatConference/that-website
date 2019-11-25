@@ -13,6 +13,10 @@ const Main = styled(ContentSection)`
   margin-top: 10rem;
   padding-top: 1rem;
   min-height: 80rem;
+
+  ${below.med`
+    min-height: 60rem;
+  `};
 `;
 
 const SectionHeading = styled.h2`
@@ -31,7 +35,8 @@ const Moose = styled.img`
   max-height: 57rem;
   max-width: 46.2rem;
   float: right;
-  margin-top: -62.5rem;
+  margin-top: ${({ ticketSalesOpen }) =>
+    ticketSalesOpen ? '-62.5rem' : '-45.5rem'};
   margin-right: -13rem;
 
   @media (max-width: 1900px) {
@@ -171,22 +176,28 @@ const TimelineSection = ({ event, className }) => {
     .value();
 
   // ToDo: need a key/id on the milestone to be able to get the tickets milestone and calc days left
-  const DaysLeft = 23;
+  const ticketSalesOpen = false;
+  const header = ticketSalesOpen ? 'Grab Your Tickets' : 'Important Dates';
+  const DaysLeft = ticketSalesOpen ? 99 : 23;
 
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
-      <SectionHeading>Grab Your Tickets</SectionHeading>
-      <TicketCountdown>
-        Only <span>{DaysLeft} Days</span> left to grab your tickets to THAT
-        Conference
-      </TicketCountdown>
-      <Button
-        href={DEFAULT_WIP_PAGE}
-        label="Grab your Tickets!"
-        backgroundColor="primary"
-        borderColor="white"
-        color="white"
-      />
+      <SectionHeading>{header}</SectionHeading>
+      {ticketSalesOpen && (
+        <TicketCountdown>
+          Only <span>{DaysLeft} Days</span> left to grab your tickets to THAT
+          Conference
+        </TicketCountdown>
+      )}
+      {ticketSalesOpen && (
+        <Button
+          href={DEFAULT_WIP_PAGE}
+          label="Grab your Tickets!"
+          backgroundColor="primary"
+          borderColor="white"
+          color="white"
+        />
+      )}
       <ImportantDates
         href={DEFAULT_WIP_PAGE}
         label="Important Dates"
@@ -205,7 +216,10 @@ const TimelineSection = ({ event, className }) => {
           </TimelineItem>
         ))}
       </Timeline>
-      <Moose src="/images/moose_with_lantern.png" />
+      <Moose
+        src="/images/moose_with_lantern.png"
+        ticketSalesOpen={ticketSalesOpen}
+      />
     </Main>
   );
 };
