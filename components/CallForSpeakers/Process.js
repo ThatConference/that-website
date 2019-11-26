@@ -52,7 +52,6 @@ const ProcessBlock = styled.div`
 
 const KeyDatesGrid = styled(Grid)`
   grid-gap: 0;
-  margin-bottom: 3rem;
 `;
 
 const KeyDatesCell = styled(Cell)`
@@ -65,6 +64,7 @@ const KeyDatesCell = styled(Cell)`
 `;
 
 const MoreAboutProcess = styled(LinkButton)`
+  margin-top: 5rem;
   margin-left: 0;
 `;
 
@@ -117,31 +117,21 @@ const Process = ({ milestones }) => {
         </Cell>
         <Cell className="keyDates">
           <h3>Key Dates You Need to Know</h3>
-          <KeyDatesGrid columns={12}>
-            {milestones.map((m, index) => {
-              const className = index === 0 ? 'first' : '';
-              return (
-                <>
-                  <KeyDatesCell
-                    width={5}
-                    className={className}
-                    key={`DatesCell_${m.title}`}
-                  >
-                    <ProcessAndDatesSubHeading>
-                      {moment(m.dueDate).format('MMMM Do, YYYY')}
-                    </ProcessAndDatesSubHeading>
-                  </KeyDatesCell>
-                  <KeyDatesCell
-                    width={7}
-                    className={className}
-                    key={`TitleCell_${m.title}`}
-                  >
-                    {m.title}
-                  </KeyDatesCell>
-                </>
-              );
-            })}
-          </KeyDatesGrid>
+          {milestones.map((m, index) => {
+            const className = index === 0 ? 'first' : '';
+            return (
+              <KeyDatesGrid columns={12} key={`DatesFooCell_${m.title}`}>
+                <KeyDatesCell width={5} className={className}>
+                  <ProcessAndDatesSubHeading>
+                    {moment(m.dueDate).format('MMMM Do, YYYY')}
+                  </ProcessAndDatesSubHeading>
+                </KeyDatesCell>
+                <KeyDatesCell width={7} className={className}>
+                  {m.title}
+                </KeyDatesCell>
+              </KeyDatesGrid>
+            );
+          })}
           <MoreAboutProcess
             href={`/${DEFAULT_WIP_PAGE}`}
             borderColor="thatBlue"

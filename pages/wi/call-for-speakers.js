@@ -12,19 +12,6 @@ import Perks from '../../components/CallForSpeakers/Perks';
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     event(id: $eventId) {
-      id
-      name
-      slogan
-      startDate
-      endDate
-      venue {
-        id
-        name
-        address
-        city
-        state
-        zip
-      }
       milestones {
         title
         description
