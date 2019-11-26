@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
+import moment from 'moment';
 
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
@@ -67,7 +68,7 @@ const MoreAboutProcess = styled(LinkButton)`
   margin-left: 0;
 `;
 
-const Process = props => {
+const Process = ({ milestones }) => {
   return (
     <Main>
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
@@ -117,38 +118,29 @@ const Process = props => {
         <Cell className="keyDates">
           <h3>Key Dates You Need to Know</h3>
           <KeyDatesGrid columns={12}>
-            <KeyDatesCell width={5} className="first">
-              <ProcessAndDatesSubHeading>
-                Until January 1st, 2020
-              </ProcessAndDatesSubHeading>
-            </KeyDatesCell>
-            <KeyDatesCell width={7} className="first">
-              Call for speakers and workshops
-            </KeyDatesCell>
-            <KeyDatesCell width={5}>
-              <ProcessAndDatesSubHeading>
-                Until late March
-              </ProcessAndDatesSubHeading>
-            </KeyDatesCell>
-            <KeyDatesCell width={7}>
-              Will be selecting speakers and workshop
-            </KeyDatesCell>
-            <KeyDatesCell width={5}>
-              <ProcessAndDatesSubHeading>
-                Starting Early April
-              </ProcessAndDatesSubHeading>
-            </KeyDatesCell>
-            <KeyDatesCell width={7}>
-              Selected speakers and workshops will be informed
-            </KeyDatesCell>
-            <KeyDatesCell width={5}>
-              <ProcessAndDatesSubHeading>
-                Mid to Late April
-              </ProcessAndDatesSubHeading>
-            </KeyDatesCell>
-            <KeyDatesCell width={7}>
-              Speaker and Workshop Announcements Will Start
-            </KeyDatesCell>
+            {milestones.map((m, index) => {
+              const className = index === 0 ? 'first' : '';
+              return (
+                <>
+                  <KeyDatesCell
+                    width={5}
+                    className={className}
+                    key={`DatesCell_${m.title}`}
+                  >
+                    <ProcessAndDatesSubHeading>
+                      {moment(m.dueDate).format('MMMM Do, YYYY')}
+                    </ProcessAndDatesSubHeading>
+                  </KeyDatesCell>
+                  <KeyDatesCell
+                    width={7}
+                    className={className}
+                    key={`TitleCell_${m.title}`}
+                  >
+                    {m.title}
+                  </KeyDatesCell>
+                </>
+              );
+            })}
           </KeyDatesGrid>
           <MoreAboutProcess
             href={`/${DEFAULT_WIP_PAGE}`}
