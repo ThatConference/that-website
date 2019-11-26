@@ -41,7 +41,7 @@ const DetailContainer = styled.div`
 
 const ContainerInner = styled.div`
   margin: auto;
-  max-width: 140rem;
+  max-width: ${props => (props.forForm ? '100rem' : '140rem')};
   width: 87vw;
 
   ${below.xsmall`
@@ -111,6 +111,7 @@ const ContentSection = props => {
       fontColor={props.fontColor}
       className={props.className}
       id={props.id}
+      forForm={props.forForm}
     >
       {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
       <ContainerInner>{props.children}</ContainerInner>
