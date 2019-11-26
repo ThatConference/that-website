@@ -15,8 +15,8 @@ export const FormLabel = styled.label`
 export const FormInput = styled.input`
   display: block;
   margin-top: 1rem;
-  border: 1px solid #d3d3d3;
-  background-color: #fcfcfc;
+  border: 1px solid ${({ theme }) => theme.colors.mediumGray};
+  background-color: ${({ theme }) => theme.colors.mediumLightGray};
   width: 100%;
 `;
 
@@ -25,7 +25,7 @@ export const FormRule = styled.hr`
   margin-bottom: 3rem;
   border-style: solid;
   border-width: 0.05rem;
-  color: #d3d3d3;
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 export const FormSubmit = styled(SquareButton)`
@@ -34,5 +34,5 @@ export const FormSubmit = styled(SquareButton)`
 `;
 
 export const FormInputValidationMessage = styled.div`
-  color: red;
+  color: ${({ theme }) => theme.colors.danger};
 `;
