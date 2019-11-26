@@ -4,10 +4,14 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 15rem;
+
+  ${below.med`
+    margin-bottom: 5rem;
+  `};
 `;
 
 const Title = styled.h3`
@@ -22,6 +26,11 @@ const Container = styled.div`
   justify-content: space-around;
   margin-top: 10rem;
   margin-bottom: 5rem;
+
+  ${below.med`
+    margin-top: 8rem;
+    margin-bottom: 0;
+  `};
 `;
 
 const Perk = styled.div`
@@ -29,6 +38,10 @@ const Perk = styled.div`
   height: 19.1rem;
   text-align: center;
   background-color: ${({ theme }) => theme.colors.lightGray};
+
+  ${below.med`
+    margin-bottom: 6rem;
+  `};
 `;
 
 const PerkImage = styled.img`
@@ -43,12 +56,17 @@ const PerkText = styled.div`
   padding-left: 7rem;
   padding-right: 7rem;
   line-height: 2rem;
+
+  ${below.med`
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  `};
 `;
 
 const Perks = props => {
   return (
     <Main>
-      <Title>Perks If You&apos;re Select To Speak At THAT Conference</Title>
+      <Title>Perks If You&apos;re Selected To Speak At THAT Conference</Title>
       <Container>
         <Perk>
           <PerkImage src="/images/what_to_expect_hands_on_learning.png" />

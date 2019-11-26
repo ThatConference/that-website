@@ -9,6 +9,17 @@ import { below } from '../../utilities';
 const Main = styled(ContentSection)`
   height: 83rem;
   margin-bottom: 14rem;
+
+  ${below.large`
+    max-height: 72rem;
+  `};
+
+  ${below.med`
+    height: unset;
+    min-height: 83rem;
+    max-height: 200rem;
+    margin-bottom: 5rem;
+  `};
 `;
 
 const SummerCampHeader = styled.h3`
@@ -20,19 +31,37 @@ const SummerCampHeader = styled.h3`
   color: ${({ theme }) => theme.colors.fonts.light};
 `;
 
+const MainGrid = styled(Grid)``;
+
+const MegaphoneBearCell = styled(Cell)`
+  text-align: center;
+`;
+
 const MegaphoneBear = styled.img`
+  transform: scaleX(-1);
   margin-top: 23rem;
   max-height: 60rem;
 
   ${below.large`
-    height: 20rem;
+    margin-top: 3rem;
+    max-height: 50rem;
+  `};
+
+  ${below.med`
+    max-height: 35rem;
+  `};
+
+  ${below.small`
+    margin-bottom: -8rem;
+    margin-top: 5rem;
+    height: 30rem;
   `};
 `;
 
 const SummerCamp = props => {
   return (
     <Main backgroundColor="primary" fontColor="light" hasTrees>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
           <div>
             <SummerCampHeader>Summer Camp for Geeks</SummerCampHeader>
@@ -46,10 +75,10 @@ const SummerCamp = props => {
             </span>
           </div>
         </Cell>
-        <Cell>
+        <MegaphoneBearCell>
           <MegaphoneBear src="/images/bear-pig.png" />
-        </Cell>
-      </Grid>
+        </MegaphoneBearCell>
+      </MainGrid>
     </Main>
   );
 };

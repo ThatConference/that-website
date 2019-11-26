@@ -5,10 +5,14 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 5rem;
+
+  ${below.med`
+    margin-bottom: 0;
+  `};
 
   h3 {
     font-size: 3.5rem;
@@ -20,6 +24,10 @@ const Main = styled(ContentSection)`
 
 const ProcessAndDatesGrid = styled(Grid)`
   grid-gap: 25rem;
+
+  ${below.med`
+    grid-gap: 3rem;
+  `};
 
   .keyDates {
     h5 {

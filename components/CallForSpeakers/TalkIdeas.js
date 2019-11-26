@@ -4,20 +4,28 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 15rem;
+
+  ${below.med`
+    margin-bottom: 0;
+  `};
 `;
 
 const TalkIdeasText = styled.div`
-  width: 90rem;
+  max-width: 90rem;
   margin: auto;
   text-align: center;
   font-size: 2.8rem;
   color: ${({ theme }) => theme.colors.fonts.dark};
   line-height: 1.6;
   margin-bottom: 1.5rem;
+
+  ${below.med`
+    font-size: 2rem;
+  `};
 `;
 
 const TalkIdeasButtons = styled.div`
@@ -28,6 +36,10 @@ const TalkIdeasButtons = styled.div`
 
     &:first-child {
       margin-right: 2rem;
+
+      ${below.small`
+        margin-right: 0;
+      `};
     }
   }
 `;
