@@ -36,17 +36,10 @@ const AboutCell = styled(Cell)`
   `};
 `;
 
-const Goals = styled(Cell)`
-  ${below.med`
-    // margin-right: 3rem;
-  `};
-`;
+const Goals = styled(Cell)``;
 
 const GoalsList = styled.ul`
   padding-inline-start: 2rem;
-  ${below.med`
-    // margin-right: 3rem;
-  `};
 `;
 
 const AboutPiece = ({ companyName, about }) => {

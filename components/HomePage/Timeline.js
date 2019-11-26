@@ -7,8 +7,6 @@ import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const _ = require('lodash');
 
-const CalloutColor = '#05d69e';
-
 const Main = styled(ContentSection)`
   margin-top: 10rem;
   padding-top: 1rem;
@@ -72,7 +70,7 @@ const TicketCountdown = styled.div`
   color: ${({ theme }) => theme.colors.fonts.light};
 
   span {
-    color: ${CalloutColor};
+    color: ${({ theme }) => theme.colors.teal};
   }
 
   ${below.med`
@@ -114,7 +112,7 @@ const Marker = styled.span`
   display: inline-block;
 
   &.past {
-    background-color: ${CalloutColor};
+    background-color: ${({ theme }) => theme.colors.teal};
   }
 `;
 
@@ -127,8 +125,8 @@ const Line = styled.hr`
   margin-bottom: 1rem;
 
   &.past {
-    border-color: ${CalloutColor};
-    background-color: ${CalloutColor};
+    border-color: ${({ theme }) => theme.colors.teal};
+    background-color: ${({ theme }) => theme.colors.teal};
   }
 `;
 
@@ -158,7 +156,7 @@ const Date = styled(Detail)`
   color: ${({ theme }) => theme.colors.fonts.light};
 
   &.past {
-    color: #707070;
+    color: ${({ theme }) => theme.colors.darkGray};
   }
 `;
 
