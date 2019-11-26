@@ -17,7 +17,7 @@ There are many ways you can contibute, here are just some of the broader items w
 
 - Find a bug, report a bug... if/when you find something please let us know! We count on your eyes to spot things we miss. Open an issue and will will follow up and prioritize.
 - Grab an issue to fix. See an open issue you would like to tackle? Go for it! Assign yourself the issue and get started.
-- Review open pull requests. If there an an open PR of changes, review it! Eyes anbd feedback on incoming work is appreciated by all!
+- Review open pull requests. If there an an open PR of changes, review it! Eyes and feedback on incoming work is appreciated by all!
 
 #### 2. Ground rules and expectations
 
@@ -29,7 +29,7 @@ Before we get started, here are a few things we expect from you (and that you sh
 
 #### 3. How to contribute
 
-The best place to start is the open issues. Any ones we feel are a greate first step into the code base we have labeled as `good first issue`. But don't feel limited to just those issues. Any open issue is up for grabs to be worked on.
+The best place to start is the open issues. Any ones we feel are a great first step into the code base we have labeled as `good first issue`. But don't feel limited to just those issues. Any open issue is up for grabs to be worked on.
 
 Find one you would be interested working on, assign yourself and get started! Once complete open a pull request and label as `ready for review`. Want to pull more communtoy in? Yeah you do! Mention in THAT Slack or on the socials that you have a PR that neesds to be reviewed. We love havimg community involvement across the entire flow.
 
