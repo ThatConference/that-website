@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below } from '../../utilities';
 
 const _ = require('lodash');
 
@@ -27,31 +27,27 @@ const SectionHeading = styled.h2`
   ${below.med`
     font-size: 10rem;
   `};
+
+  ${below.med`
+    font-size: 6rem;
+  `};
 `;
 
 const Moose = styled.img`
   max-height: 57rem;
   max-width: 46.2rem;
   float: right;
-  margin-top: ${({ haveLink }) => (haveLink ? '-62.5rem' : '-45.5rem')};
-  margin-right: -13rem;
+  margin-top: ${({ haveLink }) => (haveLink ? '-67.5rem' : '-45.5rem')};
+  margin-right: -15rem;
 
-  @media (max-width: 1900px) {
-    max-height: 52rem;
-    margin-top: -37.5rem;
-    margin-right: -8rem;
-  }
-
-  @media (max-width: 1500px) {
-    max-height: 48rem;
-    margin-top: -37.5rem;
+  @media (max-width: 1700px) {
     margin-right: -8rem;
   }
 
   @media (max-width: 1400px) {
     display: block;
-    margin: auto;
     float: unset;
+    margin: auto;
     margin-top: 6rem;
   }
 
@@ -61,7 +57,7 @@ const Moose = styled.img`
   `};
 `;
 
-const TicketCountdown = styled.div`
+const Message = styled.div`
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 5.5rem;
@@ -74,6 +70,12 @@ const TicketCountdown = styled.div`
 
   ${below.med`
     margin-bottom: 2rem;
+  `};
+
+  ${below.xsmall`
+    margin-top: 4rem;
+    font-size: 1.8rem;
+    line-height: 3rem;
   `};
 `;
 
@@ -180,7 +182,7 @@ const TimelineSection = ({ event, className }) => {
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
       <SectionHeading>{header}</SectionHeading>
-      {message && <TicketCountdown>{message}</TicketCountdown>}
+      {message && <Message>{message}</Message>}
       {link && (
         <Button
           href={link}
