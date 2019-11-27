@@ -145,9 +145,9 @@ const Name = styled(Detail)`
 `;
 
 const Date = styled(Detail)`
-  margin-top: -2rem;
-  width: 6rem;
-  margin-left: -1.5rem;
+  margin-top: -2.5rem;
+  width: 8rem;
+  margin-left: -2.8rem;
   color: ${({ theme }) => theme.colors.fonts.light};
 
   &.past {
