@@ -35,6 +35,16 @@ const GET_EVENT = gql`
         description
         dueDate
       }
+      notifications {
+        id
+        shouldFeature
+        title
+        message
+        startDate
+        endDate
+        link
+        linkText
+      }
     }
   }
 `;

@@ -33,8 +33,7 @@ const Moose = styled.img`
   max-height: 57rem;
   max-width: 46.2rem;
   float: right;
-  margin-top: ${({ ticketSalesOpen }) =>
-    ticketSalesOpen ? '-62.5rem' : '-45.5rem'};
+  margin-top: ${({ haveLink }) => (haveLink ? '-62.5rem' : '-45.5rem')};
   margin-right: -13rem;
 
   @media (max-width: 1900px) {
@@ -78,11 +77,7 @@ const TicketCountdown = styled.div`
   `};
 `;
 
-const Button = styled(LinkButton)``;
-
-const ImportantDates = styled(Button)`
-  display: none;
-
+const Button = styled(LinkButton)`
   ${below.med`
     display: block;
   `};
@@ -173,36 +168,28 @@ const TimelineSection = ({ event, className }) => {
     .orderBy('due')
     .value();
 
-  // ToDo: need a key/id on the milestone to be able to get the tickets milestone and calc days left
-  const ticketSalesOpen = false;
-  const header = ticketSalesOpen ? 'Grab Your Tickets' : 'Important Dates';
-  const DaysLeft = ticketSalesOpen ? 99 : 23;
+  const featured = _.find(event.notifications, n => {
+    return n.shouldFeature === true;
+  });
 
+  const header = featured ? featured.title : 'Important Dates';
+  const message = featured ? featured.message : null;
+  const link = featured ? featured.link : null;
+  const linkText = featured ? featured.linkText : null;
+  const haveLink = link !== null;
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
       <SectionHeading>{header}</SectionHeading>
-      {ticketSalesOpen && (
-        <TicketCountdown>
-          Only <span>{DaysLeft} Days</span> left to grab your tickets to THAT
-          Conference
-        </TicketCountdown>
-      )}
-      {ticketSalesOpen && (
+      {message && <TicketCountdown>{message}</TicketCountdown>}
+      {link && (
         <Button
-          href={DEFAULT_WIP_PAGE}
-          label="Grab your Tickets!"
+          href={link}
+          label={linkText}
           backgroundColor="primary"
           borderColor="white"
           color="white"
         />
       )}
-      <ImportantDates
-        href={DEFAULT_WIP_PAGE}
-        label="Important Dates"
-        backgroundColor="primary"
-        borderColor="white"
-        color="white"
-      />
       <Timeline>
         {milestones.map((m, index, all) => (
           <TimelineItem key={m.title}>
@@ -214,10 +201,7 @@ const TimelineSection = ({ event, className }) => {
           </TimelineItem>
         ))}
       </Timeline>
-      <Moose
-        src="/images/moose_with_lantern.png"
-        ticketSalesOpen={ticketSalesOpen}
-      />
+      <Moose src="/images/moose_with_lantern.png" haveLink={haveLink} />
     </Main>
   );
 };
