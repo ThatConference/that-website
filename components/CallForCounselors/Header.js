@@ -5,10 +5,30 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 10rem;
+`;
+
+const MainGrid = styled(Grid)`
+  grid-gap: 20rem;
+
+  ${below.med`
+    grid-gap: 0;
+  `};
+`;
+
+const Title = styled.h1`
+  margin-top: 0;
+  margin-right: 10rem;
+  font-size: 18rem;
+  font-weight: 100;
+  line-height: 0.75;
+
+  ${below.med`
+    font-size: 8rem;
+  `};
 `;
 
 const Callout = styled.span`
@@ -17,6 +37,18 @@ const Callout = styled.span`
   font-size: 2.8rem;
   text-transform: uppercase;
   line-height: 1;
+
+  ${below.med`
+    font-size: 2.3rem;
+  `};
+`;
+
+const TextCell = styled(Cell)`
+  margin-top: 3rem;
+
+  ${below.med`
+    margin-top: 0;
+  `};
 `;
 
 const BecomeACounselor = styled(LinkButton)`
@@ -26,14 +58,12 @@ const BecomeACounselor = styled(LinkButton)`
 const Header = props => {
   return (
     <Main>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
           <Callout>Submissions Starting January 1, 2020</Callout>
-          <h1 style={{ marginTop: 0, marginRight: '100px' }}>
-            Call for Speakers
-          </h1>
+          <Title>Call for Counselors</Title>
         </Cell>
-        <Cell>
+        <TextCell>
           <p className="large-body-copy">
             Are you ready to speak at the biggest tech stage in the midwest? We
             are searching for hour-long talks, half and full-day workshops, and
@@ -49,8 +79,8 @@ const Header = props => {
             backgroundColor="white"
             label="Become a Counselor"
           />
-        </Cell>
-      </Grid>
+        </TextCell>
+      </MainGrid>
     </Main>
   );
 };

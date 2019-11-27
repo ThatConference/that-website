@@ -133,11 +133,11 @@ const Process = ({ milestones }) => {
             );
           })}
           <MoreAboutProcess
-            href={`/${DEFAULT_WIP_PAGE}`}
+            href="counselor-selection-process"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
-            label="More About the speaker selection process"
+            label="More About the counselor selection process"
           />
         </Cell>
       </ProcessAndDatesGrid>

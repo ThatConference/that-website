@@ -43,7 +43,7 @@ const SpeakerHighlight = ({ className }) => {
         <div style={{ display: 'flex' }}>
           <LinkButton
             href={DEFAULT_WIP_PAGE}
-            label="Meet The Speakers"
+            label="Meet The Counselors"
             color="thatBlue"
             borderColor="thatBlue"
           />

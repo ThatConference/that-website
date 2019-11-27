@@ -3,11 +3,11 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import Header from '../../components/CallForSpeakers/Header';
-import SummerCamp from '../../components/CallForSpeakers/SummerCamp';
-import TalkIdeas from '../../components/CallForSpeakers/TalkIdeas';
-import Process from '../../components/CallForSpeakers/Process';
-import Perks from '../../components/CallForSpeakers/Perks';
+import Header from '../../components/CallForCounselors/Header';
+import SummerCamp from '../../components/CallForCounselors/SummerCamp';
+import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
+import Process from '../../components/CallForCounselors/Process';
+import Perks from '../../components/CallForCounselors/Perks';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
