@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
 import LinkButton from '../shared/LinkButton';
@@ -21,6 +20,13 @@ const ButtonRow = styled.div`
   ${below.med`
     flex-direction: column;
     align-items: center;
+
+    div {
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+    }
+
   `};
 `;
 
