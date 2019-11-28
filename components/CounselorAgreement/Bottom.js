@@ -33,7 +33,7 @@ const Bottom = props => {
         counselor and submit your session submission!
       </BottomText>
       <BottomButton
-        href="counselor-agreement"
+        href={`/${DEFAULT_WIP_PAGE}`}
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"

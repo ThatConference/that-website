@@ -73,7 +73,7 @@ const Header = props => {
             everything in between.
           </p>
           <BecomeACounselor
-            href={`/${DEFAULT_WIP_PAGE}`}
+            href="counselor-agreement"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"

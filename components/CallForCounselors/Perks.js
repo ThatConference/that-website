@@ -86,7 +86,7 @@ const Perks = props => {
         </Perk>
       </Container>
       <LinkButton
-        href={`/${DEFAULT_WIP_PAGE}`}
+        href="counselor-agreement"
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"

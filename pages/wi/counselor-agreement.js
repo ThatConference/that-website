@@ -5,11 +5,10 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import Icon from '../../components/shared/Icon';
 
-import Header from '../../components/CounselorSelectionProcess/Header';
-import TheProcess from '../../components/CounselorSelectionProcess/TheProcess';
-import Bottom from '../../components/CounselorSelectionProcess/Bottom';
+import Header from '../../components/CounselorAgreement/Header';
+import Agreement from '../../components/CounselorAgreement/Agreement';
+import Bottom from '../../components/CounselorAgreement/Bottom';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -27,6 +26,7 @@ const MainGrid = styled(Grid)`
 
   ul {
     list-style: none;
+    padding-inline-start: 2rem;
   }
 
   ul li::before {
@@ -43,33 +43,6 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const BackLink = styled.a`
-  font-size: 1.4rem;
-  color: ${({ theme }) => theme.colors.thatBlue};
-  osition: absolute;
-  float: left;
-  top: 0;
-  margin-top: 5rem;
-
-  svg {
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
-  }
-  span {
-    margin-left: 0.5rem;
-  }
-
-  ${below.med`
-    margin-top:0;
-    margin-left: -25px;
-  `};
-`;
-
-const BackArrow = styled(Icon)`
-  fill: ${({ theme }) => theme.colors.thatBlue};
-`;
-
 const CallForSpeakers = props => {
   return (
     <div>
@@ -78,21 +51,10 @@ const CallForSpeakers = props => {
       </Head>
       <MainContent>
         <MainGrid columns={6}>
-          <Cell width={1}>
-            <BackLink href="call-for-counselors">
-              <BackArrow
-                icon="backArrow"
-                height="25px"
-                width="25px"
-                viewBoxHeight="100"
-                viewBoxWidth="100"
-              />
-              <span>Back to Call for Counselors</span>
-            </BackLink>
-          </Cell>
+          <Cell width={1} />
           <Cell width={4}>
             <Header />
-            <TheProcess />
+            <Agreement />
             <Bottom />
           </Cell>
           <Cell width={1} />
