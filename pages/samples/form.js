@@ -8,7 +8,8 @@ import ContentSection from '../../components/shared/ContentSection';
 import {
   FormGrid,
   FormLabel,
-  FormInput,
+  FormTextInput,
+  FormCheckbox,
   FormRule,
   FormSubmit,
   FormInputValidationMessage,
@@ -28,6 +29,9 @@ const form = props => {
       fullName: '',
       emailAddress: '',
       mobilePhone: '',
+      agreeToCodeOfConduct: false,
+      agreeToCommitments: false,
+      agreeToBeingRecorded: false,
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -40,6 +44,15 @@ const form = props => {
         phoneRegExp,
         'Phone number is not valid',
       ),
+      agreeToCodeOfConduct: Yup.bool().oneOf(
+        [true],
+        'Must agree to the Code of Conduct',
+      ),
+      agreeToCommitments: Yup.bool().oneOf(
+        [true],
+        'Must agree to the commitments',
+      ),
+      agreeToBeingRecorded: Yup.bool(),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -59,7 +72,7 @@ const form = props => {
             <Cell>
               <FormLabel htmlFor="fullName">
                 Full Name
-                <FormInput
+                <FormTextInput
                   name="fullName"
                   {...formik.getFieldProps('fullName')}
                 />
@@ -75,7 +88,7 @@ const form = props => {
             <Cell>
               <FormLabel htmlFor="emailAddress">
                 Email Address
-                <FormInput
+                <FormTextInput
                   name="emailAddress"
                   {...formik.getFieldProps('emailAddress')}
                 />
@@ -89,7 +102,7 @@ const form = props => {
             <Cell>
               <FormLabel htmlFor="mobilePhone">
                 Mobile Phone
-                <FormInput
+                <FormTextInput
                   id="mobilePhone"
                   {...formik.getFieldProps('mobilePhone')}
                 />
@@ -99,6 +112,59 @@ const form = props => {
                   </FormInputValidationMessage>
                 ) : null}
               </FormLabel>
+            </Cell>
+            <Cell>
+              <div>
+                <FormLabel htmlFor="agreeToCodeOfConduct">
+                  <FormCheckbox
+                    name="agreeToCodeOfConduct"
+                    id="agreeToCodeOfConduct"
+                    type="checkbox"
+                    {...formik.getFieldProps('agreeToCodeOfConduct')}
+                  />
+                  Agree to Code of Conduct
+                  {formik.touched.agreeToCodeOfConduct &&
+                  formik.errors.agreeToCodeOfConduct ? (
+                    <FormInputValidationMessage>
+                      {formik.errors.agreeToCodeOfConduct}
+                    </FormInputValidationMessage>
+                  ) : null}
+                </FormLabel>
+              </div>
+              <div>
+                <FormLabel htmlFor="agreeToCommitments">
+                  <FormCheckbox
+                    name="agreeToCommitments"
+                    id="agreeToCommitments"
+                    type="checkbox"
+                    {...formik.getFieldProps('agreeToCommitments')}
+                  />
+                  Agree to commitments to THAT Conference laid out above
+                  {formik.touched.agreeToCommitments &&
+                  formik.errors.agreeToCommitments ? (
+                    <FormInputValidationMessage>
+                      {formik.errors.agreeToCommitments}
+                    </FormInputValidationMessage>
+                  ) : null}
+                </FormLabel>
+              </div>
+              <div>
+                <FormLabel htmlFor="agreeToBeingRecorded">
+                  <FormCheckbox
+                    name="agreeToBeingRecorded"
+                    id="agreeToBeingRecorded"
+                    type="checkbox"
+                    {...formik.getFieldProps('agreeToBeingRecorded')}
+                  />
+                  Agree to being recorded
+                  {formik.touched.agreeToBeingRecorded &&
+                  formik.errors.agreeToBeingRecorded ? (
+                    <FormInputValidationMessage>
+                      {formik.errors.agreeToBeingRecorded}
+                    </FormInputValidationMessage>
+                  ) : null}
+                </FormLabel>
+              </div>
             </Cell>
           </FormGrid>
           <FormRule />

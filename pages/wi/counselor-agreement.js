@@ -7,8 +7,9 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 
 import Header from '../../components/CounselorAgreement/Header';
-import Agreement from '../../components/CounselorAgreement/Agreement';
-import Bottom from '../../components/CounselorAgreement/Bottom';
+import Commitments from '../../components/CounselorAgreement/Commitments';
+import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
+import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -54,8 +55,9 @@ const CallForSpeakers = props => {
           <Cell width={1} />
           <Cell width={4}>
             <Header />
-            <Agreement />
-            <Bottom />
+            <Commitments />
+            <WhatsProvided />
+            <Acknowledgment />
           </Cell>
           <Cell width={1} />
         </MainGrid>
