@@ -27,6 +27,7 @@ const MainGrid = styled(Grid)`
 
   ul {
     list-style: none;
+    padding-inline-start: 2rem;
   }
 
   ul li::before {
