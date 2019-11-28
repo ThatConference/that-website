@@ -12,7 +12,7 @@ const Main = styled(ContentSection)`
 `;
 
 const MainGrid = styled(Grid)`
-  grid-gap: 20rem;
+  grid-gap: 23rem;
 
   ${below.med`
     grid-gap: 0;
@@ -22,7 +22,7 @@ const MainGrid = styled(Grid)`
 const Title = styled.h1`
   margin-top: 0;
   margin-right: 10rem;
-  font-size: 18rem;
+  font-size: 17rem;
   font-weight: 100;
   line-height: 0.75;
 
