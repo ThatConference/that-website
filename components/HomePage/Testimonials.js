@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SquareButton from '../shared/SquareButton';
 
-import { gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 const TESTIMONIALS = [
   {
@@ -33,6 +33,18 @@ const TESTIMONIALS = [
     imageUrl: '/images/maker_space.jpg',
   },
 ];
+
+const ContentGrid = styled(Grid)`
+  direction: rtl;
+  ${below.small`
+    display: block;
+    margin-right: 2rem;
+  `};
+
+  ${below.xsmall`
+    margin-right: 0;
+  `};
+`;
 
 const HighlightImage = styled.img`
   width: 100%;
@@ -65,11 +77,11 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <Grid columns={gridRepeat.xsmall} style={{ direction: 'rtl' }}>
+      <ContentGrid columns={gridRepeat.xsmall}>
         <Cell>
-          <HighlightImage src={testimonial.imageUrl}  />
+          <HighlightImage src={testimonial.imageUrl} />
         </Cell>
-        <Cell style={{direction: "ltr"}}>
+        <Cell style={{ direction: 'ltr' }}>
           <Detail>
             <Quotation>"</Quotation>
             <Quote dangerouslySetInnerHTML={{ __html: testimonial.quote }} />
@@ -104,7 +116,7 @@ const Testimonials = ({ className }) => {
             }
           />
         </Cell>
-      </Grid>
+      </ContentGrid>
     </ContentSection>
   );
 };

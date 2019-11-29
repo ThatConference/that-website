@@ -89,27 +89,7 @@ const SideDetail = styled.div`
   margin-right: 4rem;
 `;
 
-// const GET_EVENTS = gql`
-//   query getEvents {
-//     events {
-//       id
-//       name
-//       startDate
-//       endDate
-//       venue {
-//         city
-//         state
-//       }
-//     }
-//   }
-// `;
-
-const Hero = ({ className }) => {
-  // const { loading, error, data } = useQuery(GET_EVENTS);
-
-  // if (loading) return null;
-  // if (error) return null;
-
+const Hero = ({ event, className }) => {
   return (
     <ContentSection className={className}>
       <Main>
@@ -117,7 +97,7 @@ const Hero = ({ className }) => {
           <DateLocation>
             August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
-          <Slogan>Summer Camp For Geeks</Slogan>
+          <Slogan>{event.slogan}</Slogan>
           <ActionButtons>
             <Button
               href={DEFAULT_WIP_PAGE}
