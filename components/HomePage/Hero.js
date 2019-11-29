@@ -1,8 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
@@ -39,8 +36,9 @@ const ActionButtons = styled.div`
     padding-bottom: 3rem;
   `};
 
-  ${below.med`
+  ${below.small`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
@@ -126,12 +124,14 @@ const Hero = ({ className }) => {
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
             <Button
               href="wi/become-a-partner"
               label="Sponsor Us"
               color="thatBlue"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
           </ActionButtons>
         </SideDetail>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
@@ -22,15 +21,25 @@ const ProfileRow = styled.div`
 const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-bottom: 2rem;
 
   ${below.small`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
 const Header = styled.h3`
   width: 50vw;
+
+  ${below.small`
+    width: auto;
+  `};
+`;
+
+const ActionButton = styled(LinkButton)`
+  margin: 0 1rem;
 `;
 
 const SpeakerHighlight = ({ className }) => {
@@ -40,14 +49,13 @@ const SpeakerHighlight = ({ className }) => {
         <Header>
           Find Inspiration From Hallway Conversations or Industry Leaders
         </Header>
-        <div style={{ display: 'flex' }}>
-          <LinkButton
-            href={DEFAULT_WIP_PAGE}
-            label="Meet The Speakers"
-            color="thatBlue"
-            borderColor="thatBlue"
-          />
-        </div>
+        <ActionButton
+          href={DEFAULT_WIP_PAGE}
+          label="Meet The Speakers"
+          color="thatBlue"
+          borderColor="thatBlue"
+          className="stretch-sm"
+        />
       </TitleRow>
       <ProfileRow>
         <ProfileItem
