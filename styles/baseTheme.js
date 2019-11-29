@@ -11,6 +11,8 @@ const baseTheme = {
     thatBlue: '#26529A',
     teal: '#05d69e',
     gray: '#555555',
+    mediumGray: '#d3d3d3',
+    mediumLightGrah: '#fcfcfc;',
     lightGray: '#FAFAFA',
     darkGray: '#707070',
     white: '#FFFFFF',
