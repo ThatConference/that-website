@@ -38,7 +38,6 @@ export const FormRule = styled.hr`
 export const FormSubmit = styled(SquareButton)`
   float: right;
   margin-bottom: 2rem;
-  color: ${({ color }) => color || 'dark'};
 `;
 
 export const FormInputValidationMessage = styled.div`
