@@ -5,14 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import ContentSection from '../../components/shared/ContentSection';
+import FormInput from '../../components/shared/FormInput';
 import {
   FormGrid,
-  FormLabel,
-  FormTextInput,
-  FormCheckbox,
   FormRule,
   FormSubmit,
-  FormInputValidationMessage,
 } from '../../components/shared/FormLayout';
 
 const Main = styled.div``;
@@ -70,100 +67,51 @@ const form = props => {
         <form onSubmit={formik.handleSubmit}>
           <FormGrid columns={2}>
             <Cell>
-              <FormLabel htmlFor="fullName">
-                Full Name
-                <FormTextInput
-                  name="fullName"
-                  {...formik.getFieldProps('fullName')}
-                />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.fullName}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              <FormInput
+                fieldName="fullName"
+                formikForm={formik}
+                label="Full Name"
+              />
             </Cell>
-
             <Cell />
             <Cell>
-              <FormLabel htmlFor="emailAddress">
-                Email Address
-                <FormTextInput
-                  name="emailAddress"
-                  {...formik.getFieldProps('emailAddress')}
-                />
-                {formik.touched.emailAddress && formik.errors.emailAddress ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.emailAddress}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              <FormInput
+                fieldName="emailAddress"
+                formikForm={formik}
+                label="Email Address"
+              />
             </Cell>
             <Cell>
-              <FormLabel htmlFor="mobilePhone">
-                Mobile Phone
-                <FormTextInput
-                  id="mobilePhone"
-                  {...formik.getFieldProps('mobilePhone')}
-                />
-                {formik.touched.mobilePhone && formik.errors.mobilePhone ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.mobilePhone}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              <FormInput
+                fieldName="mobilePhone"
+                formikForm={formik}
+                label="Mobile Phone"
+              />
             </Cell>
             <Cell>
               <div>
-                <FormLabel htmlFor="agreeToCodeOfConduct">
-                  <FormCheckbox
-                    name="agreeToCodeOfConduct"
-                    id="agreeToCodeOfConduct"
-                    type="checkbox"
-                    {...formik.getFieldProps('agreeToCodeOfConduct')}
-                  />
-                  Agree to Code of Conduct
-                  {formik.touched.agreeToCodeOfConduct &&
-                  formik.errors.agreeToCodeOfConduct ? (
-                    <FormInputValidationMessage>
-                      {formik.errors.agreeToCodeOfConduct}
-                    </FormInputValidationMessage>
-                  ) : null}
-                </FormLabel>
+                <FormInput
+                  fieldName="agreeToCodeOfConduct"
+                  formikForm={formik}
+                  label="Agree to Code of Conduct"
+                  inputType="checkbox"
+                />
               </div>
               <div>
-                <FormLabel htmlFor="agreeToCommitments">
-                  <FormCheckbox
-                    name="agreeToCommitments"
-                    id="agreeToCommitments"
-                    type="checkbox"
-                    {...formik.getFieldProps('agreeToCommitments')}
-                  />
-                  Agree to commitments to THAT Conference laid out above
-                  {formik.touched.agreeToCommitments &&
-                  formik.errors.agreeToCommitments ? (
-                    <FormInputValidationMessage>
-                      {formik.errors.agreeToCommitments}
-                    </FormInputValidationMessage>
-                  ) : null}
-                </FormLabel>
+                <FormInput
+                  fieldName="agreeToCommitments"
+                  formikForm={formik}
+                  label="Agree to commitments to THAT Conference laid out above"
+                  inputType="checkbox"
+                />
               </div>
               <div>
-                <FormLabel htmlFor="agreeToBeingRecorded">
-                  <FormCheckbox
-                    name="agreeToBeingRecorded"
-                    id="agreeToBeingRecorded"
-                    type="checkbox"
-                    {...formik.getFieldProps('agreeToBeingRecorded')}
-                  />
-                  Agree to being recorded
-                  {formik.touched.agreeToBeingRecorded &&
-                  formik.errors.agreeToBeingRecorded ? (
-                    <FormInputValidationMessage>
-                      {formik.errors.agreeToBeingRecorded}
-                    </FormInputValidationMessage>
-                  ) : null}
-                </FormLabel>
+                <FormInput
+                  fieldName="agreeToBeingRecorded"
+                  formikForm={formik}
+                  label="Agree to being recorded"
+                  inputType="checkbox"
+                />
               </div>
             </Cell>
           </FormGrid>

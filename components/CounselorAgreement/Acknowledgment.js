@@ -3,13 +3,8 @@ import { useFormik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { DEFAULT_WIP_PAGE } from '../../utilities';
-import {
-  FormLabel,
-  FormRule,
-  FormCheckbox,
-  FormSubmit,
-  FormInputValidationMessage,
-} from '../shared/FormLayout';
+import FormInput from '../shared/FormInput';
+import { FormRule, FormSubmit } from '../shared/FormLayout';
 
 const Achknowledgment = props => {
   const formik = useFormik({
@@ -40,70 +35,35 @@ const Achknowledgment = props => {
     <form onSubmit={formik.handleSubmit}>
       <FormRule />
       <div>
-        <FormLabel htmlFor="agreeToCodeOfConduct">
-          <FormCheckbox
-            name="agreeToCodeOfConduct"
-            id="agreeToCodeOfConduct"
-            type="checkbox"
-            {...formik.getFieldProps('agreeToCodeOfConduct')}
-          />
-          Agree to the <a href={`/${DEFAULT_WIP_PAGE}`}>Code of Conduct</a>
-          {formik.touched.agreeToCodeOfConduct &&
-          formik.errors.agreeToCodeOfConduct ? (
-            <FormInputValidationMessage>
-              {formik.errors.agreeToCodeOfConduct}
-            </FormInputValidationMessage>
-          ) : null}
-        </FormLabel>
+        <FormInput
+          fieldName="agreeToCodeOfConduct"
+          formikForm={formik}
+          label={`Agree to the <a href={${DEFAULT_WIP_PAGE}}>Code of Conduct</a>`}
+          inputType="checkbox"
+        />
       </div>
       <div>
-        <FormLabel htmlFor="agreeToCommitments">
-          <FormCheckbox
-            name="agreeToCommitments"
-            id="agreeToCommitments"
-            type="checkbox"
-            {...formik.getFieldProps('agreeToCommitments')}
-          />
-          Agree to commitments to THAT Conference laid out above
-          {formik.touched.agreeToCommitments &&
-          formik.errors.agreeToCommitments ? (
-            <FormInputValidationMessage>
-              {formik.errors.agreeToCommitments}
-            </FormInputValidationMessage>
-          ) : null}
-        </FormLabel>
+        <FormInput
+          fieldName="agreeToCommitments"
+          formikForm={formik}
+          label="Agree to commitments to THAT Conference laid out above"
+          inputType="checkbox"
+        />
         <div>
-          <FormLabel htmlFor="agreeToBeingRecorded">
-            <FormCheckbox
-              name="agreeToBeingRecorded"
-              id="agreeToBeingRecorded"
-              type="checkbox"
-              {...formik.getFieldProps('agreeToBeingRecorded')}
-            />
-            Agree to being recorded
-            {formik.touched.agreeToBeingRecorded &&
-            formik.errors.agreeToBeingRecorded ? (
-              <FormInputValidationMessage>
-                {formik.errors.agreeToBeingRecorded}
-              </FormInputValidationMessage>
-            ) : null}
-          </FormLabel>
+          <FormInput
+            fieldName="agreeToBeingRecorded"
+            formikForm={formik}
+            label="Agree to being recorded"
+            inputType="checkbox"
+          />
         </div>
         <div>
-          <FormLabel htmlFor="are18OrOlder">
-            <FormCheckbox
-              name="are18OrOlder"
-              id="are18OrOlder"
-              type="checkbox"
-              {...formik.getFieldProps('are18OrOlder')}
-            />
-            Are you 18 or older as of today?
-            {formik.touched.are18OrOlder && formik.errors.are18OrOlder ? (
-              <FormInputValidationMessage>
-                {formik.errors.are18OrOlder}
-              </FormInputValidationMessage>
-            ) : null}
-          </FormLabel>
+          <FormInput
+            fieldName="are18OrOlder"
+            formikForm={formik}
+            label="Are you 18 or older as of today?"
+            inputType="checkbox"
+          />
         </div>
       </div>
 
