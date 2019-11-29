@@ -142,8 +142,8 @@ const Detail = styled.span`
 
 const Name = styled(Detail)`
   margin-top: 3rem;
-  margin-left: -5rem;
-  width: 7.5rem;
+  margin-left: -5.5rem;
+  width: 8.5rem;
 `;
 
 const Date = styled(Detail)`
@@ -167,7 +167,9 @@ const TimelineSection = ({ event, className }) => {
         state: momentDue < moment() ? 'past' : 'future',
       };
     })
-    .orderBy('due')
+    .sortBy(m => {
+      return moment(m);
+    })
     .value();
 
   const featured = _.find(event.notifications, n => {
