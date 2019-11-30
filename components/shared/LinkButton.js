@@ -5,6 +5,7 @@ import * as gtag from '../../lib/gtag';
 import { below } from '../../utilities';
 
 const OutlineLink = styled.a`
+  display: inline-block;
   border: 2px solid
     ${({ borderColor, theme }) =>
       borderColor ? theme.colors[borderColor] : theme.colors.primary};
@@ -42,18 +43,16 @@ const LinkButton = props => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <OutlineLink
-        href={props.href}
-        onClick={clickTracking}
-        color={props.color}
-        className={props.className}
-        borderColor={props.borderColor}
-        backgroundColor={props.backgroundColor}
-      >
-        <p>{props.label}</p>
-      </OutlineLink>
-    </div>
+    <OutlineLink
+      href={props.href}
+      onClick={clickTracking}
+      color={props.color}
+      className={props.className}
+      borderColor={props.borderColor}
+      backgroundColor={props.backgroundColor}
+    >
+      <p>{props.label}</p>
+    </OutlineLink>
   );
 };
 

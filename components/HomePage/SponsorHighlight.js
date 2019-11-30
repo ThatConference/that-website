@@ -67,7 +67,6 @@ const TextBlock = styled.div`
 
   ${below.med`
     flex-direction: column;
-    align-items: stretch;
   `};
 `;
 

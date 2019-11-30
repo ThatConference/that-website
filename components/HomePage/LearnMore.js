@@ -19,7 +19,6 @@ const ButtonRow = styled.div`
 
   ${below.small`
     flex-direction: column;
-    align-items: stretch;
 
     div {
       &:not(:last-child) {
