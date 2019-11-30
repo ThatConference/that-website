@@ -3,7 +3,7 @@ import { useFormik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import { DEFAULT_WIP_PAGE } from '../../utilities';
-import FormInput from '../shared/FormInput';
+import FormInput, { FormCheckbox } from '../shared/FormInput';
 import { FormRule, FormSubmit } from '../shared/FormLayout';
 
 const Achknowledgment = props => {
@@ -31,6 +31,8 @@ const Achknowledgment = props => {
     },
   });
 
+  const codeOfConductLink = `Agree to the <a href='/${DEFAULT_WIP_PAGE}'>Code of Conduct</a>`;
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormRule />
@@ -38,7 +40,7 @@ const Achknowledgment = props => {
         <FormInput
           fieldName="agreeToCodeOfConduct"
           formikForm={formik}
-          label={`Agree to the <a href={${DEFAULT_WIP_PAGE}}>Code of Conduct</a>`}
+          label={codeOfConductLink}
           inputType="checkbox"
         />
       </div>

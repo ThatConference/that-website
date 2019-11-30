@@ -28,6 +28,7 @@ const FormInput = props => {
   const fieldProps = formikForm.getFieldProps(fieldName);
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
+  const labelHtml = { __html: label };
 
   return (
     <FormLabel htmlFor={fieldName}>
@@ -39,18 +40,18 @@ const FormInput = props => {
             type="checkbox"
             {...fieldProps}
           />
-          {label}
+          <span dangerouslySetInnerHTML={labelHtml} />
         </>
       )}
       {isTextbox && (
         <>
+          {label}
           <FormTextInput
             name={fieldName}
             id={fieldName}
             type="text"
             {...fieldProps}
           />
-          {label}
         </>
       )}
       {formikForm.touched[fieldName] && formikForm.errors[fieldName] ? (
