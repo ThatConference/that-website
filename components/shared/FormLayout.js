@@ -12,14 +12,6 @@ export const FormLabel = styled.label`
   margin-bottom: 2rem;
 `;
 
-export const FormInput = styled.input`
-  display: block;
-  margin-top: 1rem;
-  border: 1px solid ${({ theme }) => theme.colors.mediumGray};
-  background-color: ${({ theme }) => theme.colors.mediumLightGray};
-  width: 100%;
-`;
-
 export const FormRule = styled.hr`
   margin-top: 7rem;
   margin-bottom: 3rem;
