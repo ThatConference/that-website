@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
 import LinkButton from '../shared/LinkButton';
@@ -64,22 +65,32 @@ const LearnMore = ({ className }) => {
               href={DEFAULT_WIP_PAGE}
               label="Professional Track"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
             <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Kids Track"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
             <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="FAQ"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
           </ButtonRow>
         </SideDetail>
       </Main>
     </ContentSection>
   );
+};
+
+LearnMore.propTypes = {
+  className: PropTypes.string,
+};
+LearnMore.defaultProps = {
+  className: '',
 };
 
 export default styled(LearnMore)``;

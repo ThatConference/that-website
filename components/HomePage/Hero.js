@@ -43,6 +43,7 @@ const ActionButtons = styled.div`
 
   ${below.small`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
@@ -116,12 +117,14 @@ const Hero = ({ event, className }) => {
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
             <LinkButton
               href="wi/become-a-partner"
               label="Sponsor Us"
               color="thatBlue"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
           </ActionButtons>
         </SideDetail>

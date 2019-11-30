@@ -67,6 +67,7 @@ const TextBlock = styled.div`
 
   ${below.med`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
@@ -104,6 +105,7 @@ const SponsorHighlight = ({ className, eventSlug }) => {
             <PartnerUpLink
               href={`${eventSlug}/become-a-partner`}
               label="Let's Partner Up"
+              className="stretch-sm"
             />
           </TextBlock>
         </SideDetail>

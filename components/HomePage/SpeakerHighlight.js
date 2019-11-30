@@ -26,6 +26,7 @@ const TitleRow = styled.div`
 
   ${below.small`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
