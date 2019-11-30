@@ -44,13 +44,13 @@ const FormInput = props => {
       )}
       {isTextbox && (
         <>
+          {label}
           <FormTextInput
             name={fieldName}
             id={fieldName}
             type="text"
             {...fieldProps}
           />
-          {label}
         </>
       )}
       {formikForm.touched[fieldName] && formikForm.errors[fieldName] ? (
