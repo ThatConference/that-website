@@ -4,7 +4,9 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
+
+const twoColBp = 'large';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -17,7 +19,10 @@ const DateLocation = styled.h2`
 
 const Slogan = styled.h1`
   margin: 1.8rem 0 3rem 0;
-  max-width: 60rem;
+
+  ${above[twoColBp]`
+    max-width: 60rem;
+  `};
 `;
 
 const Description = styled.p`
@@ -32,7 +37,7 @@ const ActionButtons = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  ${below.large`
+  ${below[twoColBp]`
     padding-bottom: 3rem;
   `};
 
@@ -42,18 +47,22 @@ const ActionButtons = styled.div`
   `};
 `;
 
-const Button = styled(LinkButton)`
-  margin: 0 2rem 0 0;
-
-  ${below.med`
-    margin-top: 2rem;
-  `};
-`;
-
 const HeroImage = styled.img`
-  width: 90%;
-  max-width: 58rem;
+  max-width: 100%;
   object-fit: cover;
+
+  ${above.small`
+    max-width: 58rem;
+  `};
+
+  ${below[twoColBp]`
+    margin-left: auto;
+    margin-right: auto;
+  `};
+
+  ${above[twoColBp]`
+    width: 90%;
+  `};
 `;
 
 const HeroSocials = styled(SocialLinks)`
@@ -65,10 +74,11 @@ const HeroSocials = styled(SocialLinks)`
     margin: 0.3rem 0;
   }
 
-  ${below.large`
+  ${below[twoColBp]`
     position: static;
     flex-direction: row;
     padding-top: 3rem;
+
     a { margin: 0 0.3rem; }
   `};
 `;
@@ -78,7 +88,7 @@ const Main = styled.div`
   flex-direction: row;
   margin: auto;
 
-  ${below.large`
+  ${below[twoColBp]`
     flex-direction: column;
   `};
 `;
@@ -86,7 +96,10 @@ const Main = styled.div`
 const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 4rem;
+
+  ${above[twoColBp]`
+    margin-right: 4rem;
+  `};
 `;
 
 const Hero = ({ event, className }) => {
@@ -99,14 +112,14 @@ const Hero = ({ event, className }) => {
           </DateLocation>
           <Slogan>{event.slogan}</Slogan>
           <ActionButtons>
-            <Button
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
             />
-            <Button
+            <LinkButton
               href="wi/become-a-partner"
               label="Sponsor Us"
               color="thatBlue"

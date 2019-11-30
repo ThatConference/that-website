@@ -20,7 +20,6 @@ const ButtonRow = styled.div`
 
   ${below.small`
     flex-direction: column;
-    align-items: stretch;
 
     div {
       &:not(:last-child) {
@@ -47,10 +46,6 @@ const SideDetail = styled.div`
   margin-right: 2rem;
 `;
 
-const ActionButton = styled(LinkButton)`
-  margin: 0 1rem;
-`;
-
 const LearnMore = ({ className }) => {
   return (
     <ContentSection className={className} id="learn-more">
@@ -66,19 +61,19 @@ const LearnMore = ({ className }) => {
             whole family.
           </StandardBodyCopy>
           <ButtonRow>
-            <ActionButton
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Professional Track"
               borderColor="thatBlue"
               className="stretch-sm"
             />
-            <ActionButton
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Kids Track"
               borderColor="thatBlue"
               className="stretch-sm"
             />
-            <ActionButton
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="FAQ"
               borderColor="thatBlue"

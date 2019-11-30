@@ -71,7 +71,7 @@ const TextBlock = styled.div`
   `};
 `;
 
-const ActionButton = styled(LinkButton)`
+const PartnerUpLink = styled(LinkButton)`
   ${above.med`
     margin: 0 0 0 2rem;
   `}
@@ -102,7 +102,7 @@ const SponsorHighlight = ({ className, eventSlug }) => {
               We partner with industry leading organizations and companies that
               are looking to connect with software developers and practitioners.
             </p>
-            <ActionButton
+            <PartnerUpLink
               href={`${eventSlug}/become-a-partner`}
               label="Let's Partner Up"
               className="stretch-sm"

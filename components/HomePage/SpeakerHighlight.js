@@ -4,7 +4,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const ProfileRow = styled.div`
   display: flex;
@@ -30,16 +30,18 @@ const TitleRow = styled.div`
   `};
 `;
 
+const SpeakersLink = styled(LinkButton)`
+  ${above.small`
+    margin-top: auto;
+  `};
+`;
+
 const Header = styled.h3`
   width: 50vw;
 
   ${below.small`
     width: auto;
   `};
-`;
-
-const ActionButton = styled(LinkButton)`
-  margin: 0 1rem;
 `;
 
 const SpeakerHighlight = ({ className }) => {
@@ -49,12 +51,11 @@ const SpeakerHighlight = ({ className }) => {
         <Header>
           Find Inspiration From Hallway Conversations or Industry Leaders
         </Header>
-        <ActionButton
+        <SpeakersLink
           href={DEFAULT_WIP_PAGE}
           label="Meet The Speakers"
           color="thatBlue"
           borderColor="thatBlue"
-          className="stretch-sm"
         />
       </TitleRow>
       <ProfileRow>
