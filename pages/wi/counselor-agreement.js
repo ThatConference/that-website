@@ -5,11 +5,27 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
+import SubmissionsStepper from '../../components/shared/Counselor/SubmissionStepper';
 
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
 import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
 import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
+
+const steps = [
+  {
+    label: '01. Agreement',
+    currentOrCompleted: true,
+  },
+  {
+    label: '02. Your Profile',
+    currentOrCompleted: false,
+  },
+  {
+    label: '03. Your Sessions',
+    currentOrCompleted: false,
+  },
+];
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -54,6 +70,7 @@ const CallForSpeakers = props => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
+            <SubmissionsStepper currentStep="0" />
             <Header />
             <Commitments />
             <WhatsProvided />

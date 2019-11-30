@@ -1,9 +1,9 @@
 import React from 'react';
-import { useFormik, Field } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { DEFAULT_WIP_PAGE } from '../../utilities';
-import FormInput, { FormCheckbox } from '../shared/FormInput';
+import FormInput from '../shared/FormInput';
 import { FormRule, FormSubmit } from '../shared/FormLayout';
 
 const Achknowledgment = props => {
