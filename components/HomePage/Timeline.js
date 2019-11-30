@@ -79,12 +79,6 @@ const Message = styled.div`
   `};
 `;
 
-const Button = styled(LinkButton)`
-  ${below.med`
-    display: block;
-  `};
-`;
-
 const Timeline = styled.section`
   margin-top: 15rem;
   margin-bottom: 15rem;
@@ -186,7 +180,7 @@ const TimelineSection = ({ event, className }) => {
       <SectionHeading>{header}</SectionHeading>
       {message && <Message>{message}</Message>}
       {link && (
-        <Button
+        <LinkButton
           href={link}
           label={linkText}
           backgroundColor="primary"

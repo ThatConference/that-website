@@ -16,10 +16,9 @@ const OutlineLink = styled.a`
     backgroundColor ? theme.colors[backgroundColor] : theme.colors.white};
 
   ${below.small`
-    &.stretch-sm {
-      width: 100%;
-    }
+    width: 100%;
   `};
+
   &:hover {
     cursor: pointer;
   }
