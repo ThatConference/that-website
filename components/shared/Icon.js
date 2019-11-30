@@ -24,7 +24,6 @@ const Svg = styled.svg`
 `;
 
 const Icon = props => {
-  console.log(props.fill);
   return (
     <Svg
       role="img"
