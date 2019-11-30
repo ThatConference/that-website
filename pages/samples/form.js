@@ -5,13 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import ContentSection from '../../components/shared/ContentSection';
+import FormInput from '../../components/shared/FormInput';
 import {
   FormGrid,
-  FormLabel,
-  FormInput,
   FormRule,
   FormSubmit,
-  FormInputValidationMessage,
 } from '../../components/shared/FormLayout';
 
 const Main = styled.div``;
@@ -28,6 +26,9 @@ const form = props => {
       fullName: '',
       emailAddress: '',
       mobilePhone: '',
+      agreeToCodeOfConduct: false,
+      agreeToCommitments: false,
+      agreeToBeingRecorded: false,
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -40,6 +41,15 @@ const form = props => {
         phoneRegExp,
         'Phone number is not valid',
       ),
+      agreeToCodeOfConduct: Yup.bool().oneOf(
+        [true],
+        'Must agree to the Code of Conduct',
+      ),
+      agreeToCommitments: Yup.bool().oneOf(
+        [true],
+        'Must agree to the commitments',
+      ),
+      agreeToBeingRecorded: Yup.bool(),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -57,48 +67,52 @@ const form = props => {
         <form onSubmit={formik.handleSubmit}>
           <FormGrid columns={2}>
             <Cell>
-              <FormLabel htmlFor="fullName">
-                Full Name
-                <FormInput
-                  name="fullName"
-                  {...formik.getFieldProps('fullName')}
-                />
-                {formik.touched.fullName && formik.errors.fullName ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.fullName}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              <FormInput
+                fieldName="fullName"
+                formikForm={formik}
+                label="Full Name"
+              />
             </Cell>
-
             <Cell />
             <Cell>
-              <FormLabel htmlFor="emailAddress">
-                Email Address
-                <FormInput
-                  name="emailAddress"
-                  {...formik.getFieldProps('emailAddress')}
-                />
-                {formik.touched.emailAddress && formik.errors.emailAddress ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.emailAddress}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              <FormInput
+                fieldName="emailAddress"
+                formikForm={formik}
+                label="Email Address"
+              />
             </Cell>
             <Cell>
-              <FormLabel htmlFor="mobilePhone">
-                Mobile Phone
+              <FormInput
+                fieldName="mobilePhone"
+                formikForm={formik}
+                label="Mobile Phone"
+              />
+            </Cell>
+            <Cell>
+              <div>
                 <FormInput
-                  id="mobilePhone"
-                  {...formik.getFieldProps('mobilePhone')}
+                  fieldName="agreeToCodeOfConduct"
+                  formikForm={formik}
+                  label="Agree to Code of Conduct"
+                  inputType="checkbox"
                 />
-                {formik.touched.mobilePhone && formik.errors.mobilePhone ? (
-                  <FormInputValidationMessage>
-                    {formik.errors.mobilePhone}
-                  </FormInputValidationMessage>
-                ) : null}
-              </FormLabel>
+              </div>
+              <div>
+                <FormInput
+                  fieldName="agreeToCommitments"
+                  formikForm={formik}
+                  label="Agree to commitments to THAT Conference laid out above"
+                  inputType="checkbox"
+                />
+              </div>
+              <div>
+                <FormInput
+                  fieldName="agreeToBeingRecorded"
+                  formikForm={formik}
+                  label="Agree to being recorded"
+                  inputType="checkbox"
+                />
+              </div>
             </Cell>
           </FormGrid>
           <FormRule />
