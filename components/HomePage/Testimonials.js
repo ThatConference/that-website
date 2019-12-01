@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
 import SquareButton from '../shared/SquareButton';
 
 import { below, gridRepeat } from '../../utilities';
