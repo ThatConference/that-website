@@ -4,7 +4,7 @@ import { Cell } from 'styled-css-grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import RegularExpressions from '../../utilities/validations';
+import RegularExpressions from '../../utilities/validation';
 
 import FormInput from '../shared/FormInput';
 import { FormGrid, FormRule, FormSubmit } from '../shared/FormLayout';
@@ -15,9 +15,6 @@ const Form = props => {
       fullName: '',
       emailAddress: '',
       mobilePhone: '',
-      agreeToCodeOfConduct: false,
-      agreeToCommitments: false,
-      agreeToBeingRecorded: false,
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -76,15 +73,7 @@ const Form = props => {
         </Cell>
       </FormGrid>
       <FormRule />
-      <FormSubmit
-        color="dark"
-        backgroundColor="white"
-        borderColor="gray"
-        label="Preview your Profile"
-        width="22.5rem"
-        height="6.32rem"
-        isSubmit
-      />
+      <FormSubmit />
     </form>
   );
 };

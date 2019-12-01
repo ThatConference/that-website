@@ -30,7 +30,6 @@ const StyledFormSubmit = styled(SquareButton)`
 
 export const FormInputValidationMessage = styled.div`
   font-size: 1.2rem;
-  min-height: 2.4rem;
   color: ${({ theme }) => theme.colors.danger};
 `;
 
