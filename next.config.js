@@ -10,6 +10,11 @@ const sourceMaps = nextSourceMaps({
       }),
     );
 
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
+
     if (!isServer) {
       // eslint-disable-next-line no-param-reassign
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
@@ -20,6 +25,7 @@ const sourceMaps = nextSourceMaps({
 });
 
 module.exports = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   env: {
     API_GATEWAY: 'https://us-central1-all-that.cloudfunctions.net/graphGateway',
     WI_PROSPECTUS_URL:
