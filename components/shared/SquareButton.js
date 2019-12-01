@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Icon from './Icon';
 import * as gtag from '../../lib/gtag';
 
-const SquareButton = ({ className, icon, iconClass, onClick }) => {
+const SquareButton = props => {
   const clickTracking = label => {
     gtag.event({
       clientWindow: window,
@@ -11,15 +11,20 @@ const SquareButton = ({ className, icon, iconClass, onClick }) => {
       category: 'square button',
       label,
     });
-    onClick();
+    props.onClick();
   };
 
   return (
     <button
-      className={className}
-      onClick={() => clickTracking(`${icon} - ${iconClass}`)}
+      className={props.className}
+      color={props.color}
+      backgroundcolor={props.backgroundColor}
+      bordercolor={props.borderColor}
+      onClick={() => clickTracking(`${props.icon} - ${props.iconClass}`)}
+      type={props.isSubmit ? 'submit' : 'button'}
     >
-      {icon && <Icon icon={icon} className={iconClass} />}
+      {props.label && <p>{props.label}</p>}
+      {props.icon && <Icon icon={props.icon} className={props.iconClass} />}
     </button>
   );
 };
@@ -29,11 +34,14 @@ SquareButton.defaultProps = {
 };
 
 export default styled(SquareButton)`
-  width: 4rem;
-  height: 4rem;
-  background-color: ${({ theme }) => theme.colors.thatBlue};
-  border: none;
-  color: ${({ theme }) => theme.colors.fonts.light};
+  width: ${({ width }) => width || '4rem'};
+  height: ${({ height }) => height || '4rem'};
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor ? theme.colors[backgroundColor] : theme.colors.thatBlue};
+  border: ${({ borderColor, theme }) =>
+    borderColor ? `2px solid ${theme.colors[borderColor]}` : 'none'};
+  color: ${({ color, theme }) =>
+    color ? theme.colors.fonts[color] : theme.colors.fonts.light};
   margin: 0.2rem;
   padding: 0;
 

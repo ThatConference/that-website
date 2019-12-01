@@ -7,6 +7,11 @@ const size = {
   large: 1140,
 };
 
+export const gridRepeat = {
+  xxsmall: 'repeat(auto-fit,minmax(175px,1fr))',
+  xsmall: 'repeat(auto-fit,minmax(400px,1fr))',
+};
+
 export const above = Object.keys(size).reduce((acc, label) => {
   acc[label] = (...args) => css`
     @media (min-width: ${size[label] / 16}em) {

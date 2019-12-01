@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { gridRepeat, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const CAMPERS = [
   {
@@ -70,22 +70,8 @@ const CAMPERS = [
   },
 ];
 
-const ProfileRow = styled.div`
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
 const TitleRow = styled.div`
-  display: flex;
-  flex-direction: row;
   padding-bottom: 2rem;
-  align-items: center;
-
-  ${below.small`
-    flex-direction: column;
-  `};
 `;
 
 const Header = styled.h3`
@@ -117,19 +103,20 @@ const MeetCampers = ({ className }) => {
           />
         </div>
       </TitleRow>
-      <ProfileRow>
-        {CAMPERS.map((item, index) => {
+      <Grid columns={gridRepeat.xxsmall} alignContent="center">
+        {CAMPERS.map(item => {
           return (
-            <ProfileItem
-              imageUrl={item.imageUrl}
-              size="100"
-              titleSize="1.4"
-              name={item.name}
-              key={index}
-            />
+            <Cell key={item.name}>
+              <ProfileItem
+                imageUrl={item.imageUrl}
+                titleSize="1.4"
+                size="100"
+                name={item.name}
+              />
+            </Cell>
           );
         })}
-      </ProfileRow>
+      </Grid>
     </ContentSection>
   );
 };
