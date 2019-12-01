@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const ProfileRow = styled.div`
   display: flex;
@@ -22,15 +21,27 @@ const ProfileRow = styled.div`
 const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-bottom: 2rem;
 
   ${below.small`
     flex-direction: column;
+    align-items: stretch;
+  `};
+`;
+
+const SpeakersLink = styled(LinkButton)`
+  ${above.small`
+    margin-top: auto;
   `};
 `;
 
 const Header = styled.h3`
   width: 50vw;
+
+  ${below.small`
+    width: auto;
+  `};
 `;
 
 const SpeakerHighlight = ({ className }) => {
@@ -40,14 +51,12 @@ const SpeakerHighlight = ({ className }) => {
         <Header>
           Find Inspiration From Hallway Conversations or Industry Leaders
         </Header>
-        <div style={{ display: 'flex' }}>
-          <LinkButton
-            href={DEFAULT_WIP_PAGE}
-            label="Meet The Counselors"
-            color="thatBlue"
-            borderColor="thatBlue"
-          />
-        </div>
+        <SpeakersLink
+          href={DEFAULT_WIP_PAGE}
+          label="Meet The Speakers"
+          color="thatBlue"
+          borderColor="thatBlue"
+        />
       </TitleRow>
       <ProfileRow>
         <ProfileItem

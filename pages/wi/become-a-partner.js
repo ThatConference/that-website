@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { below } from '../../utilities/breakpoint';
 
 import ContentSection from '../../components/shared/ContentSection';
-import ActionButton from '../../components/shared/LinkButton';
+import LinkButton from '../../components/shared/LinkButton';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 
 const PartnerH3 = styled.h3`
@@ -13,6 +13,7 @@ const PartnerH3 = styled.h3`
   margin-left: 0;
 `;
 
+// TODO: Only enable left margin when two columns.
 const SasquatchCanoeImage = styled.img`
   width: 100%;
   margin-left: 50px;
@@ -21,13 +22,9 @@ const SasquatchCanoeImage = styled.img`
     margin-left: 0;
     width: 90%;
   `};
-`;
 
-const GetTheProspectusButton = styled(ActionButton)`
-  margin-left: 0;
-
-  ${below.small`
-    margin: 25px auto;
+  ${below.med`
+    margin-top: 2rem;
   `};
 `;
 
@@ -107,16 +104,14 @@ const becomeAPartner = props => (
               and career advancements.
             </span>
           </div>
-          <div>
-            <GetTheProspectusButton
-              href="/wi/become-a-partner#more-info"
-              borderColor="white"
-              color="white"
-              backgroundColor="primary"
-              label="Get the Prospectus"
-              className="float-left"
-            />
-          </div>
+          <LinkButton
+            href="/wi/become-a-partner#more-info"
+            borderColor="white"
+            color="white"
+            backgroundColor="primary"
+            label="Get the Prospectus"
+            className="float-left"
+          />
         </Cell>
         <Cell style={{ textAlign: 'center' }}>
           <div>
