@@ -4,6 +4,8 @@ import { Cell } from 'styled-css-grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import RegularExpressions from '../../utilities/validation';
+
 import ContentSection from '../../components/shared/ContentSection';
 import FormInput from '../../components/shared/FormInput';
 import {
@@ -18,14 +20,13 @@ const Heading = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const form = props => {
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
+const Form = props => {
   const formik = useFormik({
     initialValues: {
       fullName: '',
       emailAddress: '',
       mobilePhone: '',
+      interests: '',
       agreeToCodeOfConduct: false,
       agreeToCommitments: false,
       agreeToBeingRecorded: false,
@@ -38,9 +39,12 @@ const form = props => {
         .email('Invalid email address')
         .required('Required'),
       mobilePhone: Yup.string().matches(
-        phoneRegExp,
+        RegularExpressions.phoneRegExp,
         'Phone number is not valid',
       ),
+      interests: Yup.string()
+        .required('Required')
+        .max(20, 'Must be less than 21 characters'),
       agreeToCodeOfConduct: Yup.bool().oneOf(
         [true],
         'Must agree to the Code of Conduct',
@@ -88,12 +92,22 @@ const form = props => {
                 label="Mobile Phone"
               />
             </Cell>
+            <Cell width={2}>
+              <FormInput
+                inputType="textarea"
+                fieldName="interests"
+                formikForm={formik}
+                label="Interests"
+                helpText="Maximum of 12 interests.  Type a comma between each interest."
+              />
+            </Cell>
+            <Cell width={2} />
             <Cell>
               <div>
                 <FormInput
                   fieldName="agreeToCodeOfConduct"
                   formikForm={formik}
-                  label="Agree to Code of Conduct"
+                  label="Agree to <a href=''>Code of Conduct</a>"
                   inputType="checkbox"
                 />
               </div>
@@ -116,19 +130,11 @@ const form = props => {
             </Cell>
           </FormGrid>
           <FormRule />
-          <FormSubmit
-            color="dark"
-            backgroundColor="white"
-            borderColor="gray"
-            label="Submit"
-            width="22.5rem"
-            height="6.32rem"
-            isSubmit
-          />
+          <FormSubmit />
         </form>
       </ContentSection>
     </Main>
   );
 };
 
-export default form;
+export default Form;
