@@ -7,10 +7,8 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import SubmissionsStepper from '../../components/shared/Counselor/SubmissionStepper';
 
-import Header from '../../components/CounselorAgreement/Header';
-import Commitments from '../../components/CounselorAgreement/Commitments';
-import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
-import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
+import Header from '../../components/CounselorProfile/Header';
+import Profile from '../../components/CounselorProfile/Form';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -25,41 +23,25 @@ const MainGrid = styled(Grid)`
     font-weight: 100;
     margin-bottom: 1rem;
   }
-
-  ul {
-    list-style: none;
-    padding-inline-start: 2rem;
-  }
-
-  ul li::before {
-    content: '\\2022';
-    color: red;
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-  }
 `;
 
 const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = props => {
+const CallForSpeakers = props => {
   return (
     <div>
       <Head>
-        <title key="title">Counselor Selection Process - THAT Conference</title>
+        <title key="title">Counselor Profile - THAT Conference</title>
       </Head>
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <SubmissionsStepper currentStep="0" />
+            <SubmissionsStepper currentStep="1" />
             <Header />
-            <Commitments />
-            <WhatsProvided />
-            <Acknowledgment />
+            <Profile />
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -68,4 +50,4 @@ const CounselorAgreement = props => {
   );
 };
 
-export default CounselorAgreement;
+export default CallForSpeakers;

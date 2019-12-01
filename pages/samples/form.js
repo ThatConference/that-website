@@ -4,6 +4,8 @@ import { Cell } from 'styled-css-grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import RegularExpressions from '../../utilities/validations';
+
 import ContentSection from '../../components/shared/ContentSection';
 import FormInput from '../../components/shared/FormInput';
 import {
@@ -19,8 +21,6 @@ const Heading = styled.h2`
 `;
 
 const form = props => {
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
   const formik = useFormik({
     initialValues: {
       fullName: '',
@@ -38,7 +38,7 @@ const form = props => {
         .email('Invalid email address')
         .required('Required'),
       mobilePhone: Yup.string().matches(
-        phoneRegExp,
+        RegularExpressions.phoneRegExp,
         'Phone number is not valid',
       ),
       agreeToCodeOfConduct: Yup.bool().oneOf(

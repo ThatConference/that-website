@@ -27,7 +27,9 @@ const Achknowledgment = props => {
       are18OrOlder: Yup.bool(),
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      // TODO: Persist the things
+      window.location = 'counselor-profile';
     },
   });
 
