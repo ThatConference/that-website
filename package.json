@@ -40,7 +40,6 @@
     "react-dom": "^16.10.2",
     "react-facebook": "^8.0.4",
     "react-scroll-parallax": "^2.2.0",
-    "react-simplemde-editor": "^4.1.0",
     "sentry-testkit": "^3.0.2",
     "styled-components": "^4.4.0",
     "styled-components-modifiers": "^1.2.5",
@@ -68,8 +67,7 @@
     "fslightbox-react": "^1.4.2",
     "jest": "^24.9.0",
     "now": "^16.3.1",
-    "prettier-eslint": "^9.0.0",
-    "styled-jsx-css-loader": "^0.3.0"
+    "prettier-eslint": "^9.0.0"
   },
   "name": "that-website",
   "author": "that conference",

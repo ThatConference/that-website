@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Cell } from 'styled-css-grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import SimpleMDE from 'react-simplemde-editor';
-// import 'easymde/dist/easymde.min.css';
 
 import RegularExpressions from '../../utilities/validation';
 
@@ -61,7 +59,6 @@ const Form = props => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  const handleChange = () => {};
   return (
     <Main>
       <ContentSection forForm>
@@ -104,9 +101,7 @@ const Form = props => {
                 helpText="Maximum of 12 interests.  Type a comma between each interest."
               />
             </Cell>
-            <Cell width={2}>
-              <SimpleMDE onChange={handleChange} />;
-            </Cell>
+            <Cell width={2} />
             <Cell>
               <div>
                 <FormInput
