@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
-import { below } from '../../utilities';
+import { below, above } from '../../utilities';
 
 const HighlightImage = styled.img`
   width: 100%;
@@ -67,11 +67,14 @@ const TextBlock = styled.div`
 
   ${below.med`
     flex-direction: column;
+    align-items: stretch;
   `};
 `;
 
-const ActionButton = styled(LinkButton)`
-  margin: 0 0 0 2rem;
+const PartnerUpLink = styled(LinkButton)`
+  ${above.med`
+    margin: 0 0 0 2rem;
+  `}
 `;
 
 const SponsorHighlight = ({ className, eventSlug }) => {
@@ -99,9 +102,10 @@ const SponsorHighlight = ({ className, eventSlug }) => {
               We partner with industry leading organizations and companies that
               are looking to connect with software developers and practitioners.
             </p>
-            <ActionButton
+            <PartnerUpLink
               href={`${eventSlug}/become-a-partner`}
               label="Let's Partner Up"
+              className="stretch-sm"
             />
           </TextBlock>
         </SideDetail>
