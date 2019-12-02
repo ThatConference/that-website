@@ -15,6 +15,22 @@ const Form = props => {
       fullName: '',
       emailAddress: '',
       mobilePhone: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: '',
+      company: '',
+      title: '',
+      website: '',
+      github: '',
+      twitter: '',
+      facebook: '',
+      instagram: '',
+      linkedIn: '',
+      slack: '',
+      bio: '',
+      shortLifeHack: '',
+      interests: '',
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -29,6 +45,22 @@ const Form = props => {
       ),
       showEmailAddressOnProfile: Yup.bool(),
       showMobilePhoneOnProfile: Yup.bool(),
+      city: Yup.string(),
+      state: Yup.string(),
+      country: Yup.string(),
+      company: Yup.string(),
+      title: Yup.string(),
+      website: Yup.string().url('Invalid URL'),
+      twitter: Yup.string(),
+      facebook: Yup.string().url('Invalid URL'),
+      github: Yup.string().url('Invalid URL'),
+      instagram: Yup.string(),
+      linkedIn: Yup.string().url('Invalid URL'),
+      slack: Yup.string(),
+      showSlackOnProfile: Yup.bool(),
+      bio: Yup.string().required('Required'),
+      shortLifeHack: Yup.string(),
+      interests: Yup.string(),
     }),
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
@@ -66,6 +98,80 @@ const Form = props => {
           />
           <FormInput
             fieldName="showMobilePhoneOnProfile"
+            formikForm={formik}
+            label="Show on my profile"
+            inputType="checkbox"
+          />
+        </Cell>
+        <Cell>
+          <FormInput fieldName="city" formikForm={formik} label="City" />
+        </Cell>
+        <Cell>
+          <FormGrid columns={2}>
+            <Cell>
+              <FormInput fieldName="state" formikForm={formik} label="State" />
+            </Cell>
+            <Cell>
+              <FormInput
+                fieldName="country"
+                formikForm={formik}
+                label="Country"
+              />
+            </Cell>
+          </FormGrid>
+        </Cell>
+        <Cell>
+          <FormInput fieldName="company" formikForm={formik} label="Company" />
+        </Cell>
+        <Cell>
+          <FormInput fieldName="title" formikForm={formik} label="Title" />
+        </Cell>
+        <Cell>
+          <FormInput fieldName="website" formikForm={formik} label="Website" />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="twitter"
+            formikForm={formik}
+            label="Twitter username"
+          />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="github"
+            formikForm={formik}
+            label="GitHub URL"
+          />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="facebook"
+            formikForm={formik}
+            label="Facebook URL"
+          />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="instagram"
+            formikForm={formik}
+            label="Instagram Handle"
+          />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="linkedIn"
+            formikForm={formik}
+            label="LinkedIn"
+          />
+        </Cell>
+        <Cell>
+          <FormInput
+            fieldName="slack"
+            formikForm={formik}
+            label="Slack Member ID"
+          />
+          <FormInput
+            fieldName="showSlackOnProfile"
             formikForm={formik}
             label="Show on my profile"
             inputType="checkbox"
