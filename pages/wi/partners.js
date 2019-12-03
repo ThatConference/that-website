@@ -32,7 +32,7 @@ const Header = styled.h1`
 const RobotImage = styled.img`
   height: 50rem;
   float: right;
-  margin-top: -20rem;
+  margin-top: -10rem;
   margin-right: 3.5rem;
 
   ${below.med`
@@ -75,12 +75,6 @@ const Image = styled.img`
   max-width: ${({ maxWidth }) => maxWidth};
 `;
 
-const BecomeAPartner = styled.div`
-  display: flex;
-  text-align: left;
-  margin-top: 2rem;
-`;
-
 const renderPartner = (
   partner,
   containerWidth,
@@ -118,14 +112,12 @@ const partnerListing = props => {
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
             <Header>2019 Sponsors & Partners</Header>
-            <BecomeAPartner>
-              <LinkButton
-                href="/wi/become-a-partner"
-                label="Become a Partner"
-                color="thatBlue"
-                borderColor="thatBlue"
-              />
-            </BecomeAPartner>
+            <LinkButton
+              href="/wi/become-a-partner"
+              label="Become a Partner"
+              color="thatBlue"
+              borderColor="thatBlue"
+            />
             <RobotImage src="/images/robot.png" />
           </Cell>
           <Cell>
