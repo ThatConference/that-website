@@ -35,7 +35,16 @@ const Description = styled.p`
 
 const ActionButtons = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: left;
+
+  a {
+    margin-left: 0;
+    float: left;
+  }
+
+  a:first-child {
+    margin-right: 2rem;
+  }
 
   ${below[twoColBp]`
     padding-bottom: 3rem;
