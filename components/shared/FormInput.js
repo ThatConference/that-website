@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
+import MarkdownEditor from './MarkdownEditor';
 
 const inputTypes = {
   checkbox: 'checkbox',
   text: 'text',
   textarea: 'textarea',
+  markdown: 'markdown',
 };
 
 const sharedInputStyles = css`
@@ -72,6 +74,7 @@ const FormInput = props => {
   const fieldProps = formikForm.getFieldProps(fieldName);
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
+  const isMarkdown = inputType && inputType === inputType.markdown;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
   const fieldInvalid =
     formikForm.touched[fieldName] && formikForm.errors[fieldName];

@@ -52,6 +52,12 @@ export default styled(SquareButton)`
     cursor: pointer;
   }
 
+  p {
+    margin: 0;
+    color: ${({ color, theme }) =>
+      color ? theme.colors.fonts[color] : theme.colors.fonts.light};
+  }
+
   svg {
     fill: ${({ theme }) => theme.colors.fonts.light};
   }

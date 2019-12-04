@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import RegularExpressions from '../../utilities/validation';
 
+import MarkdownEditor from '../../components/shared/MarkdownEditor';
 import ContentSection from '../../components/shared/ContentSection';
 import FormInput from '../../components/shared/FormInput';
 import {
@@ -59,6 +60,7 @@ const Form = props => {
       alert(JSON.stringify(values, null, 2));
     },
   });
+  console.log(formik);
   return (
     <Main>
       <ContentSection forForm>
@@ -101,7 +103,9 @@ const Form = props => {
                 helpText="Maximum of 12 interests.  Type a comma between each interest."
               />
             </Cell>
-            <Cell width={2} />
+            <Cell width={2}>
+              <MarkdownEditor />
+            </Cell>
             <Cell>
               <div>
                 <FormInput
