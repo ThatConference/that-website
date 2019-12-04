@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 
 import RegularExpressions from '../../utilities/validation';
 
-import MarkdownEditor from '../../components/shared/MarkdownEditor';
 import ContentSection from '../../components/shared/ContentSection';
 import FormInput from '../../components/shared/FormInput';
 import {
@@ -28,6 +27,7 @@ const Form = props => {
       emailAddress: '',
       mobilePhone: '',
       interests: '',
+      bio: '',
       agreeToCodeOfConduct: false,
       agreeToCommitments: false,
       agreeToBeingRecorded: false,
@@ -46,6 +46,7 @@ const Form = props => {
       interests: Yup.string()
         .required('Required')
         .max(20, 'Must be less than 21 characters'),
+      bio: Yup.string().required('Required'),
       agreeToCodeOfConduct: Yup.bool().oneOf(
         [true],
         'Must agree to the Code of Conduct',
@@ -60,7 +61,6 @@ const Form = props => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-  console.log(formik);
   return (
     <Main>
       <ContentSection forForm>
@@ -70,7 +70,7 @@ const Form = props => {
         </span>
       </ContentSection>
       <ContentSection forForm>
-        <form onSubmit={formik.handleSubmit}>
+        <form className="input-form" onSubmit={formik.handleSubmit}>
           <FormGrid columns={2}>
             <Cell>
               <FormInput
@@ -104,7 +104,12 @@ const Form = props => {
               />
             </Cell>
             <Cell width={2}>
-              <MarkdownEditor />
+              <FormInput
+                inputType="markdown"
+                fieldName="bio"
+                formikForm={formik}
+                label="Bio"
+              />
             </Cell>
             <Cell>
               <div>

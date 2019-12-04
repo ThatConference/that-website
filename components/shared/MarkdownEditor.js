@@ -3,15 +3,16 @@ import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 
 import SquareButton from './SquareButton';
+import Icon from './Icon';
 
 const MarkdownIt = require('markdown-it');
 
 const Toggler = styled(SquareButton)`
   float: right;
   margin-bottom: 0.25rem;
+  width: 7rem;
+  height: 3rem;
 `;
-
-const Container = styled.div``;
 
 const shared = css`
   border: 1px solid ${({ theme }) => theme.colors.mediumGray};
@@ -33,50 +34,65 @@ const Preview = styled.div`
   min-height: 20rem;
 `;
 
-export default class MarkdownEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.converter = new MarkdownIt();
-    this.state = {
-      markdown: '',
-      preview: '',
-      state: 'edit',
-    };
-    this.handleMarkdownChange = this.handleMarkdownChange.bind(this);
-    this.handleStateToggle = this.handleStateToggle.bind(this);
-  }
+const MarkdownNote = styled.p`
+  margin: 0;
+  float: right;
+  margin-top: -1rem;
+  font-size: 1.2rem;
+`;
 
-  handleStateToggle() {
-    const { state } = this.state;
-    if (state === 'edit') {
-      this.setState({ state: 'preview' });
-    } else {
-      this.setState({ state: 'edit' });
-    }
-  }
+const converter = new MarkdownIt();
+let formik;
+let fieldName;
+let invalid = false;
+let markdown = '';
+let preview = '';
+let state = 'edit';
 
-  handleMarkdownChange(event) {
-    const markdown = event.target.value;
-    const preview = this.converter.render(markdown);
-    this.setState({ preview, markdown });
+const handleStateToggle = () => {
+  if (state === 'edit') {
+    preview = converter.render(markdown);
+    state = 'preview';
+  } else {
+    state = 'edit';
   }
+  formik.setFieldTouched(fieldName, true);
+};
 
-  render() {
-    const { state, markdown, preview } = this.state;
-    return (
-      <Container>
-        <Toggler
-          color="light"
-          backgroundColor="thatBlue"
-          label={state === 'edit' ? 'Preview' : 'Edit'}
-          onClick={this.handleStateToggle}
-          width="15rem"
-        />
-        {state === 'edit' && (
-          <TextArea value={markdown} onChange={this.handleMarkdownChange} />
-        )}
-        {state === 'preview' && <Preview>{parse(preview)}</Preview>}
-      </Container>
-    );
-  }
-}
+const handleMarkdownChange = event => {
+  markdown = event.target.value;
+  formik.setFieldTouched(fieldName, true);
+  formik.setFieldValue(fieldName, markdown, true);
+  invalid = !markdown || markdown === '';
+};
+
+const MarkdownEditor = ({ formikForm, field }) => {
+  formik = formikForm;
+  fieldName = field;
+  return (
+    <>
+      <Toggler
+        color="light"
+        backgroundColor="thatBlue"
+        label={state === 'edit' ? 'Preview' : 'Edit'}
+        onClick={handleStateToggle}
+        width="15rem"
+      />
+      {state === 'edit' && (
+        <>
+          <TextArea
+            value={markdown}
+            onChange={handleMarkdownChange}
+            name={field}
+            id={field}
+            className={invalid ? 'invalid' : ''}
+          />
+          <MarkdownNote>*Markdown supported</MarkdownNote>
+        </>
+      )}
+      {state === 'preview' && <Preview>{parse(preview)}</Preview>}
+    </>
+  );
+};
+
+export default MarkdownEditor;
