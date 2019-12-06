@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
+import { Grid } from 'styled-css-grid';
 
 import SquareButton from './SquareButton';
 

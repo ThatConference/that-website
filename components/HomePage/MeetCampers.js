@@ -78,12 +78,6 @@ const Header = styled.h3`
   width: 50vw;
 `;
 
-const HeaderButton = styled(LinkButton)`
-  button {
-    margin-top: 0;
-  }
-`;
-
 const MeetCampers = ({ className }) => {
   return (
     <ContentSection

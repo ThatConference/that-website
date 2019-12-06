@@ -98,6 +98,14 @@ const Title = styled.p`
   color: ${({ theme }) => theme.colors.fonts.dark};
 `;
 
+const getHostName = website => {
+  let hostName = new URL(website).hostname;
+  if (hostName.toLowerCase().startsWith('www.')) {
+    hostName = hostName.replace('www.', '');
+  }
+  return hostName;
+};
+
 const LogoWithInfo = ({ partner, justification }) => {
   return (
     <>
@@ -194,14 +202,6 @@ const PartnerSocials = ({ partner, justification }) => {
       )}
     </PartnerSocialsContainer>
   );
-};
-
-const getHostName = website => {
-  let hostName = new URL(website).hostname;
-  if (hostName.toLowerCase().startsWith('www.')) {
-    hostName = hostName.replace('www.', '');
-  }
-  return hostName;
 };
 
 const MainLogoSection = ({ partner }) => {

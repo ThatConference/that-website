@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Icon from './Icon';
@@ -87,13 +87,13 @@ const SocialLinks = ({ className, flexDirection }) => {
 
   return (
     <SocialLinksContainer className={className} rowOrColumn={rowOrColumn}>
-      {SOCIALS.map((item, index) => {
+      {SOCIALS.map(item => {
         return (
           <a
             href={item.href}
             target="_blank"
             rel="noreferrer noopener"
-            key={index}
+            key={item.icon.name}
             onClick={() => clickTracking(item.icon.name)}
           >
             <Icon

@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import RoundImage from './RoundImage';
 
-import { below } from '../../utilities';
-
 const Name = styled.p`
   font-weight: 600;
   padding-bottom: 0.5rem;

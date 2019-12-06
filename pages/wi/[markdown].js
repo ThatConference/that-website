@@ -76,7 +76,7 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   );
 };
 
-RenderedMarkdown.getInitialProps = async function(context) {
+RenderedMarkdown.getInitialProps = async context => {
   const slug = context.query.markdown;
 
   try {
