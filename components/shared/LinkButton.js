@@ -31,26 +31,33 @@ const OutlineLink = styled.a`
   }
 `;
 
-const LinkButton = props => {
-  const clickTracking = e => {
+const LinkButton = ({
+  href,
+  color,
+  className,
+  borderColor,
+  backgroundColor,
+  label,
+}) => {
+  const clickTracking = () => {
     gtag.event({
       clientWindow: window,
       action: 'click',
       category: 'link button',
-      label: props.label,
+      label,
     });
   };
 
   return (
     <OutlineLink
-      href={props.href}
+      href={href}
       onClick={clickTracking}
-      color={props.color}
-      className={props.className}
-      borderColor={props.borderColor}
-      backgroundColor={props.backgroundColor}
+      color={color}
+      className={className}
+      borderColor={borderColor}
+      backgroundColor={backgroundColor}
     >
-      <p>{props.label}</p>
+      <p>{label}</p>
     </OutlineLink>
   );
 };

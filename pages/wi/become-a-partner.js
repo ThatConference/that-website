@@ -9,14 +9,14 @@ import LinkButton from '../../components/shared/LinkButton';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 
 const PartnerH3 = styled.h3`
-  margin-bottom: 25px;
+  margin-bottom: 2.5rem;
   margin-left: 0;
 `;
 
 // TODO: Only enable left margin when two columns.
 const SasquatchCanoeImage = styled.img`
   width: 100%;
-  margin-left: 50px;
+  margin-left: 5rem;
 
   ${below.small`
     margin-left: 0;
@@ -29,22 +29,22 @@ const SasquatchCanoeImage = styled.img`
 `;
 
 const SasquatchStandingImage = styled.img`
-  height: 500px;
+  height: 50rem;
 `;
 
 const SasquatchCloseUpCanoeImage = styled.img`
-  margin-top: 50px;
-  height: 300px;
+  margin-top: 5rem;
+  height: 30rem;
 
   ${below.large`
-    height: 200px;
+    height: 20rem;
   `};
 `;
 
 const NeedInfoH4 = styled.h4`
   margin-bottom: 0;
-  margin-top: 60px;
-  margin-left: 20px;
+  margin-top: 6rem;
+  margin-left: 2rem;
 `;
 
 class ScriptInjector extends Component {
@@ -62,16 +62,16 @@ class ScriptInjector extends Component {
   }
 }
 
-const becomeAPartner = props => (
+const becomeAPartner = () => (
   <div>
     <Head>
       <title key="title">Become a Partner - THAT Conference</title>
     </Head>
 
     <ContentSection>
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         <Cell>
-          <h1 style={{ marginTop: 0, marginRight: '100px' }}>
+          <h1 style={{ marginTop: 0, marginRight: '10rem' }}>
             Become a Camp Partner
           </h1>
         </Cell>
@@ -88,7 +88,7 @@ const becomeAPartner = props => (
     </ContentSection>
 
     <ContentSection backgroundColor="primary" fontColor="light" hasTrees="true">
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         <Cell>
           <div>
             <PartnerH3 style={{ color: 'white' }}>
@@ -126,7 +126,7 @@ const becomeAPartner = props => (
     <ContentSection>
       <p
         className="centered-text large-body-copy"
-        style={{ margin: 'auto', maxWidth: '850px', lineHeight: 1.4 }}
+        style={{ margin: 'auto', maxWidth: '85rem', lineHeight: 1.4 }}
       >
         Whether Your Focus Is On The Professional Or Family Side, We Look For
         Interactive Partners Who Want To Create A Unique Experience While Having
@@ -135,13 +135,13 @@ const becomeAPartner = props => (
     </ContentSection>
 
     <ContentSection>
-      <div style={{ marginBottom: '70px' }}>
-        <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <div style={{ marginBottom: '7rem' }}>
+        <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell centered>
             <SasquatchStandingImage src="/images/sasquatch_with_badge.png" />
           </Cell>
           <Cell>
-            <div style={{ maxWidth: '650px' }}>
+            <div style={{ maxWidth: '65rem' }}>
               <PartnerH3 className="font-dark">
                 Enabling Meaningful Interaction
               </PartnerH3>
@@ -161,7 +161,7 @@ const becomeAPartner = props => (
     </ContentSection>
 
     <ContentSection backgroundColor="primary" fontColor="light" id="more-info">
-      <Grid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         <Cell>
           <div>
             <PartnerH3 style={{ color: 'white' }}>Get The Prospectus</PartnerH3>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 import SocialLinks from '../shared/SocialLinks';
 
 const Copyright = styled.p`

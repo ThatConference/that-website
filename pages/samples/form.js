@@ -20,7 +20,7 @@ const Heading = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const Form = props => {
+const Form = () => {
   const formik = useFormik({
     initialValues: {
       fullName: '',
@@ -56,6 +56,7 @@ const Form = props => {
       agreeToBeingRecorded: Yup.bool(),
     }),
     onSubmit: values => {
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     },
   });

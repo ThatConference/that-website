@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from './ContentSection';
 
 const CenteredDiv = styled.div`
@@ -45,7 +44,7 @@ const WhatToExpect = ({ className }) => {
         className="font-dark"
         style={{ textAlign: 'center', paddingBottom: '2rem' }}
       >
-        Here's What You Can Expect At That Conference
+        Here&apos;s What You Can Expect At That Conference
       </h3>
       <HighlightBlock>
         <WhatToExpectSection

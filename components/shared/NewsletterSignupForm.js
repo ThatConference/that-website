@@ -58,12 +58,13 @@ class NewsletterSignUpForm extends Component {
       body: data,
       mode: 'no-cors',
     })
-      .then(response => {
+      .then(() => {
         this.setState({ formSubmitted: true });
         setTimeout(() => {
           this.setState({ formSubmitted: false });
         }, 5000);
       })
+      // eslint-disable-next-line no-console
       .catch(error => console.log('Request failed', error));
   }
 

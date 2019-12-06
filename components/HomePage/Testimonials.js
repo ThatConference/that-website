@@ -82,7 +82,7 @@ const Testimonials = ({ className }) => {
         </Cell>
         <Cell style={{ direction: 'ltr' }}>
           <Detail>
-            <Quotation>"</Quotation>
+            <Quotation>&quot;</Quotation>
             <Quote dangerouslySetInnerHTML={{ __html: testimonial.quote }} />
             {testimonial.name && <Name>{testimonial.name}</Name>}
             {testimonial.role && <Role>{testimonial.role}</Role>}
