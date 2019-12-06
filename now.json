@@ -1,9 +1,9 @@
 {
   "version": 2,
   "name": "THATConference.com",
-  "env": {
-    "SENTRY_DSN": "@sentry_dsn"
-  },
-  "builds": [{ "src": "package.json", "use": "@now/next" }],
-  "routes": [{ "src": "/(.*)", "dest": "/$1" }]
+  "build": {
+    "env": {
+      "SENTRY_DSN": "@sentry_dsn"
+    }
+  }
 }
