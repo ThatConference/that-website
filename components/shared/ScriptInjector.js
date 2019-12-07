@@ -4,21 +4,23 @@ class ScriptInjector extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // eslint-disable-next-line react/no-unused-state
       script: '',
     };
   }
 
   componentDidMount() {
-    const script = document.createElement('script');
+    const scriptElement = document.createElement('script');
+    const { script } = this.props;
+    scriptElement.src = script;
+    scriptElement.async = true;
 
-    script.src = this.props.script;
-    script.async = true;
-
-    document.body.appendChild(script);
+    document.body.appendChild(scriptElement);
   }
 
   render() {
-    return <div className={this.props.formClass} />;
+    const { formClass } = this.props;
+    return <div className={formClass} />;
   }
 }
 

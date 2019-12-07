@@ -88,6 +88,7 @@ const renderPartner = (
       key={partner.id}
     >
       <Link href="/wi/partner/[slug]" as={`/wi/partner/${partner.slug}`}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
             maxWidth={imageMaxWidth}
@@ -100,7 +101,7 @@ const renderPartner = (
   );
 };
 
-const partnerListing = props => {
+const partnerListing = () => {
   const { loading, error, data } = useQuery(GET_PARTNERS);
 
   if (loading) return null;
@@ -138,6 +139,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -148,6 +150,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -158,6 +161,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -168,6 +172,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -178,6 +183,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>

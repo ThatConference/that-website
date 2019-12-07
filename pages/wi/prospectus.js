@@ -2,7 +2,7 @@ import React from 'react';
 
 import redirect from '../../lib/redirect';
 
-const Prospectus = ({ res }) => {
+const Prospectus = () => {
   return <> </>;
 };
 
