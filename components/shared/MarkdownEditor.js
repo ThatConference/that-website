@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 
 import SquareButton from './SquareButton';
-import Icon from './Icon';
 
 const MarkdownIt = require('markdown-it');
 
@@ -46,18 +45,6 @@ let formik;
 let fieldName;
 let invalid = false;
 let markdown = '';
-let preview = '';
-let state = 'edit';
-
-const handleStateToggle = () => {
-  if (state === 'edit') {
-    preview = converter.render(markdown);
-    state = 'preview';
-  } else {
-    state = 'edit';
-  }
-  formik.setFieldTouched(fieldName, true);
-};
 
 const handleMarkdownChange = event => {
   markdown = event.target.value;
@@ -67,6 +54,7 @@ const handleMarkdownChange = event => {
 };
 
 const MarkdownEditor = ({ formikForm, field }) => {
+  const [displayPreview, setDisplayPreview] = useState(false);
   formik = formikForm;
   fieldName = field;
   return (
@@ -74,11 +62,14 @@ const MarkdownEditor = ({ formikForm, field }) => {
       <Toggler
         color="light"
         backgroundColor="thatBlue"
-        label={state === 'edit' ? 'Preview' : 'Edit'}
-        onClick={handleStateToggle}
+        label={displayPreview ? 'Edit' : 'Preview'}
+        onClick={() => {
+          setDisplayPreview(!displayPreview);
+          formik.setFieldTouched(fieldName, true);
+        }}
         width="15rem"
       />
-      {state === 'edit' && (
+      {!displayPreview && (
         <>
           <TextArea
             value={markdown}
@@ -90,7 +81,7 @@ const MarkdownEditor = ({ formikForm, field }) => {
           <MarkdownNote>*Markdown supported</MarkdownNote>
         </>
       )}
-      {state === 'preview' && <Preview>{parse(preview)}</Preview>}
+      {displayPreview && <Preview>{parse(converter.render(markdown))}</Preview>}
     </>
   );
 };
