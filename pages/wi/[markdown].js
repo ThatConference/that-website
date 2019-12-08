@@ -20,13 +20,18 @@ const GET_EVENT = gql`
       slogan
       startDate
       endDate
-      venue {
+      venues {
         id
         name
         address
         city
         state
         zip
+      }
+      milestones {
+        title
+        description
+        dueDate
       }
     }
   }
