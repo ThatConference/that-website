@@ -20,9 +20,9 @@ const sourceMaps = nextSourceMaps({
       exclude: /node_modules/,
       loader: 'eslint-loader',
       options: {
-          emitError: true,
-          failOnError: true,
-      }
+        emitError: true,
+        failOnError: true,
+      },
     });
 
     if (!isServer) {
