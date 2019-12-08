@@ -27,6 +27,7 @@ const Form = () => {
       emailAddress: '',
       mobilePhone: '',
       interests: '',
+      bio: '',
       agreeToCodeOfConduct: false,
       agreeToCommitments: false,
       agreeToBeingRecorded: false,
@@ -45,6 +46,7 @@ const Form = () => {
       interests: Yup.string()
         .required('Required')
         .max(20, 'Must be less than 21 characters'),
+      bio: Yup.string().required('Required'),
       agreeToCodeOfConduct: Yup.bool().oneOf(
         [true],
         'Must agree to the Code of Conduct',
@@ -69,7 +71,7 @@ const Form = () => {
         </span>
       </ContentSection>
       <ContentSection forForm>
-        <form onSubmit={formik.handleSubmit}>
+        <form className="input-form" onSubmit={formik.handleSubmit}>
           <FormGrid columns={2}>
             <Cell>
               <FormInput
@@ -102,7 +104,14 @@ const Form = () => {
                 helpText="Maximum of 12 interests.  Type a comma between each interest."
               />
             </Cell>
-            <Cell width={2} />
+            <Cell width={2}>
+              <FormInput
+                inputType="markdown"
+                fieldName="bio"
+                formikForm={formik}
+                label="Bio"
+              />
+            </Cell>
             <Cell>
               <div>
                 <FormInput

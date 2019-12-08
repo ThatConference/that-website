@@ -31,6 +31,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
+    "markdown-it": "^10.0.0",
     "markdown-to-jsx": "^6.10.3",
     "moment": "^2.24.0",
     "next": "^9.1.1",
@@ -82,8 +83,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/thatconference/that-website.git"
-    ,
+    "url": "https://github.com/thatconference/that-website.git",
     "husky": {
       "hooks": {
         "pre-push": "npm run validate"
