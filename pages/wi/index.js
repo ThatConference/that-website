@@ -22,7 +22,7 @@ const GET_EVENT = gql`
       slogan
       startDate
       endDate
-      venue {
+      venues {
         id
         name
         address
