@@ -9,6 +9,22 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below } from '../../utilities';
 
+router.onRouteChangeStart = () => {
+  nprogress.start();
+};
+
+router.onRouteChangeComplete = () => {
+  nprogress.done();
+};
+
+router.onRouteChangeError = () => {
+  nprogress.done();
+};
+
+const HeaderSection = styled(ContentSection)`
+  padding-bottom: 0.5rem;
+`;
+
 const PageHeader = styled.div`
   margin-top: 2rem;
   height: 10rem;
@@ -34,22 +50,6 @@ const ActionButton = styled(LinkButton)`
     display: none;
   `};
 `;
-
-const HeaderSection = styled(ContentSection)`
-  padding-bottom: 0.5rem;
-`;
-
-router.onRouteChangeStart = () => {
-  nprogress.start();
-};
-
-router.onRouteChangeComplete = () => {
-  nprogress.done();
-};
-
-router.onRouteChangeError = () => {
-  nprogress.done();
-};
 
 const Logo = () => {
   return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;

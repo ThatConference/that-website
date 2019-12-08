@@ -4,7 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from './ContentSection';
 import ImageContainer from './ImageContainer';
 
-import { gridRepeat, DEFAULT_WIP_PAGE } from '../../utilities';
+import { gridRepeat } from '../../utilities';
 
 const WhatToExpectImage = styled.img`
   max-width: 16rem;
@@ -30,9 +30,7 @@ const WhatToExpectSection = ({ src, title }) => {
     <StyledCell>
       <ImageContainer width="30rem" height="16rem" key="">
         <WhatToExpectImage src={src} />
-        <StyledTitle className="medium-body-copy">
-          {title}
-        </StyledTitle>
+        <StyledTitle className="medium-body-copy">{title}</StyledTitle>
       </ImageContainer>
     </StyledCell>
   );

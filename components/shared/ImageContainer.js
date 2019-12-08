@@ -12,12 +12,12 @@ const Container = styled.div`
   position: relative;
 `;
 
-const ImageContainer = ({ width, height , key, children, className }) => {
+const ImageContainer = ({ width, height, key, children, className }) => {
   return (
     <Container width={width} height={height} key={key} className={className}>
       {children}
     </Container>
-  )
+  );
 };
 
 export default ImageContainer;

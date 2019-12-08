@@ -12,6 +12,10 @@ const HighlightImage = styled.img`
   max-height: 40rem;
   height: 100%;
 
+  ${below.xlarge`
+    padding: 0;
+  `};
+
   ${below.small`
     max-height: 30rem;
   `};

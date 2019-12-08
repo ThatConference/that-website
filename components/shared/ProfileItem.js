@@ -32,7 +32,11 @@ const ProfileItem = ({
 
   return (
     <div className={className}>
-      <RoundImage imageUrl={imageUrl} size={size} showAccentLine={showAccentLine}/>
+      <RoundImage
+        imageUrl={imageUrl}
+        size={size}
+        showAccentLine={showAccentLine}
+      />
       <Name fontSize={baseFontSize}>{name}</Name>
       <Title fontSize={baseFontSize - 0.2}>{title}</Title>
       <Company fontSize={baseFontSize - 0.2}>{company}</Company>
