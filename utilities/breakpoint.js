@@ -5,11 +5,13 @@ const size = {
   small: 720,
   med: 960,
   large: 1140,
+  xlarge: 1500,
 };
 
 export const gridRepeat = {
   xxsmall: 'repeat(auto-fit,minmax(175px,1fr))',
-  xsmall: 'repeat(auto-fit,minmax(400px,1fr))',
+  xsmall: 'repeat(auto-fit,minmax(30rem,1fr))',
+  small: 'repeat(auto-fit,minmax(400px,1fr))',
 };
 
 export const above = Object.keys(size).reduce((acc, label) => {
