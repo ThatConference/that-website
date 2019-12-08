@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 import PageFooter from './PageFooter';
 import ContentSection from '../shared/ContentSection';
 import NewsletterSignUpForm from '../shared/NewsletterSignupForm';

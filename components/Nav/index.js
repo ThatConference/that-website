@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
-import { isAbsolute } from 'path';
+import React from 'react';
 
-import IconText from '../shared/IconText';
 import NavItem from './NavItem';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 
 const NavList = styled.div`
   display: flex;
@@ -20,26 +18,6 @@ const NavList = styled.div`
 const NavListItem = styled.div`
   text-align: right;
   padding-right: 2.5rem;
-`;
-
-const ButtonLink = styled.a`
-  padding: 1rem;
-  font-size: 1.7rem;
-  color: ${({ theme }) => theme.colors.highlight};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
-  }
-
-  svg {
-    height: 2rem;
-    fill: ${({ theme }) => theme.colors.highlight};
-    padding-right: 0.6rem;
-  }
-
-  ${above.med`
-    display: none;
-  `}
 `;
 
 const Nav = ({ className }) => {

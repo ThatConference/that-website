@@ -23,22 +23,30 @@ const Svg = styled.svg`
   }
 `;
 
-const Icon = props => {
+const Icon = ({
+  className,
+  onClick,
+  height,
+  width,
+  viewBoxHeight,
+  viewBoxWidth,
+  icon,
+}) => {
   return (
     <Svg
       role="img"
       xmlns="http://www.w3.org/2000/svg"
-      className={props.className}
-      onClick={props.onClick}
-      height={props.height}
-      width={props.width}
-      viewBox={`0 0 ${props.viewBoxHeight ||
-        props.height ||
-        '24'} ${props.viewBoxWidth || props.width || '24'}`}
+      className={className}
+      onClick={onClick}
+      height={height}
+      width={width}
+      viewBox={`0 0 ${viewBoxHeight || height || '24'} ${viewBoxWidth ||
+        width ||
+        '24'}`}
     >
-      <title>{svgs[props.icon].title}</title>
-      {svgs[props.icon].path.map((item, index) => {
-        return <path key={index} d={item} />;
+      <title>{svgs[icon].title}</title>
+      {svgs[icon].path.map(item => {
+        return <path key={item} d={item} />;
       })}
     </Svg>
   );

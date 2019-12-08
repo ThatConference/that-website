@@ -32,7 +32,7 @@ const Header = styled.h1`
 const RobotImage = styled.img`
   height: 50rem;
   float: right;
-  margin-top: -20rem;
+  margin-top: -10rem;
   margin-right: 3.5rem;
 
   ${below.med`
@@ -75,12 +75,6 @@ const Image = styled.img`
   max-width: ${({ maxWidth }) => maxWidth};
 `;
 
-const BecomeAPartner = styled.div`
-  display: flex;
-  text-align: left;
-  margin-top: 2rem;
-`;
-
 const renderPartner = (
   partner,
   containerWidth,
@@ -94,6 +88,7 @@ const renderPartner = (
       key={partner.id}
     >
       <Link href="/wi/partner/[slug]" as={`/wi/partner/${partner.slug}`}>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
             maxWidth={imageMaxWidth}
@@ -106,7 +101,7 @@ const renderPartner = (
   );
 };
 
-const partnerListing = props => {
+const partnerListing = () => {
   const { loading, error, data } = useQuery(GET_PARTNERS);
 
   if (loading) return null;
@@ -118,14 +113,12 @@ const partnerListing = props => {
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
             <Header>2019 Sponsors & Partners</Header>
-            <BecomeAPartner>
-              <LinkButton
-                href="/wi/become-a-partner"
-                label="Become a Partner"
-                color="thatBlue"
-                borderColor="thatBlue"
-              />
-            </BecomeAPartner>
+            <LinkButton
+              href="/wi/become-a-partner"
+              label="Become a Partner"
+              color="thatBlue"
+              borderColor="thatBlue"
+            />
             <RobotImage src="/images/robot.png" />
           </Cell>
           <Cell>
@@ -146,6 +139,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -156,6 +150,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -166,6 +161,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -176,6 +172,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>
@@ -186,6 +183,7 @@ const partnerListing = props => {
             if (value.partnershipLevel === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
+            return null;
           })}
         </Partners>
       </ContentSection>

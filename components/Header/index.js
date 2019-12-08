@@ -2,9 +2,9 @@ import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
+import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
-import Nav from '../Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below } from '../../utilities';
@@ -85,7 +85,6 @@ const Header = ({ className }) => {
     const handleScroll = () => {
       setScrollY(window.pageYOffset);
     };
-    const { scrollingElement } = document;
 
     handleScroll();
     document.addEventListener('scroll', handleScroll);

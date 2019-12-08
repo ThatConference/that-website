@@ -11,10 +11,11 @@ import Page from '../components/Page';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
-const { Sentry, captureException } = sentry();
+const { captureException } = sentry();
 
 class MyApp extends App {
   constructor() {
+    // eslint-disable-next-line prefer-rest-params
     super(...arguments);
     this.state = {
       hasError: false,

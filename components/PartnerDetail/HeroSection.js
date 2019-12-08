@@ -56,6 +56,13 @@ const HeroPartnerName = styled.h3`
   `};
 `;
 
+const ConnectWithUs = styled(LinkButton)`
+  margin: 0;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 const HeroSection = ({
   companyName,
   heroImageUrl,
@@ -83,7 +90,7 @@ const HeroSection = ({
             <span>Back to Partners</span>
           </BackToPartnersLink>
           <HeroPartnerName>{companyName}</HeroPartnerName>
-          <LinkButton
+          <ConnectWithUs
             href={connectWithUsUrl}
             label="Connect with Us"
             color="white"

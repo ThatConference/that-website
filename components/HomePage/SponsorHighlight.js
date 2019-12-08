@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';

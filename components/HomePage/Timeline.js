@@ -11,6 +11,7 @@ const Main = styled(ContentSection)`
   margin-top: 10rem;
   padding-top: 1rem;
   min-height: 80rem;
+  text-align: center;
 
   ${below.med`
     min-height: 60rem;

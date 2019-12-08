@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { below } from '../../utilities';
 
@@ -28,10 +29,6 @@ const ContainerInner = styled.div`
   ${below.small`
     max-width: 30rem;
   `}
-
-  ${below.xsmall`
-    max-width: 30rem;
-  `}
 `;
 
 const Trees = styled.img`
@@ -55,17 +52,25 @@ const Trees = styled.img`
   `};
 `;
 
-const ContentSection = props => {
+const ContentSection = ({
+  backgroundColor,
+  fontColor,
+  className,
+  id,
+  forForm,
+  hasTrees,
+  children,
+}) => {
   return (
     <Container
-      backgroundColor={props.backgroundColor}
-      fontColor={props.fontColor}
-      className={props.className}
-      id={props.id}
-      forForm={props.forForm}
+      backgroundColor={backgroundColor}
+      fontColor={fontColor}
+      className={className}
+      id={id}
+      forForm={forForm}
     >
-      {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>{props.children}</ContainerInner>
+      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
+      <ContainerInner>{children}</ContainerInner>
     </Container>
   );
 };

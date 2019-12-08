@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { above, below } from '../../utilities/breakpoint.js';
+import { above, below } from '../../utilities/breakpoint';
 
 const StyledLink = styled.a`
   font-size: 1.4rem;
@@ -49,28 +49,27 @@ const NavImage = styled.img`
   margin-bottom: 0.3rem;
 `;
 
-const NavItem = props => {
+const NavItem = ({
+  href,
+  display,
+  onClick,
+  color,
+  image,
+  imageWidth,
+  style,
+  title,
+}) => {
   const displayedLink = () => {
-    if (props.image) {
-      return (
-        <NavImage
-          src={props.image}
-          imageWidth={props.imageWidth}
-          style={props.style}
-        />
-      );
+    if (image) {
+      return <NavImage src={image} imageWidth={imageWidth} style={style} />;
     }
 
-    return props.title;
+    return title;
   };
 
   return (
-    <Link href={props.href} passHref>
-      <StyledLink
-        display={props.display}
-        onClick={props.onClick}
-        color={props.color}
-      >
+    <Link href={href} passHref>
+      <StyledLink display={display} onClick={onClick} color={color}>
         {displayedLink()}
       </StyledLink>
     </Link>
