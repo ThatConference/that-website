@@ -71,7 +71,7 @@ const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
-const CallForSpeakers = props => {
+const CallForSpeakers = () => {
   return (
     <div>
       <Head>

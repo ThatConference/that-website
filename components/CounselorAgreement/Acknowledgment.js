@@ -6,7 +6,7 @@ import { DEFAULT_WIP_PAGE } from '../../utilities';
 import FormInput from '../shared/FormInput';
 import { FormRule, FormSubmit } from '../shared/FormLayout';
 
-const Achknowledgment = props => {
+const Achknowledgment = () => {
   const formik = useFormik({
     initialValues: {
       agreeToCodeOfConduct: false,
@@ -27,7 +27,8 @@ const Achknowledgment = props => {
       are18OrOlder: Yup.bool(),
     }),
     onSubmit: values => {
-      // alert(JSON.stringify(values, null, 2));
+      // eslint-disable-next-line no-alert
+      alert(JSON.stringify(values, null, 2));
       // TODO: Persist the things
       window.location = 'counselor-profile';
     },

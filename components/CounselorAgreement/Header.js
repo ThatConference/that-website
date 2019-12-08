@@ -12,7 +12,7 @@ const TopParagraph = styled.p`
   margin-bottom: 4rem;
 `;
 
-const Header = props => {
+const Header = () => {
   return (
     <>
       <Title>Counselor Agreement</Title>

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Cell } from 'styled-css-grid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -9,7 +8,7 @@ import RegularExpressions from '../../utilities/validation';
 import FormInput from '../shared/FormInput';
 import { FormGrid, FormRule, FormSubmit } from '../shared/FormLayout';
 
-const Form = props => {
+const Form = () => {
   const formik = useFormik({
     initialValues: {
       fullName: '',
@@ -63,6 +62,7 @@ const Form = props => {
       interests: Yup.string(),
     }),
     onSubmit: values => {
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     },
   });

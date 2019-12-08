@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below } from '../../utilities';
 import LinkButton from '../shared/LinkButton';
+
+const Container = styled.div`
+  text-align: center;
+`;
 
 const BottomText = styled.div`
   max-width: 90rem;
@@ -25,9 +29,9 @@ const BottomButton = styled(LinkButton)`
   margin-bottom: 5rem;
 `;
 
-const Bottom = props => {
+const Bottom = () => {
   return (
-    <>
+    <Container>
       <BottomText>
         Now that you know our selection process. It’s time for you to become a
         counselor and submit your session submission!
@@ -39,7 +43,7 @@ const Bottom = props => {
         backgroundColor="white"
         label="Become a counselor"
       />
-    </>
+    </Container>
   );
 };
 

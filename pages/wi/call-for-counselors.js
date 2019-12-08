@@ -21,7 +21,7 @@ const GET_EVENT = gql`
   }
 `;
 
-const CallForSpeakers = props => {
+const CallForSpeakers = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {

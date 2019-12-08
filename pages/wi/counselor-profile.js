@@ -29,7 +29,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CallForSpeakers = props => {
+const CallForSpeakers = () => {
   return (
     <div>
       <Head>

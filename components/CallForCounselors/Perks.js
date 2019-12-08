@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 15rem;
@@ -63,7 +63,11 @@ const PerkText = styled.div`
   `};
 `;
 
-const Perks = props => {
+const GetStartedNow = styled(LinkButton)`
+  float: right;
+`;
+
+const Perks = () => {
   return (
     <Main>
       <Title>Perks If You&apos;re Selected To Speak At THAT Conference</Title>
@@ -85,7 +89,7 @@ const Perks = props => {
           <PerkText>Your session will be professionally recorded</PerkText>
         </Perk>
       </Container>
-      <LinkButton
+      <GetStartedNow
         href="counselor-agreement"
         borderColor="thatBlue"
         color="thatBlue"

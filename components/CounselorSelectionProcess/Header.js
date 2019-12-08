@@ -12,7 +12,7 @@ const TopParagraph = styled.p`
   margin-bottom: 8rem;
 `;
 
-const Header = props => {
+const Header = () => {
   return (
     <>
       <Title>Counselor Selection Process</Title>

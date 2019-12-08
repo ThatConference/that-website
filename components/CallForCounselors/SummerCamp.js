@@ -58,7 +58,7 @@ const MegaphoneBear = styled.img`
   `};
 `;
 
-const SummerCamp = props => {
+const SummerCamp = () => {
   return (
     <Main backgroundColor="primary" fontColor="light" hasTrees>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">

@@ -30,17 +30,13 @@ const TalkIdeasText = styled.div`
 
 const TalkIdeasButtons = styled.div`
   text-align: center;
-  div {
-    text-align: center;
-    display: inline-block !important;
 
-    &:first-child {
-      margin-right: 2rem;
+  a:first-child {
+    margin-right: 2rem;
 
-      ${below.small`
+    ${below.small`
         margin-right: 0;
       `};
-    }
   }
 `;
 
@@ -49,7 +45,7 @@ const TalkIdeasButton = styled(LinkButton)`
   display: inline-block;
 `;
 
-const TalkIdeas = props => {
+const TalkIdeas = () => {
   return (
     <Main>
       <TalkIdeasText>

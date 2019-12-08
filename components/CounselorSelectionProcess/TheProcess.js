@@ -12,7 +12,7 @@ const NumberedItem = styled.h4`
   }
 `;
 
-const TheProcess = props => {
+const TheProcess = () => {
   return (
     <>
       <h3>The Process</h3>

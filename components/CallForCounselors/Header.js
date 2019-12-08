@@ -5,7 +5,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 10rem;
@@ -28,6 +28,10 @@ const Title = styled.h1`
 
   ${below.med`
     font-size: 8rem;
+  `};
+
+  ${below.small`
+    font-size: 7rem;
   `};
 `;
 
@@ -55,7 +59,7 @@ const BecomeACounselor = styled(LinkButton)`
   margin-left: 0;
 `;
 
-const Header = props => {
+const Header = () => {
   return (
     <Main>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">

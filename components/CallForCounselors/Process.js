@@ -6,7 +6,7 @@ import moment from 'moment';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 5rem;

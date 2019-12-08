@@ -45,7 +45,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = props => {
+const CounselorAgreement = () => {
   return (
     <div>
       <Head>
