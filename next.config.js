@@ -15,6 +15,16 @@ const sourceMaps = nextSourceMaps({
       use: 'raw-loader',
     });
 
+    config.module.rules.push({
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+      options: {
+          emitError: true,
+          failOnError: true
+      }
+    });
+
     if (!isServer) {
       // eslint-disable-next-line no-param-reassign
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
