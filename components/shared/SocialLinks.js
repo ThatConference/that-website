@@ -10,32 +10,40 @@ const SOCIALS = [
     href: 'https://www.facebook.com/ThatConference/',
     icon: {
       name: 'facebook',
+      width: 12,
+      height: 24,
     },
   },
   {
     href: 'https://www.instagram.com/thatconference/',
     icon: {
       name: 'instagram',
+      width: 24,
+      height: 24,
     },
   },
   {
     href: 'https://twitter.com/ThatConference',
     icon: {
       name: 'twitter',
+      width: 32,
+      height: 26,
     },
   },
   {
     href: 'https://medium.com/that-conference',
     icon: {
       name: 'medium',
+      width: 24,
+      height: 19,
     },
   },
   {
     href: 'https://www.youtube.com/thatconference/',
     icon: {
       name: 'youtube',
-      height: 70,
-      width: 70,
+      width: 31,
+      height: 42,
     },
   },
 ];
@@ -46,6 +54,10 @@ const SocialLinksContainer = styled.div`
   justify-content: center;
 
   a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
     height: 3.5rem;
     background-color: ${({ theme }) => theme.colors.highlight};
     border-radius: 3.5rem;
@@ -58,8 +70,8 @@ const SocialLinksContainer = styled.div`
 
     svg {
       position: relative;
-      top: 0.6rem;
-      left: 0.6rem;
+      height: 100%;
+      max-height: 52%;
       fill: ${({ theme }) => theme.colors.white};
     }
 
