@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../../components/shared/ContentSection';
+import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
 
@@ -55,16 +56,6 @@ const Partners = styled.div`
   justify-content: space-around;
 `;
 
-const ImageContainer = styled.div`
-  margin-top: 5rem;
-  text-align: center;
-  display: grid;
-  background-color: #fafafa;
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  position: relative;
-`;
-
 const Image = styled.img`
   position: absolute;
   margin: auto;
@@ -75,6 +66,10 @@ const Image = styled.img`
   max-width: ${({ maxWidth }) => maxWidth};
 `;
 
+const PaddedImageContainer = styled(ImageContainer)`
+  margin: 3rem;
+`;
+
 const renderPartner = (
   partner,
   containerWidth,
@@ -82,7 +77,7 @@ const renderPartner = (
   imageMaxWidth,
 ) => {
   return (
-    <ImageContainer
+    <PaddedImageContainer
       width={containerWidth}
       height={containerHeight}
       key={partner.id}
@@ -97,7 +92,7 @@ const renderPartner = (
           />
         </a>
       </Link>
-    </ImageContainer>
+    </PaddedImageContainer>
   );
 };
 

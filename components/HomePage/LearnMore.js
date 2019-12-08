@@ -8,15 +8,26 @@ import LinkButton from '../shared/LinkButton';
 import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const HighlightImage = styled.img`
-  width: 100%;
   padding: 0 5rem;
-  max-width: 60rem;
-  object-fit: cover;
+  max-height: 40rem;
   height: 100%;
+
+  ${below.xlarge`
+    padding: 0;
+  `};
+
+  ${below.small`
+    max-height: 30rem;
+  `};
+
+  ${below.xsmall`
+    max-height: 20rem;
+  `};
 `;
 
 const ButtonRow = styled.div`
   display: flex;
+  justify-content: space-evenly;
 
   ${below.small`
     flex-direction: column;
@@ -26,7 +37,6 @@ const ButtonRow = styled.div`
         margin-bottom: 1.5rem;
       }
     }
-
   `};
 `;
 
@@ -34,7 +44,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
 
-  ${below.large`
+  ${below.xlarge`
     flex-direction: column;
     align-items: center;
   `};
@@ -44,6 +54,10 @@ const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
+
+  ${below.large`
+    margin-right: 0;
+  `};
 `;
 
 const LearnMore = ({ className }) => {

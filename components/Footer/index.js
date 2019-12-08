@@ -6,62 +6,61 @@ import ContentSection from '../shared/ContentSection';
 import NewsletterSignUpForm from '../shared/NewsletterSignupForm';
 import * as gtag from '../../lib/gtag';
 
-const FooterNav = styled.div`
+const Detail = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-grow: 2;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 
-  // do not display until site is built out
-  display: none;
-`;
-const FooterNavColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-right: 1rem;
-`;
-
-const Title = styled.p`
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.colors.fonts.dark};
-  margin: 0;
+  ${below.large`
+    flex-direction: column;
+    align-items: center;
+  `};
 `;
 
 const Logo = styled.img`
   height: 10rem;
 `;
 
+const FooterNav = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+  justify-content: flex-end;
+
+  ${below.large`
+    margin: 3rem 0;
+  `};
+`;
+const FooterNavColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-right: 3rem;
+
+  ${below.large`
+    padding: 0 2rem;
+  `};
+`;
+
+const Title = styled.h5`
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin: 0;
+  text-transform: uppercase;
+`;
+
 const NavLink = styled.a`
   margin: 0;
   color: ${({ theme }) => theme.colors.fonts.dark};
   font-size: 1.2rem;
-  line-height: 1.8rem;
+  line-height: 2.1rem;
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
   }
 `;
 
-const Detail = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-
-  ${below.med`
-    flex-direction: column;
-    align-items: center;
-  `};
-`;
-
-const StyledNewsletterSignUpForm = styled(NewsletterSignUpForm)`
-  ${below.med`
-    margin-top: 3rem;
-  `};
-`;
-
-const Footer = ({ className }) => {
+const Footer = () => {
   const clickTracking = label => {
     gtag.event({
       clientWindow: window,
@@ -72,32 +71,44 @@ const Footer = ({ className }) => {
   };
 
   return (
-    <>
-      <ContentSection className={className} id="newsletter">
+    <footer>
+      <ContentSection id="newsletter">
         <Detail>
           <a href="/" onClick={() => clickTracking('logo')}>
             <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           </a>
           <FooterNav>
             <FooterNavColumn>
-              <Title>Links</Title>
-              <NavLink href="/" onClick={() => clickTracking('schedule')}>
-                Schedule
+              <Title>Resources</Title>
+              <NavLink href="/wi/faq" onClick={() => clickTracking('faq')}>
+                FAQ
               </NavLink>
               <NavLink
-                href="/wi/become-a-partner"
-                onClick={() => clickTracking('become a partner')}
+                href="/wi/code-of-conduct"
+                onClick={() => clickTracking('terms')}
               >
-                Become a Partner
+                Code of Conduct
               </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('map')}>
-                Conference Map
+              <NavLink
+                href="/wi/attendee-handbook"
+                onClick={() => clickTracking('attendee-handbook')}
+              >
+                Attendee Handbook
               </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('contact')}>
-                Contact Us
+              <NavLink
+                href="/wi/counselor-handbook"
+                onClick={() => clickTracking('counselor-handbook')}
+              >
+                Counselor Handbook
+              </NavLink>
+              <NavLink
+                href="/wi/family-handbook"
+                onClick={() => clickTracking('family-handbook')}
+              >
+                Family Handbook
               </NavLink>
             </FooterNavColumn>
-            <FooterNavColumn>
+            {/* <FooterNavColumn>
               <Title>Plan Your Trip</Title>
               <NavLink
                 href="/"
@@ -114,28 +125,46 @@ const Footer = ({ className }) => {
               <NavLink href="/" onClick={() => clickTracking('faq')}>
                 FAQ
               </NavLink>
-            </FooterNavColumn>
+            </FooterNavColumn> */}
             <FooterNavColumn>
-              <Title>Links</Title>
-              <NavLink href="/" onClick={() => clickTracking('terms')}>
+              <Title>Policies</Title>
+              <NavLink
+                href="/wi/terms-of-use"
+                onClick={() => clickTracking('terms')}
+              >
                 Terms of Use
               </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('copyright')}>
-                Copyright Policy
+              <NavLink
+                href="/wi/copyright"
+                onClick={() => clickTracking('copyright')}
+              >
+                Copyright
               </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('privacy')}>
-                Privacy Policy
+              <NavLink
+                href="/wi/privacy-policy"
+                onClick={() => clickTracking('privacy')}
+              >
+                Privacy
               </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('policies')}>
-                Other Policies
+              <NavLink
+                href="/wi/anti-harassment-policy"
+                onClick={() => clickTracking('anti-harassment')}
+              >
+                Anti-Harassment
+              </NavLink>
+              <NavLink
+                href="/wi/commitment-to-diversity"
+                onClick={() => clickTracking('commitment-to-diversity')}
+              >
+                Commitment to Diversity
               </NavLink>
             </FooterNavColumn>
           </FooterNav>
-          <StyledNewsletterSignUpForm title="Join our community, sign up for our newsletter" />
+          <NewsletterSignUpForm title="Join our community, sign up for our newsletter" />
         </Detail>
       </ContentSection>
       <PageFooter />
-    </>
+    </footer>
   );
 };
 

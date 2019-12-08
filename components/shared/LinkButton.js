@@ -9,7 +9,7 @@ const OutlineLink = styled.a`
   border: 2px solid
     ${({ borderColor, theme }) =>
       borderColor ? theme.colors[borderColor] : theme.colors.primary};
-  margin: auto;
+  // margin: auto;
   margin-top: 2rem;
   min-width: 20rem;
   background-color: ${({ backgroundColor, theme }) =>
