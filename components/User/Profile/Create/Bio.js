@@ -13,39 +13,27 @@ import FormInput from '../../../shared/FormInput';
 const UploadImage = () => {
   const formik = useFormik({
     initialValues: {
-      image: null,
+      bio: '',
     },
     validationSchema: Yup.object({
-      image: Yup.mixed()
-        .test(
-          'fileSize',
-          'File Size is too large',
-          value => !value || value.size <= 300000,
-        )
-        .test(
-          'fileType',
-          'Unsupported File Format',
-          value =>
-            !value ||
-            ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(
-              value.type,
-            ),
-        ),
+      bio: Yup.string()
+        .min(10, 'Must be at least 10 characters')
+        .required('Required'),
     }),
     onSubmit: values => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
-      window.location = 'online-presence';
+      window.location = 'preview';
     },
   });
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormRow>
         <FormInput
-          fieldName="image"
+          fieldName="bio"
           formikForm={formik}
-          inputType="imageupload"
-          label=""
+          inputType="markdown"
+          label="Bio"
         />
       </FormRow>
       <FormRule />

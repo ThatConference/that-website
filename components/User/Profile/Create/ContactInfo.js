@@ -98,7 +98,7 @@ const Form = () => {
       </FormRow>
       <FormRule />
       <FormCancel />
-      <FormSubmit />
+      <FormSubmit label="Continue" />
     </form>
   );
 };

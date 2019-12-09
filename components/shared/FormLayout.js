@@ -46,19 +46,19 @@ export const FormInputValidationMessage = styled.div`
   color: ${({ theme }) => theme.colors.danger};
 `;
 
-export const FormSubmit = () => {
+export const FormSubmit = ({ label }) => {
   return (
     <StyledFormSubmit
       color="dark"
       backgroundColor="white"
       borderColor="gray"
-      label="Submit"
+      label={label || 'Submit'}
       isSubmit
     />
   );
 };
 
-export const FormCancel = ({ onClick }) => {
+export const FormCancel = ({ label, onClick }) => {
   const handler =
     onClick ||
     (() => {
@@ -68,7 +68,7 @@ export const FormCancel = ({ onClick }) => {
     <StyledFormCancel
       color="light"
       backgroundColor="thatBlue"
-      label="Cancel"
+      label={label || 'Cancel'}
       onClick={handler}
     />
   );
