@@ -22,9 +22,8 @@ const MainGrid = styled(Grid)`
 const Title = styled.h1`
   margin-top: 0;
   margin-right: 10rem;
-  font-size: 17rem;
+  font-size: 14rem;
   font-weight: 100;
-  line-height: 0.75;
 
   ${below.med`
     font-size: 8rem;
