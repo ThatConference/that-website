@@ -31,6 +31,9 @@ Bluetooth enabled game cube... think Rubik's Cube++!
 **Click and Grow Smart Garden** [clickandgrow.com/collections/products](https://www.clickandgrow.com/collections/products) (Clark)<br/>
 Mix a little Vitamin D into your office while growing fresh herbs and veggies without ever thinking about watering or lighting, that's right, it does it all for you!
 
+**Picture This Clothing** [picturethisclothing.com](https://picturethisclothing.com/) (THAT Crew)<br/>
+We were thrilled to have [Jaimee Newberry](https://twitter.com/jaimeejaimee) as one of our keynoters for 2019 and love all she is doing at Picture This Clothing! Kids clothing, adults, toys, beanies... amazing stuff!
+
 <br/>
 #### Geeklings
 
