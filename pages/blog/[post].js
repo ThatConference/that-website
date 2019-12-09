@@ -4,9 +4,9 @@ import React from 'react';
 import Head from 'next/head';
 import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
-import Error from '../../_error';
+import Error from '../_error';
 
-import ContentSection from '../../../components/shared/ContentSection';
+import ContentSection from '../../components/shared/ContentSection';
 
 const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   if (statusCode) {
@@ -35,8 +35,7 @@ RenderedMarkdown.getInitialProps = async context => {
   const slug = context.query.post;
 
   try {
-    const markdownContent = require(`../../../markdown/blog/${slug}.md`)
-      .default;
+    const markdownContent = require(`../../markdown/blog/${slug}.md`).default;
     return { markdownContent };
   } catch (err) {
     return { statusCode: 404 };
