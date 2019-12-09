@@ -76,7 +76,7 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <ContentGrid columns={gridRepeat.xsmall}>
+      <ContentGrid columns={gridRepeat.small}>
         <Cell>
           <HighlightImage src={testimonial.imageUrl} />
         </Cell>

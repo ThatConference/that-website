@@ -6,7 +6,7 @@ import SocialLinks from '../shared/SocialLinks';
 
 import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
 
-const twoColBp = 'large';
+const twoColBp = 'xlarge';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -23,13 +23,17 @@ const Slogan = styled.h1`
   ${above[twoColBp]`
     max-width: 60rem;
   `};
+
+  ${below[twoColBp]`
+    text-align: center;
+  `};
 `;
 
 const Description = styled.p`
   width: 90%;
   margin: auto;
   text-align: center;
-  padding: 3rem 0;
+  padding: 3rem 0 6rem;
   max-width: 110rem;
 `;
 
@@ -108,6 +112,10 @@ const SideDetail = styled.div`
 
   ${above[twoColBp]`
     margin-right: 4rem;
+  `};
+
+  ${below[twoColBp]`
+    align-items: center;
   `};
 `;
 
