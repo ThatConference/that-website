@@ -4,12 +4,14 @@ import parse from 'html-react-parser';
 
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
+import ImageUpload from './ImageUpload';
 
 const inputTypes = {
   checkbox: 'checkbox',
   text: 'text',
   textarea: 'textarea',
   markdown: 'markdown',
+  imageupload: 'imageupload',
 };
 
 const sharedTextInputStyles = css`
@@ -50,7 +52,9 @@ const FormInput = props => {
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isMarkdown = inputType && inputType === inputTypes.markdown;
+  const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
+
   const fieldInvalid =
     formikForm.touched[fieldName] && formikForm.errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
@@ -105,6 +109,13 @@ const FormInput = props => {
             {...fieldProps}
           />
         </>
+      )}
+      {isImage && (
+        <ImageUpload
+          field={fieldName}
+          formikForm={formikForm}
+          {...fieldProps}
+        />
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
       <FormInputValidationMessage>

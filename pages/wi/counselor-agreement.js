@@ -5,7 +5,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import SubmissionsStepper from '../../components/shared/Counselor/SubmissionStepper';
+import SubmissionsStepper from '../../components/shared/SubmissionStepper';
 
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
