@@ -24,6 +24,7 @@ const Form = () => {
       country: '',
       company: '',
       title: '',
+      image: null,
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
@@ -43,11 +44,26 @@ const Form = () => {
       country: Yup.string(),
       company: Yup.string(),
       title: Yup.string(),
+      image: Yup.mixed()
+        .test(
+          'fileSize',
+          'File Size is too large',
+          value => !value || value.size <= 300000,
+        )
+        .test(
+          'fileType',
+          'Unsupported File Format',
+          value =>
+            !value ||
+            ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(
+              value.type,
+            ),
+        ),
     }),
     onSubmit: values => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
-      window.location = 'create/upload-image';
+      window.location = 'create/online-presence';
     },
   });
   return (
@@ -95,6 +111,14 @@ const Form = () => {
       </FormRow>
       <FormRow>
         <FormInput fieldName="title" formikForm={formik} label="Title" />
+      </FormRow>
+      <FormRow>
+        <FormInput
+          fieldName="image"
+          formikForm={formik}
+          inputType="imageupload"
+          label="Photo"
+        />
       </FormRow>
       <FormRule />
       <FormCancel />

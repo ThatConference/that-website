@@ -28,6 +28,10 @@ export const FormTextArea = styled.textarea`
   resize: vertical;
 `;
 
+export const FormImageInput = styled(ImageUpload)`
+  ${sharedTextInputStyles}
+`;
+
 export const FormCheckbox = styled.input`
   margin-right: 1rem;
 `;
@@ -111,11 +115,14 @@ const FormInput = props => {
         </>
       )}
       {isImage && (
-        <ImageUpload
-          field={fieldName}
-          formikForm={formikForm}
-          {...fieldProps}
-        />
+        <>
+          {parsedLabel}
+          <ImageUpload
+            field={fieldName}
+            formikForm={formikForm}
+            {...fieldProps}
+          />
+        </>
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
       <FormInputValidationMessage>

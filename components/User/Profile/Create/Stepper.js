@@ -9,16 +9,12 @@ const Stepper = ({ currentStep }) => {
       currentOrCompleted: currentStepInt >= 0,
     },
     {
-      label: 'Upload Image',
+      label: 'Online Presence',
       currentOrCompleted: currentStepInt >= 1,
     },
     {
-      label: 'Online Presence',
-      currentOrCompleted: currentStepInt >= 2,
-    },
-    {
       label: 'Bio',
-      currentOrCompleted: currentStepInt >= 3,
+      currentOrCompleted: currentStepInt >= 2,
     },
   ];
   return <BaseStepper steps={steps} header="Your Profile" />;

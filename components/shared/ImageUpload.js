@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+import Button from './SquareButton';
 
 let formik;
 let fieldName;
 let updateImagePreviewGlobal;
+
+const ImageInputButtonWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  button {
+    display: block;
+    width: auto;
+    padding: 1rem;
+  }
+
+  input[type='file'] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+`;
+
+const ImageInput = styled.input`
+  display: block;
+  width: 100%;
+`;
 
 const handleImageChange = e => {
   e.preventDefault();
@@ -31,13 +59,16 @@ const ImageUpload = ({ formikForm, field }) => {
 
   return (
     <>
-      <input
-        type="file"
-        onChange={handleImageChange}
-        name={field}
-        id={field}
-        accept="image/*"
-      />
+      <ImageInputButtonWrapper>
+        <Button label="Upload a photo" />
+        <ImageInput
+          type="file"
+          onChange={handleImageChange}
+          name={field}
+          id={field}
+          accept="image/*"
+        />
+      </ImageInputButtonWrapper>
       {$imagePreview}
     </>
   );
