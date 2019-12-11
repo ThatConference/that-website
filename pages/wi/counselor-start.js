@@ -5,10 +5,8 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import SubmissionsStepper from '../../components/shared/SubmissionStepper';
 
-import Header from '../../components/CounselorProfile/Header';
-import Profile from '../../components/CounselorProfile/Form';
+import Header from '../../components/CounselorStart/Header';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -23,25 +21,37 @@ const MainGrid = styled(Grid)`
     font-weight: 100;
     margin-bottom: 1rem;
   }
+
+  ul {
+    list-style: none;
+    padding-inline-start: 2rem;
+  }
+
+  ul li::before {
+    content: '\\2022';
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
 `;
 
 const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CallForSpeakers = () => {
+const CounselorStart = () => {
   return (
     <div>
       <Head>
-        <title key="title">Counselor Profile - THAT Conference</title>
+        <title key="title">Counselor Selection Process - THAT Conference</title>
       </Head>
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <SubmissionsStepper currentStep="1" />
             <Header />
-            <Profile />
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -50,4 +60,4 @@ const CallForSpeakers = () => {
   );
 };
 
-export default CallForSpeakers;
+export default CounselorStart;

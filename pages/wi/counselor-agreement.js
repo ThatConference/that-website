@@ -5,7 +5,6 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import SubmissionsStepper from '../../components/shared/SubmissionStepper';
 
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
@@ -55,7 +54,6 @@ const CounselorAgreement = () => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <SubmissionsStepper currentStep="0" />
             <Header />
             <Commitments />
             <WhatsProvided />

@@ -30,7 +30,7 @@ const Achknowledgment = () => {
       // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
       // TODO: Persist the things
-      window.location = 'counselor-profile';
+      window.location = 'session/submit';
     },
   });
 

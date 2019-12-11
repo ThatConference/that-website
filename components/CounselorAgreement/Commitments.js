@@ -3,12 +3,6 @@ import React from 'react';
 const Agreement = () => {
   return (
     <>
-      <p>
-        <strong>
-          The agreement to speak as a counselor includes several things we’re
-          asking of you, and things we’ll provide you.
-        </strong>
-      </p>
       <h3>Commitments to THAT</h3>
       <ul>
         <li>

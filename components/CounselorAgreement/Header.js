@@ -17,13 +17,8 @@ const Header = () => {
     <>
       <Title>Counselor Agreement</Title>
       <TopParagraph>
-        We’re stoked to hear you’re interested in speaking at THAT Conference!
-        Being a counselor is more than just showing up, giving a talk, and
-        heading back home. We’re looking for people not only to speak, but
-        attend, collaborate, and contribute to the event while they are there.
-        We’d also love for you to be a part of THAT Community year-round! You
-        should be passionate about the topic(s) you’re submitting and excited to
-        have conversations about your talk beyond the scheduled timeslot.
+        The agreement to speak as a counselor includes several things we’re
+        asking of you, and things we’ll provide you.
       </TopParagraph>
     </>
   );

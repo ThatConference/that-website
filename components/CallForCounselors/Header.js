@@ -76,7 +76,7 @@ const Header = () => {
             everything in between.
           </p>
           <BecomeACounselor
-            href="counselor-agreement"
+            href="counselor-start"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
