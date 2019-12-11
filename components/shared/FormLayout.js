@@ -10,6 +10,12 @@ const sharedButtonStyles = css`
   height: 4.32rem;
 `;
 
+export const FormTitle = styled.h1`
+  font-weight: 100;
+  font-size: 8.5rem;
+  margin-bottom: 4rem;
+`;
+
 export const FormGrid = styled(Grid)`
   grid-gap: 4rem;
   row-gap: 2rem;

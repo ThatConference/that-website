@@ -15,6 +15,7 @@ const Container = styled.div`
   position: relative;
   display: block;
   width: 100vw;
+  padding-top: ${props => (props.forForm ? '0' : '5rem')};
 
   ${below.xsmall`
     padding: 5rem 1rem;
@@ -23,7 +24,7 @@ const Container = styled.div`
 
 const ContainerInner = styled.div`
   margin: auto;
-  max-width: ${props => (props.forForm ? '100rem' : '140rem')};
+  max-width: ${props => (props.forForm ? '65rem' : '140rem')};
 
   ${below.small`
     max-width: 30rem;
@@ -69,7 +70,7 @@ const ContentSection = ({
       forForm={forForm}
     >
       {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>{children}</ContainerInner>
+      <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );
 };
