@@ -14,7 +14,6 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
-  // overflow: hidden;
   width: 100vw;
 
   ${below.xsmall`
@@ -26,7 +25,7 @@ const ContainerInner = styled.div`
   margin: auto;
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
 
-  ${below.xsmall`
+  ${below.small`
     max-width: 30rem;
   `}
 `;
