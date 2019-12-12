@@ -28,7 +28,7 @@ const Nav = ({ className }) => {
           <NavItem title="Schedule" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Counselors" href="/" />
+          <NavItem title="Speakers" href="/" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Sponsors" href="/" />
