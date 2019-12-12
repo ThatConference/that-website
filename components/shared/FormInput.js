@@ -121,11 +121,7 @@ const FormInput = props => {
       {isImage && (
         <>
           {parsedLabel}
-          <ImageUpload
-            field={fieldName}
-            formikForm={formikForm}
-            {...fieldProps}
-          />
+          <ImageUpload field={fieldName} {...fieldProps} />
         </>
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
