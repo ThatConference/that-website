@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Button from './SquareButton';
 
-let formik;
+let setValue;
 let fieldName;
 let updateImagePreviewGlobal;
 
@@ -39,17 +39,17 @@ const handleImageChange = e => {
 
   reader.onloadend = () => {
     updateImagePreviewGlobal(reader.result);
-    formik.setFieldValue(fieldName, file);
+    setValue(fieldName, file);
   };
 
   reader.readAsDataURL(file);
 };
 
-const ImageUpload = ({ formikForm, field }) => {
+const ImageUpload = ({ setFieldValue, field }) => {
   const [imagePreviewUrl, updateImagePreview] = useState('');
   updateImagePreviewGlobal = updateImagePreview;
 
-  formik = formikForm;
+  setValue = setFieldValue;
   fieldName = field;
 
   let $imagePreview = null;

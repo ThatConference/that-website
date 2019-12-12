@@ -1,13 +1,19 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 
 import RegularExpressions from '../../utilities/validation';
 
 import FormInput from '../shared/FormInput';
+import {
+  CheckboxGroupItem,
+  CheckboxGroup,
+  RadioButtonGroupItem,
+  RadioButtonGroup,
+} from '../shared/CheckboxAndRadioButtonInput';
 import { FormRow, FormRule, FormSubmit } from '../shared/FormLayout';
 
-const Form = () => {
+const SampleForm = () => {
   return (
     <Formik
       initialValues={{
@@ -19,6 +25,8 @@ const Form = () => {
         agreeToCodeOfConduct: false,
         agreeToCommitments: false,
         agreeToBeingRecorded: false,
+        checkboxGroup: [],
+        radioGroup: '',
       }}
       validationSchema={Yup.object({
         fullName: Yup.string()
@@ -44,8 +52,12 @@ const Form = () => {
           'Must agree to the commitments',
         ),
         agreeToBeingRecorded: Yup.bool(),
+        checkboxGroup: Yup.array().required(
+          'At least one checkbox is required',
+        ),
+        radioGroup: Yup.string().required('A radio option is required'),
       })}
-      onSumbit={(values, { setSubmitting }) => {
+      onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
@@ -53,26 +65,39 @@ const Form = () => {
         }, 400);
       }}
     >
-      {formik => (
-        <form className="input-form" onSubmit={formik.handleSubmit}>
+      {({
+        setFieldValue,
+        setFieldTouched,
+        getFieldProps,
+        values,
+        errors,
+        touched,
+      }) => (
+        <Form className="input-form">
           <FormRow>
             <FormInput
               fieldName="fullName"
-              formikForm={formik}
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
               label="Full Name"
             />
           </FormRow>
           <FormRow>
             <FormInput
               fieldName="emailAddress"
-              formikForm={formik}
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
               label="Email Address"
             />
           </FormRow>
           <FormRow>
             <FormInput
               fieldName="mobilePhone"
-              formikForm={formik}
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
               label="Mobile Phone"
             />
           </FormRow>
@@ -80,7 +105,9 @@ const Form = () => {
             <FormInput
               inputType="textarea"
               fieldName="interests"
-              formikForm={formik}
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
               label="Interests"
               helpText="Maximum of 12 interests.  Type a comma between each interest."
             />
@@ -89,7 +116,11 @@ const Form = () => {
             <FormInput
               inputType="markdown"
               fieldName="bio"
-              formikForm={formik}
+              getFieldProps={getFieldProps}
+              setFieldTouched={setFieldTouched}
+              setFieldValue={setFieldValue}
+              errors={errors}
+              touched={touched}
               label="Bio"
             />
           </FormRow>
@@ -97,7 +128,9 @@ const Form = () => {
             <div>
               <FormInput
                 fieldName="agreeToCodeOfConduct"
-                formikForm={formik}
+                getFieldProps={getFieldProps}
+                errors={errors}
+                touched={touched}
                 label="Agree to <a href=''>Code of Conduct</a>"
                 inputType="checkbox"
               />
@@ -105,7 +138,9 @@ const Form = () => {
             <div>
               <FormInput
                 fieldName="agreeToCommitments"
-                formikForm={formik}
+                getFieldProps={getFieldProps}
+                errors={errors}
+                touched={touched}
                 label="Agree to commitments to THAT Conference laid out above"
                 inputType="checkbox"
               />
@@ -113,18 +148,72 @@ const Form = () => {
             <div>
               <FormInput
                 fieldName="agreeToBeingRecorded"
-                formikForm={formik}
+                getFieldProps={getFieldProps}
+                errors={errors}
+                touched={touched}
                 label="Agree to being recorded"
                 inputType="checkbox"
               />
             </div>
           </FormRow>
+          <FormRow>
+            <CheckboxGroup
+              id="checkboxGroup"
+              label="Which of these?"
+              value={values.checkboxGroup}
+              error={errors.checkboxGroup}
+              touched={touched.checkboxGroup}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+            >
+              <Field
+                component={CheckboxGroupItem}
+                name="checkboxGroup"
+                id="checkbox1"
+                label="Option 1"
+              />
+              <Field
+                component={CheckboxGroupItem}
+                name="checkboxGroup"
+                id="checkbox2"
+                label="Option 2"
+              />
+              <Field
+                component={CheckboxGroupItem}
+                name="checkboxGroup"
+                id="checkbox3"
+                label="Option 3"
+              />
+            </CheckboxGroup>
+          </FormRow>
+          <FormRow>
+            <RadioButtonGroup
+              id="radioGroup"
+              label="One of these please"
+              value={values.radioGroup}
+              error={errors.radioGroup}
+              touched={touched.radioGroup}
+            >
+              <Field
+                component={RadioButtonGroupItem}
+                name="radioGroup"
+                id="radioOption1"
+                label="Choose this option"
+              />
+              <Field
+                component={RadioButtonGroupItem}
+                name="radioGroup"
+                id="radioOption2"
+                label="Or choose this one"
+              />
+            </RadioButtonGroup>
+          </FormRow>
           <FormRule />
           <FormSubmit />
-        </form>
+        </Form>
       )}
     </Formik>
   );
 };
 
-export default Form;
+export default SampleForm;

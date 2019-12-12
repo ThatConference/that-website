@@ -46,21 +46,24 @@ const FormInput = props => {
   const {
     fieldName,
     inputType,
-    formikForm,
+    getFieldProps,
+    touched,
+    setFieldTouched,
+    setFieldValue,
+    errors,
     label,
     rows,
     cols,
     helpText,
   } = props;
-  const fieldProps = formikForm.getFieldProps(fieldName);
+  const fieldProps = getFieldProps(fieldName);
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isMarkdown = inputType && inputType === inputTypes.markdown;
   const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
 
-  const fieldInvalid =
-    formikForm.touched[fieldName] && formikForm.errors[fieldName];
+  const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
   const parsedLabel = parse(label);
 
@@ -107,7 +110,8 @@ const FormInput = props => {
           {parsedLabel}
           <MarkdownEditor
             field={fieldName}
-            formikForm={formikForm}
+            setFieldTouched={setFieldTouched}
+            setFieldValue={setFieldValue}
             preview=""
             className={styleClass}
             {...fieldProps}
@@ -126,7 +130,7 @@ const FormInput = props => {
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
       <FormInputValidationMessage>
-        {fieldInvalid ? formikForm.errors[fieldName] : ''}
+        {fieldInvalid ? errors[fieldName] : ''}
       </FormInputValidationMessage>
     </FormLabel>
   );
