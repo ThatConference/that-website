@@ -14,8 +14,8 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
+  // overflow: hidden;
   width: 100vw;
-  padding-top: ${props => (props.forForm ? '0' : '5rem')};
 
   ${below.xsmall`
     padding: 5rem 1rem;
@@ -24,9 +24,9 @@ const Container = styled.div`
 
 const ContainerInner = styled.div`
   margin: auto;
-  max-width: ${props => (props.forForm ? '65rem' : '140rem')};
+  max-width: ${props => (props.forForm ? '100rem' : '140rem')};
 
-  ${below.small`
+  ${below.xsmall`
     max-width: 30rem;
   `}
 `;
@@ -70,7 +70,7 @@ const ContentSection = ({
       forForm={forForm}
     >
       {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner forForm={forForm}>{children}</ContainerInner>
+      <ContainerInner>{children}</ContainerInner>
     </Container>
   );
 };
