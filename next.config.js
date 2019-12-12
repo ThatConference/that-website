@@ -21,7 +21,9 @@ const sourceMaps = nextSourceMaps({
       loader: 'eslint-loader',
       options: {
         emitError: true,
-        failOnError: true,
+        emitWarning: false,
+        failOnError: false,
+        failOnWarning: false,
       },
     });
 
