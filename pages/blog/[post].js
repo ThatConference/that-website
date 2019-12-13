@@ -4,9 +4,15 @@ import React from 'react';
 import Head from 'next/head';
 import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
+import styled from 'styled-components';
 import Error from '../_error';
 
 import ContentSection from '../../components/shared/ContentSection';
+
+const SlimContentSection = styled(ContentSection)`
+  width: 70vw;
+  margin: auto;
+`;
 
 const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   if (statusCode) {
@@ -21,12 +27,12 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
         <title key="title">{parsedMarkdown.attributes.title}</title>
       </Head>
 
-      <ContentSection>
+      <SlimContentSection>
         {parsedMarkdown.attributes.title && (
           <h2>{parsedMarkdown.attributes.title}</h2>
         )}
         <Markdown>{parsedMarkdown.body}</Markdown>
-      </ContentSection>
+      </SlimContentSection>
     </div>
   );
 };
