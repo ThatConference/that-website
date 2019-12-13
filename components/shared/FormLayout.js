@@ -1,12 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Grid } from 'styled-css-grid';
 
 import SquareButton from './SquareButton';
 
+const sharedButtonStyles = css`
+  margin-bottom: 2rem;
+  width: 15.5rem;
+  height: 4.32rem;
+`;
+
+export const FormTitle = styled.h1`
+  font-weight: 100;
+  font-size: 8.5rem;
+  margin-bottom: 4rem;
+`;
+
 export const FormGrid = styled(Grid)`
   grid-gap: 4rem;
   row-gap: 2rem;
+`;
+
+export const FormRow = styled.div`
+  margin-bottom: 2rem;
 `;
 
 export const FormLabel = styled.label`
@@ -22,26 +38,44 @@ export const FormRule = styled.hr`
 `;
 
 const StyledFormSubmit = styled(SquareButton)`
+  ${sharedButtonStyles}
   float: right;
-  margin-bottom: 2rem;
-  width: 22.5rem;
-  height: 6.32rem;
+`;
+
+const StyledFormCancel = styled(SquareButton)`
+  ${sharedButtonStyles}
+  float: left;
 `;
 
 export const FormInputValidationMessage = styled.div`
   font-size: 1.2rem;
-  min-height: 2.4rem;
   color: ${({ theme }) => theme.colors.danger};
 `;
 
-export const FormSubmit = () => {
+export const FormSubmit = ({ label }) => {
   return (
     <StyledFormSubmit
       color="dark"
       backgroundColor="white"
       borderColor="gray"
-      label="Submit"
+      label={label || 'Submit'}
       isSubmit
+    />
+  );
+};
+
+export const FormCancel = ({ label, onClick }) => {
+  const handler =
+    onClick ||
+    (() => {
+      window.history.back();
+    });
+  return (
+    <StyledFormCancel
+      color="light"
+      backgroundColor="thatBlue"
+      label={label || 'Cancel'}
+      onClick={handler}
     />
   );
 };

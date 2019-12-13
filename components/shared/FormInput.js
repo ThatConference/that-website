@@ -4,12 +4,14 @@ import parse from 'html-react-parser';
 
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
+import ImageUpload from './ImageUpload';
 
 const inputTypes = {
   checkbox: 'checkbox',
   text: 'text',
   textarea: 'textarea',
   markdown: 'markdown',
+  imageupload: 'imageupload',
 };
 
 const sharedTextInputStyles = css`
@@ -26,6 +28,10 @@ export const FormTextArea = styled.textarea`
   resize: vertical;
 `;
 
+export const FormImageInput = styled(ImageUpload)`
+  ${sharedTextInputStyles}
+`;
+
 export const FormCheckbox = styled.input`
   margin-right: 1rem;
 `;
@@ -40,19 +46,24 @@ const FormInput = props => {
   const {
     fieldName,
     inputType,
-    formikForm,
+    getFieldProps,
+    touched,
+    setFieldTouched,
+    setFieldValue,
+    errors,
     label,
     rows,
     cols,
     helpText,
   } = props;
-  const fieldProps = formikForm.getFieldProps(fieldName);
+  const fieldProps = getFieldProps(fieldName);
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isMarkdown = inputType && inputType === inputTypes.markdown;
+  const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
-  const fieldInvalid =
-    formikForm.touched[fieldName] && formikForm.errors[fieldName];
+
+  const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
   const parsedLabel = parse(label);
 
@@ -99,16 +110,23 @@ const FormInput = props => {
           {parsedLabel}
           <MarkdownEditor
             field={fieldName}
-            formikForm={formikForm}
+            setFieldTouched={setFieldTouched}
+            setFieldValue={setFieldValue}
             preview=""
             className={styleClass}
             {...fieldProps}
           />
         </>
       )}
+      {isImage && (
+        <>
+          {parsedLabel}
+          <ImageUpload field={fieldName} {...fieldProps} />
+        </>
+      )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
       <FormInputValidationMessage>
-        {fieldInvalid ? formikForm.errors[fieldName] : ''}
+        {fieldInvalid ? errors[fieldName] : ''}
       </FormInputValidationMessage>
     </FormLabel>
   );
