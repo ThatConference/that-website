@@ -88,7 +88,7 @@ const LearnMore = ({ className }) => {
               className="stretch-sm"
             />
             <LinkButton
-              href={DEFAULT_WIP_PAGE}
+              href="/wi/faq"
               label="FAQ"
               borderColor="thatBlue"
               className="stretch-sm"
