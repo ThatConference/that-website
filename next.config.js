@@ -1,6 +1,8 @@
+const dotenv = require('dotenv');
+const nextSourceMaps = require('@zeit/next-source-maps');
 const webpack = require('webpack');
 
-const nextSourceMaps = require('@zeit/next-source-maps');
+dotenv.config();
 
 const sourceMaps = nextSourceMaps({
   webpack: (config, { isServer, buildId }) => {
@@ -37,11 +39,23 @@ const sourceMaps = nextSourceMaps({
 });
 
 module.exports = {
+  target: 'serverless',
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   env: {
-    API_GATEWAY: 'https://us-central1-all-that.cloudfunctions.net/graphGateway',
+    SENTRY_DSN: process.env.SENTRY_DSN,
+    API_GATEWAY: process.env.API_GATEWAY,
     WI_PROSPECTUS_URL:
       'https://storage.googleapis.com/that-bucket/2020_THATConference_Prospectus.pdf',
+    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+    AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
+    AUTH0_SCOPE: 'openid profile',
+    REDIRECT_URI:
+      process.env.REDIRECT_URI || 'http://localhost:3000/api/callback',
+    POST_LOGOUT_REDIRECT_URI:
+      process.env.POST_LOGOUT_REDIRECT_URI || 'http://localhost:3000',
+    SESSION_COOKIE_SECRET: process.env.SESSION_COOKIE_SECRET,
+    SESSION_COOKIE_LIFETIME: 7200,
   },
   ...sourceMaps,
 };

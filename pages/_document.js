@@ -1,6 +1,15 @@
 import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import * as Sentry from '@sentry/browser';
+
+process.on('unhandledRejection', err => {
+  Sentry.captureException(err);
+});
+
+process.on('uncaughtException', err => {
+  Sentry.captureException(err);
+});
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
