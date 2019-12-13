@@ -69,7 +69,7 @@ const ContentSection = ({
       forForm={forForm}
     >
       {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>{children}</ContainerInner>
+      <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );
 };
