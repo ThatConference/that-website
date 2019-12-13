@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 import {
@@ -9,30 +9,100 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const UploadImage = () => {
-  const formik = useFormik({
-    initialValues: {
-      audience: null,
-      sessionType: null,
-    },
-    validationSchema: Yup.object({
-      audience: Yup.string().required('An audience is required'),
-      sessionType: Yup.string().required('An session typer is required'),
-    }),
-    onSubmit: values => {
-      // eslint-disable-next-line no-alert
-      alert(JSON.stringify(values, null, 2));
-      window.location = 'preview';
-    },
-  });
+import {
+  RadioButtonGroupItem,
+  RadioButtonGroup,
+} from '../../shared/CheckboxAndRadioButtonInput';
+
+const Intro = () => {
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <FormRow />
-      <FormRule />
-      <FormCancel label="Back" />
-      <FormSubmit label="Continue" />
-    </form>
+    <Formik
+      initialValues={{
+        audience: '',
+        sessionType: '',
+      }}
+      validationSchema={Yup.object({
+        audience: Yup.string().required('Selection required'),
+        sessionType: Yup.string().required('Selection required'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          // eslint-disable-next-line no-alert
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+          window.location = 'details';
+        }, 400);
+      }}
+    >
+      {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
+        <Form className="input-form">
+          <FormRow>
+            <RadioButtonGroup
+              id="audience"
+              label="Who is your session for?"
+              value={values.audience}
+              error={errors.audience}
+              touched={touched.audience}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+            >
+              <Field
+                component={RadioButtonGroupItem}
+                name="audience"
+                id="professionals"
+                label="Professionals"
+              />
+              <Field
+                component={RadioButtonGroupItem}
+                name="audience"
+                id="family"
+                label="Family"
+              />
+            </RadioButtonGroup>
+          </FormRow>
+          <FormRow>
+            <RadioButtonGroup
+              id="sessionType"
+              label="What type of session are you proposing?"
+              value={values.sessionType}
+              error={errors.sessionType}
+              touched={touched.sessionType}
+              onChange={setFieldValue}
+              onBlur={setFieldTouched}
+            >
+              <Field
+                component={RadioButtonGroupItem}
+                name="sessionType"
+                id="standard"
+                label="Regular session (60 minute talk)"
+              />
+              <Field
+                component={RadioButtonGroupItem}
+                name="sessionType"
+                id="keynote"
+                label="Keynote (90 minute talk)"
+              />
+              <Field
+                component={RadioButtonGroupItem}
+                name="sessionType"
+                id="preconHalfDay"
+                label="Half-day Workshop (pre-conference)"
+              />
+              <Field
+                component={RadioButtonGroupItem}
+                name="sessionType"
+                id="preconFullDay"
+                label="Full-day Workshop (pre-conference)"
+              />
+            </RadioButtonGroup>
+          </FormRow>
+          <FormRule />
+          <FormCancel label="Back" />
+          <FormSubmit label="Continue" />
+        </Form>
+      )}
+    </Formik>
   );
 };
 
-export default UploadImage;
+export default Intro;

@@ -5,7 +5,7 @@ const Stepper = ({ currentStep }) => {
   const currentStepInt = currentStep ? parseInt(currentStep, 10) : 0;
   const steps = [
     {
-      label: 'Intro',
+      label: 'Introduction',
       currentOrCompleted: currentStepInt >= 0,
     },
     {

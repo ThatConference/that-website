@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ContentSection from '../../../../components/shared/ContentSection';
 
 import Header from '../../../../components/Session/Submit/Header';
-import ContactInfo from '../../../../components/Session/Submit/Intro';
+import Intro from '../../../../components/Session/Submit/Intro';
 
 const MainContent = styled(ContentSection)`
   padding-top: 0;
@@ -25,7 +25,7 @@ const CallForSpeakers = () => {
       <MainContent>
         <MainDiv>
           <Header title="Session Introduction" currentStep="0" />
-          <ContactInfo />
+          <Intro />
         </MainDiv>
       </MainContent>
     </div>
