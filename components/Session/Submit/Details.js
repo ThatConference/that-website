@@ -15,9 +15,18 @@ const DetailForm = () => {
     <Formik
       initialValues={{
         title: '',
+        shortDescription: '',
+        description: '',
       }}
       validationSchema={Yup.object({
         title: Yup.string()
+          .min(3, 'Must be at least 3 characters')
+          .required('Required'),
+        shortDescription: Yup.string()
+          .min(3, 'Must be at least 3 characters')
+          .max(100, 'Must be 100 characters or less')
+          .required('Required'),
+        description: Yup.string()
           .min(3, 'Must be at least 3 characters')
           .required('Required'),
       })}
@@ -30,15 +39,37 @@ const DetailForm = () => {
         }, 400);
       }}
     >
-      {({ getFieldProps, errors, touched }) => (
+      {({ getFieldProps, errors, touched, setFieldValue, setFieldTouched }) => (
         <Form className="input-form">
           <FormRow>
             <FormInput
               fieldName="title"
+              label="Title"
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
-              label="Title"
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              fieldName="shortDescription"
+              label="Short Description"
+              helpText="Maximum 100 characters"
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              fieldName="description"
+              label="Full Description"
+              inputType="markdown"
+              getFieldProps={getFieldProps}
+              setFieldTouched={setFieldTouched}
+              setFieldValue={setFieldValue}
+              errors={errors}
+              touched={touched}
             />
           </FormRow>
           <FormRule />

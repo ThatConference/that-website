@@ -114,6 +114,8 @@ const FormInput = props => {
             setFieldValue={setFieldValue}
             preview=""
             className={styleClass}
+            rows={rows}
+            cols={cols}
             {...fieldProps}
           />
         </>
