@@ -1,11 +1,11 @@
 ---
 title: THAT 2019 Holiday Buying Guide
-description: Top picks from THAT Crew for y
+description: Top picks from THAT Crew to get you inspired for gift giving this holiday season.
 ---
 
 <img src="../../images/blog/2019-Holiday-Buying-Guide-hero.png"
      alt="THAT 2019 Holiday Buying Guide"
-     style="width: 70vw;" />
+     style="width: 62vw;" />
 <br/>
 ### Top Picks From THAT Crew
 
