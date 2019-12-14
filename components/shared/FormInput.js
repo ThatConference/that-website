@@ -1,15 +1,18 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
+import Select from 'react-select';
 
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
+// import SelectInput from './SelectInput';
 import ImageUpload from './ImageUpload';
 
 const inputTypes = {
   checkbox: 'checkbox',
   text: 'text',
   textarea: 'textarea',
+  select: 'select',
   markdown: 'markdown',
   imageupload: 'imageupload',
 };
@@ -55,13 +58,16 @@ const FormInput = props => {
     rows,
     cols,
     helpText,
+    selectOptions,
+    values,
   } = props;
-  const fieldProps = getFieldProps(fieldName);
+  const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isMarkdown = inputType && inputType === inputTypes.markdown;
   const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
+  const isSelect = inputType && inputType === inputTypes.select;
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
@@ -101,6 +107,20 @@ const FormInput = props => {
             rows={rows || '5'}
             cols={cols || null}
             className={styleClass}
+            {...fieldProps}
+          />
+        </>
+      )}
+      {isSelect && (
+        <>
+          {parsedLabel}
+          <Select
+            name={fieldName}
+            id={fieldName}
+            options={selectOptions}
+            value={values[fieldName]}
+            onChange={value => setFieldValue(fieldName, value)}
+            placeholder=""
             {...fieldProps}
           />
         </>

@@ -43,6 +43,7 @@
     "react-dom": "^16.10.2",
     "react-facebook": "^8.0.4",
     "react-scroll-parallax": "^2.2.0",
+    "react-select": "^3.0.8",
     "sentry-testkit": "^3.0.2",
     "styled-components": "^4.4.0",
     "styled-components-modifiers": "^1.2.5",

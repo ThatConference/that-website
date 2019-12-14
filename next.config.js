@@ -15,17 +15,17 @@ const sourceMaps = nextSourceMaps({
       use: 'raw-loader',
     });
 
-    config.module.rules.push({
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader',
-      options: {
-        emitError: true,
-        emitWarning: false,
-        failOnError: false,
-        failOnWarning: false,
-      },
-    });
+    // config.module.rules.push({
+    //   test: /\.js$/,
+    //   exclude: /node_modules/,
+    //   loader: 'eslint-loader',
+    //   options: {
+    //     emitError: true,
+    //     emitWarning: false,
+    //     failOnError: false,
+    //     failOnWarning: false,
+    //   },
+    // });
 
     if (!isServer) {
       // eslint-disable-next-line no-param-reassign
