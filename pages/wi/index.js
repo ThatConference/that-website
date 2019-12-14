@@ -83,6 +83,11 @@ const home = () => {
       <NewsletterSignup />
       <MeetCampers />
       <BottomImage src="./images/mess-hall.jpg" />
+      <script
+        src="https://thatconference.activehosted.com/f/embed.php?id=1"
+        type="text/javascript"
+        charset="utf-8"
+      />
     </>
   );
 };
