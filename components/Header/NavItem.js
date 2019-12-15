@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { above, below } from '../../utilities/breakpoint';
+import { below } from '../../utilities/breakpoint';
 
 const StyledLink = styled.a`
   font-size: 1.4rem;
@@ -17,29 +17,7 @@ const StyledLink = styled.a`
   }
 
   ${below.med`
-    flex-direction: column
-    ${({ display }) =>
-      display === 'desktop' &&
-      `
-      display: none;
-    `}
-    ${({ display }) =>
-      display === 'mobile' &&
-      `
-      display: inline;
-    `}
-  `} ${above.med`
-    flex-direction: column
-    ${({ display }) =>
-      display === 'desktop' &&
-      `
-      display: inline;
-    `}
-    ${({ display }) =>
-      display === 'mobile' &&
-      `
-      display: none;
-    `}
+    font-size: 2rem;
   `};
 `;
 
@@ -51,7 +29,6 @@ const NavImage = styled.img`
 
 const NavItem = ({
   href,
-  display,
   onClick,
   color,
   image,
@@ -70,12 +47,7 @@ const NavItem = ({
 
   return (
     <Link href={href} passHref>
-      <StyledLink
-        display={display}
-        onClick={onClick}
-        color={color}
-        target={target}
-      >
+      <StyledLink onClick={onClick} color={color} target={target}>
         {displayedLink()}
       </StyledLink>
     </Link>

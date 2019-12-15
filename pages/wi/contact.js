@@ -15,6 +15,12 @@ const StyledImageContainer = styled(ImageContainer)`
   margin: 2rem;
 `;
 
+const ImageCell = styled(Cell)`
+  ${below.med`
+    text-align: center;
+  `};
+`;
+
 const Title = styled.h4`
   margin-top: 0;
   margin-bottom: 0.4rem;
@@ -29,10 +35,11 @@ const HighlightImage = styled.img`
 
   ${below.small`
     margin-left: 0;
-    width: 90%;
+    height: 28rem;
   `};
 
   ${below.med`
+    position: relative;
     margin-top: 2rem;
   `};
 `;
@@ -53,9 +60,9 @@ const contact = () => (
             thing, so pick your favorite medium and give us a shout!
           </p>
         </Cell>
-        <Cell>
+        <ImageCell>
           <HighlightImage src="/images/octopus_with_flag.png" />
-        </Cell>
+        </ImageCell>
       </Grid>
     </ContentSection>
 

@@ -57,6 +57,12 @@ const Title = styled.h4`
   margin-bottom: 0.4rem;
 `;
 
+const ImageCell = styled(Cell)`
+  ${below.med`
+    text-align: center;
+  `};
+`;
+
 const HighlightImage = styled.img`
   max-height: 40rem;
   transform: scaleX(-1);
@@ -70,6 +76,7 @@ const HighlightImage = styled.img`
   `};
 
   ${below.med`
+    position: relative;
     margin-top: 2rem;
   `};
 `;
@@ -108,9 +115,9 @@ const contact = () => {
               to help get you to camp!
             </p>
           </Cell>
-          <Cell>
+          <ImageCell>
             <HighlightImage src="/images/sasquatch_kayaking.png" />
-          </Cell>
+          </ImageCell>
         </Grid>
       </ContentSection>
 
