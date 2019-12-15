@@ -34,7 +34,7 @@ const Nav = ({ className }) => {
           <NavItem title="Partners" href="/wi/partners" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Plan Your Trip" href="/" />
+          <NavItem title="Plan Your Trip" href="/wi/plan-your-trip" />
         </NavListItem>
         <NavListItem>
           <NavItem
