@@ -71,9 +71,7 @@ const becomeAPartner = () => (
     <ContentSection>
       <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
         <Cell>
-          <h1 style={{ marginTop: 0, marginRight: '10rem' }}>
-            Become a Camp Partner
-          </h1>
+          <h1 style={{ marginRight: '10rem' }}>Become a Camp Partner</h1>
         </Cell>
         <Cell>
           <p className="medium-body-copy">

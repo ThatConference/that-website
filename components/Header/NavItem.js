@@ -57,6 +57,7 @@ const NavItem = ({
   image,
   imageWidth,
   style,
+  target,
   title,
 }) => {
   const displayedLink = () => {
@@ -69,7 +70,12 @@ const NavItem = ({
 
   return (
     <Link href={href} passHref>
-      <StyledLink display={display} onClick={onClick} color={color}>
+      <StyledLink
+        display={display}
+        onClick={onClick}
+        color={color}
+        target={target}
+      >
         {displayedLink()}
       </StyledLink>
     </Link>

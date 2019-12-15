@@ -31,7 +31,7 @@ const Nav = ({ className }) => {
           <NavItem title="Speakers" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Sponsors" href="/" />
+          <NavItem title="Partners" href="/wi/partners" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Campers" href="/" />
@@ -40,10 +40,14 @@ const Nav = ({ className }) => {
           <NavItem title="Plan Your Trip" href="/" />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Shop" href="/" />
+          <NavItem
+            title="Shop"
+            href="https://store.unspecified.io/"
+            target="blank"
+          />
         </NavListItem>
         <NavListItem>
-          <NavItem title="Contact" href="/" />
+          <NavItem title="Contact" href="/wi/contact" />
         </NavListItem>
       </NavList>
     </nav>
