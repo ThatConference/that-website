@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 import Select from 'react-select';
 
+import baseTheme from '../../styles/baseTheme';
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
-// import SelectInput from './SelectInput';
 import ImageUpload from './ImageUpload';
 
 const inputTypes = {
@@ -21,6 +21,27 @@ const sharedTextInputStyles = css`
   display: block;
   width: 100%;
 `;
+
+const getSelectStyles = () => {
+  return {
+    control: (base, state) => ({
+      ...base,
+      borderRadius: 0,
+      border: `0.1rem solid ${baseTheme.colors.mediumGray}`,
+      backgroundColor: baseTheme.colors.mediumLightGray,
+      boxShadow: state.isFocused ? 0 : 0,
+      outlineOffset: '-2px',
+      outline: state.isFocused
+        ? `${baseTheme.colors.thatBlue} auto 1px !important`
+        : '',
+      '&:hover': {
+        outline: state.isFocused
+          ? `${baseTheme.colors.thatBlue} auto 1px !important`
+          : '',
+      },
+    }),
+  };
+};
 
 export const FormTextInput = styled.input`
   ${sharedTextInputStyles}
@@ -60,6 +81,7 @@ const FormInput = props => {
     helpText,
     selectOptions,
     values,
+    isMulti,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -120,7 +142,10 @@ const FormInput = props => {
             options={selectOptions}
             value={values[fieldName]}
             onChange={value => setFieldValue(fieldName, value)}
+            isMulti={isMulti}
             placeholder=""
+            className={`react-select-container ${styleClass}`}
+            styles={getSelectStyles()}
             {...fieldProps}
           />
         </>

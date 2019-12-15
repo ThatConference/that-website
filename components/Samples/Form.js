@@ -30,6 +30,7 @@ const SampleForm = () => {
         emailAddress: '',
         mobilePhone: '',
         year: '',
+        years: [],
         interests: '',
         bio: '',
         agreeToCodeOfConduct: false,
@@ -50,6 +51,7 @@ const SampleForm = () => {
           'Phone number is not valid',
         ),
         year: Yup.string().required('Required'),
+        years: Yup.array().required('At least one is required'),
         interests: Yup.string()
           .required('Required')
           .max(20, 'Must be less than 21 characters'),
@@ -119,6 +121,19 @@ const SampleForm = () => {
                 label="Year"
                 selectOptions={yearOptions}
                 inputType="select"
+                setFieldValue={setFieldValue}
+                values={values}
+                touched={touched}
+                errors={errors}
+              />
+            </FormRow>
+            <FormRow>
+              <FormInput
+                fieldName="years"
+                label="Years"
+                selectOptions={yearOptions}
+                inputType="select"
+                isMulti
                 setFieldValue={setFieldValue}
                 values={values}
                 touched={touched}
