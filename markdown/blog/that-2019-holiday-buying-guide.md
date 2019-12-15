@@ -1,12 +1,16 @@
 ---
 title: THAT 2019 Holiday Buying Guide
 description: Top picks from THAT Crew to get you inspired for gift giving this holiday season.
+leadImage: 2019-Holiday-Buying-Guide-hero.png
+publishedDate: December 7, 2019
+author: THAT Crew
 ---
 
 <img src="../../images/blog/2019-Holiday-Buying-Guide-hero.png"
      alt="THAT 2019 Holiday Buying Guide"
      style="width: 62vw;" />
 <br/>
+
 ### Top Picks From THAT Crew
 
 Regardless of age, fun and geeky gadgets and tools entertain us, make life easier and help us grow. They are fun to give, receive and can always make a great gift for the hard to buy for person we all have on our list. But with so much out there, where to start? With the exploding world of technology, there are countless choices out there. **THAT Crew has you covered!**
@@ -68,6 +72,7 @@ Great way to build your own computer then dive into coding, creating music and a
 Great way to get kids excited about engineering while teaching them all about electronics!
 
 **Books -** Quick list of my top favorites (Sara)<br/>
+
 - [Rosie Revere, Engineer](https://www.amazon.com/Rosie-Revere-Engineer-Andrea-Beaty/dp/1419708457/ref=sr_1_2)<br/>
 - [Girls Who Code: Learn to Code and Change the World](https://www.amazon.com/Girls-Who-Code-Learn-Change/dp/042528753X/ref=pd_sbs_14_2/146-9774548-3192238)<br/>
 - [Creative Coding in Python](https://www.amazon.com/Creative-Coding-Python-Programming-Projects/dp/1631595814/ref=pd_sbs_14_27)<br/>
@@ -91,9 +96,10 @@ I like this because this clicker works with a wide range of operating systems.
 Whatever you got to plug in, plug it into this and then control it from your phone. Yeah, I have them everywhere and they are just as cool as you'd think. Everyone can use one.
 
 **Batman Family Diorama** [https://www.sideshow.com/collectibles/dc-comics-batman-family-q-master-quantum-mechanix-904408](https://www.sideshow.com/collectibles/dc-comics-batman-family-q-master-quantum-mechanix-904408) (Keith)<br/>
-You have a Batman fan in your life, this is the gift. 
+You have a Batman fan in your life, this is the gift.
 
 **Books -** Quick list of my top favorites (Sara)<br/>
+
 - [How Women Rise](https://www.amazon.com/How-Women-Rise-Holding-Promotion/dp/0316440124/ref=sr_1_10)<br/>
 - [Great Leaders Have No Rules](https://www.amazon.com/Close-Your-Open-Door-Policy/dp/1635652162)<br/>
 - [The Happiness Advantage: How a Positive Brain Fuels Success in Work and Life](https://www.amazon.com/Happiness-Advantage-Positive-Brain-Success/dp/0307591557/ref=sr_1_2)

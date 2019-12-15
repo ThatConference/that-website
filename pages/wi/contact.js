@@ -11,7 +11,6 @@ import LinkButton from '../../components/shared/LinkButton';
 import { gridRepeat } from '../../utilities';
 
 const StyledImageContainer = styled(ImageContainer)`
-  // width: 45rem;
   padding: 2.5rem;
   margin: 2rem;
 `;

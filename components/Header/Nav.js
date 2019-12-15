@@ -24,17 +24,14 @@ const Nav = ({ className }) => {
   return (
     <nav className={className}>
       <NavList>
-        <NavListItem>
+        {/* <NavListItem>
           <NavItem title="Schedule" href="/" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Speakers" href="/" />
-        </NavListItem>
+        </NavListItem> */}
         <NavListItem>
           <NavItem title="Partners" href="/wi/partners" />
-        </NavListItem>
-        <NavListItem>
-          <NavItem title="Campers" href="/" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Plan Your Trip" href="/" />
@@ -45,6 +42,9 @@ const Nav = ({ className }) => {
             href="https://store.unspecified.io/"
             target="blank"
           />
+        </NavListItem>
+        <NavListItem>
+          <NavItem title="Blog" href="/blog" />
         </NavListItem>
         <NavListItem>
           <NavItem title="Contact" href="/wi/contact" />
