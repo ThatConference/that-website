@@ -1,24 +1,17 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import Select from 'react-select';
 
 import RegularExpressions from '../../utilities/validation';
 
-import FormInput, { SelectInput } from '../shared/FormInput';
+import FormInput from '../shared/FormInput';
 import {
   CheckboxGroupItem,
   CheckboxGroup,
   RadioButtonGroupItem,
   RadioButtonGroup,
 } from '../shared/CheckboxAndRadioButtonInput';
-import {
-  FormRow,
-  FormLabel,
-  FormRule,
-  FormSubmit,
-  FormInputValidationMessage,
-} from '../shared/FormLayout';
+import { FormRow, FormRule, FormSubmit } from '../shared/FormLayout';
 
 const yearOptions = [
   { value: '1960', label: '1960' },
@@ -91,7 +84,6 @@ const SampleForm = () => {
         errors,
         touched,
       }) => {
-        const yearFieldName = 'year';
         return (
           <Form className="input-form">
             <FormRow>
