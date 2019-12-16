@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
+import Select from 'react-select';
 
+import baseTheme from '../../styles/baseTheme';
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
 import ImageUpload from './ImageUpload';
@@ -10,6 +12,7 @@ const inputTypes = {
   checkbox: 'checkbox',
   text: 'text',
   textarea: 'textarea',
+  select: 'select',
   markdown: 'markdown',
   imageupload: 'imageupload',
 };
@@ -18,6 +21,27 @@ const sharedTextInputStyles = css`
   display: block;
   width: 100%;
 `;
+
+const getSelectStyles = () => {
+  return {
+    control: (base, state) => ({
+      ...base,
+      borderRadius: 0,
+      border: `0.1rem solid ${baseTheme.colors.mediumGray}`,
+      backgroundColor: baseTheme.colors.mediumLightGray,
+      boxShadow: state.isFocused ? 0 : 0,
+      outlineOffset: '-2px',
+      outline: state.isFocused
+        ? `${baseTheme.colors.thatBlue} auto 1px !important`
+        : '',
+      '&:hover': {
+        outline: state.isFocused
+          ? `${baseTheme.colors.thatBlue} auto 1px !important`
+          : '',
+      },
+    }),
+  };
+};
 
 export const FormTextInput = styled.input`
   ${sharedTextInputStyles}
@@ -55,13 +79,17 @@ const FormInput = props => {
     rows,
     cols,
     helpText,
+    selectOptions,
+    values,
+    isMulti,
   } = props;
-  const fieldProps = getFieldProps(fieldName);
+  const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isMarkdown = inputType && inputType === inputTypes.markdown;
   const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
+  const isSelect = inputType && inputType === inputTypes.select;
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
@@ -101,6 +129,23 @@ const FormInput = props => {
             rows={rows || '5'}
             cols={cols || null}
             className={styleClass}
+            {...fieldProps}
+          />
+        </>
+      )}
+      {isSelect && (
+        <>
+          {parsedLabel}
+          <Select
+            name={fieldName}
+            id={fieldName}
+            options={selectOptions}
+            value={values[fieldName]}
+            onChange={value => setFieldValue(fieldName, value)}
+            isMulti={isMulti}
+            placeholder=""
+            className={`react-select-container ${styleClass}`}
+            styles={getSelectStyles()}
             {...fieldProps}
           />
         </>
