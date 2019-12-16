@@ -25,7 +25,6 @@ const GET_PARTNERS = gql`
 `;
 
 const Header = styled.h1`
-  margin-top: 0;
   margin-bottom: 0;
   margin-right: 50px;
 `;
