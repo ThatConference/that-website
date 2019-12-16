@@ -10,6 +10,12 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
+const categories = [
+  { value: 'accessibility', label: 'Accessibility' },
+  { value: 'architecture', label: 'Architecture' },
+  { value: 'arvr', label: 'AR/VR' },
+];
+
 const DetailForm = () => {
   return (
     <Formik
@@ -17,6 +23,8 @@ const DetailForm = () => {
         title: '',
         shortDescription: '',
         description: '',
+        primaryCategory: '',
+        secondaryCategories: [],
       }}
       validationSchema={Yup.object({
         title: Yup.string()
@@ -29,6 +37,8 @@ const DetailForm = () => {
         description: Yup.string()
           .min(3, 'Must be at least 3 characters')
           .required('Required'),
+        primaryCategory: Yup.string().required('Required'),
+        secondaryCategories: Yup.array().required('At least one is required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -39,7 +49,14 @@ const DetailForm = () => {
         }, 400);
       }}
     >
-      {({ getFieldProps, errors, touched, setFieldValue, setFieldTouched }) => (
+      {({
+        getFieldProps,
+        errors,
+        touched,
+        setFieldValue,
+        setFieldTouched,
+        values,
+      }) => (
         <Form className="input-form">
           <FormRow>
             <FormInput
@@ -70,6 +87,32 @@ const DetailForm = () => {
               setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              fieldName="primaryCategory"
+              label="Primary Category"
+              selectOptions={categories}
+              inputType="select"
+              setFieldValue={setFieldValue}
+              values={values}
+              touched={touched}
+              errors={errors}
+              helpText="You might not find a perfect fit, just choose the one that applies the most"
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              fieldName="secondaryCategories"
+              label="Secondary Categories"
+              selectOptions={categories}
+              inputType="select"
+              isMulti
+              setFieldValue={setFieldValue}
+              values={values}
+              touched={touched}
+              errors={errors}
             />
           </FormRow>
           <FormRule />
