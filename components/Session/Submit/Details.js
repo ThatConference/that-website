@@ -16,6 +16,12 @@ const categories = [
   { value: 'arvr', label: 'AR/VR' },
 ];
 
+const audiences = [
+  { value: 'anybody', label: 'Anybody' },
+  { value: 'developers', label: 'Developers' },
+  { value: 'managers', label: 'Managers' },
+];
+
 const DetailForm = () => {
   return (
     <Formik
@@ -25,6 +31,7 @@ const DetailForm = () => {
         description: '',
         primaryCategory: '',
         secondaryCategories: [],
+        targetAudiences: [],
       }}
       validationSchema={Yup.object({
         title: Yup.string()
@@ -39,6 +46,7 @@ const DetailForm = () => {
           .required('Required'),
         primaryCategory: Yup.string().required('Required'),
         secondaryCategories: Yup.array().required('At least one is required'),
+        targetAudiences: Yup.array().required('At least one is required'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -107,6 +115,19 @@ const DetailForm = () => {
               fieldName="secondaryCategories"
               label="Secondary Categories"
               selectOptions={categories}
+              inputType="select"
+              isMulti
+              setFieldValue={setFieldValue}
+              values={values}
+              touched={touched}
+              errors={errors}
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              fieldName="targetAudiences"
+              label="Target Audiences"
+              selectOptions={audiences}
               inputType="select"
               isMulti
               setFieldValue={setFieldValue}
