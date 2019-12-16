@@ -54,11 +54,12 @@ const handleMarkdownChange = event => {
   invalid = !markdown || markdown === '';
 };
 
-const MarkdownEditor = ({ setFieldTouched, setFieldValue, field }) => {
+const MarkdownEditor = ({ setFieldTouched, setFieldValue, field, touched }) => {
   const [displayPreview, setDisplayPreview] = useState(false);
   setTouched = setFieldTouched;
   setValue = setFieldValue;
   fieldName = field;
+  invalid = touched && touched[field] && (!markdown || markdown === '');
   return (
     <>
       <Toggler
