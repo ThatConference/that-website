@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 
 import NavItem from './NavItem';
-// import Icon from '../shared/Icon';
 import { above, below } from '../../utilities';
 
 const NavList = styled.div`

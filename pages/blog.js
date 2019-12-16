@@ -22,8 +22,8 @@ const blog = () => (
         <Cell>
           <h1 style={{ marginBottom: '0.5rem' }}>THAT Blog</h1>
           <p className="medium-body-copy">
-            A collection of articles, tutoirals, stories all written by THAT
-            Crew and amazing member of THAT Community.
+            A collection of articles, tutorials, stories all written by THAT
+            Crew and amazing members of THAT Community.
           </p>
         </Cell>
       </Grid>

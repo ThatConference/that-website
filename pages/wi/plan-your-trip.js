@@ -130,7 +130,7 @@ const contact = () => {
               <br />
               {formattedEndDate}
             </p>
-            <LinkButton href={DEFAULT_WIP_PAGE} label="Ticket Options" />
+            <LinkButton href={`/${DEFAULT_WIP_PAGE}`} label="Ticket Options" />
           </StyledImageContainer>
           <StyledImageContainer>
             <Title>Where</Title>

@@ -82,8 +82,8 @@ const contact = () => (
         <StyledImageContainer>
           <Title>Partnerships</Title>
           <p>
-            Reach out with all your questions, ideas, feedback or if interested
-            to become a partner.
+            Reach out with all your questions, ideas, feedback or interested to
+            learn more in partnering with THAT!
           </p>
           <LinkButton
             href="mailto:partners@thatconference.com"
