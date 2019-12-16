@@ -1,9 +1,19 @@
 {
   "version": 2,
   "name": "THATConference.com",
+  "env": {
+    "SENTRY_DSN": "@sentry_dsn"
+  },
   "build": {
     "env": {
-      "SENTRY_DSN": "@sentry_dsn"
+      "SENTRY_DSN": "@sentry_dsn",
+      "API_GATEWAY": "https://api.that.tech",
+      "AUTH0_DOMAIN": "@thatwebsite_auth0_domain",
+      "AUTH0_CLIENT_ID": "@thatwebsite_auth0_client_id",
+      "AUTH0_CLIENT_SECRET": "@thatwebsite_auth0_client_secret",
+      "REDIRECT_URI": "@thatwebsite_redirect_uri",
+      "POST_LOGOUT_REDIRECT_URI": "@thatwebsite_post_logout_redirect_uri",
+      "SESSION_COOKIE_SECRET": "@thatwebsite_session_cookie_secret"
     }
   }
 }

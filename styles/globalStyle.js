@@ -119,27 +119,44 @@ const GlobalStyle = createGlobalStyle`
       padding: 1rem;
     }
 
-    &.input-form
+    &.input-form {
+
       input, textarea {
-      margin-top: 1rem;
-      border: 1px solid ${({ theme }) => theme.colors.mediumGray};
-      background-color: ${({ theme }) => theme.colors.mediumLightGray};
-
-      &:focus {
-        outline: ${({ theme }) => theme.colors.thatBlue} auto 5px;
-      }
-
-      &.invalid {
-        border-color: ${({ theme }) => theme.colors.danger};
+        margin-top: 0.75rem;
+        border: 1px solid ${({ theme }) => theme.colors.mediumGray};
+        background-color: ${({ theme }) => theme.colors.mediumLightGray};
 
         &:focus {
-          outline: unset;
-          border-color: ${({ theme }) => theme.colors.danger};
-          box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.55);
+          outline: ${({ theme }) => theme.colors.thatBlue} auto 1px;
         }
+
+        &.invalid {
+          border-color: ${({ theme }) => theme.colors.danger};
+
+          &:focus {
+            outline-offset: 0;
+            outline: unset;
+            border-color: ${({ theme }) => theme.colors.danger};
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.55);
+          }
+        } //invalid
+
+      } //input, textarea
+
+      .react-select-container.invalid {
+        border: 1px solid red;
+
+        &:focus {
+            outline-offset: 0;
+            outline: unset;
+            border-color: ${({ theme }) => theme.colors.danger};
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.55);
+          }
       }
-    }
-  }
+
+    } //input-form
+
+  } //form
 `;
 
 export default GlobalStyle;

@@ -51,7 +51,7 @@ export class CheckboxGroup extends React.Component {
   };
 
   render() {
-    const { id, label, value, error, children } = this.props;
+    const { id, label, value, error, touched, children } = this.props;
 
     return (
       <FormLabel htmlFor={id}>
@@ -66,7 +66,9 @@ export class CheckboxGroup extends React.Component {
               },
             });
           })}
-          <FormInputValidationMessage>{error}</FormInputValidationMessage>
+          <FormInputValidationMessage>
+            {touched && error ? error : ''}
+          </FormInputValidationMessage>
         </div>
       </FormLabel>
     );
@@ -97,13 +99,15 @@ export const RadioButtonGroupItem = ({
   );
 };
 
-export const RadioButtonGroup = ({ id, error, label, children }) => {
+export const RadioButtonGroup = ({ id, error, touched, label, children }) => {
   return (
     <FormLabel htmlFor={id}>
       {label}
       <div>
         {children}
-        <FormInputValidationMessage>{error}</FormInputValidationMessage>
+        <FormInputValidationMessage>
+          {touched && error ? error : ''}
+        </FormInputValidationMessage>
       </div>
     </FormLabel>
   );
