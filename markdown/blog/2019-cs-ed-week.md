@@ -1,24 +1,28 @@
 ---
 title: THAT Computer Science Education Week Celebration
-description: Getting inspired to celebrate Computer Science Education Week with THAT! 
+description: Getting inspired to celebrate Computer Science Education Week with THAT!
+leadImage: 2019-cs-ed-week.png
+publishedDate: December 13, 2019
+author: THAT Crew
 ---
 
 <img src="../../images/blog/2019-cs-ed-week.png"
      alt="THAT Computer Science Education Week Celebration"
      style="width: 62vw;" />
 <br/>
+
 ### THAT Computer Science Education Week Celebration
 
-This week (December 9-15) we here at THAT Conference are celebrating <b>Computer Science Education Week</b>! An annual program dedicated to promoting computer science education and to inspire K-12 students to get interested in computer science. It's an amazing opportunity to take an hour to learn something new, teach someone, volunteer, or just be inspired with all the amazing tutorials put out this time of year. 
+This week (December 9-15) we here at THAT Conference are celebrating <b>Computer Science Education Week</b>! An annual program dedicated to promoting computer science education and to inspire K-12 students to get interested in computer science. It's an amazing opportunity to take an hour to learn something new, teach someone, volunteer, or just be inspired with all the amazing tutorials put out this time of year.
 
-We connect deeply to this week and its mission here at THAT. We have built a family track for just this reason. To expose school aged kids of all ages to technologies, possibilities and professionals they would not normal have an opportunity to interact with. To remove the barriers, get them hands on to explore the world of computer science. 
+We connect deeply to this week and its mission here at THAT. We have built a family track for just this reason. To expose school aged kids of all ages to technologies, possibilities and professionals they would not normal have an opportunity to interact with. To remove the barriers, get them hands on to explore the world of computer science.
 
-As we spend the weekend closing out Computer Science Education Week we want to take an opportunity to inspire you. Inspire you to learn, get involved, become an advocate, take an hour to program a dance party with your kid, family member or just for fun to play with something new. 
+As we spend the weekend closing out Computer Science Education Week we want to take an opportunity to inspire you. Inspire you to learn, get involved, become an advocate, take an hour to program a dance party with your kid, family member or just for fun to play with something new.
 
 <br/>
 #### Why is Computer Science Education Week in December?
 
-Computer Science Education Week is held in recognition of the birthday of computing pioneer Admiral Grace Murray Hopper (December 9, 1906). This international event will be close to serving 1 billion hours around the world this year!! 
+Computer Science Education Week is held in recognition of the birthday of computing pioneer Admiral Grace Murray Hopper (December 9, 1906). This international event will be close to serving 1 billion hours around the world this year!!
 
 Checkout [this quick video](https://www.youtube.com/watch?v=Fg82iV-L8ZY&feature=youtu.be) to learn more about how Grace Hopper influenced our industry and the tech stack most of us work on every day.
 
@@ -47,32 +51,32 @@ You can search and find tons of great activities around the web. Here is a list 
 
 [Code.org](http://code.org/): an expansive list of activities to pick from, but if you haven't yet tried, the Dance Party ([code.org/dance](http://code.org/dance)) is a must! Launched last year, Dance Party is all new for 2019. Great for all ages.
 <br/><br/>
-Codesters is highlighting 7 different projects! [https://www.codesters.com/hoc/](https://www.codesters.com/hoc/) Great way to learning programming through blocks and then see the real code it generates. 
+Codesters is highlighting 7 different projects! [https://www.codesters.com/hoc/](https://www.codesters.com/hoc/) Great way to learning programming through blocks and then see the real code it generates.
 <br/><br/>
 Code Your Hero (Google for Education) [https://csfirst.withgoogle.com/c/cs-first/en/code-your-hero/overview.html](https://csfirst.withgoogle.com/c/cs-first/en/code-your-hero/overview.html) Choose an everyday hero from their own life and build a story or game using code that gives their hero superpowers.
 <br/><br/>
 Tynker has over 500 challenges! [https://www.tynker.com/hour-of-code/](https://www.tynker.com/hour-of-code/) Pick your age range and a challenge that looks fun to you and go for it!
 <br/><br/>
-Hour of Code has an amazing curated list from all around the web! Pick a platform, topic and explore [https://hourofcode.com/us/learn](https://hourofcode.com/us/learn) 
+Hour of Code has an amazing curated list from all around the web! Pick a platform, topic and explore [https://hourofcode.com/us/learn](https://hourofcode.com/us/learn)
 
 <br/>
 #### Be An Inspiration Year Round
 
-In all of our local communities there is a need for professional involvement and support to bring all the K-12 computer science education to life. That could mean being a volunteer teacher at your local school, starting an after school robotics or code club, be a guest speaker/teacher, donating equipment or materials, or maybe being an advocate to bring legislative change. 
+In all of our local communities there is a need for professional involvement and support to bring all the K-12 computer science education to life. That could mean being a volunteer teacher at your local school, starting an after school robotics or code club, be a guest speaker/teacher, donating equipment or materials, or maybe being an advocate to bring legislative change.
 
 Reach out to your local community and school system to find out what their biggest need is and how you can support and get involved. Beyond that, here are some resources to national organizations you can participate with:
 
-[TEALS](https://www.microsoft.com/en-us/teals/volunteers): Helps bring computer science training and support into the schools. Always looking for professionals to help teach, assist teaching and even be guest speakers. 
+[TEALS](https://www.microsoft.com/en-us/teals/volunteers): Helps bring computer science training and support into the schools. Always looking for professionals to help teach, assist teaching and even be guest speakers.
 
-[Girls Who Code](https://girlswhocode.com/): From elementary school programs to summer immersion programs for 10th and 11th graders, there are opportunities to start and/or participate locally. 
+[Girls Who Code](https://girlswhocode.com/): From elementary school programs to summer immersion programs for 10th and 11th graders, there are opportunities to start and/or participate locally.
 
-[FIRST Lego/Tech Challenge/Robotics](https://www.firstinspires.org/): Lots of options at all ages, and opportunities to get help start or support a club and your local school. 
+[FIRST Lego/Tech Challenge/Robotics](https://www.firstinspires.org/): Lots of options at all ages, and opportunities to get help start or support a club and your local school.
 
 [CoderDojo](https://coderdojo.com/): Start or get involved with these free, open and local programming clubs for young people.
 
 <br/>
-We'd love to hear how you celebrate Computer Science Education Week! Reach out on socials, email us, share in Slack, however you want to share, we want to hear! 
+We'd love to hear how you celebrate Computer Science Education Week! Reach out on socials, email us, share in Slack, however you want to share, we want to hear!
 
-What ideas does this give you to bring to THAT Conference? 
+What ideas does this give you to bring to THAT Conference?
 
 How can you share what you learned in a THAT Conference 2020 session?

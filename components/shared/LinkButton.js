@@ -38,6 +38,7 @@ const LinkButton = ({
   borderColor,
   backgroundColor,
   label,
+  target,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -56,6 +57,7 @@ const LinkButton = ({
       className={className}
       borderColor={borderColor}
       backgroundColor={backgroundColor}
+      target={target}
     >
       <p>{label}</p>
     </OutlineLink>

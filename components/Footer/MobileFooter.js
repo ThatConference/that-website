@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from '../shared/Icon';
-import NavItem from '../Nav/NavItem';
+import NavItem from '../Header/NavItem';
 import SocialLinks from '../shared/SocialLinks';
 import { below } from '../../utilities';
 
