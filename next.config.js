@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
 const nextSourceMaps = require('@zeit/next-source-maps');
 const webpack = require('webpack');
+const { version } = require('./package.json');
+const { execSync } = require('child_process');
 
 dotenv.config();
 
@@ -38,6 +40,12 @@ const sourceMaps = nextSourceMaps({
   },
 });
 
+const generateBuildId = async () => {
+  // return `that-website@${version}-xyz880`;
+  const gitsha = await execSync('git rev-parse --short HEAD');
+  return `that-website@${version}-${gitsha}`;
+};
+
 module.exports = {
   target: 'serverless',
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
@@ -58,4 +66,5 @@ module.exports = {
     SESSION_COOKIE_LIFETIME: 7200,
   },
   ...sourceMaps,
+  generateBuildId,
 };
