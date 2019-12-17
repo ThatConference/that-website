@@ -68,6 +68,8 @@ const Meta = () => (
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}');
+            window['ga-disable-${GA_TRACKING_ID}'] = ${process.env.NODE_ENV ===
+          'production'};
           `,
       }}
     />
