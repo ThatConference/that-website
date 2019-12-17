@@ -45,6 +45,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-facebook": "^8.1.4",
+    "react-id-generator": "^3.0.0",
     "react-scroll-parallax": "^2.2.0",
     "react-select": "^3.0.8",
     "sentry-testkit": "^3.0.2",
