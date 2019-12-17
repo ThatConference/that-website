@@ -2,7 +2,6 @@ const dotenv = require('dotenv');
 const nextSourceMaps = require('@zeit/next-source-maps');
 const webpack = require('webpack');
 const { version } = require('./package.json');
-const { execSync } = require('child_process');
 
 dotenv.config();
 
@@ -42,8 +41,11 @@ const sourceMaps = nextSourceMaps({
 
 const generateBuildId = async () => {
   // return `that-website@${version}-xyz880`;
-  const gitsha = await execSync('git rev-parse --short HEAD');
-  return `that-website@${version}-${gitsha}`;
+  const gitsha = process.env.NOW_GITHUB_COMMIT_SHA;
+  if (gitsha) {
+    return `that-website@${version}-${gitsha.substring(0, 6)}`;
+  }
+  return null;
 };
 
 module.exports = {
