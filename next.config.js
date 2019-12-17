@@ -35,6 +35,7 @@ const sourceMaps = nextSourceMaps({
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
 
+    console.log(`buildId ${buildId}`);
     return config;
   },
 });
