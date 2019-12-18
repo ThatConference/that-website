@@ -75,7 +75,7 @@ In order to iterate collectivlely when developing a new page we have a higher or
 
 Here is how it works, in your `.env` file give `FEATURE_KEYWORD` some value. Then wrap your page componet (_NOTE: currently only works for pages_) in `togglePage`. This adds the logic that will allow this page to render **only when** a query param is present and matches the value set in `FEATURE_KEYWORD`.
 
-Example - Let's say the speakers page is wrapped in `togglePage`. Set FEATURE_KEYWORD to a value, let's go with `baconisgreat`, then fire up the local environment.
-Go to: http://localhost:3000/wi/speakers?feature=baconisgreat and page will load.
-Go to: http://localhost:3000/wi/speakers?feature=baconisgood, page not found
-Go to: http://localhost:3000/wi/speakers, page not found
+Example - Check out `samples/toggle-page.js`. Here is a sample page wrapped in `togglePage`. Now, set FEATURE_KEYWORD in your `.env` to a value, let's go with `baconisgreat`, then fire up the local environment.
+Go to: http://localhost:3000/samples/toggle-page?feature=baconisgreat and page will load.
+Go to: http://localhost:3000/samples/toggle-page?feature=baconisgood, page not found
+Go to: http://localhost:3000/samples/toggle-page, page not found

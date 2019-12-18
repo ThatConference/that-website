@@ -15,6 +15,6 @@ export default WrappedComponent =>
       if (statusCode) {
         return <Error statusCode={statusCode} />;
       }
-      return <WrappedComponent props={this.props} />;
+      return <WrappedComponent {...this.props} />;
     }
   };
