@@ -103,6 +103,7 @@ const Nav = ({ className }) => {
               href="https://store.unspecified.io/"
               target="blank"
               onClick={() => setMobileMenuOpen(false)}
+              isLocal={false}
             />
           </NavListItem>
           <NavListItem>
