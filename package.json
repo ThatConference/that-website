@@ -56,6 +56,11 @@
     "yup": "^0.28.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "concurrently": "^5.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
