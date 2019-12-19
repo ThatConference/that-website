@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+
+import withApolloClient from '../../lib/withApolloClient';
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
@@ -12,14 +14,16 @@ import { below } from '../../utilities/breakpoint';
 const GET_PARTNERS = gql`
   query getPartners {
     partners {
-      id
-      slug
-      year
-      partnershipLevel
-      companyName
-      companyLogo
-      heroImage
-      website
+      all {
+        id
+        slug
+        year
+        partnershipLevel
+        companyName
+        companyLogo
+        heroImage
+        website
+      }
     }
   }
 `;
@@ -95,12 +99,15 @@ const renderPartner = (
   );
 };
 
-const partnerListing = () => {
-  const { loading, error, data } = useQuery(GET_PARTNERS);
+const partnerListing = ({ apolloClient }) => {
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    client: apolloClient,
+  });
 
   if (loading) return null;
   if (error) return null;
 
+  const partners = data.partners.all;
   return (
     <div>
       <ContentSection>
@@ -129,7 +136,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
@@ -140,7 +147,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
@@ -151,7 +158,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
@@ -162,7 +169,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
@@ -173,7 +180,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
@@ -185,4 +192,4 @@ const partnerListing = () => {
   );
 };
 
-export default partnerListing;
+export default withApolloClient(partnerListing);

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import withApolloClient from '../../../lib/withApolloClient';
 import HeroSection from '../../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
 import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
@@ -11,31 +12,33 @@ import PresentationsJobsSection from '../../../components/PartnerDetail/Presenta
 
 const GET_PARTNER = gql`
   query getPartnerBySlug($slug: String!) {
-    partnerBySlug(slug: $slug) {
-      id
-      slug
-      year
-      companyName
-      companyLogo
-      heroImage
-      website
-      goals
-      aboutUs
-      contactNumber
-      linkedIn
-      github
-      youtube
-      instagram
-      twitter
-      facebook
-      twitch
-      chat
-      blog
-      vlog
-      jobListings {
+    partners {
+      partnerBySlug(slug: $slug) {
         id
-        title
-        description
+        slug
+        year
+        companyName
+        companyLogo
+        heroImage
+        website
+        goals
+        aboutUs
+        contactNumber
+        linkedIn
+        github
+        youtube
+        instagram
+        twitter
+        facebook
+        twitch
+        chat
+        blog
+        vlog
+        jobListings {
+          id
+          title
+          description
+        }
       }
     }
   }
@@ -45,13 +48,14 @@ const MainDiv = styled.div`
   padding-bottom: 4rem;
 `;
 
-function PartnerDetail() {
+function PartnerDetail({ apolloClient }) {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_PARTNER, {
+    client: apolloClient,
     variables: { slug: router.query.slug },
     onCompleted(d) {
-      const [partner] = d.partnerBySlug;
+      const [partner] = d.partners.partnerBySlug;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -64,7 +68,7 @@ function PartnerDetail() {
   if (loading) return null;
   if (error) return null;
 
-  const partner = data.partnerBySlug[0];
+  const partner = data.partners.partnerBySlug[0];
 
   return (
     <MainDiv>
@@ -75,7 +79,7 @@ function PartnerDetail() {
         location="wi"
       />
 
-      <MainLogoSection partner={data.partnerBySlug[0]} />
+      <MainLogoSection partner={data.partners.partnerBySlug[0]} />
       <AboutGoalsSection
         companyName={partner.companyName}
         about={partner.aboutUs}
@@ -90,4 +94,4 @@ function PartnerDetail() {
   );
 }
 
-export default PartnerDetail;
+export default withApolloClient(PartnerDetail);
