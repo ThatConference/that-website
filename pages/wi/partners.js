@@ -106,11 +106,7 @@ const partnerListing = () => {
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>
-              2019
-              <br />
-              Partners
-            </Header>
+            <Header>2019 Partners</Header>
             <LinkButton
               href="/wi/become-a-partner"
               label="Become a Partner"
