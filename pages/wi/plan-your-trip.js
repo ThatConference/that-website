@@ -17,9 +17,6 @@ const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        id
-        name
-        slogan
         startDate
         endDate
         venues {
@@ -29,21 +26,6 @@ const GET_EVENT = gql`
           city
           state
           zip
-        }
-        milestones {
-          title
-          description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
-          startDate
-          endDate
-          link
-          linkText
         }
       }
     }
