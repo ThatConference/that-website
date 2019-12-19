@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const nextSourceMaps = require('@zeit/next-source-maps');
 const webpack = require('webpack');
+const { version } = require('./package.json');
 
 dotenv.config();
 
@@ -34,9 +35,19 @@ const sourceMaps = nextSourceMaps({
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
 
+    console.log(`buildId ${buildId}`);
     return config;
   },
 });
+
+const generateBuildId = async () => {
+  // return `that-website@${version}-xyz880`;
+  const gitsha = process.env.NOW_GITHUB_COMMIT_SHA;
+  if (gitsha) {
+    return `that-website@${version}-${gitsha.substring(0, 6)}`;
+  }
+  return null;
+};
 
 module.exports = {
   target: 'serverless',
@@ -58,4 +69,5 @@ module.exports = {
     SESSION_COOKIE_LIFETIME: 7200,
   },
   ...sourceMaps,
+  generateBuildId,
 };

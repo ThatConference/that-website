@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 import Select from 'react-select';
+import nextId from 'react-id-generator';
 
 import baseTheme from '../../styles/baseTheme';
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
@@ -139,6 +140,7 @@ const FormInput = props => {
           <Select
             name={fieldName}
             id={fieldName}
+            instanceId={nextId()}
             options={selectOptions}
             value={values[fieldName]}
             onChange={value => setFieldValue(fieldName, value)}

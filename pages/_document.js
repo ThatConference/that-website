@@ -2,6 +2,7 @@ import React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import * as Sentry from '@sentry/browser';
+import { resetId } from 'react-id-generator';
 
 process.on('unhandledRejection', err => {
   Sentry.captureException(err);
@@ -13,6 +14,10 @@ process.on('uncaughtException', err => {
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
+    // _document is only rendered on the server side and not on the client side
+    // this will reset id keeping markup consistent across server and browser
+    resetId();
+
     const sheet = new ServerStyleSheet();
     const page = renderPage(App => props =>
       // eslint-disable-next-line react/jsx-props-no-spreading
