@@ -27,6 +27,21 @@ const GET_EVENT = gql`
           state
           zip
         }
+        milestones {
+          title
+          description
+          dueDate
+        }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
+          startDate
+          endDate
+          link
+          linkText
+        }
       }
     }
   }
@@ -185,4 +200,4 @@ const contact = ({ apolloClient }) => {
   );
 };
 
-export default withApolloClient(styled(contact));
+export default withApolloClient(contact);
