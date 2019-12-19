@@ -6,6 +6,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
+import togglePage from '../../utilities/togglePage';
 
 import Header from '../../components/CounselorSelectionProcess/Header';
 import TheProcess from '../../components/CounselorSelectionProcess/TheProcess';
@@ -103,4 +104,4 @@ const CallForSpeakers = () => {
   );
 };
 
-export default CallForSpeakers;
+export default togglePage(CallForSpeakers);

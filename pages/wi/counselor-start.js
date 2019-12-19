@@ -5,6 +5,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
+import togglePage from '../../utilities/togglePage';
 
 import Header from '../../components/CounselorStart/Header';
 
@@ -60,4 +61,4 @@ const CounselorStart = () => {
   );
 };
 
-export default CounselorStart;
+export default togglePage(CounselorStart);

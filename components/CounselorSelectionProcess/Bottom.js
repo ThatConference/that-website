@@ -37,7 +37,7 @@ const Bottom = () => {
         counselor and submit your session submission!
       </BottomText>
       <BottomButton
-        href="counselor-agreement"
+        href="counselor-agreement?feature=callForCounselors"
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"

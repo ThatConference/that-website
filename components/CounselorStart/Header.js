@@ -27,7 +27,10 @@ const Header = () => {
         should be passionate about the topic(s) you’re submitting and excited to
         have conversations about your talk beyond the scheduled timeslot.
       </TopParagraph>
-      <LinkButton label="Get Started" href="counselor-agreement" />
+      <LinkButton
+        label="Get Started"
+        href="counselor-agreement?feature=callForCounselors"
+      />
     </>
   );
 };

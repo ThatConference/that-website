@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import togglePage from '../../utilities/togglePage';
+
 import Header from '../../components/CallForCounselors/Header';
 import SummerCamp from '../../components/CallForCounselors/SummerCamp';
 import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
@@ -47,4 +49,4 @@ const CallForSpeakers = () => {
   );
 };
 
-export default CallForSpeakers;
+export default togglePage(CallForSpeakers);

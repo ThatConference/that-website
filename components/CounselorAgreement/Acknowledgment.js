@@ -34,7 +34,7 @@ const Achknowledgment = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'session/submit';
+          window.location = 'session/submit?feature=callForCounselors';
         }, 400);
       }}
     >

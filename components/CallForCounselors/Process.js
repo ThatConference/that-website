@@ -133,7 +133,7 @@ const Process = ({ milestones }) => {
             );
           })}
           <MoreAboutProcess
-            href="counselor-selection-process"
+            href="counselor-selection-process?feature=callForCounselors"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
