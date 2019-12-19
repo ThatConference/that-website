@@ -66,7 +66,7 @@ const ContactInfoForm = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'create/online-presence';
+          window.location = 'create/online-presence?feature=callForCounselors';
         }, 400);
       }}
     >

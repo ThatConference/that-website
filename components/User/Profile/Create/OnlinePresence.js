@@ -37,7 +37,7 @@ const OnlinePresenceForm = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'bio';
+          window.location = 'bio?feature=callForCounselors';
         }, 400);
       }}
     >

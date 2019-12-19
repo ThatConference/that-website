@@ -30,7 +30,7 @@ const Intro = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'submit/details';
+          window.location = 'submit/details?feature=callForCounselors';
         }, 400);
       }}
     >

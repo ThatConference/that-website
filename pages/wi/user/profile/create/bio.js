@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 
 import ContentSection from '../../../../../components/shared/ContentSection';
+import togglePage from '../../../../../utilities/togglePage';
 
 import Header from '../../../../../components/User/Profile/Create/Header';
 import Bio from '../../../../../components/User/Profile/Create/Bio';
@@ -20,4 +21,4 @@ const CallForSpeakers = () => {
   );
 };
 
-export default CallForSpeakers;
+export default togglePage(CallForSpeakers);
