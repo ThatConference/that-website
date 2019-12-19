@@ -125,10 +125,10 @@ const partnerListing = ({ apolloClient }) => {
           <Cell>
             <p className="large-body-copy">
               THAT Conference wouldn’t be possible without the support of our
-              sponsors and partners. A large portion of the conference costs are
-              paid from sponsorships so that we can keep ticket costs
-              affordable. Please take a few minutes to learn about our sponsors
-              and let them know you appreciate their support of our community!
+              partners. A large portion of the conference costs are paid from
+              sponsorships so that we can keep ticket costs affordable. Please
+              take a few minutes to learn about our partners and let them know
+              you appreciate their support of our community!
             </p>
           </Cell>
         </Grid>
