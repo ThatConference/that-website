@@ -37,7 +37,7 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   );
 };
 
-RenderedMarkdown.getInitalProps = async context => {
+RenderedMarkdown.getInitialProps = async context => {
   const slug = context.query.post;
 
   try {
