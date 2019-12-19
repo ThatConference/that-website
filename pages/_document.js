@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
           <NextScript />
 
           <script
-            type="text/javascipt"
+            type="text/javascript"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
