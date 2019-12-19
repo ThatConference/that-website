@@ -78,6 +78,10 @@
   "name": "that-website",
   "author": "that conference",
   "description": "THATConference.com",
+  "homepage": "https://www.thatconference.com",
+  "bugs": {
+    "url": "https://github.com/ThatConference/that-website/issues"
+  },
   "license": "gpl-3.0",
   "keywords": [
     "node, web, nextjs, now, react"
