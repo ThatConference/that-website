@@ -1,8 +1,9 @@
+import { useQuery } from '@apollo/react-hooks';
+
+import { gql } from 'apollo-boost';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
@@ -13,37 +14,40 @@ import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
+import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
-    event(id: $eventId) {
-      id
-      name
-      slogan
-      startDate
-      endDate
-      venues {
+    events {
+      event(id: $eventId) {
         id
         name
-        address
-        city
-        state
-        zip
-      }
-      milestones {
-        title
-        description
-        dueDate
-      }
-      notifications {
-        id
-        shouldFeature
-        title
-        message
+        slogan
         startDate
         endDate
-        link
-        linkText
+        venues {
+          id
+          name
+          address
+          city
+          state
+          zip
+        }
+        milestones {
+          title
+          description
+          dueDate
+        }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
+          startDate
+          endDate
+          link
+          linkText
+        }
       }
     }
   }
@@ -55,8 +59,9 @@ const BottomImage = styled.img`
   height: 45rem;
 `;
 
-const home = () => {
+const home = ({ apolloClient }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
+    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;
@@ -66,7 +71,7 @@ const home = () => {
   if (loading) return null;
   if (error) return null;
 
-  const { event } = data;
+  const { event } = data.events;
 
   return (
     <>
@@ -83,6 +88,7 @@ const home = () => {
       <NewsletterSignup />
       <MeetCampers />
       <BottomImage src="./images/mess-hall.jpg" />
+
       <script
         src="https://thatconference.activehosted.com/f/embed.php?id=1"
         type="text/javascript"
@@ -92,4 +98,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default withApolloClient(home);
