@@ -11,37 +11,40 @@ import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import TimelineSection from '../../components/HomePage/Timeline';
+import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
-    event(id: $eventId) {
-      id
-      name
-      slogan
-      startDate
-      endDate
-      venues {
+    events {
+      event(id: $eventId) {
         id
         name
-        address
-        city
-        state
-        zip
-      }
-      milestones {
-        title
-        description
-        dueDate
-      }
-      notifications {
-        id
-        shouldFeature
-        title
-        message
+        slogan
         startDate
         endDate
-        link
-        linkText
+        venues {
+          id
+          name
+          address
+          city
+          state
+          zip
+        }
+        milestones {
+          title
+          description
+          dueDate
+        }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
+          startDate
+          endDate
+          link
+          linkText
+        }
       }
     }
   }
@@ -81,8 +84,9 @@ const HighlightImage = styled.img`
   `};
 `;
 
-const contact = () => {
+const contact = ({ apolloClient }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
+    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;
@@ -92,7 +96,8 @@ const contact = () => {
   if (loading) return null;
   if (error) return null;
 
-  const { event } = data;
+  const { event } = data.events;
+
   const formattedStartDate = moment(event.startDate).format(
     'dddd, MMMM D, YYYY',
   );
@@ -148,10 +153,10 @@ const contact = () => {
             />
           </StyledImageContainer>
           <StyledImageContainer>
-            <Title>Other Accomodations</Title>
+            <Title>Other Accommodations</Title>
             <p>
               Besides the Kalahari we partner with other great locations to
-              bring you the best rates to stay while at THAT. Chekcout all the
+              bring you the best rates to stay while at THAT. Checkout all the
               options.
             </p>
             <LinkButton href="#where-to-stay" label="Where To Stay" />
@@ -179,7 +184,7 @@ const contact = () => {
         recommend it, as it might take you longer to deal with the layover
         rather than jumping in a car and driving up to the Kalahari. Is there a
         shuttle from the airports? Unfortunately no but I would suggest jumping
-        on Slack and see if anyone is interested in ridesharing.
+        on Slack and see if anyone is interested in ride sharing.
       </ContentSection>
       <TimelineSection event={event} />
       <ContentSection id="where-to-stay">
@@ -188,14 +193,14 @@ const contact = () => {
         </h3>
         <p>
           Along with the Kalahari we partner with many nearby locations to offer
-          everyone rates and accomodations that best suite their travel and stay
-          while at THAT. Kalahari room blocks will open in April when ticket
-          sales open. Join our newsletter and follow us on socials to get all
-          the accomdation information as we accounce it.
+          everyone rates and accommodations that best suite their travel and
+          stay while at THAT. Kalahari room blocks will open in April when
+          ticket sales open. Join our newsletter and follow us on socials to get
+          all the accommodations information as we announce it.
         </p>
       </ContentSection>
     </>
   );
 };
 
-export default styled(contact)``;
+export default withApolloClient(styled(contact));
