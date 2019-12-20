@@ -36,7 +36,6 @@ const Header = styled.h1`
 const RobotImage = styled.img`
   height: 50rem;
   float: right;
-  margin-top: -10rem;
   margin-right: 3.5rem;
 
   ${below.med`

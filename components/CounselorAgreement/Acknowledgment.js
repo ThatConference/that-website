@@ -2,13 +2,10 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import { DEFAULT_WIP_PAGE } from '../../utilities';
 import FormInput from '../shared/FormInput';
 import { FormRule, FormSubmit } from '../shared/FormLayout';
 
 const Achknowledgment = () => {
-  const codeOfConductLink = `Agree to the <a href='/${DEFAULT_WIP_PAGE}'>Code of Conduct</a>`;
-
   return (
     <Formik
       initialValues={{
@@ -47,7 +44,7 @@ const Achknowledgment = () => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
-              label={codeOfConductLink}
+              label="Agree to the <a href='code-of-conduct'>Code of Conduct</a>"
               inputType="checkbox"
             />
           </div>

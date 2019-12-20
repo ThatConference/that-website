@@ -90,7 +90,7 @@ const Perks = () => {
         </Perk>
       </Container>
       <GetStartedNow
-        href="counselor-agreement"
+        href="counselor-agreement?feature=callForCounselors"
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"

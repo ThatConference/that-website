@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import withApolloClient from '../../lib/withApolloClient';
 
 import togglePage from '../../utilities/togglePage';
 
@@ -13,18 +14,21 @@ import Perks from '../../components/CallForCounselors/Perks';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
-    event(id: $eventId) {
-      milestones {
-        title
-        description
-        dueDate
+    events {
+      event(id: $eventId) {
+        milestones {
+          title
+          description
+          dueDate
+        }
       }
     }
   }
 `;
 
-const CallForSpeakers = () => {
+const CallForSpeakers = ({ apolloClient }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
+    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;
@@ -34,7 +38,7 @@ const CallForSpeakers = () => {
   if (loading) return null;
   if (error) return null;
 
-  const { event } = data;
+  const { event } = data.events;
   return (
     <div>
       <Head>
@@ -49,4 +53,4 @@ const CallForSpeakers = () => {
   );
 };
 
-export default togglePage(CallForSpeakers);
+export default withApolloClient(togglePage(CallForSpeakers));
