@@ -14,7 +14,7 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
-const Intro = () => {
+const Intro = ({ featureKeyword }) => {
   return (
     <Formik
       initialValues={{
@@ -30,7 +30,7 @@ const Intro = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'submit/details?feature=callForCounselors';
+          window.location = `submit/details?feature=${featureKeyword}`;
         }, 400);
       }}
     >

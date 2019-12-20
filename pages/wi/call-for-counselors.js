@@ -26,7 +26,7 @@ const GET_EVENT = gql`
   }
 `;
 
-const CallForSpeakers = ({ apolloClient }) => {
+const CallForCounselors = ({ featureKeyword, apolloClient }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
@@ -44,13 +44,13 @@ const CallForSpeakers = ({ apolloClient }) => {
       <Head>
         <title key="title">Call for Speakers - THAT Conference</title>
       </Head>
-      <Header />
+      <Header featureKeyword={featureKeyword} />
       <SummerCamp />
       <TalkIdeas />
-      <Process milestones={event.milestones} />
+      <Process featureKeyword={featureKeyword} milestones={event.milestones} />
       <Perks />
     </div>
   );
 };
 
-export default withApolloClient(togglePage(CallForSpeakers));
+export default withApolloClient(togglePage(CallForCounselors));

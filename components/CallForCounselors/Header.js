@@ -58,7 +58,7 @@ const BecomeACounselor = styled(LinkButton)`
   margin-left: 0;
 `;
 
-const Header = () => {
+const Header = ({ featureKeyword }) => {
   return (
     <Main>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
@@ -76,7 +76,7 @@ const Header = () => {
             everything in between.
           </p>
           <BecomeACounselor
-            href="counselor-start?feature=callForCounselors"
+            href={`counselor-start?feature=${featureKeyword}`}
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"

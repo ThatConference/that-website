@@ -7,7 +7,7 @@ import togglePage from '../../../../utilities/togglePage';
 import Header from '../../../../components/Session/Submit/Header';
 import Intro from '../../../../components/Session/Submit/Intro';
 
-const SessionIntro = () => {
+const SessionIntro = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -15,7 +15,7 @@ const SessionIntro = () => {
       </Head>
       <ContentSection forForm>
         <Header title="Session Introduction" currentStep="0" />
-        <Intro />
+        <Intro featureKeyword={featureKeyword} />
       </ContentSection>
     </div>
   );

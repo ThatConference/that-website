@@ -7,7 +7,7 @@ import togglePage from '../../../../../utilities/togglePage';
 import Header from '../../../../../components/User/Profile/Create/Header';
 import ContactInfo from '../../../../../components/User/Profile/Create/ContactInfo';
 
-const CallForSpeakers = () => {
+const CallForSpeakers = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -17,7 +17,7 @@ const CallForSpeakers = () => {
       </Head>
       <ContentSection forForm>
         <Header title="Contact Info" currentStep="0" />
-        <ContactInfo />
+        <ContactInfo featureKeyword={featureKeyword} />
       </ContentSection>
     </div>
   );

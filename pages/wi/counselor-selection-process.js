@@ -72,7 +72,7 @@ const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
-const CallForSpeakers = () => {
+const CallForSpeakers = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -95,7 +95,7 @@ const CallForSpeakers = () => {
           <Cell width={4}>
             <Header />
             <TheProcess />
-            <Bottom />
+            <Bottom featureKeyword={featureKeyword} />
           </Cell>
           <Cell width={1} />
         </MainGrid>

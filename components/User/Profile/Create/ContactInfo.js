@@ -12,7 +12,7 @@ import {
   FormSubmit,
 } from '../../../shared/FormLayout';
 
-const ContactInfoForm = () => {
+const ContactInfoForm = ({ featureKeyword }) => {
   return (
     <Formik
       initialValues={{
@@ -66,7 +66,7 @@ const ContactInfoForm = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'create/online-presence?feature=callForCounselors';
+          window.location = `create/online-presence?feature=${featureKeyword}`;
         }, 400);
       }}
     >

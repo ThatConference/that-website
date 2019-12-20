@@ -67,7 +67,7 @@ const GetStartedNow = styled(LinkButton)`
   float: right;
 `;
 
-const Perks = () => {
+const Perks = ({ featureKeyword }) => {
   return (
     <Main>
       <Title>Perks If You&apos;re Selected To Speak At THAT Conference</Title>
@@ -90,7 +90,7 @@ const Perks = () => {
         </Perk>
       </Container>
       <GetStartedNow
-        href="counselor-agreement?feature=callForCounselors"
+        href={`counselor-agreement?feature=${featureKeyword}`}
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"

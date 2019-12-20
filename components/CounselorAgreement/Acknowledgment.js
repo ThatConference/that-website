@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import FormInput from '../shared/FormInput';
 import { FormRule, FormSubmit } from '../shared/FormLayout';
 
-const Achknowledgment = () => {
+const Achknowledgment = ({ featureKeyword }) => {
   return (
     <Formik
       initialValues={{
@@ -31,7 +31,7 @@ const Achknowledgment = () => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = 'session/submit?feature=callForCounselors';
+          window.location = `session/submit?feature=${featureKeyword}`;
         }, 400);
       }}
     >

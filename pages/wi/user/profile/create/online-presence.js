@@ -7,7 +7,7 @@ import togglePage from '../../../../../utilities/togglePage';
 import Header from '../../../../../components/User/Profile/Create/Header';
 import OnlinePresenceForm from '../../../../../components/User/Profile/Create/OnlinePresence';
 
-const OnlinePresence = () => {
+const OnlinePresence = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -17,7 +17,7 @@ const OnlinePresence = () => {
       </Head>
       <ContentSection forForm>
         <Header title="Online Presence" currentStep="2" />
-        <OnlinePresenceForm />
+        <OnlinePresenceForm featureKeyword={featureKeyword} />
       </ContentSection>
     </div>
   );

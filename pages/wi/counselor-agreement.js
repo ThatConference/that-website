@@ -45,7 +45,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = () => {
+const CounselorAgreement = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -58,7 +58,7 @@ const CounselorAgreement = () => {
             <Header />
             <Commitments />
             <WhatsProvided />
-            <Acknowledgment />
+            <Acknowledgment featureKeyword={featureKeyword} />
           </Cell>
           <Cell width={1} />
         </MainGrid>

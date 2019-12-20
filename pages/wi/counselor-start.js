@@ -42,7 +42,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorStart = () => {
+const CounselorStart = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
@@ -52,7 +52,7 @@ const CounselorStart = () => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <Header />
+            <Header featureKeyword={featureKeyword} />
           </Cell>
           <Cell width={1} />
         </MainGrid>
