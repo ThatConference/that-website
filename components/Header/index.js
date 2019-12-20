@@ -72,7 +72,7 @@ const HeaderLogo = () => {
     return <Logo />;
   }
   return (
-    <LogoLink href="/" onClick={clickTracking}>
+    <LogoLink href="/wi" onClick={clickTracking}>
       <Logo />
     </LogoLink>
   );

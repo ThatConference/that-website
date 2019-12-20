@@ -11,12 +11,12 @@ import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import TimelineSection from '../../components/HomePage/Timeline';
-import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
+        id
         startDate
         endDate
         venues {
@@ -81,9 +81,8 @@ const HighlightImage = styled.img`
   `};
 `;
 
-const contact = ({ apolloClient }) => {
+const contact = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;
@@ -200,4 +199,4 @@ const contact = ({ apolloClient }) => {
   );
 };
 
-export default withApolloClient(contact);
+export default contact;
