@@ -11,7 +11,6 @@ import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import TimelineSection from '../../components/HomePage/Timeline';
-import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -199,4 +198,4 @@ const contact = () => {
   );
 };
 
-export default withApolloClient(contact);
+export default contact;

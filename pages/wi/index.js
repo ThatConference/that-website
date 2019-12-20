@@ -14,7 +14,6 @@ import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
-import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -97,4 +96,4 @@ const home = () => {
   );
 };
 
-export default withApolloClient(home);
+export default home;

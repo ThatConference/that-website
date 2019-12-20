@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import withApolloClient from '../../../lib/withApolloClient';
 import HeroSection from '../../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
 import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
@@ -93,4 +92,4 @@ function PartnerDetail() {
   );
 }
 
-export default withApolloClient(PartnerDetail);
+export default PartnerDetail;

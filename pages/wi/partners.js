@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 
-import withApolloClient from '../../lib/withApolloClient';
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
@@ -189,4 +188,4 @@ const partnerListing = () => {
   );
 };
 
-export default withApolloClient(partnerListing);
+export default partnerListing;

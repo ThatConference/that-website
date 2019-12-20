@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import withApolloClient from '../../lib/withApolloClient';
 
 import togglePage from '../../utilities/togglePage';
 
@@ -52,4 +51,4 @@ const CallForCounselors = ({ featureKeyword }) => {
   );
 };
 
-export default withApolloClient(togglePage(CallForCounselors));
+export default togglePage(CallForCounselors);
