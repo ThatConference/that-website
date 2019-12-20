@@ -2,7 +2,8 @@
   "version": 2,
   "name": "THATConference.com",
   "env": {
-    "SENTRY_DSN": "@sentry_dsn"
+    "SENTRY_DSN": "@sentry_dsn",
+    "FEATURE_KEYWORD": "@thatwebsite_feature_keyword"
   },
   "build": {
     "env": {
