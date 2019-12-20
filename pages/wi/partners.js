@@ -98,7 +98,7 @@ const renderPartner = (
 };
 
 const partnerListing = () => {
-  const { loading, error, data } = useQuery(GET_PARTNERS, {});
+  const { loading, error, data } = useQuery(GET_PARTNERS);
 
   if (loading) return null;
   if (error) return null;

@@ -16,6 +16,7 @@ const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
+        id
         startDate
         endDate
         venues {
