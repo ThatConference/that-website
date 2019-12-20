@@ -50,7 +50,7 @@ const replaceVariables = (markdownBody, variables) => {
   });
 };
 
-const RenderedMarkdown = ({ markdownContent, statusCode, apolloClient }) => {
+const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   if (statusCode) {
     return <Error statusCode={statusCode} />;
   }
@@ -58,7 +58,6 @@ const RenderedMarkdown = ({ markdownContent, statusCode, apolloClient }) => {
   const parsedMarkdown = fm(markdownContent);
 
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' }, // WI eventId
   });
   if (loading) return null;

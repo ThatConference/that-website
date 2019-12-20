@@ -26,9 +26,8 @@ const GET_EVENT = gql`
   }
 `;
 
-const CallForCounselors = ({ featureKeyword, apolloClient }) => {
+const CallForCounselors = ({ featureKeyword }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;

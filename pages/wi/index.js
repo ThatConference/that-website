@@ -59,9 +59,8 @@ const BottomImage = styled.img`
   height: 45rem;
 `;
 
-const home = ({ apolloClient }) => {
+const home = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;

@@ -81,9 +81,8 @@ const HighlightImage = styled.img`
   `};
 `;
 
-const contact = ({ apolloClient }) => {
+const contact = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
     onCompleted(d) {
       return d;

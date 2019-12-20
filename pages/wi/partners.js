@@ -98,10 +98,8 @@ const renderPartner = (
   );
 };
 
-const partnerListing = ({ apolloClient }) => {
-  const { loading, error, data } = useQuery(GET_PARTNERS, {
-    client: apolloClient,
-  });
+const partnerListing = () => {
+  const { loading, error, data } = useQuery(GET_PARTNERS, {});
 
   if (loading) return null;
   if (error) return null;

@@ -48,11 +48,10 @@ const MainDiv = styled.div`
   padding-bottom: 4rem;
 `;
 
-function PartnerDetail({ apolloClient }) {
+function PartnerDetail() {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_PARTNER, {
-    client: apolloClient,
     variables: { slug: router.query.slug },
     onCompleted(d) {
       const [partner] = d.partners.partnerBySlug;
