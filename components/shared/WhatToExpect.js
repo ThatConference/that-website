@@ -68,7 +68,7 @@ const WhatToExpect = ({ className }) => {
         />
         <WhatToExpectSection
           src="/images/what_to_expect_4_days.png"
-          title="4 Full days"
+          title="4 Full Days"
         />
         <WhatToExpectSection
           src="/images/what_to_expect_families_welcome.png"
