@@ -9,7 +9,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
 import Error from '../_error';
-import withApolloClient from '../../lib/withApolloClient';
 import ContentSection from '../../components/shared/ContentSection';
 
 // Query for event specific data to use in markdown rendering
@@ -50,7 +49,7 @@ const replaceVariables = (markdownBody, variables) => {
   });
 };
 
-const RenderedMarkdown = ({ markdownContent, statusCode, apolloClient }) => {
+const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   if (statusCode) {
     return <Error statusCode={statusCode} />;
   }
@@ -58,7 +57,6 @@ const RenderedMarkdown = ({ markdownContent, statusCode, apolloClient }) => {
   const parsedMarkdown = fm(markdownContent);
 
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' }, // WI eventId
   });
   if (loading) return null;
@@ -96,4 +94,4 @@ RenderedMarkdown.getInitialProps = async context => {
   }
 };
 
-export default withApolloClient(RenderedMarkdown);
+export default RenderedMarkdown;

@@ -5,7 +5,7 @@ export default WrappedComponent =>
   class extends React.Component {
     static async getInitialProps({ query: { feature } }) {
       if (feature === process.env.FEATURE_KEYWORD) {
-        return {};
+        return { featureKeyword: feature };
       }
       return { statusCode: 404 };
     }
