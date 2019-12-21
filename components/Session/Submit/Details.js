@@ -32,6 +32,7 @@ const DetailForm = () => {
         primaryCategory: '',
         secondaryCategories: [],
         targetAudiences: [],
+        supportingArtifacts: [],
       }}
       validationSchema={Yup.object({
         title: Yup.string()
@@ -47,6 +48,7 @@ const DetailForm = () => {
         primaryCategory: Yup.string().required('Required'),
         secondaryCategories: Yup.array().required('At least one is required'),
         targetAudiences: Yup.array().required('At least one is required'),
+        supportingArtifacts: Yup.array(),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -63,6 +65,7 @@ const DetailForm = () => {
         touched,
         setFieldValue,
         setFieldTouched,
+        setFieldError,
         values,
       }) => (
         <Form className="input-form">
@@ -134,6 +137,20 @@ const DetailForm = () => {
               values={values}
               touched={touched}
               errors={errors}
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
+              inputType="links"
+              fieldName="supportingArtifacts"
+              getFieldProps={getFieldProps}
+              setFieldTouched={setFieldTouched}
+              setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
+              errors={errors}
+              touched={touched}
+              label="Supporting Links/Related Resources"
+              links={[]}
             />
           </FormRow>
           <FormRule />
