@@ -35,20 +35,9 @@ const Trees = styled.img`
   top: -8rem;
   z-index: 10;
   width: 17rem;
-  left: 44vw;
+  left: 50%;
+  margin-left:8.5rem;
   overflow: visible;
-
-  ${below.med`
-    left: 40vw;
-  `};
-
-  ${below.small`
-    left: 35vw;
-  `};
-
-  ${below.xsmall`
-    left: 27vw;
-  `};
 `;
 
 const ContentSection = ({
