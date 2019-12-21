@@ -77,6 +77,7 @@ const FormInput = props => {
     touched,
     setFieldTouched,
     setFieldValue,
+    setFieldError,
     errors,
     label,
     rows,
@@ -85,6 +86,7 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
+    links,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -172,6 +174,20 @@ const FormInput = props => {
         <>
           {parsedLabel}
           <ImageUpload field={fieldName} {...fieldProps} />
+        </>
+      )}
+      {isLinks && (
+        <>
+          {parsedLabel}
+          <LinksInput
+            field={fieldName}
+            setFieldTouched={setFieldTouched}
+            setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
+            className={styleClass}
+            links={links}
+            {...fieldProps}
+          />
         </>
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}

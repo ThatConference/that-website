@@ -127,6 +127,23 @@ const GlobalStyle = createGlobalStyle`
         border: 1px solid ${({ theme }) => theme.colors.mediumGray};
         background-color: ${({ theme }) => theme.colors.mediumLightGray};
 
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+
         &:focus {
           outline: ${({ theme }) => theme.colors.thatBlue} auto 1px;
         }
