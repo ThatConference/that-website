@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
-import { GenerateUuid } from '../../utilities/utilityFunctions';
-import { IsValidUrl } from '../../utilities/validation';
+import { GenerateUuid, IsValidUrl } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
 
 const _ = require('lodash');
