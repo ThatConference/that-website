@@ -38,6 +38,7 @@ const SampleForm = () => {
         agreeToBeingRecorded: false,
         checkboxGroup: [],
         radioGroup: '',
+        supportingLinks: [],
       }}
       validationSchema={Yup.object({
         fullName: Yup.string()
@@ -56,6 +57,7 @@ const SampleForm = () => {
           .required('Required')
           .max(20, 'Must be less than 21 characters'),
         bio: Yup.string().required('Required'),
+        supportingLinks: Yup.array().required('At least one is required'),
         agreeToCodeOfConduct: Yup.bool().oneOf(
           [true],
           'Must agree to the Code of Conduct',
@@ -82,6 +84,7 @@ const SampleForm = () => {
         setFieldValue,
         setFieldTouched,
         getFieldProps,
+        setFieldError,
         values,
         errors,
         touched,
@@ -161,6 +164,20 @@ const SampleForm = () => {
                 errors={errors}
                 touched={touched}
                 label="Bio"
+              />
+            </FormRow>
+            <FormRow>
+              <FormInput
+                inputType="links"
+                fieldName="supportingLinks"
+                getFieldProps={getFieldProps}
+                setFieldTouched={setFieldTouched}
+                setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
+                errors={errors}
+                touched={touched}
+                label="Supporting Links/Related Resources"
+                links={[]}
               />
             </FormRow>
             <FormRow>

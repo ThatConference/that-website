@@ -8,6 +8,7 @@ import baseTheme from '../../styles/baseTheme';
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
 import ImageUpload from './ImageUpload';
+import LinksInput from './LinksInput';
 
 const inputTypes = {
   checkbox: 'checkbox',
@@ -16,6 +17,7 @@ const inputTypes = {
   select: 'select',
   markdown: 'markdown',
   imageupload: 'imageupload',
+  links: 'links',
 };
 
 const sharedTextInputStyles = css`
@@ -75,6 +77,7 @@ const FormInput = props => {
     touched,
     setFieldTouched,
     setFieldValue,
+    setFieldError,
     errors,
     label,
     rows,
@@ -83,6 +86,7 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
+    links,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -91,6 +95,7 @@ const FormInput = props => {
   const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
   const isSelect = inputType && inputType === inputTypes.select;
+  const isLinks = inputType && inputType === inputTypes.links;
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
@@ -172,6 +177,20 @@ const FormInput = props => {
         <>
           {parsedLabel}
           <ImageUpload field={fieldName} {...fieldProps} />
+        </>
+      )}
+      {isLinks && (
+        <>
+          {parsedLabel}
+          <LinksInput
+            field={fieldName}
+            setFieldTouched={setFieldTouched}
+            setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
+            className={styleClass}
+            links={links}
+            {...fieldProps}
+          />
         </>
       )}
       {helpText && <FormInputHelpText>{helpText}</FormInputHelpText>}
