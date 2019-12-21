@@ -14,7 +14,6 @@ import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
-import withApolloClient from '../../lib/withApolloClient';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -59,13 +58,9 @@ const BottomImage = styled.img`
   height: 45rem;
 `;
 
-const home = ({ apolloClient }) => {
+const home = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    client: apolloClient,
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
-    onCompleted(d) {
-      return d;
-    },
   });
 
   if (loading) return null;
@@ -98,4 +93,4 @@ const home = ({ apolloClient }) => {
   );
 };
 
-export default withApolloClient(home);
+export default home;

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import withApolloClient from '../../../lib/withApolloClient';
 import HeroSection from '../../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
 import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
@@ -48,11 +47,10 @@ const MainDiv = styled.div`
   padding-bottom: 4rem;
 `;
 
-function PartnerDetail({ apolloClient }) {
+function PartnerDetail() {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_PARTNER, {
-    client: apolloClient,
     variables: { slug: router.query.slug },
     onCompleted(d) {
       const [partner] = d.partners.partnerBySlug;
@@ -94,4 +92,4 @@ function PartnerDetail({ apolloClient }) {
   );
 }
 
-export default withApolloClient(PartnerDetail);
+export default PartnerDetail;
