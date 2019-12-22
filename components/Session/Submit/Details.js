@@ -28,7 +28,7 @@ const DetailForm = ({ featureKeyword }) => {
       initialValues={{
         title: '',
         shortDescription: '',
-        description: '',
+        longDescription: '',
         primaryCategory: '',
         secondaryCategories: [],
         targetAudiences: [],
@@ -42,7 +42,7 @@ const DetailForm = ({ featureKeyword }) => {
           .min(3, 'Must be at least 3 characters')
           .max(100, 'Must be 100 characters or less')
           .required('Required'),
-        description: Yup.string()
+        longDescription: Yup.string()
           .min(3, 'Must be at least 3 characters')
           .required('Required'),
         primaryCategory: Yup.string().required('Required'),
@@ -91,7 +91,7 @@ const DetailForm = ({ featureKeyword }) => {
           </FormRow>
           <FormRow>
             <FormInput
-              fieldName="description"
+              fieldName="longDescription"
               fieldHasValidation
               label="Full Description"
               inputType="markdown"
