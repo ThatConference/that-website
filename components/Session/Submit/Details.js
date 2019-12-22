@@ -92,6 +92,7 @@ const DetailForm = ({ featureKeyword }) => {
           <FormRow>
             <FormInput
               fieldName="description"
+              fieldHasValidation
               label="Full Description"
               inputType="markdown"
               getFieldProps={getFieldProps}

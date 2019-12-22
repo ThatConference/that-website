@@ -20,7 +20,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
       }}
       validationSchema={Yup.object({
         prerequisites: Yup.string(),
-        agenda: Yup.string(),
+        // agenda: Yup.string(),
         takeaways: Yup.array(),
       })}
       onSubmit={(values, { setSubmitting }) => {
@@ -45,6 +45,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
           <FormRow>
             <FormInput
               fieldName="prerequisites"
+              fieldHasValidation={false}
               label="Prerequisites or Previous Experience"
               inputType="markdown"
               getFieldProps={getFieldProps}
@@ -57,6 +58,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
           <FormRow>
             <FormInput
               fieldName="agenda"
+              fieldHasValidation={false}
               label="Agenda"
               inputType="markdown"
               getFieldProps={getFieldProps}
@@ -68,7 +70,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
           </FormRow>
           <FormRow>
             <FormInput
-              inputType="links"
+              inputType="strings"
               fieldName="takeaways"
               getFieldProps={getFieldProps}
               setFieldTouched={setFieldTouched}
@@ -77,7 +79,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
               errors={errors}
               touched={touched}
               label="Key Takeaways"
-              links={[]}
+              strings={[]}
             />
           </FormRow>
           <FormRule />

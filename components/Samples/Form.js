@@ -160,6 +160,7 @@ const SampleForm = () => {
               <FormInput
                 inputType="markdown"
                 fieldName="bio"
+                fieldHasValidation
                 getFieldProps={getFieldProps}
                 setFieldTouched={setFieldTouched}
                 setFieldValue={setFieldValue}

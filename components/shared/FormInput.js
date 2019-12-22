@@ -74,6 +74,7 @@ export const FormInputHelpText = styled.p`
 const FormInput = props => {
   const {
     fieldName,
+    fieldHasValidation,
     inputType,
     getFieldProps,
     touched,
@@ -166,6 +167,7 @@ const FormInput = props => {
           {parsedLabel}
           <MarkdownEditor
             field={fieldName}
+            fieldHasValidation={fieldHasValidation}
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             touched={touched}
