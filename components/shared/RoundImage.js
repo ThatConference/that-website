@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { below } from '../../utilities';
-
 const AccentLine = styled.span`
   height: ${({ size }) => size}rem;
   border-right: 2px solid ${({ theme }) => theme.colors.tertiary};
@@ -10,11 +8,11 @@ const AccentLine = styled.span`
   top: ${({ size }) => size * 3.5}rem;
 `;
 
-const RoundImage = ({ className, imageUrl, size, showAccentLine }) => {
+const RoundImage = ({ className, imageUrl, size, showAccentLine, alt }) => {
   const showAccent = showAccentLine === null || showAccentLine !== false;
   return (
     <>
-      <img src={imageUrl} className={className} />
+      <img src={imageUrl} className={className} alt={alt} />
       {showAccent && <AccentLine size={size / 40} />}
     </>
   );

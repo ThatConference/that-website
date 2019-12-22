@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import RoundImage from './RoundImage';
 
-import { below } from '../../utilities';
-
 const Name = styled.p`
   font-weight: 600;
   padding-bottom: 0.5rem;
@@ -28,12 +26,17 @@ const ProfileItem = ({
   title,
   company,
   nameFontSize,
+  showAccentLine,
 }) => {
   const baseFontSize = nameFontSize || '2';
 
   return (
     <div className={className}>
-      <RoundImage imageUrl={imageUrl} size={size} />
+      <RoundImage
+        imageUrl={imageUrl}
+        size={size}
+        showAccentLine={showAccentLine}
+      />
       <Name fontSize={baseFontSize}>{name}</Name>
       <Title fontSize={baseFontSize - 0.2}>{title}</Title>
       <Company fontSize={baseFontSize - 0.2}>{company}</Company>

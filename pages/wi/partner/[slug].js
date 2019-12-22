@@ -11,31 +11,33 @@ import PresentationsJobsSection from '../../../components/PartnerDetail/Presenta
 
 const GET_PARTNER = gql`
   query getPartnerBySlug($slug: String!) {
-    partnerBySlug(slug: $slug) {
-      id
-      slug
-      year
-      companyName
-      companyLogo
-      heroImage
-      website
-      goals
-      aboutUs
-      contactNumber
-      linkedIn
-      github
-      youtube
-      instagram
-      twitter
-      facebook
-      twitch
-      chat
-      blog
-      vlog
-      jobListings {
+    partners {
+      partnerBySlug(slug: $slug) {
         id
-        title
-        description
+        slug
+        year
+        companyName
+        companyLogo
+        heroImage
+        website
+        goals
+        aboutUs
+        contactNumber
+        linkedIn
+        github
+        youtube
+        instagram
+        twitter
+        facebook
+        twitch
+        chat
+        blog
+        vlog
+        jobListings {
+          id
+          title
+          description
+        }
       }
     }
   }
@@ -51,7 +53,7 @@ function PartnerDetail() {
   const { loading, error, data } = useQuery(GET_PARTNER, {
     variables: { slug: router.query.slug },
     onCompleted(d) {
-      const [partner] = d.partnerBySlug;
+      const [partner] = d.partners.partnerBySlug;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -64,7 +66,7 @@ function PartnerDetail() {
   if (loading) return null;
   if (error) return null;
 
-  const partner = data.partnerBySlug[0];
+  const partner = data.partners.partnerBySlug[0];
 
   return (
     <MainDiv>
@@ -75,7 +77,7 @@ function PartnerDetail() {
         location="wi"
       />
 
-      <MainLogoSection partner={data.partnerBySlug[0]} />
+      <MainLogoSection partner={data.partners.partnerBySlug[0]} />
       <AboutGoalsSection
         companyName={partner.companyName}
         about={partner.aboutUs}

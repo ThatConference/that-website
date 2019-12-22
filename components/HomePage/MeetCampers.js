@@ -78,12 +78,6 @@ const Header = styled.h3`
   width: 50vw;
 `;
 
-const HeaderButton = styled(LinkButton)`
-  button {
-    margin-top: 0;
-  }
-`;
-
 const MeetCampers = ({ className }) => {
   return (
     <ContentSection
@@ -94,14 +88,12 @@ const MeetCampers = ({ className }) => {
     >
       <TitleRow>
         <Header>Meet THAT Crew!</Header>
-        <div style={{ display: 'flex' }}>
-          <LinkButton
-            href={DEFAULT_WIP_PAGE}
-            label="Contribute to THAT Community"
-            color="thatBlue"
-            borderColor="thatBlue"
-          />
-        </div>
+        <LinkButton
+          href={DEFAULT_WIP_PAGE}
+          label="Contribute to THAT Community"
+          color="thatBlue"
+          borderColor="thatBlue"
+        />
       </TitleRow>
       <Grid columns={gridRepeat.xxsmall} alignContent="center">
         {CAMPERS.map(item => {

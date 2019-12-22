@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { below } from '../../utilities';
 
@@ -13,7 +14,6 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
-  // overflow: hidden;
   width: 100vw;
 
   ${below.xsmall`
@@ -21,66 +21,13 @@ const Container = styled.div`
   `}
 `;
 
-const DetailContainer = styled.div`
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-
-  ${below.med`
-    flex-direction: column;
-    text-align: center;
-    max-width: 700px;
-    align-items: center;
-
-    img {
-      margin: 1rem 0;
-    }
-  `};
-`;
-
 const ContainerInner = styled.div`
   margin: auto;
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
-  width: 87vw;
 
-  ${below.xsmall`
+  ${below.small`
     max-width: 30rem;
   `}
-`;
-
-const Title = styled.h2`
-  font-size: 4rem;
-  text-align: center;
-  margin-top: 0;
-  line-height: 1.2;
-  font-family: 'Great Vibes', cursive;
-  margin-bottom: ${props => (props.subtitle ? '0' : '3rem')};
-
-  .normal {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 2.8rem;
-  }
-
-  .highlight {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-
-  ${below.med`
-    margin-bottom: 1rem;
-  `};
-`;
-
-const Subtitle = styled.h3`
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-transform: uppercase;
-  font-weight: 400;
-  position: relative;
-  top: -0.8rem;
 `;
 
 const Trees = styled.img`
@@ -104,17 +51,25 @@ const Trees = styled.img`
   `};
 `;
 
-const ContentSection = props => {
+const ContentSection = ({
+  backgroundColor,
+  fontColor,
+  className,
+  id,
+  forForm,
+  hasTrees,
+  children,
+}) => {
   return (
     <Container
-      backgroundColor={props.backgroundColor}
-      fontColor={props.fontColor}
-      className={props.className}
-      id={props.id}
-      forForm={props.forForm}
+      backgroundColor={backgroundColor}
+      fontColor={fontColor}
+      className={className}
+      id={id}
+      forForm={forForm}
     >
-      {props.hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>{props.children}</ContainerInner>
+      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
+      <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );
 };

@@ -3,28 +3,40 @@ import styled from 'styled-components';
 import Icon from './Icon';
 import * as gtag from '../../lib/gtag';
 
-const SquareButton = props => {
-  const clickTracking = label => {
+const SquareButton = ({
+  className,
+  color,
+  backgroundColor,
+  borderColor,
+  icon,
+  iconClass,
+  isSubmit,
+  onClick,
+  label,
+}) => {
+  const clickTracking = () => {
     gtag.event({
       clientWindow: window,
       action: 'click',
       category: 'square button',
       label,
     });
-    props.onClick();
+    onClick();
   };
 
   return (
+    // KNOWN bug: https://github.com/yannickcr/eslint-plugin-react/issues/1555
+    // eslint-disable-next-line react/button-has-type
     <button
-      className={props.className}
-      color={props.color}
-      backgroundcolor={props.backgroundColor}
-      bordercolor={props.borderColor}
-      onClick={() => clickTracking(`${props.icon} - ${props.iconClass}`)}
-      type={props.isSubmit ? 'submit' : 'button'}
+      className={className}
+      color={color}
+      backgroundcolor={backgroundColor}
+      bordercolor={borderColor}
+      onClick={() => clickTracking(`${icon} - ${iconClass}`)}
+      type={isSubmit ? 'submit' : 'button'}
     >
-      {props.label && <p>{props.label}</p>}
-      {props.icon && <Icon icon={props.icon} className={props.iconClass} />}
+      {label && <p>{label}</p>}
+      {icon && <Icon icon={icon} className={iconClass} />}
     </button>
   );
 };
@@ -50,6 +62,12 @@ export default styled(SquareButton)`
 
   &:hover {
     cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+    color: ${({ color, theme }) =>
+      color ? theme.colors.fonts[color] : theme.colors.fonts.light};
   }
 
   svg {

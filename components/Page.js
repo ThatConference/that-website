@@ -26,7 +26,7 @@ const InnerPage = styled.div`
   flex-direction: column;
 `;
 
-export default props => {
+export default ({ children }) => {
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -35,7 +35,7 @@ export default props => {
           <Meta />
           <CorePage>
             <Header />
-            <InnerPage>{props.children}</InnerPage>
+            <InnerPage>{children}</InnerPage>
             <Footer modifiers="site" />
           </CorePage>
         </StyledPage>

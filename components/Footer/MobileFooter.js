@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from '../shared/Icon';
-import NavItem from '../Nav/NavItem';
+import NavItem from '../Header/NavItem';
 import SocialLinks from '../shared/SocialLinks';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 
 const NavLink = styled.a`
   color: ${({ theme }) => theme.colors.highlight};

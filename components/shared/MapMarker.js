@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 
-const MapMarker = props => (
+const MapMarker = ({ show }) => (
   <>
     <div
       style={{
@@ -13,7 +13,7 @@ const MapMarker = props => (
       <Icon icon="location" />
     </div>
     {/* Below is info window component */}
-    {props.show && (
+    {show && (
       <div
         style={{
           width: 100,

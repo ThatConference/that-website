@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: 11rem;
+    margin-top: 0;
 
     ${below.med`
       font-size: 9rem;
@@ -118,7 +119,62 @@ const GlobalStyle = createGlobalStyle`
     input {
       padding: 1rem;
     }
-  }
+
+    &.input-form {
+
+      input, textarea {
+        margin-top: 0.75rem;
+        border: 1px solid ${({ theme }) => theme.colors.mediumGray};
+        background-color: ${({ theme }) => theme.colors.mediumLightGray};
+
+        &::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &::-moz-placeholder {
+          /* Firefox 19+ */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &:-ms-input-placeholder {
+          /* IE 10+ */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+        &:-moz-placeholder {
+          /* Firefox 18- */
+          color: ${({ theme }) => theme.colors.mediumGray};
+        }
+
+        &:focus {
+          outline: ${({ theme }) => theme.colors.thatBlue} auto 1px;
+        }
+
+        &.invalid {
+          border-color: ${({ theme }) => theme.colors.danger};
+
+          &:focus {
+            outline-offset: 0;
+            outline: unset;
+            border-color: ${({ theme }) => theme.colors.danger};
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.55);
+          }
+        } //invalid
+
+      } //input, textarea
+
+      .react-select-container.invalid {
+        border: 1px solid red;
+
+        &:focus {
+            outline-offset: 0;
+            outline: unset;
+            border-color: ${({ theme }) => theme.colors.danger};
+            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.55);
+          }
+      }
+
+    } //input-form
+
+  } //form
 `;
 
 export default GlobalStyle;

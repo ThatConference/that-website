@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
 import LinkButton from '../shared/LinkButton';
@@ -7,26 +8,35 @@ import LinkButton from '../shared/LinkButton';
 import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const HighlightImage = styled.img`
-  width: 100%;
   padding: 0 5rem;
-  max-width: 60rem;
-  object-fit: cover;
+  max-height: 40rem;
   height: 100%;
+
+  ${below.xlarge`
+    padding: 0;
+  `};
+
+  ${below.small`
+    max-height: 30rem;
+  `};
+
+  ${below.xsmall`
+    max-height: 20rem;
+  `};
 `;
 
 const ButtonRow = styled.div`
   display: flex;
+  justify-content: space-evenly;
 
-  ${below.med`
+  ${below.small`
     flex-direction: column;
-    align-items: center;
 
     div {
       &:not(:last-child) {
         margin-bottom: 1.5rem;
       }
     }
-
   `};
 `;
 
@@ -34,7 +44,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
 
-  ${below.large`
+  ${below.xlarge`
     flex-direction: column;
     align-items: center;
   `};
@@ -44,10 +54,10 @@ const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
-`;
 
-const ActionButton = styled(LinkButton)`
-  margin: 0 1rem;
+  ${below.large`
+    margin-right: 0;
+  `};
 `;
 
 const LearnMore = ({ className }) => {
@@ -65,26 +75,36 @@ const LearnMore = ({ className }) => {
             whole family.
           </StandardBodyCopy>
           <ButtonRow>
-            <ActionButton
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Professional Track"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
-            <ActionButton
+            <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Kids Track"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
-            <ActionButton
-              href={DEFAULT_WIP_PAGE}
+            <LinkButton
+              href="/wi/faq"
               label="FAQ"
               borderColor="thatBlue"
+              className="stretch-sm"
             />
           </ButtonRow>
         </SideDetail>
       </Main>
     </ContentSection>
   );
+};
+
+LearnMore.propTypes = {
+  className: PropTypes.string,
+};
+LearnMore.defaultProps = {
+  className: '',
 };
 
 export default styled(LearnMore)``;

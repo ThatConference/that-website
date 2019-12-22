@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
 import SquareButton from '../shared/SquareButton';
 
 import { below, gridRepeat } from '../../utilities';
@@ -77,13 +76,13 @@ const Testimonials = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <ContentGrid columns={gridRepeat.xsmall}>
+      <ContentGrid columns={gridRepeat.small}>
         <Cell>
           <HighlightImage src={testimonial.imageUrl} />
         </Cell>
         <Cell style={{ direction: 'ltr' }}>
           <Detail>
-            <Quotation>"</Quotation>
+            <Quotation>&quot;</Quotation>
             <Quote dangerouslySetInnerHTML={{ __html: testimonial.quote }} />
             {testimonial.name && <Name>{testimonial.name}</Name>}
             {testimonial.role && <Role>{testimonial.role}</Role>}

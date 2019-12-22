@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
-import { below, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
 
 const ProfileRow = styled.div`
   display: flex;
@@ -22,15 +21,27 @@ const ProfileRow = styled.div`
 const TitleRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-bottom: 2rem;
 
   ${below.small`
     flex-direction: column;
+    align-items: stretch;
+  `};
+`;
+
+const SpeakersLink = styled(LinkButton)`
+  ${above.small`
+    margin-top: auto;
   `};
 `;
 
 const Header = styled.h3`
   width: 50vw;
+
+  ${below.small`
+    width: auto;
+  `};
 `;
 
 const SpeakerHighlight = ({ className }) => {
@@ -40,14 +51,12 @@ const SpeakerHighlight = ({ className }) => {
         <Header>
           Find Inspiration From Hallway Conversations or Industry Leaders
         </Header>
-        <div style={{ display: 'flex' }}>
-          <LinkButton
-            href={DEFAULT_WIP_PAGE}
-            label="Meet The Speakers"
-            color="thatBlue"
-            borderColor="thatBlue"
-          />
-        </div>
+        <SpeakersLink
+          href={DEFAULT_WIP_PAGE}
+          label="Meet The Speakers"
+          color="thatBlue"
+          borderColor="thatBlue"
+        />
       </TitleRow>
       <ProfileRow>
         <ProfileItem
@@ -56,6 +65,7 @@ const SpeakerHighlight = ({ className }) => {
           name="Jaimee Newberry"
           title="Co-founder"
           company="Picture This Clothing"
+          showAccentLine={false}
         />
         <ProfileItem
           imageUrl="https://storage.googleapis.com/that-bucket/headshots/Seth-Juarez-3c90db7a-fa93-4851-a6c6-f19b6df868c4-636537315250880028.jpg"
@@ -63,6 +73,7 @@ const SpeakerHighlight = ({ className }) => {
           name="Seth Juarez"
           title="Cloud Developer Advocate "
           company="Microsoft"
+          showAccentLine={false}
         />
         <ProfileItem
           imageUrl="https://storage.googleapis.com/that-bucket/headshots/Cassie-Siljander-2028a060-81ea-4ddc-beff-ec4c6d299ffc-636917231617048606.jpg"
@@ -70,6 +81,7 @@ const SpeakerHighlight = ({ className }) => {
           name="Cassie Breviu"
           title="Cloud Developer Advocate "
           company="Microsoft"
+          showAccentLine={false}
         />
         <ProfileItem
           imageUrl="https://storage.googleapis.com/that-bucket/headshots/Anjuan-Simmons-47576cdb-e003-467a-806b-bf4fed7f5c14-636856782528812887.jpg"
@@ -77,6 +89,7 @@ const SpeakerHighlight = ({ className }) => {
           name="Anjuan Simmons"
           title="Solution Owner "
           company="3017"
+          showAccentLine={false}
         />
       </ProfileRow>
     </ContentSection>

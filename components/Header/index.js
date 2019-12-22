@@ -2,12 +2,29 @@ import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
+import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
-import Nav from '../Nav';
+import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below } from '../../utilities';
+
+router.onRouteChangeStart = () => {
+  nprogress.start();
+};
+
+router.onRouteChangeComplete = () => {
+  nprogress.done();
+};
+
+router.onRouteChangeError = () => {
+  nprogress.done();
+};
+
+const HeaderSection = styled(ContentSection)`
+  padding-bottom: 0.5rem;
+`;
 
 const PageHeader = styled.div`
   margin-top: 2rem;
@@ -24,6 +41,7 @@ const LogoLink = styled.a`
 
 const StyledLogo = styled.img`
   height: 100%;
+  margin-right: 3rem;
 `;
 
 const ActionButton = styled(LinkButton)`
@@ -34,22 +52,6 @@ const ActionButton = styled(LinkButton)`
     display: none;
   `};
 `;
-
-const HeaderSection = styled(ContentSection)`
-  padding-bottom: 0.5rem;
-`;
-
-router.onRouteChangeStart = () => {
-  nprogress.start();
-};
-
-router.onRouteChangeComplete = () => {
-  nprogress.done();
-};
-
-router.onRouteChangeError = () => {
-  nprogress.done();
-};
 
 const Logo = () => {
   return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;
@@ -70,7 +72,7 @@ const HeaderLogo = () => {
     return <Logo />;
   }
   return (
-    <LogoLink href="/" onClick={clickTracking}>
+    <LogoLink href="/wi" onClick={clickTracking}>
       <Logo />
     </LogoLink>
   );
@@ -85,7 +87,6 @@ const Header = ({ className }) => {
     const handleScroll = () => {
       setScrollY(window.pageYOffset);
     };
-    const { scrollingElement } = document;
 
     handleScroll();
     document.addEventListener('scroll', handleScroll);
@@ -103,7 +104,7 @@ const Header = ({ className }) => {
       <HeaderSection>
         <PageHeader>
           <HeaderLogo />
-          {/* <Nav /> */}
+          <Nav />
           <div style={{ flexGrow: 2 }} />
           <div style={{ display: 'flex' }}>
             <ActionButton
