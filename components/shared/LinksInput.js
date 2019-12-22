@@ -83,11 +83,18 @@ const LinksInput = ({
     setStateLinks(l);
     setValidity(l);
     setFieldTouched(field, true);
-    setFieldValue(field, l);
     const valid = l.every(link => {
       return link.valid;
     });
     setFieldError(field, valid ? null : 'Please fix validtion issues');
+    const mapped = l.map(x => {
+      return {
+        id: x.id,
+        name: x.name,
+        url: x.url,
+      };
+    });
+    setFieldValue(field, mapped);
   };
 
   const onAdd = () => {
