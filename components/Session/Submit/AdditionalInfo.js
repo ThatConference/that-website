@@ -29,7 +29,7 @@ const AdditionalInfo = ({ featureKeyword }) => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
-          window.location = `preview?feature=${featureKeyword}`;
+          window.location = `lastly?feature=${featureKeyword}`;
         }, 400);
       }}
     >
