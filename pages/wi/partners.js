@@ -115,6 +115,9 @@ const partnerListing = () => {
               label="Become a Partner"
               color="thatBlue"
               borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <RobotImage src="/images/robot.png" />
           </Cell>
