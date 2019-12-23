@@ -77,7 +77,7 @@ const LinkButton = ({
       target={target}
       hoverColor={hoverColor}
       hoverBackgroundColor={hoverBackgroundColor}
-      hoverBackgroundColor={hoverBorderColor}
+      hoverBorderColor={hoverBorderColor}
     >
       <p>{label}</p>
     </OutlineLink>
