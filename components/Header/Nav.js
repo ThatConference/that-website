@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import NavItem from './NavItem';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 
 const NavList = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const NavList = styled.div`
   align-items: center;
 
   ${below.med`
-    display: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'flex' : 'none')};;
+    display: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'flex' : 'none')};
     position: fixed;
     background-color: ${({ theme }) => theme.colors.white};
     flex-direction: column;
@@ -28,51 +29,7 @@ const NavListItem = styled.div`
   padding-right: 2.5rem;
 `;
 
-const MenuIcon = styled.div`
-  margin: 1em;
-  display: inline-block;
-  vertical-align: middle;
-  width: 3em;
-  position: absolute;
-  right: 5rem;
-  top: 9rem;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  ${above.med`
-    display: none;
-  `};
-
-  &:after,
-  &:before,
-  div {
-    background-color: ${({ theme }) => theme.colors.thatBlue};
-    border-radius: 0.3rem;
-    content: '';
-    display: block;
-    height: 0.6rem;
-    margin: 0.7rem 0;
-    transition: all 0.3s ease-in-out;
-  }
-
-  &.open:before {
-    transform: translateY(12px) rotate(135deg);
-  }
-
-  &.open:after {
-    transform: translateY(-12px) rotate(-135deg);
-  }
-
-  &.open div {
-    transform: scale(0);
-  }
-`;
-
-const Nav = ({ className }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+const Nav = ({ className, mobileMenuOpen, onClick }) => {
   return (
     <>
       <nav className={className}>
@@ -87,14 +44,14 @@ const Nav = ({ className }) => {
             <NavItem
               title="Partners"
               href="/wi/partners"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => onClick(false)}
             />
           </NavListItem>
           <NavListItem>
             <NavItem
               title="Plan Your Trip"
               href="/wi/plan-your-trip"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => onClick(false)}
             />
           </NavListItem>
           <NavListItem>
@@ -102,34 +59,35 @@ const Nav = ({ className }) => {
               title="Shop"
               href="https://store.unspecified.io/"
               target="blank"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => onClick(false)}
               isLocal={false}
             />
           </NavListItem>
           <NavListItem>
-            <NavItem
-              title="Blog"
-              href="/blog"
-              onClick={() => setMobileMenuOpen(false)}
-            />
+            <NavItem title="Blog" href="/blog" onClick={() => onClick(false)} />
           </NavListItem>
           <NavListItem>
             <NavItem
               title="Contact"
               href="/wi/contact"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => onClick(false)}
             />
           </NavListItem>
         </NavList>
       </nav>
-      <MenuIcon
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className={mobileMenuOpen ? 'open' : ''}
-      >
-        <div />
-      </MenuIcon>
     </>
   );
+};
+
+Nav.propTypes = {
+  className: PropTypes.string,
+  mobileMenuOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func,
+};
+
+Nav.defaultProps = {
+  className: '',
+  onClick: () => {},
 };
 
 export default styled(Nav)`

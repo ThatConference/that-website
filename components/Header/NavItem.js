@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
+import Icon from '../shared/Icon';
 
 import { below } from '../../utilities/breakpoint';
 
@@ -15,6 +16,7 @@ const StyledLink = styled.a`
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
+    fill: ${({ theme }) => theme.colors.highlight};
   }
 
   ${below.med`
@@ -28,9 +30,16 @@ const NavImage = styled.img`
   margin-bottom: 0.3rem;
 `;
 
+const NavIcon = styled(Icon)`
+  vertical-align: text-bottom;
+  margin-left: 0.7rem;
+`;
+
 const NavItem = ({
   color,
   href,
+  icon,
+  iconClass,
   image,
   imageWidth,
   isLocal,
@@ -43,6 +52,16 @@ const NavItem = ({
     if (image) {
       return <NavImage src={image} imageWidth={imageWidth} style={style} />;
     }
+
+    if (icon) {
+      return (
+        <span>
+          {title}
+          <NavIcon icon={icon} height="20" width="20" className={iconClass} />
+        </span>
+      );
+    }
+
     return title;
   };
 
@@ -66,6 +85,8 @@ const NavItem = ({
 NavItem.propTypes = {
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  iconClass: PropTypes.string,
   image: PropTypes.string,
   imageWidth: PropTypes.string,
   isLocal: PropTypes.bool,
@@ -77,6 +98,8 @@ NavItem.propTypes = {
 
 NavItem.defaultProps = {
   color: '',
+  icon: '',
+  iconClass: '',
   image: '',
   imageWidth: '',
   isLocal: true,
