@@ -42,6 +42,9 @@ const Bottom = ({ featureKeyword }) => {
         color="thatBlue"
         backgroundColor="white"
         label="Become a counselor"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
       />
     </Container>
   );
