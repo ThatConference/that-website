@@ -9,6 +9,7 @@ import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
 import ImageUpload from './ImageUpload';
 import LinksInput from './LinksInput';
+import StringsInput from './StringsInput';
 
 const inputTypes = {
   checkbox: 'checkbox',
@@ -18,6 +19,7 @@ const inputTypes = {
   markdown: 'markdown',
   imageupload: 'imageupload',
   links: 'links',
+  strings: 'strings',
 };
 
 const sharedTextInputStyles = css`
@@ -72,6 +74,7 @@ export const FormInputHelpText = styled.p`
 const FormInput = props => {
   const {
     fieldName,
+    fieldHasValidation,
     inputType,
     getFieldProps,
     touched,
@@ -87,6 +90,7 @@ const FormInput = props => {
     values,
     isMulti,
     links,
+    strings,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -96,6 +100,7 @@ const FormInput = props => {
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
   const isSelect = inputType && inputType === inputTypes.select;
   const isLinks = inputType && inputType === inputTypes.links;
+  const isStrings = inputType && inputType === inputTypes.strings;
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
@@ -162,6 +167,7 @@ const FormInput = props => {
           {parsedLabel}
           <MarkdownEditor
             field={fieldName}
+            fieldHasValidation={fieldHasValidation}
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             touched={touched}
@@ -189,6 +195,20 @@ const FormInput = props => {
             setFieldError={setFieldError}
             className={styleClass}
             links={links}
+            {...fieldProps}
+          />
+        </>
+      )}
+      {isStrings && (
+        <>
+          {parsedLabel}
+          <StringsInput
+            field={fieldName}
+            setFieldTouched={setFieldTouched}
+            setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
+            className={styleClass}
+            strings={strings}
             {...fieldProps}
           />
         </>

@@ -16,6 +16,14 @@ const Stepper = ({ currentStep }) => {
       label: 'Additional Info',
       currentOrCompleted: currentStepInt >= 2,
     },
+    {
+      label: 'Lastly',
+      currentOrCompleted: currentStepInt >= 3,
+    },
+    {
+      label: 'Preview',
+      currentOrCompleted: currentStepInt >= 4,
+    },
   ];
   return <BaseStepper steps={steps} header="Your Session" />;
 };

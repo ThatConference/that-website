@@ -39,6 +39,7 @@ const SampleForm = () => {
         checkboxGroup: [],
         radioGroup: '',
         supportingLinks: [],
+        takeaways: [],
       }}
       validationSchema={Yup.object({
         fullName: Yup.string()
@@ -58,6 +59,7 @@ const SampleForm = () => {
           .max(20, 'Must be less than 21 characters'),
         bio: Yup.string().required('Required'),
         supportingLinks: Yup.array().required('At least one is required'),
+        takeaways: Yup.array().required('At least one is required'),
         agreeToCodeOfConduct: Yup.bool().oneOf(
           [true],
           'Must agree to the Code of Conduct',
@@ -158,6 +160,7 @@ const SampleForm = () => {
               <FormInput
                 inputType="markdown"
                 fieldName="bio"
+                fieldHasValidation
                 getFieldProps={getFieldProps}
                 setFieldTouched={setFieldTouched}
                 setFieldValue={setFieldValue}
@@ -178,6 +181,20 @@ const SampleForm = () => {
                 touched={touched}
                 label="Supporting Links/Related Resources"
                 links={[]}
+              />
+            </FormRow>
+            <FormRow>
+              <FormInput
+                inputType="strings"
+                fieldName="takeaways"
+                getFieldProps={getFieldProps}
+                setFieldTouched={setFieldTouched}
+                setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
+                errors={errors}
+                touched={touched}
+                label="Key takeaways"
+                strings={[]}
               />
             </FormRow>
             <FormRow>
