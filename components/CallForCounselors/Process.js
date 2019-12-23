@@ -137,6 +137,9 @@ const Process = ({ featureKeyword, milestones }) => {
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
             label="More About the counselor selection process"
           />
         </Cell>
