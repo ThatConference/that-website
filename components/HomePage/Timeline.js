@@ -193,6 +193,9 @@ const TimelineSection = ({ event, className }) => {
             backgroundColor="primary"
             borderColor="white"
             color="white"
+            hoverBorderColor="white"
+            hoverColor="primary"
+            hoverBackgroundColor="white"
           />
         )}
         <Timeline>
