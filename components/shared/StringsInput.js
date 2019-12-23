@@ -86,7 +86,7 @@ const StringsInput = ({
     setValidity(s);
     setFieldTouched(field, true);
     const valid = s.every(str => {
-      return s.valid;
+      return str.valid;
     });
     setFieldError(field, valid ? null : 'Please fix validation issues');
     const mapped = s.map(x => {
