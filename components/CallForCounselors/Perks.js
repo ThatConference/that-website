@@ -94,6 +94,9 @@ const Perks = ({ featureKeyword }) => {
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
         label="Get started now!"
       />
     </Main>
