@@ -73,7 +73,7 @@ const Process = ({ featureKeyword, milestones }) => {
     <Main>
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
-          <h3>Format and Application Process</h3>
+          <h3>Talk Audiences and Formats</h3>
           <p>You can apply to speak for the following audiences and formats:</p>
           <ProcessBlock>
             <ProcessAndDatesSubHeading>
