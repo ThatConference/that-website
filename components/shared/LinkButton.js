@@ -21,6 +21,20 @@ const OutlineLink = styled.a`
 
   &:hover {
     cursor: pointer;
+    background-color: ${({ hoverBackgroundColor, theme }) =>
+      hoverBackgroundColor
+        ? theme.colors[hoverBackgroundColor]
+        : theme.colors.primary};
+    border: 2px solid
+      ${({ hoverBorderColor, theme }) =>
+        hoverBorderColor
+          ? theme.colors[hoverBorderColor]
+          : theme.colors.primary};
+
+    p {
+      color: ${({ hoverColor, theme }) =>
+        hoverColor ? theme.colors[hoverColor] : theme.colors.white};
+    }
   }
 
   p {
@@ -39,6 +53,9 @@ const LinkButton = ({
   backgroundColor,
   label,
   target,
+  hoverColor,
+  hoverBackgroundColor,
+  hoverBorderColor,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -58,6 +75,9 @@ const LinkButton = ({
       borderColor={borderColor}
       backgroundColor={backgroundColor}
       target={target}
+      hoverColor={hoverColor}
+      hoverBackgroundColor={hoverBackgroundColor}
+      hoverBackgroundColor={hoverBorderColor}
     >
       <p>{label}</p>
     </OutlineLink>
