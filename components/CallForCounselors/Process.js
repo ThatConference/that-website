@@ -81,8 +81,9 @@ const Process = ({ featureKeyword, milestones }) => {
             </ProcessAndDatesSubHeading>
             <p>
               THAT Conference is a professional polyglot technical conference
-              that also has a rich experience for children and other family geeklings. Your session
-              could be aimed at the professional track or for family geeklings.
+              that also has a rich experience for children and other family
+              geeklings. Your session could be aimed at the professional track
+              or for family geeklings.
             </p>
           </ProcessBlock>
           <ProcessBlock>
@@ -90,8 +91,9 @@ const Process = ({ featureKeyword, milestones }) => {
               Standard Sessions
             </ProcessAndDatesSubHeading>
             <p>
-              60 minutes total including time for answering questions. There's a 30 minute break in
-              between each session to nuture those all important hallway conversations. 
+              60 minutes total including time for answering questions.
+              There&apos;s a 30 minute break in between each session to nuture
+              those all important hallway conversations.
             </p>
           </ProcessBlock>
           <ProcessBlock>
@@ -99,18 +101,20 @@ const Process = ({ featureKeyword, milestones }) => {
               Pre-Conference Workshops
             </ProcessAndDatesSubHeading>
             <p>
-              Half day (four hours) or full day (8 hours). The day before the main conference is set
-              aside for a full day of workshops. Be prepared to provide attendees a decent agenda for
-              what you'll cover.
+              Half day (four hours) or full day (8 hours). The day before the
+              main conference is set aside for a full day of workshops. Be
+              prepared to provide attendees a decent agenda for what you&apos;ll
+              cover.
             </p>
           </ProcessBlock>
           <ProcessBlock>
             <ProcessAndDatesSubHeading>Keynotes</ProcessAndDatesSubHeading>
             <p>
-              Do you have what it takes to give a 90 minute speech on something you're passionate
-              about? You'll have an audience of over 1,000 people in front of the stage listening
-              to your story. We want topics that'll motivate, energize, and help attendees see the
-              world differently as the diverse place it is.
+              Do you have what it takes to give a 90 minute speech on something
+              you&apos;re passionate about? You&apos;ll have an audience of over
+              1,000 people in front of the stage listening to your story. We
+              want topics that&apos;ll motivate, energize, and help attendees
+              see the world differently as the diverse place it is.
             </p>
           </ProcessBlock>
         </Cell>
