@@ -49,8 +49,8 @@ const TalkIdeas = () => {
   return (
     <Main>
       <TalkIdeasText>
-        Looking For Talk Ideas? Check Out A Select List of Previous Years
-        Sessions. Need More Ideas For workshops? Then This List Is For You!
+        Looking for talk or workshop ideas? Check out these lists of previously
+        accepted Sessions and Workshops!
       </TalkIdeasText>
       <TalkIdeasButtons>
         <TalkIdeasButton
