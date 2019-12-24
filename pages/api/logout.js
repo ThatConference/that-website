@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/browser';
 
 import auth0 from '../../lib/auth0';
 
-const dlog = debug('api:logout');
+const dlog = debug('that:api:logout');
 
 export default async function logout(req, res) {
   try {
