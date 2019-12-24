@@ -10,12 +10,12 @@ const Agreement = () => {
           your talks are chosen.
         </li>
         <li>
-          A full ticket, including pre-conference, to the conference including
+          A full ticket to the conference (with pre-conference), including
           pre-conference lunch, breakfast & lunch during the conference, and the
           pig roast party.
         </li>
         <li>
-          Geekling/Campmate tickets for one additional adult and up to two
+          Geekling and Campmate tickets for one additional adult and up to two
           children for access to family track events and the pig roast party.
           Other meals are not included.
         </li>
