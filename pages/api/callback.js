@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/browser';
 
 import auth0 from '../../lib/auth0';
 
-const dlog = debug('api:callback');
+const dlog = debug('that:api:callback');
 
 export default async function callback(req, res) {
   try {
