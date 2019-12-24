@@ -10,6 +10,8 @@ export default async function callback(req, res) {
     dlog('auth0 callback executed');
     await auth0.handleCallback(req, res, { redirectTo: '/' });
   } catch (error) {
+    dlog('callback errored: %o', error);
+
     Sentry.captureException(error);
     res.status(error.status || 500).end();
   }
