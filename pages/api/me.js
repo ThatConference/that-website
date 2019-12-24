@@ -10,6 +10,7 @@ export default async function me(req, res) {
     dlog('calling auth0 to get profile');
     await auth0.handleProfile(req, res);
   } catch (error) {
+    dlog('me errored: %o', error);
     Sentry.captureException(error);
     res.status(error.status || 500).end(error.message);
   }

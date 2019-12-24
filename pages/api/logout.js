@@ -10,6 +10,7 @@ export default async function logout(req, res) {
     dlog('user logging out');
     await auth0.handleLogout(req, res);
   } catch (error) {
+    dlog('logout errored: %o', error);
     Sentry.captureException(error);
     res.status(error.status || 500).end(error.message);
   }
