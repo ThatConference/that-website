@@ -123,7 +123,7 @@ const Process = ({ featureKeyword, milestones }) => {
               <KeyDatesGrid columns={12} key={`DatesFooCell_${m.title}`}>
                 <KeyDatesCell width={5} className={className}>
                   <ProcessAndDatesSubHeading>
-                    {moment(m.dueDate).format('MMMM Do, YYYY')}
+                    {moment.utc(m.dueDate).format('MMMM Do, YYYY')}
                   </ProcessAndDatesSubHeading>
                 </KeyDatesCell>
                 <KeyDatesCell width={7} className={className}>

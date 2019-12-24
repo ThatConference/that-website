@@ -74,15 +74,15 @@ const Perks = ({ featureKeyword }) => {
       <Container>
         <Perk>
           <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>A free ticket to attend THAT conference</PerkText>
+          <PerkText>
+            A ticket to attend, including Conference meals (the pig roast too!)
+          </PerkText>
         </Perk>
         <Perk>
           <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>Hotel accomodations provided</PerkText>
-        </Perk>
-        <Perk>
-          <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>Some meals, including a pig roast ticket provided</PerkText>
+          <PerkText>
+            Hotel accommodations provided (2 nights for 1 talk)
+          </PerkText>
         </Perk>
         <Perk>
           <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
