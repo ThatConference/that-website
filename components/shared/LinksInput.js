@@ -7,9 +7,17 @@ import { FormInputValidationMessage } from './FormLayout';
 
 const _ = require('lodash');
 
+const MainGrid = styled(Grid)`
+  grid-row-gap: 1rem;
+`;
+
 const Input = styled.input`
   display: block;
   width: 100%;
+
+  &.not-first {
+    margin-top: 0 !important;
+  }
 `;
 
 const Button = styled.button`
@@ -17,9 +25,7 @@ const Button = styled.button`
   margin-top: 1.5rem;
 `;
 
-const ValidationMessage = styled(FormInputValidationMessage)`
-  min-height: 2.4rem;
-`;
+const ValidationMessage = styled(FormInputValidationMessage)``;
 
 const LinksInput = ({
   field,
@@ -83,11 +89,18 @@ const LinksInput = ({
     setStateLinks(l);
     setValidity(l);
     setFieldTouched(field, true);
-    setFieldValue(field, l);
     const valid = l.every(link => {
       return link.valid;
     });
     setFieldError(field, valid ? null : 'Please fix validtion issues');
+    const mapped = l.map(x => {
+      return {
+        id: x.id,
+        name: x.name,
+        url: x.url,
+      };
+    });
+    setFieldValue(field, mapped);
   };
 
   const onAdd = () => {
@@ -146,8 +159,9 @@ const LinksInput = ({
 
   return (
     <div id={field} name={field}>
-      <Grid columns={36}>
+      <MainGrid columns={36}>
         {stateLinks.map((l, index) => {
+          const classNamePart1 = `${index === 0 ? 'first' : 'not-first'}`;
           const nameInvalid = l.nameTouched && !l.nameValid;
           const urlInvalid = l.urlTouched && !l.urlValid;
           return (
@@ -158,7 +172,9 @@ const LinksInput = ({
                   value={l.name}
                   onChange={e => onNameChange(e, index)}
                   onBlur={() => onNameBlur(index)}
-                  className={nameInvalid ? 'invalid' : ''}
+                  className={`${classNamePart1} ${
+                    nameInvalid ? 'invalid' : ''
+                  }`}
                 />
                 <ValidationMessage>
                   {nameInvalid ? 'Required' : ''}
@@ -170,7 +186,7 @@ const LinksInput = ({
                   value={l.url}
                   onBlur={() => onUrlBlur(index)}
                   onChange={e => onUrlChange(e, index)}
-                  className={urlInvalid ? 'invalid' : ''}
+                  className={`${classNamePart1} ${urlInvalid ? 'invalid' : ''}`}
                 />
                 <ValidationMessage>
                   {urlInvalid ? 'Valid URL Required' : ''}
@@ -184,7 +200,7 @@ const LinksInput = ({
             </React.Fragment>
           );
         })}
-      </Grid>
+      </MainGrid>
       {stateValiditiy && (
         <button type="button" onClick={onAdd}>
           + Add

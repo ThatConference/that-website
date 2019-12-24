@@ -35,6 +35,7 @@ const UploadImage = () => {
           <FormRow>
             <FormInput
               fieldName="bio"
+              fieldHasValidation
               inputType="markdown"
               getFieldProps={getFieldProps}
               setFieldTouched={setFieldTouched}
