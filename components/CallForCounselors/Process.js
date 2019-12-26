@@ -82,8 +82,8 @@ const Process = ({ featureKeyword, milestones }) => {
             <p>
               THAT Conference is a professional polyglot technical conference
               that also has a rich experience for children and other family
-              geeklings. Your session could be aimed at the professional track
-              or for family geeklings.
+              members. Your session could be aimed at the professional track or
+              for family &quot;geeklings&quot;.
             </p>
           </ProcessBlock>
           <ProcessBlock>
