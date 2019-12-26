@@ -33,15 +33,15 @@ const Bottom = ({ featureKeyword }) => {
   return (
     <Container>
       <BottomText>
-        Now that you know our selection process. It’s time for you to become a
-        counselor and submit your session submission!
+        Now that you know our selection process, it’s time for you to become a
+        Counselor and submit your session!
       </BottomText>
       <BottomButton
         href={`counselor-agreement?feature=${featureKeyword}`}
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"
-        label="Become a counselor"
+        label="Become a Counselor"
       />
     </Container>
   );
