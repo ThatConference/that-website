@@ -136,6 +136,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <LinkButton
               href="wi/become-a-partner"
@@ -143,6 +146,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </ActionButtons>
         </SideDetail>

@@ -24,7 +24,15 @@ const pageNotFound = requestedUrl => {
 
       <p>Don&apos;t worry, we still have our old Website around.</p>
 
-      <LinkButton href={scrubbedUrl} label="Yes, take me now!" />
+      <LinkButton
+        href={scrubbedUrl}
+        label="Yes, take me now!"
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
     </>
   );
 };

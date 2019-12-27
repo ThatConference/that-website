@@ -30,6 +30,11 @@ const Header = ({ featureKeyword }) => {
       <LinkButton
         label="Get Started"
         href={`counselor-agreement?feature=${featureKeyword}`}
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
       />
     </>
   );

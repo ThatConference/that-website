@@ -109,6 +109,9 @@ const becomeAPartner = () => (
             backgroundColor="primary"
             label="Get the Prospectus"
             className="float-left"
+            hoverBorderColor="white"
+            hoverColor="primary"
+            hoverBackgroundColor="white"
           />
         </Cell>
         <Cell style={{ textAlign: 'center' }}>

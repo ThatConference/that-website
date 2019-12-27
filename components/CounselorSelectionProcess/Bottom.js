@@ -41,6 +41,9 @@ const Bottom = ({ featureKeyword }) => {
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
         label="Become a Counselor"
       />
     </Container>

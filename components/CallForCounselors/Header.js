@@ -80,6 +80,9 @@ const Header = ({ featureKeyword }) => {
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
+            hoverBorderColor="thatBlue"
+            hoverBackgroundColor="thatBlue"
+            hoverColor="white"
             label="Become a Counselor"
           />
         </TextCell>
