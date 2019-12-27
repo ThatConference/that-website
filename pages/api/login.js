@@ -10,6 +10,7 @@ export default async function login(req, res) {
     dlog('user logging in');
     await auth0.handleLogin(req, res);
   } catch (error) {
+    dlog('login errored: %o', error);
     Sentry.captureException(error);
     res.status(error.status || 500).end(error.message);
   }
