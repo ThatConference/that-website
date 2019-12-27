@@ -1,7 +1,13 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
   "parser": "babel-eslint",
-  "parserOptions": { "ecmaVersion": 8 },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
   "env": {
     "browser": true,
     "commonjs": true,
@@ -15,7 +21,20 @@
     "no-nested-ternary": "off",
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }]
+    "react/no-unescaped-entities": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ]
   },
-  "plugins": ["jest", "react-hooks", "prettier"]
+  "plugins": [
+    "jest",
+    "react-hooks",
+    "prettier"
+  ]
 }
