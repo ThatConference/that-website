@@ -48,6 +48,13 @@ const BackLink = styled.a`
   position: relative;
   top: 2.2rem;
 
+  &:hover {
+    color: ${({ theme }) => theme.colors.tertiary};
+    svg {
+      fill: ${({ theme }) => theme.colors.tertiary};
+    }
+  }
+
   svg {
     vertical-align: text-bottom;
     width: 1.7rem;
