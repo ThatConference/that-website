@@ -11,7 +11,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
 import { useFetchUser } from '../../lib/user';
-import UserNav from './UserNav';
+import MemberNav from './MemberNav';
 
 router.onRouteChangeStart = () => {
   nprogress.start();
@@ -159,7 +159,7 @@ const Header = ({ className, dispatch }) => {
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
           />
-          <UserNav
+          <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
             user={user}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import NavItem from './NavItem';
+import { below } from '../../utilities';
 
 const SecondaryNav = styled.ul`
   display: ${({ userMenuOpen }) => (userMenuOpen ? '' : 'none')};
@@ -15,7 +16,7 @@ const SecondaryNav = styled.ul`
   top: 2rem;
 `;
 
-const UserNav = ({ className, onClick, user }) => {
+const MemberNav = ({ className, onClick, user }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const menuClick = event => {
@@ -40,7 +41,7 @@ const UserNav = ({ className, onClick, user }) => {
             <li>
               <NavItem
                 title="My Profile"
-                href="/wi/user/profile"
+                href="/member/sara" // TO DO: need to make this dynamic for the member
                 onClick={() => setUserMenuOpen(false)}
               />
             </li>
@@ -73,21 +74,26 @@ const UserNav = ({ className, onClick, user }) => {
   );
 };
 
-UserNav.propTypes = {
+MemberNav.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   user: PropTypes.shape({}),
 };
 
-UserNav.defaultProps = {
+MemberNav.defaultProps = {
   className: '',
   onClick: () => {},
   user: {},
 };
 
-export default styled(UserNav)`
+export default styled(MemberNav)`
   flex-grow: 2;
   text-align: right;
   margin-right: 3rem;
   position: relative;
+
+  ${below.med`
+    margin-right: 7.5rem;
+    margin-top: 1.3rem;
+  `};
 `;
