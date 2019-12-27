@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
+import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below } from '../../utilities';
@@ -40,6 +41,7 @@ const LogoLink = styled.a`
 
 const StyledLogo = styled.img`
   height: 100%;
+  margin-right: 3rem;
 `;
 
 const ActionButton = styled(LinkButton)`
@@ -70,7 +72,7 @@ const HeaderLogo = () => {
     return <Logo />;
   }
   return (
-    <LogoLink href="/" onClick={clickTracking}>
+    <LogoLink href="/wi" onClick={clickTracking}>
       <Logo />
     </LogoLink>
   );
@@ -102,7 +104,7 @@ const Header = ({ className }) => {
       <HeaderSection>
         <PageHeader>
           <HeaderLogo />
-          {/* <Nav /> */}
+          <Nav />
           <div style={{ flexGrow: 2 }} />
           <div style={{ display: 'flex' }}>
             <ActionButton

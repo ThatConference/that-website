@@ -103,7 +103,7 @@ class NewsletterSignUpForm extends Component {
                 placeholder="ex: hello@youareawesome.com"
                 required
               />
-              <SquareButton icon="arrow" iconClass="right" />
+              <SquareButton isSubmit icon="arrow" iconClass="right" />
             </InputsRow>
           </form>
         )}

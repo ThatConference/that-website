@@ -7,31 +7,33 @@ import fm from 'front-matter';
 import flatten from 'flat';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import Error from '../_error';
 
+import Error from '../_error';
 import ContentSection from '../../components/shared/ContentSection';
 
 // Query for event specific data to use in markdown rendering
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
-    event(id: $eventId) {
-      id
-      name
-      slogan
-      startDate
-      endDate
-      venues {
+    events {
+      event(id: $eventId) {
         id
         name
-        address
-        city
-        state
-        zip
-      }
-      milestones {
-        title
-        description
-        dueDate
+        slogan
+        startDate
+        endDate
+        venues {
+          id
+          name
+          address
+          city
+          state
+          zip
+        }
+        milestones {
+          title
+          description
+          dueDate
+        }
       }
     }
   }
@@ -62,7 +64,7 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
 
   const updatedMarkdown = replaceVariables(
     parsedMarkdown.body,
-    flatten(data, { delimiter: '_' }),
+    flatten(data.events, { delimiter: '_' }),
   );
 
   return (

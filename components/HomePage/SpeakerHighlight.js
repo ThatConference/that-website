@@ -56,6 +56,9 @@ const SpeakerHighlight = ({ className }) => {
           label="Meet The Speakers"
           color="thatBlue"
           borderColor="thatBlue"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
         />
       </TitleRow>
       <ProfileRow>

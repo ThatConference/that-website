@@ -160,7 +160,7 @@ const Date = styled(Detail)`
 const TimelineSection = ({ event, className }) => {
   const milestones = _(event.milestones)
     .map(m => {
-      const momentDue = moment(m.dueDate);
+      const momentDue = moment.utc(m.dueDate);
       return {
         title: m.title,
         due: momentDue.format('MM/DD/YY'),
@@ -193,6 +193,9 @@ const TimelineSection = ({ event, className }) => {
             backgroundColor="primary"
             borderColor="white"
             color="white"
+            hoverBorderColor="white"
+            hoverColor="primary"
+            hoverBackgroundColor="white"
           />
         )}
         <Timeline>

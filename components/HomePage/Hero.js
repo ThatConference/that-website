@@ -6,7 +6,7 @@ import SocialLinks from '../shared/SocialLinks';
 
 import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
 
-const twoColBp = 'xlarge';
+const twoColBp = 'large';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -100,6 +100,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin: auto;
+  justify-content: center;
 
   ${below[twoColBp]`
     flex-direction: column;
@@ -135,6 +136,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <LinkButton
               href="wi/become-a-partner"
@@ -142,6 +146,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </ActionButtons>
         </SideDetail>
@@ -159,5 +166,5 @@ const Hero = ({ event, className }) => {
 
 export default styled(Hero)`
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 5rem;
 `;

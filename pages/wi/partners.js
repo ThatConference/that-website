@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
@@ -12,20 +13,21 @@ import { below } from '../../utilities/breakpoint';
 const GET_PARTNERS = gql`
   query getPartners {
     partners {
-      id
-      slug
-      year
-      partnershipLevel
-      companyName
-      companyLogo
-      heroImage
-      website
+      all {
+        id
+        slug
+        year
+        partnershipLevel
+        companyName
+        companyLogo
+        heroImage
+        website
+      }
     }
   }
 `;
 
 const Header = styled.h1`
-  margin-top: 0;
   margin-bottom: 0;
   margin-right: 50px;
 `;
@@ -33,7 +35,6 @@ const Header = styled.h1`
 const RobotImage = styled.img`
   height: 50rem;
   float: right;
-  margin-top: -10rem;
   margin-right: 3.5rem;
 
   ${below.med`
@@ -102,27 +103,31 @@ const partnerListing = () => {
   if (loading) return null;
   if (error) return null;
 
+  const partners = data.partners.all;
   return (
     <div>
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>2019 Sponsors & Partners</Header>
+            <Header>2019 Partners</Header>
             <LinkButton
               href="/wi/become-a-partner"
               label="Become a Partner"
               color="thatBlue"
               borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <RobotImage src="/images/robot.png" />
           </Cell>
           <Cell>
             <p className="large-body-copy">
               THAT Conference wouldn’t be possible without the support of our
-              sponsors and partners. A large portion of the conference costs are
-              paid from sponsorships so that we can keep ticket costs
-              affordable. Please take a few minutes to learn about our sponsors
-              and let them know you appreciate their support of our community!
+              partners. A large portion of the conference costs are paid from
+              sponsorships so that we can keep ticket costs affordable. Please
+              take a few minutes to learn about our partners and let them know
+              you appreciate their support of our community!
             </p>
           </Cell>
         </Grid>
@@ -130,7 +135,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
@@ -141,7 +146,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
@@ -152,7 +157,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
@@ -163,7 +168,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
@@ -174,7 +179,7 @@ const partnerListing = () => {
       <ContentSection>
         <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
         <Partners>
-          {data.partners.map(value => {
+          {partners.map(value => {
             if (value.partnershipLevel === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
