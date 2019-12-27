@@ -88,7 +88,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .large-body-copy {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     line-height: 1.5;
   }
 

@@ -1,18 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Grid } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+// import LinkButton from '../shared/LinkButton';
+import ImageContainer from '../shared/ImageContainer';
 
-import { below } from '../../utilities';
-
-const Main = styled(ContentSection)`
-  margin-bottom: 15rem;
-
-  ${below.med`
-    margin-bottom: 5rem;
-  `};
-`;
+import { gridRepeat } from '../../utilities';
 
 const Title = styled.h3`
   text-align: center;
@@ -20,76 +14,49 @@ const Title = styled.h3`
   color: ${({ theme }) => theme.colors.fonts.dark};
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 10rem;
-  margin-bottom: 5rem;
-
-  ${below.med`
-    margin-top: 8rem;
-    margin-bottom: 0;
-  `};
+const PerkTitle = styled.h4`
+  margin-top: 0;
+  margin-bottom: 0.4rem;
 `;
 
-const Perk = styled.div`
-  width: 33.1rem;
-  height: 19.1rem;
-  text-align: center;
-  background-color: ${({ theme }) => theme.colors.lightGray};
-
-  ${below.med`
-    margin-bottom: 6rem;
-  `};
+const Perk = styled(ImageContainer)`
+  padding: 2.5rem;
+  margin: 2rem;
 `;
 
-const PerkImage = styled.img`
-  max-width: 21rem;
-  margin-top: -2rem;
-`;
+// const GetStartedNow = styled(LinkButton)`
+//   float: right;
+// `;
 
-const PerkText = styled.div`
-  font-weight: bold;
-  font-size: 1.8rem;
-  text-align: center;
-  padding-left: 7rem;
-  padding-right: 7rem;
-  line-height: 2rem;
-
-  ${below.med`
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  `};
-`;
-
-const GetStartedNow = styled(LinkButton)`
-  float: right;
-`;
-
-const Perks = ({ featureKeyword }) => {
+const Perks = () => {
   return (
-    <Main>
+    <ContentSection>
       <Title>Perks If You're Selected To Speak At THAT Conference</Title>
-      <Container>
+      <Grid columns={gridRepeat.xsmall} alignContent="center">
         <Perk>
-          <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>
-            A ticket to attend, including Conference meals (the pig roast too!)
-          </PerkText>
+          <PerkTitle>Conference Ticket</PerkTitle>
+          <p style={{ flexGrow: '2' }}>
+            A ticket to attend all for days of THAT Conference! Including all
+            conference meals, THAT Pig Roast and all social/networking
+            activities!
+          </p>
         </Perk>
         <Perk>
-          <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>
-            Hotel accommodations provided (2 nights for 1 talk)
-          </PerkText>
+          <PerkTitle>Hotel Accomodations</PerkTitle>
+          <p style={{ flexGrow: '2' }}>
+            For each talk accepted we cover 2 nights at the Kalahari, up to a 3
+            night max per family!
+          </p>
         </Perk>
         <Perk>
-          <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
-          <PerkText>Your session will be professionally recorded</PerkText>
+          <PerkTitle>Professionally Recorded</PerkTitle>
+          <p style={{ flexGrow: '2' }}>
+            If you are accepted and choose to be included, we are set to offer
+            professional video recording for a majority of our sessions!
+          </p>
         </Perk>
-      </Container>
-      <GetStartedNow
+      </Grid>
+      {/* <GetStartedNow
         href={`counselor-agreement?feature=${featureKeyword}`}
         borderColor="thatBlue"
         color="thatBlue"
@@ -98,8 +65,8 @@ const Perks = ({ featureKeyword }) => {
         hoverColor="white"
         hoverBackgroundColor="thatBlue"
         label="Get started now!"
-      />
-    </Main>
+      /> */}
+    </ContentSection>
   );
 };
 
