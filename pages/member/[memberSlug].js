@@ -72,7 +72,7 @@ const home = ({ user: reduxUser, dispatch }) => {
   const lifeHack =
     'I’m not a small talk kinda girl. I crave soul nourishing conversation and connection. I want to talk about uncomfortably big dreams, interesting concepts and new ideas. I want to know what lights you up or drives you crazy. I want to challenge you and make you think bigger. So, let’s skip the small talk?';
   const interests = ['React', 'Graph', 'Being Awesome', 'Ruby'];
-  const links = [{}];
+  // const links = [{}];
 
   return (
     <ContentSection>
