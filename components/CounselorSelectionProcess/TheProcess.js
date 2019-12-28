@@ -20,7 +20,8 @@ const TheProcess = () => {
         After the submission deadline, THAT Staff, together with a few other
         people we trust, will review all submissions and select the ones that
         think will make the most interesting mix at THAT Conference. We aim to
-        to have all Counselors confirmed by [TODO: DATE PLACEHOLDER].
+        to have all Counselors notified of the acceptance of their talks by
+        April 17, 2020.
       </p>
       <NumberedItem className="first-item">01. Initial Review</NumberedItem>
       <p>

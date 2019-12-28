@@ -24,13 +24,6 @@ const Container = styled.div`
 const ContainerInner = styled.div`
   margin: auto;
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
-<<<<<<< HEAD
-
-  ${below.small`
-    max-width: 80vw;
-  `}
-=======
->>>>>>> link up call for counselors and open to main site
 `;
 
 const Trees = styled.img`
