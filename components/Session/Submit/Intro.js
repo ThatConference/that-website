@@ -16,7 +16,23 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
+const SUBMIT = gql`
+  mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
+    sessions {
+      create(eventId: $eventId, session: $session) {
+        id
+        title
+        type
+        targetAudience
+        createdAt
+        lastUpdatedAt
+      }
+    }
+  }
+`;
+
 const Intro = () => {
+  const [updateSession] = useMutation(SUBMIT);
   return (
     <Formik
       initialValues={{
@@ -31,22 +47,7 @@ const Intro = () => {
         const session = values;
         session.title = 'temp';
 
-        const SUBMIT = gql`
-          mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
-            sessions {
-              create(eventId: $eventId, session: $session) {
-                id
-                title
-                type
-                targetAudience
-                createdAt
-                lastUpdatedAt
-              }
-            }
-          }
-        `;
-
-        const { loading, error, data } = useMutation(SUBMIT, {
+        updateSession({
           variables: { session, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
         });
       }}
