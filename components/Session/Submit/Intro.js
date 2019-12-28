@@ -30,8 +30,6 @@ const Intro = () => {
       onSubmit={values => {
         const session = values;
         session.title = 'temp';
-        session.createdAt = new Date();
-        session.lastUpdatedAt = new Date();
 
         const SUBMIT = gql`
           mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
