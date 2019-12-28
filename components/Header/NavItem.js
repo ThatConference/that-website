@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import Icon from '../shared/Icon';
 
+import * as gtag from '../../lib/gtag';
 import { below } from '../../utilities/breakpoint';
 
 const StyledLink = styled.a`
@@ -65,16 +66,35 @@ const NavItem = ({
     return title;
   };
 
+  const clickTracking = () => {
+    gtag.event({
+      clientWindow: window,
+      action: 'click',
+      category: 'nav item',
+      title,
+    });
+  };
+
+  const handleClick = () => {
+    clickTracking();
+    onClick();
+  };
+
   return (
     <>
       {isLocal ? (
         <Link href={href} passHref>
-          <StyledLink onClick={onClick} color={color} target={target}>
+          <StyledLink onClick={handleClick} color={color} target={target}>
             {displayedLink()}
           </StyledLink>
         </Link>
       ) : (
-        <StyledLink href={href} color={color} target={target}>
+        <StyledLink
+          href={href}
+          color={color}
+          target={target}
+          onClick={handleClick}
+        >
           {displayedLink()}
         </StyledLink>
       )}
