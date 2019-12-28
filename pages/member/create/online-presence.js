@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 
-import ContentSection from '../../../../../components/shared/ContentSection';
-import togglePage from '../../../../../utilities/togglePage';
+import ContentSection from '../../../components/shared/ContentSection';
+import togglePage from '../../../utilities/togglePage';
 
-import Header from '../../../../../components/User/Profile/Create/Header';
-import OnlinePresenceForm from '../../../../../components/User/Profile/Create/OnlinePresence';
+import Header from '../../../components/Member/Profile/Create/Header';
+import OnlinePresenceForm from '../../../components/Member/Profile/Create/OnlinePresence';
 
 const OnlinePresence = ({ featureKeyword }) => {
   return (

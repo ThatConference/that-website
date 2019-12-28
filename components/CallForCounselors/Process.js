@@ -68,7 +68,7 @@ const MoreAboutProcess = styled(LinkButton)`
   margin-left: 0;
 `;
 
-const Process = ({ featureKeyword, milestones }) => {
+const Process = ({ milestones }) => {
   return (
     <Main>
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
@@ -136,7 +136,7 @@ const Process = ({ featureKeyword, milestones }) => {
             );
           })}
           <MoreAboutProcess
-            href={`counselor-selection-process?feature=${featureKeyword}`}
+            href="counselor-selection-process"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"

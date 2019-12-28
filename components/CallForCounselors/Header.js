@@ -3,16 +3,18 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+// import LinkButton from '../shared/LinkButton';
 
-import { below } from '../../utilities';
+import { above, below } from '../../utilities';
+
+const twoColBp = 'large';
 
 const Main = styled(ContentSection)`
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 `;
 
 const MainGrid = styled(Grid)`
-  grid-gap: 23rem;
+  grid-gap: 5rem;
 
   ${below.med`
     grid-gap: 0;
@@ -20,45 +22,45 @@ const MainGrid = styled(Grid)`
 `;
 
 const Title = styled.h1`
-  margin-top: 0;
-  margin-right: 10rem;
-  font-size: 14rem;
-  font-weight: 100;
+  margin: 1.8rem 0 3rem 0;
 
-  ${below.med`
-    font-size: 8rem;
+  ${above[twoColBp]`
+    max-width: 60rem;
+  `};
+
+  ${below[twoColBp]`
+    text-align: center;
   `};
 
   ${below.small`
+    font-size: 8rem;
+  `};
+
+  ${below.xsmall`
     font-size: 7rem;
   `};
 `;
 
-const Callout = styled.span`
+const Callout = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
-  font-family: franklin-gothic-urw-comp, sans-serif;
-  font-size: 2.8rem;
-  text-transform: uppercase;
-  line-height: 1;
+  font-size: 2.4rem;
+  font-family: franklin-gothic-urw, sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  margin: 0;
 
   ${below.med`
-    font-size: 2.3rem;
+    text-align: center
   `};
 `;
 
-const TextCell = styled(Cell)`
-  margin-top: 3rem;
+const TextCell = styled(Cell)``;
 
-  ${below.med`
-    margin-top: 0;
-  `};
-`;
+// const BecomeACounselor = styled(LinkButton)`
+//   margin-left: 0;
+// `;
 
-const BecomeACounselor = styled(LinkButton)`
-  margin-left: 0;
-`;
-
-const Header = ({ featureKeyword }) => {
+const Header = () => {
   return (
     <Main>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
@@ -75,7 +77,7 @@ const Header = ({ featureKeyword }) => {
             owners, site builders, translators, community organizers, and
             everything in between.
           </p>
-          <BecomeACounselor
+          {/* <BecomeACounselor
             href={`counselor-start?feature=${featureKeyword}`}
             borderColor="thatBlue"
             color="thatBlue"
@@ -84,7 +86,7 @@ const Header = ({ featureKeyword }) => {
             hoverBackgroundColor="thatBlue"
             hoverColor="white"
             label="Become a Counselor"
-          />
+          /> */}
         </TextCell>
       </MainGrid>
     </Main>
