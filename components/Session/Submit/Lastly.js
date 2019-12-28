@@ -25,7 +25,7 @@ const Lastly = ({ featureKeyword }) => {
       validationSchema={Yup.object({
         mentorshipLevel: Yup.string().required('Required'),
         whyAreYouBestPerson: Yup.string(),
-        whatElseShouldWeKnow: Yup.array(),
+        whatElseShouldWeKnow: Yup.string(),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
