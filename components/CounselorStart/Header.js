@@ -17,7 +17,7 @@ const TopParagraph = styled.p`
 const Header = ({ featureKeyword }) => {
   return (
     <>
-      <Title>Let&apos;s Get Started</Title>
+      <Title>Let's Get Started</Title>
       <TopParagraph>
         We’re stoked to hear you’re interested in speaking at THAT Conference!
         Being a counselor is more than just showing up, giving a talk, and
