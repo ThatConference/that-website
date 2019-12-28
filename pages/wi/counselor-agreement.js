@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import Router from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
@@ -11,6 +12,8 @@ import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
 import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
 import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
+
+import { useFetchUser } from '../../lib/user';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -46,25 +49,34 @@ const MainContent = styled(ContentSection)`
 `;
 
 const CounselorAgreement = ({ featureKeyword }) => {
-  return (
-    <div>
-      <Head>
-        <title key="title">Counselor Selection Process - THAT Conference</title>
-      </Head>
-      <MainContent>
-        <MainGrid columns={6}>
-          <Cell width={1} />
-          <Cell width={4}>
-            <Header />
-            <Commitments />
-            <WhatsProvided />
-            <Acknowledgment featureKeyword={featureKeyword} />
-          </Cell>
-          <Cell width={1} />
-        </MainGrid>
-      </MainContent>
-    </div>
-  );
+  const { user, loading } = useFetchUser();
+  React.useEffect(() => {
+    if (!loading && !user) {
+      Router.push('/api/login');
+    }
+  });
+  if (user) {
+    return (
+      <div>
+        <Head>
+          <title key="title">Counselor Agreement - THAT Conference</title>
+        </Head>
+        <MainContent>
+          <MainGrid columns={6}>
+            <Cell width={1} />
+            <Cell width={4}>
+              <Header />
+              <Commitments />
+              <WhatsProvided />
+              <Acknowledgment featureKeyword={featureKeyword} />
+            </Cell>
+            <Cell width={1} />
+          </MainGrid>
+        </MainContent>
+      </div>
+    );
+  }
+  return null;
 };
 
 export default togglePage(CounselorAgreement);

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 
 import {
   FormRow,
@@ -14,7 +16,7 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
-const Intro = ({ featureKeyword }) => {
+const Intro = () => {
   return (
     <Formik
       initialValues={{
@@ -25,13 +27,30 @@ const Intro = ({ featureKeyword }) => {
         audience: Yup.string().required('Selection required'),
         sessionType: Yup.string().required('Selection required'),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `submit/details?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const session = values;
+        session.title = 'temp';
+        session.createdAt = new Date();
+        session.lastUpdatedAt = new Date();
+
+        const SUBMIT = gql`
+          mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
+            sessions {
+              create(eventId: $eventId, session: $session) {
+                id
+                title
+                type
+                targetAudience
+                createdAt
+                lastUpdatedAt
+              }
+            }
+          }
+        `;
+
+        const { loading, error, data } = useMutation(SUBMIT, {
+          variables: { session, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+        });
       }}
     >
       {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
@@ -49,13 +68,13 @@ const Intro = ({ featureKeyword }) => {
               <Field
                 component={RadioButtonGroupItem}
                 name="audience"
-                id="professionals"
+                id="PROFESSIONALS"
                 label="Professionals"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="audience"
-                id="family"
+                id="FAMILY"
                 label="Family"
               />
             </RadioButtonGroup>
@@ -73,25 +92,25 @@ const Intro = ({ featureKeyword }) => {
               <Field
                 component={RadioButtonGroupItem}
                 name="sessionType"
-                id="standard"
+                id="REGULAR"
                 label="Regular session (60 minute talk)"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="sessionType"
-                id="keynote"
+                id="KEYNOTE"
                 label="Keynote (90 minute talk)"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="sessionType"
-                id="preconHalfDay"
+                id="HALF_DAY_WORKSHOP"
                 label="Half-day Workshop (pre-conference)"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="sessionType"
-                id="preconFullDay"
+                id="FULL_DAY_WORKSHOP"
                 label="Full-day Workshop (pre-conference)"
               />
             </RadioButtonGroup>
