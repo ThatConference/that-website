@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Head from 'next/head';
 import Router from 'next/router';
 
@@ -10,8 +11,19 @@ import Intro from '../../../../components/Session/Submit/Intro';
 
 import { useFetchUser } from '../../../../lib/user';
 
-const SessionIntro = ({ featureKeyword }) => {
-  const { user, loading } = useFetchUser();
+const SessionIntro = ({ user: reduxUser, dispatch, featureKeyword }) => {
+  let user = reduxUser;
+  let loading = true;
+
+  if (!user) {
+    const { cookieUser, loading: userLoading } = useFetchUser();
+    loading = userLoading;
+    if (!userLoading) {
+      dispatch({ type: 'USER', payload: cookieUser });
+      user = cookieUser;
+    }
+  }
+
   React.useEffect(() => {
     if (!loading && !user) {
       Router.push(
@@ -35,4 +47,10 @@ const SessionIntro = ({ featureKeyword }) => {
   return null;
 };
 
-export default togglePage(SessionIntro);
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(togglePage(SessionIntro));

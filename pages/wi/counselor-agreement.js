@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Head from 'next/head';
 import Router from 'next/router';
 import styled from 'styled-components';
@@ -48,8 +49,19 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = ({ featureKeyword }) => {
-  const { user, loading } = useFetchUser();
+const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
+  let user = reduxUser;
+  let loading = true;
+
+  if (!user) {
+    const { cookieUser, loading: userLoading } = useFetchUser();
+    loading = userLoading;
+    if (!userLoading) {
+      dispatch({ type: 'USER', payload: cookieUser });
+      user = cookieUser;
+    }
+  }
+
   React.useEffect(() => {
     if (!loading && !user) {
       Router.push(
@@ -81,4 +93,10 @@ const CounselorAgreement = ({ featureKeyword }) => {
   return null;
 };
 
-export default togglePage(CounselorAgreement);
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(togglePage(CounselorAgreement));
