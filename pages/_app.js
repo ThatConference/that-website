@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
@@ -13,7 +16,33 @@ Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
 
+const reducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case 'USER':
+      return { ...state, user: action.payload };
+    default:
+      return state;
+  }
+};
+
+const makeStore = initialState => {
+  return createStore(reducer, initialState);
+};
+
 class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    const { feature } = ctx.query;
+
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
+
+    return {
+      pageProps,
+      displayFeature: feature === process.env.FEATURE_KEYWORD,
+    };
+  }
+
   constructor() {
     // eslint-disable-next-line prefer-rest-params
     super(...arguments);
@@ -47,16 +76,24 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, apolloClient } = this.props;
+    const {
+      Component,
+      pageProps,
+      apolloClient,
+      store,
+      displayFeature,
+    } = this.props;
 
     return (
-      <Page>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </Page>
+      <Provider store={store}>
+        <Page displayFeature={displayFeature}>
+          <ApolloProvider client={apolloClient}>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </Page>
+      </Provider>
     );
   }
 }
 
-export default withApolloClient(MyApp);
+export default withRedux(makeStore)(withApolloClient(MyApp));
