@@ -78,7 +78,7 @@ const Achknowledgment = ({ featureKeyword }) => {
               />
             </div>
           </div>
-          <FormSubmit label="Agree &amp; Continue" />
+          <FormSubmit label="Agree and Continue" />
         </Form>
       )}
     </Formik>
