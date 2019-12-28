@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.h1`
-  font-weight: 100;
-  font-size: 8.5rem;
-  margin-bottom: 0;
+  margin: 1.8rem 0 3rem 0;
+  font-size: 8rem;
 `;
 
 const TopParagraph = styled.p`

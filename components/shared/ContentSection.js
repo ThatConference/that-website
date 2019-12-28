@@ -24,10 +24,6 @@ const Container = styled.div`
 const ContainerInner = styled.div`
   margin: auto;
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
-
-  ${below.small`
-    max-width: 30rem;
-  `}
 `;
 
 const Trees = styled.img`

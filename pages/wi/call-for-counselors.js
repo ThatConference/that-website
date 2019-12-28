@@ -3,11 +3,9 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import togglePage from '../../utilities/togglePage';
-
 import Header from '../../components/CallForCounselors/Header';
 import SummerCamp from '../../components/CallForCounselors/SummerCamp';
-import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
+// import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
 import Process from '../../components/CallForCounselors/Process';
 import Perks from '../../components/CallForCounselors/Perks';
 
@@ -45,11 +43,12 @@ const CallForCounselors = ({ featureKeyword }) => {
       </Head>
       <Header featureKeyword={featureKeyword} />
       <SummerCamp />
-      <TalkIdeas />
+      {/* TO DO: commenting out until we have past sessions in place */}
+      {/* <TalkIdeas /> */}
       <Process featureKeyword={featureKeyword} milestones={event.milestones} />
       <Perks />
     </div>
   );
 };
 
-export default togglePage(CallForCounselors);
+export default CallForCounselors;

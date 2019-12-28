@@ -7,24 +7,20 @@ import ContentSection from '../shared/ContentSection';
 import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
-  height: 83rem;
   margin-bottom: 14rem;
 
   ${below.large`
-    max-height: 72rem;
+
   `};
 
   ${below.med`
-    height: unset;
-    min-height: 83rem;
-    max-height: 200rem;
-    margin-bottom: 5rem;
+
   `};
 `;
 
 const SummerCampHeader = styled.h3`
   font-size: 5.5rem;
-  margin-top: 15rem;
+  margin-top: 8rem;
   margin-bottom: 2.5rem;
   margin-left: 0;
   font-weight: 100;
@@ -39,21 +35,15 @@ const MegaphoneBearCell = styled(Cell)`
 
 const MegaphoneBear = styled.img`
   transform: scaleX(-1);
-  margin-top: 23rem;
-  max-height: 60rem;
-
-  ${below.large`
-    margin-top: 3rem;
-    max-height: 50rem;
-  `};
+  max-height: 48rem;
+  position: relative;
+  top: 10rem;
 
   ${below.med`
     max-height: 35rem;
   `};
 
   ${below.small`
-    margin-bottom: -8rem;
-    margin-top: 5rem;
     height: 30rem;
   `};
 `;

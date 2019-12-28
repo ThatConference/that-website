@@ -68,7 +68,7 @@ const MoreAboutProcess = styled(LinkButton)`
   margin-left: 0;
 `;
 
-const Process = ({ featureKeyword, milestones }) => {
+const Process = ({ milestones }) => {
   return (
     <Main>
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
@@ -83,7 +83,7 @@ const Process = ({ featureKeyword, milestones }) => {
               THAT Conference is a professional polyglot technical conference
               that also has a rich experience for children and other family
               members. Your session could be aimed at the professional track or
-              for family &quot;geeklings&quot;.
+              for family "geeklings".
             </p>
           </ProcessBlock>
           <ProcessBlock>
@@ -91,9 +91,9 @@ const Process = ({ featureKeyword, milestones }) => {
               Standard Sessions
             </ProcessAndDatesSubHeading>
             <p>
-              60 minutes total including time for answering questions.
-              There&apos;s a 30 minute break in between each session to nuture
-              those all important hallway conversations.
+              Standard sessions are 60 minutes each, including time for
+              answering questions. There is a 30 minute break in-between each
+              session to nurture those all important hallway conversations.
             </p>
           </ProcessBlock>
           <ProcessBlock>
@@ -103,7 +103,7 @@ const Process = ({ featureKeyword, milestones }) => {
             <p>
               Half day (four hours) or full day (8 hours). The day before the
               main conference is set aside for a full day of workshops. Be
-              prepared to provide attendees a decent agenda for what you&apos;ll
+              prepared to provide attendees a decent agenda for what you'll
               cover.
             </p>
           </ProcessBlock>
@@ -111,10 +111,10 @@ const Process = ({ featureKeyword, milestones }) => {
             <ProcessAndDatesSubHeading>Keynotes</ProcessAndDatesSubHeading>
             <p>
               Do you have what it takes to give a 90 minute speech on something
-              you&apos;re passionate about? You&apos;ll have an audience of over
-              1,000 people in front of the stage listening to your story. We
-              want topics that&apos;ll motivate, energize, and help attendees
-              see the world differently as the diverse place it is.
+              you're passionate about? You'll have an audience of over 1,000
+              people in front of the stage listening to your story. We want
+              topics that'll motivate, energize, and help attendees see the
+              world differently as the diverse place it is.
             </p>
           </ProcessBlock>
         </Cell>
@@ -136,7 +136,7 @@ const Process = ({ featureKeyword, milestones }) => {
             );
           })}
           <MoreAboutProcess
-            href={`counselor-selection-process?feature=${featureKeyword}`}
+            href="counselor-selection-process"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
