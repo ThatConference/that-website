@@ -26,7 +26,7 @@ const ContainerInner = styled.div`
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
 
   ${below.small`
-    max-width: 30rem;
+    max-width: 80vw;
   `}
 `;
 
