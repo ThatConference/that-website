@@ -52,7 +52,9 @@ const Intro = ({ featureKeyword }) => {
             const sessionId = result.data.sessions.create.id;
             // eslint-disable-next-line no-alert
             alert(`Session Created Successfully with Id: ${sessionId}`);
-            Router.push(`/wi/session/submit/details?feature=${featureKeyword}`);
+            Router.push(
+              `/wi/session/submit/details?feature=${featureKeyword}&sessionId=${sessionId}`,
+            );
           },
           error => {
             console.log(`Error: ${error}`);
