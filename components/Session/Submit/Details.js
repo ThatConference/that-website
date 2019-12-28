@@ -89,7 +89,9 @@ const DetailForm = ({ featureKeyword }) => {
             console.log(`Result: ${JSON.stringify(result, null, 2)}`);
             // eslint-disable-next-line no-alert
             alert(`Session Update Successfully`);
-            Router.push(`/wi/session/submit/details?feature=${featureKeyword}`);
+            Router.push(
+              `/wi/session/submit/additional-info?feature=${featureKeyword}`,
+            );
           },
           error => {
             console.log(`Error: ${error}`);
