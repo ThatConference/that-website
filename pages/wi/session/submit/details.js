@@ -14,7 +14,9 @@ const SessionDetails = ({ featureKeyword }) => {
   const { user, loading } = useFetchUser();
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push('/api/login');
+      Router.push(
+        `/api/login?redirect-url=/wi/session/submit/details?feature=${featureKeyword}`,
+      );
     }
   });
   if (user) {

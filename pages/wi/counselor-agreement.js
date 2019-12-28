@@ -52,7 +52,9 @@ const CounselorAgreement = ({ featureKeyword }) => {
   const { user, loading } = useFetchUser();
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push('/api/login');
+      Router.push(
+        `/api/login?redirect-url=/wi/counselor-agreement?feature=${featureKeyword}`,
+      );
     }
   });
   if (user) {
