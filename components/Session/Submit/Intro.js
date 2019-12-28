@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import Router from 'next/router';
 
 import {
   FormRow,
@@ -16,23 +17,18 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
-const SUBMIT = gql`
+const CREATE_SESSION = gql`
   mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
     sessions {
       create(eventId: $eventId, session: $session) {
         id
-        title
-        type
-        targetAudience
-        createdAt
-        lastUpdatedAt
       }
     }
   }
 `;
 
-const Intro = () => {
-  const [updateSession] = useMutation(SUBMIT);
+const Intro = ({ featureKeyword }) => {
+  const [createSession] = useMutation(CREATE_SESSION);
   return (
     <Formik
       initialValues={{
@@ -44,12 +40,24 @@ const Intro = () => {
         sessionType: Yup.string().required('Selection required'),
       })}
       onSubmit={values => {
-        const session = values;
-        session.title = 'temp';
-
-        updateSession({
-          variables: { session, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
-        });
+        const session = {
+          title: 'temp 1234',
+          type: values.sessionType,
+          targetAudience: values.audience,
+        };
+        createSession({
+          variables: { session, eventId: '1234' },
+        }).then(
+          result => {
+            const sessionId = result.data.sessions.create.id;
+            // eslint-disable-next-line no-alert
+            alert(`Session Created Successfully with Id: ${sessionId}`);
+            Router.push(`/wi/session/submit/details?feature=${featureKeyword}`);
+          },
+          error => {
+            console.log(`Error: ${error}`);
+          },
+        );
       }}
     >
       {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
