@@ -24,6 +24,7 @@
     "@zeit/next-source-maps": "0.0.3",
     "apollo-boost": "^0.4.7",
     "apollo-link-context": "^1.0.19",
+    "base64url": "^3.0.1",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "flat": "^5.0.0",
