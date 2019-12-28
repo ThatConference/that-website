@@ -77,6 +77,11 @@ const contact = () => (
           <LinkButton
             href="mailto:hello@thatconference.com"
             label="hello@thatconference.com"
+            borderColor="thatBlue"
+            color="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
           />
         </StyledImageContainer>
         <StyledImageContainer>
@@ -88,6 +93,11 @@ const contact = () => (
           <LinkButton
             href="mailto:partners@thatconference.com"
             label="partners@thatconference.com"
+            borderColor="thatBlue"
+            color="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
           />
         </StyledImageContainer>
         <StyledImageContainer>
@@ -98,6 +108,11 @@ const contact = () => (
           <LinkButton
             href="https://thatslack.thatconference.com/"
             label="Join THAT Slack"
+            borderColor="thatBlue"
+            color="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
           />
         </StyledImageContainer>
       </Grid>

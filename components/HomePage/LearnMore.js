@@ -80,18 +80,27 @@ const LearnMore = ({ className }) => {
               label="Professional Track"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <LinkButton
               href={DEFAULT_WIP_PAGE}
               label="Kids Track"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <LinkButton
               href="/wi/faq"
               label="FAQ"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </ButtonRow>
         </SideDetail>

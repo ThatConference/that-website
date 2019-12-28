@@ -6,7 +6,7 @@ import * as gtag from '../../lib/gtag';
 
 import { below } from '../../utilities';
 
-const OutlineLink = styled.a`
+const StyledOutlineLink = styled.a`
   display: inline-block;
   border: 2px solid
     ${({ borderColor, theme }) =>
@@ -23,6 +23,20 @@ const OutlineLink = styled.a`
 
   &:hover {
     cursor: pointer;
+    background-color: ${({ hoverBackgroundColor, theme }) =>
+      hoverBackgroundColor
+        ? theme.colors[hoverBackgroundColor]
+        : theme.colors.primary};
+    border: 2px solid
+      ${({ hoverBorderColor, theme }) =>
+        hoverBorderColor
+          ? theme.colors[hoverBorderColor]
+          : theme.colors.primary};
+
+    p {
+      color: ${({ hoverColor, theme }) =>
+        hoverColor ? theme.colors[hoverColor] : theme.colors.white};
+    }
   }
 
   p {
@@ -42,6 +56,9 @@ const LinkButton = ({
   label,
   target,
   isLocal,
+  hoverColor,
+  hoverBackgroundColor,
+  hoverBorderColor,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -52,34 +69,33 @@ const LinkButton = ({
     });
   };
 
+  const OutlineLink = () => {
+    return (
+      <StyledOutlineLink
+        href={href}
+        onClick={clickTracking}
+        color={color}
+        className={className}
+        borderColor={borderColor}
+        backgroundColor={backgroundColor}
+        target={target}
+        hoverColor={hoverColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+        hoverBorderColor={hoverBorderColor}
+      >
+        <p>{label}</p>
+      </StyledOutlineLink>
+    );
+  };
+
   return (
     <>
       {isLocal ? (
         <Link href={href}>
-          <OutlineLink
-            href={href}
-            onClick={clickTracking}
-            color={color}
-            className={className}
-            borderColor={borderColor}
-            backgroundColor={backgroundColor}
-            target={target}
-          >
-            <p>{label}</p>
-          </OutlineLink>
+          <OutlineLink />
         </Link>
       ) : (
-        <OutlineLink
-          href={href}
-          onClick={clickTracking}
-          color={color}
-          className={className}
-          borderColor={borderColor}
-          backgroundColor={backgroundColor}
-          target={target}
-        >
-          <p>{label}</p>
-        </OutlineLink>
+        <OutlineLink />
       )}
     </>
   );

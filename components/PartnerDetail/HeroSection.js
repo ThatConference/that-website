@@ -96,6 +96,9 @@ const HeroSection = ({
             color="white"
             borderColor="white"
             backgroundColor="transparent"
+            hoverBorderColor="white"
+            hoverColor="primary"
+            hoverBackgroundColor="white"
           />
         </Cell>
       </HeroGrid>

@@ -131,7 +131,15 @@ const contact = () => {
               <br />
               {formattedEndDate}
             </p>
-            <LinkButton href={`/${DEFAULT_WIP_PAGE}`} label="Ticket Options" />
+            <LinkButton
+              href={`/${DEFAULT_WIP_PAGE}`}
+              label="Ticket Options"
+              borderColor="thatBlue"
+              color="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
           </StyledImageContainer>
           <StyledImageContainer>
             <Title>Where</Title>
@@ -146,6 +154,11 @@ const contact = () => {
               href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
               label="X Marks The Spot"
               target="_blank"
+              borderColor="thatBlue"
+              color="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </StyledImageContainer>
           <StyledImageContainer>
@@ -155,7 +168,15 @@ const contact = () => {
               bring you the best rates to stay while at THAT. Checkout all the
               options.
             </p>
-            <LinkButton href="#where-to-stay" label="Where To Stay" />
+            <LinkButton
+              href="#where-to-stay"
+              label="Where To Stay"
+              borderColor="thatBlue"
+              color="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
           </StyledImageContainer>
         </Grid>
       </ContentSection>

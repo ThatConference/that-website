@@ -59,6 +59,9 @@ const TalkIdeas = () => {
           color="thatBlue"
           backgroundColor="white"
           label="Past Sessions"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
         />
         <TalkIdeasButton
           href={`/${DEFAULT_WIP_PAGE}`}
@@ -66,6 +69,9 @@ const TalkIdeas = () => {
           color="thatBlue"
           backgroundColor="white"
           label="Past Workshops"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
         />
       </TalkIdeasButtons>
     </Main>
