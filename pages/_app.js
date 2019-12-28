@@ -31,11 +31,16 @@ const makeStore = initialState => {
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
+    const { feature } = ctx.query;
+
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
 
-    return { pageProps };
+    return {
+      pageProps,
+      displayFeature: feature === process.env.FEATURE_KEYWORD,
+    };
   }
 
   constructor() {
@@ -71,11 +76,17 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, apolloClient, store } = this.props;
+    const {
+      Component,
+      pageProps,
+      apolloClient,
+      store,
+      displayFeature,
+    } = this.props;
 
     return (
       <Provider store={store}>
-        <Page>
+        <Page displayFeature={displayFeature}>
           <ApolloProvider client={apolloClient}>
             <Component {...pageProps} />
           </ApolloProvider>
