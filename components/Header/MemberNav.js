@@ -38,7 +38,8 @@ const MemberNav = ({ className, onClick, user }) => {
             onClick={menuClick}
           />
           <SecondaryNav userMenuOpen={userMenuOpen}>
-            <li>
+            {/* TO DO: Commented out while building out this functionality */}
+            {/* <li>
               <NavItem
                 title="My Profile"
                 href="/member/sara" // TO DO: need to make this dynamic for the member
@@ -51,7 +52,7 @@ const MemberNav = ({ className, onClick, user }) => {
                 href="/"
                 onClick={() => setUserMenuOpen(false)}
               />
-            </li>
+            </li> */}
             <li>
               <NavItem
                 title="Log Out"

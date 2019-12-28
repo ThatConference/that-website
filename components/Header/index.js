@@ -123,7 +123,7 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ({ className, dispatch }) => {
+const Header = ({ className, dispatch, feature }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, loading } = useFetchUser();
@@ -159,11 +159,14 @@ const Header = ({ className, dispatch }) => {
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
           />
-          <MemberNav
-            mobileMenuOpen={mobileMenuOpen}
-            onClick={setTo => setMobileMenuOpen(setTo)}
-            user={user}
-          />
+
+          {feature === process.env.FEATURE_KEYWORD && (
+            <MemberNav
+              mobileMenuOpen={mobileMenuOpen}
+              onClick={setTo => setMobileMenuOpen(setTo)}
+              user={user}
+            />
+          )}
           <div style={{ display: 'flex' }}>
             <ActionButton
               href="#newsletter"
@@ -182,6 +185,11 @@ const Header = ({ className, dispatch }) => {
       </HeaderSection>
     </header>
   );
+};
+
+Header.getInitialProps = async context => {
+  const { feature } = context.query;
+  return { feature };
 };
 
 const mapStateToProps = function(state) {
