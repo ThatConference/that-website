@@ -11,8 +11,8 @@ const Agreement = () => {
         </li>
         <li>
           A full ticket to the conference (with pre-conference), including
-          pre-conference lunch, breakfast & lunch during the conference, and the
-          pig roast party.
+          pre-conference lunch, breakfast and lunch during the conference, and
+          the pig roast party.
         </li>
         <li>
           Geekling and Campmate tickets for one additional adult and up to two

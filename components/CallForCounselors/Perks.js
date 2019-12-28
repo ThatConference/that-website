@@ -70,7 +70,7 @@ const GetStartedNow = styled(LinkButton)`
 const Perks = ({ featureKeyword }) => {
   return (
     <Main>
-      <Title>Perks If You&apos;re Selected To Speak At THAT Conference</Title>
+      <Title>Perks If You're Selected To Speak At THAT Conference</Title>
       <Container>
         <Perk>
           <PerkImage src="/images/what_to_expect_hands_on_learning.png" />
