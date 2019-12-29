@@ -59,4 +59,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(togglePage(SessionAdditionalInfo));
+export default connect(mapStateToProps)(SessionAdditionalInfo);

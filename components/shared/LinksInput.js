@@ -95,7 +95,6 @@ const LinksInput = ({
     setFieldError(field, valid ? null : 'Please fix validtion issues');
     const mapped = l.map(x => {
       return {
-        id: x.id,
         name: x.name,
         url: x.url,
       };

@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import { connect } from 'react-redux';
 
 import FormInput from '../../shared/FormInput';
 import {
@@ -14,15 +15,32 @@ import {
 } from '../../shared/FormLayout';
 
 const categories = [
-  { value: 'WEB_DEVELOPMENT', label: 'Web Development' },
-  { value: 'architecture', label: 'Architecture' },
-  { value: 'arvr', label: 'AR/VR' },
+  { value: 'ACCESSIBILITY', label: 'Accessibility' },
+  { value: 'ARCHITECTURE', label: 'Architecture' },
+  { value: 'AR_VR', label: 'AR/VR' },
+  { value: 'CLOUD_COMPUTING', label: 'Cloud' },
+  { value: 'DATABASE_STORAGE', label: 'Database/Storage' },
+  { value: 'DESIGN_UX', label: 'Design/UX' },
+  { value: 'DEV_OPS', label: 'DevOps' },
+  { value: 'INTRASTRUCTURE', label: 'Infrastructure' },
+  { value: 'IOT_MAKER', label: 'IoT/Maker' },
+  { value: 'LANGUAGES', label: 'Languages' },
+  { value: 'MACHINE_LEARNING', label: 'Machine Learning' },
+  { value: 'MOBILE', label: 'Mobile' },
+  { value: 'PRODUCT_MANAGEMENT', label: 'Product Management' },
+  { value: 'SOFT_SKILLS', label: 'Soft Skills' },
+  { value: 'SECURITY', label: 'Security' },
+  { value: 'TESTING', label: 'Testing' },
+  { value: 'TOOLING', label: 'Tooliing' },
+  { value: 'USER_INTERFACES', label: 'UI' },
+  { value: 'WEB', label: 'Web' },
+  { value: 'OTHER', label: "You Can't Put a Label on Me" },
 ];
 
 const audiences = [
-  { value: 'anybody', label: 'Anybody' },
-  { value: 'developers', label: 'Developers' },
-  { value: 'managers', label: 'Managers' },
+  { value: 'ANYBODY', label: 'Anybody' },
+  { value: 'DEVELOPERS', label: 'Developers' },
+  { value: 'MANAGERS', label: 'Managers' },
 ];
 
 const UPDATE_SESSION = gql`
@@ -42,7 +60,7 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ featureKeyword }) => {
+const DetailForm = ({ sessionId, featureKeyword }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
@@ -77,18 +95,19 @@ const DetailForm = ({ featureKeyword }) => {
           shortDescription: values.shortDescription,
           longDescription: values.longDescription,
           primaryCategory: values.primaryCategory.value,
-          secondaryCategory: values.secondaryCategory
-            ? values.secondaryCategory[0].value
+          secondaryCategory: values.secondaryCategories
+            ? values.secondaryCategories.map(sc => sc.value)
             : null,
-          // supportingArtifacts: values.supportingArtifacts,
+          targetAudience: values.targetAudiences
+            ? values.targetAudiences.map(sc => sc.value)
+            : null,
+          supportingArtifacts: values.supportingArtifacts,
         };
+        console.log(`Session: ${JSON.stringify(session, null, 2)}`);
         updateSession({
-          variables: { session, sessionId: 'UgbscKWvLTwlREA8o1N8' },
+          variables: { session, sessionId },
         }).then(
-          result => {
-            console.log(`Result: ${JSON.stringify(result, null, 2)}`);
-            // eslint-disable-next-line no-alert
-            alert(`Session Update Successfully`);
+          () => {
             Router.push(
               `/wi/session/submit/additional-info?feature=${featureKeyword}`,
             );
@@ -204,4 +223,10 @@ const DetailForm = ({ featureKeyword }) => {
   );
 };
 
-export default DetailForm;
+const mapStateToProps = state => {
+  return {
+    sessionId: state.sessionId,
+  };
+};
+
+export default connect(mapStateToProps)(DetailForm);
