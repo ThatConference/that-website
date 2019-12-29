@@ -1,6 +1,10 @@
 import React from 'react';
+import Router from 'next/router';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { connect } from 'react-redux';
 
 import FormInput from '../../shared/FormInput';
 import {
@@ -14,32 +18,65 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const Lastly = ({ featureKeyword }) => {
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+        }
+      }
+    }
+  }
+`;
+
+const Lastly = ({ sessionId, featureKeyword }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
       initialValues={{
+        agreeToBeingRecorded: false,
         mentorshipLevel: '',
         whyAreYouBestPerson: '',
         whatElseShouldWeKnow: '',
       }}
       validationSchema={Yup.object({
+        agreeToBeingRecorded: Yup.bool(),
         mentorshipLevel: Yup.string().required('Required'),
         whyAreYouBestPerson: Yup.string(),
         whatElseShouldWeKnow: Yup.string(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values));
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `preview?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const session = {
+          canRecord: values.agreeToBeingRecorded,
+          mentorship: values.mentorshipLevel,
+          whyAreYou: values.whyAreYouBestPerson,
+          otherComments: values.whatElseShouldWeKnow,
+        };
+        updateSession({
+          variables: { session, sessionId },
+        }).then(
+          () => {
+            Router.push(`/wi/session/submit/preview?feature=${featureKeyword}`);
+          },
+          error => {
+            console.log(`Error: ${error}`);
+          },
+        );
       }}
     >
       {({ getFieldProps, errors, touched, values }) => (
         <Form className="input-form">
+          <FormRow>
+            <FormInput
+              fieldName="agreeToBeingRecorded"
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
+              label="Agree to have this session recorded if accepted?"
+              inputType="checkbox"
+            />
+          </FormRow>
           <FormRow>
             <RadioButtonGroup
               id="mentorshipLevel"
@@ -51,19 +88,19 @@ const Lastly = ({ featureKeyword }) => {
               <Field
                 component={RadioButtonGroupItem}
                 name="mentorshipLevel"
-                id="none"
+                id="NO"
                 label="None, I've got this"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="mentorshipLevel"
-                id="some"
+                id="SOME"
                 label="Some would be good"
               />
               <Field
                 component={RadioButtonGroupItem}
                 name="mentorshipLevel"
-                id="alot"
+                id="YES"
                 label="All I can get"
               />
             </RadioButtonGroup>
@@ -98,4 +135,10 @@ const Lastly = ({ featureKeyword }) => {
   );
 };
 
-export default Lastly;
+const mapStateToProps = state => {
+  return {
+    sessionId: state.sessionId,
+  };
+};
+
+export default connect(mapStateToProps)(Lastly);

@@ -11,7 +11,6 @@ const Achknowledgment = ({ featureKeyword }) => {
       initialValues={{
         agreeToCodeOfConduct: false,
         agreeToCommitments: false,
-        agreeToBeingRecorded: false,
         are18OrOlder: false,
       }}
       validationSchema={Yup.object({
@@ -23,7 +22,6 @@ const Achknowledgment = ({ featureKeyword }) => {
           [true],
           'Must agree to the commitments',
         ),
-        agreeToBeingRecorded: Yup.bool(),
         are18OrOlder: Yup.bool(),
       })}
       onSubmit={(values, { setSubmitting }) => {
@@ -57,16 +55,6 @@ const Achknowledgment = ({ featureKeyword }) => {
               label="Agree to commitments to THAT Conference laid out above"
               inputType="checkbox"
             />
-            <div>
-              <FormInput
-                fieldName="agreeToBeingRecorded"
-                getFieldProps={getFieldProps}
-                errors={errors}
-                touched={touched}
-                label="Agree to being recorded"
-                inputType="checkbox"
-              />
-            </div>
             <div>
               <FormInput
                 fieldName="are18OrOlder"

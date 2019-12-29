@@ -1,6 +1,10 @@
 import React from 'react';
+import Router from 'next/router';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { connect } from 'react-redux';
 
 import FormInput from '../../shared/FormInput';
 import {
@@ -10,7 +14,20 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const AdditionalInfo = ({ featureKeyword }) => {
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+        }
+      }
+    }
+  }
+`;
+
+const AdditionalInfo = ({ sessionId, featureKeyword }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
       initialValues={{
@@ -20,18 +37,27 @@ const AdditionalInfo = ({ featureKeyword }) => {
       }}
       validationSchema={Yup.object({
         prerequisites: Yup.string(),
-        // agenda: Yup.string(),
+        agenda: Yup.string(),
         takeaways: Yup.array(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values));
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `lastly?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const session = {
+          prerequisites: values.prerequisites,
+          agenda: values.agenda,
+          takeaways: values.takeaways
+            ? values.takeaways.map(t => t.text)
+            : null,
+        };
+        updateSession({
+          variables: { session, sessionId },
+        }).then(
+          () => {
+            Router.push(`/wi/session/submit/lastly?feature=${featureKeyword}`);
+          },
+          error => {
+            console.log(`Error: ${error}`);
+          },
+        );
       }}
     >
       {({
@@ -92,4 +118,10 @@ const AdditionalInfo = ({ featureKeyword }) => {
   );
 };
 
-export default AdditionalInfo;
+const mapStateToProps = state => {
+  return {
+    sessionId: state.sessionId,
+  };
+};
+
+export default connect(mapStateToProps)(AdditionalInfo);

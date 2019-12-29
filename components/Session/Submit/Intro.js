@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import {
@@ -27,7 +28,7 @@ const CREATE_SESSION = gql`
   }
 `;
 
-const Intro = ({ featureKeyword }) => {
+const Intro = ({ dispatch, featureKeyword }) => {
   const [createSession] = useMutation(CREATE_SESSION);
   return (
     <Formik
@@ -41,20 +42,19 @@ const Intro = ({ featureKeyword }) => {
       })}
       onSubmit={values => {
         const session = {
-          title: 'temp 1234',
+          title: 'Step1_Temporary_Title',
           type: values.sessionType,
-          targetAudience: values.audience,
+          category: values.audience,
         };
         createSession({
           variables: { session, eventId: '1234' },
         }).then(
           result => {
-            const sessionId = result.data.sessions.create.id;
-            // eslint-disable-next-line no-alert
-            alert(`Session Created Successfully with Id: ${sessionId}`);
-            Router.push(
-              `/wi/session/submit/details?feature=${featureKeyword}&sessionId=${sessionId}`,
-            );
+            dispatch({
+              type: 'SESSION',
+              payload: result.data.sessions.create.id,
+            });
+            Router.push(`/wi/session/submit/details?feature=${featureKeyword}`);
           },
           error => {
             console.log(`Error: ${error}`);
@@ -77,7 +77,7 @@ const Intro = ({ featureKeyword }) => {
               <Field
                 component={RadioButtonGroupItem}
                 name="audience"
-                id="PROFESSIONALS"
+                id="PROFESSIONAL"
                 label="Professionals"
               />
               <Field
@@ -133,4 +133,10 @@ const Intro = ({ featureKeyword }) => {
   );
 };
 
-export default Intro;
+const mapStateToProps = state => {
+  return {
+    session: state.session,
+  };
+};
+
+export default connect(mapStateToProps)(Intro);

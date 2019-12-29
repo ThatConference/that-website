@@ -52,7 +52,8 @@ const SessionDetails = ({ user: reduxUser, dispatch, featureKeyword }) => {
 const mapStateToProps = state => {
   return {
     user: state.user,
+    sessionId: state.sessionId,
   };
 };
 
-export default connect(mapStateToProps)(togglePage(SessionDetails));
+export default connect(mapStateToProps)(SessionDetails);
