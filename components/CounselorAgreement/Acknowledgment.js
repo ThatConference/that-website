@@ -1,11 +1,27 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import Router from 'next/router';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 
 import FormInput from '../shared/FormInput';
 import { FormRow, FormRule, FormSubmit } from '../shared/FormLayout';
 
+const UPDATE_PROFILE = gql`
+  mutation updateMember($profile: ProfileUpdateInput!) {
+    members {
+      member {
+        update(profile: $profile) {
+          id
+        }
+      }
+    }
+  }
+`;
+
 const Achknowledgment = ({ featureKeyword }) => {
+  const [updateProfile] = useMutation(UPDATE_PROFILE);
   return (
     <Formik
       initialValues={{
@@ -19,13 +35,22 @@ const Achknowledgment = ({ featureKeyword }) => {
         ),
         are18OrOlder: Yup.bool(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `session/submit?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const profile = {
+          acceptedCommitments: values.agreeToCommitments,
+          isOver18: values.are18OrOlder,
+        };
+        console.log(`Profile: ${JSON.stringify(profile)}`);
+        updateProfile({
+          variables: { profile },
+        }).then(
+          () => {
+            Router.push(`/wi/session/submit?feature=${featureKeyword}`);
+          },
+          error => {
+            console.log(`Error: ${error}`);
+          },
+        );
       }}
     >
       {({ getFieldProps, errors, touched, isSubmitting }) => (

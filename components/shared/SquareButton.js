@@ -32,9 +32,9 @@ const SquareButton = ({
       color={color}
       backgroundcolor={backgroundColor}
       bordercolor={borderColor}
-      hoverBorderColor="thatBlue"
-      hoverBackgroundColor="thatBlue"
-      hoverColor="white"
+      hoverbordercolor="thatBlue"
+      hoverbackgroundcolor="thatBlue"
+      hovercolor="white"
       onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
     >
@@ -56,7 +56,9 @@ export default styled(SquareButton)`
   border: ${({ borderColor, theme }) =>
     borderColor ? `2px solid ${theme.colors[borderColor]}` : 'none'};
   color: ${({ color, theme }) =>
-    color ? theme.colors.fonts[color] : theme.colors.fonts.light};
+    color
+      ? theme.colors.fonts[color] || theme.colors[color]
+      : theme.colors.fonts.light};
   margin: 0.2rem;
   padding: 0;
 
@@ -84,7 +86,9 @@ export default styled(SquareButton)`
   p {
     margin: 0;
     color: ${({ color, theme }) =>
-      color ? theme.colors.fonts[color] : theme.colors.fonts.light};
+      color
+        ? theme.colors.fonts[color] || theme.colors[color]
+        : theme.colors.fonts.light};
   }
 
   svg {
