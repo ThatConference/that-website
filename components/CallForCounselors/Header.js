@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
-// import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton';
 
 import { above, below } from '../../utilities';
 
@@ -56,9 +56,9 @@ const Callout = styled.h2`
 
 const TextCell = styled(Cell)``;
 
-// const BecomeACounselor = styled(LinkButton)`
-//   margin-left: 0;
-// `;
+const BecomeACounselor = styled(LinkButton)`
+  margin-left: 0;
+`;
 
 const Header = () => {
   return (
@@ -77,8 +77,8 @@ const Header = () => {
             bloggers, business owners, site builders, translators, community
             organizers, and everything in-between.
           </p>
-          {/* <BecomeACounselor
-            href={`counselor-start?feature=${featureKeyword}`}
+          <BecomeACounselor
+            href="counselor-start"
             borderColor="thatBlue"
             color="thatBlue"
             backgroundColor="white"
@@ -86,7 +86,7 @@ const Header = () => {
             hoverBackgroundColor="thatBlue"
             hoverColor="white"
             label="Become a Counselor"
-          /> */}
+          />
         </TextCell>
       </MainGrid>
     </Main>
