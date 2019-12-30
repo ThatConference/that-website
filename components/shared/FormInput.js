@@ -171,6 +171,7 @@ const FormInput = props => {
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             touched={touched}
+            value={values[fieldName]}
             preview=""
             className={styleClass}
             rows={rows}

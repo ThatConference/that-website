@@ -164,6 +164,7 @@ const SampleForm = () => {
                 getFieldProps={getFieldProps}
                 setFieldTouched={setFieldTouched}
                 setFieldValue={setFieldValue}
+                values={values}
                 errors={errors}
                 touched={touched}
                 label="Bio"
