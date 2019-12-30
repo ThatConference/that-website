@@ -30,13 +30,21 @@ const UploadImage = () => {
         }, 400);
       }}
     >
-      {({ setFieldValue, setFieldTouched, getFieldProps, errors, touched }) => (
+      {({
+        setFieldValue,
+        setFieldTouched,
+        getFieldProps,
+        errors,
+        touched,
+        values,
+      }) => (
         <Form className="input-form">
           <FormRow>
             <FormInput
               fieldName="bio"
               fieldHasValidation
               inputType="markdown"
+              values={values}
               getFieldProps={getFieldProps}
               setFieldTouched={setFieldTouched}
               setFieldValue={setFieldValue}
