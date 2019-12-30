@@ -7,7 +7,6 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import togglePage from '../../utilities/togglePage';
 
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
@@ -99,4 +98,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(togglePage(CounselorAgreement));
+export default connect(mapStateToProps)(CounselorAgreement);
