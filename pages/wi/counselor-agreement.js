@@ -1,9 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Head from 'next/head';
 import Router from 'next/router';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import { Grid, Cell } from 'styled-css-grid';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
@@ -48,13 +50,27 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        id
+        acceptedCommitments
+        isOver18
+      }
+    }
+  }
+`;
+
 const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
   let user = reduxUser;
-  let loading = true;
+  let userLoading = true;
+
+  const auth = () => {};
 
   if (!user) {
-    const { cookieUser, loading: userLoading } = useFetchUser();
-    loading = userLoading;
+    const { cookieUser, loading } = useFetchUser();
+    userLoading = loading;
     if (!userLoading) {
       dispatch({ type: 'USER', payload: cookieUser });
       user = cookieUser;
@@ -62,13 +78,32 @@ const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
   }
 
   React.useEffect(() => {
-    if (!loading && !user) {
+    if (!userLoading && !user) {
       Router.push(
         `/api/login?redirect-url=/wi/counselor-agreement?feature=${featureKeyword}`,
       );
     }
   });
+
   if (user) {
+    const { loading: memberLoading, error: memberError, data } = useQuery(
+      GET_MEMBER,
+    );
+
+    if (memberLoading) return null;
+    if (memberError) return null;
+
+    const member = data.members.me;
+
+    if (!member) {
+      auth();
+    } else if (member.acceptedCommitments) {
+      React.useEffect(() => {
+        Router.push(`/wi/session/submit?feature=${featureKeyword}`);
+      });
+      return null;
+    }
+
     return (
       <div>
         <Head>

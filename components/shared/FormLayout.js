@@ -55,9 +55,9 @@ export const FormInputValidationMessage = styled.div`
 export const FormSubmit = ({ label }) => {
   return (
     <StyledFormSubmit
-      color="dark"
+      color="thatBlue"
       backgroundColor="white"
-      borderColor="gray"
+      borderColor="thatBlue"
       hoverBorderColor="thatBlue"
       hoverBackgroundColor="thatBlue"
       hoverColor="white"
