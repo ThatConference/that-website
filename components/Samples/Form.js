@@ -60,7 +60,6 @@ const SampleForm = () => {
         bio: Yup.string().required('Required'),
         supportingLinks: Yup.array().required('At least one is required'),
         takeaways: Yup.array().required('At least one is required'),
-        otherStrings: Yup.array().required('At least one is required'),
         agreeToCodeOfConduct: Yup.bool().oneOf(
           [true],
           'Must agree to the Code of Conduct',
