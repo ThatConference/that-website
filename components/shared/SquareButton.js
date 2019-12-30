@@ -32,6 +32,9 @@ const SquareButton = ({
       color={color}
       backgroundcolor={backgroundColor}
       bordercolor={borderColor}
+      hoverBorderColor="thatBlue"
+      hoverBackgroundColor="thatBlue"
+      hoverColor="white"
       onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
     >
@@ -62,6 +65,20 @@ export default styled(SquareButton)`
 
   &:hover {
     cursor: pointer;
+    background-color: ${({ hoverBackgroundColor, theme }) =>
+      hoverBackgroundColor
+        ? theme.colors[hoverBackgroundColor]
+        : theme.colors.primary};
+    border: 2px solid
+      ${({ hoverBorderColor, theme }) =>
+        hoverBorderColor
+          ? theme.colors[hoverBorderColor]
+          : theme.colors.primary};
+
+    p {
+      color: ${({ hoverColor, theme }) =>
+        hoverColor ? theme.colors[hoverColor] : theme.colors.white};
+    }
   }
 
   p {

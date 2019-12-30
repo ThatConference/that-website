@@ -58,6 +58,9 @@ export const FormSubmit = ({ label }) => {
       color="dark"
       backgroundColor="white"
       borderColor="gray"
+      hoverBorderColor="thatBlue"
+      hoverBackgroundColor="thatBlue"
+      hoverColor="white"
       label={label || 'Submit'}
       isSubmit
     />
