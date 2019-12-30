@@ -110,6 +110,7 @@ const Main = styled.div`
 const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 2;
 
   ${above[twoColBp]`
     margin-right: 4rem;

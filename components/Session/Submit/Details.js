@@ -158,6 +158,7 @@ const DetailForm = ({ sessionId, featureKeyword }) => {
               setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
+              values={values}
             />
           </FormRow>
           <FormRow>

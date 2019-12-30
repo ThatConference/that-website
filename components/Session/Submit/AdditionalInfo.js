@@ -64,6 +64,7 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
         getFieldProps,
         errors,
         touched,
+        values,
         setFieldValue,
         setFieldTouched,
         setFieldError,
@@ -80,6 +81,7 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
               setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
+              values={values}
             />
           </FormRow>
           <FormRow>
@@ -93,6 +95,7 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
               setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
+              values={values}
             />
           </FormRow>
           <FormRow>
