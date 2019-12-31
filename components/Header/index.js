@@ -178,7 +178,7 @@ const Header = ({ className, user }) => {
   );
 };
 
-const mapStateToProps = function(state) {
+const mapStateToProps = state => {
   return {
     user: state.user,
   };
