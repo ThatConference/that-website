@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Icon from '../shared/Icon';
+import Icon from './Icon';
 
 import * as gtag from '../../lib/gtag';
 import { below } from '../../utilities/breakpoint';
