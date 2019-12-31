@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Router from 'next/router';
+import debug from 'debug';
 
 import RegularExpressions from '../../../utilities/validation';
 
@@ -15,6 +16,8 @@ import {
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
+
+const dlog = debug('that:member:update');
 
 const GET_MEMBER = gql`
   query getMember {
@@ -76,7 +79,7 @@ const ContactInfoForm = () => {
       Router.push('/member/online-presence');
     },
     onError: updateError => {
-      console.log('Error updating member', updateError);
+      dlog('Error updating member', updateError);
     },
   });
 
@@ -150,7 +153,6 @@ const ContactInfoForm = () => {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          console.log('values', values);
           const profile = { ...values, isOver18, isDeactivated: false };
           updateMember({ variables: { profile } });
           setSubmitting(false);
