@@ -70,7 +70,6 @@ const UPDATE_SESSION = gql`
 
 const DetailForm = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
-  console.log(`Session: ${JSON.stringify(session)}`);
   return (
     <Formik
       initialValues={{
@@ -126,7 +125,6 @@ const DetailForm = ({ dispatch, session }) => {
             : null,
           supportingArtifacts: values.supportingArtifacts,
         };
-        console.log(`Before Submit: ${JSON.stringify(updates)}`);
         updateSession({
           variables: { session: updates, sessionId: session.id },
         }).then(

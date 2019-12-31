@@ -20,20 +20,40 @@ const UPDATE_SESSION = gql`
       session(id: $sessionId) {
         update(session: $session) {
           id
+          type
+          category
+          status
+          title
+          shortDescription
+          longDescription
+          primaryCategory
+          secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
+          prerequisites
+          agenda
+          takeaways
         }
       }
     }
   }
 `;
 
-const AdditionalInfo = ({ sessionId, featureKeyword }) => {
+const AdditionalInfo = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
       initialValues={{
-        prerequisites: '',
-        agenda: '',
-        takeaways: [],
+        prerequisites: session.prerequisites || '',
+        agenda: session.agenda || '',
+        takeaways: session.takeaways
+          ? session.takeaways.map(t => {
+              return { text: t };
+            })
+          : [],
       }}
       validationSchema={Yup.object({
         prerequisites: Yup.string(),
@@ -41,7 +61,7 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
         takeaways: Yup.array(),
       })}
       onSubmit={values => {
-        const session = {
+        const updates = {
           prerequisites: values.prerequisites,
           agenda: values.agenda,
           takeaways: values.takeaways
@@ -49,10 +69,14 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
             : null,
         };
         updateSession({
-          variables: { session, sessionId },
+          variables: { session: updates, sessionId: session.id },
         }).then(
-          () => {
-            Router.push(`/wi/session/submit/lastly?feature=${featureKeyword}`);
+          result => {
+            dispatch({
+              type: 'SESSION',
+              payload: result.data.sessions.session.update,
+            });
+            Router.push('/wi/session/submit/lastly');
           },
           error => {
             // ToDo: Appropriately log and handle error
@@ -111,11 +135,11 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
               errors={errors}
               touched={touched}
               label="Key Takeaways"
-              strings={[]}
+              values={values}
             />
           </FormRow>
           <FormRule />
-          <FormCancel />
+          <FormCancel label="Back" />
           <FormSubmit label="Continue" />
         </Form>
       )}
@@ -125,7 +149,7 @@ const AdditionalInfo = ({ sessionId, featureKeyword }) => {
 
 const mapStateToProps = state => {
   return {
-    sessionId: state.sessionId,
+    session: state.session,
   };
 };
 
