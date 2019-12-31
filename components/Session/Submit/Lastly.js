@@ -24,21 +24,41 @@ const UPDATE_SESSION = gql`
       session(id: $sessionId) {
         update(session: $session) {
           id
+          type
+          category
+          status
+          title
+          shortDescription
+          longDescription
+          primaryCategory
+          secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
+          prerequisites
+          agenda
+          takeaways
+          canRecord
+          mentorship
+          whyAreYou
+          otherComments
         }
       }
     }
   }
 `;
 
-const Lastly = ({ sessionId, featureKeyword }) => {
+const Lastly = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
       initialValues={{
-        agreeToBeingRecorded: false,
-        mentorshipLevel: '',
-        whyAreYouBestPerson: '',
-        whatElseShouldWeKnow: '',
+        agreeToBeingRecorded: session.canRecord || false,
+        mentorshipLevel: session.mentorship || '',
+        whyAreYouBestPerson: session.whyAreYou || '',
+        whatElseShouldWeKnow: session.otherComments || '',
       }}
       validationSchema={Yup.object({
         agreeToBeingRecorded: Yup.bool(),
@@ -47,17 +67,21 @@ const Lastly = ({ sessionId, featureKeyword }) => {
         whatElseShouldWeKnow: Yup.string(),
       })}
       onSubmit={values => {
-        const session = {
+        const updates = {
           canRecord: values.agreeToBeingRecorded,
           mentorship: values.mentorshipLevel,
           whyAreYou: values.whyAreYouBestPerson,
           otherComments: values.whatElseShouldWeKnow,
         };
         updateSession({
-          variables: { session, sessionId },
+          variables: { session: updates, sessionId: session.id },
         }).then(
-          () => {
-            Router.push(`/wi/session/submit/preview?feature=${featureKeyword}`);
+          result => {
+            dispatch({
+              type: 'SESSION',
+              payload: result.data.sessions.session.update,
+            });
+            Router.push('/wi/session/submit/preview');
           },
           error => {
             // ToDo: Appropriately log and handle error
@@ -67,7 +91,7 @@ const Lastly = ({ sessionId, featureKeyword }) => {
         );
       }}
     >
-      {({ getFieldProps, errors, touched, values }) => (
+      {({ getFieldProps, errors, touched, values, isSubmitting }) => (
         <Form className="input-form">
           <FormRow>
             <FormInput
@@ -129,8 +153,8 @@ const Lastly = ({ sessionId, featureKeyword }) => {
             />
           </FormRow>
           <FormRule />
-          <FormCancel />
-          <FormSubmit label="Continue" />
+          <FormCancel label="Back" />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>
@@ -139,7 +163,7 @@ const Lastly = ({ sessionId, featureKeyword }) => {
 
 const mapStateToProps = state => {
   return {
-    sessionId: state.sessionId,
+    session: state.session,
   };
 };
 

@@ -151,6 +151,7 @@ const DetailForm = ({ dispatch, session }) => {
         setFieldTouched,
         setFieldError,
         values,
+        isSubmitting,
       }) => (
         <Form className="input-form">
           <FormRow>
@@ -241,7 +242,7 @@ const DetailForm = ({ dispatch, session }) => {
           </FormRow>
           <FormRule />
           <FormCancel label="Back" />
-          <FormSubmit label="Continue" />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

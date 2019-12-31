@@ -2,16 +2,27 @@ import React from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 import { connect } from 'react-redux';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import ContentSection from '../../../../components/shared/ContentSection';
-import togglePage from '../../../../utilities/togglePage';
 
 import Header from '../../../../components/Session/Submit/Header';
 import Lastly from '../../../../components/Session/Submit/Lastly';
 
 import { useFetchUser } from '../../../../lib/user';
 
-const SessionLastly = ({ user: reduxUser, dispatch, featureKeyword }) => {
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        id
+      }
+    }
+  }
+`;
+
+const SessionLastly = ({ user: reduxUser, dispatch }) => {
   let user = reduxUser;
   let loading = true;
 
@@ -26,12 +37,25 @@ const SessionLastly = ({ user: reduxUser, dispatch, featureKeyword }) => {
 
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push(
-        `/api/login?redirect-url=/wi/session/submit/lastly?feature=${featureKeyword}`,
-      );
+      Router.push('/api/login?redirect-url=/wi/session/submit/lastly');
     }
   });
   if (user) {
+    const { loading: memberLoading, error: memberError, data } = useQuery(
+      GET_MEMBER,
+    );
+
+    if (memberLoading) return null;
+    if (memberError) return null;
+
+    const member = data.members.me;
+
+    if (!member) {
+      React.useEffect(() => {
+        Router.push('ToDo: Need Profile URL');
+      });
+      return null;
+    }
     return (
       <div>
         <Head>
@@ -41,7 +65,7 @@ const SessionLastly = ({ user: reduxUser, dispatch, featureKeyword }) => {
         </Head>
         <ContentSection forForm>
           <Header title="Lastly" currentStep="3" />
-          <Lastly featureKeyword={featureKeyword} />
+          <Lastly />
         </ContentSection>
       </div>
     );

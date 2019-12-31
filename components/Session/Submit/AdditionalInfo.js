@@ -94,6 +94,7 @@ const AdditionalInfo = ({ dispatch, session }) => {
         setFieldValue,
         setFieldTouched,
         setFieldError,
+        isSubmitting,
       }) => (
         <Form className="input-form">
           <FormRow>
@@ -140,7 +141,7 @@ const AdditionalInfo = ({ dispatch, session }) => {
           </FormRow>
           <FormRule />
           <FormCancel label="Back" />
-          <FormSubmit label="Continue" />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>
