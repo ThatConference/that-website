@@ -2,13 +2,13 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
-import FormInput from '../../../shared/FormInput';
+import FormInput from '../../shared/FormInput';
 import {
   FormRow,
   FormRule,
   FormCancel,
   FormSubmit,
-} from '../../../shared/FormLayout';
+} from '../../shared/FormLayout';
 
 const OnlinePresenceForm = ({ featureKeyword }) => {
   return (

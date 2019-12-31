@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseStepper from '../../../shared/Stepper';
+import BaseStepper from '../../shared/Stepper';
 
 const Stepper = ({ currentStep }) => {
   const currentStepInt = currentStep ? parseInt(currentStep, 10) : 0;

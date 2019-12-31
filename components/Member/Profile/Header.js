@@ -2,11 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Stepper from './Stepper';
+import { above, below } from '../../../utilities';
+
+const twoColBp = 'large';
 
 const Title = styled.h1`
-  font-weight: 100;
-  font-size: 8.5rem;
-  margin-bottom: 4rem;
+  margin: 1.8rem 0 3rem 0;
+
+  ${above[twoColBp]`
+    max-width: 60rem;
+  `};
+
+  ${below[twoColBp]`
+    text-align: center;
+  `};
+
+  ${below.small`
+    font-size: 8rem;
+  `};
+
+  ${below.xsmall`
+    font-size: 7rem;
+  `};
 `;
 
 const Header = ({ title, currentStep }) => {
