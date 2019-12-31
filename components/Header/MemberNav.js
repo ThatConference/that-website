@@ -1,11 +1,24 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import NavItem from '../shared/NavItem';
 import { below } from '../../utilities';
 
 const _ = require('lodash');
+
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        firstName
+        lastName
+      }
+    }
+  }
+`;
 
 const SecondaryNav = styled.ul`
   display: ${({ userMenuOpen }) => (userMenuOpen ? '' : 'none')};
@@ -21,10 +34,18 @@ const SecondaryNav = styled.ul`
 const MemberNav = ({ className, onClick, user }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
+  // get member to know if we need to create or not... maybe do this at a differnet point?
+  const { loading, error, data } = useQuery(GET_MEMBER);
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
   const menuClick = () => {
     setUserMenuOpen(!userMenuOpen);
     onClick(false);
   };
+
+  console.log('data', data.members.me);
 
   return (
     <div className={className}>
