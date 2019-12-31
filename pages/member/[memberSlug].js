@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Grid, Cell } from 'styled-css-grid';
 import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
-import debug from 'debug';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import auth0 from '../../lib/auth0';
@@ -12,8 +11,6 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
 import NavItem from '../../components/shared/NavItem';
-
-const dlog = debug('that:member');
 
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
@@ -83,7 +80,7 @@ const PlaceholderBlock = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGray};
 `;
 
-const member = ({ user: reduxUser }) => {
+const member = () => {
   const { loading, error, data } = useQuery(GET_MEMBER);
 
   if (loading) return 'Loading...';
