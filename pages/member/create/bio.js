@@ -4,8 +4,8 @@ import Head from 'next/head';
 import ContentSection from '../../../components/shared/ContentSection';
 import togglePage from '../../../utilities/togglePage';
 
-import Header from '../../../components/Member/Profile/Create/Header';
-import Bio from '../../../components/Member/Profile/Create/Bio';
+import Header from '../../../components/Member/Profile/Header';
+import Bio from '../../../components/Member/Profile/Bio';
 
 const CallForSpeakers = () => {
   return (

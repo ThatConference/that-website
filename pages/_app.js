@@ -4,12 +4,10 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
 import debug from 'debug';
-
 import { gql } from 'apollo-boost';
-import { showReportDialog } from '@sentry/browser';
 import sentry from '../lib/sentry';
 
 import * as gtag from '../lib/gtag';
@@ -217,22 +215,22 @@ class MyApp extends App {
         })
         .then(response => {
           const memberData = response.data.members.me;
-          // if (!reduxUser) {
-          dlog('displatch store user - before', currentUser);
-          dlog('payload', {
-            ...currentUser.user,
-            profileSlug: memberData.profileSlug,
-          });
-          store.dispatch({
-            type: 'USER',
-            payload: {
-              user: {
-                ...currentUser.user,
-                profileSlug: memberData.profileSlug,
+          if (!reduxUser) {
+            dlog('displatch store user - before', currentUser);
+            dlog('payload', {
+              ...currentUser.user,
+              profileSlug: memberData.profileSlug,
+            });
+            store.dispatch({
+              type: 'USER',
+              payload: {
+                user: {
+                  ...currentUser.user,
+                  profileSlug: memberData.profileSlug,
+                },
               },
-            },
-          });
-          // }
+            });
+          }
 
           this.saveUser(memberData, currentUser, apolloClient);
         });
