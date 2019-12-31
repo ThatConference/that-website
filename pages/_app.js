@@ -16,13 +16,12 @@ Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
 
-const reducer = (state = { user: {}, sessionId: null }, action) => {
+const reducer = (state = { user: {}, session: {} }, action) => {
   switch (action.type) {
     case 'USER':
       return { ...state, user: action.payload };
     case 'SESSION':
-      console.log(`*********** In Session Reducer: ${action.payload}`);
-      return { ...state, sessionId: action.payload };
+      return { ...state, session: action.payload };
     default:
       return state;
   }

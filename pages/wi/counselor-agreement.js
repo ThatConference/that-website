@@ -116,7 +116,11 @@ const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
               <Header />
               <Commitments />
               <WhatsProvided />
-              <Acknowledgment featureKeyword={featureKeyword} />
+              <Acknowledgment
+                featureKeyword={featureKeyword}
+                acceptedCommitments={member.acceptedCommitments || false}
+                isOver18={member.isOver18 || false}
+              />
             </Cell>
             <Cell width={1} />
           </MainGrid>

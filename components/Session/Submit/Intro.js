@@ -6,12 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { connect } from 'react-redux';
 import Router from 'next/router';
 
-import {
-  FormRow,
-  FormRule,
-  FormCancel,
-  FormSubmit,
-} from '../../shared/FormLayout';
+import { FormRow, FormRule, FormSubmit } from '../../shared/FormLayout';
 
 import {
   RadioButtonGroupItem,
@@ -23,46 +18,59 @@ const CREATE_SESSION = gql`
     sessions {
       create(eventId: $eventId, session: $session) {
         id
+        type
+        category
+        status
       }
     }
   }
 `;
 
-const Intro = ({ dispatch, featureKeyword }) => {
+const Intro = ({ dispatch, session }) => {
   const [createSession] = useMutation(CREATE_SESSION);
   return (
     <Formik
       initialValues={{
-        audience: '',
-        sessionType: '',
+        audience: session.category || 'PROFESSIONAL',
+        sessionType: session.type || 'REGULAR',
       }}
       validationSchema={Yup.object({
         audience: Yup.string().required('Selection required'),
         sessionType: Yup.string().required('Selection required'),
       })}
       onSubmit={values => {
-        const session = {
+        const newSession = {
           title: 'Step1_Temporary_Title',
           type: values.sessionType,
           category: values.audience,
+          status: 'DRAFT',
         };
         createSession({
-          variables: { session, eventId: '1234' },
+          variables: { session: newSession, eventId: '1234' },
         }).then(
           result => {
             dispatch({
               type: 'SESSION',
-              payload: result.data.sessions.create.id,
+              payload: result.data.sessions.create,
             });
-            Router.push(`/wi/session/submit/details?feature=${featureKeyword}`);
+            Router.push('/wi/session/submit/details');
           },
           error => {
+            // ToDo: Appropriately log and handle error
+            // eslint-disable-next-line no-console
             console.log(`Error: ${error}`);
           },
         );
       }}
     >
-      {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
+      {({
+        setFieldValue,
+        setFieldTouched,
+        values,
+        errors,
+        touched,
+        isSubmitting,
+      }) => (
         <Form className="input-form">
           <FormRow>
             <RadioButtonGroup
@@ -125,8 +133,7 @@ const Intro = ({ dispatch, featureKeyword }) => {
             </RadioButtonGroup>
           </FormRow>
           <FormRule />
-          <FormCancel label="Back" />
-          <FormSubmit label="Continue" />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

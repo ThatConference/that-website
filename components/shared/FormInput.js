@@ -89,7 +89,6 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
-    links,
     strings,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
@@ -195,7 +194,7 @@ const FormInput = props => {
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
             className={styleClass}
-            links={links}
+            values={values}
             {...fieldProps}
           />
         </>

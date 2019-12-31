@@ -60,6 +60,8 @@ const Lastly = ({ sessionId, featureKeyword }) => {
             Router.push(`/wi/session/submit/preview?feature=${featureKeyword}`);
           },
           error => {
+            // ToDo: Appropriately log and handle error
+            // eslint-disable-next-line no-console
             console.log(`Error: ${error}`);
           },
         );
