@@ -4,18 +4,13 @@ import Router from 'next/router';
 import { connect } from 'react-redux';
 
 import ContentSection from '../../../../components/shared/ContentSection';
-import togglePage from '../../../../utilities/togglePage';
 
 import Header from '../../../../components/Session/Submit/Header';
 import AdditionalInfo from '../../../../components/Session/Submit/AdditionalInfo';
 
 import { useFetchUser } from '../../../../lib/user';
 
-const SessionAdditionalInfo = ({
-  user: reduxUser,
-  dispatch,
-  featureKeyword,
-}) => {
+const SessionAdditionalInfo = ({ user: reduxUser, dispatch }) => {
   let user = reduxUser;
   let loading = true;
 
@@ -30,9 +25,7 @@ const SessionAdditionalInfo = ({
 
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push(
-        `/api/login?redirect-url=/wi/session/submit/additional-info?feature=${featureKeyword}`,
-      );
+      Router.push('/api/login?redirect-url=/wi/session/submit/additional-info');
     }
   });
   if (user) {
@@ -45,7 +38,7 @@ const SessionAdditionalInfo = ({
         </Head>
         <ContentSection forForm>
           <Header title="Additional Info" currentStep="2" />
-          <AdditionalInfo featureKeyword={featureKeyword} />
+          <AdditionalInfo />
         </ContentSection>
       </div>
     );

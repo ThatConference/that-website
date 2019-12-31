@@ -32,7 +32,7 @@ const StringsInput = ({
   setFieldTouched,
   setFieldValue,
   setFieldError,
-  strings,
+  values,
 }) => {
   const getInitialStateValues = passedInStrings => {
     let initialStrings;
@@ -53,7 +53,7 @@ const StringsInput = ({
     } else {
       initialStrings = passedInStrings.map(s => {
         return {
-          id: s.id,
+          id: s.id || GenerateUuid(),
           text: s.text,
           valid: s.text,
           touched: false,
@@ -66,7 +66,7 @@ const StringsInput = ({
     return { initialStrings, initialValidity };
   };
 
-  const initialStateValues = getInitialStateValues(strings);
+  const initialStateValues = getInitialStateValues(values[field]);
   const [stateStrings, setStateStrings] = useState(
     initialStateValues.initialStrings,
   );

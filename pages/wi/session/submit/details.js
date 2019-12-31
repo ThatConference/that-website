@@ -4,14 +4,13 @@ import Head from 'next/head';
 import Router from 'next/router';
 
 import ContentSection from '../../../../components/shared/ContentSection';
-import togglePage from '../../../../utilities/togglePage';
 
 import Header from '../../../../components/Session/Submit/Header';
 import Details from '../../../../components/Session/Submit/Details';
 
 import { useFetchUser } from '../../../../lib/user';
 
-const SessionDetails = ({ user: reduxUser, dispatch, featureKeyword }) => {
+const SessionDetails = ({ user: reduxUser, dispatch }) => {
   let user = reduxUser;
   let loading = true;
 
@@ -26,9 +25,7 @@ const SessionDetails = ({ user: reduxUser, dispatch, featureKeyword }) => {
 
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push(
-        `/api/login?redirect-url=/wi/session/submit/details?feature=${featureKeyword}`,
-      );
+      Router.push('/api/login?redirect-url=/wi/session/submit/details');
     }
   });
   if (user) {
@@ -41,7 +38,7 @@ const SessionDetails = ({ user: reduxUser, dispatch, featureKeyword }) => {
         </Head>
         <ContentSection forForm>
           <Header title="Session Details" currentStep="1" />
-          <Details featureKeyword={featureKeyword} />
+          <Details />
         </ContentSection>
       </div>
     );
@@ -52,7 +49,6 @@ const SessionDetails = ({ user: reduxUser, dispatch, featureKeyword }) => {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    sessionId: state.sessionId,
   };
 };
 
