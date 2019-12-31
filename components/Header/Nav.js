@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NavItem from './NavItem';
+import NavItem from '../shared/NavItem';
 import { below } from '../../utilities';
 
 const NavList = styled.div`

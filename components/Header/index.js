@@ -123,14 +123,9 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ({ className, dispatch, displayFeature }) => {
+const Header = ({ className, user }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, loading } = useFetchUser();
-
-  if (!loading) {
-    dispatch({ type: 'USER', payload: user });
-  }
 
   useEffect(() => {
     setScrollY(window.pageYOffset);
@@ -159,16 +154,11 @@ const Header = ({ className, dispatch, displayFeature }) => {
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
           />
-
-          {displayFeature && (
-            <MemberNav
-              mobileMenuOpen={mobileMenuOpen}
-              onClick={setTo => setMobileMenuOpen(setTo)}
-              user={user}
-            />
-          )}
-          {!displayFeature && <div style={{ flexGrow: '2' }} />}
-
+          <MemberNav
+            mobileMenuOpen={mobileMenuOpen}
+            onClick={setTo => setMobileMenuOpen(setTo)}
+            user={user.user}
+          />
           <div style={{ display: 'flex' }}>
             <ActionButton
               href="#newsletter"
