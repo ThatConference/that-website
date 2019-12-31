@@ -41,18 +41,6 @@ const MarkdownNote = styled.p`
 `;
 
 const converter = new MarkdownIt();
-let setTouched;
-let setValue;
-let fieldName;
-let invalid = false;
-let markdown = '';
-
-const handleMarkdownChange = event => {
-  markdown = event.target.value;
-  setTouched(fieldName, true);
-  setValue(fieldName, markdown, true);
-  invalid = !markdown || markdown === '';
-};
 
 const MarkdownEditor = ({
   setFieldTouched,
@@ -60,16 +48,23 @@ const MarkdownEditor = ({
   field,
   fieldHasValidation,
   touched,
+  value,
 }) => {
-  const [displayPreview, setDisplayPreview] = useState(false);
-  setTouched = setFieldTouched;
-  setValue = setFieldValue;
-  fieldName = field;
-  invalid =
+  let markdown = value;
+  let invalid =
     fieldHasValidation &&
     touched &&
     touched[field] &&
     (!markdown || markdown === '');
+
+  const handleMarkdownChange = event => {
+    markdown = event.target.value;
+    setFieldTouched(field, true);
+    setFieldValue(field, markdown, true);
+    invalid = !markdown || markdown === '';
+  };
+  const [displayPreview, setDisplayPreview] = useState(false);
+
   return (
     <>
       <Toggler
@@ -78,7 +73,7 @@ const MarkdownEditor = ({
         label={displayPreview ? 'Edit' : 'Preview'}
         onClick={() => {
           setDisplayPreview(!displayPreview);
-          setTouched(fieldName, true);
+          setFieldTouched(field, true);
         }}
         width="15rem"
       />

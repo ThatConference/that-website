@@ -6,19 +6,16 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
-import togglePage from '../../utilities/togglePage';
 
 import Header from '../../components/CounselorSelectionProcess/Header';
 import TheProcess from '../../components/CounselorSelectionProcess/TheProcess';
-import Bottom from '../../components/CounselorSelectionProcess/Bottom';
+// import Bottom from '../../components/CounselorSelectionProcess/Bottom';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
 
   ${below.med`
     display: block;
-    grid-gap: 0;
-    margin-top: -5rem;
   `};
 
   h3 {
@@ -48,23 +45,28 @@ const MainContent = styled(ContentSection)`
 const BackLink = styled.a`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.thatBlue};
-  osition: absolute;
-  float: left;
-  top: 0;
-  margin-top: 5rem;
+  position: relative;
+  top: 2.2rem;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.tertiary};
+    svg {
+      fill: ${({ theme }) => theme.colors.tertiary};
+    }
+  }
 
   svg {
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
+    vertical-align: text-bottom;
+    width: 1.7rem;
+    height: 1.7rem;
   }
   span {
     margin-left: 0.5rem;
   }
 
   ${below.med`
-    margin-top:0;
-    margin-left: -25px;
+    position: unset;
+    top: unset;
   `};
 `;
 
@@ -72,7 +74,7 @@ const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
-const CallForSpeakers = ({ featureKeyword }) => {
+const CounselorSelection = () => {
   return (
     <div>
       <Head>
@@ -84,8 +86,8 @@ const CallForSpeakers = ({ featureKeyword }) => {
             <BackLink href="call-for-counselors">
               <BackArrow
                 icon="backArrow"
-                height="25px"
-                width="25px"
+                height="2rem"
+                width="2rem"
                 viewBoxHeight="100"
                 viewBoxWidth="100"
               />
@@ -95,7 +97,7 @@ const CallForSpeakers = ({ featureKeyword }) => {
           <Cell width={4}>
             <Header />
             <TheProcess />
-            <Bottom featureKeyword={featureKeyword} />
+            {/* <Bottom featureKeyword={featureKeyword} /> */}
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -104,4 +106,4 @@ const CallForSpeakers = ({ featureKeyword }) => {
   );
 };
 
-export default togglePage(CallForSpeakers);
+export default CounselorSelection;

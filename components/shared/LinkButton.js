@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
 import * as gtag from '../../lib/gtag';
 
 import { below } from '../../utilities';
 
-const OutlineLink = styled.a`
+const StyledOutlineLink = styled.a`
   display: inline-block;
   border: 2px solid
     ${({ borderColor, theme }) =>
@@ -53,6 +55,7 @@ const LinkButton = ({
   backgroundColor,
   label,
   target,
+  isLocal,
   hoverColor,
   hoverBackgroundColor,
   hoverBorderColor,
@@ -66,22 +69,57 @@ const LinkButton = ({
     });
   };
 
+  const OutlineLink = () => {
+    return (
+      <StyledOutlineLink
+        href={href}
+        onClick={clickTracking}
+        color={color}
+        className={className}
+        borderColor={borderColor}
+        backgroundColor={backgroundColor}
+        target={target}
+        hoverColor={hoverColor}
+        hoverBackgroundColor={hoverBackgroundColor}
+        hoverBorderColor={hoverBorderColor}
+      >
+        <p>{label}</p>
+      </StyledOutlineLink>
+    );
+  };
+
   return (
-    <OutlineLink
-      href={href}
-      onClick={clickTracking}
-      color={color}
-      className={className}
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
-      target={target}
-      hoverColor={hoverColor}
-      hoverBackgroundColor={hoverBackgroundColor}
-      hoverBorderColor={hoverBorderColor}
-    >
-      <p>{label}</p>
-    </OutlineLink>
+    <>
+      {isLocal ? (
+        <Link href={href}>
+          <OutlineLink />
+        </Link>
+      ) : (
+        <OutlineLink />
+      )}
+    </>
   );
+};
+
+LinkButton.propTypes = {
+  color: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  borderColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  isLocal: PropTypes.bool,
+  target: PropTypes.string,
+  label: PropTypes.string,
+};
+
+LinkButton.defaultProps = {
+  color: '',
+  className: '',
+  borderColor: '',
+  backgroundColor: '',
+  isLocal: true,
+  target: '',
+  label: '',
 };
 
 export default LinkButton;

@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 
-import ContentSection from '../../../../../components/shared/ContentSection';
-import togglePage from '../../../../../utilities/togglePage';
+import ContentSection from '../../../components/shared/ContentSection';
+import togglePage from '../../../utilities/togglePage';
 
-import Header from '../../../../../components/User/Profile/Create/Header';
-import ContactInfo from '../../../../../components/User/Profile/Create/ContactInfo';
+import Header from '../../../components/Member/Profile/Create/Header';
+import ContactInfo from '../../../components/Member/Profile/Create/ContactInfo';
 
 const CallForSpeakers = ({ featureKeyword }) => {
   return (
