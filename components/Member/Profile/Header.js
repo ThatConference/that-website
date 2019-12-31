@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Stepper from './Stepper';
-import { above, below } from '../../../utilities';
+import { below } from '../../../utilities';
 
 const twoColBp = 'large';
 
