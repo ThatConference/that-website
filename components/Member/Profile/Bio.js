@@ -7,8 +7,8 @@ import {
   FormRule,
   FormCancel,
   FormSubmit,
-} from '../../../shared/FormLayout';
-import FormInput from '../../../shared/FormInput';
+} from '../../shared/FormLayout';
+import FormInput from '../../shared/FormInput';
 
 const UploadImage = () => {
   return (

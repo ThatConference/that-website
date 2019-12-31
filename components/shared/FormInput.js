@@ -75,6 +75,7 @@ const FormInput = props => {
   const {
     fieldName,
     fieldHasValidation,
+    inputClass,
     inputType,
     getFieldProps,
     touched,
