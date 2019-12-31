@@ -62,11 +62,9 @@ const GET_MEMBER = gql`
   }
 `;
 
-const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
+const CounselorAgreement = ({ user: reduxUser, dispatch }) => {
   let user = reduxUser;
   let userLoading = true;
-
-  const auth = () => {};
 
   if (!user) {
     const { cookieUser, loading } = useFetchUser();
@@ -79,9 +77,7 @@ const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
 
   React.useEffect(() => {
     if (!userLoading && !user) {
-      Router.push(
-        `/api/login?redirect-url=/wi/counselor-agreement?feature=${featureKeyword}`,
-      );
+      Router.push('/api/login?redirect-url=/wi/counselor-agreement');
     }
   });
 
@@ -96,10 +92,12 @@ const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
     const member = data.members.me;
 
     if (!member) {
-      auth();
+      React.useEffect(() => {
+        Router.push('ToDo: Need Profile URL');
+      });
     } else if (member.acceptedCommitments) {
       React.useEffect(() => {
-        Router.push(`/wi/session/submit?feature=${featureKeyword}`);
+        Router.push('/wi/session/submit');
       });
       return null;
     }
@@ -117,7 +115,6 @@ const CounselorAgreement = ({ user: reduxUser, dispatch, featureKeyword }) => {
               <Commitments />
               <WhatsProvided />
               <Acknowledgment
-                featureKeyword={featureKeyword}
                 acceptedCommitments={member.acceptedCommitments || false}
                 isOver18={member.isOver18 || false}
               />

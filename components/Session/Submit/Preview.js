@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import parse from 'html-react-parser';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import { connect } from 'react-redux';
 
 import { below } from '../../../utilities/breakpoint';
 
@@ -72,44 +75,51 @@ const MarkdownIt = require('markdown-it');
 
 const converter = new MarkdownIt();
 
-const Preview = () => {
-  const session = {
-    title: 'How to kickstart your software development',
-    longDescription: `Description of the session goes here. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. 
-- hello world
-- how are you`,
-    sessionFor: 'Professionals',
-    type: 'Regular Session',
-    primaryCategory: 'Web',
-    secondaryCategories: ['Mobile', 'AR/VR'],
-    targetAudiences: ['Developers', 'Designers', 'Testers'],
-    supportingArtifacts: [
-      {
-        id: 'id1',
-        name: 'Link to something',
-        url: 'http://www.linktosomethingcool.com',
-      },
-      {
-        id: 'id2',
-        name: 'Link to something else',
-        url: 'http://www.linktosomethingelsecool.com',
-      },
-    ],
-    prerequisites:
-      'Description of the session goes here. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita ',
-    agenda:
-      'Description of the session goes here. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita ',
-    takeaways: [
-      {
-        id: 'id1',
-        text: 'Takeaway 1',
-      },
-      {
-        id: 'id2',
-        text: 'Takeaway 2',
-      },
-    ],
-  };
+const GET_SESSION = gql`
+  query getSessionById($sessionId: ID!) {
+    sessions {
+      me {
+        session(id: $sessionId) {
+          id
+          type
+          category
+          status
+          title
+          shortDescription
+          longDescription
+          primaryCategory
+          secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
+          prerequisites
+          agenda
+          takeaways
+          canRecord
+          mentorship
+          whyAreYou
+          otherComments
+        }
+      }
+    }
+  }
+`;
+
+const Preview = ({ session: reduxSession }) => {
+  // eslint-disable-next-line no-console
+  console.log(`Redux Session: ${JSON.stringify(reduxSession)}`);
+  const { loading, error, data } = useQuery(GET_SESSION, {
+    variables: { sessionId: reduxSession.id },
+  });
+
+  if (loading) return null;
+  if (error) return null;
+
+  const { session } = data.sessions.me;
+  // eslint-disable-next-line no-console
+  console.log(`Graph Session: ${JSON.stringify(session)}`);
   return (
     <div>
       <Subheading>
@@ -130,7 +140,7 @@ const Preview = () => {
             <ItemsGrid columns={2}>
               {session.supportingArtifacts.map(s => {
                 return (
-                  <React.Fragment key={s.id}>
+                  <React.Fragment key={s.name}>
                     <Cell width={1}>{s.name}</Cell>
                     <Cell width={1}>
                       <a href={s.url} target="blank">
@@ -168,19 +178,25 @@ const Preview = () => {
         <Ads>
           <DetailsHeader>Details</DetailsHeader>
           <div className="header">Session For</div>
-          <div className="value">{session.sessionFor}</div>
+          <div className="value">{session.category}</div>
           <div className="header">Session Type</div>
           <div className="value">{session.type}</div>
           <div className="header">Primary Category</div>
           <div className="value">{session.primaryCategory}</div>
           <div className="header">Secondary Categories</div>
-          <div className="value">{session.secondaryCategories.join(', ')}</div>
+          <div className="value">{session.secondaryCategory.join(', ')}</div>
           <div className="header">Target Audiences</div>
-          <div className="value">{session.targetAudiences.join(', ')}</div>
+          <div className="value">{session.targetAudience.join(', ')}</div>
         </Ads>
       </MainGrid>
     </div>
   );
 };
 
-export default Preview;
+const mapStateToProps = state => {
+  return {
+    session: state.session,
+  };
+};
+
+export default connect(mapStateToProps)(Preview);
