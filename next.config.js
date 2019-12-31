@@ -18,12 +18,6 @@ const sourceMaps = nextSourceMaps({
       use: 'raw-loader',
     });
 
-    config.module.rules.push({
-      test: /\.(graphql|gql)$/,
-      exclude: /node_modules/,
-      loader: 'graphql-tag/loader',
-    });
-
     // config.module.rules.push({
     //   test: /\.js$/,
     //   exclude: /node_modules/,
