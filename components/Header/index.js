@@ -10,7 +10,6 @@ import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
-import { useFetchUser } from '../../lib/user';
 import MemberNav from './MemberNav';
 
 router.onRouteChangeStart = () => {

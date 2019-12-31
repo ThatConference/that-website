@@ -9,10 +9,6 @@ const twoColBp = 'large';
 const Title = styled.h1`
   margin: 1.8rem 0 3rem 0;
 
-  ${above[twoColBp]`
-    max-width: 60rem;
-  `};
-
   ${below[twoColBp]`
     text-align: center;
   `};

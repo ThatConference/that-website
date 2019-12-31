@@ -153,15 +153,7 @@ const ContactInfoForm = () => {
           console.log('values', values);
           const profile = { ...values, isOver18, isDeactivated: false };
           updateMember({ variables: { profile } });
-
-          // if (!mutationLoading && mutationError) {
-          //   console.log('Error updating member');
-          // }
-
-          // if (!mutationLoading && !mutationError) {
-          //   setSubmitting(false);
-          //   Router.push('/member/online-presence');
-          // }
+          setSubmitting(false);
         }, 400);
       }}
     >
