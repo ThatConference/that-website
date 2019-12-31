@@ -1,0 +1,21 @@
+query getMember {
+  members {
+    me {
+      id
+      city
+      company
+      country
+      email
+      firstName
+      interests
+      isOver18
+      jobTitle
+      lastName
+      lifeHack
+      mobilePhone
+      profileImage
+      profileSlug
+      state
+    }
+  }
+}
