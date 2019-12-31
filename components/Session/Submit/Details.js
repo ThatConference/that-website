@@ -22,7 +22,7 @@ const categories = [
   { value: 'DATABASE_STORAGE', label: 'Database/Storage' },
   { value: 'DESIGN_UX', label: 'Design/UX' },
   { value: 'DEV_OPS', label: 'DevOps' },
-  { value: 'INTRASTRUCTURE', label: 'Infrastructure' },
+  { value: 'INFRASTRUCTURE', label: 'Infrastructure' },
   { value: 'IOT_MAKER', label: 'IoT/Maker' },
   { value: 'LANGUAGES', label: 'Languages' },
   { value: 'MACHINE_LEARNING', label: 'Machine Learning' },
@@ -49,29 +49,52 @@ const UPDATE_SESSION = gql`
       session(id: $sessionId) {
         update(session: $session) {
           id
+          type
+          category
+          status
           title
           shortDescription
           longDescription
           primaryCategory
           secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
         }
       }
     }
   }
 `;
 
-const DetailForm = ({ sessionId, featureKeyword }) => {
+const DetailForm = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
+  console.log(`Session: ${JSON.stringify(session)}`);
   return (
     <Formik
       initialValues={{
-        title: '',
-        shortDescription: '',
-        longDescription: '',
-        primaryCategory: '',
-        secondaryCategories: [],
-        targetAudiences: [],
-        supportingArtifacts: [],
+        title: session.title || '',
+        shortDescription: session.shortDescription || '',
+        longDescription: session.longDescription || '',
+        primaryCategory: session.primaryCategory
+          ? categories.find(c => c.value === session.primaryCategory)
+          : '',
+        secondaryCategories: session.secondaryCategory
+          ? categories.filter(
+              c => session.secondaryCategory.indexOf(c.value) !== -1,
+            )
+          : [],
+        targetAudiences: session.targetAudience
+          ? audiences.filter(
+              a => session.targetAudience.indexOf(a.value) !== -1,
+            )
+          : [],
+        supportingArtifacts: session.supportingArtifacts
+          ? session.supportingArtifacts.map(m => {
+              return { name: m.name, url: m.url };
+            })
+          : [],
       }}
       validationSchema={Yup.object({
         title: Yup.string()
@@ -90,7 +113,7 @@ const DetailForm = ({ sessionId, featureKeyword }) => {
         supportingArtifacts: Yup.array(),
       })}
       onSubmit={values => {
-        const session = {
+        const updates = {
           title: values.title,
           shortDescription: values.shortDescription,
           longDescription: values.longDescription,
@@ -103,16 +126,20 @@ const DetailForm = ({ sessionId, featureKeyword }) => {
             : null,
           supportingArtifacts: values.supportingArtifacts,
         };
-        console.log(`Session: ${JSON.stringify(session, null, 2)}`);
+        console.log(`Before Submit: ${JSON.stringify(updates)}`);
         updateSession({
-          variables: { session, sessionId },
+          variables: { session: updates, sessionId: session.id },
         }).then(
-          () => {
-            Router.push(
-              `/wi/session/submit/additional-info?feature=${featureKeyword}`,
-            );
+          result => {
+            dispatch({
+              type: 'SESSION',
+              payload: result.data.sessions.session.update,
+            });
+            Router.push('/wi/session/submit/additional-info');
           },
           error => {
+            // ToDo: Appropriately log and handle error
+            // eslint-disable-next-line no-console
             console.log(`Error: ${error}`);
           },
         );
@@ -211,11 +238,11 @@ const DetailForm = ({ sessionId, featureKeyword }) => {
               errors={errors}
               touched={touched}
               label="Supporting Links/Related Resources"
-              links={[]}
+              values={values}
             />
           </FormRow>
           <FormRule />
-          <FormCancel />
+          <FormCancel label="Back" />
           <FormSubmit label="Continue" />
         </Form>
       )}
@@ -225,7 +252,7 @@ const DetailForm = ({ sessionId, featureKeyword }) => {
 
 const mapStateToProps = state => {
   return {
-    sessionId: state.sessionId,
+    session: state.session,
   };
 };
 

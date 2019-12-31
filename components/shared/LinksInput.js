@@ -32,7 +32,7 @@ const LinksInput = ({
   setFieldTouched,
   setFieldValue,
   setFieldError,
-  links,
+  values,
 }) => {
   const getInitialStateValues = passedInLinks => {
     let initialLinks;
@@ -54,7 +54,7 @@ const LinksInput = ({
     } else {
       initialLinks = passedInLinks.map(l => {
         return {
-          id: l.id,
+          id: l.id || GenerateUuid(),
           name: l.name,
           url: l.url,
           nameTouched: false,
@@ -72,7 +72,7 @@ const LinksInput = ({
     return { initialLinks, initialValidity };
   };
 
-  const initialStateValues = getInitialStateValues(links);
+  const initialStateValues = getInitialStateValues(values[field]);
   const [stateLinks, setStateLinks] = useState(initialStateValues.initialLinks);
   const [stateValiditiy, setStateValidity] = useState(
     initialStateValues.initialValidity,

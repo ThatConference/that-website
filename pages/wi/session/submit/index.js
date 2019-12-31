@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Router from 'next/router';
 
 import ContentSection from '../../../../components/shared/ContentSection';
-import togglePage from '../../../../utilities/togglePage';
 
 import Header from '../../../../components/Session/Submit/Header';
 import Intro from '../../../../components/Session/Submit/Intro';
@@ -26,9 +25,7 @@ const SessionIntro = ({ user: reduxUser, dispatch, featureKeyword }) => {
 
   React.useEffect(() => {
     if (!loading && !user) {
-      Router.push(
-        `/api/login?redirect-url=/wi/session/submit?feature=${featureKeyword}`,
-      );
+      Router.push('/api/login?redirect-url=/wi/session/submit');
     }
   });
   if (user) {

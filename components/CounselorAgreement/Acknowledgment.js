@@ -20,13 +20,13 @@ const UPDATE_PROFILE = gql`
   }
 `;
 
-const Achknowledgment = ({ featureKeyword }) => {
+const Achknowledgment = ({ acceptedCommitments, isOver18 }) => {
   const [updateProfile] = useMutation(UPDATE_PROFILE);
   return (
     <Formik
       initialValues={{
-        agreeToCommitments: false,
-        are18OrOlder: false,
+        agreeToCommitments: acceptedCommitments,
+        are18OrOlder: isOver18,
       }}
       validationSchema={Yup.object({
         agreeToCommitments: Yup.bool().oneOf(
@@ -40,14 +40,15 @@ const Achknowledgment = ({ featureKeyword }) => {
           acceptedCommitments: values.agreeToCommitments,
           isOver18: values.are18OrOlder,
         };
-        console.log(`Profile: ${JSON.stringify(profile)}`);
         updateProfile({
           variables: { profile },
         }).then(
           () => {
-            Router.push(`/wi/session/submit?feature=${featureKeyword}`);
+            Router.push('/wi/session/submit');
           },
           error => {
+            // ToDo: Appropriately log and handle error
+            // eslint-disable-next-line no-console
             console.log(`Error: ${error}`);
           },
         );
