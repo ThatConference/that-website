@@ -7,11 +7,11 @@ const Svg = styled.svg`
   height: 100%;
 
   &.down {
-    transform: rotate(90deg);
+    transform: rotate(0deg);
   }
 
   &.up {
-    transform: rotate(-90deg);
+    transform: rotate(180deg);
   }
 
   &.left {

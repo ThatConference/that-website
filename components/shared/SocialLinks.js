@@ -59,6 +59,7 @@ const SocialLinksContainer = styled.div`
     align-items: center;
     width: 3.5rem;
     height: 3.5rem;
+    width: 3.5rem;
     background-color: ${({ theme }) => theme.colors.highlight};
     border-radius: 3.5rem;
     margin-right: ${props => (props.rowOrColumn === 'row' ? '0.6rem' : '0')};

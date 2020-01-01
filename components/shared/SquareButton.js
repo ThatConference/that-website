@@ -32,7 +32,7 @@ const SquareButton = ({
       color={color}
       backgroundcolor={backgroundColor}
       bordercolor={borderColor}
-      onClick={() => clickTracking(`${icon} - ${iconClass}`)}
+      onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
     >
       {label && <p>{label}</p>}

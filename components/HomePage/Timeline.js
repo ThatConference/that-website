@@ -18,16 +18,21 @@ const Main = styled(ContentSection)`
   `};
 `;
 
-const SectionHeading = styled.h2`
-  margin-bottom: 1rem;
-  text-align: center;
-  font-weight: 100;
-  font-size: 15rem;
-  color: ${({ theme }) => theme.colors.fonts.light};
-
+const Content = styled.div`
   ${below.med`
-    font-size: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   `};
+`;
+
+const SectionHeading = styled.h2`
+  text-align: center;
+  padding-top: 9rem;
+  margin: auto;
+  max-width: 100rem;
+  font-size: 8rem;
+  color: ${({ theme }) => theme.colors.fonts.light};
 
   ${below.med`
     font-size: 6rem;
@@ -35,26 +40,26 @@ const SectionHeading = styled.h2`
 `;
 
 const Moose = styled.img`
-  max-height: 57rem;
-  max-width: 46.2rem;
-  float: right;
-  margin-top: ${({ haveLink }) => (haveLink ? '-67.5rem' : '-45.5rem')};
-  margin-right: -15rem;
+  max-height: 45rem;
+  position: absolute;
+  top: 10rem;
+  right: 5%;
 
-  @media (max-width: 1700px) {
-    margin-right: -8rem;
-  }
+  ${below.xlarge`
+    max-height: 35rem;
+    top: 15rem;
+  `};
 
-  @media (max-width: 1400px) {
-    display: block;
-    float: unset;
-    margin: auto;
-    margin-top: 6rem;
-  }
+  ${below.large`
+    max-width: 20rem;
+    top: 29rem;
+    right: 2rem;
+  `};
 
   ${below.med`
-    max-width: 26rem;
-    max-height: 32rem;
+    position: initial;
+    max-width: 18rem;
+    padding-top: 3rem;
   `};
 `;
 
@@ -155,7 +160,7 @@ const Date = styled(Detail)`
 const TimelineSection = ({ event, className }) => {
   const milestones = _(event.milestones)
     .map(m => {
-      const momentDue = moment(m.dueDate);
+      const momentDue = moment.utc(m.dueDate);
       return {
         title: m.title,
         due: momentDue.format('MM/DD/YY'),
@@ -178,29 +183,34 @@ const TimelineSection = ({ event, className }) => {
   const haveLink = link !== null;
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
-      <SectionHeading>{header}</SectionHeading>
-      {message && <Message>{message}</Message>}
-      {link && (
-        <LinkButton
-          href={link}
-          label={linkText}
-          backgroundColor="primary"
-          borderColor="white"
-          color="white"
-        />
-      )}
-      <Timeline>
-        {milestones.map((m, index, all) => (
-          <TimelineItem key={m.title}>
-            {index !== 0 && <Line className={m.state} />}
-            <Date className={m.state}>{m.due}</Date>
-            <Marker className={m.state} />
-            <Name>{m.title}</Name>
-            {index !== all.length - 1 && <Line className={m.state} />}
-          </TimelineItem>
-        ))}
-      </Timeline>
-      <Moose src="/images/moose_with_lantern.png" haveLink={haveLink} />
+      <Content>
+        <SectionHeading>{header}</SectionHeading>
+        {message && <Message>{message}</Message>}
+        {link && (
+          <LinkButton
+            href={link}
+            label={linkText}
+            backgroundColor="primary"
+            borderColor="white"
+            color="white"
+            hoverBorderColor="white"
+            hoverColor="primary"
+            hoverBackgroundColor="white"
+          />
+        )}
+        <Timeline>
+          {milestones.map((m, index, all) => (
+            <TimelineItem key={m.title}>
+              {index !== 0 && <Line className={m.state} />}
+              <Date className={m.state}>{m.due}</Date>
+              <Marker className={m.state} />
+              <Name>{m.title}</Name>
+              {index !== all.length - 1 && <Line className={m.state} />}
+            </TimelineItem>
+          ))}
+        </Timeline>
+        <Moose src="/images/moose_with_lantern.png" haveLink={haveLink} />
+      </Content>
     </Main>
   );
 };

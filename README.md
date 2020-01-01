@@ -68,3 +68,14 @@ THAT Website utilizes `styled-components`. `1rem` = `10px`
 ## Tests
 
 We utilize Jest + Enzyme to unit test each component. Each component should be covered with a spec to ensure it renders without error as well any additional functions that component relies on to render correctly.
+
+## Feature/Page Development
+
+In order to iterate collectivlely when developing a new page we have a higher order component you can wrap your page component around so that it is only rendered for a matching query param.
+
+Here is how it works, in your `.env` file give `FEATURE_KEYWORD` some value. Then wrap your page componet (_NOTE: currently only works for pages_) in `togglePage`. This adds the logic that will allow this page to render **only when** a query param is present and matches the value set in `FEATURE_KEYWORD`.
+
+Example - Check out `samples/toggle-page.js`. Here is a sample page wrapped in `togglePage`. Now, set FEATURE_KEYWORD in your `.env` to a value, let's go with `baconisgreat`, then fire up the local environment.
+Go to: http://localhost:3000/samples/toggle-page?feature=baconisgreat and page will load.
+Go to: http://localhost:3000/samples/toggle-page?feature=baconisgood, page not found
+Go to: http://localhost:3000/samples/toggle-page, page not found

@@ -1,39 +1,38 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from './ContentSection';
+import ImageContainer from './ImageContainer';
 
-const CenteredDiv = styled.div`
-  text-align: center;
-`;
+import { gridRepeat } from '../../utilities';
 
 const WhatToExpectImage = styled.img`
-  width: 15rem;
+  max-width: 16rem;
+  position: relative;
+  top: -1.5rem;
 `;
 
-const HighlightBlock = styled.div`
+const StyledCell = styled(Cell)`
+  margin-bottom: 5rem;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 `;
 
-const StyledBlock = styled.div`
-  margin: 3rem 2rem;
-  width: 20%;
-  min-width: 19rem;
+const StyledTitle = styled.span`
+  font-weight: 800;
+  position: absolute;
+  bottom: 2rem;
 `;
 
 const WhatToExpectSection = ({ src, title }) => {
   return (
-    <StyledBlock>
-      <CenteredDiv style={{ height: '12rem' }}>
+    <StyledCell>
+      <ImageContainer width="30rem" height="16rem" key="">
         <WhatToExpectImage src={src} />
-      </CenteredDiv>
-      <CenteredDiv>
-        <span className="medium-body-copy" style={{ fontWeight: 'bold' }}>
-          {title}
-        </span>
-      </CenteredDiv>
-    </StyledBlock>
+        <StyledTitle className="medium-body-copy">{title}</StyledTitle>
+      </ImageContainer>
+    </StyledCell>
   );
 };
 
@@ -46,7 +45,7 @@ const WhatToExpect = ({ className }) => {
       >
         Here&apos;s What You Can Expect At That Conference
       </h3>
-      <HighlightBlock>
+      <Grid columns={gridRepeat.xsmall} alignContent="center">
         <WhatToExpectSection
           src="/images/what_to_expect_200_speakers.png"
           title="200+ Sessions"
@@ -69,7 +68,7 @@ const WhatToExpect = ({ className }) => {
         />
         <WhatToExpectSection
           src="/images/what_to_expect_4_days.png"
-          title="4 Full days"
+          title="4 Full Days"
         />
         <WhatToExpectSection
           src="/images/what_to_expect_families_welcome.png"
@@ -79,7 +78,7 @@ const WhatToExpect = ({ className }) => {
           src="/images/what_to_expect_tech_stack.png"
           title="Array of Tech Stacks"
         />
-      </HighlightBlock>
+      </Grid>
     </ContentSection>
   );
 };

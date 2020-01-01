@@ -41,22 +41,30 @@ const MarkdownNote = styled.p`
 `;
 
 const converter = new MarkdownIt();
-let formik;
-let fieldName;
-let invalid = false;
-let markdown = '';
 
-const handleMarkdownChange = event => {
-  markdown = event.target.value;
-  formik.setFieldTouched(fieldName, true);
-  formik.setFieldValue(fieldName, markdown, true);
-  invalid = !markdown || markdown === '';
-};
+const MarkdownEditor = ({
+  setFieldTouched,
+  setFieldValue,
+  field,
+  fieldHasValidation,
+  touched,
+  value,
+}) => {
+  let markdown = value;
+  let invalid =
+    fieldHasValidation &&
+    touched &&
+    touched[field] &&
+    (!markdown || markdown === '');
 
-const MarkdownEditor = ({ formikForm, field }) => {
+  const handleMarkdownChange = event => {
+    markdown = event.target.value;
+    setFieldTouched(field, true);
+    setFieldValue(field, markdown, true);
+    invalid = !markdown || markdown === '';
+  };
   const [displayPreview, setDisplayPreview] = useState(false);
-  formik = formikForm;
-  fieldName = field;
+
   return (
     <>
       <Toggler
@@ -65,7 +73,7 @@ const MarkdownEditor = ({ formikForm, field }) => {
         label={displayPreview ? 'Edit' : 'Preview'}
         onClick={() => {
           setDisplayPreview(!displayPreview);
-          formik.setFieldTouched(fieldName, true);
+          setFieldTouched(field, true);
         }}
         width="15rem"
       />

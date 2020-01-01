@@ -93,6 +93,9 @@ const MeetCampers = ({ className }) => {
           label="Contribute to THAT Community"
           color="thatBlue"
           borderColor="thatBlue"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
         />
       </TitleRow>
       <Grid columns={gridRepeat.xxsmall} alignContent="center">

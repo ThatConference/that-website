@@ -23,13 +23,17 @@ const Slogan = styled.h1`
   ${above[twoColBp]`
     max-width: 60rem;
   `};
+
+  ${below[twoColBp]`
+    text-align: center;
+  `};
 `;
 
 const Description = styled.p`
   width: 90%;
   margin: auto;
   text-align: center;
-  padding: 3rem 0;
+  padding: 3rem 0 6rem;
   max-width: 110rem;
 `;
 
@@ -96,6 +100,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   margin: auto;
+  justify-content: center;
 
   ${below[twoColBp]`
     flex-direction: column;
@@ -105,9 +110,14 @@ const Main = styled.div`
 const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 2;
 
   ${above[twoColBp]`
     margin-right: 4rem;
+  `};
+
+  ${below[twoColBp]`
+    align-items: center;
   `};
 `;
 
@@ -127,6 +137,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
             <LinkButton
               href="wi/become-a-partner"
@@ -134,6 +147,9 @@ const Hero = ({ event, className }) => {
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </ActionButtons>
         </SideDetail>
@@ -151,5 +167,5 @@ const Hero = ({ event, className }) => {
 
 export default styled(Hero)`
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 5rem;
 `;

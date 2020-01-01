@@ -106,6 +106,9 @@ const SponsorHighlight = ({ className, eventSlug }) => {
               href={`${eventSlug}/become-a-partner`}
               label="Let's Partner Up"
               className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
             />
           </TextBlock>
         </SideDetail>

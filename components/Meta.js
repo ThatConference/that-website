@@ -32,13 +32,17 @@ const Meta = () => (
       property="og:description"
       content="THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells."
     />
-    <meta property="og:url" content="https://thatconference.com/" />
+    <meta property="og:url" content="https://www.thatconference.com/" />
     <meta
       property="og:site_name"
       content="THAT Conference - Wisconsin Dells, WI"
     />
-    {/* <meta property="og:image" content="" /> */}
+    <meta
+      property="og:image"
+      content="https://www.thatconference.com/images/THAT_Conference_WI.png"
+    />
     <meta property="og:locale" content="en_US" />
+    <meta property="fb:app_id" content="741883086300353" />
 
     <meta name="twitter:site" content="@thatconference" />
     <meta
@@ -68,6 +72,8 @@ const Meta = () => (
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}');
+            window['ga-disable-${GA_TRACKING_ID}'] = ${process.env.NODE_ENV ===
+          'production'};
           `,
       }}
     />

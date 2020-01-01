@@ -14,7 +14,6 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
-  // overflow: hidden;
   width: 100vw;
 
   ${below.xsmall`
@@ -25,11 +24,6 @@ const Container = styled.div`
 const ContainerInner = styled.div`
   margin: auto;
   max-width: ${props => (props.forForm ? '100rem' : '140rem')};
-  width: 87vw;
-
-  ${below.xsmall`
-    max-width: 30rem;
-  `}
 `;
 
 const Trees = styled.img`
@@ -37,20 +31,8 @@ const Trees = styled.img`
   top: -8rem;
   z-index: 10;
   width: 17rem;
-  left: 44vw;
+  left: calc(50vw - 8.5rem);
   overflow: visible;
-
-  ${below.med`
-    left: 40vw;
-  `};
-
-  ${below.small`
-    left: 35vw;
-  `};
-
-  ${below.xsmall`
-    left: 27vw;
-  `};
 `;
 
 const ContentSection = ({
@@ -71,7 +53,7 @@ const ContentSection = ({
       forForm={forForm}
     >
       {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
-      <ContainerInner>{children}</ContainerInner>
+      <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );
 };
