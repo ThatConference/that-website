@@ -13,6 +13,7 @@ const SOCIALS = [
       width: 12,
       height: 24,
     },
+    className: 'is-bigger',
   },
   {
     href: 'https://www.instagram.com/thatconference/',
@@ -21,6 +22,7 @@ const SOCIALS = [
       width: 24,
       height: 24,
     },
+    className: 'is-bigger',
   },
   {
     href: 'https://twitter.com/ThatConference',
@@ -42,8 +44,8 @@ const SOCIALS = [
     href: 'https://www.youtube.com/thatconference/',
     icon: {
       name: 'youtube',
-      width: 31,
-      height: 42,
+      width: 90,
+      height: 63,
     },
   },
 ];
@@ -74,6 +76,10 @@ const SocialLinksContainer = styled.div`
       height: 100%;
       max-height: 52%;
       fill: ${({ theme }) => theme.colors.white};
+    }
+
+    .is-bigger {
+      max-height: 60%;
     }
 
     &:hover {
@@ -113,6 +119,7 @@ const SocialLinks = ({ className, flexDirection }) => {
               icon={item.icon.name}
               height={item.icon.height || iconHeight}
               width={item.icon.width || iconWidth}
+              className={item.className}
             />
           </a>
         );
