@@ -24,7 +24,9 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   return (
     <div>
       <Head>
-        <title key="title">{parsedMarkdown.attributes.title}</title>
+        <title key="title">
+          {parsedMarkdown.attributes.title} - THAT Conference
+        </title>
       </Head>
 
       <SlimContentSection>
