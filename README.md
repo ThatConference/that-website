@@ -43,7 +43,7 @@ _Coming soon_
 
 THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
 
-Run `cp .env.sample .env` to get basic configuration in place, and then `now dev` to startup `localhost`.
+Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place, and then `now dev` to startup `localhost`.
 
 #### 6. Community
 
