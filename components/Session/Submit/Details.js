@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
 
+import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
@@ -14,34 +15,9 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const categories = [
-  { value: 'ACCESSIBILITY', label: 'Accessibility' },
-  { value: 'ARCHITECTURE', label: 'Architecture' },
-  { value: 'AR_VR', label: 'AR/VR' },
-  { value: 'CLOUD_COMPUTING', label: 'Cloud' },
-  { value: 'DATABASE_STORAGE', label: 'Database/Storage' },
-  { value: 'DESIGN_UX', label: 'Design/UX' },
-  { value: 'DEV_OPS', label: 'DevOps' },
-  { value: 'INFRASTRUCTURE', label: 'Infrastructure' },
-  { value: 'IOT_MAKER', label: 'IoT/Maker' },
-  { value: 'LANGUAGES', label: 'Languages' },
-  { value: 'MACHINE_LEARNING', label: 'Machine Learning' },
-  { value: 'MOBILE', label: 'Mobile' },
-  { value: 'PRODUCT_MANAGEMENT', label: 'Product Management' },
-  { value: 'SOFT_SKILLS', label: 'Soft Skills' },
-  { value: 'SECURITY', label: 'Security' },
-  { value: 'TESTING', label: 'Testing' },
-  { value: 'TOOLING', label: 'Tooliing' },
-  { value: 'USER_INTERFACES', label: 'UI' },
-  { value: 'WEB', label: 'Web' },
-  { value: 'OTHER', label: "You Can't Put a Label on Me" },
-];
+const categories = sessionConstants.SessionCategories;
 
-const audiences = [
-  { value: 'ANYBODY', label: 'Anybody' },
-  { value: 'DEVELOPERS', label: 'Developers' },
-  { value: 'MANAGERS', label: 'Managers' },
-];
+const audiences = sessionConstants.SessionAudiences;
 
 const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {

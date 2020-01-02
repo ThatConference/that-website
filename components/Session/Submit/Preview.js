@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
 
-import { below } from '../../../utilities/breakpoint';
+import { sessionConstants, below } from '../../../utilities';
 
 const Subheading = styled.p`
   margin-top: 0;
@@ -111,13 +111,28 @@ const Preview = ({ session: reduxSession }) => {
   // eslint-disable-next-line no-console
   console.log(`Redux Session: ${JSON.stringify(reduxSession)}`);
   const { loading, error, data } = useQuery(GET_SESSION, {
-    variables: { sessionId: reduxSession.id },
+    variables: { sessionId: 'y2m8tbKHFQT7uRrRazYY' },
   });
 
   if (loading) return null;
   if (error) return null;
 
   const { session } = data.sessions.me;
+  const values = {
+    title: session.title,
+    longDescription: session.longDescription,
+    category: sessionConstants.SessionFor[session.category],
+    type: sessionConstants.SessionType[session.type],
+    primaryCategory: sessionConstants.SessionCategories.find(
+      sc => sc.value === session.primaryCategory,
+    ),
+    secondaryCategories: sessionConstants.SessionCategories.filter(
+      c => session.secondaryCategory.indexOf(c.value) !== -1,
+    ),
+    targetAudiences: sessionConstants.SessionAudiences.filter(
+      c => session.targetAudience.indexOf(c.value) !== -1,
+    ),
+  };
   // eslint-disable-next-line no-console
   console.log(`Graph Session: ${JSON.stringify(session)}`);
   return (
@@ -128,13 +143,25 @@ const Preview = ({ session: reduxSession }) => {
       </Subheading>
       <MainGrid columns="1fr 35rem" rows="minmax(45px,auto) 1fr">
         <Content>
-          <h3>{session.title}</h3>
+          <h3>{values.title}</h3>
         </Content>
         <Ads />
         <Content>
           <Description>
-            {parse(converter.render(session.longDescription))}
+            {parse(converter.render(values.longDescription))}
           </Description>
+          <Section>
+            <DetailsHeader>Prerequisites</DetailsHeader>
+            <MarkdownContainer>
+              {parse(converter.render(session.prerequisites))}
+            </MarkdownContainer>
+          </Section>
+          <Section>
+            <DetailsHeader>Agenda</DetailsHeader>
+            <MarkdownContainer>
+              {parse(converter.render(session.agenda))}
+            </MarkdownContainer>
+          </Section>
           <Section>
             <DetailsHeader>Supporting Links/Related Resources</DetailsHeader>
             <ItemsGrid columns={2}>
@@ -153,23 +180,11 @@ const Preview = ({ session: reduxSession }) => {
             </ItemsGrid>
           </Section>
           <Section>
-            <DetailsHeader>Prerequisites</DetailsHeader>
-            <MarkdownContainer>
-              {parse(converter.render(session.prerequisites))}
-            </MarkdownContainer>
-          </Section>
-          <Section>
-            <DetailsHeader>Agenda</DetailsHeader>
-            <MarkdownContainer>
-              {parse(converter.render(session.agenda))}
-            </MarkdownContainer>
-          </Section>
-          <Section>
             <DetailsHeader>Key Takeaways</DetailsHeader>
             {session.takeaways.map(s => {
               return (
-                <React.Fragment key={s.id}>
-                  <div>{s.text}</div>
+                <React.Fragment key={s}>
+                  <div>{s}</div>
                 </React.Fragment>
               );
             })}
@@ -178,15 +193,19 @@ const Preview = ({ session: reduxSession }) => {
         <Ads>
           <DetailsHeader>Details</DetailsHeader>
           <div className="header">Session For</div>
-          <div className="value">{session.category}</div>
+          <div className="value">{values.category}</div>
           <div className="header">Session Type</div>
-          <div className="value">{session.type}</div>
+          <div className="value">{values.type}</div>
           <div className="header">Primary Category</div>
-          <div className="value">{session.primaryCategory}</div>
+          <div className="value">{values.primaryCategory.label}</div>
           <div className="header">Secondary Categories</div>
-          <div className="value">{session.secondaryCategory.join(', ')}</div>
+          <div className="value">
+            {values.secondaryCategories.map(sc => sc.label).join(', ')}
+          </div>
           <div className="header">Target Audiences</div>
-          <div className="value">{session.targetAudience.join(', ')}</div>
+          <div className="value">
+            {values.targetAudiences.map(ta => ta.label).join(', ')}
+          </div>
         </Ads>
       </MainGrid>
     </div>

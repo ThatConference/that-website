@@ -6,6 +6,8 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
 
+import { sessionConstants } from '../../../utilities';
+
 import FormInput from '../../shared/FormInput';
 import {
   RadioButtonGroupItem,
@@ -111,24 +113,16 @@ const Lastly = ({ dispatch, session }) => {
               error={errors.mentorshipLevel}
               touched={touched.mentorshipLevel}
             >
-              <Field
-                component={RadioButtonGroupItem}
-                name="mentorshipLevel"
-                id="NO"
-                label="None, I've got this"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="mentorshipLevel"
-                id="SOME"
-                label="Some would be good"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="mentorshipLevel"
-                id="YES"
-                label="All I can get"
-              />
+              {sessionConstants.SessionMentorshipLevels.map(m => {
+                return (
+                  <Field
+                    component={RadioButtonGroupItem}
+                    name="mentorshipLevel"
+                    id={m.value}
+                    label={m.label}
+                  />
+                );
+              })}
             </RadioButtonGroup>
           </FormRow>
           <FormRow>
