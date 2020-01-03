@@ -153,7 +153,7 @@ const Hero = ({ event, className }) => {
             />
           </ActionButtons>
         </SideDetail>
-        <HeroImage src="images/clark_stage.jpg" />
+        <HeroImage src="images/clark_stage.jpg" loading="lazy" />
         <HeroSocials />
       </Main>
       <Description className="large-body-copy">

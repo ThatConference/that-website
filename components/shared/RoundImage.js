@@ -12,7 +12,7 @@ const RoundImage = ({ className, imageUrl, size, showAccentLine, alt }) => {
   const showAccent = showAccentLine === null || showAccentLine !== false;
   return (
     <>
-      <img src={imageUrl} className={className} alt={alt} />
+      <img src={imageUrl} className={className} alt={alt} loading="lazy" />
       {showAccent && <AccentLine size={size / 40} />}
     </>
   );

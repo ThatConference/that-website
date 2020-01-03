@@ -70,7 +70,7 @@ const contact = () => (
       <Grid columns={gridRepeat.xsmall} alignContent="center">
         <StyledImageContainer>
           <Title>General Inquiries</Title>
-          <p>
+          <p style={{ flexGrow: '2' }}>
             Anything goes! Questions, feedback, you name it we&apos;d love to
             hear it!
           </p>
@@ -102,7 +102,7 @@ const contact = () => (
         </StyledImageContainer>
         <StyledImageContainer>
           <Title>Slack</Title>
-          <p>
+          <p style={{ flexGrow: '2' }}>
             Connect with THAT Crew and THAT Community anytime through Slack!
           </p>
           <LinkButton

@@ -82,7 +82,7 @@ const home = () => {
       <Testimonials />
       <NewsletterSignup />
       <MeetCampers />
-      <BottomImage src="./images/mess-hall.jpg" />
+      <BottomImage src="./images/mess-hall.jpg" loading="lazy" />
 
       <script
         src="https://thatconference.activehosted.com/f/embed.php?id=1"

@@ -8,7 +8,7 @@ const Meta = () => (
     <title key="title">THAT Conference - Wisconsin Dells, WI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charSet="utf-8" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
     <link rel="stylesheet" type="text/css" href="/nprogress.css" />
     <link rel="stylesheet" href="https://use.typekit.net/tyl7iga.css" />
@@ -32,13 +32,17 @@ const Meta = () => (
       property="og:description"
       content="THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells."
     />
-    <meta property="og:url" content="https://thatconference.com/" />
+    <meta property="og:url" content="https://www.thatconference.com/" />
     <meta
       property="og:site_name"
       content="THAT Conference - Wisconsin Dells, WI"
     />
-    {/* <meta property="og:image" content="" /> */}
+    <meta
+      property="og:image"
+      content="https://www.thatconference.com/images/THAT_Conference_WI.png"
+    />
     <meta property="og:locale" content="en_US" />
+    <meta property="fb:app_id" content="741883086300353" />
 
     <meta name="twitter:site" content="@thatconference" />
     <meta
