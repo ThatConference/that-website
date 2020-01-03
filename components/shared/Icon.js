@@ -40,9 +40,11 @@ const Icon = ({
       onClick={onClick}
       height={height}
       width={width}
-      viewBox={`0 0 ${viewBoxHeight || height || '24'} ${viewBoxWidth ||
-        width ||
-        '24'}`}
+      viewBox={`
+        0 0
+        ${viewBoxWidth || width || '24'}
+        ${viewBoxHeight || height || '24'}
+       `}
     >
       <title>{svgs[icon].title}</title>
       {svgs[icon].path.map(item => {
