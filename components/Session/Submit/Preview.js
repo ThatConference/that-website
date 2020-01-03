@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import parse from 'html-react-parser';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
+import Router from 'next/router';
 
 import { sessionConstants, below } from '../../../utilities';
+
+import { FormRule, FormCancel, FormSubmit } from '../../shared/FormLayout';
 
 const Subheading = styled.p`
   margin-top: 0;
@@ -106,9 +109,23 @@ const GET_SESSION = gql`
   }
 `;
 
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+        }
+      }
+    }
+  }
+`;
+
 const Preview = ({ session: reduxSession }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION);
+  let isSubmitting = false;
   const { loading, error, data } = useQuery(GET_SESSION, {
-    variables: { sessionId: reduxSession.id },
+    variables: { sessionId: 'y2m8tbKHFQT7uRrRazYY' },
   });
 
   if (loading) return null;
@@ -133,6 +150,28 @@ const Preview = ({ session: reduxSession }) => {
       c => session.targetAudience.indexOf(c.value) !== -1,
     ),
   };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    isSubmitting = true;
+    const updates = {
+      status: 'SUBMITTED',
+    };
+    updateSession({
+      variables: { session: updates, sessionId: session.id },
+    }).then(
+      () => {
+        // ToDo: this needs to redirect...somewhere...My Sessions most likely
+        Router.push('/wi/counselor-start');
+      },
+      err => {
+        // ToDo: Appropriately log and handle error
+        // eslint-disable-next-line no-console
+        console.log(`Error: ${err}`);
+      },
+    );
+  };
+
   return (
     <div>
       <Subheading>
@@ -206,6 +245,11 @@ const Preview = ({ session: reduxSession }) => {
           </div>
         </Ads>
       </MainGrid>
+      <form onSubmit={onSubmit}>
+        <FormRule />
+        <FormCancel label="Back" />
+        <FormSubmit label="Submit Session" disabled={isSubmitting} />
+      </form>
     </div>
   );
 };

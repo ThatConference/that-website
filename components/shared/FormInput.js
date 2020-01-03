@@ -89,6 +89,7 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
+    checked,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -112,6 +113,7 @@ const FormInput = props => {
             name={fieldName}
             id={fieldName}
             type="checkbox"
+            checked={values[fieldName]}
             {...fieldProps}
           />
           {parsedLabel}

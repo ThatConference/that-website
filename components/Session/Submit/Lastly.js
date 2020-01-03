@@ -101,6 +101,7 @@ const Lastly = ({ dispatch, session }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              values={values}
               label="Agree to have this session recorded if accepted?"
               inputType="checkbox"
             />
