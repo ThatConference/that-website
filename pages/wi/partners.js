@@ -90,6 +90,7 @@ const renderPartner = (
             maxWidth={imageMaxWidth}
             src={partner.companyLogo}
             alt={partner.companyName}
+            loading="lazy"
           />
         </a>
       </Link>
