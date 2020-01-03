@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/prefer-default-export
 export const sessionConstants = {
-  SessionFor: {
-    PROFESSIONAL: 'Professionals',
-    FAMILY: 'Family',
-  },
+  SessionFors: [
+    { value: 'PROFESSIONAL', label: 'Professionals' },
+    { value: 'FAMILY', label: 'Family' },
+  ],
 
-  SessionType: {
-    REGULAR: 'Regular session (60 minute talk)',
-    KEYNOTE: 'Keynote (90 minute talk)',
-    HALF_DAY_WORKSHOP: 'Half-day Workshop (pre-conference)',
-    FULL_DAY_WORKSHOP: 'Full-day Workshop (pre-conference)',
-  },
+  SessionTypes: [
+    { value: 'REGULAR', label: 'Regular session (60 minute talk)' },
+    { value: 'KEYNOTE', label: 'Keynote (90 minute talk)' },
+    { value: 'HALF_DAY_WORKSHOP', label: 'Half-day Workshop (pre-conference)' },
+    { value: 'FULL_DAY_WORKSHOP', label: 'Full-day Workshop (pre-conference)' },
+  ],
 
   SessionCategories: [
     { value: 'ACCESSIBILITY', label: 'Accessibility' },

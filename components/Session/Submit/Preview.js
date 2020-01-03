@@ -35,10 +35,11 @@ const Ads = styled(Cell)`
 
   div.header {
     font-weight: bold;
+    font-size: 1.3rem;
+    margin-top: 1rem;
   }
 
   div.value {
-    margin-bottom: 1rem;
   }
 
   ${below.small`
@@ -52,8 +53,6 @@ const Description = styled.div`
 
 const DetailsHeader = styled.div`
   font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: 0;
 `;
 
 const ItemsGrid = styled(Grid)`
@@ -108,10 +107,8 @@ const GET_SESSION = gql`
 `;
 
 const Preview = ({ session: reduxSession }) => {
-  // eslint-disable-next-line no-console
-  console.log(`Redux Session: ${JSON.stringify(reduxSession)}`);
   const { loading, error, data } = useQuery(GET_SESSION, {
-    variables: { sessionId: 'y2m8tbKHFQT7uRrRazYY' },
+    variables: { sessionId: reduxSession.id },
   });
 
   if (loading) return null;
@@ -121,8 +118,11 @@ const Preview = ({ session: reduxSession }) => {
   const values = {
     title: session.title,
     longDescription: session.longDescription,
-    category: sessionConstants.SessionFor[session.category],
-    type: sessionConstants.SessionType[session.type],
+    category: sessionConstants.SessionFors.find(
+      sf => sf.value === session.category,
+    ).label,
+    type: sessionConstants.SessionTypes.find(st => st.value === session.type)
+      .label,
     primaryCategory: sessionConstants.SessionCategories.find(
       sc => sc.value === session.primaryCategory,
     ),
@@ -133,8 +133,6 @@ const Preview = ({ session: reduxSession }) => {
       c => session.targetAudience.indexOf(c.value) !== -1,
     ),
   };
-  // eslint-disable-next-line no-console
-  console.log(`Graph Session: ${JSON.stringify(session)}`);
   return (
     <div>
       <Subheading>
