@@ -143,7 +143,7 @@ const contact = () => {
           </StyledImageContainer>
           <StyledImageContainer>
             <Title>Where</Title>
-            <p>
+            <p style={{ flexGrow: '2' }}>
               <strong>{event.venues[0].name}</strong>
               <br />
               {event.venues[0].address}
