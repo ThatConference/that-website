@@ -32,8 +32,15 @@ const Intro = ({ dispatch, session }) => {
   return (
     <Formik
       initialValues={{
-        audience: session.category || 'PROFESSIONAL',
-        sessionType: session.type || 'REGULAR',
+        audience: session.category
+          ? sessionConstants.SessionFors.find(
+              sf => sf.value === session.category,
+            ).value
+          : 'PROFESSIONAL',
+        sessionType: session.type
+          ? sessionConstants.SessionTypes.find(st => st.value === session.type)
+              .value
+          : 'REGULAR',
       }}
       validationSchema={Yup.object({
         audience: Yup.string().required('Selection required'),
@@ -83,18 +90,16 @@ const Intro = ({ dispatch, session }) => {
               onChange={setFieldValue}
               onBlur={setFieldTouched}
             >
-              <Field
-                component={RadioButtonGroupItem}
-                name="audience"
-                id="PROFESSIONAL"
-                label="Professionals"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="audience"
-                id="FAMILY"
-                label="Family"
-              />
+              {sessionConstants.SessionFors.map(sf => {
+                return (
+                  <Field
+                    component={RadioButtonGroupItem}
+                    name="audience"
+                    id={sf.value}
+                    label={sf.label}
+                  />
+                );
+              })}
             </RadioButtonGroup>
           </FormRow>
           <FormRow>
@@ -107,30 +112,16 @@ const Intro = ({ dispatch, session }) => {
               onChange={setFieldValue}
               onBlur={setFieldTouched}
             >
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="REGULAR"
-                label="Regular session (60 minute talk)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="KEYNOTE"
-                label="Keynote (90 minute talk)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="HALF_DAY_WORKSHOP"
-                label="Half-day Workshop (pre-conference)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="FULL_DAY_WORKSHOP"
-                label="Full-day Workshop (pre-conference)"
-              />
+              {sessionConstants.SessionTypes.map(st => {
+                return (
+                  <Field
+                    component={RadioButtonGroupItem}
+                    name="sessionType"
+                    id={st.value}
+                    label={st.label}
+                  />
+                );
+              })}
             </RadioButtonGroup>
           </FormRow>
           <FormRule />
