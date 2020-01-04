@@ -89,7 +89,6 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
-    checked,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
