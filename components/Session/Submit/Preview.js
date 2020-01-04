@@ -6,6 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { connect } from 'react-redux';
 import Router from 'next/router';
+import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
 import { sessionConstants, below } from '../../../utilities';
 
@@ -149,6 +150,10 @@ const Preview = ({ session: reduxSession }) => {
     targetAudiences: sessionConstants.SessionAudiences.filter(
       c => session.targetAudience.indexOf(c.value) !== -1,
     ),
+    prerequisites: session.prerequisites,
+    agenda: session.agenda,
+    takeaways: session.takeaways,
+    supportingArtifacts: session.supportingArtifacts,
   };
 
   const onSubmit = e => {
@@ -161,6 +166,16 @@ const Preview = ({ session: reduxSession }) => {
       variables: { session: updates, sessionId: session.id },
     }).then(
       () => {
+        ButterToast.raise({
+          sticky: true,
+          content: (
+            <Cinnamon.Crisp
+              scheme={Cinnamon.Crisp.SCHEME_BLUE}
+              content={() => <div>You can put basically anything here.</div>}
+              title="ButterToast example"
+            />
+          ),
+        });
         // ToDo: this needs to redirect...somewhere...My Sessions most likely
         Router.push('/wi/counselor-start');
       },
@@ -187,45 +202,53 @@ const Preview = ({ session: reduxSession }) => {
           <Description>
             {parse(converter.render(values.longDescription))}
           </Description>
-          <Section>
-            <DetailsHeader>Prerequisites</DetailsHeader>
-            <MarkdownContainer>
-              {parse(converter.render(session.prerequisites))}
-            </MarkdownContainer>
-          </Section>
-          <Section>
-            <DetailsHeader>Agenda</DetailsHeader>
-            <MarkdownContainer>
-              {parse(converter.render(session.agenda))}
-            </MarkdownContainer>
-          </Section>
-          <Section>
-            <DetailsHeader>Supporting Links/Related Resources</DetailsHeader>
-            <ItemsGrid columns={2}>
-              {session.supportingArtifacts.map(s => {
+          {session.prerequisites && (
+            <Section>
+              <DetailsHeader>Prerequisites</DetailsHeader>
+              <MarkdownContainer>
+                {parse(converter.render(values.prerequisites))}
+              </MarkdownContainer>
+            </Section>
+          )}
+          {session.description && (
+            <Section>
+              <DetailsHeader>Agenda</DetailsHeader>
+              <MarkdownContainer>
+                {parse(converter.render(values.agenda))}
+              </MarkdownContainer>
+            </Section>
+          )}
+          {session.supportingArtifacts && (
+            <Section>
+              <DetailsHeader>Supporting Links/Related Resources</DetailsHeader>
+              <ItemsGrid columns={2}>
+                {values.supportingArtifacts.map(s => {
+                  return (
+                    <React.Fragment key={s.name}>
+                      <Cell width={1}>{s.name}</Cell>
+                      <Cell width={1}>
+                        <a href={s.url} target="blank">
+                          {s.url}
+                        </a>
+                      </Cell>
+                    </React.Fragment>
+                  );
+                })}
+              </ItemsGrid>
+            </Section>
+          )}
+          {session.takeaways && (
+            <Section>
+              <DetailsHeader>Key Takeaways</DetailsHeader>
+              {values.takeaways.map(s => {
                 return (
-                  <React.Fragment key={s.name}>
-                    <Cell width={1}>{s.name}</Cell>
-                    <Cell width={1}>
-                      <a href={s.url} target="blank">
-                        {s.url}
-                      </a>
-                    </Cell>
+                  <React.Fragment key={s}>
+                    <div>{s}</div>
                   </React.Fragment>
                 );
               })}
-            </ItemsGrid>
-          </Section>
-          <Section>
-            <DetailsHeader>Key Takeaways</DetailsHeader>
-            {session.takeaways.map(s => {
-              return (
-                <React.Fragment key={s}>
-                  <div>{s}</div>
-                </React.Fragment>
-              );
-            })}
-          </Section>
+            </Section>
+          )}
         </Content>
         <Ads>
           <DetailsHeader>Details</DetailsHeader>
@@ -249,6 +272,13 @@ const Preview = ({ session: reduxSession }) => {
         <FormRule />
         <FormCancel label="Back" />
         <FormSubmit label="Submit Session" disabled={isSubmitting} />
+        <ButterToast
+          className="that-toast"
+          position={{
+            vertical: POS_TOP,
+            horizontal: POS_RIGHT,
+          }}
+        />
       </form>
     </div>
   );

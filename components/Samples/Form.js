@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
 import RegularExpressions from '../../utilities/validation';
 
@@ -26,15 +27,15 @@ const SampleForm = () => {
   return (
     <Formik
       initialValues={{
-        fullName: '',
-        emailAddress: '',
+        fullName: 'test',
+        emailAddress: 'test@test.com',
         mobilePhone: '',
         year: '',
         years: [],
         interests: '',
         bio: '',
-        agreeToCodeOfConduct: false,
-        agreeToCommitments: false,
+        agreeToCodeOfConduct: true,
+        agreeToCommitments: true,
         agreeToBeingRecorded: false,
         checkboxGroup: [],
         radioGroup: '',
@@ -52,14 +53,12 @@ const SampleForm = () => {
           RegularExpressions.phoneRegExp,
           'Phone number is not valid',
         ),
-        year: Yup.string().required('Required'),
-        years: Yup.array().required('At least one is required'),
-        interests: Yup.string()
-          .required('Required')
-          .max(20, 'Must be less than 21 characters'),
-        bio: Yup.string().required('Required'),
-        supportingLinks: Yup.array().required('At least one is required'),
-        takeaways: Yup.array().required('At least one is required'),
+        year: Yup.string(),
+        years: Yup.array(),
+        interests: Yup.string().max(20, 'Must be less than 21 characters'),
+        bio: Yup.string(),
+        supportingLinks: Yup.array(),
+        takeaways: Yup.array(),
         agreeToCodeOfConduct: Yup.bool().oneOf(
           [true],
           'Must agree to the Code of Conduct',
@@ -69,16 +68,24 @@ const SampleForm = () => {
           'Must agree to the commitments',
         ),
         agreeToBeingRecorded: Yup.bool(),
-        checkboxGroup: Yup.array().required(
-          'At least one checkbox is required',
-        ),
-        radioGroup: Yup.string().required('A radio option is required'),
+        checkboxGroup: Yup.array(),
+        radioGroup: Yup.string(),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           // eslint-disable-next-line no-alert
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
+          ButterToast.raise({
+            sticky: true,
+            content: (
+              <Cinnamon.Crisp
+                scheme={Cinnamon.Crisp.SCHEME_BLUE}
+                content={() => <div>You can put basically anything here.</div>}
+                title="ButterToast example"
+              />
+            ),
+          });
         }, 400);
       }}
     >
@@ -181,7 +188,7 @@ const SampleForm = () => {
                 errors={errors}
                 touched={touched}
                 label="Supporting Links/Related Resources"
-                links={[]}
+                values={values}
               />
             </FormRow>
             <FormRow>
@@ -195,7 +202,7 @@ const SampleForm = () => {
                 errors={errors}
                 touched={touched}
                 label="Key takeaways"
-                strings={[]}
+                values={values}
               />
             </FormRow>
             <FormRow>
@@ -206,6 +213,7 @@ const SampleForm = () => {
                   errors={errors}
                   touched={touched}
                   label="Agree to <a href=''>Code of Conduct</a>"
+                  values={values}
                   inputType="checkbox"
                 />
               </div>
@@ -216,6 +224,7 @@ const SampleForm = () => {
                   errors={errors}
                   touched={touched}
                   label="Agree to commitments to THAT Conference laid out above"
+                  values={values}
                   inputType="checkbox"
                 />
               </div>
@@ -226,6 +235,7 @@ const SampleForm = () => {
                   errors={errors}
                   touched={touched}
                   label="Agree to being recorded"
+                  values={values}
                   inputType="checkbox"
                 />
               </div>
@@ -284,6 +294,13 @@ const SampleForm = () => {
             </FormRow>
             <FormRule />
             <FormSubmit />
+            <ButterToast
+              className="that-toast"
+              position={{
+                vertical: POS_TOP,
+                horizontal: POS_RIGHT,
+              }}
+            />
           </Form>
         );
       }}
