@@ -125,7 +125,7 @@ const Preview = ({ session: reduxSession }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
   let isSubmitting = false;
   const { loading, error, data } = useQuery(GET_SESSION, {
-    variables: { sessionId: 'y2m8tbKHFQT7uRrRazYY' },
+    variables: { sessionId: reduxSession.id },
   });
 
   if (loading) return null;
