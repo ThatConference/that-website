@@ -35,7 +35,9 @@ export default ({ children, currentUser }) => {
           <Meta />
           <CorePage>
             <Header currentUser={currentUser} />
-            <InnerPage>{children}</InnerPage>
+            <InnerPage>
+              {React.cloneElement(children, { currentUser })}
+            </InnerPage>
             <Footer modifiers="site" />
           </CorePage>
         </StyledPage>
