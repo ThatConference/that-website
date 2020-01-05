@@ -114,14 +114,6 @@ const editProfile = ({ currentUser }) => {
   }
 
   const { loading, error, data } = useQuery(GET_MEMBER);
-  const [updateMember] = useMutation(UPDATE_MEMBER, {
-    onCompleted: () => {
-      Router.push(`/member/${profileSlug}`);
-    },
-    onError: updateError => {
-      dlog('Error updating member', updateError);
-    },
-  });
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
@@ -142,6 +134,15 @@ const editProfile = ({ currentUser }) => {
     profileSlug,
     state,
   } = data.members.me;
+
+  const [updateMember] = useMutation(UPDATE_MEMBER, {
+    onCompleted: () => {
+      Router.push(`/member/${profileSlug}`);
+    },
+    onError: updateError => {
+      dlog('Error updating member', updateError);
+    },
+  });
 
   const getProfileLinkValue = linkType => {
     return profileLinks.filter(profileLink => {
@@ -224,7 +225,7 @@ const editProfile = ({ currentUser }) => {
                   };
                 });
 
-              Object.keys(linkTypes).map(key => {
+              Object.keys(linkTypes).forEach(key => {
                 delete valuesToSave[key];
               });
 
