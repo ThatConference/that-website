@@ -153,7 +153,7 @@ const ContactInfoForm = () => {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          const profile = { ...values, isOver18, isDeactivated: false };
+          const profile = { ...values };
           updateMember({ variables: { profile } });
           setSubmitting(false);
         }, 400);

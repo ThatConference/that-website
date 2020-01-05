@@ -48,17 +48,18 @@ const StyledOutlineLink = styled.a`
 `;
 
 const LinkButton = ({
-  href,
-  color,
-  className,
-  borderColor,
   backgroundColor,
-  label,
-  target,
-  isLocal,
-  hoverColor,
+  borderColor,
+  className,
+  color,
   hoverBackgroundColor,
   hoverBorderColor,
+  hoverColor,
+  href,
+  isLocal,
+  onClick,
+  label,
+  target,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -73,7 +74,10 @@ const LinkButton = ({
     return (
       <StyledOutlineLink
         href={href}
-        onClick={clickTracking}
+        onClick={() => {
+          onClick();
+          clickTracking();
+        }}
         color={color}
         className={className}
         borderColor={borderColor}
@@ -102,24 +106,26 @@ const LinkButton = ({
 };
 
 LinkButton.propTypes = {
+  backgroundColor: PropTypes.string,
+  borderColor: PropTypes.string,
+  className: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  borderColor: PropTypes.string,
-  backgroundColor: PropTypes.string,
   isLocal: PropTypes.bool,
-  target: PropTypes.string,
   label: PropTypes.string,
+  onClick: PropTypes.func,
+  target: PropTypes.string,
 };
 
 LinkButton.defaultProps = {
-  color: '',
-  className: '',
-  borderColor: '',
   backgroundColor: '',
+  borderColor: '',
+  className: '',
+  color: '',
   isLocal: true,
-  target: '',
   label: '',
+  onClick: () => {},
+  target: '',
 };
 
 export default LinkButton;

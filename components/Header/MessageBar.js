@@ -48,9 +48,15 @@ const MessageBar = ({ className }) => {
   return (
     <div className={className}>
       <Message>
+<<<<<<< HEAD
         Call for Counselors (Speakers) starts January 13th!
         <Link href="/wi/call-for-counselors" onClick={clickTracking}>
           <StyledLink>Learn More!</StyledLink>
+=======
+        Call for Counselors (Speakers) starts January 6th!
+        <Link href="/wi/call-for-counselors">
+          <StyledLink onClick={clickTracking}>Learn More!</StyledLink>
+>>>>>>> e6429e8... flow to update member profile through stepper
         </Link>
       </Message>
       <Location>THAT Conference - Wisconsin Dells, WI</Location>

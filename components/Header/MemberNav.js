@@ -15,6 +15,7 @@ const GET_MEMBER = gql`
       me {
         firstName
         lastName
+        profileSlug
       }
     }
   }
@@ -31,40 +32,52 @@ const SecondaryNav = styled.ul`
   top: 2rem;
 `;
 
-const MemberNav = ({ className, onClick, user }) => {
+const MemberNav = ({ className, currentUser, onClick }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  // get member to know if we need to create or not... maybe do this at a differnet point?
-  const { loading, error, data } = useQuery(GET_MEMBER);
+  let member = {};
+  if (!_.isEmpty(currentUser)) {
+    const { loading, error, data: memberData } = useQuery(GET_MEMBER);
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+    if (loading) return 'Loading...';
+    if (error) return {};
 
-  const menuClick = () => {
+    member = memberData ? memberData.members.me : memberData;
+  }
+
+  const menuClick = e => {
+    e.preventDefault();
     setUserMenuOpen(!userMenuOpen);
-    onClick(false);
   };
-
-  console.log('data', data.members.me);
 
   return (
     <div className={className}>
-      {!_.isEmpty(user) && (
+      {!_.isEmpty(currentUser) && (
         <>
           <NavItem
-            title={`Hi ${user.given_name}!`}
+            title={`Hi ${currentUser.given_name}!`}
             href=""
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}
             onClick={menuClick}
           />
+
           <SecondaryNav userMenuOpen={userMenuOpen}>
             <li>
-              <NavItem
-                title="My Profile"
-                href={`/member/${user.profileSlug}`}
-                onClick={() => setUserMenuOpen(false)}
-              />
+              {_.isEmpty(member) && (
+                <NavItem
+                  title="Create Profile"
+                  href="/member/create"
+                  onClick={() => setUserMenuOpen(false)}
+                />
+              )}
+              {!_.isEmpty(member) && (
+                <NavItem
+                  title="My Profile"
+                  href={`/member/${member.profileSlug}`}
+                  onClick={() => setUserMenuOpen(false)}
+                />
+              )}
             </li>
             <li>
               <NavItem
@@ -77,7 +90,7 @@ const MemberNav = ({ className, onClick, user }) => {
         </>
       )}
 
-      {_.isEmpty(user) && (
+      {_.isEmpty(currentUser) && (
         <NavItem
           title="Sign In"
           href="/api/login"
@@ -91,13 +104,13 @@ const MemberNav = ({ className, onClick, user }) => {
 MemberNav.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  user: PropTypes.shape({}),
+  currentUser: PropTypes.shape({}),
 };
 
 MemberNav.defaultProps = {
   className: '',
   onClick: () => {},
-  user: {},
+  currentUser: {},
 };
 
 export default styled(MemberNav)`
