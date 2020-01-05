@@ -1,6 +1,10 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import Router from 'next/router';
+import debug from 'debug';
 
 import {
   FormRow,
@@ -10,11 +14,54 @@ import {
 } from '../../shared/FormLayout';
 import FormInput from '../../shared/FormInput';
 
-const UploadImage = () => {
+const dlog = debug('that:member:update:bio');
+
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        id
+        bio
+        profileSlug
+      }
+    }
+  }
+`;
+
+const UPDATE_MEMBER = gql`
+  mutation updateMember($profile: ProfileUpdateInput!) {
+    members {
+      member {
+        update(profile: $profile) {
+          id
+          bio
+        }
+      }
+    }
+  }
+`;
+
+const Bio = () => {
+  const { loading, error, data } = useQuery(GET_MEMBER);
+
+  const [updateMember] = useMutation(UPDATE_MEMBER, {
+    onCompleted: () => {
+      Router.push(`/member/${profileSlug}`);
+    },
+    onError: updateError => {
+      dlog('Error updating member', updateError);
+    },
+  });
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+  const { bio, profileSlug } = data.members.me;
+
   return (
     <Formik
       initialValues={{
-        bio: '',
+        bio,
       }}
       validationSchema={Yup.object({
         bio: Yup.string()
@@ -23,10 +70,9 @@ const UploadImage = () => {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
+          const profile = { ...values };
+          updateMember({ variables: { profile } });
           setSubmitting(false);
-          window.location = 'preview';
         }, 400);
       }}
     >
@@ -55,11 +101,11 @@ const UploadImage = () => {
           </FormRow>
           <FormRule />
           <FormCancel label="Back" />
-          <FormSubmit label="Continue" />
+          <FormSubmit label="Complete" />
         </Form>
       )}
     </Formik>
   );
 };
 
-export default UploadImage;
+export default Bio;

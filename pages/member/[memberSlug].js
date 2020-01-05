@@ -14,12 +14,11 @@ import NavItem from '../../components/shared/NavItem';
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
 const GET_MEMBER = gql`
-  query getMember {
+  query getMember($memberSlug: String) {
     members {
-      me {
+      member(slug: $memberSlug) {
         firstName
         lastName
-        email
         company
         jobTitle
         profileImage
@@ -29,6 +28,12 @@ const GET_MEMBER = gql`
         profileLinks {
           linkType
         }
+      }
+
+      me {
+        firstName
+        lastName
+        profileSlug
       }
     }
   }
@@ -79,11 +84,16 @@ const PlaceholderBlock = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGray};
 `;
 
-const member = () => {
-  const { loading, error, data } = useQuery(GET_MEMBER);
+const member = ({ slug }) => {
+  const { loading, error, data } = useQuery(GET_MEMBER, {
+    variables: { memberSlug: slug },
+  });
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
+
+  const { me } = data.members;
+  const profileMember = data.members.member;
 
   const {
     bio,
@@ -104,7 +114,14 @@ const member = () => {
         </title>
       </Head>
       <ContentSection>
-        <NavItem title="Edit" href="/member/editProfile" icon="edit" isLocal />
+        {slug === me.profileSlug && (
+          <NavItem
+            title="Edit"
+            href="/member/editProfile"
+            icon="edit"
+            isLocal
+          />
+        )}
         <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
           <MemberInfoCell>
             <RoundImage

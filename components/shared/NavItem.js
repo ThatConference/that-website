@@ -75,9 +75,9 @@ const NavItem = ({
     });
   };
 
-  const handleClick = () => {
+  const handleClick = e => {
     clickTracking();
-    onClick();
+    onClick(e);
   };
 
   return (

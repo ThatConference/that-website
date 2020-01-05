@@ -1,6 +1,10 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import debug from 'debug';
+import Router from 'next/router';
 
 import FormInput from '../../shared/FormInput';
 import {
@@ -10,34 +14,113 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const OnlinePresenceForm = ({ featureKeyword }) => {
+const dlog = debug('that:member:update:online');
+
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        profileLinks {
+          isPublic
+          linkType
+          url
+        }
+      }
+    }
+  }
+`;
+
+const UPDATE_MEMBER = gql`
+  mutation updateMember($profile: ProfileUpdateInput!) {
+    members {
+      member {
+        update(profile: $profile) {
+          id
+          profileSlug
+          firstName
+          profileLinks {
+            isPublic
+            linkType
+            url
+          }
+          createdAt
+          lastUpdatedAt
+        }
+      }
+    }
+  }
+`;
+
+// commented out some links until we get icons
+const linkTypes = {
+  // devTo: "DEV_TO",
+  // dribbble: "DRIBBBLE",
+  facebook: 'FACEBOOK',
+  github: 'GITHUB',
+  instagram: 'INSTAGRAM',
+  linkedin: 'LINKEDIN',
+  medium: 'MEDIUM',
+  // stackOverflow: "STACK_OVERFLOW",
+  // tictok: "TICTOK",
+  // twitch: "TWITCH",
+  twitter: 'TWITTER',
+  website: 'WEBSITE',
+  youtube: 'YOUTUBE',
+};
+
+const OnlinePresenceForm = () => {
+  const { loading, error, data } = useQuery(GET_MEMBER);
+  const [updateMember] = useMutation(UPDATE_MEMBER, {
+    onCompleted: () => {
+      Router.push('/member/bio');
+    },
+    onError: updateError => {
+      dlog('Error updating member', updateError);
+    },
+  });
+
+  if (loading) return 'Loading...';
+  if (error) return `Error! ${error.message}`;
+
+  const getProfileLinkValue = linkType => {
+    return data.members.me.profileLinks.filter(profileLink => {
+      return profileLink.linkType === linkType;
+    })[0];
+  };
+
+  const initialValues = () => {
+    return Object.keys(linkTypes).reduce((acc, key) => {
+      const value = getProfileLinkValue(linkTypes[key]);
+      acc[key] = value ? value.url : '';
+      return acc;
+    }, {});
+  };
+
   return (
     <Formik
-      initialValues={{
-        website: '',
-        github: '',
-        twitter: '',
-        facebook: '',
-        instagram: '',
-        linkedIn: '',
-        slack: '',
-      }}
+      initialValues={initialValues()}
       validationSchema={Yup.object({
-        website: Yup.string().url('Invalid URL'),
-        twitter: Yup.string(),
         facebook: Yup.string().url('Invalid URL'),
         github: Yup.string().url('Invalid URL'),
-        instagram: Yup.string(),
-        linkedIn: Yup.string().url('Invalid URL'),
+        instagram: Yup.string().url('Invalid URL'),
+        linkedin: Yup.string().url('Invalid URL'),
         slack: Yup.string(),
-        showSlackOnProfile: Yup.bool(),
+        twitter: Yup.string().url('Invalid URL'),
+        website: Yup.string().url('Invalid URL'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
+          const profileLinks = Object.keys(linkTypes)
+            .filter(key => values[key].length > 0)
+            .map(key => {
+              return {
+                isPublic: true,
+                linkType: linkTypes[key],
+                url: values[key],
+              };
+            });
+          updateMember({ variables: { profile: { profileLinks } } });
           setSubmitting(false);
-          window.location = `bio?feature=${featureKeyword}`;
         }, 400);
       }}
     >
@@ -58,7 +141,7 @@ const OnlinePresenceForm = ({ featureKeyword }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
-              label="Twitter username"
+              label="Twitter URL"
             />
           </FormRow>
           <FormRow>
@@ -85,16 +168,16 @@ const OnlinePresenceForm = ({ featureKeyword }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
-              label="Instagram Handle"
+              label="Instagram URL"
             />
           </FormRow>
           <FormRow>
             <FormInput
-              fieldName="linkedIn"
+              fieldName="linkedin"
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
-              label="LinkedIn"
+              label="LinkedIn URL"
             />
           </FormRow>
           <FormRow>
@@ -104,14 +187,6 @@ const OnlinePresenceForm = ({ featureKeyword }) => {
               errors={errors}
               touched={touched}
               label="Slack Member ID"
-            />
-            <FormInput
-              fieldName="showSlackOnProfile"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-              label="Show on my profile"
-              inputType="checkbox"
             />
           </FormRow>
           <FormRule />
