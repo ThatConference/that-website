@@ -90,14 +90,16 @@ class MyApp extends App {
     } = this.props;
 
     return (
-      <ApolloProvider client={apolloClient}>
-        <Page
-          displayFeature={displayFeature}
-          currentUser={currentUser ? currentUser.user : {}}
-        >
-          <Component {...pageProps} />
-        </Page>
-      </ApolloProvider>
+      <Provider store={store}>
+        <ApolloProvider client={apolloClient}>
+          <Page
+            displayFeature={displayFeature}
+            currentUser={currentUser ? currentUser.user : {}}
+          >
+            <Component {...pageProps} />
+          </Page>
+        </ApolloProvider>
+      </Provider>
     );
   }
 }
