@@ -100,7 +100,7 @@ const FormInput = props => {
   const isLinks = inputType && inputType === inputTypes.links;
   const isStrings = inputType && inputType === inputTypes.strings;
 
-  const fieldInvalid = touched[fieldName] && errors[fieldName];
+  const fieldInvalid = errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
   const parsedLabel = parse(label);
 
@@ -113,6 +113,7 @@ const FormInput = props => {
             id={fieldName}
             type="checkbox"
             checked={values[fieldName]}
+            className={styleClass}
             {...fieldProps}
           />
           {parsedLabel}
@@ -127,6 +128,7 @@ const FormInput = props => {
             type="text"
             className={styleClass}
             {...fieldProps}
+            validate={validate}
           />
         </>
       )}
