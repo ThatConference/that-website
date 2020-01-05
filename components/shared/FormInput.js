@@ -128,7 +128,6 @@ const FormInput = props => {
             type="text"
             className={styleClass}
             {...fieldProps}
-            validate={validate}
           />
         </>
       )}

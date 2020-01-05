@@ -87,6 +87,7 @@ class MyApp extends App {
       apolloClient,
       displayFeature,
       currentUser,
+      store,
     } = this.props;
 
     return (
