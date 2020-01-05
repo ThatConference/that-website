@@ -2,7 +2,6 @@ import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
@@ -122,7 +121,7 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ({ className, user }) => {
+const Header = ({ className, currentUser }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -156,7 +155,7 @@ const Header = ({ className, user }) => {
           <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
-            user={user.user}
+            currentUser={currentUser}
           />
           <div style={{ display: 'flex' }}>
             <ActionButton
@@ -178,13 +177,7 @@ const Header = ({ className, user }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(styled(Header)`
+export default styled(Header)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -206,4 +199,4 @@ export default connect(mapStateToProps)(styled(Header)`
     width: 100%;
     position: absolute;
   }
-`);
+`;

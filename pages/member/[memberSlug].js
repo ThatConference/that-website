@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { connect } from 'react-redux';
 import { Grid, Cell } from 'styled-css-grid';
 import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
@@ -145,17 +144,10 @@ const member = () => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
 member.getInitialProps = async context => {
   const slug = context.query.memberSlug;
-  const sessionUser = await auth0.getSession(context.req);
 
-  return { slug, sessionUser };
+  return { slug };
 };
 
-export default connect(mapStateToProps)(member);
+export default member;
