@@ -48,6 +48,14 @@ const SOCIALS = [
       height: 63,
     },
   },
+  {
+    href: 'https://www.flickr.com/photos/thatconference/',
+    icon: {
+      name: 'flickr',
+      width: 35,
+      height: 17,
+    },
+  },
 ];
 
 const SocialLinksContainer = styled.div`
