@@ -188,7 +188,7 @@ const createProfile = ({ currentUser }) => {
                     };
                   });
 
-                Object.keys(linkTypes).map(key => {
+                Object.keys(linkTypes).forEach(key => {
                   delete valuesToSave[key];
                 });
 

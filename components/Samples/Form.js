@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
-import RegularExpressions from '../../utilities/validation';
+import { RegularExpressions } from '../../utilities';
 
 import FormInput from '../shared/FormInput';
 import {
