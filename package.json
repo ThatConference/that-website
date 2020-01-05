@@ -25,6 +25,7 @@
     "apollo-boost": "^0.4.7",
     "apollo-link-context": "^1.0.19",
     "base64url": "^3.0.1",
+    "butter-toast": "^3.3.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "flat": "^5.0.0",
