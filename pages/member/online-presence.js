@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import { connect } from 'react-redux';
 
 import ContentSection from '../../components/shared/ContentSection';
 
@@ -23,10 +22,4 @@ const OnlinePresence = ({ featureKeyword }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(OnlinePresence);
+export default OnlinePresence;

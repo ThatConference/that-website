@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Head from 'next/head';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -23,10 +22,4 @@ const editProfile = ({ featureKeyword }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(editProfile);
+export default editProfile;
