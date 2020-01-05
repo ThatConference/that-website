@@ -52,7 +52,7 @@ export const FormInputValidationMessage = styled.div`
   color: ${({ theme }) => theme.colors.danger};
 `;
 
-export const FormSubmit = ({ label }) => {
+export const FormSubmit = ({ label, validateForm }) => {
   return (
     <StyledFormSubmit
       color="thatBlue"
@@ -63,6 +63,7 @@ export const FormSubmit = ({ label }) => {
       hoverColor="white"
       label={label || 'Submit'}
       isSubmit
+      onClick={validateForm}
     />
   );
 };

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import auth0 from '../../lib/auth0';
+import Error from '../_error';
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
@@ -13,27 +13,25 @@ import NavItem from '../../components/shared/NavItem';
 
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
+const _ = require('lodash');
+
 const GET_MEMBER = gql`
-  query getMember($memberSlug: String) {
+  query getMember {
     members {
-      member(slug: $memberSlug) {
+      me {
         firstName
         lastName
+        profileSlug
         company
         jobTitle
         profileImage
+        profileSlug
         bio
         interests
         lifeHack
         profileLinks {
           linkType
         }
-      }
-
-      me {
-        firstName
-        lastName
-        profileSlug
       }
     }
   }
@@ -84,16 +82,15 @@ const PlaceholderBlock = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGray};
 `;
 
-const member = ({ slug }) => {
-  const { loading, error, data } = useQuery(GET_MEMBER, {
-    variables: { memberSlug: slug },
-  });
+const member = ({ currentUser, slug }) => {
+  if (_.isEmpty(currentUser)) {
+    return <Error statusCode="404" />;
+  }
+
+  const { loading, error, data } = useQuery(GET_MEMBER);
 
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-
-  const { me } = data.members;
-  const profileMember = data.members.member;
 
   const {
     bio,
@@ -104,7 +101,12 @@ const member = ({ slug }) => {
     lastName,
     lifeHack,
     profileImage,
+    profileSlug,
   } = data.members.me;
+
+  if (slug !== profileSlug) {
+    return <Error statusCode="404" />;
+  }
 
   return (
     <>
@@ -114,14 +116,7 @@ const member = ({ slug }) => {
         </title>
       </Head>
       <ContentSection>
-        {slug === me.profileSlug && (
-          <NavItem
-            title="Edit"
-            href="/member/editProfile"
-            icon="edit"
-            isLocal
-          />
-        )}
+        <NavItem title="Edit" href="/member/edit" icon="edit" isLocal />
         <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
           <MemberInfoCell>
             <RoundImage

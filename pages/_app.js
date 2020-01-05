@@ -1,10 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
+import debug from 'debug';
 import sentry from '../lib/sentry';
-
 import * as gtag from '../lib/gtag';
 import withApolloClient from '../lib/withApolloClient';
 import Page from '../components/Page';
@@ -12,22 +15,16 @@ import Page from '../components/Page';
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
-<<<<<<< HEAD
+
 const dlog = debug('that:app');
 
 const reducer = (state = { user: {}, session: {} }, action) => {
   switch (action.type) {
-    case 'USER':
-      dlog('action.payload', action.payload);
-      return { ...state, user: action.payload };
-<<<<<<< HEAD
     case 'SESSION':
       return { ...state, session: action.payload };
-=======
     case 'CLEAR_STATE':
       dlog('Logout - clear redux state');
       return { ...state, user: {} };
->>>>>>> be5513a... view and update of a member profile - part 1
     default:
       return state;
   }
@@ -36,8 +33,6 @@ const reducer = (state = { user: {}, session: {} }, action) => {
 const makeStore = initialState => {
   return createStore(reducer, initialState);
 };
-=======
->>>>>>> 921247f... remove redux
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -107,4 +102,4 @@ class MyApp extends App {
   }
 }
 
-export default withApolloClient(MyApp);
+export default withRedux(makeStore)(withApolloClient(MyApp));
