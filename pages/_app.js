@@ -1,12 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import debug from 'debug';
 import sentry from '../lib/sentry';
 
 import * as gtag from '../lib/gtag';
@@ -16,6 +12,7 @@ import Page from '../components/Page';
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
+<<<<<<< HEAD
 const dlog = debug('that:app');
 
 const reducer = (state = { user: {}, session: {} }, action) => {
@@ -39,6 +36,8 @@ const reducer = (state = { user: {}, session: {} }, action) => {
 const makeStore = initialState => {
   return createStore(reducer, initialState);
 };
+=======
+>>>>>>> 921247f... remove redux
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -91,36 +90,21 @@ class MyApp extends App {
       Component,
       pageProps,
       apolloClient,
-      store,
       displayFeature,
       currentUser,
     } = this.props;
 
-    if (currentUser) {
-      store.dispatch({
-        type: 'USER',
-        payload: {
-          user: {
-            ...currentUser.user,
-          },
-        },
-      });
-    } else {
-      store.dispatch({
-        type: 'CLEAR_STATE',
-      });
-    }
-
     return (
-      <Provider store={store}>
-        <ApolloProvider client={apolloClient}>
-          <Page displayFeature={displayFeature}>
-            <Component {...pageProps} />
-          </Page>
-        </ApolloProvider>
-      </Provider>
+      <ApolloProvider client={apolloClient}>
+        <Page
+          displayFeature={displayFeature}
+          currentUser={currentUser ? currentUser.user : {}}
+        >
+          <Component {...pageProps} />
+        </Page>
+      </ApolloProvider>
     );
   }
 }
 
-export default withRedux(makeStore)(withApolloClient(MyApp));
+export default withApolloClient(MyApp);
