@@ -36,7 +36,7 @@ const Perks = () => {
         <Perk>
           <PerkTitle>Conference Ticket</PerkTitle>
           <p style={{ flexGrow: '2' }}>
-            A ticket to attend all for days of THAT Conference! Including all
+            A ticket to attend all four days of THAT Conference! Including all
             conference meals, THAT Pig Roast and all social/networking
             activities!
           </p>
