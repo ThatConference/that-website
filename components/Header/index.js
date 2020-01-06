@@ -144,7 +144,7 @@ const Header = ({ className, currentUser }) => {
 
   return (
     <header className={[className, scrolled()].join(' ')}>
-      <MessageBar />
+      <MessageBar currentUser={currentUser} />
       <HeaderSection>
         <PageHeader>
           <HeaderLogo />

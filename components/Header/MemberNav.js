@@ -50,12 +50,26 @@ const MemberNav = ({ className, currentUser, onClick }) => {
     setUserMenuOpen(!userMenuOpen);
   };
 
+  const userFirstName = () => {
+    if (member) {
+      return member.firstName;
+    }
+    return currentUser.given_name;
+  };
+
+  const greeting = () => {
+    if (userFirstName()) {
+      return `Hi ${userFirstName()}!`;
+    }
+    return 'Heyo Camper!';
+  };
+
   return (
     <div className={className}>
       {!_.isEmpty(currentUser) && (
         <>
           <NavItem
-            title={`Hi ${currentUser.given_name}!`}
+            title={greeting()}
             href=""
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}
