@@ -15,8 +15,6 @@ import Commitments from '../../components/CounselorAgreement/Commitments';
 import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
 import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
 
-import { useFetchUser } from '../../lib/user';
-
 const _ = require('lodash');
 
 const MainGrid = styled(Grid)`
@@ -63,7 +61,7 @@ const GET_MEMBER = gql`
   }
 `;
 
-const CounselorAgreement = ({ currentUser, dispatch }) => {
+const CounselorAgreement = ({ currentUser }) => {
   if (_.isEmpty(currentUser)) {
     Router.push('/api/login?redirect-url=/member/create');
   }
