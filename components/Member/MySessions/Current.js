@@ -115,7 +115,7 @@ const CurrentSessions = ({ dispatch }) => {
       type: 'SESSION',
       payload: { id },
     });
-    Router.push('/member/session/edit');
+    Router.push('/member/session-edit');
   };
 
   const widthdrawClick = (e, id) => {
