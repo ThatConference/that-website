@@ -89,6 +89,7 @@ const FormInput = props => {
     selectOptions,
     values,
     isMulti,
+    placeholder,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isTextbox = !inputType || inputType === inputTypes.text;
@@ -127,6 +128,7 @@ const FormInput = props => {
             id={fieldName}
             type="text"
             className={styleClass}
+            placeholder={placeholder}
             {...fieldProps}
           />
         </>
