@@ -58,6 +58,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           errors={errors}
           touched={touched}
           label="Mobile Phone"
+          placeholder="ex: +10001110000"
         />
       </FormRow>
       <FlexFormRow>
