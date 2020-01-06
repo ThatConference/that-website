@@ -177,7 +177,7 @@ const Preview = ({ session: reduxSession }) => {
           ),
         });
         // ToDo: this needs to redirect...somewhere...My Sessions most likely
-        Router.push('/wi/counselor-start');
+        Router.push('/member/my-sessions');
       },
       err => {
         // ToDo: Appropriately log and handle error
