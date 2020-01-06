@@ -13,6 +13,7 @@ const GET_MEMBER = gql`
   query getMember {
     members {
       me {
+        id
         firstName
         lastName
         profileSlug
@@ -40,7 +41,7 @@ const MemberNav = ({ className, currentUser, onClick }) => {
     const { loading, error, data: memberData } = useQuery(GET_MEMBER);
 
     if (loading) return 'Loading...';
-    if (error) return {};
+    if (error) return null;
 
     member = memberData ? memberData.members.me : memberData;
   }
@@ -50,12 +51,26 @@ const MemberNav = ({ className, currentUser, onClick }) => {
     setUserMenuOpen(!userMenuOpen);
   };
 
+  const userFirstName = () => {
+    if (member) {
+      return member.firstName;
+    }
+    return currentUser.given_name;
+  };
+
+  const greeting = () => {
+    if (userFirstName()) {
+      return `Hi ${userFirstName()}!`;
+    }
+    return 'Heyo Camper!';
+  };
+
   return (
     <div className={className}>
       {!_.isEmpty(currentUser) && (
         <>
           <NavItem
-            title={`Hi ${currentUser.given_name}!`}
+            title={greeting()}
             href=""
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}

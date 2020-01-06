@@ -1,8 +1,25 @@
 import styled from 'styled-components';
 import React from 'react';
 import Link from 'next/link';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import { below } from '../../utilities';
 import * as gtag from '../../lib/gtag';
+
+const _ = require('lodash');
+
+const GET_ME = gql`
+  query getMember {
+    members {
+      me {
+        id
+        firstName
+        lastName
+        profileSlug
+      }
+    }
+  }
+`;
 
 const Message = styled.p`
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -35,7 +52,17 @@ const StyledLink = styled.a`
   }
 `;
 
-const MessageBar = ({ className }) => {
+const MessageBar = ({ className, currentUser }) => {
+  let member = {};
+  if (!_.isEmpty(currentUser)) {
+    const { loading, error, data: memberData } = useQuery(GET_ME);
+
+    if (loading) return 'Loading...';
+    if (error) return null;
+
+    member = memberData ? memberData.members.me : memberData;
+  }
+
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -45,14 +72,33 @@ const MessageBar = ({ className }) => {
     });
   };
 
-  return (
-    <div className={className}>
-      <Message>
+  const generalMessage = () => {
+    return (
+      <>
         Call for Counselors (Speakers) starts January 6th!
         <Link href="/wi/call-for-counselors">
           <StyledLink onClick={clickTracking}>Learn More!</StyledLink>
         </Link>
-      </Message>
+      </>
+    );
+  };
+
+  const createProfileMessage = () => {
+    return (
+      <>
+        Tell Us More About You
+        <Link href="/member/create">
+          <StyledLink onClick={clickTracking}>
+            Complete Your Profile!
+          </StyledLink>
+        </Link>
+      </>
+    );
+  };
+
+  return (
+    <div className={className}>
+      <Message>{member ? generalMessage() : createProfileMessage()}</Message>
       <Location>THAT Conference - Wisconsin Dells, WI</Location>
     </div>
   );
