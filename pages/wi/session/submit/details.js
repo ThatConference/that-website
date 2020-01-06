@@ -18,7 +18,6 @@ const GET_MEMBER = gql`
       me {
         id
         acceptedCommitments
-        isOver18
       }
     }
   }

@@ -20,13 +20,12 @@ const UPDATE_PROFILE = gql`
   }
 `;
 
-const Achknowledgment = ({ acceptedCommitments, isOver18 }) => {
+const Achknowledgment = ({ acceptedCommitments }) => {
   const [updateProfile] = useMutation(UPDATE_PROFILE);
   return (
     <Formik
       initialValues={{
         agreeToCommitments: acceptedCommitments,
-        are18OrOlder: isOver18,
       }}
       validationSchema={Yup.object({
         agreeToCommitments: Yup.bool().oneOf(
@@ -38,7 +37,6 @@ const Achknowledgment = ({ acceptedCommitments, isOver18 }) => {
       onSubmit={values => {
         const profile = {
           acceptedCommitments: values.agreeToCommitments,
-          isOver18: values.are18OrOlder,
         };
         updateProfile({
           variables: { profile },
@@ -54,7 +52,7 @@ const Achknowledgment = ({ acceptedCommitments, isOver18 }) => {
         );
       }}
     >
-      {({ getFieldProps, errors, touched, isSubmitting }) => (
+      {({ getFieldProps, errors, touched, isSubmitting, values }) => (
         <Form className="input-form">
           <FormRule />
           <FormRow>
@@ -65,14 +63,7 @@ const Achknowledgment = ({ acceptedCommitments, isOver18 }) => {
               touched={touched}
               label="Agree to commitments to THAT Conference laid out above"
               inputType="checkbox"
-            />
-            <FormInput
-              fieldName="are18OrOlder"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-              label="Are you 18 or older as of today?"
-              inputType="checkbox"
+              values={values}
             />
           </FormRow>
           <FormSubmit label="Agree and Continue" disabled={isSubmitting} />

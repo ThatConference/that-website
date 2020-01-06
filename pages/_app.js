@@ -14,6 +14,8 @@ import Page from '../components/Page';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
+const _ = require('lodash');
+
 const { captureException } = sentry();
 
 const dlog = debug('that:app');
@@ -22,6 +24,8 @@ const reducer = (state = { user: {}, session: {} }, action) => {
   switch (action.type) {
     case 'SESSION':
       return { ...state, session: action.payload };
+    case 'USER':
+      return { ...state, user: action.payload };
     case 'CLEAR_STATE':
       dlog('Logout - clear redux state');
       return { ...state, user: {} };
@@ -90,13 +94,17 @@ class MyApp extends App {
       store,
     } = this.props;
 
+    if (!_.isEmpty(currentUser)) {
+      store.dispatch({
+        type: 'USER',
+        payload: currentUser.user,
+      });
+    }
+
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <Page
-            displayFeature={displayFeature}
-            currentUser={currentUser ? currentUser.user : {}}
-          >
+          <Page displayFeature={displayFeature}>
             <Component {...pageProps} />
           </Page>
         </ApolloProvider>
