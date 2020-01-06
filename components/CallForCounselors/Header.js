@@ -70,12 +70,12 @@ const Header = () => {
         </Cell>
         <TextCell>
           <p className="large-body-copy">
-            Are you ready to speak at the biggest tech stage in the midwest? We
-            are searching for hour-long talks, half and full-day workshops, and
-            keynotes that bring value to our audience. We want talks and
-            workshops to appeal to developers, designers, bloggers, business
-            owners, site builders, translators, community organizers, and
-            everything in between.
+            Are you ready to speak at the biggest tech conference in the US
+            Midwest? We are searching for hour-long sessions, half and full-day
+            workshops, and keynotes that bring value to our audience. The
+            sessions and workshops can appeal to developers, designers,
+            bloggers, business owners, site builders, translators, community
+            organizers, and everything in-between.
           </p>
           {/* <BecomeACounselor
             href={`counselor-start?feature=${featureKeyword}`}
