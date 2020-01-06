@@ -39,7 +39,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           getFieldProps={getFieldProps}
           errors={errors}
           touched={touched}
-          label="Username"
+          label="Profile Slug"
         />
       </FlexFormRow>
       <FormRow>
