@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { connect } from 'react-redux';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 
@@ -26,7 +27,7 @@ const InnerPage = styled.div`
   flex-direction: column;
 `;
 
-export default ({ children, currentUser }) => {
+const Page = ({ children, currentUser }) => {
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -45,3 +46,11 @@ export default ({ children, currentUser }) => {
     </ThemeProvider>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Page);
