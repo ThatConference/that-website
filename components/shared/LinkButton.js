@@ -70,8 +70,14 @@ const LinkButton = ({
     });
   };
 
-  const OutlineLink = () => {
-    return (
+  const ConditionalWrapper = ({ condition, wrapper, children }) =>
+    condition ? wrapper(children) : children;
+
+  return (
+    <ConditionalWrapper
+      condition={isLocal}
+      wrapper={children => <Link href={href}>{children}</Link>}
+    >
       <StyledOutlineLink
         href={href}
         onClick={() => {
@@ -89,19 +95,7 @@ const LinkButton = ({
       >
         <p>{label}</p>
       </StyledOutlineLink>
-    );
-  };
-
-  return (
-    <>
-      {isLocal ? (
-        <Link href={href}>
-          <OutlineLink />
-        </Link>
-      ) : (
-        <OutlineLink />
-      )}
-    </>
+    </ConditionalWrapper>
   );
 };
 
