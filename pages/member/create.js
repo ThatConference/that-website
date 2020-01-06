@@ -95,18 +95,59 @@ const createProfile = ({ currentUser }) => {
     },
   });
 
+  const contactValidation = {
+    acceptedCodeOfConduct: Yup.bool().required('Field must be checked'),
+    acceptedTermsOfService: Yup.bool().required('Field must be checked'),
+    city: Yup.string().nullable(),
+    company: Yup.string().nullable(),
+    firstName: Yup.string()
+      .min(3, 'Must be at least 3 characters')
+      .required('Required'),
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Required'),
+    country: Yup.string().nullable(),
+    isOver13: Yup.bool().required('Field must be checked'),
+    jobTitle: Yup.string().nullable(),
+    lastName: Yup.string()
+      .min(3, 'Must be at least 3 characters')
+      .required('Required'),
+    mobilePhone: Yup.string()
+      .matches(RegularExpressions.phoneRegExp, 'Phone number is not valid')
+      .nullable(),
+    profileSlug: Yup.string().required('Required'),
+    state: Yup.string().nullable(),
+  };
+
+  const profileLinkValidations = {
+    facebook: Yup.string().url('Invalid URL'),
+    github: Yup.string().url('Invalid URL'),
+    instagram: Yup.string().url('Invalid URL'),
+    linkedin: Yup.string().url('Invalid URL'),
+    slack: Yup.string(),
+    twitter: Yup.string().url('Invalid URL'),
+    website: Yup.string().url('Invalid URL'),
+  };
+
+  const bioValidation = {
+    bio: Yup.string().min(10, 'Must be at least 10 characters'),
+  };
+
   const steps = [
     {
       label: 'Contact Info',
       currentOrCompleted: currentStep === 0,
+      validationRules: contactValidation,
     },
     {
       label: 'Online Presence',
       currentOrCompleted: currentStep === 1,
+      validationRules: profileLinkValidations,
     },
     {
       label: 'Bio',
       currentOrCompleted: currentStep === 2,
+      validationRules: bioValidation,
     },
   ];
 
@@ -116,6 +157,12 @@ const createProfile = ({ currentUser }) => {
     } else {
       setCurrentStep(currentStep - 1);
     }
+  };
+
+  const getValidationSchema = () => {
+    return Yup.object({
+      ...steps[currentStep].validationRules,
+    });
   };
 
   return (
@@ -132,45 +179,7 @@ const createProfile = ({ currentUser }) => {
             firstName: currentUser.given_name,
             lastName: currentUser.family_name,
           }}
-          validationSchema={Yup.object({
-            acceptedCodeOfConduct: Yup.bool().required('Field must be checked'),
-            acceptedTermsOfService: Yup.bool().required(
-              'Field must be checked',
-            ),
-            // bio: Yup.string().min(10, 'Must be at least 10 characters'),
-            city: Yup.string().nullable(),
-            company: Yup.string().nullable(),
-            firstName: Yup.string()
-              .min(3, 'Must be at least 3 characters')
-              .required('Required'),
-            email: Yup.string()
-              .email('Invalid email address')
-              .required('Required'),
-            country: Yup.string().nullable(),
-            isOver13: Yup.bool().required('Field must be checked'),
-            isOver18: Yup.bool().required('Field must be checked'),
-            jobTitle: Yup.string().nullable(),
-            lastName: Yup.string()
-              .min(3, 'Must be at least 3 characters')
-              .required('Required'),
-            mobilePhone: Yup.string()
-              .matches(
-                RegularExpressions.phoneRegExp,
-                'Phone number is not valid',
-              )
-              .nullable(),
-            profileSlug: Yup.string().required('Required'),
-            state: Yup.string().nullable(),
-
-            // profile links
-            // facebook: Yup.string().url('Invalid URL'),
-            // github: Yup.string().url('Invalid URL'),
-            // instagram: Yup.string().url('Invalid URL'),
-            // linkedin: Yup.string().url('Invalid URL'),
-            // slack: Yup.string(),
-            // twitter: Yup.string().url('Invalid URL'),
-            // website: Yup.string().url('Invalid URL'),
-          })}
+          validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
             if (currentStep === 2) {
               console.log('submitted and creatgggggg', values);
@@ -192,14 +201,16 @@ const createProfile = ({ currentUser }) => {
                   delete valuesToSave[key];
                 });
 
-                const profile = { ...valuesToSave, profileLinks };
+                const profile = {
+                  ...valuesToSave,
+                  profileLinks,
+                  isDeactivated: false,
+                  canFeature: false,
+                };
                 console.log('submitted and valuesToSave', valuesToSave);
                 createMember({
                   variables: {
                     profile,
-                    profileLinks,
-                    isDeactivated: false,
-                    canFeature: false,
                   },
                 });
                 setSubmitting(false);
@@ -223,6 +234,7 @@ const createProfile = ({ currentUser }) => {
                   getFieldProps={getFieldProps}
                   errors={errors}
                   touched={touched}
+                  values={values}
                 />
               )}
               {currentStep === 1 && (

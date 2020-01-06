@@ -16,7 +16,7 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
-const ContactInfoForm = ({ getFieldProps, errors, touched }) => {
+const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
   return (
     <>
       <FlexFormRow>
@@ -109,6 +109,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched }) => {
           touched={touched}
           label="Agree to the <a href='code-of-conduct'>Code of Conduct</a>"
           inputType="checkbox"
+          values={values}
         />
         <FormInput
           fieldName="isOver13"
@@ -117,6 +118,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched }) => {
           touched={touched}
           label="Are you over 13 years old?"
           inputType="checkbox"
+          values={values}
         />
       </FlexFormRow>
       <FlexFormRow>
@@ -127,14 +129,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched }) => {
           touched={touched}
           label="Agree to <a href='terms-of-service'>THAT Terms of Service</a>?"
           inputType="checkbox"
-        />
-        <FormInput
-          fieldName="isOver18"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Are you a Camper over 18?"
-          inputType="checkbox"
+          values={values}
         />
       </FlexFormRow>
     </>
