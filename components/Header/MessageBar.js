@@ -12,6 +12,7 @@ const GET_ME = gql`
   query getMember {
     members {
       me {
+        id
         firstName
         lastName
         profileSlug
@@ -57,7 +58,7 @@ const MessageBar = ({ className, currentUser }) => {
     const { loading, error, data: memberData } = useQuery(GET_ME);
 
     if (loading) return 'Loading...';
-    if (error) return {};
+    if (error) return null;
 
     member = memberData ? memberData.members.me : memberData;
   }
@@ -86,7 +87,7 @@ const MessageBar = ({ className, currentUser }) => {
     return (
       <>
         Tell Us More About You
-        <Link href="/wi/call-for-counselors">
+        <Link href="/member/create">
           <StyledLink onClick={clickTracking}>
             Complete Your Profile!
           </StyledLink>
