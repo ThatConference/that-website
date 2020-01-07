@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import debug from 'debug';
 
 import { below, RegularExpressions } from '../../utilities';
@@ -79,19 +79,24 @@ const CREATE_MEMBER = gql`
 `;
 
 const createProfile = ({ currentUser }) => {
-  if (_.isEmpty(currentUser)) {
-    Router.push('/api/login?redirect-url=/member/create');
-  }
-
+  dlog('create profile');
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
 
+  useEffect(() => {
+    if (_.isEmpty(currentUser)) {
+      router.push('/api/login?redirect-url=/member/create');
+    }
+  });
+
   const [createMember] = useMutation(CREATE_MEMBER, {
-    onCompleted: ({ profileSlug }) => {
-      console.log('CREATED YOOOOO');
-      Router.push(`/member/${profileSlug}`);
+    onCompleted: ({ members }) => {
+      dlog('profile created %o', members);
+      router.push(`/member/${members.create.profileSlug}`);
     },
     onError: updateError => {
-      dlog('Error updating member', updateError);
+      dlog('Error updating member %o', updateError);
+      throw new Error(updateError);
     },
   });
 
@@ -153,7 +158,7 @@ const createProfile = ({ currentUser }) => {
 
   const formCancel = () => {
     if (currentStep === 0) {
-      Router.push('/wi');
+      router.push('/wi');
     } else {
       setCurrentStep(currentStep - 1);
     }
@@ -210,7 +215,7 @@ const createProfile = ({ currentUser }) => {
                   isDeactivated: false,
                   canFeature: false,
                 };
-                console.log('submitted and valuesToSave', valuesToSave);
+                dlog('submitted and valuesToSave', valuesToSave);
                 createMember({
                   variables: {
                     profile,
