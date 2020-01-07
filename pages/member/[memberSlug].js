@@ -19,6 +19,7 @@ const GET_MEMBER = gql`
   query getMember {
     members {
       me {
+        id
         firstName
         lastName
         profileSlug
@@ -89,8 +90,10 @@ const member = ({ currentUser, slug }) => {
 
   const { loading, error, data } = useQuery(GET_MEMBER);
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (loading) return null;
+  if (error) {
+    throw new Error(error.message);
+  }
 
   const {
     bio,

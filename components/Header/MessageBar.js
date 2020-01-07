@@ -57,7 +57,7 @@ const MessageBar = ({ className, currentUser }) => {
   if (!_.isEmpty(currentUser)) {
     const { loading, error, data: memberData } = useQuery(GET_ME);
 
-    if (loading) return 'Loading...';
+    if (loading) return null;
     if (error) return null;
 
     member = memberData ? memberData.members.me : memberData;
@@ -86,10 +86,10 @@ const MessageBar = ({ className, currentUser }) => {
   const createProfileMessage = () => {
     return (
       <>
-        Tell Us More About You
+        Tell Us More About Yourself!
         <Link href="/member/create">
           <StyledLink onClick={clickTracking}>
-            Complete Your Profile!
+            Complete Your Profile Today!
           </StyledLink>
         </Link>
       </>
