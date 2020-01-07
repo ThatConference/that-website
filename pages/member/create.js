@@ -181,10 +181,13 @@ const createProfile = ({ currentUser }) => {
           }}
           validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            if (currentStep === 2) {
-              console.log('submitted and creatgggggg', values);
+            if (currentStep === steps.length - 1) {
               setTimeout(() => {
-                const valuesToSave = values;
+                // only want to save fields with value, empty strings don't count
+                const valuesToSave = _.omitBy(
+                  values,
+                  val => _.isString(val) && val.length === 0,
+                );
                 const profileLinks = Object.keys(linkTypes)
                   .filter(key =>
                     valuesToSave[key] ? valuesToSave[key].length > 0 : false,
