@@ -48,7 +48,7 @@ const MessageBar = ({ className }) => {
   return (
     <div className={className}>
       <Message>
-        Call for Counselors (Speakers) starts January 6th!
+        Call for Counselors (Speakers) starts January 13th!
         <Link href="/wi/call-for-counselors" onClick={clickTracking}>
           <StyledLink>Learn More!</StyledLink>
         </Link>
