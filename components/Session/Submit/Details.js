@@ -83,7 +83,7 @@ const DetailForm = ({ dispatch, session }) => {
           .min(3, 'Must be at least 3 characters')
           .required('Required'),
         primaryCategory: Yup.string().required('Required'),
-        secondaryCategories: Yup.array().required('At least one is required'),
+        secondaryCategories: Yup.array(),
         targetAudiences: Yup.array().required('At least one is required'),
         supportingArtifacts: Yup.array(),
       })}
