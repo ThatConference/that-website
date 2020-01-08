@@ -65,7 +65,7 @@ const Header = () => {
     <Main>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
-          <Callout>Submissions Starting January 6th, 2020</Callout>
+          <Callout>Submissions Starting January 13th, 2020</Callout>
           <Title>Call for Counselors</Title>
         </Cell>
         <TextCell>
