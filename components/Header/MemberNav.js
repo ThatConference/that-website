@@ -1,26 +1,12 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-
+import { useFetchUser } from '../../hooks/user';
 import NavItem from '../shared/NavItem';
 import { below } from '../../utilities';
+import LoadingIndicator from '../shared/LoadingIndicator';
 
 const _ = require('lodash');
-
-const GET_MEMBER = gql`
-  query getMember {
-    members {
-      me {
-        id
-        firstName
-        lastName
-        profileSlug
-      }
-    }
-  }
-`;
 
 const SecondaryNav = styled.ul`
   display: ${({ userMenuOpen }) => (userMenuOpen ? '' : 'none')};
@@ -33,41 +19,39 @@ const SecondaryNav = styled.ul`
   top: 2rem;
 `;
 
-const MemberNav = ({ className, currentUser, onClick }) => {
+const LoadingDiv = styled.div`
+  flex-grow: 2;
+  padding-right: 3rem;
+  text-align: right;
+`;
+
+const MemberNav = ({ className, onClick }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-
-  let member = {};
-  if (!_.isEmpty(currentUser)) {
-    const { loading, error, data: memberData } = useQuery(GET_MEMBER);
-
-    if (loading) return 'Loading...';
-    if (error) return null;
-
-    member = memberData ? memberData.members.me : memberData;
-  }
+  const { user, loading } = useFetchUser();
 
   const menuClick = e => {
     e.preventDefault();
     setUserMenuOpen(!userMenuOpen);
   };
 
-  const userFirstName = () => {
-    if (member) {
-      return member.firstName;
-    }
-    return currentUser.given_name;
-  };
-
   const greeting = () => {
-    if (userFirstName()) {
-      return `Hi ${userFirstName()}!`;
+    if (user.firstName) {
+      return `Hi ${user.firstName}!`;
     }
     return 'Heyo Camper!';
   };
 
+  if (loading) {
+    return (
+      <LoadingDiv>
+        <LoadingIndicator />
+      </LoadingDiv>
+    );
+  }
+
   return (
     <div className={className}>
-      {!_.isEmpty(currentUser) && (
+      {!_.isEmpty(user) && (
         <>
           <NavItem
             title={greeting()}
@@ -79,17 +63,17 @@ const MemberNav = ({ className, currentUser, onClick }) => {
 
           <SecondaryNav userMenuOpen={userMenuOpen}>
             <li>
-              {_.isEmpty(member) && (
+              {!user.profileComplete && (
                 <NavItem
                   title="Create Profile"
                   href="/member/create"
                   onClick={() => setUserMenuOpen(false)}
                 />
               )}
-              {!_.isEmpty(member) && (
+              {user.profileComplete && (
                 <NavItem
                   title="My Profile"
-                  href={`/member/${member.profileSlug}`}
+                  href={`/member/${user.profileSlug}`}
                   onClick={() => setUserMenuOpen(false)}
                 />
               )}
@@ -105,7 +89,7 @@ const MemberNav = ({ className, currentUser, onClick }) => {
         </>
       )}
 
-      {_.isEmpty(currentUser) && (
+      {_.isEmpty(user) && (
         <NavItem
           title="Sign In"
           href="/api/login"
@@ -119,13 +103,11 @@ const MemberNav = ({ className, currentUser, onClick }) => {
 MemberNav.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  currentUser: PropTypes.shape({}),
 };
 
 MemberNav.defaultProps = {
   className: '',
   onClick: () => {},
-  currentUser: {},
 };
 
 export default styled(MemberNav)`

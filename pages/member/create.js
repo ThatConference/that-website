@@ -7,10 +7,10 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
-
+import { useFetchUser } from '../../hooks/user';
 import { below, RegularExpressions } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import BaseStepper from '../../components/shared/Stepper';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
@@ -78,13 +78,15 @@ const CREATE_MEMBER = gql`
   }
 `;
 
-const createProfile = ({ currentUser }) => {
+const createProfile = () => {
   dlog('create profile');
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
 
+  const { user, loading } = useFetchUser();
+
   useEffect(() => {
-    if (_.isEmpty(currentUser)) {
+    if (!loading && _.isEmpty(user)) {
       router.push('/api/login?redirect-url=/member/create');
     }
   });
@@ -170,6 +172,10 @@ const createProfile = ({ currentUser }) => {
     });
   };
 
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <div>
       <Head>
@@ -180,9 +186,7 @@ const createProfile = ({ currentUser }) => {
         <Title>{steps[currentStep].label}</Title>
         <Formik
           initialValues={{
-            email: currentUser.email,
-            firstName: currentUser.given_name,
-            lastName: currentUser.family_name,
+            email: user.session.email,
           }}
           validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
