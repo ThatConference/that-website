@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import Select from 'react-select';
 import nextId from 'react-id-generator';
 
+import { Field } from 'formik';
 import baseTheme from '../../styles/baseTheme';
 import { FormLabel, FormInputValidationMessage } from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
@@ -48,7 +49,7 @@ const getSelectStyles = () => {
   };
 };
 
-export const FormTextInput = styled.input`
+export const FormTextInput = styled(Field)`
   ${sharedTextInputStyles}
 `;
 
@@ -139,8 +140,7 @@ const FormInput = props => {
             disabled={disabled}
             placeholder={placeholder}
             {...fieldProps}
-            fieldHasValidation={fieldHasValidation}
-            onBlur={validate}
+            validate={validate}
           />
         </>
       )}

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useLazyQuery } from '@apollo/react-hooks';
 import FormInput from '../../shared/FormInput';
 import { FormRow } from '../../shared/FormLayout';
+// import IconText from '../../shared/IconText';
 
 const GET_PROFILE_SLUG_VALID = gql`
   query isProfileSlugTaken($slug: String!) {
@@ -26,6 +27,19 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
+// const ValidIcon = styled(IconText)`
+//   fill: green;
+// `;
+
+// const InvalidIcon = styled(IconText)`
+//   fill: red;
+// `;
+
+// const ProfileSlugValid = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
+
 const ContactInfoForm = ({
   editMode,
   errors,
@@ -34,10 +48,32 @@ const ContactInfoForm = ({
   values,
 }) => {
   const [validProfileSlug, setValidProfileSlug] = useState(false);
-  const [validateSlug, { data }] = useLazyQuery(GET_PROFILE_SLUG_VALID);
+  const [validateSlug, { loading, data }] = useLazyQuery(
+    GET_PROFILE_SLUG_VALID,
+  );
 
-  if (data && data.members) {
-    setValidProfileSlug(data.members.isProfileSlugTaken);
+  const getProfileSlugErrors = () => {
+    if (touched.profileSlug) {
+      if (!values.profileSlug) {
+        return 'Required';
+      }
+
+      if (!validProfileSlug) {
+        return 'Already Taken';
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    if (!loading && data && data.members) {
+      setValidProfileSlug(!data.members.isProfileSlugTaken);
+    }
+  });
+
+  if (getProfileSlugErrors()) {
+    // eslint-disable-next-line no-param-reassign
+    errors.profileSlug = getProfileSlugErrors();
   }
 
   return (
@@ -65,16 +101,38 @@ const ContactInfoForm = ({
           label="Profile Slug"
           disabled={editMode}
           fieldHasValidation
-          validate={e => {
-            validateSlug({
-              variables: { slug: e.target.value },
-            });
+          validate={value => {
+            if (value) {
+              validateSlug({
+                variables: { slug: value },
+              });
+            }
           }}
         />
-        <div>
-          {!validProfileSlug && <p>not valid</p>}
-          {validProfileSlug && <p>valid</p>}
-        </div>
+        {/* <ProfileSlugValid>
+          {!validProfileSlug && (
+            <InvalidIcon
+              icon="error"
+              height="20"
+              width="20"
+              viewBoxHeight="15"
+              viewBoxWidth="15"
+            >
+              Profile slug is already taken
+            </InvalidIcon>
+          )}
+          {validProfileSlug && (
+            <ValidIcon
+              icon="check"
+              height="20"
+              width="20"
+              viewBoxHeight="15"
+              viewBoxWidth="15"
+            >
+              Available
+            </ValidIcon>
+          )}
+        </ProfileSlugValid> */}
       </FlexFormRow>
       <FormRow>
         <FormInput

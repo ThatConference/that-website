@@ -8,10 +8,14 @@ const IconBlock = styled.div`
   justify-content: ${({ align }) => align || 'left'};
 `;
 
-const IconText = ({ align, icon, children, className }) => {
+const PaddedIcon = styled(Icon)`
+  padding-right: 0.8rem;
+`;
+
+const IconText = ({ align, icon, children, className, ...props }) => {
   return (
     <IconBlock align={align} className={className}>
-      <Icon icon={icon} height="24" width="24" />
+      <PaddedIcon icon={icon} {...props} />
       {children}
     </IconBlock>
   );
