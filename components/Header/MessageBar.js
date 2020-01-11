@@ -1,25 +1,11 @@
 import styled from 'styled-components';
 import React from 'react';
 import Link from 'next/link';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { below } from '../../utilities';
 import * as gtag from '../../lib/gtag';
+import { useFetchUser } from '../../hooks/user';
 
 const _ = require('lodash');
-
-const GET_ME = gql`
-  query getMember {
-    members {
-      me {
-        id
-        firstName
-        lastName
-        profileSlug
-      }
-    }
-  }
-`;
 
 const Message = styled.p`
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -52,16 +38,8 @@ const StyledLink = styled.a`
   }
 `;
 
-const MessageBar = ({ className, currentUser }) => {
-  let member = {};
-  if (!_.isEmpty(currentUser)) {
-    const { loading, error, data: memberData } = useQuery(GET_ME);
-
-    if (loading) return null;
-    if (error) return null;
-
-    member = memberData ? memberData.members.me : memberData;
-  }
+const MessageBar = ({ className }) => {
+  const { user, loading } = useFetchUser();
 
   const clickTracking = () => {
     gtag.event({
@@ -96,9 +74,20 @@ const MessageBar = ({ className, currentUser }) => {
     );
   };
 
+  const getMessage = () => {
+    if (loading) {
+      return '';
+    }
+
+    if (_.isEmpty(user)) {
+      return generalMessage();
+    }
+    return user.profileComplete ? generalMessage() : createProfileMessage();
+  };
+
   return (
     <div className={className}>
-      <Message>{member ? generalMessage() : createProfileMessage()}</Message>
+      <Message>{getMessage()}</Message>
       <Location>THAT Conference - Wisconsin Dells, WI</Location>
     </div>
   );
