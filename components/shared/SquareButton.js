@@ -13,6 +13,7 @@ const SquareButton = ({
   isSubmit,
   onClick,
   label,
+  tabIndex,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -37,6 +38,7 @@ const SquareButton = ({
       hovercolor="white"
       onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
+      tabIndex={tabIndex}
     >
       {label && <p>{label}</p>}
       {icon && <Icon icon={icon} className={iconClass} />}
@@ -61,6 +63,7 @@ export default styled(SquareButton)`
       : theme.colors.fonts.light};
   margin: 0.2rem;
   padding: 0;
+  tabindex: ${({ tabIndex }) => tabIndex || 0};
 
   &.inactive {
   }
