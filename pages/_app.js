@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
 import debug from 'debug';
+
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
 import withApolloClient from '../lib/withApolloClient';
@@ -14,18 +14,13 @@ import Page from '../components/Page';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
-const _ = require('lodash');
-
 const { captureException } = sentry();
-
-const dlog = debug('that:app');
+const dlog = debug('that:website:app');
 
 const reducer = (state = { user: {}, session: {} }, action) => {
   switch (action.type) {
     case 'SESSION':
       return { ...state, session: action.payload };
-    case 'USER':
-      return { ...state, user: action.payload };
     case 'CLEAR_STATE':
       dlog('Logout - clear redux state');
       return { ...state, user: {} };
@@ -85,30 +80,14 @@ class MyApp extends App {
   }
 
   render() {
-    const {
-      Component,
-      pageProps,
-      apolloClient,
-      displayFeature,
-      currentUser,
-      store,
-    } = this.props;
-
-    if (!_.isEmpty(currentUser)) {
-      store.dispatch({
-        type: 'USER',
-        payload: currentUser.user,
-      });
-    }
+    const { Component, pageProps, apolloClient, displayFeature } = this.props;
 
     return (
-      <Provider store={store}>
-        <ApolloProvider client={apolloClient}>
-          <Page displayFeature={displayFeature}>
-            <Component {...pageProps} />
-          </Page>
-        </ApolloProvider>
-      </Provider>
+      <ApolloProvider client={apolloClient}>
+        <Page displayFeature={displayFeature}>
+          <Component {...pageProps} />
+        </Page>
+      </ApolloProvider>
     );
   }
 }
