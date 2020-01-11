@@ -93,6 +93,7 @@ const Intro = ({ dispatch, session }) => {
               {sessionConstants.SessionFors.map(sf => {
                 return (
                   <Field
+                    key={sf.value}
                     component={RadioButtonGroupItem}
                     name="audience"
                     id={sf.value}
@@ -115,6 +116,7 @@ const Intro = ({ dispatch, session }) => {
               {sessionConstants.SessionTypes.map(st => {
                 return (
                   <Field
+                    key={st.value}
                     component={RadioButtonGroupItem}
                     name="sessionType"
                     id={st.value}

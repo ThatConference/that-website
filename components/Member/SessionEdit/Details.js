@@ -159,7 +159,7 @@ const DetailForm = ({ dispatch, session: reduxSession }) => {
         supportingArtifacts: Yup.array(),
         prerequisites: Yup.string(),
         agenda: Yup.string(),
-        takeaways: Yup.array(),
+        takeaways: Yup.array().required('At least one is required'),
         agreeToBeingRecorded: Yup.bool(),
         mentorshipLevel: Yup.string().required('Required'),
         whyAreYouBestPerson: Yup.string(),

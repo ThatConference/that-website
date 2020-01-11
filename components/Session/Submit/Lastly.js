@@ -65,7 +65,7 @@ const Lastly = ({ dispatch, session }) => {
       validationSchema={Yup.object({
         agreeToBeingRecorded: Yup.bool(),
         mentorshipLevel: Yup.string().required('Required'),
-        whyAreYouBestPerson: Yup.string(),
+        whyAreYouBestPerson: Yup.string().required('Required'),
         whatElseShouldWeKnow: Yup.string(),
       })}
       onSubmit={values => {
@@ -117,6 +117,7 @@ const Lastly = ({ dispatch, session }) => {
               {sessionConstants.SessionMentorshipLevels.map(m => {
                 return (
                   <Field
+                    key={m.value}
                     component={RadioButtonGroupItem}
                     name="mentorshipLevel"
                     id={m.value}

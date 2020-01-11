@@ -44,6 +44,10 @@ const UPDATE_SESSION = gql`
 
 const AdditionalInfo = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
+  console.log(session);
+  const sessionIsWorkshop =
+    session && session.type && session.type.indexOf('WORKSHOP') !== -1;
+  console.log(sessionIsWorkshop);
   return (
     <Formik
       initialValues={{
@@ -56,9 +60,13 @@ const AdditionalInfo = ({ dispatch, session }) => {
           : [],
       }}
       validationSchema={Yup.object({
-        prerequisites: Yup.string(),
-        agenda: Yup.string(),
-        takeaways: Yup.array(),
+        prerequisites: !sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
+        agenda: !sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
+        takeaways: Yup.array().min(1, 'At least 1 is required'),
       })}
       onSubmit={values => {
         const updates = {
@@ -99,6 +107,20 @@ const AdditionalInfo = ({ dispatch, session }) => {
         <Form className="input-form">
           <FormRow>
             <FormInput
+              inputType="strings"
+              fieldName="takeaways"
+              getFieldProps={getFieldProps}
+              setFieldTouched={setFieldTouched}
+              setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
+              errors={errors}
+              touched={touched}
+              label="Key Takeaways"
+              values={values}
+            />
+          </FormRow>
+          <FormRow>
+            <FormInput
               fieldName="prerequisites"
               fieldHasValidation={false}
               label="Prerequisites or Previous Experience"
@@ -122,20 +144,6 @@ const AdditionalInfo = ({ dispatch, session }) => {
               setFieldValue={setFieldValue}
               errors={errors}
               touched={touched}
-              values={values}
-            />
-          </FormRow>
-          <FormRow>
-            <FormInput
-              inputType="strings"
-              fieldName="takeaways"
-              getFieldProps={getFieldProps}
-              setFieldTouched={setFieldTouched}
-              setFieldValue={setFieldValue}
-              setFieldError={setFieldError}
-              errors={errors}
-              touched={touched}
-              label="Key Takeaways"
               values={values}
             />
           </FormRow>
