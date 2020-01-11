@@ -140,7 +140,7 @@ const FormInput = props => {
             placeholder={placeholder}
             {...fieldProps}
             fieldHasValidation={fieldHasValidation}
-            onChange={validate}
+            onBlur={validate}
           />
         </>
       )}
