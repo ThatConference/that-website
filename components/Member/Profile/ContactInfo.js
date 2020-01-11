@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import { useLazyQuery } from '@apollo/react-hooks';
 import FormInput from '../../shared/FormInput';
 import { FormRow } from '../../shared/FormLayout';
 
 const GET_PROFILE_SLUG_VALID = gql`
-  query isProfileSLugTaken($slug: String!) {
+  query isProfileSlugTaken($slug: String!) {
     members {
       isProfileSlugTaken(slug: $slug)
     }
@@ -34,18 +34,11 @@ const ContactInfoForm = ({
   values,
 }) => {
   const [validProfileSlug, setValidProfileSlug] = useState(false);
+  const [validateSlug, { data }] = useLazyQuery(GET_PROFILE_SLUG_VALID);
 
-  const validProfileSlugIndicator = newProfileSlug => {
-    const { loading, error, data } = useQuery(GET_PROFILE_SLUG_VALID, {
-      variables: { slug: newProfileSlug },
-      onCompleted(d) {
-        console.log('data', d);
-        // setValidProfileSlug(d.members.isProfileSlugTaken);
-        return d;
-      },
-    });
-    return false;
-  };
+  if (data && data.members) {
+    setValidProfileSlug(data.members.isProfileSlugTaken);
+  }
 
   return (
     <>
@@ -73,9 +66,9 @@ const ContactInfoForm = ({
           disabled={editMode}
           fieldHasValidation
           validate={e => {
-            // setChangedProfileSlug(e.target.value);
-            // setRunValidation(true);
-            validProfileSlugIndicator(e.target.value);
+            validateSlug({
+              variables: { slug: e.target.value },
+            });
           }}
         />
         <div>
