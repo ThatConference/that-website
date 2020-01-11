@@ -14,6 +14,10 @@ const StyledLink = styled.a`
     props.color
       ? props.theme.colors[props.color]
       : props.theme.colors.secondary};
+  fill: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
@@ -84,7 +88,12 @@ const NavItem = ({
     <>
       {isLocal ? (
         <Link href={href} passHref>
-          <StyledLink onClick={handleClick} color={color} target={target}>
+          <StyledLink
+            onClick={handleClick}
+            color={color}
+            target={target}
+            style={style}
+          >
             {displayedLink()}
           </StyledLink>
         </Link>
@@ -94,6 +103,7 @@ const NavItem = ({
           color={color}
           target={target}
           onClick={handleClick}
+          style={style}
         >
           {displayedLink()}
         </StyledLink>

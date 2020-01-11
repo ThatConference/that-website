@@ -8,12 +8,13 @@ import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
 import { useFetchUser } from '../../hooks/user';
-import { below, RegularExpressions } from '../../utilities';
+import { below, memberConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import BaseStepper from '../../components/shared/Stepper';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
+import Image from '../../components/Member/Profile/Image';
 import Bio from '../../components/Member/Profile/Bio';
 
 import {
@@ -43,23 +44,7 @@ const Title = styled.h1`
 `;
 
 const dlog = debug('that:member:create');
-
-// commented out some links until we get icons
-const linkTypes = {
-  // devTo: "DEV_TO",
-  // dribbble: "DRIBBBLE",
-  facebook: 'FACEBOOK',
-  github: 'GITHUB',
-  instagram: 'INSTAGRAM',
-  linkedin: 'LINKEDIN',
-  medium: 'MEDIUM',
-  // stackOverflow: "STACK_OVERFLOW",
-  // tictok: "TICTOK",
-  // twitch: "TWITCH",
-  twitter: 'TWITTER',
-  website: 'WEBSITE',
-  youtube: 'YOUTUBE',
-};
+const { linkTypes } = memberConstants;
 
 const CREATE_MEMBER = gql`
   mutation createMember($profile: ProfileCreateInput!) {
@@ -102,59 +87,29 @@ const createProfile = () => {
     },
   });
 
-  const contactValidation = {
-    acceptedCodeOfConduct: Yup.bool().required('Field must be checked'),
-    acceptedTermsOfService: Yup.bool().required('Field must be checked'),
-    city: Yup.string().nullable(),
-    company: Yup.string().nullable(),
-    firstName: Yup.string()
-      .min(3, 'Must be at least 3 characters')
-      .required('Required'),
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Required'),
-    country: Yup.string().nullable(),
-    isOver13: Yup.bool().required('Field must be checked'),
-    jobTitle: Yup.string().nullable(),
-    lastName: Yup.string()
-      .min(3, 'Must be at least 3 characters')
-      .required('Required'),
-    mobilePhone: Yup.string()
-      .matches(RegularExpressions.phoneRegExp, 'Phone number is not valid')
-      .nullable(),
-    profileSlug: Yup.string().required('Required'),
-    state: Yup.string().nullable(),
-  };
-
-  const profileLinkValidations = {
-    facebook: Yup.string().url('Invalid URL'),
-    github: Yup.string().url('Invalid URL'),
-    instagram: Yup.string().url('Invalid URL'),
-    linkedin: Yup.string().url('Invalid URL'),
-    slack: Yup.string(),
-    twitter: Yup.string().url('Invalid URL'),
-    website: Yup.string().url('Invalid URL'),
-  };
-
-  const bioValidation = {
-    bio: Yup.string().min(10, 'Must be at least 10 characters'),
-  };
-
   const steps = [
     {
       label: 'Contact Info',
       currentOrCompleted: currentStep === 0,
-      validationRules: contactValidation,
+      validationRules: {
+        ...memberConstants.validationRules.contactInfo,
+        ...memberConstants.validationRules.createOnly,
+      },
     },
     {
       label: 'Online Presence',
       currentOrCompleted: currentStep === 1,
-      validationRules: profileLinkValidations,
+      validationRules: memberConstants.validationRules.onlinePresence,
+    },
+    {
+      label: 'Profile Image',
+      currentOrCompleted: currentStep === 2,
+      validationRules: memberConstants.validationRules.image,
     },
     {
       label: 'Bio',
-      currentOrCompleted: currentStep === 2,
-      validationRules: bioValidation,
+      currentOrCompleted: currentStep === 3,
+      validationRules: memberConstants.validationRules.bio,
     },
   ];
 
@@ -258,7 +213,7 @@ const createProfile = () => {
                 />
               )}
               {currentStep === 2 && (
-                <Bio
+                <Image
                   getFieldProps={getFieldProps}
                   errors={errors}
                   touched={touched}
@@ -268,9 +223,23 @@ const createProfile = () => {
                   submitLabel="Next"
                 />
               )}
+              {currentStep === 3 && (
+                <Bio
+                  getFieldProps={getFieldProps}
+                  errors={errors}
+                  touched={touched}
+                  setFieldValue={setFieldValue}
+                  setFieldTouched={setFieldTouched}
+                  values={values}
+                  submitLabel="Create"
+                />
+              )}
               <FormRule />
-              <FormCancel onClick={formCancel} />
-              <FormSubmit label="Continue" />
+              <FormCancel
+                label={currentStep === 0 ? 'Cancel' : 'Back'}
+                onClick={formCancel}
+              />
+              <FormSubmit label={currentStep === 3 ? 'Create' : 'Continue'} />
             </Form>
           )}
         </Formik>

@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 import FormInput from '../../shared/FormInput';
 import { FormRow } from '../../shared/FormLayout';
+
+const GET_PROFILE_SLUG_VALID = gql`
+  query isProfileSLugTaken($slug: String!) {
+    members {
+      isProfileSlugTaken(slug: $slug)
+    }
+  }
+`;
 
 const FlexFormRow = styled(FormRow)`
   display: flex;
@@ -16,7 +26,27 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
-const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
+const ContactInfoForm = ({
+  editMode,
+  errors,
+  getFieldProps,
+  touched,
+  values,
+}) => {
+  const [validProfileSlug, setValidProfileSlug] = useState(false);
+
+  const validProfileSlugIndicator = newProfileSlug => {
+    const { loading, error, data } = useQuery(GET_PROFILE_SLUG_VALID, {
+      variables: { slug: newProfileSlug },
+      onCompleted(d) {
+        console.log('data', d);
+        // setValidProfileSlug(d.members.isProfileSlugTaken);
+        return d;
+      },
+    });
+    return false;
+  };
+
   return (
     <>
       <FlexFormRow>
@@ -40,7 +70,18 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           errors={errors}
           touched={touched}
           label="Profile Slug"
+          disabled={editMode}
+          fieldHasValidation
+          validate={e => {
+            // setChangedProfileSlug(e.target.value);
+            // setRunValidation(true);
+            validProfileSlugIndicator(e.target.value);
+          }}
         />
+        <div>
+          {!validProfileSlug && <p>not valid</p>}
+          {validProfileSlug && <p>valid</p>}
+        </div>
       </FlexFormRow>
       <FormRow>
         <FormInput
@@ -49,6 +90,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           errors={errors}
           touched={touched}
           label="Email Address"
+          placeholder="hello@youareawesome.com"
         />
       </FormRow>
       <FormRow>
@@ -102,37 +144,37 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           label="Title"
         />
       </FormRow>
-      <FlexFormRow>
-        <FormInput
-          fieldName="acceptedCodeOfConduct"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Agree to the <a href='code-of-conduct'>Code of Conduct</a>"
-          inputType="checkbox"
-          values={values}
-        />
-        <FormInput
-          fieldName="isOver13"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Are you over 13 years old?"
-          inputType="checkbox"
-          values={values}
-        />
-      </FlexFormRow>
-      <FlexFormRow>
-        <FormInput
-          fieldName="acceptedTermsOfService"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Agree to <a href='terms-of-service'>THAT Terms of Service</a>?"
-          inputType="checkbox"
-          values={values}
-        />
-      </FlexFormRow>
+      {!editMode && (
+        <FlexFormRow>
+          <FormInput
+            fieldName="acceptedCodeOfConduct"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Agree to the <a href='/wi/code-of-conduct' target='_blank'>Code of Conduct</a>"
+            inputType="checkbox"
+            values={values}
+          />
+          <FormInput
+            fieldName="isOver13"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Are you over 13 years old?"
+            inputType="checkbox"
+            values={values}
+          />
+          <FormInput
+            fieldName="acceptedTermsOfService"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Agree to <a href='/wi/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
+            inputType="checkbox"
+            values={values}
+          />
+        </FlexFormRow>
+      )}
     </>
   );
 };
