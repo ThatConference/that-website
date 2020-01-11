@@ -7,7 +7,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Router from 'next/router';
 import debug from 'debug';
-
+import { useFetchUser } from '../../hooks/user';
 import ContentSection from '../../components/shared/ContentSection';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
@@ -108,9 +108,15 @@ const Title = styled.h1`
   `};
 `;
 
-const editProfile = ({ currentUser }) => {
-  if (_.isEmpty(currentUser)) {
+const editProfile = () => {
+  const { user, loading: loadingUser } = useFetchUser();
+
+  if (!loadingUser && _.isEmpty(user)) {
     Router.push('/api/login?redirect-url=/member/edit');
+  }
+
+  if (!loadingUser && !user.profileComplete) {
+    Router.push('/member/create');
   }
 
   const { loading, error, data } = useQuery(GET_MEMBER);

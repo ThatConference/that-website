@@ -10,6 +10,7 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
 import NavItem from '../../components/shared/NavItem';
+import { useFetchUser } from '../../hooks/user';
 
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
@@ -83,8 +84,10 @@ const PlaceholderBlock = styled.div`
   background-color: ${({ theme }) => theme.colors.lightGray};
 `;
 
-const member = ({ currentUser, slug }) => {
-  if (_.isEmpty(currentUser)) {
+const member = ({ slug }) => {
+  const { user, loading: loadingUser } = useFetchUser();
+
+  if (!loadingUser && _.isEmpty(user)) {
     return <Error statusCode="404" />;
   }
 
