@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { connect } from 'react-redux';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 
@@ -27,7 +26,7 @@ const InnerPage = styled.div`
   flex-direction: column;
 `;
 
-const Page = ({ children, currentUser }) => {
+const Page = ({ children }) => {
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -35,10 +34,8 @@ const Page = ({ children, currentUser }) => {
         <StyledPage>
           <Meta />
           <CorePage>
-            <Header currentUser={currentUser} />
-            <InnerPage>
-              {React.cloneElement(children, { currentUser })}
-            </InnerPage>
+            <Header />
+            <InnerPage>{children}</InnerPage>
             <Footer modifiers="site" />
           </CorePage>
         </StyledPage>
@@ -47,10 +44,4 @@ const Page = ({ children, currentUser }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    currentUser: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(Page);
+export default Page;
