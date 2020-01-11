@@ -101,7 +101,7 @@ const FormInput = props => {
   const isLinks = inputType && inputType === inputTypes.links;
   const isStrings = inputType && inputType === inputTypes.strings;
 
-  const fieldInvalid = errors[fieldName];
+  const fieldInvalid = touched[fieldName] && errors[fieldName];
   const styleClass = fieldInvalid ? 'invalid' : '';
   const parsedLabel = parse(label);
 
@@ -173,6 +173,7 @@ const FormInput = props => {
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             touched={touched}
+            errors={errors}
             value={values[fieldName]}
             preview=""
             className={styleClass}
@@ -198,6 +199,8 @@ const FormInput = props => {
             setFieldError={setFieldError}
             className={styleClass}
             values={values}
+            errors={errors}
+            touched={touched}
             {...fieldProps}
           />
         </>
@@ -212,6 +215,8 @@ const FormInput = props => {
             setFieldError={setFieldError}
             className={styleClass}
             values={values}
+            errors={errors}
+            touched={touched}
             {...fieldProps}
           />
         </>

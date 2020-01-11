@@ -4,6 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { GenerateUuid, IsValidUrl } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
+import SquareButton from './SquareButton';
 
 const _ = require('lodash');
 
@@ -20,9 +21,8 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
-  width: 100%;
-  margin-top: 1.5rem;
+const Button = styled(SquareButton)`
+  margin-top: 0.7rem;
 `;
 
 const ValidationMessage = styled(FormInputValidationMessage)``;
@@ -33,6 +33,7 @@ const LinksInput = ({
   setFieldValue,
   setFieldError,
   values,
+  className,
 }) => {
   const getInitialStateValues = passedInLinks => {
     let initialLinks;
@@ -185,26 +186,22 @@ const LinksInput = ({
                   value={l.url}
                   onBlur={() => onUrlBlur(index)}
                   onChange={e => onUrlChange(e, index)}
-                  className={`${classNamePart1} ${urlInvalid ? 'invalid' : ''}`}
+                  className={`${className} ${classNamePart1} ${
+                    urlInvalid ? 'invalid' : ''
+                  }`}
                 />
                 <ValidationMessage>
                   {urlInvalid ? 'Valid URL Required' : ''}
                 </ValidationMessage>
               </Cell>
               <Cell width={2} center>
-                <Button type="button" onClick={() => onDelete(l.id)}>
-                  -
-                </Button>
+                <Button icon="minus" onClick={() => onDelete(l.id)} />
               </Cell>
             </React.Fragment>
           );
         })}
       </MainGrid>
-      {stateValiditiy && (
-        <button type="button" onClick={onAdd}>
-          + Add
-        </button>
-      )}
+      {stateValiditiy && <Button icon="plus" onClick={() => onAdd()} />}
     </div>
   );
 };
