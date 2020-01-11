@@ -44,10 +44,8 @@ const UPDATE_SESSION = gql`
 
 const AdditionalInfo = ({ dispatch, session }) => {
   const [updateSession] = useMutation(UPDATE_SESSION);
-  console.log(session);
   const sessionIsWorkshop =
     session && session.type && session.type.indexOf('WORKSHOP') !== -1;
-  console.log(sessionIsWorkshop);
   return (
     <Formik
       initialValues={{
