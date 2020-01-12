@@ -97,7 +97,7 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const CurrentSessions = ({ dispatch }) => {
+const CurrentSessions = () => {
   const { loading, error, data } = useQuery(GET_MY_SESSIONS, {
     variables: {},
   });
@@ -111,10 +111,7 @@ const CurrentSessions = ({ dispatch }) => {
 
   const editClick = (e, id) => {
     e.preventDefault();
-    dispatch({
-      type: 'SESSION',
-      payload: { id },
-    });
+    console.log(id);
     Router.push('/member/session-edit');
   };
 
@@ -210,10 +207,5 @@ const CurrentSessions = ({ dispatch }) => {
     </div>
   );
 };
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
 
-export default connect(mapStateToProps)(CurrentSessions);
+export default CurrentSessions;

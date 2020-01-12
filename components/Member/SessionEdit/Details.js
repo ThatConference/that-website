@@ -81,7 +81,8 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ dispatch, session: reduxSession }) => {
+const DetailForm = () => {
+  const reduxSession = {};
   const [updateSession] = useMutation(UPDATE_SESSION);
 
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
@@ -194,10 +195,6 @@ const DetailForm = ({ dispatch, session: reduxSession }) => {
           variables: { session: updates, sessionId: session.id },
         }).then(
           result => {
-            dispatch({
-              type: 'SESSION',
-              payload: result.data.sessions.session.update,
-            });
             Router.push('/wi/session/submit/additional-info');
           },
           error => {
@@ -452,10 +449,4 @@ const DetailForm = ({ dispatch, session: reduxSession }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(DetailForm);
+export default DetailForm;

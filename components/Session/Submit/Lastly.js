@@ -52,7 +52,8 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const Lastly = ({ dispatch, session }) => {
+const Lastly = () => {
+  const session = {};
   const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
@@ -79,10 +80,6 @@ const Lastly = ({ dispatch, session }) => {
           variables: { session: updates, sessionId: session.id },
         }).then(
           result => {
-            dispatch({
-              type: 'SESSION',
-              payload: result.data.sessions.session.update,
-            });
             Router.push('/wi/session/submit/preview');
           },
           error => {
@@ -157,10 +154,4 @@ const Lastly = ({ dispatch, session }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(Lastly);
+export default Lastly;

@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
-import Router from 'next/router';
-import { connect } from 'react-redux';
+import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
+import _ from 'lodash';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 
 import Header from '../../components/Member/SessionEdit/Header';
 import Details from '../../components/Member/SessionEdit/Details';
-
-import { useFetchUser } from '../../lib/user';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -46,25 +44,20 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const SessionEdit = ({ user: reduxUser, dispatch }) => {
-  let user = reduxUser;
-  let loading = true;
-
-  if (!user) {
-    const { cookieUser, loading: userLoading } = useFetchUser();
-    loading = userLoading;
-    if (!userLoading) {
-      dispatch({ type: 'USER', payload: cookieUser });
-      user = cookieUser;
-    }
-  }
-
-  React.useEffect(() => {
-    if (!loading && !user) {
-      Router.push('/api/login?redirect-url=/wi/session/submit');
+const SessionEdit = ({ user, loading }) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (!loading && _.isEmpty(user)) {
+      router.push(`/api/login?redirect-url=/wi/session/submit`);
     }
   });
-  if (user) {
+  if (!loading && !_.isEmpty(user)) {
+    if (!user.profileComplete) {
+      router.push(`/member/create`);
+    }
+    if (!user.acceptedCommitments) {
+      router.push(`/wi/counselor-agreement`);
+    }
     return (
       <div>
         <Head>
@@ -86,10 +79,4 @@ const SessionEdit = ({ user: reduxUser, dispatch }) => {
   return null;
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(SessionEdit);
+export default SessionEdit;

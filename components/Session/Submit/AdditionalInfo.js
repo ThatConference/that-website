@@ -42,7 +42,8 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const AdditionalInfo = ({ dispatch, session }) => {
+const AdditionalInfo = () => {
+  const session = {};
   const [updateSession] = useMutation(UPDATE_SESSION);
   const sessionIsWorkshop =
     session && session.type && session.type.indexOf('WORKSHOP') !== -1;
@@ -78,10 +79,6 @@ const AdditionalInfo = ({ dispatch, session }) => {
           variables: { session: updates, sessionId: session.id },
         }).then(
           result => {
-            dispatch({
-              type: 'SESSION',
-              payload: result.data.sessions.session.update,
-            });
             Router.push('/wi/session/submit/lastly');
           },
           error => {
@@ -154,10 +151,4 @@ const AdditionalInfo = ({ dispatch, session }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(AdditionalInfo);
+export default AdditionalInfo;

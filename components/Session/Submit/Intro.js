@@ -3,7 +3,6 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import { connect } from 'react-redux';
 import Router from 'next/router';
 
 import { sessionConstants } from '../../../utilities';
@@ -27,7 +26,8 @@ const CREATE_SESSION = gql`
   }
 `;
 
-const Intro = ({ dispatch, session }) => {
+const Intro = () => {
+  const session = {};
   const [createSession] = useMutation(CREATE_SESSION);
   return (
     <Formik
@@ -57,10 +57,6 @@ const Intro = ({ dispatch, session }) => {
           variables: { session: newSession, eventId: '1234' },
         }).then(
           result => {
-            dispatch({
-              type: 'SESSION',
-              payload: result.data.sessions.create,
-            });
             Router.push('/wi/session/submit/details');
           },
           error => {
@@ -134,10 +130,4 @@ const Intro = ({ dispatch, session }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(Intro);
+export default Intro;
