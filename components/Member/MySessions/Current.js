@@ -132,6 +132,10 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
     },
   });
 
+  if (loading || loadingUser) {
+    return <LoadingIndicator />;
+  }
+
   if (error) return null;
 
   const sessions = data.sessions.me.all;
@@ -190,10 +194,6 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
       </SessionsGrid>
     );
   };
-
-  if (loading || loadingUser) {
-    return <LoadingIndicator />;
-  }
 
   return (
     <div>
