@@ -81,7 +81,6 @@ const OnlinePresenceForm = ({
           label="THAT Slack Username"
         />
       </FormRow>
-      <FormRule />
       {showButtons && (
         <>
           <FormCancel label="Back" onClick={formCancel} />
