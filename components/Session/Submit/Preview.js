@@ -122,7 +122,8 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const Preview = ({ session: reduxSession }) => {
+const Preview = () => {
+  const reduxSession = {};
   const [updateSession] = useMutation(UPDATE_SESSION);
   let isSubmitting = false;
   const { loading, error, data } = useQuery(GET_SESSION, {
@@ -176,7 +177,6 @@ const Preview = ({ session: reduxSession }) => {
             />
           ),
         });
-        // ToDo: this needs to redirect...somewhere...My Sessions most likely
         Router.push('/member/my-sessions');
       },
       err => {

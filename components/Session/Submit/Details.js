@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { connect } from 'react-redux';
 
 import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
@@ -44,7 +43,8 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ dispatch, session }) => {
+const DetailForm = () => {
+  const session = {};
   const [updateSession] = useMutation(UPDATE_SESSION);
   return (
     <Formik
@@ -105,10 +105,6 @@ const DetailForm = ({ dispatch, session }) => {
           variables: { session: updates, sessionId: session.id },
         }).then(
           result => {
-            dispatch({
-              type: 'SESSION',
-              payload: result.data.sessions.session.update,
-            });
             Router.push('/wi/session/submit/additional-info');
           },
           error => {
@@ -225,10 +221,4 @@ const DetailForm = ({ dispatch, session }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(DetailForm);
+export default DetailForm;
