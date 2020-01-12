@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
-
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 

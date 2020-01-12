@@ -1,20 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import LinkButton from '../shared/LinkButton';
-
-const Title = styled.h1`
-  font-weight: 100;
-  font-size: 8.5rem;
-  margin-bottom: 0;
-`;
+import Title from '../shared/Title';
+import LoadingIndicator from '../shared/LoadingIndicator';
 
 const TopParagraph = styled.p`
   font-size: 2rem;
   margin-bottom: 4rem;
 `;
 
-const Header = () => {
+const Header = ({ user, loading }) => {
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <>
       <Title>Let's Get Started</Title>
@@ -29,7 +28,9 @@ const Header = () => {
       </TopParagraph>
       <LinkButton
         label="Get Started"
-        href="counselor-agreement"
+        href={
+          user.acceptedCommitments ? 'session/create' : 'counselor-agreement'
+        }
         color="thatBlue"
         borderColor="thatBlue"
         hoverBorderColor="thatBlue"

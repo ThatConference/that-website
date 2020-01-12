@@ -1,10 +1,9 @@
 import React from 'react';
-import Router from 'next/router';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { connect } from 'react-redux';
+import debug from 'debug';
 
 import FormInput from '../../shared/FormInput';
 import {
@@ -13,6 +12,8 @@ import {
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
+
+const dlog = debug('that:session:additionalInfo');
 
 const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
@@ -42,11 +43,22 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const AdditionalInfo = () => {
-  const session = {};
-  const [updateSession] = useMutation(UPDATE_SESSION);
+const AdditionalInfo = ({ session, setSession, setStepNumber }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session updated %o', sessions.session);
+      setSession({ ...session, ...sessions.session });
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
   const sessionIsWorkshop =
     session && session.type && session.type.indexOf('WORKSHOP') !== -1;
+
   return (
     <Formik
       initialValues={{
@@ -77,16 +89,7 @@ const AdditionalInfo = () => {
         };
         updateSession({
           variables: { session: updates, sessionId: session.id },
-        }).then(
-          result => {
-            Router.push('/wi/session/submit/lastly');
-          },
-          error => {
-            // ToDo: Appropriately log and handle error
-            // eslint-disable-next-line no-console
-            console.log(`Error: ${error}`);
-          },
-        );
+        });
       }}
     >
       {({

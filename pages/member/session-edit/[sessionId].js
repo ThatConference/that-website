@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
-
-import _ from 'lodash';
-
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-
-import Header from '../../components/Member/MySessions/Header';
-import CurrentSessions from '../../components/Member/MySessions/Current';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import Header from '../../../components/Member/SessionEdit/Header';
+import Details from '../../../components/Member/SessionEdit/Details';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -46,30 +42,38 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const MySessions = ({ user, loading }) => {
+const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!loadingUser && _.isEmpty(user)) {
       router.push('/api/login?redirect-url=/wi/session/submit');
+    }
+
+    if (!loadingUser && !user.profileComplete) {
+      router.push('/member/create');
+    }
+
+    if (!sessionId) {
+      router.push('/member/my-sessions');
     }
   });
 
-  if (loading) {
+  if (loadingUser) {
     return <LoadingIndicator />;
   }
 
   return (
     <div>
       <Head>
-        <title key="title">My Sessions - THAT Conference</title>
+        <title key="title">Edit Session - THAT Conference</title>
       </Head>
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
             <Header />
-            <CurrentSessions user={user} loading={loading} />
+            <Details user={user} loading={loadingUser} sessionId={sessionId} />
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -78,4 +82,9 @@ const MySessions = ({ user, loading }) => {
   );
 };
 
-export default MySessions;
+SessionEdit.getInitialProps = async context => {
+  const { sessionId } = context.query;
+  return { sessionId };
+};
+
+export default SessionEdit;
