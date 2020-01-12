@@ -1,13 +1,14 @@
 import React from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { connect } from 'react-redux';
+import debug from 'debug';
 
 import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
+import LoadingIndicator from '../../shared/LoadingIndicator';
 import {
   FormRow,
   FormRule,
@@ -19,8 +20,8 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
+const dlog = debug('that:website:session');
 const categories = sessionConstants.SessionCategories;
-
 const audiences = sessionConstants.SessionAudiences;
 
 const GET_MY_SESSION = gql`
@@ -81,17 +82,28 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = () => {
-  const reduxSession = {};
-  const [updateSession] = useMutation(UPDATE_SESSION);
+const DetailForm = ({ loading: loadingUser, sessionId }) => {
+  const router = useRouter();
 
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
     variables: {
-      sessionId: reduxSession.id,
+      sessionId,
+    },
+  });
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: () => {
+      router.push('/member/my-sessions');
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
     },
   });
 
-  if (loading) return null;
+  if (loading || loadingUser) {
+    return <LoadingIndicator />;
+  }
+
   if (sessionError) return null;
 
   const { session } = data.sessions.me;
@@ -193,16 +205,7 @@ const DetailForm = () => {
         };
         updateSession({
           variables: { session: updates, sessionId: session.id },
-        }).then(
-          result => {
-            Router.push('/wi/session/submit/additional-info');
-          },
-          error => {
-            // ToDo: Appropriately log and handle error
-            // eslint-disable-next-line no-console
-            console.log(`Error: ${error}`);
-          },
-        );
+        });
       }}
     >
       {({

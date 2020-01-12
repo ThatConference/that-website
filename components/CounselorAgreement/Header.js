@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-weight: 100;
-  font-size: 8.5rem;
-  margin-bottom: 0;
-`;
+import Title from '../shared/Title';
 
 const TopParagraph = styled.p`
   font-size: 2rem;

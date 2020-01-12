@@ -33,9 +33,10 @@ export default function withAuth(InnerComponent) {
     }
 
     render() {
+      const { user } = this.props;
       return (
         <div>
-          <InnerComponent {...this.props} user={this.props.user} />
+          <InnerComponent {...this.props} user={user} />
         </div>
       );
     }

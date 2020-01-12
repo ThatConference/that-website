@@ -1,14 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import { connect } from 'react-redux';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import debug from 'debug';
+import LoadingIndicator from '../../shared/LoadingIndicator';
 
 import { sessionConstants } from '../../../utilities';
+
+const dlog = debug('that:website:member');
 
 const Subheading = styled.p`
   margin-top: 0;
@@ -97,9 +100,36 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const CurrentSessions = () => {
-  const { loading, error, data } = useQuery(GET_MY_SESSIONS, {
-    variables: {},
+const CurrentSessions = ({ user, loading: loadingUser }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loadingUser && !user) {
+      router.push('/api/login?redirect-url=/wi/session/submit');
+    }
+  });
+
+  const { loading, error, data } = useQuery(GET_MY_SESSIONS);
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: () => {
+      ButterToast.raise({
+        sticky: true,
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crisp.SCHEME_BLUE}
+            content={() => (
+              <div>Your session has been successfully updated</div>
+            )}
+            title="Session"
+          />
+        ),
+      });
+      router.push('/');
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
   });
 
   if (loading) return null;
@@ -107,13 +137,11 @@ const CurrentSessions = () => {
 
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;
-  const [updateSession] = useMutation(UPDATE_SESSION);
 
-  const editClick = (e, id) => {
-    e.preventDefault();
-    console.log(id);
-    Router.push('/member/session-edit');
-  };
+  // const editClick = (e, id) => {
+  //   e.preventDefault();
+  //   router.push(`/member/session-edit/${id}`);
+  // };
 
   const widthdrawClick = (e, id) => {
     e.preventDefault();
@@ -122,28 +150,7 @@ const CurrentSessions = () => {
     };
     updateSession({
       variables: { session: updates, sessionId: id },
-    }).then(
-      () => {
-        ButterToast.raise({
-          sticky: true,
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crisp.SCHEME_BLUE}
-              content={() => (
-                <div>Your session has been successfully updated</div>
-              )}
-              title="Session"
-            />
-          ),
-        });
-        Router.push('/');
-      },
-      err => {
-        // ToDo: Appropriately log and handle error
-        // eslint-disable-next-line no-console
-        console.log(`Error: ${err}`);
-      },
-    );
+    });
   };
 
   const noCurrentSessions = () => {
@@ -153,29 +160,27 @@ const CurrentSessions = () => {
   const yesCurrentSessions = () => {
     return (
       <SessionsGrid columns={12}>
-        {sessions.map(s => {
+        {sessions.map(session => {
           return (
-            <React.Fragment key={s.id}>
+            <React.Fragment key={session.id}>
               <SessionTitle className="cell" width={8}>
-                {s.title}
+                {session.title}
               </SessionTitle>
               <SessionStatus center middle className="cell" width={2}>
-                <div className={s.status}>
+                <div className={session.status}>
                   {
                     sessionConstants.SessionStatuses.find(
-                      ss => ss.value === s.status,
+                      sessionStatus => sessionStatus.value === session.status,
                     ).label
                   }
                 </div>
               </SessionStatus>
               <Cell center middle className="cell" width={1}>
-                <a href="" onClick={e => editClick(e, s.id)}>
-                  Edit
-                </a>
+                <a href={`/member/session-edit/${session.id}`}>Edit</a>
               </Cell>
               <Cell center middle className="cell" width={1}>
-                {s.status !== 'WITHDREW' && (
-                  <a href="" onClick={e => widthdrawClick(e, s.id)}>
+                {session.status !== 'WITHDREW' && (
+                  <a href="" onClick={e => widthdrawClick(e, session.id)}>
                     Withdraw
                   </a>
                 )}
@@ -186,6 +191,10 @@ const CurrentSessions = () => {
       </SessionsGrid>
     );
   };
+
+  if (loading || loadingUser) {
+    return <LoadingIndicator />;
+  }
 
   return (
     <div>

@@ -1,17 +1,17 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import Router from 'next/router';
-
+import { gql } from 'apollo-boost';
+import debug from 'debug';
 import { sessionConstants } from '../../../utilities';
 import { FormRow, FormRule, FormSubmit } from '../../shared/FormLayout';
-
 import {
   RadioButtonGroupItem,
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
+
+const dlog = debug('that:session:intro');
 
 const CREATE_SESSION = gql`
   mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
@@ -26,21 +26,33 @@ const CREATE_SESSION = gql`
   }
 `;
 
-const Intro = () => {
-  const session = {};
-  const [createSession] = useMutation(CREATE_SESSION);
+const Intro = ({ session, setSession, setStepNumber }) => {
+  const [createSession] = useMutation(CREATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session created %o', sessions);
+      setSession(sessions.create);
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error creating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
+  const audience = session.category
+    ? sessionConstants.SessionFors.find(sf => sf.value === session.category)
+        .value
+    : 'PROFESSIONAL';
+
+  const sessionType = session.type
+    ? sessionConstants.SessionTypes.find(st => st.value === session.type).value
+    : 'REGULAR';
+
   return (
     <Formik
       initialValues={{
-        audience: session.category
-          ? sessionConstants.SessionFors.find(
-              sf => sf.value === session.category,
-            ).value
-          : 'PROFESSIONAL',
-        sessionType: session.type
-          ? sessionConstants.SessionTypes.find(st => st.value === session.type)
-              .value
-          : 'REGULAR',
+        audience,
+        sessionType,
       }}
       validationSchema={Yup.object({
         audience: Yup.string().required('Selection required'),
@@ -55,16 +67,7 @@ const Intro = () => {
         };
         createSession({
           variables: { session: newSession, eventId: '1234' },
-        }).then(
-          result => {
-            Router.push('/wi/session/submit/details');
-          },
-          error => {
-            // ToDo: Appropriately log and handle error
-            // eslint-disable-next-line no-console
-            console.log(`Error: ${error}`);
-          },
-        );
+        });
       }}
     >
       {({
