@@ -67,7 +67,6 @@ const createProfile = () => {
   dlog('create profile');
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
-
   const { user, loading } = useFetchUser();
 
   useEffect(() => {
@@ -142,6 +141,9 @@ const createProfile = () => {
         <Formik
           initialValues={{
             email: user.session.email,
+            acceptedCodeOfConduct: false,
+            acceptedTermsOfService: false,
+            isOver13: false,
           }}
           validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -221,6 +223,7 @@ const createProfile = () => {
                   setFieldTouched={setFieldTouched}
                   values={values}
                   submitLabel="Next"
+                  user={user}
                 />
               )}
               {currentStep === 3 && (

@@ -81,9 +81,15 @@ export const memberConstants = {
 
   validationRules: {
     createOnly: {
-      acceptedCodeOfConduct: Yup.bool().required('Field must be checked'),
-      acceptedTermsOfService: Yup.bool().required('Field must be checked'),
-      isOver13: Yup.bool().required('Field must be checked'),
+      acceptedCodeOfConduct: Yup.bool().oneOf(
+        [true],
+        'Must agree to the Code of Conduct',
+      ),
+      acceptedTermsOfService: Yup.bool().oneOf(
+        [true],
+        'Must agree to the Terms of Use',
+      ),
+      isOver13: Yup.bool().oneOf([true], 'Must be over 13'),
     },
     contactInfo: {
       city: Yup.string().nullable(),

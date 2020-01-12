@@ -13,6 +13,7 @@ const Image = ({
   showButtons,
   setFieldValue,
   setFieldTouched,
+  user,
 }) => {
   const fileUpload = async uploadFile => {
     const formData = new FormData();
@@ -21,7 +22,7 @@ const Image = ({
     const res = await fetch('https://api.that.tech/profile', {
       method: 'POST',
       headers: {
-        Authorization: '',
+        Authorization: `bearer ${user.session.accessToken}`,
       },
       body: formData,
     });
@@ -44,7 +45,9 @@ const Image = ({
   return (
     <>
       <FormRow>
-        <label htmlFor="profileImage">File upload</label>
+        <label htmlFor="profileImage" style={{ paddingRight: '1.5rem' }}>
+          File upload
+        </label>
         <input
           id="profileImage"
           name="profileImage"
