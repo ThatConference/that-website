@@ -51,6 +51,7 @@ export const useFetchUser = () => {
       }
     });
 
+    // eslint-disable-next-line consistent-return
     return () => {
       isMounted = false;
     };

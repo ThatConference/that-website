@@ -6,9 +6,12 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import debug from 'debug';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 
 import { sessionConstants } from '../../../utilities';
+
+const dlog = debug('that:website:member');
 
 const Subheading = styled.p`
   margin-top: 0;
@@ -189,7 +192,7 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
     );
   };
 
-  if (loading) {
+  if (loading || loadingUser) {
     return <LoadingIndicator />;
   }
 

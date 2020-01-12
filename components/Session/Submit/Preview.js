@@ -124,7 +124,7 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const Preview = ({ session: stateSession, setSession, setStepNumber }) => {
+const Preview = ({ session: stateSession }) => {
   const router = useRouter();
 
   const [updateSession] = useMutation(UPDATE_SESSION, {

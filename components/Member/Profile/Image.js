@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import Imgix from 'react-imgix';
@@ -22,6 +23,7 @@ const Image = ({
   user,
   values,
 }) => {
+  // eslint-disable-next-line consistent-return
   const fileUpload = async uploadFile => {
     const formData = new FormData();
     formData.append('file', uploadFile);

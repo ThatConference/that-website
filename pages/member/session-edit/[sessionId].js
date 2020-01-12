@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
+import _ from 'lodash';
+
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Header from '../../../components/Member/SessionEdit/Header';

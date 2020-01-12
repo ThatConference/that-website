@@ -9,6 +9,7 @@ const dlog = debug('that:api:me');
 const ME_QUERY = `{"query": "query getMe { members { me { id acceptedCommitments firstName email profileSlug }}}"}`;
 const apiUrl = process.env.API_GATEWAY || 'https://api.that.tech';
 
+// eslint-disable-next-line consistent-return
 export default async function me(req, res) {
   dlog('api/me called');
 

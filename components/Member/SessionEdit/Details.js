@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import debug from 'debug';
 
 import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
@@ -19,8 +20,8 @@ import {
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
+const dlog = debug('that:website:session');
 const categories = sessionConstants.SessionCategories;
-
 const audiences = sessionConstants.SessionAudiences;
 
 const GET_MY_SESSION = gql`
@@ -81,7 +82,7 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ user, loading: loadingUser, sessionId }) => {
+const DetailForm = ({ loading: loadingUser, sessionId }) => {
   const router = useRouter();
 
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
@@ -99,9 +100,10 @@ const DetailForm = ({ user, loading: loadingUser, sessionId }) => {
     },
   });
 
-  if (loading) {
+  if (loading || loadingUser) {
     return <LoadingIndicator />;
   }
+
   if (sessionError) return null;
 
   const { session } = data.sessions.me;
