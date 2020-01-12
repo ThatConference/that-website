@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import debug from 'debug';
-import { useFetchUser } from '../../hooks/user';
 import ContentSection from '../../components/shared/ContentSection';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
+import Image from '../../components/Member/Profile/Image';
 import Bio from '../../components/Member/Profile/Bio';
-
-import { below, RegularExpressions } from '../../utilities';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { below, memberConstants } from '../../utilities';
 
 import {
-  FormRule,
   FormCancel,
+  FormRule,
   FormSubmit,
 } from '../../components/shared/FormLayout';
 
@@ -25,34 +25,17 @@ const _ = require('lodash');
 
 const dlog = debug('that:member:edit');
 
-// commented out some links until we get icons
-const linkTypes = {
-  // devTo: "DEV_TO",
-  // dribbble: "DRIBBBLE",
-  facebook: 'FACEBOOK',
-  github: 'GITHUB',
-  instagram: 'INSTAGRAM',
-  linkedin: 'LINKEDIN',
-  medium: 'MEDIUM',
-  // stackOverflow: "STACK_OVERFLOW",
-  // tictok: "TICTOK",
-  // twitch: "TWITCH",
-  twitter: 'TWITTER',
-  website: 'WEBSITE',
-  youtube: 'YOUTUBE',
-};
-
 const GET_MEMBER = gql`
   query getMember {
     members {
       me {
+        id
         bio
         city
         company
         country
         email
         firstName
-        id
         interests
         isOver13
         jobTitle
@@ -108,21 +91,27 @@ const Title = styled.h1`
   `};
 `;
 
-const editProfile = () => {
-  const { user, loading: loadingUser } = useFetchUser();
+const { linkTypes } = memberConstants;
 
-  if (!loadingUser && _.isEmpty(user)) {
-    Router.push('/api/login?redirect-url=/member/edit');
-  }
+const editProfile = ({ user, loading: loadingUser }) => {
+  const router = useRouter();
 
-  if (!loadingUser && !user.profileComplete) {
-    Router.push('/member/create');
-  }
+  useEffect(() => {
+    if (!loadingUser && _.isEmpty(user)) {
+      router.push('/api/login?redirect-url=/member/edit');
+    }
+
+    if (!loadingUser && !user.profileComplete) {
+      router.push('/member/create');
+    }
+  });
 
   const { loading, error, data } = useQuery(GET_MEMBER);
 
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
+  if (loading) return null;
+  if (error) {
+    throw new Error(error.message);
+  }
 
   const {
     bio,
@@ -135,7 +124,7 @@ const editProfile = () => {
     jobTitle,
     lastName,
     mobilePhone,
-    // profileImage,
+    profileImage,
     profileLinks,
     profileSlug,
     state,
@@ -143,10 +132,11 @@ const editProfile = () => {
 
   const [updateMember] = useMutation(UPDATE_MEMBER, {
     onCompleted: () => {
-      Router.push(`/member/${profileSlug}`);
+      router.push(`/member/${profileSlug}`);
     },
     onError: updateError => {
       dlog('Error updating member', updateError);
+      throw new Error(updateError);
     },
   });
 
@@ -165,10 +155,13 @@ const editProfile = () => {
   };
 
   const formCancel = () => {
-    Router.push(`/member/${profileSlug}`);
+    router.push(`/member/${profileSlug}`);
   };
 
-  console.log('profileLinkInitialValues', profileLinkInitialValues());
+  if (loadingUser) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <div>
       <Head>
@@ -190,35 +183,21 @@ const editProfile = () => {
             jobTitle,
             lastName,
             mobilePhone,
+            profileImage,
+            profileSlug,
             state,
             ...profileLinkInitialValues(),
           }}
-          validationSchema={Yup.object({
-            firstName: Yup.string()
-              .min(3, 'Must be at least 3 characters')
-              .required('Required'),
-            lastName: Yup.string()
-              .min(3, 'Must be at least 3 characters')
-              .required('Required'),
-            email: Yup.string()
-              .email('Invalid email address')
-              .required('Required'),
-            mobilePhone: Yup.string()
-              .matches(
-                RegularExpressions.phoneRegExp,
-                'Phone number is not valid',
-              )
-              .nullable(),
-            city: Yup.string().nullable(),
-            state: Yup.string().nullable(),
-            country: Yup.string().nullable(),
-            company: Yup.string().nullable(),
-            jobTitle: Yup.string().nullable(),
-          })}
+          validationSchema={Yup.object(
+            { ...memberConstants.validationRules.contactInfo },
+            { ...memberConstants.validationRules.onlinePresence },
+            { ...memberConstants.validationRules.image },
+            { ...memberConstants.validationRules.bio },
+          )}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              const valuesToSave = values;
-              console.log('submitted and valuesToSave 1111', valuesToSave);
+              // don't include non-editable fields only being displayed
+              const valuesToSave = _.omit(values, ['profileSlug']);
               const profileLinksToSave = Object.keys(linkTypes)
                 .filter(key =>
                   valuesToSave[key] ? valuesToSave[key].length > 0 : false,
@@ -239,7 +218,6 @@ const editProfile = () => {
                 ...valuesToSave,
                 profileLinks: profileLinksToSave,
               };
-              console.log('submitted and valuesToSave', valuesToSave);
 
               updateMember({ variables: { profile } });
               setSubmitting(false);
@@ -259,11 +237,21 @@ const editProfile = () => {
                 getFieldProps={getFieldProps}
                 errors={errors}
                 touched={touched}
+                values={values}
+                editMode
               />
               <OnlinePresence
                 getFieldProps={getFieldProps}
                 errors={errors}
                 touched={touched}
+              />
+              <Image
+                getFieldProps={getFieldProps}
+                errors={errors}
+                touched={touched}
+                setFieldValue={setFieldValue}
+                setFieldTouched={setFieldTouched}
+                values={values}
               />
               <Bio
                 getFieldProps={getFieldProps}

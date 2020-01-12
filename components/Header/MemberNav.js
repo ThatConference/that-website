@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useFetchUser } from '../../hooks/user';
 import NavItem from '../shared/NavItem';
 import { below } from '../../utilities';
 import LoadingIndicator from '../shared/LoadingIndicator';
@@ -25,9 +24,8 @@ const LoadingDiv = styled.div`
   text-align: right;
 `;
 
-const MemberNav = ({ className, onClick }) => {
+const MemberNav = ({ className, onClick, user, loading }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const { user, loading } = useFetchUser();
 
   const menuClick = e => {
     e.preventDefault();

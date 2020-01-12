@@ -33,10 +33,8 @@ const Bio = ({
           errors={errors}
           touched={touched}
           label="Bio"
-          validate={Yup.string().min(10, 'Must be at least 10 characters')}
         />
       </FormRow>
-      <FormRule />
       {showButtons && (
         <>
           <FormCancel label="Back" onClick={formCancel} />
