@@ -7,7 +7,6 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
-import { useFetchUser } from '../../hooks/user';
 import ContentSection from '../../components/shared/ContentSection';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
@@ -94,9 +93,8 @@ const Title = styled.h1`
 
 const { linkTypes } = memberConstants;
 
-const editProfile = () => {
+const editProfile = ({ user, loading: loadingUser }) => {
   const router = useRouter();
-  const { user, loading: loadingUser } = useFetchUser();
 
   useEffect(() => {
     if (!loadingUser && _.isEmpty(user)) {

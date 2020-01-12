@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import { below } from '../../utilities';
 import * as gtag from '../../lib/gtag';
-import { useFetchUser } from '../../hooks/user';
 
 const _ = require('lodash');
 
@@ -38,9 +37,7 @@ const StyledLink = styled.a`
   }
 `;
 
-const MessageBar = ({ className }) => {
-  const { user, loading } = useFetchUser();
-
+const MessageBar = ({ className, user, loading }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,

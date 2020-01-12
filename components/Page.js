@@ -6,6 +6,8 @@ import baseTheme from '../styles/baseTheme';
 import Meta from './Meta';
 import Header from './Header';
 import Footer from './Footer';
+import User from './User';
+import { useFetchUser } from '../hooks/user';
 
 const StyledPage = styled.div`
   background: ${props => props.theme.colors.backgroundColor};
@@ -27,6 +29,8 @@ const InnerPage = styled.div`
 `;
 
 const Page = ({ children }) => {
+  const { user, loading } = useFetchUser();
+
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -34,9 +38,13 @@ const Page = ({ children }) => {
         <StyledPage>
           <Meta />
           <CorePage>
-            <Header />
-            <InnerPage>{children}</InnerPage>
-            <Footer modifiers="site" />
+            <User user={user} loading={loading}>
+              <Header user={user} loading={loading} />
+              <InnerPage>
+                {React.cloneElement(children, { user, loading })}
+              </InnerPage>
+              <Footer modifiers="site" />
+            </User>
           </CorePage>
         </StyledPage>
       </>

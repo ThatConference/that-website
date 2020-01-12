@@ -7,7 +7,6 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
-import { useFetchUser } from '../../hooks/user';
 import { below, memberConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
@@ -63,11 +62,10 @@ const CREATE_MEMBER = gql`
   }
 `;
 
-const createProfile = () => {
+const createProfile = ({ user, loading }) => {
   dlog('create profile');
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
-  const { user, loading } = useFetchUser();
 
   useEffect(() => {
     if (!loading && _.isEmpty(user)) {
