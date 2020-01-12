@@ -76,6 +76,15 @@ const MemberNav = ({ className, onClick, user, loading }) => {
                 />
               )}
             </li>
+            {user.profileComplete && (
+              <li>
+                <NavItem
+                  title="My Sessions"
+                  href="member/my-sessions"
+                  onClick={() => setUserMenuOpen(false)}
+                />
+              </li>
+            )}
             <li>
               <NavItem
                 title="Log Out"
