@@ -71,7 +71,7 @@ const ContactInfoForm = ({
     }
   });
 
-  if (getProfileSlugErrors()) {
+  if (!editMode && getProfileSlugErrors()) {
     // eslint-disable-next-line no-param-reassign
     errors.profileSlug = getProfileSlugErrors();
   }
@@ -102,7 +102,7 @@ const ContactInfoForm = ({
           disabled={editMode}
           fieldHasValidation
           validate={value => {
-            if (value) {
+            if (!editMode && value) {
               validateSlug({
                 variables: { slug: value },
               });

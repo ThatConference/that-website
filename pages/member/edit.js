@@ -99,7 +99,7 @@ const editProfile = () => {
   const { user, loading: loadingUser } = useFetchUser();
 
   useEffect(() => {
-    if (_.isEmpty(user)) {
+    if (!loadingUser && _.isEmpty(user)) {
       router.push('/api/login?redirect-url=/member/edit');
     }
 
