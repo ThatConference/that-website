@@ -132,7 +132,6 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
     },
   });
 
-  if (loading) return null;
   if (error) return null;
 
   const sessions = data.sessions.me.all;
