@@ -27,8 +27,8 @@ const SampleForm = () => {
   return (
     <Formik
       initialValues={{
-        fullName: 'test',
-        emailAddress: 'test@test.com',
+        fullName: '',
+        emailAddress: '',
         mobilePhone: '',
         year: '',
         years: [],
@@ -107,6 +107,7 @@ const SampleForm = () => {
                 errors={errors}
                 touched={touched}
                 label="Full Name"
+                required
               />
             </FormRow>
             <FormRow>
@@ -175,6 +176,7 @@ const SampleForm = () => {
                 errors={errors}
                 touched={touched}
                 label="Bio"
+                required
               />
             </FormRow>
             <FormRow>
@@ -189,6 +191,7 @@ const SampleForm = () => {
                 touched={touched}
                 label="Supporting Links/Related Resources"
                 values={values}
+                required
               />
             </FormRow>
             <FormRow>
@@ -203,6 +206,7 @@ const SampleForm = () => {
                 touched={touched}
                 label="Key takeaways"
                 values={values}
+                required
               />
             </FormRow>
             <FormRow>
@@ -215,6 +219,7 @@ const SampleForm = () => {
                   label="Agree to <a href=''>Code of Conduct</a>"
                   values={values}
                   inputType="checkbox"
+                  required
                 />
               </div>
               <div>
@@ -249,6 +254,7 @@ const SampleForm = () => {
                 touched={touched.checkboxGroup}
                 onChange={setFieldValue}
                 onBlur={setFieldTouched}
+                required
               >
                 <Field
                   component={CheckboxGroupItem}
@@ -277,6 +283,7 @@ const SampleForm = () => {
                 value={values.radioGroup}
                 error={errors.radioGroup}
                 touched={touched.radioGroup}
+                required
               >
                 <Field
                   component={RadioButtonGroupItem}

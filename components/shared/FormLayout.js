@@ -52,6 +52,10 @@ export const FormInputValidationMessage = styled.div`
   color: ${({ theme }) => theme.colors.danger};
 `;
 
+export const FormInputRequiredIndicator = styled.span`
+  color: ${({ theme }) => theme.colors.danger};
+`;
+
 export const FormSubmit = ({ label, validateForm }) => {
   return (
     <StyledFormSubmit

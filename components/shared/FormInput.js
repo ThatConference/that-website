@@ -6,7 +6,11 @@ import nextId from 'react-id-generator';
 
 import { Field } from 'formik';
 import baseTheme from '../../styles/baseTheme';
-import { FormLabel, FormInputValidationMessage } from './FormLayout';
+import {
+  FormLabel,
+  FormInputValidationMessage,
+  FormInputRequiredIndicator,
+} from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
 import ImageUpload from './ImageUpload';
 import LinksInput from './LinksInput';
@@ -93,6 +97,7 @@ const FormInput = props => {
     touched,
     validate,
     values,
+    required,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
@@ -106,6 +111,17 @@ const FormInput = props => {
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
   const parsedLabel = parse(label);
+
+  const getLabel = () => {
+    return (
+      <>
+        {parsedLabel}
+        {required && (
+          <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
+        )}
+      </>
+    );
+  };
 
   const getStyles = () => {
     const validClass = fieldInvalid ? 'invalid' : '';
@@ -126,12 +142,12 @@ const FormInput = props => {
             className={getStyles()}
             {...fieldProps}
           />
-          {parsedLabel}
+          {getLabel()}
         </>
       )}
       {isTextbox && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <FormTextInput
             name={fieldName}
             id={fieldName}
@@ -146,7 +162,7 @@ const FormInput = props => {
       )}
       {isTextarea && (
         <>
-          {parse(label)}
+          {getLabel()}
           <FormTextArea
             name={fieldName}
             id={fieldName}
@@ -159,7 +175,7 @@ const FormInput = props => {
       )}
       {isSelect && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <Select
             name={fieldName}
             id={fieldName}
@@ -177,7 +193,7 @@ const FormInput = props => {
       )}
       {isMarkdown && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <MarkdownEditor
             field={fieldName}
             fieldHasValidation={fieldHasValidation}
@@ -196,13 +212,13 @@ const FormInput = props => {
       )}
       {isImage && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <ImageUpload field={fieldName} {...fieldProps} />
         </>
       )}
       {isLinks && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <LinksInput
             field={fieldName}
             setFieldTouched={setFieldTouched}
@@ -218,7 +234,7 @@ const FormInput = props => {
       )}
       {isStrings && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <StringsInput
             field={fieldName}
             setFieldTouched={setFieldTouched}
