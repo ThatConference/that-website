@@ -92,7 +92,7 @@ const MarkdownEditor = ({
             id={field}
             className={`${className} ${invalid ? 'invalid' : ''}`}
           />
-          <MarkdownNote>*Markdown supported</MarkdownNote>
+          <MarkdownNote>** Markdown supported</MarkdownNote>
         </>
       )}
       {displayPreview && <Preview>{parse(converter.render(markdown))}</Preview>}
