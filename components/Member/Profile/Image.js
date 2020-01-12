@@ -1,11 +1,17 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
+import Imgix from 'react-imgix';
+import styled from 'styled-components';
 import {
   FormRow,
   FormRule,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
+
+const StyledImgix = styled(Imgix)`
+  margin-left: 2rem;
+`;
 
 const Image = ({
   formCancel,
@@ -14,6 +20,7 @@ const Image = ({
   setFieldValue,
   setFieldTouched,
   user,
+  values,
 }) => {
   const fileUpload = async uploadFile => {
     const formData = new FormData();
@@ -44,7 +51,7 @@ const Image = ({
 
   return (
     <>
-      <FormRow>
+      <FormRow style={{ display: 'flex', alignItems: 'center' }}>
         <label htmlFor="profileImage" style={{ paddingRight: '1.5rem' }}>
           File upload
         </label>
@@ -54,9 +61,18 @@ const Image = ({
           type="file"
           onChange={handleUpload}
           className="form-control"
+          style={{ maxHeight: '4.5rem' }}
         />
-        {/* <Thumb file={values.file} /> */}
+        {values.profileImage && (
+          <StyledImgix
+            src={values.profileImage}
+            width={80}
+            height={80}
+            imgixParams={{ fit: 'facearea', facepad: 4 }}
+          />
+        )}
       </FormRow>
+
       {showButtons && (
         <>
           <FormRule />

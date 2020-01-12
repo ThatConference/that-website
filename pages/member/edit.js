@@ -158,7 +158,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
     router.push(`/member/${profileSlug}`);
   };
 
-  if (loadingUser) {
+  if (loading) {
     return <LoadingIndicator />;
   }
 
