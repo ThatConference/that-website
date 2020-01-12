@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import Select from 'react-select';
 import nextId from 'react-id-generator';
 
+import { Field } from 'formik';
 import baseTheme from '../../styles/baseTheme';
 import {
   FormLabel,
@@ -17,13 +18,13 @@ import StringsInput from './StringsInput';
 
 const inputTypes = {
   checkbox: 'checkbox',
+  file: 'file',
+  links: 'links',
+  markdown: 'markdown',
+  select: 'select',
+  strings: 'strings',
   text: 'text',
   textarea: 'textarea',
-  select: 'select',
-  markdown: 'markdown',
-  imageupload: 'imageupload',
-  links: 'links',
-  strings: 'strings',
 };
 
 const sharedTextInputStyles = css`
@@ -52,7 +53,7 @@ const getSelectStyles = () => {
   };
 };
 
-export const FormTextInput = styled.input`
+export const FormTextInput = styled(Field)`
   ${sharedTextInputStyles}
 `;
 
@@ -77,37 +78,38 @@ export const FormInputHelpText = styled.p`
 
 const FormInput = props => {
   const {
-    fieldName,
+    cols,
+    disabled,
+    errors,
     fieldHasValidation,
-    inputType,
+    fieldName,
     getFieldProps,
-    touched,
+    helpText,
+    inputType,
+    isMulti,
+    label,
+    placeholder,
+    rows,
+    selectOptions,
+    setFieldError,
     setFieldTouched,
     setFieldValue,
-    setFieldError,
-    errors,
-    label,
-    rows,
-    cols,
-    helpText,
-    selectOptions,
+    touched,
+    validate,
     values,
-    isMulti,
-    placeholder,
     required,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
-  const isTextbox = !inputType || inputType === inputTypes.text;
-  const isTextarea = inputType && inputType === inputTypes.textarea;
-  const isMarkdown = inputType && inputType === inputTypes.markdown;
-  const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
-  const isSelect = inputType && inputType === inputTypes.select;
+  const isImage = inputType && inputType === inputTypes.imageupload;
   const isLinks = inputType && inputType === inputTypes.links;
+  const isMarkdown = inputType && inputType === inputTypes.markdown;
+  const isSelect = inputType && inputType === inputTypes.select;
   const isStrings = inputType && inputType === inputTypes.strings;
+  const isTextarea = inputType && inputType === inputTypes.textarea;
+  const isTextbox = !inputType || inputType === inputTypes.text;
 
   const fieldInvalid = touched[fieldName] && errors[fieldName];
-  const styleClass = fieldInvalid ? 'invalid' : '';
   const parsedLabel = parse(label);
 
   const getLabel = () => {
@@ -121,6 +123,13 @@ const FormInput = props => {
     );
   };
 
+  const getStyles = () => {
+    const validClass = fieldInvalid ? 'invalid' : '';
+    const disabledClass = disabled ? 'disabled' : '';
+
+    return `${validClass} ${disabledClass}`;
+  };
+
   return (
     <FormLabel htmlFor={fieldName}>
       {isCheckbox && (
@@ -130,7 +139,7 @@ const FormInput = props => {
             id={fieldName}
             type="checkbox"
             checked={values[fieldName]}
-            className={styleClass}
+            className={getStyles()}
             {...fieldProps}
           />
           {getLabel()}
@@ -143,9 +152,11 @@ const FormInput = props => {
             name={fieldName}
             id={fieldName}
             type="text"
-            className={styleClass}
+            className={getStyles()}
+            disabled={disabled}
             placeholder={placeholder}
             {...fieldProps}
+            validate={validate}
           />
         </>
       )}
@@ -157,7 +168,7 @@ const FormInput = props => {
             id={fieldName}
             rows={rows || '5'}
             cols={cols || null}
-            className={styleClass}
+            className={getStyles()}
             {...fieldProps}
           />
         </>
@@ -174,7 +185,7 @@ const FormInput = props => {
             onChange={value => setFieldValue(fieldName, value)}
             isMulti={isMulti}
             placeholder=""
-            className={`react-select-container ${styleClass}`}
+            className={`react-select-container ${getStyles()}`}
             styles={getSelectStyles()}
             {...fieldProps}
           />
@@ -192,7 +203,7 @@ const FormInput = props => {
             errors={errors}
             value={values[fieldName]}
             preview=""
-            className={styleClass}
+            className={getStyles()}
             rows={rows}
             cols={cols}
             {...fieldProps}
@@ -213,7 +224,7 @@ const FormInput = props => {
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
-            className={styleClass}
+            className={getStyles()}
             values={values}
             errors={errors}
             touched={touched}
@@ -229,7 +240,7 @@ const FormInput = props => {
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
-            className={styleClass}
+            className={getStyles()}
             values={values}
             errors={errors}
             touched={touched}

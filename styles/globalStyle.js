@@ -150,6 +150,10 @@ const GlobalStyle = createGlobalStyle`
           color: ${({ theme }) => theme.colors.mediumGray};
         }
 
+        &:disabled {
+          background-color: ${({ theme }) => theme.colors.mediumLightGray};
+        }
+
         &:focus {
           outline: ${({ theme }) => theme.colors.thatBlue} auto 1px;
         }

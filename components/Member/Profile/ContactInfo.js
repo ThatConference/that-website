@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { gql } from 'apollo-boost';
+import { useLazyQuery } from '@apollo/react-hooks';
 import FormInput from '../../shared/FormInput';
 import { FormRow } from '../../shared/FormLayout';
+// import IconText from '../../shared/IconText';
+
+const GET_PROFILE_SLUG_VALID = gql`
+  query isProfileSlugTaken($slug: String!) {
+    members {
+      isProfileSlugTaken(slug: $slug)
+    }
+  }
+`;
 
 const FlexFormRow = styled(FormRow)`
   display: flex;
@@ -16,7 +27,55 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
-const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
+// const ValidIcon = styled(IconText)`
+//   fill: green;
+// `;
+
+// const InvalidIcon = styled(IconText)`
+//   fill: red;
+// `;
+
+// const ProfileSlugValid = styled.div`
+//   display: flex;
+//   align-items: center;
+// `;
+
+const ContactInfoForm = ({
+  editMode,
+  errors,
+  getFieldProps,
+  touched,
+  values,
+}) => {
+  const [validProfileSlug, setValidProfileSlug] = useState(false);
+  const [validateSlug, { loading, data }] = useLazyQuery(
+    GET_PROFILE_SLUG_VALID,
+  );
+
+  const getProfileSlugErrors = () => {
+    if (touched.profileSlug) {
+      if (!values.profileSlug) {
+        return 'Required';
+      }
+
+      if (!validProfileSlug) {
+        return 'Already Taken';
+      }
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    if (!loading && data && data.members) {
+      setValidProfileSlug(!data.members.isProfileSlugTaken);
+    }
+  });
+
+  if (!editMode && getProfileSlugErrors()) {
+    // eslint-disable-next-line no-param-reassign
+    errors.profileSlug = getProfileSlugErrors();
+  }
+
   return (
     <>
       <FlexFormRow>
@@ -40,7 +99,40 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           errors={errors}
           touched={touched}
           label="Profile Slug"
+          disabled={editMode}
+          fieldHasValidation
+          validate={value => {
+            if (!editMode && value) {
+              validateSlug({
+                variables: { slug: value },
+              });
+            }
+          }}
         />
+        {/* <ProfileSlugValid>
+          {!validProfileSlug && (
+            <InvalidIcon
+              icon="error"
+              height="20"
+              width="20"
+              viewBoxHeight="15"
+              viewBoxWidth="15"
+            >
+              Profile slug is already taken
+            </InvalidIcon>
+          )}
+          {validProfileSlug && (
+            <ValidIcon
+              icon="check"
+              height="20"
+              width="20"
+              viewBoxHeight="15"
+              viewBoxWidth="15"
+            >
+              Available
+            </ValidIcon>
+          )}
+        </ProfileSlugValid> */}
       </FlexFormRow>
       <FormRow>
         <FormInput
@@ -49,6 +141,7 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           errors={errors}
           touched={touched}
           label="Email Address"
+          placeholder="hello@youareawesome.com"
         />
       </FormRow>
       <FormRow>
@@ -102,37 +195,37 @@ const ContactInfoForm = ({ getFieldProps, errors, touched, values }) => {
           label="Title"
         />
       </FormRow>
-      <FlexFormRow>
-        <FormInput
-          fieldName="acceptedCodeOfConduct"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Agree to the <a href='code-of-conduct'>Code of Conduct</a>"
-          inputType="checkbox"
-          values={values}
-        />
-        <FormInput
-          fieldName="isOver13"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Are you over 13 years old?"
-          inputType="checkbox"
-          values={values}
-        />
-      </FlexFormRow>
-      <FlexFormRow>
-        <FormInput
-          fieldName="acceptedTermsOfService"
-          getFieldProps={getFieldProps}
-          errors={errors}
-          touched={touched}
-          label="Agree to <a href='terms-of-service'>THAT Terms of Service</a>?"
-          inputType="checkbox"
-          values={values}
-        />
-      </FlexFormRow>
+      {!editMode && (
+        <FlexFormRow>
+          <FormInput
+            fieldName="acceptedCodeOfConduct"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Agree to the <a href='/wi/code-of-conduct' target='_blank'>Code of Conduct</a>"
+            inputType="checkbox"
+            values={values}
+          />
+          <FormInput
+            fieldName="isOver13"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Are you over 13 years old?"
+            inputType="checkbox"
+            values={values}
+          />
+          <FormInput
+            fieldName="acceptedTermsOfService"
+            getFieldProps={getFieldProps}
+            errors={errors}
+            touched={touched}
+            label="Agree to <a href='/wi/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
+            inputType="checkbox"
+            values={values}
+          />
+        </FlexFormRow>
+      )}
     </>
   );
 };
