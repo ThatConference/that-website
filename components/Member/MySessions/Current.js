@@ -135,10 +135,10 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;
 
-  const editClick = (e, id) => {
-    e.preventDefault();
-    router.push(`/member/session-edit/${id}`);
-  };
+  // const editClick = (e, id) => {
+  //   e.preventDefault();
+  //   router.push(`/member/session-edit/${id}`);
+  // };
 
   const widthdrawClick = (e, id) => {
     e.preventDefault();
@@ -157,29 +157,27 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
   const yesCurrentSessions = () => {
     return (
       <SessionsGrid columns={12}>
-        {sessions.map(s => {
+        {sessions.map(session => {
           return (
-            <React.Fragment key={s.id}>
+            <React.Fragment key={session.id}>
               <SessionTitle className="cell" width={8}>
-                {s.title}
+                {session.title}
               </SessionTitle>
               <SessionStatus center middle className="cell" width={2}>
-                <div className={s.status}>
+                <div className={session.status}>
                   {
                     sessionConstants.SessionStatuses.find(
-                      ss => ss.value === s.status,
+                      sessionStatus => sessionStatus.value === session.status,
                     ).label
                   }
                 </div>
               </SessionStatus>
               <Cell center middle className="cell" width={1}>
-                <a href="" onClick={e => editClick(e, s.id)}>
-                  Edit
-                </a>
+                <a href={`/member/session-edit/${session.id}`}>Edit</a>
               </Cell>
               <Cell center middle className="cell" width={1}>
-                {s.status !== 'WITHDREW' && (
-                  <a href="" onClick={e => widthdrawClick(e, s.id)}>
+                {session.status !== 'WITHDREW' && (
+                  <a href="" onClick={e => widthdrawClick(e, session.id)}>
                     Withdraw
                   </a>
                 )}

@@ -69,7 +69,7 @@ const MySessions = ({ user, loading }) => {
           <Cell width={1} />
           <Cell width={4}>
             <Header />
-            <CurrentSessions />
+            <CurrentSessions user={user} loading={loading} />
           </Cell>
           <Cell width={1} />
         </MainGrid>

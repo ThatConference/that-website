@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
-
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-
-import Header from '../../components/Member/SessionEdit/Header';
-import Details from '../../components/Member/SessionEdit/Details';
-
-import { useFetchUser } from '../../lib/user';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import Header from '../../../components/Member/SessionEdit/Header';
+import Details from '../../../components/Member/SessionEdit/Details';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -45,43 +42,44 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const SessionEdit = ({ user, loading, sessionId }) => {
-  let loading = true;
+const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
+  const router = useRouter();
 
-  if (!user) {
-    const { cookieUser, loading: userLoading } = useFetchUser();
-    loading = userLoading;
-    if (!userLoading) {
-      dispatch({ type: 'USER', payload: cookieUser });
-      user = cookieUser;
+  useEffect(() => {
+    if (!loadingUser && _.isEmpty(user)) {
+      router.push('/api/login?redirect-url=/wi/session/submit');
     }
-  }
 
-  React.useEffect(() => {
-    if (!loading && !user) {
-      Router.push('/api/login?redirect-url=/wi/session/submit');
+    if (!loadingUser && !user.profileComplete) {
+      router.push('/member/create');
+    }
+
+    if (!sessionId) {
+      router.push('/member/my-sessions');
     }
   });
-  if (user) {
-    return (
-      <div>
-        <Head>
-          <title key="title">Edit Session - THAT Conference</title>
-        </Head>
-        <MainContent>
-          <MainGrid columns={6}>
-            <Cell width={1} />
-            <Cell width={4}>
-              <Header />
-              <Details />
-            </Cell>
-            <Cell width={1} />
-          </MainGrid>
-        </MainContent>
-      </div>
-    );
+
+  if (loadingUser) {
+    return <LoadingIndicator />;
   }
-  return null;
+
+  return (
+    <div>
+      <Head>
+        <title key="title">Edit Session - THAT Conference</title>
+      </Head>
+      <MainContent>
+        <MainGrid columns={6}>
+          <Cell width={1} />
+          <Cell width={4}>
+            <Header />
+            <Details user={user} loading={loadingUser} sessionId={sessionId} />
+          </Cell>
+          <Cell width={1} />
+        </MainGrid>
+      </MainContent>
+    </div>
+  );
 };
 
 SessionEdit.getInitialProps = async context => {

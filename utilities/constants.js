@@ -52,7 +52,7 @@ export const sessionConstants = {
 
   SessionStatuses: [
     { value: 'DRAFT', label: 'Draft' },
-    { value: 'SUBMITTED', label: 'Submiteed' },
+    { value: 'SUBMITTED', label: 'Submitted' },
     { value: 'ACCEPTED', label: 'Accepted' },
     { value: 'DENIED', label: 'Declined' },
     { value: 'WITHDREW', label: 'Withdrew' },
