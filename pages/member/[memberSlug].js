@@ -11,7 +11,6 @@ import { below, memberConstants, socialConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
 import NavItem from '../../components/shared/NavItem';
-import { useFetchUser } from '../../hooks/user';
 import SocialLinks from '../../components/shared/SocialLinks';
 
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
@@ -82,9 +81,7 @@ const SectionTitle = styled.p`
   margin-top: 0;
 `;
 
-const member = ({ slug }) => {
-  const { user, loading: loadingUser } = useFetchUser();
-
+const member = ({ slug, user, loading: loadingUser }) => {
   if (!loadingUser && _.isEmpty(user)) {
     return <Error statusCode="404" />;
   }

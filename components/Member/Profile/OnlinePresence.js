@@ -25,7 +25,6 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="Website"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
@@ -35,7 +34,6 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="Twitter URL"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
@@ -45,7 +43,6 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="GitHub URL"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
@@ -55,7 +52,6 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="Facebook URL"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
@@ -65,7 +61,6 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="Instagram URL"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
@@ -75,17 +70,15 @@ const OnlinePresenceForm = ({
           errors={errors}
           touched={touched}
           label="LinkedIn URL"
-          validate={Yup.string().url('Invalid URL')}
         />
       </FormRow>
       <FormRow>
         <FormInput
-          fieldName="slack"
+          fieldName="thatSlackUsername"
           getFieldProps={getFieldProps}
           errors={errors}
           touched={touched}
-          label="Slack Member ID"
-          validate={Yup.string().url('Invalid URL')}
+          label="THAT Slack Username"
         />
       </FormRow>
       <FormRule />
