@@ -65,17 +65,17 @@ const Header = () => {
     <Main>
       <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
-          <Callout>Submissions Starting January 6th, 2020</Callout>
+          <Callout>Submissions Starting January 13th, 2020</Callout>
           <Title>Call for Counselors</Title>
         </Cell>
         <TextCell>
           <p className="large-body-copy">
-            Are you ready to speak at the biggest tech stage in the midwest? We
-            are searching for hour-long talks, half and full-day workshops, and
-            keynotes that bring value to our audience. We want talks and
-            workshops to appeal to developers, designers, bloggers, business
-            owners, site builders, translators, community organizers, and
-            everything in between.
+            Are you ready to speak at the biggest tech conference in the US
+            Midwest? We are searching for hour-long sessions, half and full-day
+            workshops, and keynotes that bring value to our audience. The
+            sessions and workshops can appeal to developers, designers,
+            bloggers, business owners, site builders, translators, community
+            organizers, and everything in-between.
           </p>
           {/* <BecomeACounselor
             href={`counselor-start?feature=${featureKeyword}`}
