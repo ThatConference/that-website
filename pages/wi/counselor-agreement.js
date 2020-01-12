@@ -7,11 +7,11 @@ import _ from 'lodash';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
 import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
 import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -46,42 +46,48 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = ({ user, loading }) => {
+const CounselorAgreement = ({ user, loading: loadingUser }) => {
   const router = useRouter();
+
   useEffect(() => {
-    if (!loading && _.isEmpty(user)) {
-      router.push(`/api/login?redirect-url=/wi/counselor-agreement`);
+    if (!loadingUser) {
+      if (_.isEmpty(user)) {
+        router.push('/api/login?redirect-url=/member/create');
+      }
+
+      if (!user.profileComplete) {
+        router.push('/member/create');
+      }
+
+      if (user.acceptedCommitments) {
+        router.push('/wi/session/create');
+      }
     }
   });
-  if (!loading && !_.isEmpty(user)) {
-    if (!user.profileComplete) {
-      router.push(`/member/create`);
-    }
-    if (user.acceptedCommitments) {
-      router.push(`/wi/session/submit`);
-    }
 
-    return (
-      <div>
-        <Head>
-          <title key="title">Counselor Agreement - THAT Conference</title>
-        </Head>
-        <MainContent>
-          <MainGrid columns={6}>
-            <Cell width={1} />
-            <Cell width={4}>
-              <Header />
-              <Commitments />
-              <WhatsProvided />
-              <Acknowledgment acceptedCommitments={false} />
-            </Cell>
-            <Cell width={1} />
-          </MainGrid>
-        </MainContent>
-      </div>
-    );
+  if (loadingUser) {
+    return <LoadingIndicator />;
   }
-  return null;
+
+  return (
+    <div>
+      <Head>
+        <title key="title">Counselor Agreement - THAT Conference</title>
+      </Head>
+      <MainContent>
+        <MainGrid columns={6}>
+          <Cell width={1} />
+          <Cell width={4}>
+            <Header />
+            <Commitments />
+            <WhatsProvided />
+            <Acknowledgment acceptedCommitments={user.acceptedCommitments} />
+          </Cell>
+          <Cell width={1} />
+        </MainGrid>
+      </MainContent>
+    </div>
+  );
 };
 
 export default CounselorAgreement;

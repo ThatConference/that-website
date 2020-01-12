@@ -4,10 +4,9 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import Title from '../shared/Title';
 
-import { above, below } from '../../utilities';
-
-const twoColBp = 'large';
+import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 5rem;
@@ -18,26 +17,6 @@ const MainGrid = styled(Grid)`
 
   ${below.med`
     grid-gap: 0;
-  `};
-`;
-
-const Title = styled.h1`
-  margin: 1.8rem 0 3rem 0;
-
-  ${above[twoColBp]`
-    max-width: 60rem;
-  `};
-
-  ${below[twoColBp]`
-    text-align: center;
-  `};
-
-  ${below.small`
-    font-size: 8rem;
-  `};
-
-  ${below.xsmall`
-    font-size: 7rem;
   `};
 `;
 

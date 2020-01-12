@@ -41,7 +41,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorStart = () => {
+const CounselorStart = ({ user, loading }) => {
   return (
     <div>
       <Head>
@@ -51,7 +51,7 @@ const CounselorStart = () => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <Header />
+            <Header user={user} loading={loading} />
           </Cell>
           <Cell width={1} />
         </MainGrid>
