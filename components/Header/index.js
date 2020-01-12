@@ -121,7 +121,7 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ({ className, currentUser }) => {
+const Header = ({ className }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -144,7 +144,7 @@ const Header = ({ className, currentUser }) => {
 
   return (
     <header className={[className, scrolled()].join(' ')}>
-      <MessageBar currentUser={currentUser} />
+      <MessageBar />
       <HeaderSection>
         <PageHeader>
           <HeaderLogo />
@@ -155,7 +155,6 @@ const Header = ({ className, currentUser }) => {
           <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
-            currentUser={currentUser}
           />
           <div style={{ display: 'flex' }}>
             <ActionButton

@@ -13,7 +13,7 @@ import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
 import Image from '../../components/Member/Profile/Image';
 import Bio from '../../components/Member/Profile/Bio';
-
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import { below, memberConstants } from '../../utilities';
 
 import {
@@ -94,12 +94,12 @@ const Title = styled.h1`
 
 const { linkTypes } = memberConstants;
 
-const editProfile = ({ currentUser }) => {
+const editProfile = () => {
   const router = useRouter();
   const { user, loading: loadingUser } = useFetchUser();
 
   useEffect(() => {
-    if (_.isEmpty(currentUser)) {
+    if (_.isEmpty(user)) {
       router.push('/api/login?redirect-url=/member/edit');
     }
 
@@ -159,6 +159,10 @@ const editProfile = ({ currentUser }) => {
   const formCancel = () => {
     router.push(`/member/${profileSlug}`);
   };
+
+  if (loadingUser) {
+    return <LoadingIndicator />;
+  }
 
   return (
     <div>

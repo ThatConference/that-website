@@ -138,13 +138,16 @@ const member = ({ slug }) => {
       };
     });
 
-    return Object.assign(
-      ...socialLinks.filter(item => {
-        return Object.keys(socialConstants.socialIcons).includes(
-          Object.keys(item)[0],
-        );
-      }),
-    );
+    const filterSocialLinks = socialLinks.filter(item => {
+      return Object.keys(socialConstants.socialIcons).includes(
+        Object.keys(item)[0],
+      );
+    });
+
+    if (filterSocialLinks.length > 0) {
+      return Object.assign(...filterSocialLinks);
+    }
+    return {};
   };
 
   const getProfileLinkFor = linkType => {
