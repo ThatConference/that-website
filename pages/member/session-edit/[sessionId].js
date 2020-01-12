@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
+
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 
 import Header from '../../components/Member/SessionEdit/Header';
 import Details from '../../components/Member/SessionEdit/Details';
+
+import { useFetchUser } from '../../lib/user';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -43,20 +45,24 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const SessionEdit = ({ user, loading }) => {
-  const router = useRouter();
-  useEffect(() => {
-    if (!loading && _.isEmpty(user)) {
-      router.push(`/api/login?redirect-url=/wi/session/submit`);
+const SessionEdit = ({ user, loading, sessionId }) => {
+  let loading = true;
+
+  if (!user) {
+    const { cookieUser, loading: userLoading } = useFetchUser();
+    loading = userLoading;
+    if (!userLoading) {
+      dispatch({ type: 'USER', payload: cookieUser });
+      user = cookieUser;
+    }
+  }
+
+  React.useEffect(() => {
+    if (!loading && !user) {
+      Router.push('/api/login?redirect-url=/wi/session/submit');
     }
   });
-  if (!loading && !_.isEmpty(user)) {
-    if (!user.profileComplete) {
-      router.push(`/member/create`);
-    }
-    if (!user.acceptedCommitments) {
-      router.push(`/wi/counselor-agreement`);
-    }
+  if (user) {
     return (
       <div>
         <Head>
@@ -76,6 +82,11 @@ const SessionEdit = ({ user, loading }) => {
     );
   }
   return null;
+};
+
+SessionEdit.getInitialProps = async context => {
+  const { sessionId } = context.query;
+  return { sessionId };
 };
 
 export default SessionEdit;

@@ -11,6 +11,7 @@ import ContentSection from '../../components/shared/ContentSection';
 
 import Header from '../../components/Member/MySessions/Header';
 import CurrentSessions from '../../components/Member/MySessions/Current';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -47,37 +48,34 @@ const MainContent = styled(ContentSection)`
 
 const MySessions = ({ user, loading }) => {
   const router = useRouter();
+
   useEffect(() => {
-    if (!loading && _.isEmpty(user)) {
-      router.push(`/api/login?redirect-url=/wi/session/submit`);
+    if (!loading && !user) {
+      router.push('/api/login?redirect-url=/wi/session/submit');
     }
   });
-  if (!loading && !_.isEmpty(user)) {
-    if (!user.profileComplete) {
-      router.push(`/member/create`);
-    }
-    if (!user.acceptedCommitments) {
-      router.push(`/wi/counselor-agreement`);
-    }
-    return (
-      <div>
-        <Head>
-          <title key="title">My Sessions - THAT Conference</title>
-        </Head>
-        <MainContent>
-          <MainGrid columns={6}>
-            <Cell width={1} />
-            <Cell width={4}>
-              <Header />
-              <CurrentSessions />
-            </Cell>
-            <Cell width={1} />
-          </MainGrid>
-        </MainContent>
-      </div>
-    );
+
+  if (loading) {
+    return <LoadingIndicator />;
   }
-  return null;
+
+  return (
+    <div>
+      <Head>
+        <title key="title">My Sessions - THAT Conference</title>
+      </Head>
+      <MainContent>
+        <MainGrid columns={6}>
+          <Cell width={1} />
+          <Cell width={4}>
+            <Header />
+            <CurrentSessions />
+          </Cell>
+          <Cell width={1} />
+        </MainGrid>
+      </MainContent>
+    </div>
+  );
 };
 
 export default MySessions;

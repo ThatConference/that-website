@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import { connect } from 'react-redux';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import LoadingIndicator from '../../shared/LoadingIndicator';
 
 import { sessionConstants } from '../../../utilities';
 
@@ -97,9 +97,36 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const CurrentSessions = () => {
-  const { loading, error, data } = useQuery(GET_MY_SESSIONS, {
-    variables: {},
+const CurrentSessions = ({ user, loading: loadingUser }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loadingUser && !user) {
+      router.push('/api/login?redirect-url=/wi/session/submit');
+    }
+  });
+
+  const { loading, error, data } = useQuery(GET_MY_SESSIONS);
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: () => {
+      ButterToast.raise({
+        sticky: true,
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crisp.SCHEME_BLUE}
+            content={() => (
+              <div>Your session has been successfully updated</div>
+            )}
+            title="Session"
+          />
+        ),
+      });
+      router.push('/');
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
   });
 
   if (loading) return null;
@@ -107,12 +134,10 @@ const CurrentSessions = () => {
 
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;
-  const [updateSession] = useMutation(UPDATE_SESSION);
 
   const editClick = (e, id) => {
     e.preventDefault();
-    console.log(id);
-    Router.push('/member/session-edit');
+    router.push(`/member/session-edit/${id}`);
   };
 
   const widthdrawClick = (e, id) => {
@@ -122,28 +147,7 @@ const CurrentSessions = () => {
     };
     updateSession({
       variables: { session: updates, sessionId: id },
-    }).then(
-      () => {
-        ButterToast.raise({
-          sticky: true,
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crisp.SCHEME_BLUE}
-              content={() => (
-                <div>Your session has been successfully updated</div>
-              )}
-              title="Session"
-            />
-          ),
-        });
-        Router.push('/');
-      },
-      err => {
-        // ToDo: Appropriately log and handle error
-        // eslint-disable-next-line no-console
-        console.log(`Error: ${err}`);
-      },
-    );
+    });
   };
 
   const noCurrentSessions = () => {
@@ -186,6 +190,10 @@ const CurrentSessions = () => {
       </SessionsGrid>
     );
   };
+
+  if (loading) {
+    return <LoadingIndicator />;
+  }
 
   return (
     <div>

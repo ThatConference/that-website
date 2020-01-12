@@ -4,13 +4,15 @@ import { Grid, Cell } from 'styled-css-grid';
 import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { connect } from 'react-redux';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import debug from 'debug';
 
 import { sessionConstants, below } from '../../../utilities';
 
 import { FormRule, FormCancel, FormSubmit } from '../../shared/FormLayout';
+
+const dlog = debug('that:session:preview');
 
 const Subheading = styled.p`
   margin-top: 0;
@@ -122,18 +124,42 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const Preview = () => {
-  const reduxSession = {};
-  const [updateSession] = useMutation(UPDATE_SESSION);
+const Preview = ({ session: stateSession, setSession, setStepNumber }) => {
+  const router = useRouter();
+
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session submitted %o', sessions.session);
+
+      ButterToast.raise({
+        sticky: true,
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crisp.SCHEME_BLUE}
+            content={() => <div>You can put basically anything here.</div>}
+            title="ButterToast example"
+          />
+        ),
+      });
+
+      router.push('/member/my-sessions');
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
   let isSubmitting = false;
   const { loading, error, data } = useQuery(GET_SESSION, {
-    variables: { sessionId: reduxSession.id },
+    variables: { sessionId: stateSession.id },
   });
 
   if (loading) return null;
   if (error) return null;
 
   const { session } = data.sessions.me;
+
   const values = {
     title: session.title,
     longDescription: session.longDescription,
@@ -165,26 +191,7 @@ const Preview = () => {
     };
     updateSession({
       variables: { session: updates, sessionId: session.id },
-    }).then(
-      () => {
-        ButterToast.raise({
-          sticky: true,
-          content: (
-            <Cinnamon.Crisp
-              scheme={Cinnamon.Crisp.SCHEME_BLUE}
-              content={() => <div>You can put basically anything here.</div>}
-              title="ButterToast example"
-            />
-          ),
-        });
-        Router.push('/member/my-sessions');
-      },
-      err => {
-        // ToDo: Appropriately log and handle error
-        // eslint-disable-next-line no-console
-        console.log(`Error: ${err}`);
-      },
-    );
+    });
   };
 
   return (
@@ -284,10 +291,4 @@ const Preview = () => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    session: state.session,
-  };
-};
-
-export default connect(mapStateToProps)(Preview);
+export default Preview;
