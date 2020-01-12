@@ -14,7 +14,7 @@ const TopParagraph = styled.p`
   margin-bottom: 4rem;
 `;
 
-const Header = ({ featureKeyword }) => {
+const Header = () => {
   return (
     <>
       <Title>Let's Get Started</Title>
@@ -29,7 +29,7 @@ const Header = ({ featureKeyword }) => {
       </TopParagraph>
       <LinkButton
         label="Get Started"
-        href={`counselor-agreement?feature=${featureKeyword}`}
+        href="counselor-agreement"
         color="thatBlue"
         borderColor="thatBlue"
         hoverBorderColor="thatBlue"
