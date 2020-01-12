@@ -12,6 +12,7 @@ import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
 import NavItem from '../../components/shared/NavItem';
 import SocialLinks from '../../components/shared/SocialLinks';
+import Icon from '../../components/shared/Icon';
 
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
@@ -79,6 +80,34 @@ const Company = styled.p`
 const SectionTitle = styled.p`
   font-size: 3rem;
   margin-top: 0;
+`;
+
+const EditLink = styled.a`
+  font-size: 1.4rem;
+  text-align: center;
+  float: right;
+  color: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
+  fill: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+    fill: ${({ theme }) => theme.colors.highlight};
+  }
+
+  ${below.med`
+    font-size: 2rem;
+  `};
+`;
+
+const EditIcon = styled(Icon)`
+  vertical-align: text-bottom;
+  margin-left: 0.7rem;
 `;
 
 const member = ({ slug, user, loading: loadingUser }) => {
@@ -169,13 +198,19 @@ const member = ({ slug, user, loading: loadingUser }) => {
         </title>
       </Head>
       <ContentSection>
-        <NavItem
+        {/* Not sure why next but using this to link to edit causes a hook re-render issue */}
+        {/* <NavItem
           title="Edit My Profile"
           href="/member/edit"
           icon="edit"
-          isLocal
           style={{ float: 'right' }}
-        />
+        /> */}
+        <EditLink href="/member/edit">
+          <span>
+            Edit My Profile
+            <EditIcon icon="edit" height="20" width="20" />
+          </span>
+        </EditLink>
         <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
           <MemberInfoCell>
             {profileImage && (
