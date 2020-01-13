@@ -91,7 +91,7 @@ const DetailForm = ({ user, loading: loadingUser, sessionId }) => {
   });
   const [updateSession] = useMutation(UPDATE_SESSION, {
     onCompleted: () => {
-      router.push('/member/my-sessions');
+      router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
     },
     onError: createError => {
       dlog('Error updating session %o', createError);

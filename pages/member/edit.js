@@ -99,11 +99,13 @@ const editProfile = ({ user, loading: loadingUser }) => {
 
   useEffect(() => {
     if (!loadingUser && _.isEmpty(user)) {
-      router.push('/api/login?redirect-url=/member/edit');
+      router
+        .push('/api/login?redirect-url=/member/edit')
+        .then(() => window.scrollTo(0, 0));
     }
 
     if (!loadingUser && !user.profileComplete) {
-      router.push('/member/create');
+      router.push('/member/create').then(() => window.scrollTo(0, 0));
     }
   });
 
@@ -134,7 +136,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
 
   const [updateMember] = useMutation(UPDATE_MEMBER, {
     onCompleted: () => {
-      router.push(`/member/${profileSlug}`);
+      router.push(`/member/${profileSlug}`).then(() => window.scrollTo(0, 0));
     },
     onError: updateError => {
       dlog('Error updating member', updateError);
@@ -157,7 +159,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
   };
 
   const formCancel = () => {
-    router.push(`/member/${profileSlug}`);
+    router.push(`/member/${profileSlug}`).then(() => window.scrollTo(0, 0));
   };
 
   if (loading) {
