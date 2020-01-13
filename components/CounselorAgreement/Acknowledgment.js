@@ -42,7 +42,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
           variables: { profile },
         }).then(
           () => {
-            Router.push('/wi/session/submit');
+            Router.push('/wi/session/create');
           },
           error => {
             // ToDo: Appropriately log and handle error
