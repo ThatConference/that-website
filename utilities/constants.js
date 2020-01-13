@@ -95,7 +95,7 @@ export const memberConstants = {
       city: Yup.string().nullable(),
       company: Yup.string().nullable(),
       firstName: Yup.string()
-        .min(3, 'Must be at least 3 characters')
+        .min(2, 'Must be at least 2 characters')
         .required('Required'),
       email: Yup.string()
         .email('Invalid email address')
@@ -103,7 +103,7 @@ export const memberConstants = {
       country: Yup.string().nullable(),
       jobTitle: Yup.string().nullable(),
       lastName: Yup.string()
-        .min(3, 'Must be at least 3 characters')
+        .min(2, 'Must be at least 2 characters')
         .required('Required'),
       mobilePhone: Yup.string()
         .matches(RegularExpressions.phoneRegExp, 'Phone number is not valid')
