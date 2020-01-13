@@ -1,12 +1,13 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
 import FormInput from '../shared/FormInput';
 import { FormRow, FormRule, FormSubmit } from '../shared/FormLayout';
+import { useUser } from '../../hooks/user';
 
 const UPDATE_PROFILE = gql`
   mutation updateMember($profile: ProfileUpdateInput!) {
@@ -21,7 +22,22 @@ const UPDATE_PROFILE = gql`
 `;
 
 const Achknowledgment = ({ acceptedCommitments }) => {
-  const [updateProfile] = useMutation(UPDATE_PROFILE);
+  const router = useRouter();
+  const { user } = useUser();
+
+  const [updateProfile] = useMutation(UPDATE_PROFILE, {
+    onCompleted: () => {
+      // update user context
+      user.acceptedCommitments = true;
+
+      router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
+    },
+    onError: createError => {
+      // dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
   return (
     <Formik
       initialValues={{
@@ -40,16 +56,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
         };
         updateProfile({
           variables: { profile },
-        }).then(
-          () => {
-            Router.push('/wi/session/create');
-          },
-          error => {
-            // ToDo: Appropriately log and handle error
-            // eslint-disable-next-line no-console
-            console.log(`Error: ${error}`);
-          },
-        );
+        });
       }}
     >
       {({ getFieldProps, errors, touched, isSubmitting, values }) => (
