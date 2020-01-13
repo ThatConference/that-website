@@ -116,7 +116,7 @@ export const memberConstants = {
       github: Yup.string().url('Invalid URL'),
       instagram: Yup.string().url('Invalid URL'),
       linkedin: Yup.string().url('Invalid URL'),
-      thatSlackUsername: Yup.string(),
+      thatSlackUsername: Yup.string().nullable(),
       twitter: Yup.string().url('Invalid URL'),
       website: Yup.string().url('Invalid URL'),
     },
