@@ -25,7 +25,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
   return (
     <Formik
       initialValues={{
-        agreeToCommitments: acceptedCommitments,
+        agreeToCommitments: acceptedCommitments || false,
       }}
       validationSchema={Yup.object({
         agreeToCommitments: Yup.bool().oneOf(
