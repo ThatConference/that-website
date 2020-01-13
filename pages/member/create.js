@@ -71,6 +71,10 @@ const createProfile = ({ user, loading }) => {
     if (!loading && _.isEmpty(user)) {
       router.push('/api/login?redirect-url=/member/create');
     }
+
+    if (!loading && user.profileComplete) {
+      router.push('/wi');
+    }
   });
 
   const [createMember] = useMutation(CREATE_MEMBER, {
