@@ -53,11 +53,11 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
     }
 
     if (!loadingUser && !user.profileComplete) {
-      router.push('/member/create');
+      router.push('/member/create').then(() => window.scrollTo(0, 0));
     }
 
     if (!sessionId) {
-      router.push('/member/my-sessions');
+      router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
     }
   });
 

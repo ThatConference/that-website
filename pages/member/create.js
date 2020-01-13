@@ -69,18 +69,22 @@ const createProfile = ({ user, loading }) => {
 
   useEffect(() => {
     if (!loading && _.isEmpty(user)) {
-      router.push('/api/login?redirect-url=/member/create');
+      router
+        .push('/api/login?redirect-url=/member/create')
+        .then(() => window.scrollTo(0, 0));
     }
 
     if (!loading && user.profileComplete) {
-      router.push('/wi');
+      router.push('/wi').then(() => window.scrollTo(0, 0));
     }
   });
 
   const [createMember] = useMutation(CREATE_MEMBER, {
     onCompleted: ({ members }) => {
       dlog('profile created %o', members);
-      router.push(`/member/${members.create.profileSlug}`);
+      router
+        .push(`/member/${members.create.profileSlug}`)
+        .then(() => window.scrollTo(0, 0));
     },
     onError: updateError => {
       dlog('Error updating member %o', updateError);
@@ -116,7 +120,7 @@ const createProfile = ({ user, loading }) => {
 
   const formCancel = () => {
     if (currentStep === 0) {
-      router.push('/wi');
+      router.push('/wi').then(() => window.scrollTo(0, 0));
     } else {
       setCurrentStep(currentStep - 1);
     }
