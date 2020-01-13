@@ -109,7 +109,7 @@ const FormInput = props => {
   const isTextarea = inputType && inputType === inputTypes.textarea;
   const isTextbox = !inputType || inputType === inputTypes.text;
 
-  const fieldInvalid = touched[fieldName] && errors[fieldName];
+  const fieldInvalid = errors[fieldName];
   const parsedLabel = parse(label);
 
   const getLabel = () => {

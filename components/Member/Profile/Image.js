@@ -64,6 +64,7 @@ const Image = ({
           onChange={handleUpload}
           className="form-control"
           style={{ maxHeight: '4.5rem' }}
+          accept="image/*"
         />
         {values.profileImage && (
           <StyledImgix

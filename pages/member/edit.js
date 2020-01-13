@@ -49,6 +49,7 @@ const GET_MEMBER = gql`
           url
         }
         state
+        thatSlackUsername
       }
     }
   }
@@ -128,6 +129,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
     profileLinks,
     profileSlug,
     state,
+    thatSlackUsername,
   } = data.members.me;
 
   const [updateMember] = useMutation(UPDATE_MEMBER, {
@@ -186,6 +188,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
             profileImage,
             profileSlug,
             state,
+            thatSlackUsername,
             ...profileLinkInitialValues(),
           }}
           validationSchema={Yup.object(
