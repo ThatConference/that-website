@@ -26,6 +26,21 @@ const CREATE_SESSION = gql`
   }
 `;
 
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+          type
+          category
+          status
+        }
+      }
+    }
+  }
+`;
+
 const Intro = ({ session, setSession, setStepNumber }) => {
   const [createSession] = useMutation(CREATE_SESSION, {
     onCompleted: ({ sessions }) => {
@@ -35,6 +50,18 @@ const Intro = ({ session, setSession, setStepNumber }) => {
     },
     onError: createError => {
       dlog('Error creating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
       throw new Error(createError);
     },
   });
@@ -59,15 +86,29 @@ const Intro = ({ session, setSession, setStepNumber }) => {
         sessionType: Yup.string().required('Selection required'),
       })}
       onSubmit={values => {
-        const newSession = {
-          title: 'Step1_Temporary_Title',
-          type: values.sessionType,
-          category: values.audience,
-          status: 'DRAFT',
-        };
-        createSession({
-          variables: { session: newSession, eventId: '1234' },
-        });
+        if (session.id) {
+          const newValues = {
+            type: values.sessionType,
+            category: values.audience,
+          };
+          updateSession({
+            variables: {
+              session: newValues,
+              eventId: '1234',
+              sessionId: session.id,
+            },
+          });
+        } else {
+          const newSession = {
+            title: 'Step1_Temporary_Title',
+            type: values.sessionType,
+            category: values.audience,
+            status: 'DRAFT',
+          };
+          createSession({
+            variables: { session: newSession, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+          });
+        }
       }}
     >
       {({
