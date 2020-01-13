@@ -255,6 +255,8 @@ const editProfile = ({ user, loading: loadingUser }) => {
                 setFieldValue={setFieldValue}
                 setFieldTouched={setFieldTouched}
                 values={values}
+                user={user}
+                loading={loadingUser}
               />
               <Bio
                 getFieldProps={getFieldProps}
