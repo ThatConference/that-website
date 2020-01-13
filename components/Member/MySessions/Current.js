@@ -124,7 +124,6 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
           />
         ),
       });
-      router.push('/');
     },
     onError: createError => {
       dlog('Error updating session %o', createError);

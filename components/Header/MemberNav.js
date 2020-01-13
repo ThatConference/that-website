@@ -80,7 +80,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
               <li>
                 <NavItem
                   title="My Sessions"
-                  href="member/my-sessions"
+                  href="/member/my-sessions"
                   onClick={() => setUserMenuOpen(false)}
                 />
               </li>
