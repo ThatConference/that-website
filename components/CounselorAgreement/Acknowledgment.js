@@ -25,7 +25,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
   return (
     <Formik
       initialValues={{
-        agreeToCommitments: acceptedCommitments,
+        agreeToCommitments: acceptedCommitments || false,
       }}
       validationSchema={Yup.object({
         agreeToCommitments: Yup.bool().oneOf(
@@ -42,7 +42,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
           variables: { profile },
         }).then(
           () => {
-            Router.push('/wi/session/submit');
+            Router.push('/wi/session/create');
           },
           error => {
             // ToDo: Appropriately log and handle error
