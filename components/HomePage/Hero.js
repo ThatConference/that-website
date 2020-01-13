@@ -46,7 +46,7 @@ const ActionButtons = styled.div`
     float: left;
   }
 
-  a:first-child {
+  a:not(:last-child) {
     margin-right: 2rem;
   }
 
@@ -144,6 +144,16 @@ const Hero = ({ event, className }) => {
             <LinkButton
               href="wi/become-a-partner"
               label="Sponsor Us"
+              color="thatBlue"
+              borderColor="thatBlue"
+              className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
+            <LinkButton
+              href="wi/call-for-counselors"
+              label="Become A Counselor"
               color="thatBlue"
               borderColor="thatBlue"
               className="stretch-sm"
