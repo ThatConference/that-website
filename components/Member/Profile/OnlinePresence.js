@@ -1,11 +1,6 @@
 import React from 'react';
 import FormInput from '../../shared/FormInput';
-import {
-  FormRow,
-  FormRule,
-  FormCancel,
-  FormSubmit,
-} from '../../shared/FormLayout';
+import { FormRow, FormCancel, FormSubmit } from '../../shared/FormLayout';
 
 const OnlinePresenceForm = ({
   getFieldProps,
