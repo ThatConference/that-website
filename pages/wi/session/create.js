@@ -35,7 +35,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
       }
 
       if (!user.acceptedCommitments) {
-        router.push('/wi/session/submit');
+        router.push('/wi/session/create');
       }
     }
   });

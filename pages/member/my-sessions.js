@@ -62,7 +62,7 @@ const MySessions = ({ user, loading }) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push('/api/login?redirect-url=/wi/session/submit');
+      router.push('/api/login?redirect-url=/wi/session/create');
     }
   });
 
