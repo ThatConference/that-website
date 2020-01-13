@@ -71,10 +71,10 @@ const AdditionalInfo = ({ session, setSession, setStepNumber }) => {
           : [],
       }}
       validationSchema={Yup.object({
-        prerequisites: !sessionIsWorkshop
+        prerequisites: sessionIsWorkshop
           ? Yup.string().required('Required')
           : Yup.string(),
-        agenda: !sessionIsWorkshop
+        agenda: sessionIsWorkshop
           ? Yup.string().required('Required')
           : Yup.string(),
         takeaways: Yup.array().min(1, 'At least 1 is required'),
