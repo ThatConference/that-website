@@ -136,8 +136,10 @@ const Preview = ({ session: stateSession, setSession, setStepNumber }) => {
         content: (
           <Cinnamon.Crisp
             scheme={Cinnamon.Crisp.SCHEME_BLUE}
-            content={() => <div>You can put basically anything here.</div>}
-            title="ButterToast example"
+            content={() => (
+              <div>{`Your session, "${sessions.session.title}" was successfully submitted.`}</div>
+            )}
+            title="Your THAT Session Was Submitted"
           />
         ),
       });
