@@ -193,12 +193,12 @@ const editProfile = ({ user, loading: loadingUser }) => {
             thatSlackUsername,
             ...profileLinkInitialValues(),
           }}
-          validationSchema={Yup.object(
-            { ...memberConstants.validationRules.contactInfo },
-            { ...memberConstants.validationRules.onlinePresence },
-            { ...memberConstants.validationRules.image },
-            { ...memberConstants.validationRules.bio },
-          )}
+          validationSchema={Yup.object({
+            ...memberConstants.validationRules.contactInfo,
+            ...memberConstants.validationRules.onlinePresence,
+            ...memberConstants.validationRules.image,
+            ...memberConstants.validationRules.bio,
+          })}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               // don't include non-editable fields only being displayed
