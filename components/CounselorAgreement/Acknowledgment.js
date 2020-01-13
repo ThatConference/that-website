@@ -23,7 +23,6 @@ const UPDATE_PROFILE = gql`
 
 const Achknowledgment = ({ acceptedCommitments }) => {
   const router = useRouter();
-
   const { user } = useUser();
 
   const [updateProfile] = useMutation(UPDATE_PROFILE, {
@@ -31,7 +30,7 @@ const Achknowledgment = ({ acceptedCommitments }) => {
       // update user context
       user.acceptedCommitments = true;
 
-      router.push('/wi/session/create');
+      router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
     },
     onError: createError => {
       // dlog('Error updating session %o', createError);
