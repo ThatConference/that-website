@@ -106,7 +106,9 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
 
   useEffect(() => {
     if (!loadingUser && !user) {
-      router.push('/api/login?redirect-url=/wi/session/create');
+      router
+        .push('/api/login?redirect-url=/wi/session/create')
+        .then(() => window.scrollTo(0, 0));
     }
   });
 

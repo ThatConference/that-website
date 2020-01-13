@@ -56,11 +56,11 @@ const CounselorAgreement = ({ user, loading: loadingUser }) => {
       }
 
       if (!user.profileComplete) {
-        router.push('/member/create');
+        router.push('/member/create').then(() => window.scrollTo(0, 0));
       }
 
       if (user.acceptedCommitments) {
-        router.push('/wi/session/create');
+        router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
       }
     }
   });

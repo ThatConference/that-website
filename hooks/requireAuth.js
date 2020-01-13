@@ -17,7 +17,9 @@ export function useRequireAuth(redirectUrl = '/') {
   useEffect(() => {
     if (!ufu.loading && !ufu.user) {
       dlog('redirecting to login...');
-      router.push(`/api/login?redirect-url=${redirectUrl}`);
+      router
+        .push(`/api/login?redirect-url=${redirectUrl}`)
+        .then(() => window.scrollTo(0, 0));
     }
   });
 
