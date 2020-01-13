@@ -47,7 +47,7 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
 
   useEffect(() => {
     if (!loadingUser && _.isEmpty(user)) {
-      router.push('/api/login?redirect-url=/wi/session/submit');
+      router.push('/api/login?redirect-url=/wi/session/create');
     }
 
     if (!loadingUser && !user.profileComplete) {
