@@ -43,11 +43,11 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const AdditionalInfo = ({ session, setSession, setStepNumber }) => {
+const AdditionalInfo = ({ session, setSession, setStepNumber, formCancel }) => {
   const [updateSession] = useMutation(UPDATE_SESSION, {
     onCompleted: ({ sessions }) => {
-      dlog('session updated %o', sessions.session);
-      setSession({ ...session, ...sessions.session });
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
       setStepNumber();
     },
     onError: createError => {
@@ -146,7 +146,7 @@ const AdditionalInfo = ({ session, setSession, setStepNumber }) => {
             />
           </FormRow>
           <FormRule />
-          <FormCancel label="Back" />
+          <FormCancel label="Back" onClick={formCancel} />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}

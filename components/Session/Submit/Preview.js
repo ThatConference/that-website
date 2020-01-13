@@ -124,12 +124,12 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const Preview = ({ session: stateSession }) => {
+const Preview = ({ session: stateSession, formCancel }) => {
   const router = useRouter();
 
   const [updateSession] = useMutation(UPDATE_SESSION, {
     onCompleted: ({ sessions }) => {
-      dlog('session submitted %o', sessions.session);
+      dlog('session submitted %o', sessions.session.update);
 
       ButterToast.raise({
         sticky: true,
@@ -279,7 +279,7 @@ const Preview = ({ session: stateSession }) => {
       </MainGrid>
       <form onSubmit={onSubmit}>
         <FormRule />
-        <FormCancel label="Back" />
+        <FormCancel label="Back" onClick={formCancel} />
         <FormSubmit label="Submit Session" disabled={isSubmitting} />
         <ButterToast
           className="that-toast"

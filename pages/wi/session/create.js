@@ -64,6 +64,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
               session={session}
               setSession={setSession}
               setStepNumber={() => setStepNumber(stepNumber + 1)}
+              formCancel={() => setStepNumber(stepNumber - 1)}
             />
           </>
         )}
@@ -75,6 +76,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
               session={session}
               setSession={setSession}
               setStepNumber={() => setStepNumber(stepNumber + 1)}
+              formCancel={() => setStepNumber(stepNumber - 1)}
             />
           </>
         )}
@@ -86,6 +88,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
               session={session}
               setSession={setSession}
               setStepNumber={() => setStepNumber(stepNumber + 1)}
+              formCancel={() => setStepNumber(stepNumber - 1)}
             />
           </>
         )}
@@ -97,6 +100,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
               session={session}
               setSession={setSession}
               setStepNumber={() => setStepNumber(stepNumber + 1)}
+              formCancel={() => setStepNumber(stepNumber - 1)}
             />
           </>
         )}

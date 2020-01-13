@@ -44,11 +44,11 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ session, setSession, setStepNumber }) => {
+const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
   const [updateSession] = useMutation(UPDATE_SESSION, {
     onCompleted: ({ sessions }) => {
-      dlog('session updated %o', sessions.session);
-      setSession({ ...session, ...sessions.session });
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
       setStepNumber();
     },
     onError: createError => {
@@ -56,6 +56,8 @@ const DetailForm = ({ session, setSession, setStepNumber }) => {
       throw new Error(createError);
     },
   });
+
+  console.log('details session:', session);
 
   return (
     <Formik
@@ -215,7 +217,7 @@ const DetailForm = ({ session, setSession, setStepNumber }) => {
             />
           </FormRow>
           <FormRule />
-          <FormCancel label="Back" />
+          <FormCancel label="Back" onClick={formCancel} />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
