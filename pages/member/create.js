@@ -177,6 +177,7 @@ const createProfile = ({ user, loading }) => {
                   profileLinks,
                   isDeactivated: false,
                   canFeature: false,
+                  acceptedCommitments: false,
                 };
                 dlog('submitted and valuesToSave', valuesToSave);
                 createMember({

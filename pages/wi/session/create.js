@@ -9,14 +9,17 @@ import Details from '../../../components/Session/Submit/Details';
 import AdditionalInfo from '../../../components/Session/Submit/AdditionalInfo';
 import Lastly from '../../../components/Session/Submit/Lastly';
 import Preview from '../../../components/Session/Submit/Preview';
+import User from '../../../components/User';
+import { useFetchUser } from '../../../hooks/user';
 
 const _ = require('lodash');
 
 const dlog = debug('that:session:create');
 
-const SessionCreate = ({ user, loading: loadingUser }) => {
+const SessionCreate = () => {
   dlog('create session');
   const router = useRouter();
+  const { user, loading: loadingUser } = useFetchUser();
 
   const [stepNumber, setStepNumber] = useState(0);
   const [session, setSession] = useState({
@@ -35,13 +38,13 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
       }
 
       if (!user.acceptedCommitments) {
-        router.push('/wi/session/create');
+        router.push('/wi/counselor-agreement');
       }
     }
   });
 
   return (
-    <div>
+    <User user={user} loading={loadingUser}>
       <Head>
         <title key="title">Session Submission: Intro - THAT Conference</title>
       </Head>
@@ -105,7 +108,7 @@ const SessionCreate = ({ user, loading: loadingUser }) => {
           </>
         )}
       </ContentSection>
-    </div>
+    </User>
   );
 };
 
