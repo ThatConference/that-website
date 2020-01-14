@@ -54,7 +54,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               onClick={() => onClick(false)}
             />
           </NavListItem>
-          <NavListItem>
+          {/* <NavListItem>
             <NavItem
               title="Shop"
               href="https://store.unspecified.io/"
@@ -62,7 +62,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               onClick={() => onClick(false)}
               isLocal={false}
             />
-          </NavListItem>
+          </NavListItem> */}
           <NavListItem>
             <NavItem title="Blog" href="/blog" onClick={() => onClick(false)} />
           </NavListItem>
