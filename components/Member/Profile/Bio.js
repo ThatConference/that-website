@@ -1,11 +1,5 @@
 import React from 'react';
-import * as Yup from 'yup';
-import {
-  FormRow,
-  FormRule,
-  FormCancel,
-  FormSubmit,
-} from '../../shared/FormLayout';
+import { FormRow, FormCancel, FormSubmit } from '../../shared/FormLayout';
 import FormInput from '../../shared/FormInput';
 
 const Bio = ({

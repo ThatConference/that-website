@@ -3,7 +3,6 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import debug from 'debug';
 
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
@@ -13,7 +12,6 @@ import Page from '../components/Page';
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
-const dlog = debug('that:website:app');
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

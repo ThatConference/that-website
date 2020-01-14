@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -7,6 +7,8 @@ import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Details from '../../../components/Member/SessionEdit/Details';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
+
+const _ = require('lodash');
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

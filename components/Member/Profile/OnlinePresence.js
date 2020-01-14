@@ -1,5 +1,4 @@
 import React from 'react';
-import * as Yup from 'yup';
 import FormInput from '../../shared/FormInput';
 import { FormRow, FormCancel, FormSubmit } from '../../shared/FormLayout';
 

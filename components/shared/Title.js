@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { above, below } from '../../utilities';
+import { below } from '../../utilities';
 
 const twoColBp = 'large';
 

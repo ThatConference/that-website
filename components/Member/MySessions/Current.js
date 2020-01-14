@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
@@ -9,6 +10,8 @@ import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 
 import { sessionConstants } from '../../../utilities';
+
+const dlog = debug('that:sessions:current');
 
 const Subheading = styled.p`
   margin-top: 0;
