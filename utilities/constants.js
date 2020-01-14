@@ -32,7 +32,7 @@ export const sessionConstants = {
     { value: 'SOFT_SKILLS', label: 'Soft Skills' },
     { value: 'SECURITY', label: 'Security' },
     { value: 'TESTING', label: 'Testing' },
-    { value: 'TOOLING', label: 'Tooliing' },
+    { value: 'TOOLING', label: 'Tooling' },
     { value: 'USER_INTERFACES', label: 'UI' },
     { value: 'WEB', label: 'Web' },
     { value: 'OTHER', label: "You Can't Put a Label on Me" },
