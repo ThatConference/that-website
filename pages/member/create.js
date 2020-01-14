@@ -66,6 +66,7 @@ const createProfile = ({ user, loading }) => {
   dlog('create profile');
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
+  const [fileUploading, setFileUplaoding] = useState(false);
 
   useEffect(() => {
     if (!loading && _.isEmpty(user)) {
@@ -231,6 +232,7 @@ const createProfile = ({ user, loading }) => {
                   values={values}
                   submitLabel="Next"
                   user={user}
+                  setFileUplaoding={setFileUplaoding}
                 />
               )}
               {currentStep === 3 && (
@@ -249,7 +251,10 @@ const createProfile = ({ user, loading }) => {
                 label={currentStep === 0 ? 'Cancel' : 'Back'}
                 onClick={formCancel}
               />
-              <FormSubmit label={currentStep === 3 ? 'Create' : 'Continue'} />
+              <FormSubmit
+                label={currentStep === 3 ? 'Create' : 'Continue'}
+                inactive={fileUploading}
+              />
             </Form>
           )}
         </Formik>

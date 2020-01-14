@@ -20,11 +20,13 @@ const Image = ({
   showButtons,
   setFieldValue,
   setFieldTouched,
+  setFileUplaoding,
   user,
   values,
 }) => {
   // eslint-disable-next-line consistent-return
   const fileUpload = async uploadFile => {
+    setFileUplaoding(true);
     const formData = new FormData();
     formData.append('file', uploadFile);
 
@@ -44,6 +46,7 @@ const Image = ({
     const json = await res.json();
 
     setFieldValue('profileImage', json.data.url);
+    setFileUplaoding(false);
     setFieldTouched('profileImage', true);
   };
 

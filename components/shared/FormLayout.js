@@ -56,7 +56,7 @@ export const FormInputRequiredIndicator = styled.span`
   color: ${({ theme }) => theme.colors.danger};
 `;
 
-export const FormSubmit = ({ label, validateForm }) => {
+export const FormSubmit = ({ label, validateForm, inactive }) => {
   return (
     <StyledFormSubmit
       color="thatBlue"
@@ -68,6 +68,7 @@ export const FormSubmit = ({ label, validateForm }) => {
       label={label || 'Submit'}
       isSubmit
       onClick={validateForm}
+      className={inactive ? 'inactive' : ''}
     />
   );
 };
