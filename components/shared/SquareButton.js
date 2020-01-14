@@ -66,6 +66,14 @@ export default styled(SquareButton)`
   tabindex: ${({ tabIndex }) => tabIndex || 0};
 
   &.inactive {
+    background: ${({ theme }) => theme.colors.lightGray};
+    border-color: ${({ theme }) => theme.colors.mediumGray};
+    cursor: not-allowed;
+    pointer-events: none;
+
+    p {
+      color: ${({ theme }) => theme.colors.darkGray};
+    }
   }
 
   &:hover {

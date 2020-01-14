@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { Formik, Form } from 'formik';
@@ -95,6 +95,8 @@ const Title = styled.h1`
 const { linkTypes } = memberConstants;
 
 const editProfile = ({ user, loading: loadingUser }) => {
+  const [fileUploading, setFileUplaoding] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -259,6 +261,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
                 values={values}
                 user={user}
                 loading={loadingUser}
+                setFileUplaoding={setFileUplaoding}
               />
               <Bio
                 getFieldProps={getFieldProps}
@@ -270,7 +273,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
               />
               <FormRule />
               <FormCancel onClick={formCancel} />
-              <FormSubmit label="Update" />
+              <FormSubmit label="Update" inactive={fileUploading} />
             </Form>
           )}
         </Formik>
