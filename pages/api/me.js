@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import debug from 'debug';
 import * as Sentry from '@sentry/browser';
 import fetch from 'isomorphic-unfetch';
