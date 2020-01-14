@@ -7,7 +7,7 @@ const Title = styled.h1`
   font-weight: 100;
   font-size: 7.5rem;
   margin-top: 2rem;
-  margin-bottom: 0;
+  margin-bottom: 4rem;
 `;
 
 const Header = ({ title, currentStep }) => {

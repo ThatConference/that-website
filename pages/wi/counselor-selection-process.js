@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
@@ -9,7 +10,7 @@ import Icon from '../../components/shared/Icon';
 
 import Header from '../../components/CounselorSelectionProcess/Header';
 import TheProcess from '../../components/CounselorSelectionProcess/TheProcess';
-// import Bottom from '../../components/CounselorSelectionProcess/Bottom';
+import Bottom from '../../components/CounselorSelectionProcess/Bottom';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -83,21 +84,23 @@ const CounselorSelection = () => {
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1}>
-            <BackLink href="call-for-counselors">
-              <BackArrow
-                icon="backArrow"
-                height="2rem"
-                width="2rem"
-                viewBoxHeight="100"
-                viewBoxWidth="100"
-              />
-              <span>Back to Call for Counselors</span>
-            </BackLink>
+            <Link href="call-for-counselors">
+              <BackLink>
+                <BackArrow
+                  icon="backArrow"
+                  height="2rem"
+                  width="2rem"
+                  viewBoxHeight="100"
+                  viewBoxWidth="100"
+                />
+                <span>Back to Call for Counselors</span>
+              </BackLink>
+            </Link>
           </Cell>
           <Cell width={4}>
             <Header />
             <TheProcess />
-            {/* <Bottom featureKeyword={featureKeyword} /> */}
+            <Bottom />
           </Cell>
           <Cell width={1} />
         </MainGrid>

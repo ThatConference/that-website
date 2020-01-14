@@ -4,8 +4,13 @@ import parse from 'html-react-parser';
 import Select from 'react-select';
 import nextId from 'react-id-generator';
 
+import { Field } from 'formik';
 import baseTheme from '../../styles/baseTheme';
-import { FormLabel, FormInputValidationMessage } from './FormLayout';
+import {
+  FormLabel,
+  FormInputValidationMessage,
+  FormInputRequiredIndicator,
+} from './FormLayout';
 import MarkdownEditor from './MarkdownEditor';
 import ImageUpload from './ImageUpload';
 import LinksInput from './LinksInput';
@@ -13,13 +18,13 @@ import StringsInput from './StringsInput';
 
 const inputTypes = {
   checkbox: 'checkbox',
+  file: 'file',
+  links: 'links',
+  markdown: 'markdown',
+  select: 'select',
+  strings: 'strings',
   text: 'text',
   textarea: 'textarea',
-  select: 'select',
-  markdown: 'markdown',
-  imageupload: 'imageupload',
-  links: 'links',
-  strings: 'strings',
 };
 
 const sharedTextInputStyles = css`
@@ -48,7 +53,7 @@ const getSelectStyles = () => {
   };
 };
 
-export const FormTextInput = styled.input`
+export const FormTextInput = styled(Field)`
   ${sharedTextInputStyles}
 `;
 
@@ -73,38 +78,57 @@ export const FormInputHelpText = styled.p`
 
 const FormInput = props => {
   const {
-    fieldName,
+    cols,
+    disabled,
+    errors,
     fieldHasValidation,
-    inputType,
+    fieldName,
     getFieldProps,
-    touched,
+    helpText,
+    inputType,
+    isMulti,
+    label,
+    placeholder,
+    rows,
+    selectOptions,
+    setFieldError,
     setFieldTouched,
     setFieldValue,
-    setFieldError,
-    errors,
-    label,
-    rows,
-    cols,
-    helpText,
-    selectOptions,
+    touched,
+    validate,
     values,
-    isMulti,
-    links,
-    strings,
+    required,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
-  const isTextbox = !inputType || inputType === inputTypes.text;
-  const isTextarea = inputType && inputType === inputTypes.textarea;
-  const isMarkdown = inputType && inputType === inputTypes.markdown;
-  const isImage = inputType && inputType === inputTypes.imageupload;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
-  const isSelect = inputType && inputType === inputTypes.select;
+  const isImage = inputType && inputType === inputTypes.imageupload;
   const isLinks = inputType && inputType === inputTypes.links;
+  const isMarkdown = inputType && inputType === inputTypes.markdown;
+  const isSelect = inputType && inputType === inputTypes.select;
   const isStrings = inputType && inputType === inputTypes.strings;
+  const isTextarea = inputType && inputType === inputTypes.textarea;
+  const isTextbox = !inputType || inputType === inputTypes.text;
 
-  const fieldInvalid = touched[fieldName] && errors[fieldName];
-  const styleClass = fieldInvalid ? 'invalid' : '';
+  const fieldInvalid = errors[fieldName];
   const parsedLabel = parse(label);
+
+  const getLabel = () => {
+    return (
+      <>
+        {parsedLabel}
+        {required && (
+          <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
+        )}
+      </>
+    );
+  };
+
+  const getStyles = () => {
+    const validClass = fieldInvalid ? 'invalid' : '';
+    const disabledClass = disabled ? 'disabled' : '';
+
+    return `${validClass} ${disabledClass}`;
+  };
 
   return (
     <FormLabel htmlFor={fieldName}>
@@ -114,39 +138,44 @@ const FormInput = props => {
             name={fieldName}
             id={fieldName}
             type="checkbox"
+            checked={values[fieldName]}
+            className={getStyles()}
             {...fieldProps}
           />
-          {parsedLabel}
+          {getLabel()}
         </>
       )}
       {isTextbox && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <FormTextInput
             name={fieldName}
             id={fieldName}
             type="text"
-            className={styleClass}
+            className={getStyles()}
+            disabled={disabled}
+            placeholder={placeholder}
             {...fieldProps}
+            validate={validate}
           />
         </>
       )}
       {isTextarea && (
         <>
-          {parse(label)}
+          {getLabel()}
           <FormTextArea
             name={fieldName}
             id={fieldName}
             rows={rows || '5'}
             cols={cols || null}
-            className={styleClass}
+            className={getStyles()}
             {...fieldProps}
           />
         </>
       )}
       {isSelect && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <Select
             name={fieldName}
             id={fieldName}
@@ -156,7 +185,7 @@ const FormInput = props => {
             onChange={value => setFieldValue(fieldName, value)}
             isMulti={isMulti}
             placeholder=""
-            className={`react-select-container ${styleClass}`}
+            className={`react-select-container ${getStyles()}`}
             styles={getSelectStyles()}
             {...fieldProps}
           />
@@ -164,16 +193,17 @@ const FormInput = props => {
       )}
       {isMarkdown && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <MarkdownEditor
             field={fieldName}
             fieldHasValidation={fieldHasValidation}
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             touched={touched}
+            errors={errors}
             value={values[fieldName]}
             preview=""
-            className={styleClass}
+            className={getStyles()}
             rows={rows}
             cols={cols}
             {...fieldProps}
@@ -182,34 +212,38 @@ const FormInput = props => {
       )}
       {isImage && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <ImageUpload field={fieldName} {...fieldProps} />
         </>
       )}
       {isLinks && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <LinksInput
             field={fieldName}
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
-            className={styleClass}
-            links={links}
+            className={getStyles()}
+            values={values}
+            errors={errors}
+            touched={touched}
             {...fieldProps}
           />
         </>
       )}
       {isStrings && (
         <>
-          {parsedLabel}
+          {getLabel()}
           <StringsInput
             field={fieldName}
             setFieldTouched={setFieldTouched}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
-            className={styleClass}
-            strings={strings}
+            className={getStyles()}
+            values={values}
+            errors={errors}
+            touched={touched}
             {...fieldProps}
           />
         </>

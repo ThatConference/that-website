@@ -1,14 +1,47 @@
-// import styled from 'styled-components';
 import React from 'react';
-import { connect } from 'react-redux';
+import Head from 'next/head';
 import { Grid, Cell } from 'styled-css-grid';
 import styled from 'styled-components';
 import Markdown from 'markdown-to-jsx';
-import { useFetchUser } from '../../lib/user';
-import { below } from '../../utilities';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import Imgix from 'react-imgix';
+import Error from '../_error';
+import { below, memberConstants, socialConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-// import { gridRepeat } from '../../utilities';
 import RoundImage from '../../components/shared/RoundImage';
+import NavItem from '../../components/shared/NavItem';
+import SocialLinks from '../../components/shared/SocialLinks';
+import Icon from '../../components/shared/Icon';
+
+const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
+
+const _ = require('lodash');
+
+const GET_MEMBER = gql`
+  query getMember {
+    members {
+      me {
+        id
+        bio
+        city
+        company
+        firstName
+        interests
+        jobTitle
+        lastName
+        lifeHack
+        profileImage
+        profileSlug
+        profileLinks {
+          linkType
+          url
+        }
+        state
+      }
+    }
+  }
+`;
 
 const StyledGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -49,79 +82,192 @@ const SectionTitle = styled.p`
   margin-top: 0;
 `;
 
-const home = ({ user: reduxUser, dispatch }) => {
-  console.log('reduxUser', reduxUser);
+const EditLink = styled.a`
+  font-size: 1.4rem;
+  text-align: center;
+  float: right;
+  color: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
+  fill: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
 
-  let user = reduxUser;
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+    fill: ${({ theme }) => theme.colors.highlight};
+  }
 
-  if (!user) {
-    console.log('loading user, no redux');
-    const { cookieUser, loading } = useFetchUser();
-    if (!loading) {
-      dispatch({ type: 'USER', payload: cookieUser });
-      user = cookieUser;
+  ${below.med`
+    font-size: 2rem;
+  `};
+`;
+
+const EditIcon = styled(Icon)`
+  vertical-align: text-bottom;
+  margin-left: 0.7rem;
+`;
+
+const member = ({ slug, user, loading: loadingUser }) => {
+  if (!loadingUser && _.isEmpty(user)) {
+    return <Error statusCode="404" />;
+  }
+
+  const { loading, error, data } = useQuery(GET_MEMBER);
+
+  if (loading) return null;
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  const {
+    bio,
+    city,
+    company,
+    firstName,
+    interests,
+    jobTitle,
+    lastName,
+    lifeHack,
+    profileImage,
+    profileLinks,
+    profileSlug,
+    state,
+  } = data.members.me;
+
+  if (slug !== profileSlug) {
+    return <Error statusCode="404" />;
+  }
+
+  const location = () => {
+    if (city && state) {
+      return `${city}, ${state}`;
     }
-  }
+    if (city && !state) {
+      return city;
+    }
+    if (state) {
+      return state;
+    }
+    return null;
+  };
 
-  if (!user) {
-    return <a href="/api/login">Sign In</a>;
-  }
+  const getMemberSocialLinks = () => {
+    const socialLinks = profileLinks.map(item => {
+      const newKey = Object.keys(memberConstants.linkTypes).find(
+        key => memberConstants.linkTypes[key] === item.linkType,
+      );
+      return {
+        [newKey]: item.url,
+      };
+    });
 
-  const bio =
-    'Sometimes chef, full-time mom, but 100% geek, Sara Gibbons spent her youth building Legos, solving puzzles, and playing video games. Little did she know it was priming her for an amazing Software Engineering career.<br/><br/>Sara spent two years studying Actuarial Science before a friend convinced her to take a C++ class to help him pass. By the end of the semester she&apos;d switched her major and was getting ready for her first internship. Born and raised in the Motor City, Sara quickly worked up the ranks in the software world running large automotive companies.<br/><br/>Soon Sara left that behind for the chance to work within the start-up scene and challenged herself to work across many projects, disciplines, and experience working with teams across the country of all sizes and makeups.<br/><br/>Outside of work you can find Sara leading a Girls Who Code club, volunteer teaching Computer Science at the nearby high school and working with many non-profit groups to increase diversity in technology fields.<br/><br/>When not working or volunteering she&apos;s building Legos all over again with her four beautiful children and man-child husband.';
-  const lifeHack =
-    'I’m not a small talk kinda girl. I crave soul nourishing conversation and connection. I want to talk about uncomfortably big dreams, interesting concepts and new ideas. I want to know what lights you up or drives you crazy. I want to challenge you and make you think bigger. So, let’s skip the small talk?';
-  const interests = ['React', 'Graph', 'Being Awesome', 'Ruby'];
-  // const links = [{}];
+    const filterSocialLinks = socialLinks.filter(item => {
+      return Object.keys(socialConstants.socialIcons).includes(
+        Object.keys(item)[0],
+      );
+    });
+
+    if (filterSocialLinks.length > 0) {
+      return Object.assign(...filterSocialLinks);
+    }
+    return {};
+  };
+
+  const getProfileLinkFor = linkType => {
+    return profileLinks.filter(obj => {
+      return obj.linkType === linkType;
+    })[0];
+  };
+
+  const getWebsiteLink = () => {
+    const websiteLink = getProfileLinkFor('WEBSITE');
+    if (websiteLink) {
+      return <NavItem title={websiteLink.url} href={websiteLink.url} />;
+    }
+    return '';
+  };
 
   return (
-    <ContentSection>
-      {/* <Grid>
-        <Cell width={12}> */}
-      <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
-        <MemberInfoCell>
-          <RoundImage
-            imageUrl={user.picture}
-            size="250"
-            showAccentLine={false}
-          />
-          <Name>{`${user.given_name} ${user.family_name}`}</Name>
-          <Title>Bringer of Queen Bey</Title>
-          <Company>Unspecified</Company>
-        </MemberInfoCell>
-        <Cell style={{ gridColumn: 'span 4' }}>
-          <SectionTitle>{`About ${user.given_name}`}</SectionTitle>
-          <Markdown>{bio}</Markdown>
-          <SectionTitle>Life Hack</SectionTitle>
-          <p>{lifeHack}</p>
-        </Cell>
-        <Cell style={{ gridColumn: 'span 1' }}>
-          <SectionTitle>Interests</SectionTitle>
-          {interests && (
-            <ul>
-              {interests.map(item => {
-                return <li>{item}</li>;
-              })}
-            </ul>
-          )}
-        </Cell>
-      </StyledGrid>
-      {/* </Cell>
-      </Grid> */}
-    </ContentSection>
+    <>
+      <Head>
+        <title key="title">
+          {`${firstName} ${lastName} - THAT Conference`}
+        </title>
+      </Head>
+      <ContentSection>
+        {/* Not sure why next but using this to link to edit causes a hook re-render issue */}
+        {/* <NavItem
+          title="Edit My Profile"
+          href="/member/edit"
+          icon="edit"
+          style={{ float: 'right' }}
+        /> */}
+        <EditLink href="/member/edit">
+          <span>
+            Edit My Profile
+            <EditIcon icon="edit" height="20" width="20" />
+          </span>
+        </EditLink>
+        <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
+          <MemberInfoCell>
+            {profileImage && (
+              <Imgix
+                src={profileImage}
+                width={270}
+                height={270}
+                imgixParams={{ mask: 'ellipse', fit: 'facearea', facepad: 4 }}
+              />
+            )}
+            {!profileImage && (
+              <RoundImage
+                imageUrl={DEFAULT_IMAGE}
+                size="250"
+                showAccentLine={false}
+              />
+            )}
+            <Name>{`${firstName} ${lastName}`}</Name>
+            {jobTitle && <Title>{jobTitle}</Title>}
+            {company && <Company>{company}</Company>}
+            {location()}
+            {getWebsiteLink()}
+            <SocialLinks socialLinks={getMemberSocialLinks()} />
+          </MemberInfoCell>
+          <Cell style={{ gridColumn: 'span 4' }}>
+            <SectionTitle>{`About ${firstName}`}</SectionTitle>
+            {bio && <Markdown>{bio}</Markdown>}
+
+            {lifeHack && (
+              <>
+                <SectionTitle>Life Hack</SectionTitle>
+                <p>{lifeHack}</p>
+              </>
+            )}
+          </Cell>
+          <Cell style={{ gridColumn: 'span 1' }}>
+            {interests && (
+              <>
+                <SectionTitle>Interests</SectionTitle>
+                <ul>
+                  {interests.map(item => {
+                    return <li>{item}</li>;
+                  })}
+                </ul>
+              </>
+            )}
+          </Cell>
+        </StyledGrid>
+      </ContentSection>
+    </>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  };
-};
-
-home.getInitialProps = async context => {
+member.getInitialProps = async context => {
   const slug = context.query.memberSlug;
 
   return { slug };
 };
 
-export default connect(mapStateToProps)(home);
+export default member;

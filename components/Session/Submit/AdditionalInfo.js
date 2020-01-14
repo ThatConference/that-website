@@ -1,7 +1,10 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import debug from 'debug';
+import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
@@ -10,28 +13,84 @@ import {
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const AdditionalInfo = ({ featureKeyword }) => {
+const dlog = debug('that:session:additionalInfo');
+
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+          type
+          category
+          status
+          title
+          shortDescription
+          longDescription
+          primaryCategory
+          secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
+          prerequisites
+          agenda
+          takeaways
+        }
+      }
+    }
+  }
+`;
+
+const AdditionalInfo = ({ session, setSession, setStepNumber, formCancel }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
+  const sessionIsWorkshop =
+    session && session.type && session.type.indexOf('WORKSHOP') !== -1;
+
   return (
     <Formik
       initialValues={{
-        prerequisites: '',
-        agenda: '',
-        takeaways: [],
+        prerequisites: session.prerequisites || '',
+        agenda: session.agenda || '',
+        takeaways: session.takeaways
+          ? session.takeaways.map(t => {
+              return { text: t };
+            })
+          : [],
       }}
       validationSchema={Yup.object({
-        prerequisites: Yup.string(),
-        // agenda: Yup.string(),
-        takeaways: Yup.array(),
+        // TO DO: move these to constants
+        prerequisites: sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
+        agenda: sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
+        ...sessionConstants.sessionValidations.additionalInfo,
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values));
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `lastly?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const updates = {
+          prerequisites: values.prerequisites,
+          agenda: values.agenda,
+          takeaways: values.takeaways
+            ? values.takeaways.map(t => t.text)
+            : null,
+        };
+        updateSession({
+          variables: { session: updates, sessionId: session.id },
+        });
       }}
     >
       {({
@@ -42,8 +101,23 @@ const AdditionalInfo = ({ featureKeyword }) => {
         setFieldValue,
         setFieldTouched,
         setFieldError,
+        isSubmitting,
       }) => (
         <Form className="input-form">
+          <FormRow>
+            <FormInput
+              inputType="strings"
+              fieldName="takeaways"
+              getFieldProps={getFieldProps}
+              setFieldTouched={setFieldTouched}
+              setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
+              errors={errors}
+              touched={touched}
+              label="Key Takeaways"
+              values={values}
+            />
+          </FormRow>
           <FormRow>
             <FormInput
               fieldName="prerequisites"
@@ -72,23 +146,9 @@ const AdditionalInfo = ({ featureKeyword }) => {
               values={values}
             />
           </FormRow>
-          <FormRow>
-            <FormInput
-              inputType="strings"
-              fieldName="takeaways"
-              getFieldProps={getFieldProps}
-              setFieldTouched={setFieldTouched}
-              setFieldValue={setFieldValue}
-              setFieldError={setFieldError}
-              errors={errors}
-              touched={touched}
-              label="Key Takeaways"
-              strings={[]}
-            />
-          </FormRow>
           <FormRule />
-          <FormCancel />
-          <FormSubmit label="Continue" />
+          <FormCancel label="Back" onClick={formCancel} />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

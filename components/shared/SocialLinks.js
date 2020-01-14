@@ -2,61 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Icon from './Icon';
-import { below } from '../../utilities';
+import { below, socialConstants } from '../../utilities';
 import * as gtag from '../../lib/gtag';
-
-const SOCIALS = [
-  {
-    href: 'https://www.facebook.com/ThatConference/',
-    icon: {
-      name: 'facebook',
-      width: 12,
-      height: 24,
-    },
-    className: 'is-bigger',
-  },
-  {
-    href: 'https://www.instagram.com/thatconference/',
-    icon: {
-      name: 'instagram',
-      width: 24,
-      height: 24,
-    },
-    className: 'is-bigger',
-  },
-  {
-    href: 'https://twitter.com/ThatConference',
-    icon: {
-      name: 'twitter',
-      width: 32,
-      height: 26,
-    },
-  },
-  {
-    href: 'https://medium.com/that-conference',
-    icon: {
-      name: 'medium',
-      width: 24,
-      height: 19,
-    },
-  },
-  {
-    href: 'https://www.youtube.com/thatconference/',
-    icon: {
-      name: 'youtube',
-      width: 90,
-      height: 63,
-    },
-  },
-  {
-    href: 'https://www.flickr.com/photos/thatconference/',
-    icon: {
-      name: 'flickr',
-      width: 35,
-      height: 17,
-    },
-  },
-];
 
 const SocialLinksContainer = styled.div`
   display: flex;
@@ -98,7 +45,7 @@ const SocialLinksContainer = styled.div`
   }
 `;
 
-const SocialLinks = ({ className, flexDirection }) => {
+const SocialLinks = ({ className, flexDirection, socialLinks }) => {
   const iconHeight = '38';
   const iconWidth = '38';
   const rowOrColumn = flexDirection || 'row';
@@ -112,22 +59,26 @@ const SocialLinks = ({ className, flexDirection }) => {
     });
   };
 
+  const socialLinksToDisplay = socialLinks || socialConstants.thatSocialLinks;
+
   return (
     <SocialLinksContainer className={className} rowOrColumn={rowOrColumn}>
-      {SOCIALS.map(item => {
+      {Object.keys(socialLinksToDisplay).map(key => {
         return (
           <a
-            href={item.href}
+            href={socialLinksToDisplay[key]}
             target="_blank"
             rel="noreferrer noopener"
-            key={item.icon.name}
-            onClick={() => clickTracking(item.icon.name)}
+            key={key}
+            onClick={() => clickTracking(key)}
           >
             <Icon
-              icon={item.icon.name}
-              height={item.icon.height || iconHeight}
-              width={item.icon.width || iconWidth}
-              className={item.className}
+              icon={socialConstants.socialIcons[key].icon.name}
+              height={
+                socialConstants.socialIcons[key].icon.height || iconHeight
+              }
+              width={socialConstants.socialIcons[key].icon.width || iconWidth}
+              className={socialConstants.socialIcons[key].className}
             />
           </a>
         );

@@ -1,54 +1,68 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/router';
+import { gql } from 'apollo-boost';
+import { useMutation } from '@apollo/react-hooks';
 
 import FormInput from '../shared/FormInput';
-import { FormRule, FormSubmit } from '../shared/FormLayout';
+import { FormRow, FormRule, FormSubmit } from '../shared/FormLayout';
+import { useUser } from '../../hooks/user';
 
-const Achknowledgment = ({ featureKeyword }) => {
+const UPDATE_PROFILE = gql`
+  mutation updateMember($profile: ProfileUpdateInput!) {
+    members {
+      member {
+        update(profile: $profile) {
+          id
+        }
+      }
+    }
+  }
+`;
+
+const Achknowledgment = ({ acceptedCommitments }) => {
+  const router = useRouter();
+  const { user } = useUser();
+
+  const [updateProfile] = useMutation(UPDATE_PROFILE, {
+    onCompleted: () => {
+      // update user context
+      user.acceptedCommitments = true;
+
+      router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
+    },
+    onError: createError => {
+      // dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
   return (
     <Formik
       initialValues={{
-        agreeToCodeOfConduct: false,
-        agreeToCommitments: false,
-        agreeToBeingRecorded: false,
-        are18OrOlder: false,
+        agreeToCommitments: acceptedCommitments || false,
       }}
       validationSchema={Yup.object({
-        agreeToCodeOfConduct: Yup.bool().oneOf(
-          [true],
-          'Must agree to the Code of Conduct',
-        ),
         agreeToCommitments: Yup.bool().oneOf(
           [true],
           'Must agree to the commitments',
         ),
-        agreeToBeingRecorded: Yup.bool(),
         are18OrOlder: Yup.bool(),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `session/submit?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const profile = {
+          acceptedCommitments: values.agreeToCommitments,
+        };
+        updateProfile({
+          variables: { profile },
+        });
       }}
     >
-      {({ getFieldProps, errors, touched }) => (
+      {({ getFieldProps, errors, touched, isSubmitting, values }) => (
         <Form className="input-form">
           <FormRule />
-          <div>
-            <FormInput
-              fieldName="agreeToCodeOfConduct"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-              label="Agree to the <a href='code-of-conduct'>Code of Conduct</a>"
-              inputType="checkbox"
-            />
-          </div>
-          <div>
+          <FormRow>
             <FormInput
               fieldName="agreeToCommitments"
               getFieldProps={getFieldProps}
@@ -56,29 +70,10 @@ const Achknowledgment = ({ featureKeyword }) => {
               touched={touched}
               label="Agree to commitments to THAT Conference laid out above"
               inputType="checkbox"
+              values={values}
             />
-            <div>
-              <FormInput
-                fieldName="agreeToBeingRecorded"
-                getFieldProps={getFieldProps}
-                errors={errors}
-                touched={touched}
-                label="Agree to being recorded"
-                inputType="checkbox"
-              />
-            </div>
-            <div>
-              <FormInput
-                fieldName="are18OrOlder"
-                getFieldProps={getFieldProps}
-                errors={errors}
-                touched={touched}
-                label="Are you 18 or older as of today?"
-                inputType="checkbox"
-              />
-            </div>
-          </div>
-          <FormSubmit label="Agree and Continue" />
+          </FormRow>
+          <FormSubmit label="Agree and Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

@@ -4,6 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { GenerateUuid, IsValidUrl } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
+import SquareButton from './SquareButton';
 
 const _ = require('lodash');
 
@@ -20,9 +21,8 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
-  width: 100%;
-  margin-top: 1.5rem;
+const Button = styled(SquareButton)`
+  margin-top: 0.7rem;
 `;
 
 const ValidationMessage = styled(FormInputValidationMessage)``;
@@ -32,7 +32,8 @@ const LinksInput = ({
   setFieldTouched,
   setFieldValue,
   setFieldError,
-  links,
+  values,
+  className,
 }) => {
   const getInitialStateValues = passedInLinks => {
     let initialLinks;
@@ -54,7 +55,7 @@ const LinksInput = ({
     } else {
       initialLinks = passedInLinks.map(l => {
         return {
-          id: l.id,
+          id: l.id || GenerateUuid(),
           name: l.name,
           url: l.url,
           nameTouched: false,
@@ -72,7 +73,7 @@ const LinksInput = ({
     return { initialLinks, initialValidity };
   };
 
-  const initialStateValues = getInitialStateValues(links);
+  const initialStateValues = getInitialStateValues(values[field]);
   const [stateLinks, setStateLinks] = useState(initialStateValues.initialLinks);
   const [stateValiditiy, setStateValidity] = useState(
     initialStateValues.initialValidity,
@@ -95,7 +96,6 @@ const LinksInput = ({
     setFieldError(field, valid ? null : 'Please fix validtion issues');
     const mapped = l.map(x => {
       return {
-        id: x.id,
         name: x.name,
         url: x.url,
       };
@@ -186,26 +186,22 @@ const LinksInput = ({
                   value={l.url}
                   onBlur={() => onUrlBlur(index)}
                   onChange={e => onUrlChange(e, index)}
-                  className={`${classNamePart1} ${urlInvalid ? 'invalid' : ''}`}
+                  className={`${className} ${classNamePart1} ${
+                    urlInvalid ? 'invalid' : ''
+                  }`}
                 />
                 <ValidationMessage>
                   {urlInvalid ? 'Valid URL Required' : ''}
                 </ValidationMessage>
               </Cell>
               <Cell width={2} center>
-                <Button type="button" onClick={() => onDelete(l.id)}>
-                  -
-                </Button>
+                <Button icon="minus" onClick={() => onDelete(l.id)} />
               </Cell>
             </React.Fragment>
           );
         })}
       </MainGrid>
-      {stateValiditiy && (
-        <button type="button" onClick={onAdd}>
-          + Add
-        </button>
-      )}
+      {stateValiditiy && <Button icon="plus" onClick={() => onAdd()} />}
     </div>
   );
 };

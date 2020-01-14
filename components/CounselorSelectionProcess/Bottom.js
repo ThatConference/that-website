@@ -29,7 +29,7 @@ const BottomButton = styled(LinkButton)`
   margin-bottom: 5rem;
 `;
 
-const Bottom = ({ featureKeyword }) => {
+const Bottom = () => {
   return (
     <Container>
       <BottomText>
@@ -37,7 +37,7 @@ const Bottom = ({ featureKeyword }) => {
         Counselor and submit your session!
       </BottomText>
       <BottomButton
-        href={`counselor-agreement?feature=${featureKeyword}`}
+        href="counselor-agreement"
         borderColor="thatBlue"
         color="thatBlue"
         backgroundColor="white"
