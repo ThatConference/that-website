@@ -57,12 +57,9 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
     },
   });
 
-  console.log('details session:', session);
-
   return (
     <Formik
       initialValues={{
-        title: session.title || '',
         shortDescription: session.shortDescription || '',
         longDescription: session.longDescription || '',
         primaryCategory: session.primaryCategory
@@ -85,20 +82,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
           : [],
       }}
       validationSchema={Yup.object({
-        title: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        shortDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .max(100, 'Must be 100 characters or less')
-          .required('Required'),
-        longDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        primaryCategory: Yup.string().required('Required'),
-        secondaryCategories: Yup.array(),
-        targetAudiences: Yup.array().required('At least one is required'),
-        supportingArtifacts: Yup.array(),
+        ...sessionConstants.sessionValidations.details,
       })}
       onSubmit={values => {
         const updates = {
@@ -120,25 +104,16 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
       }}
     >
       {({
-        getFieldProps,
         errors,
-        touched,
-        setFieldValue,
-        setFieldTouched,
-        setFieldError,
-        values,
+        getFieldProps,
         isSubmitting,
+        setFieldError,
+        setFieldTouched,
+        setFieldValue,
+        touched,
+        values,
       }) => (
         <Form className="input-form">
-          <FormRow>
-            <FormInput
-              fieldName="title"
-              label="Title"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-            />
-          </FormRow>
           <FormRow>
             <FormInput
               fieldName="shortDescription"

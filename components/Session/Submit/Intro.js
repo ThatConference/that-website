@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import debug from 'debug';
 import { sessionConstants } from '../../../utilities';
+import FormInput from '../../shared/FormInput';
 import { FormRow, FormRule, FormSubmit } from '../../shared/FormLayout';
 import {
   RadioButtonGroupItem,
@@ -19,6 +20,7 @@ const CREATE_SESSION = gql`
       create(eventId: $eventId, session: $session) {
         id
         type
+        title
         category
         status
       }
@@ -33,6 +35,7 @@ const UPDATE_SESSION = gql`
         update(session: $session) {
           id
           type
+          title
           category
           status
         }
@@ -78,16 +81,17 @@ const Intro = ({ session, setSession, setStepNumber }) => {
   return (
     <Formik
       initialValues={{
+        title: session.title || '',
         audience,
         sessionType,
       }}
       validationSchema={Yup.object({
-        audience: Yup.string().required('Selection required'),
-        sessionType: Yup.string().required('Selection required'),
+        ...sessionConstants.sessionValidations.intro,
       })}
       onSubmit={values => {
         if (session.id) {
           const newValues = {
+            title: values.title,
             type: values.sessionType,
             category: values.audience,
           };
@@ -100,7 +104,7 @@ const Intro = ({ session, setSession, setStepNumber }) => {
           });
         } else {
           const newSession = {
-            title: 'Step1_Temporary_Title',
+            title: values.title,
             type: values.sessionType,
             category: values.audience,
             status: 'DRAFT',
@@ -112,14 +116,24 @@ const Intro = ({ session, setSession, setStepNumber }) => {
       }}
     >
       {({
-        setFieldValue,
-        setFieldTouched,
-        values,
         errors,
-        touched,
+        getFieldProps,
         isSubmitting,
+        setFieldTouched,
+        setFieldValue,
+        touched,
+        values,
       }) => (
         <Form className="input-form">
+          <FormRow>
+            <FormInput
+              fieldName="title"
+              label="Title"
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
+            />
+          </FormRow>
           <FormRow>
             <RadioButtonGroup
               id="audience"

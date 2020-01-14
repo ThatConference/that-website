@@ -59,6 +59,38 @@ export const sessionConstants = {
     { value: 'WAIT_LIST', label: 'Wait List' },
     { value: 'CANCELLED', label: 'Canceled' },
   ],
+
+  sessionValidations: {
+    intro: {
+      title: Yup.string()
+        .min(3, 'Must be at least 3 characters')
+        .required('Required'),
+      audience: Yup.string().required('Selection required'),
+      sessionType: Yup.string().required('Selection required'),
+    },
+    details: {
+      shortDescription: Yup.string()
+        .min(3, 'Must be at least 3 characters')
+        .max(100, 'Must be 100 characters or less')
+        .required('Required'),
+      longDescription: Yup.string()
+        .min(3, 'Must be at least 3 characters')
+        .required('Required'),
+      primaryCategory: Yup.string().required('Required'),
+      secondaryCategories: Yup.array(),
+      targetAudiences: Yup.array().required('At least one is required'),
+      supportingArtifacts: Yup.array(),
+    },
+    additionalInfo: {
+      takeaways: Yup.array().min(1, 'At least 1 is required'),
+    },
+    lastly: {
+      agreeToBeingRecorded: Yup.bool(),
+      mentorshipLevel: Yup.string().required('Required'),
+      whyAreYouBestPerson: Yup.string().required('Required'),
+      whatElseShouldWeKnow: Yup.string(),
+    },
+  },
 };
 
 export const memberConstants = {
@@ -116,7 +148,7 @@ export const memberConstants = {
       github: Yup.string().url('Invalid URL'),
       instagram: Yup.string().url('Invalid URL'),
       linkedin: Yup.string().url('Invalid URL'),
-      thatSlackUsername: Yup.string(),
+      thatSlackUsername: Yup.string().nullable(),
       twitter: Yup.string().url('Invalid URL'),
       website: Yup.string().url('Invalid URL'),
     },
