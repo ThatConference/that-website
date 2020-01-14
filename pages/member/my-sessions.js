@@ -85,9 +85,8 @@ const MySessions = ({ user, loading }) => {
                 Submit a topic to become a counselor or edit existing sessions.
                 Let the creative juices flow here. We all like to read a good
                 abstract and this might be the first thing a camper knows about
-                you. Not sure which topic to present? Submit more than one! In
-                fact, submit as many as 3. We’ll pick the coolest ones on April
-                17th.
+                you. Not sure which topic to present? Submit more than one!
+                We’ll pick the coolest ones on April 17th.
               </TopParagraph>
               <LinkButton
                 label="Create a New Session"

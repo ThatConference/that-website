@@ -143,7 +143,7 @@ const Process = ({ milestones }) => {
             hoverBorderColor="thatBlue"
             hoverColor="white"
             hoverBackgroundColor="thatBlue"
-            label="More About the counselor selection process"
+            label="More About The Counselor Selection Process"
           />
         </Cell>
       </ProcessAndDatesGrid>
