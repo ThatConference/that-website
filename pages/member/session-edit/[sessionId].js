@@ -7,7 +7,6 @@ import _ from 'lodash';
 
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
-import Header from '../../../components/Member/SessionEdit/Header';
 import Details from '../../../components/Member/SessionEdit/Details';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
@@ -38,6 +37,16 @@ const MainGrid = styled(Grid)`
     width: 1em;
     margin-left: -1em;
   }
+`;
+
+const MainSection = styled.div`
+  margin-bottom: 6rem;
+`;
+
+const Title = styled.h1`
+  font-weight: 100;
+  font-size: 8.5rem;
+  margin-bottom: 0;
 `;
 
 const MainContent = styled(ContentSection)`
@@ -74,7 +83,9 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <Header />
+            <MainSection>
+              <Title>Edit Your Session</Title>
+            </MainSection>
             <Details user={user} loading={loadingUser} sessionId={sessionId} />
           </Cell>
           <Cell width={1} />

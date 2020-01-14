@@ -75,10 +75,7 @@ const Lastly = ({ session, setSession, setStepNumber, formCancel }) => {
         whatElseShouldWeKnow: session.otherComments || '',
       }}
       validationSchema={Yup.object({
-        agreeToBeingRecorded: Yup.bool(),
-        mentorshipLevel: Yup.string().required('Required'),
-        whyAreYouBestPerson: Yup.string().required('Required'),
-        whatElseShouldWeKnow: Yup.string(),
+        ...sessionConstants.sessionValidations.lastly,
       })}
       onSubmit={values => {
         const updates = {

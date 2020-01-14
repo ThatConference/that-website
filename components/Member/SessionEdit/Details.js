@@ -108,6 +108,9 @@ const DetailForm = ({ loading: loadingUser, sessionId }) => {
 
   const { session } = data.sessions.me;
 
+  const sessionIsWorkshop =
+    session && session.type && session.type.indexOf('WORKSHOP') !== -1;
+
   return (
     <Formik
       initialValues={{
@@ -154,29 +157,17 @@ const DetailForm = ({ loading: loadingUser, sessionId }) => {
         whatElseShouldWeKnow: session.otherComments || '',
       }}
       validationSchema={Yup.object({
-        title: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        audience: Yup.string().required('Selection required'),
-        sessionType: Yup.string().required('Selection required'),
-        shortDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .max(100, 'Must be 100 characters or less')
-          .required('Required'),
-        longDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        primaryCategory: Yup.string().required('Required'),
-        secondaryCategories: Yup.array(),
-        targetAudiences: Yup.array().required('At least one is required'),
-        supportingArtifacts: Yup.array(),
-        prerequisites: Yup.string(),
-        agenda: Yup.string(),
-        takeaways: Yup.array().required('At least one is required'),
-        agreeToBeingRecorded: Yup.bool(),
-        mentorshipLevel: Yup.string().required('Required'),
-        whyAreYouBestPerson: Yup.string(),
-        whatElseShouldWeKnow: Yup.string(),
+        ...sessionConstants.sessionValidations.intro,
+        ...sessionConstants.sessionValidations.details,
+        ...sessionConstants.sessionValidations.additionalInfo,
+        ...sessionConstants.sessionValidations.lastly,
+        // TO DO: move these to constants
+        prerequisites: sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
+        agenda: sessionIsWorkshop
+          ? Yup.string().required('Required')
+          : Yup.string(),
       })}
       onSubmit={values => {
         const updates = {
@@ -220,6 +211,15 @@ const DetailForm = ({ loading: loadingUser, sessionId }) => {
       }) => (
         <Form className="input-form">
           <FormRow>
+            <FormInput
+              fieldName="title"
+              label="Title"
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
+            />
+          </FormRow>
+          <FormRow>
             <RadioButtonGroup
               id="audience"
               label="Who is your session for?"
@@ -262,15 +262,6 @@ const DetailForm = ({ loading: loadingUser, sessionId }) => {
                 );
               })}
             </RadioButtonGroup>
-          </FormRow>
-          <FormRow>
-            <FormInput
-              fieldName="title"
-              label="Title"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-            />
           </FormRow>
           <FormRow>
             <FormInput

@@ -24,7 +24,6 @@ const SessionCreate = () => {
   const [stepNumber, setStepNumber] = useState(0);
   const [session, setSession] = useState({
     status: 'DRAFT',
-    title: 'Step1_Temporary_Title',
   });
 
   useEffect(() => {
