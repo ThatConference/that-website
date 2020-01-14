@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import debug from 'debug';
-
+import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
@@ -71,13 +71,14 @@ const AdditionalInfo = ({ session, setSession, setStepNumber, formCancel }) => {
           : [],
       }}
       validationSchema={Yup.object({
+        // TO DO: move these to constants
         prerequisites: sessionIsWorkshop
           ? Yup.string().required('Required')
           : Yup.string(),
         agenda: sessionIsWorkshop
           ? Yup.string().required('Required')
           : Yup.string(),
-        takeaways: Yup.array().min(1, 'At least 1 is required'),
+        ...sessionConstants.sessionValidations.additionalInfo,
       })}
       onSubmit={values => {
         const updates = {

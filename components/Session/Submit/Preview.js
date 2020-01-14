@@ -118,6 +118,8 @@ const UPDATE_SESSION = gql`
       session(id: $sessionId) {
         update(session: $session) {
           id
+          title
+          status
         }
       }
     }
