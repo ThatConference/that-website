@@ -77,8 +77,10 @@ export const sessionConstants = {
         .min(3, 'Must be at least 3 characters')
         .required('Required'),
       primaryCategory: Yup.string().required('Required'),
-      secondaryCategories: Yup.array(),
-      targetAudiences: Yup.array().required('At least one is required'),
+      secondaryCategories: Yup.array().nullable(),
+      targetAudiences: Yup.array()
+        .required('At least one is required')
+        .nullable(),
       supportingArtifacts: Yup.array(),
     },
     additionalInfo: {

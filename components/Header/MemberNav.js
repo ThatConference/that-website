@@ -42,7 +42,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
   if (loading) {
     return (
       <LoadingDiv>
-        <LoadingIndicator />
+        <LoadingIndicator size="1rem" />
       </LoadingDiv>
     );
   }

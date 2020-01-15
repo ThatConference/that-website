@@ -6,7 +6,6 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Details from '../../../components/Member/SessionEdit/Details';
-import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const _ = require('lodash');
 
@@ -69,10 +68,6 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
       router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
     }
   });
-
-  if (loadingUser) {
-    return <LoadingIndicator />;
-  }
 
   return (
     <div>

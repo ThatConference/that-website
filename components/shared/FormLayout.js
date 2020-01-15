@@ -37,6 +37,18 @@ export const FormRule = styled.hr`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
+export const FormRuleWithRequired = () => {
+  return (
+    <>
+      <p style={{ marginTop: '6rem', fontSize: '1.3rem' }}>
+        <FormInputRequiredIndicator>* </FormInputRequiredIndicator>
+        Required field
+      </p>
+      <FormRule style={{ marginTop: '0' }} />
+    </>
+  );
+};
+
 const StyledFormSubmit = styled(SquareButton)`
   ${sharedButtonStyles}
   float: right;

@@ -6,7 +6,11 @@ import { gql } from 'apollo-boost';
 import debug from 'debug';
 import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
-import { FormRow, FormRule, FormSubmit } from '../../shared/FormLayout';
+import {
+  FormRow,
+  FormSubmit,
+  FormRuleWithRequired,
+} from '../../shared/FormLayout';
 import {
   RadioButtonGroupItem,
   RadioButtonGroup,
@@ -132,6 +136,7 @@ const Intro = ({ session, setSession, setStepNumber }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              required
             />
           </FormRow>
           <FormRow>
@@ -143,6 +148,7 @@ const Intro = ({ session, setSession, setStepNumber }) => {
               touched={touched.audience}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
               {sessionConstants.SessionFors.map(sf => {
                 return (
@@ -166,6 +172,7 @@ const Intro = ({ session, setSession, setStepNumber }) => {
               touched={touched.sessionType}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
               {sessionConstants.SessionTypes.map(st => {
                 return (
@@ -180,7 +187,7 @@ const Intro = ({ session, setSession, setStepNumber }) => {
               })}
             </RadioButtonGroup>
           </FormRow>
-          <FormRule />
+          <FormRuleWithRequired />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}

@@ -9,7 +9,7 @@ import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
-  FormRule,
+  FormRuleWithRequired,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
@@ -122,6 +122,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              required
             />
           </FormRow>
           <FormRow>
@@ -136,6 +137,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
               errors={errors}
               touched={touched}
               values={values}
+              required
             />
           </FormRow>
           <FormRow>
@@ -149,6 +151,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
               touched={touched}
               errors={errors}
               helpText="You might not find a perfect fit, just choose the one that applies the most"
+              required
             />
           </FormRow>
           <FormRow>
@@ -175,6 +178,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
               values={values}
               touched={touched}
               errors={errors}
+              required
             />
           </FormRow>
           <FormRow>
@@ -191,7 +195,7 @@ const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
               values={values}
             />
           </FormRow>
-          <FormRule />
+          <FormRuleWithRequired />
           <FormCancel label="Back" onClick={formCancel} />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>

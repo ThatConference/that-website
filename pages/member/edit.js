@@ -17,8 +17,8 @@ import { below, memberConstants } from '../../utilities';
 
 import {
   FormCancel,
-  FormRule,
   FormSubmit,
+  FormRuleWithRequired,
 } from '../../components/shared/FormLayout';
 
 const _ = require('lodash');
@@ -165,7 +165,21 @@ const editProfile = ({ user, loading: loadingUser }) => {
   };
 
   if (loading) {
-    return <LoadingIndicator />;
+    return (
+      <div>
+        <Head>
+          <title key="title">
+            Member Profile: Contact Info - THAT Conference
+          </title>
+        </Head>
+        <ContentSection forForm>
+          <Title>Edit Profile</Title>
+          <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+            <LoadingIndicator />
+          </div>
+        </ContentSection>
+      </div>
+    );
   }
 
   return (
@@ -262,6 +276,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
                 user={user}
                 loading={loadingUser}
                 setFileUplaoding={setFileUplaoding}
+                fileUploading={fileUploading}
               />
               <Bio
                 getFieldProps={getFieldProps}
@@ -271,7 +286,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
                 setFieldTouched={setFieldTouched}
                 values={values}
               />
-              <FormRule />
+              <FormRuleWithRequired />
               <FormCancel onClick={formCancel} />
               <FormSubmit label="Update" inactive={fileUploading} />
             </Form>

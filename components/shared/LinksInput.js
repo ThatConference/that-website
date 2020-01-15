@@ -23,6 +23,15 @@ const Input = styled.input`
 
 const Button = styled(SquareButton)`
   margin-top: 0.7rem;
+  svg {
+    position: relative;
+    top: 0.6rem;
+    left: 0.6rem;
+  }
+
+  &.minus svg {
+    top: 1.7rem;
+  }
 `;
 
 const ValidationMessage = styled(FormInputValidationMessage)``;
@@ -195,13 +204,26 @@ const LinksInput = ({
                 </ValidationMessage>
               </Cell>
               <Cell width={2} center>
-                <Button icon="minus" onClick={() => onDelete(l.id)} />
+                <Button
+                  icon="minus"
+                  iconHeight="30"
+                  iconWidth="30"
+                  className="minus"
+                  onClick={() => onDelete(l.id)}
+                />
               </Cell>
             </React.Fragment>
           );
         })}
       </MainGrid>
-      {stateValiditiy && <Button icon="plus" onClick={() => onAdd()} />}
+      {stateValiditiy && (
+        <Button
+          icon="plus"
+          iconHeight="30"
+          iconWidth="30"
+          onClick={() => onAdd()}
+        />
+      )}
     </div>
   );
 };

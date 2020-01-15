@@ -66,42 +66,42 @@ const MySessions = ({ user, loading }) => {
     }
   });
 
-  if (loading) {
-    return <LoadingIndicator />;
-  }
-
   return (
     <div>
       <Head>
         <title key="title">My Sessions - THAT Conference</title>
       </Head>
       <MainContent>
-        <MainGrid columns={6}>
-          <Cell width={1} />
-          <Cell width={4}>
-            <MainSection>
-              <Title>Your Sessions</Title>
-              <TopParagraph>
-                Submit a topic to become a counselor or edit existing sessions.
-                Let the creative juices flow here. We all like to read a good
-                abstract and this might be the first thing a camper knows about
-                you. Not sure which topic to present? Submit more than one!
-                We’ll pick the coolest ones on April 17th.
-              </TopParagraph>
-              <LinkButton
-                label="Create a New Session"
-                href="/wi/session/create"
-                color="thatBlue"
-                borderColor="thatBlue"
-                hoverBorderColor="thatBlue"
-                hoverColor="white"
-                hoverBackgroundColor="thatBlue"
-              />
-            </MainSection>
-            <CurrentSessions user={user} loading={loading} />
-          </Cell>
-          <Cell width={1} />
-        </MainGrid>
+        {loading && <LoadingIndicator />}
+        {!loading && (
+          <MainGrid columns={6}>
+            <Cell width={1} />
+            <Cell width={4}>
+              <MainSection>
+                <Title>Your Sessions</Title>
+                <TopParagraph>
+                  Submit a topic to become a counselor or edit existing
+                  sessions. Let the creative juices flow here. We all like to
+                  read a good abstract and this might be the first thing a
+                  camper knows about you. Not sure which topic to present?
+                  Submit more than one! We’ll pick the coolest ones on April
+                  17th.
+                </TopParagraph>
+                <LinkButton
+                  label="Create a New Session"
+                  href="/wi/session/create"
+                  color="thatBlue"
+                  borderColor="thatBlue"
+                  hoverBorderColor="thatBlue"
+                  hoverColor="white"
+                  hoverBackgroundColor="thatBlue"
+                />
+              </MainSection>
+              <CurrentSessions user={user} loading={loading} />
+            </Cell>
+            <Cell width={1} />
+          </MainGrid>
+        )}
       </MainContent>
     </div>
   );
