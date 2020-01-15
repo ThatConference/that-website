@@ -47,18 +47,29 @@ const ContactInfoForm = ({
   touched,
   values,
 }) => {
-  const [validProfileSlug, setValidProfileSlug] = useState(false);
+  const [validProfileSlug, setValidProfileSlug] = useState(null);
+
   const [validateSlug, { loading, data }] = useLazyQuery(
     GET_PROFILE_SLUG_VALID,
+    {
+      fetchPolicy: 'network-only',
+      onCompleted: ({ data: { members } }) => {
+        setValidProfileSlug(!members.isProfileSlugTaken);
+      },
+    },
   );
 
   const getProfileSlugErrors = () => {
+    if (loading) {
+      return null;
+    }
+
     if (touched.profileSlug) {
       if (!values.profileSlug) {
         return 'Required';
       }
 
-      if (!validProfileSlug) {
+      if (validProfileSlug === false) {
         return 'Already Taken';
       }
     }
@@ -100,11 +111,10 @@ const ContactInfoForm = ({
           touched={touched}
           label="Profile Slug"
           disabled={editMode}
-          fieldHasValidation
-          validate={value => {
-            if (!editMode && value) {
+          onBlur={e => {
+            if (!editMode && e.target.value) {
               validateSlug({
-                variables: { slug: value },
+                variables: { slug: e.target.value },
               });
             }
           }}
