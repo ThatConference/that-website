@@ -34,6 +34,7 @@
     "google-map-react": "^1.1.5",
     "graphql": "^14.5.8",
     "html-react-parser": "^0.10.0",
+    "husky": "^4.0.10",
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
@@ -82,7 +83,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "fslightbox-react": "^1.4.7",
-    "husky": "^4.0.10",
     "jest": "^24.9.0",
     "now": "^16.7.2",
     "prettier-eslint": "^9.0.1"
@@ -100,11 +100,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/thatconference/that-website.git",
-    "husky": {
-      "hooks": {
-        "pre-push": "npm run validate"
-      }
+    "url": "https://github.com/thatconference/that-website.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run validate"
     }
   }
 }
