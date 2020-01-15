@@ -70,10 +70,6 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
     }
   });
 
-  if (loadingUser) {
-    return <LoadingIndicator />;
-  }
-
   return (
     <div>
       <Head>

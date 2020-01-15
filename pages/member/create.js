@@ -135,7 +135,19 @@ const createProfile = ({ user, loading }) => {
   };
 
   if (loading) {
-    return <LoadingIndicator />;
+    return (
+      <div>
+        <Head>
+          <title key="title">Create Member Profile - THAT Conference</title>
+        </Head>
+        <ContentSection forForm>
+          <Title>{steps[currentStep].label}</Title>
+          <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+            <LoadingIndicator />
+          </div>
+        </ContentSection>
+      </div>
+    );
   }
 
   return (
@@ -234,6 +246,7 @@ const createProfile = ({ user, loading }) => {
                   submitLabel="Next"
                   user={user}
                   setFileUplaoding={setFileUplaoding}
+                  fileUploading={fileUploading}
                 />
               )}
               {currentStep === 3 && (

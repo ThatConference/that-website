@@ -83,8 +83,16 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const DetailForm = ({ sessionId }) => {
+const DetailForm = ({ sessionId, loading: loadingUser }) => {
   const router = useRouter();
+
+  if (loadingUser) {
+    return (
+      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+        <LoadingIndicator />
+      </div>
+    );
+  }
 
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
     variables: {
@@ -102,7 +110,11 @@ const DetailForm = ({ sessionId }) => {
   });
 
   if (loading) {
-    return <LoadingIndicator />;
+    return (
+      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+        <LoadingIndicator />
+      </div>
+    );
   }
   if (sessionError) return null;
 

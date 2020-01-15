@@ -10,12 +10,14 @@ import {
   FormSubmit,
   FormInputRequiredIndicator,
 } from '../../shared/FormLayout';
+import LoadingIndicator from '../../shared/LoadingIndicator';
 
 const StyledImgix = styled(Imgix)`
   margin-left: 2rem;
 `;
 
 const Image = ({
+  fileUploading,
   formCancel,
   formSubmit,
   showButtons,
@@ -71,13 +73,18 @@ const Image = ({
           style={{ maxHeight: '4.5rem' }}
           accept="image/*"
         />
-        {values.profileImage && (
+        {!fileUploading && values.profileImage && (
           <StyledImgix
             src={values.profileImage}
             width={80}
             height={80}
             imgixParams={{ fit: 'facearea', facepad: 4 }}
           />
+        )}
+        {fileUploading && (
+          <div style={{ paddingLeft: '2rem' }}>
+            <LoadingIndicator size="1rem" />
+          </div>
         )}
       </FormRow>
 
