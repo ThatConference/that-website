@@ -6,7 +6,6 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Details from '../../../components/Member/SessionEdit/Details';
-import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const _ = require('lodash');
 
