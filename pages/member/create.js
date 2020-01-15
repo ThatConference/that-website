@@ -20,6 +20,7 @@ import {
   FormRule,
   FormCancel,
   FormSubmit,
+  FormInputRequiredIndicator,
 } from '../../components/shared/FormLayout';
 
 const _ = require('lodash');
@@ -246,7 +247,11 @@ const createProfile = ({ user, loading }) => {
                   submitLabel="Create"
                 />
               )}
-              <FormRule />
+              <p style={{ marginTop: '6rem', fontSize: '1.3rem' }}>
+                <FormInputRequiredIndicator>* </FormInputRequiredIndicator>
+                Required field
+              </p>
+              <FormRule style={{ marginTop: '0' }} />
               <FormCancel
                 label={currentStep === 0 ? 'Cancel' : 'Back'}
                 onClick={formCancel}

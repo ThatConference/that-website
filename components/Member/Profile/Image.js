@@ -8,6 +8,7 @@ import {
   FormRule,
   FormCancel,
   FormSubmit,
+  FormInputRequiredIndicator,
 } from '../../shared/FormLayout';
 
 const StyledImgix = styled(Imgix)`
@@ -59,6 +60,7 @@ const Image = ({
       <FormRow style={{ display: 'flex', alignItems: 'center' }}>
         <label htmlFor="profileImage" style={{ paddingRight: '1.5rem' }}>
           File upload
+          <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
         </label>
         <input
           id="profileImage"
