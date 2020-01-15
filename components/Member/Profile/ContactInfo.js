@@ -53,7 +53,7 @@ const ContactInfoForm = ({
     GET_PROFILE_SLUG_VALID,
     {
       fetchPolicy: 'network-only',
-      onCompleted: ({ data: { members } }) => {
+      onCompleted: ({ members }) => {
         setValidProfileSlug(!members.isProfileSlugTaken);
       },
     },
@@ -96,6 +96,7 @@ const ContactInfoForm = ({
           errors={errors}
           touched={touched}
           label="First Name"
+          required
         />
         <FormInput
           fieldName="lastName"
@@ -103,6 +104,7 @@ const ContactInfoForm = ({
           errors={errors}
           touched={touched}
           label="Last Name"
+          required
         />
         <FormInput
           fieldName="profileSlug"
@@ -118,6 +120,7 @@ const ContactInfoForm = ({
               });
             }
           }}
+          required
         />
         {/* <ProfileSlugValid>
           {!validProfileSlug && (
@@ -152,6 +155,7 @@ const ContactInfoForm = ({
           touched={touched}
           label="Email Address"
           placeholder="hello@youareawesome.com"
+          required
         />
       </FormRow>
       <FormRow>
@@ -215,6 +219,7 @@ const ContactInfoForm = ({
             label="Agree to the <a href='/wi/code-of-conduct' target='_blank'>Code of Conduct</a>"
             inputType="checkbox"
             values={values}
+            required
           />
           <FormInput
             fieldName="isOver13"
@@ -224,6 +229,7 @@ const ContactInfoForm = ({
             label="Are you over 13 years old?"
             inputType="checkbox"
             values={values}
+            required
           />
           <FormInput
             fieldName="acceptedTermsOfService"
@@ -233,6 +239,7 @@ const ContactInfoForm = ({
             label="Agree to <a href='/wi/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
             inputType="checkbox"
             values={values}
+            required
           />
         </FlexFormRow>
       )}

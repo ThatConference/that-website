@@ -27,6 +27,7 @@ const Bio = ({
           errors={errors}
           touched={touched}
           label="Bio"
+          required
         />
       </FormRow>
       {showButtons && (
