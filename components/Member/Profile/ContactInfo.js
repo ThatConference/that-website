@@ -121,6 +121,7 @@ const ContactInfoForm = ({
             }
           }}
           required
+          helpText="Part of the path to your THAT Profile (i.e. thatconference.com/member/camper1)"
         />
         {/* <ProfileSlugValid>
           {!validProfileSlug && (
