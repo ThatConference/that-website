@@ -98,6 +98,7 @@ const FormInput = props => {
     validate,
     values,
     required,
+    onBlur,
   } = props;
   const fieldProps = getFieldProps ? getFieldProps(fieldName) : null;
   const isCheckbox = inputType && inputType === inputTypes.checkbox;
@@ -157,6 +158,12 @@ const FormInput = props => {
             placeholder={placeholder}
             {...fieldProps}
             validate={validate}
+            onBlur={e => {
+              fieldProps.onBlur(e);
+              if (onBlur) {
+                onBlur(e);
+              }
+            }}
           />
         </>
       )}

@@ -47,18 +47,29 @@ const ContactInfoForm = ({
   touched,
   values,
 }) => {
-  const [validProfileSlug, setValidProfileSlug] = useState(false);
+  const [validProfileSlug, setValidProfileSlug] = useState(null);
+
   const [validateSlug, { loading, data }] = useLazyQuery(
     GET_PROFILE_SLUG_VALID,
+    {
+      fetchPolicy: 'network-only',
+      onCompleted: ({ members }) => {
+        setValidProfileSlug(!members.isProfileSlugTaken);
+      },
+    },
   );
 
   const getProfileSlugErrors = () => {
+    if (loading) {
+      return null;
+    }
+
     if (touched.profileSlug) {
       if (!values.profileSlug) {
         return 'Required';
       }
 
-      if (!validProfileSlug) {
+      if (validProfileSlug === false) {
         return 'Already Taken';
       }
     }
@@ -85,6 +96,7 @@ const ContactInfoForm = ({
           errors={errors}
           touched={touched}
           label="First Name"
+          required
         />
         <FormInput
           fieldName="lastName"
@@ -92,6 +104,7 @@ const ContactInfoForm = ({
           errors={errors}
           touched={touched}
           label="Last Name"
+          required
         />
         <FormInput
           fieldName="profileSlug"
@@ -100,14 +113,15 @@ const ContactInfoForm = ({
           touched={touched}
           label="Profile Slug"
           disabled={editMode}
-          fieldHasValidation
-          validate={value => {
-            if (!editMode && value) {
+          onBlur={e => {
+            if (!editMode && e.target.value) {
               validateSlug({
-                variables: { slug: value },
+                variables: { slug: e.target.value },
               });
             }
           }}
+          required
+          helpText="Part of the path to your THAT Profile (i.e. thatconference.com/member/camper1)"
         />
         {/* <ProfileSlugValid>
           {!validProfileSlug && (
@@ -142,6 +156,7 @@ const ContactInfoForm = ({
           touched={touched}
           label="Email Address"
           placeholder="hello@youareawesome.com"
+          required
         />
       </FormRow>
       <FormRow>
@@ -205,6 +220,7 @@ const ContactInfoForm = ({
             label="Agree to the <a href='/wi/code-of-conduct' target='_blank'>Code of Conduct</a>"
             inputType="checkbox"
             values={values}
+            required
           />
           <FormInput
             fieldName="isOver13"
@@ -214,6 +230,7 @@ const ContactInfoForm = ({
             label="Are you over 13 years old?"
             inputType="checkbox"
             values={values}
+            required
           />
           <FormInput
             fieldName="acceptedTermsOfService"
@@ -223,6 +240,7 @@ const ContactInfoForm = ({
             label="Agree to <a href='/wi/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
             inputType="checkbox"
             values={values}
+            required
           />
         </FlexFormRow>
       )}
