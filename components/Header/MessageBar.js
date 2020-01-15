@@ -50,7 +50,7 @@ const MessageBar = ({ className, user, loading }) => {
   const generalMessage = () => {
     return (
       <>
-        Call for Counselors (Speakers) starts January 13th!
+        Call for Counselors open through 3/1
         <Link href="/wi/call-for-counselors">
           <StyledLink onClick={clickTracking}>Learn More!</StyledLink>
         </Link>
