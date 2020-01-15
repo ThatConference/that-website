@@ -10,6 +10,8 @@ const SquareButton = ({
   borderColor,
   icon,
   iconClass,
+  iconHeight,
+  iconWidth,
   isSubmit,
   onClick,
   label,
@@ -41,7 +43,14 @@ const SquareButton = ({
       tabIndex={tabIndex}
     >
       {label && <p>{label}</p>}
-      {icon && <Icon icon={icon} className={iconClass} />}
+      {icon && (
+        <Icon
+          icon={icon}
+          height={iconHeight}
+          width={iconWidth}
+          className={iconClass}
+        />
+      )}
     </button>
   );
 };
@@ -56,7 +65,9 @@ export default styled(SquareButton)`
   background-color: ${({ backgroundColor, theme }) =>
     backgroundColor ? theme.colors[backgroundColor] : theme.colors.thatBlue};
   border: ${({ borderColor, theme }) =>
-    borderColor ? `2px solid ${theme.colors[borderColor]}` : 'none'};
+    borderColor
+      ? `2px solid ${theme.colors[borderColor]}`
+      : '2px solid transparent'};
   color: ${({ color, theme }) =>
     color
       ? theme.colors.fonts[color] || theme.colors[color]
