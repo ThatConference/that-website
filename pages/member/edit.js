@@ -17,8 +17,8 @@ import { below, memberConstants } from '../../utilities';
 
 import {
   FormCancel,
-  FormRule,
   FormSubmit,
+  FormRuleWithRequired,
 } from '../../components/shared/FormLayout';
 
 const _ = require('lodash');
@@ -286,7 +286,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
                 setFieldTouched={setFieldTouched}
                 values={values}
               />
-              <FormRule />
+              <FormRuleWithRequired />
               <FormCancel onClick={formCancel} />
               <FormSubmit label="Update" inactive={fileUploading} />
             </Form>

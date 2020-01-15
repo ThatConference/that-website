@@ -10,7 +10,7 @@ import FormInput from '../../shared/FormInput';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 import {
   FormRow,
-  FormRule,
+  FormRuleWithRequired,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
@@ -229,6 +229,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              required
             />
           </FormRow>
           <FormRow>
@@ -240,6 +241,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               touched={touched.audience}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
               {sessionConstants.SessionFors.map(sf => {
                 return (
@@ -262,6 +264,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               touched={touched.sessionType}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
               {sessionConstants.SessionTypes.map(st => {
                 return (
@@ -283,6 +286,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              required
             />
           </FormRow>
           <FormRow>
@@ -297,6 +301,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               errors={errors}
               touched={touched}
               values={values}
+              required
             />
           </FormRow>
           <FormRow>
@@ -310,6 +315,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               touched={touched}
               errors={errors}
               helpText="You might not find a perfect fit, just choose the one that applies the most"
+              required
             />
           </FormRow>
           <FormRow>
@@ -392,6 +398,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               touched={touched}
               label="Key Takeaways"
               values={values}
+              required
             />
           </FormRow>
           <FormRow>
@@ -412,6 +419,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               value={values.mentorshipLevel}
               error={errors.mentorshipLevel}
               touched={touched.mentorshipLevel}
+              required
             >
               {sessionConstants.SessionMentorshipLevels.map(m => {
                 return (
@@ -434,6 +442,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               touched={touched}
               label="Why are you the best person to give this talk?"
               helpText="Are you an authority? Super passionate about it? Brag on yourself a bit.  We want you to."
+              required
             />
           </FormRow>
           <FormRow>
@@ -446,7 +455,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
               label="What else should we know about your session or how to help you be successful"
             />
           </FormRow>
-          <FormRule />
+          <FormRuleWithRequired />
           <FormCancel label="Back" />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>

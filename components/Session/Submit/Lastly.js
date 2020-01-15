@@ -14,7 +14,7 @@ import {
 } from '../../shared/CheckboxAndRadioButtonInput';
 import {
   FormRow,
-  FormRule,
+  FormRuleWithRequired,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
@@ -109,6 +109,7 @@ const Lastly = ({ session, setSession, setStepNumber, formCancel }) => {
               value={values.mentorshipLevel}
               error={errors.mentorshipLevel}
               touched={touched.mentorshipLevel}
+              required
             >
               {sessionConstants.SessionMentorshipLevels.map(m => {
                 return (
@@ -132,6 +133,7 @@ const Lastly = ({ session, setSession, setStepNumber, formCancel }) => {
               touched={touched}
               label="Why are you the best person to give this talk?"
               helpText="Are you an authority? Super passionate about it? Brag on yourself a bit.  We want you to."
+              required
             />
           </FormRow>
           <FormRow>
@@ -144,7 +146,7 @@ const Lastly = ({ session, setSession, setStepNumber, formCancel }) => {
               label="What else should we know about your session or how to help you be successful"
             />
           </FormRow>
-          <FormRule />
+          <FormRuleWithRequired />
           <FormCancel label="Back" onClick={formCancel} />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>

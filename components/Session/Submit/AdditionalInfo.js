@@ -8,7 +8,7 @@ import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
-  FormRule,
+  FormRuleWithRequired,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
@@ -116,6 +116,7 @@ const AdditionalInfo = ({ session, setSession, setStepNumber, formCancel }) => {
               touched={touched}
               label="Key Takeaways"
               values={values}
+              required
             />
           </FormRow>
           <FormRow>
@@ -146,7 +147,7 @@ const AdditionalInfo = ({ session, setSession, setStepNumber, formCancel }) => {
               values={values}
             />
           </FormRow>
-          <FormRule />
+          <FormRuleWithRequired />
           <FormCancel label="Back" onClick={formCancel} />
           <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
