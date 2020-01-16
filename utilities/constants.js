@@ -170,6 +170,7 @@ export const socialConstants = {
     twitter: 'https://twitter.com/ThatConference',
     medium: 'https://medium.com/that-conference',
     youtube: 'https://www.youtube.com/thatconference/',
+    flickr: 'https://www.flickr.com/photos/thatconference/',
   }),
 
   socialIcons: {
@@ -208,6 +209,13 @@ export const socialConstants = {
         name: 'youtube',
         width: 90,
         height: 63,
+      },
+    },
+    flickr: {
+      icon: {
+        name: 'flickr',
+        width: 35,
+        height: 17,
       },
     },
   },
