@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -18,6 +19,22 @@ import {
   RadioButtonGroupItem,
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
+
+const _ = require('lodash');
+
+const SecondaryAction = styled.button`
+  margin-right: 2rem;
+  margin-top: 1rem;
+  float: right;
+  background-color: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 const dlog = debug('that:session:details');
 
@@ -205,6 +222,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
           mentorship: values.mentorshipLevel,
           whyAreYou: values.whyAreYouBestPerson,
           otherComments: values.whatElseShouldWeKnow,
+          status: 'SUBMITTED',
         };
         updateSession({
           variables: { session: updates, sessionId: session.id },
@@ -220,6 +238,8 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
         setFieldError,
         values,
         isSubmitting,
+        validateForm,
+        dirty,
       }) => (
         <Form className="input-form">
           <FormRow>
@@ -249,6 +269,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
                     component={RadioButtonGroupItem}
                     name="audience"
                     id={sf.value}
+                    key={sf.value}
                     label={sf.label}
                   />
                 );
@@ -272,6 +293,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
                     component={RadioButtonGroupItem}
                     name="sessionType"
                     id={st.value}
+                    key={st.value}
                     label={st.label}
                   />
                 );
@@ -427,6 +449,7 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
                     component={RadioButtonGroupItem}
                     name="mentorshipLevel"
                     id={m.value}
+                    key={m.value}
                     label={m.label}
                   />
                 );
@@ -456,8 +479,23 @@ const DetailForm = ({ sessionId, loading: loadingUser }) => {
             />
           </FormRow>
           <FormRuleWithRequired />
-          <FormCancel label="Back" />
-          <FormSubmit label="Continue" disabled={isSubmitting} />
+          <FormCancel label="Cancel" />
+
+          <FormSubmit label="Save" disabled={isSubmitting} />
+
+          {!dirty && (
+            <SecondaryAction
+              onClick={() =>
+                validateForm().then(errs => {
+                  if (_.isEmpty(errs)) {
+                    window.location = `/member/session-preview/${sessionId}`;
+                  }
+                })
+              }
+            >
+              Preview
+            </SecondaryAction>
+          )}
         </Form>
       )}
     </Formik>
