@@ -45,7 +45,17 @@ THAT website is server-side rendered React via Next. To get started, clone the r
 
 Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place.
 
-Edit the .env.build file. `SESSION_COOKIE_SECRET` requires at least a 32 character value. `API_GATEWAY` should be `https://api.that.tech`
+Edit the .env.build file. 
+* `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
+* `API_GATEWAY` should be `https://api.that.tech`
+* `DEBUG=that:*`
+
+Edit the .env file, adding
+* `DEBUG=that:*`
+* `API_GATEWAY=https://api.that.tech`
+
+Edit package.json
+* Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
 
 After you edit those files, run `now dev` to startup `localhost`.
 
