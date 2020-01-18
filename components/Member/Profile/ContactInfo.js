@@ -166,7 +166,7 @@ const ContactInfoForm = ({
           errors={errors}
           touched={touched}
           label="Mobile Phone"
-          placeholder="ex: +10001110000"
+          helpText="Enter like: +10001110000"
         />
       </FormRow>
       <FlexFormRow>
