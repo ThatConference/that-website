@@ -73,6 +73,13 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               onClick={() => onClick(false)}
             />
           </NavListItem>
+          <NavListItem>
+            <NavItem
+              title="About"
+              href="/about"
+              onClick={() => onClick(false)}
+            />
+          </NavListItem>
         </NavList>
       </nav>
     </>
