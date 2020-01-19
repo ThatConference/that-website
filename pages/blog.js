@@ -29,6 +29,7 @@ const blog = () => (
       </Grid>
     </ContentSection>
     <BlogList>
+      <BlogListItem slug="WI-2020-call-for-counselors-open" />
       <BlogListItem slug="2019-happy-holidays" />
       <BlogListItem slug="2019-cs-ed-week" />
       <BlogListItem slug="that-2019-holiday-buying-guide" />
