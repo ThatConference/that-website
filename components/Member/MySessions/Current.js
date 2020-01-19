@@ -143,11 +143,6 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;
 
-  // const editClick = (e, id) => {
-  //   e.preventDefault();
-  //   router.push(`/member/session-edit/${id}`);
-  // };
-
   const widthdrawClick = (e, id) => {
     e.preventDefault();
     const updates = {
