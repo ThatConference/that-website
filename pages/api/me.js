@@ -19,12 +19,20 @@ export default async function me(req, res) {
       dlog('user has no session');
       return res.json({});
     }
+    // Using tokenCache handles token expiration checks and refresh
+    const tokenCache = await auth0.tokenCache(req, res);
+    const { accessToken } = await tokenCache.getAccessToken();
+    dlog(
+      userSession.accessToken === accessToken
+        ? 'tokens same'
+        : 'tokens different',
+    );
 
     const options = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `bearer ${userSession.accessToken}`,
+        Authorization: `bearer ${accessToken}`,
       },
 
       body: ME_QUERY,
@@ -58,7 +66,7 @@ export default async function me(req, res) {
       ...thatMe,
       session: {
         ...userSession.user,
-        accessToken: userSession.accessToken,
+        accessToken,
       },
     };
 
