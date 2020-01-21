@@ -12,6 +12,29 @@ import ContentSection from '../../components/shared/ContentSection';
 const SlimContentSection = styled(ContentSection)`
   width: 70vw;
   margin: auto;
+  padding-top: 0;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  h4 {
+    margin-bottom: 0rem;
+  }
+
+  a.linkButton {
+    border: 1px solid ${({ theme }) => theme.colors.thatBlue};
+    padding: 2rem;
+    color: ${({ theme }) => theme.colors.thatBlue};
+    margin: 1rem;
+    font-weight: 800;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.thatBlue};
+      color: ${({ theme }) => theme.colors.white};
+    }
+  }
 `;
 
 const RenderedMarkdown = ({ markdownContent, statusCode }) => {
