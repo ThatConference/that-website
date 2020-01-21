@@ -8,7 +8,7 @@ author: THAT Crew
 
 <img src="../../images/blog/clark-2019-stage-pointing.jpg"
      alt="We Want To Hear YOUR Awesome!"
-     style="width: 62vw;" />
+     style="width: 100%;" />
 <br/><br/>
 
 ### <span style="font-size: 6rem; color: #F74646">THAT Conference 2020<br/>Call For Counselors NOW OPEN</span>
