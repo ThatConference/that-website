@@ -6,6 +6,7 @@ import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
 import styled from 'styled-components';
 import Error from '../_error';
+import { below } from '../../utilities/breakpoint';
 
 import ContentSection from '../../components/shared/ContentSection';
 
@@ -35,6 +36,9 @@ const SlimContentSection = styled(ContentSection)`
       color: ${({ theme }) => theme.colors.white};
     }
   }
+    ${below.med`
+    width: 90vw;
+  `};
 `;
 
 const RenderedMarkdown = ({ markdownContent, statusCode }) => {
