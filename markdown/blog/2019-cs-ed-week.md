@@ -8,7 +8,7 @@ author: THAT Crew
 
 <img src="../../images/blog/2019-cs-ed-week.png"
      alt="THAT Computer Science Education Week Celebration"
-     style="width: 62vw;" />
+     style="width: 100%" />
 <br/>
 
 ### THAT Computer Science Education Week Celebration

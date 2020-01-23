@@ -8,7 +8,7 @@ author: THAT Crew
 
 <img src="../../images/blog/2019-Holiday-Buying-Guide-hero.png"
      alt="THAT 2019 Holiday Buying Guide"
-     style="width: 62vw;" />
+     style="width: 100%;" />
 <br/>
 
 ### Top Picks From THAT Crew
