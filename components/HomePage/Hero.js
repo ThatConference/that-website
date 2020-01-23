@@ -4,7 +4,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
 
-import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above } from '../../utilities';
 
 const twoColBp = 'large';
 
@@ -132,7 +132,7 @@ const Hero = ({ event, className }) => {
           <Slogan>{event.slogan}</Slogan>
           <ActionButtons>
             <LinkButton
-              href={DEFAULT_WIP_PAGE}
+              href="wi/tickets"
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
