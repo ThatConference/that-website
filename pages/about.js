@@ -68,7 +68,7 @@ const about = () => (
             At THAT, technology is the theme that brings us all together. It's
             the common connection that links our community of professionals,
             families and businesses. Our goal with THAT is to bridge the gap
-            between professionals and businesses, beginners and experienced
+            between professionals and businesses, beginner and experienced
             technologists, all while shining a light on the importance of family
             and caring for your whole self.
             <br />
@@ -127,7 +127,7 @@ const about = () => (
       <p>
         When we started, everyone told us doing a conference was silly. Doing it
         in the Midwest was pointless, as you have to be on the coasts; that’s
-        where all the tech really happens. People said that I was emphatically
+        where all the tech really happens. People said that we were emphatically
         crazy. It didn't phase us. We know the power is in people themselves and
         bringing people together face-to-face. As it gives a much more in-depth,
         quality, high-fidelity conversation that we all need. We focus the
