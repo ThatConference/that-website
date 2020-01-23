@@ -13,7 +13,7 @@ const Meta = () => (
     <link rel="stylesheet" type="text/css" href="/nprogress.css" />
     <link rel="stylesheet" href="https://use.typekit.net/tyl7iga.css" />
     <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
       rel="stylesheet"
     />
 
