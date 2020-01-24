@@ -32,6 +32,21 @@ const CREATE_SESSION = gql`
   }
 `;
 
+// Need to refetch after create/insert of new session
+const GET_MY_SESSIONS = gql`
+  query getMySessions {
+    sessions {
+      me {
+        all {
+          id
+          title
+          status
+        }
+      }
+    }
+  }
+`;
+
 const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
     sessions {
@@ -59,6 +74,11 @@ const Intro = ({ session, setSession, setStepNumber }) => {
       dlog('Error creating session %o', createError);
       throw new Error(createError);
     },
+    refetchQueries: [
+      {
+        query: GET_MY_SESSIONS,
+      },
+    ],
   });
 
   const [updateSession] = useMutation(UPDATE_SESSION, {
