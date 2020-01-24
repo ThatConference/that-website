@@ -77,8 +77,8 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
   );
 };
 
-SessionEdit.getInitialProps = async context => {
-  const { sessionId } = context.query;
+SessionEdit.getInitialProps = ({ query }) => {
+  const { sessionId } = query;
   return { sessionId };
 };
 

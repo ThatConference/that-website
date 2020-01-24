@@ -137,14 +137,11 @@ const Preview = ({ sessionId, formCancel }) => {
         content: (
           <Cinnamon.Crisp
             scheme={Cinnamon.Crisp.SCHEME_BLUE}
-            content={() => (
-              <div>{`Your session, "${sessions.session.title}" was successfully submitted.`}</div>
-            )}
+            content={() => <div>Your session was successfully submitted.</div>}
             title="Your THAT Session Was Submitted"
           />
         ),
       });
-
       router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
     },
     onError: createError => {

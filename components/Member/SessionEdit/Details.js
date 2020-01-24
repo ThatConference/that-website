@@ -81,36 +81,16 @@ const UPDATE_SESSION = gql`
       session(id: $sessionId) {
         update(session: $session) {
           id
-          type
-          category
-          status
           title
-          shortDescription
-          longDescription
-          primaryCategory
-          secondaryCategory
-          targetAudience
-          supportingArtifacts {
-            name
-            url
-          }
+          status
         }
       }
     }
   }
 `;
 
-const DetailForm = ({ sessionId, loading: loadingUser }) => {
+const DetailForm = ({ sessionId }) => {
   const router = useRouter();
-
-  if (loadingUser) {
-    return (
-      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
-        <LoadingIndicator />
-      </div>
-    );
-  }
-
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
     variables: {
       sessionId,

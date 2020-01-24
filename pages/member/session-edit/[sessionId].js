@@ -6,6 +6,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Details from '../../../components/Member/SessionEdit/Details';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const _ = require('lodash');
 
@@ -81,7 +82,18 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
             <MainSection>
               <Title>Edit Your Session</Title>
             </MainSection>
-            <Details user={user} loading={loadingUser} sessionId={sessionId} />
+            {loadingUser && (
+              <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+                <LoadingIndicator />
+              </div>
+            )}
+            {!loadingUser && (
+              <Details
+                user={user}
+                loading={loadingUser}
+                sessionId={sessionId}
+              />
+            )}
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -90,8 +102,8 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
   );
 };
 
-SessionEdit.getInitialProps = async context => {
-  const { sessionId } = context.query;
+SessionEdit.getInitialProps = ({ query }) => {
+  const { sessionId } = query;
   return { sessionId };
 };
 
