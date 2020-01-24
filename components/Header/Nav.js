@@ -36,10 +36,10 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
         <NavList mobileMenuOpen={mobileMenuOpen}>
           {/* <NavListItem>
           <NavItem title="Schedule" href="/" />
-          </NavListItem>
-          <NavListItem>
-            <NavItem title="Speakers" href="/" />
           </NavListItem> */}
+          <NavListItem>
+            <NavItem title="Speakers" href="/wi/speakers" />
+          </NavListItem>
           <NavListItem>
             <NavItem
               title="Partners"
