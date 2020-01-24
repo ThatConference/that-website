@@ -81,7 +81,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 9rem;
+  top: 6rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;

@@ -37,6 +37,10 @@ const SocialLinksContainer = styled.div`
       max-height: 60%;
     }
 
+    .is-round {
+      max-height: 68%;
+    }
+
     &:hover {
       svg {
         fill: ${({ theme }) => theme.colors.white};
