@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Icon from '../shared/Icon';
+import Icon from './Icon';
 
 import * as gtag from '../../lib/gtag';
 import { below } from '../../utilities/breakpoint';
@@ -11,6 +11,10 @@ const StyledLink = styled.a`
   font-size: 1.4rem;
   text-align: center;
   color: ${props =>
+    props.color
+      ? props.theme.colors[props.color]
+      : props.theme.colors.secondary};
+  fill: ${props =>
     props.color
       ? props.theme.colors[props.color]
       : props.theme.colors.secondary};
@@ -75,16 +79,21 @@ const NavItem = ({
     });
   };
 
-  const handleClick = () => {
+  const handleClick = e => {
     clickTracking();
-    onClick();
+    onClick(e);
   };
 
   return (
     <>
       {isLocal ? (
         <Link href={href} passHref>
-          <StyledLink onClick={handleClick} color={color} target={target}>
+          <StyledLink
+            onClick={handleClick}
+            color={color}
+            target={target}
+            style={style}
+          >
             {displayedLink()}
           </StyledLink>
         </Link>
@@ -94,6 +103,7 @@ const NavItem = ({
           color={color}
           target={target}
           onClick={handleClick}
+          style={style}
         >
           {displayedLink()}
         </StyledLink>

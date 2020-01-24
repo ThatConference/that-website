@@ -81,17 +81,19 @@ const SponsorHighlight = ({ className, eventSlug }) => {
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
-        <HighlightImage src="/images/octopus_with_flag.png" />
+        <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
         <SideDetail>
           <FeaturedPartners>
             <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
             <PartnerLogo
               src="https://res.cloudinary.com/that-conference/image/upload/v1572186444/partnerlogo/Northwestern_Mutual_-_Web.png"
               alt="Northwestern mutual"
+              loading="lazy"
             />
             <PartnerLogo
               src="https://res.cloudinary.com/that-conference/image/upload/v1572186444/partnerlogo/Cuna_-_web.png"
               alt="CUNA Mutual Group"
+              loading="lazy"
             />
           </FeaturedPartners>
           <p className="large-body-copy" style={{ margin: '0.5rem 0' }}>

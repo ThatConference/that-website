@@ -2,7 +2,6 @@ import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
@@ -10,7 +9,6 @@ import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
-import { useFetchUser } from '../../lib/user';
 import MemberNav from './MemberNav';
 
 router.onRouteChangeStart = () => {
@@ -123,14 +121,9 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ({ className, dispatch, displayFeature }) => {
+const Header = ({ className, user, loading }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, loading } = useFetchUser();
-
-  if (!loading) {
-    dispatch({ type: 'USER', payload: user });
-  }
 
   useEffect(() => {
     setScrollY(window.pageYOffset);
@@ -151,7 +144,7 @@ const Header = ({ className, dispatch, displayFeature }) => {
 
   return (
     <header className={[className, scrolled()].join(' ')}>
-      <MessageBar />
+      <MessageBar user={user} loading={loading} />
       <HeaderSection>
         <PageHeader>
           <HeaderLogo />
@@ -159,16 +152,12 @@ const Header = ({ className, dispatch, displayFeature }) => {
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
           />
-
-          {displayFeature && (
-            <MemberNav
-              mobileMenuOpen={mobileMenuOpen}
-              onClick={setTo => setMobileMenuOpen(setTo)}
-              user={user}
-            />
-          )}
-          {!displayFeature && <div style={{ flexGrow: '2' }} />}
-
+          <MemberNav
+            mobileMenuOpen={mobileMenuOpen}
+            onClick={setTo => setMobileMenuOpen(setTo)}
+            user={user}
+            loading={loading}
+          />
           <div style={{ display: 'flex' }}>
             <ActionButton
               href="#newsletter"
@@ -189,13 +178,7 @@ const Header = ({ className, dispatch, displayFeature }) => {
   );
 };
 
-const mapStateToProps = function(state) {
-  return {
-    user: state.user,
-  };
-};
-
-export default connect(mapStateToProps)(styled(Header)`
+export default styled(Header)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -217,4 +200,4 @@ export default connect(mapStateToProps)(styled(Header)`
     width: 100%;
     position: absolute;
   }
-`);
+`;

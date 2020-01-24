@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import NavItem from './NavItem';
+import NavItem from '../shared/NavItem';
 import { below } from '../../utilities';
 
 const NavList = styled.div`
@@ -54,7 +54,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               onClick={() => onClick(false)}
             />
           </NavListItem>
-          <NavListItem>
+          {/* <NavListItem>
             <NavItem
               title="Shop"
               href="https://store.unspecified.io/"
@@ -62,7 +62,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               onClick={() => onClick(false)}
               isLocal={false}
             />
-          </NavListItem>
+          </NavListItem> */}
           <NavListItem>
             <NavItem title="Blog" href="/blog" onClick={() => onClick(false)} />
           </NavListItem>
@@ -70,6 +70,13 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
             <NavItem
               title="Contact"
               href="/wi/contact"
+              onClick={() => onClick(false)}
+            />
+          </NavListItem>
+          <NavListItem>
+            <NavItem
+              title="About"
+              href="/about"
               onClick={() => onClick(false)}
             />
           </NavListItem>

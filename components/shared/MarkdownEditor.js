@@ -11,6 +11,7 @@ const Toggler = styled(SquareButton)`
   margin-bottom: 0.25rem;
   width: 7rem;
   height: 3rem;
+  tabindex: -1;
 `;
 
 const shared = css`
@@ -48,13 +49,17 @@ const MarkdownEditor = ({
   field,
   fieldHasValidation,
   touched,
+  errors,
   value,
+  className,
 }) => {
   let markdown = value;
   let invalid =
     fieldHasValidation &&
     touched &&
     touched[field] &&
+    errors &&
+    errors[field] &&
     (!markdown || markdown === '');
 
   const handleMarkdownChange = event => {
@@ -76,6 +81,7 @@ const MarkdownEditor = ({
           setFieldTouched(field, true);
         }}
         width="15rem"
+        tabIndex="-1"
       />
       {!displayPreview && (
         <>
@@ -84,9 +90,9 @@ const MarkdownEditor = ({
             onChange={handleMarkdownChange}
             name={field}
             id={field}
-            className={invalid ? 'invalid' : ''}
+            className={`${className} ${invalid ? 'invalid' : ''}`}
           />
-          <MarkdownNote>*Markdown supported</MarkdownNote>
+          <MarkdownNote>** Markdown supported</MarkdownNote>
         </>
       )}
       {displayPreview && <Preview>{parse(converter.render(markdown))}</Preview>}

@@ -8,7 +8,7 @@ author: THAT Crew
 
 <img src="../../images/blog/2019-holiday-newsletter.png"
      alt="Happy Holidays ❤️ THAT"
-     style="width: 62vw;" />
+     style="width: 100%;" />
 <br/><br/>
 
 It’s the end of December and for many of us in the THAT Community, it is a time of holiday celebration. To those that celebrate Hanukkah, we say _Hanukkah Sameach!_ To those who celebrate Christmas, we say _Merry Christmas_! To those who celebrate Kwanzaa, we wish you a _joyous Kwanzaa!_ To those who celebrate having time off of work and normal schedules, _soak up all of it!_

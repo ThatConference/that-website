@@ -1,41 +1,164 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import debug from 'debug';
+import { sessionConstants } from '../../../utilities';
+import FormInput from '../../shared/FormInput';
 import {
   FormRow,
-  FormRule,
-  FormCancel,
   FormSubmit,
+  FormRuleWithRequired,
 } from '../../shared/FormLayout';
-
 import {
   RadioButtonGroupItem,
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
 
-const Intro = ({ featureKeyword }) => {
+const dlog = debug('that:session:intro');
+
+const CREATE_SESSION = gql`
+  mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
+    sessions {
+      create(eventId: $eventId, session: $session) {
+        id
+        type
+        title
+        category
+        status
+      }
+    }
+  }
+`;
+
+// Need to refetch after create/insert of new session
+const GET_MY_SESSIONS = gql`
+  query getMySessions {
+    sessions {
+      me {
+        all {
+          id
+          title
+          status
+        }
+      }
+    }
+  }
+`;
+
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+          type
+          title
+          category
+          status
+        }
+      }
+    }
+  }
+`;
+
+const Intro = ({ session, setSession, setStepNumber }) => {
+  const [createSession] = useMutation(CREATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session created %o', sessions);
+      setSession(sessions.create);
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error creating session %o', createError);
+      throw new Error(createError);
+    },
+    refetchQueries: [
+      {
+        query: GET_MY_SESSIONS,
+      },
+    ],
+  });
+
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
+  const audience = session.category
+    ? sessionConstants.SessionFors.find(sf => sf.value === session.category)
+        .value
+    : 'PROFESSIONAL';
+
+  const sessionType = session.type
+    ? sessionConstants.SessionTypes.find(st => st.value === session.type).value
+    : 'REGULAR';
+
   return (
     <Formik
       initialValues={{
-        audience: '',
-        sessionType: '',
+        title: session.title || '',
+        audience,
+        sessionType,
       }}
       validationSchema={Yup.object({
-        audience: Yup.string().required('Selection required'),
-        sessionType: Yup.string().required('Selection required'),
+        ...sessionConstants.sessionValidations.intro,
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `submit/details?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        if (session.id) {
+          const newValues = {
+            title: values.title,
+            type: values.sessionType,
+            category: values.audience,
+          };
+          updateSession({
+            variables: {
+              session: newValues,
+              eventId: '1234',
+              sessionId: session.id,
+            },
+          });
+        } else {
+          const newSession = {
+            title: values.title,
+            type: values.sessionType,
+            category: values.audience,
+            status: 'DRAFT',
+          };
+          createSession({
+            variables: { session: newSession, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+          });
+        }
       }}
     >
-      {({ setFieldValue, setFieldTouched, values, errors, touched }) => (
+      {({
+        errors,
+        getFieldProps,
+        isSubmitting,
+        setFieldTouched,
+        setFieldValue,
+        touched,
+        values,
+      }) => (
         <Form className="input-form">
+          <FormRow>
+            <FormInput
+              fieldName="title"
+              label="Title"
+              getFieldProps={getFieldProps}
+              errors={errors}
+              touched={touched}
+              required
+            />
+          </FormRow>
           <FormRow>
             <RadioButtonGroup
               id="audience"
@@ -45,19 +168,19 @@ const Intro = ({ featureKeyword }) => {
               touched={touched.audience}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
-              <Field
-                component={RadioButtonGroupItem}
-                name="audience"
-                id="professionals"
-                label="Professionals"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="audience"
-                id="family"
-                label="Family"
-              />
+              {sessionConstants.SessionFors.map(sf => {
+                return (
+                  <Field
+                    key={sf.value}
+                    component={RadioButtonGroupItem}
+                    name="audience"
+                    id={sf.value}
+                    label={sf.label}
+                  />
+                );
+              })}
             </RadioButtonGroup>
           </FormRow>
           <FormRow>
@@ -69,36 +192,23 @@ const Intro = ({ featureKeyword }) => {
               touched={touched.sessionType}
               onChange={setFieldValue}
               onBlur={setFieldTouched}
+              required
             >
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="standard"
-                label="Regular session (60 minute talk)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="keynote"
-                label="Keynote (90 minute talk)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="preconHalfDay"
-                label="Half-day Workshop (pre-conference)"
-              />
-              <Field
-                component={RadioButtonGroupItem}
-                name="sessionType"
-                id="preconFullDay"
-                label="Full-day Workshop (pre-conference)"
-              />
+              {sessionConstants.SessionTypes.map(st => {
+                return (
+                  <Field
+                    key={st.value}
+                    component={RadioButtonGroupItem}
+                    name="sessionType"
+                    id={st.value}
+                    label={st.label}
+                  />
+                );
+              })}
             </RadioButtonGroup>
           </FormRow>
-          <FormRule />
-          <FormCancel label="Back" />
-          <FormSubmit label="Continue" />
+          <FormRuleWithRequired />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

@@ -168,7 +168,7 @@ const TimelineSection = ({ event, className }) => {
       };
     })
     .sortBy(m => {
-      return moment(m);
+      return moment(m.due);
     })
     .value();
 
@@ -209,7 +209,11 @@ const TimelineSection = ({ event, className }) => {
             </TimelineItem>
           ))}
         </Timeline>
-        <Moose src="/images/moose_with_lantern.png" haveLink={haveLink} />
+        <Moose
+          src="/images/moose_with_lantern.png"
+          haveLink={haveLink}
+          loading="lazy"
+        />
       </Content>
     </Main>
   );

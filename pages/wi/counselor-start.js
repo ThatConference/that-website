@@ -5,7 +5,6 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import togglePage from '../../utilities/togglePage';
 
 import Header from '../../components/CounselorStart/Header';
 
@@ -42,7 +41,7 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorStart = ({ featureKeyword }) => {
+const CounselorStart = ({ user, loading }) => {
   return (
     <div>
       <Head>
@@ -52,7 +51,7 @@ const CounselorStart = ({ featureKeyword }) => {
         <MainGrid columns={6}>
           <Cell width={1} />
           <Cell width={4}>
-            <Header featureKeyword={featureKeyword} />
+            <Header user={user} loading={loading} />
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -61,4 +60,4 @@ const CounselorStart = ({ featureKeyword }) => {
   );
 };
 
-export default togglePage(CounselorStart);
+export default CounselorStart;

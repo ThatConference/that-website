@@ -11,6 +11,8 @@ const GlobalStyle = createGlobalStyle`
 
     box-sizing: border-box;
     font-size: 10px;
+    
+    scroll-behavior: smooth;
   }
 
   *, *:before, *:after {
@@ -112,8 +114,14 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
   }
 
-  ::-moz-selection { background: ${({ theme }) => theme.colors.primary}; }
-  ::selection { background: ${({ theme }) => theme.colors.primary}; }
+  ::-moz-selection { 
+    color: ${({ theme }) => theme.colors.fonts.light}; 
+    background: ${({ theme }) => theme.colors.primary}; 
+  }
+  ::selection { 
+    color: ${({ theme }) => theme.colors.fonts.light}; 
+    background: ${({ theme }) => theme.colors.primary};
+  }
 
   form {
     input {
@@ -142,6 +150,10 @@ const GlobalStyle = createGlobalStyle`
         &:-moz-placeholder {
           /* Firefox 18- */
           color: ${({ theme }) => theme.colors.mediumGray};
+        }
+
+        &:disabled {
+          background-color: ${({ theme }) => theme.colors.mediumLightGray};
         }
 
         &:focus {

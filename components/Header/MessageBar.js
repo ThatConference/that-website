@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { below } from '../../utilities';
 import * as gtag from '../../lib/gtag';
 
+const _ = require('lodash');
+
 const Message = styled.p`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.fonts.light};
@@ -35,7 +37,7 @@ const StyledLink = styled.a`
   }
 `;
 
-const MessageBar = ({ className }) => {
+const MessageBar = ({ className, user, loading }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -45,14 +47,44 @@ const MessageBar = ({ className }) => {
     });
   };
 
+  const generalMessage = () => {
+    return (
+      <>
+        Call for Counselors open through 3/1
+        <Link href="/wi/call-for-counselors">
+          <StyledLink onClick={clickTracking}>Learn More!</StyledLink>
+        </Link>
+      </>
+    );
+  };
+
+  const createProfileMessage = () => {
+    return (
+      <>
+        Tell Us More About Yourself!
+        <Link href="/member/create">
+          <StyledLink onClick={clickTracking}>
+            Complete Your Profile Today!
+          </StyledLink>
+        </Link>
+      </>
+    );
+  };
+
+  const getMessage = () => {
+    if (loading) {
+      return '';
+    }
+
+    if (_.isEmpty(user)) {
+      return generalMessage();
+    }
+    return user.profileComplete ? generalMessage() : createProfileMessage();
+  };
+
   return (
     <div className={className}>
-      <Message>
-        Call for Counselors (Speakers) starts January 6th!
-        <Link href="/wi/call-for-counselors" onClick={clickTracking}>
-          <StyledLink>Learn More!</StyledLink>
-        </Link>
-      </Message>
+      <Message>{getMessage()}</Message>
       <Location>THAT Conference - Wisconsin Dells, WI</Location>
     </div>
   );

@@ -4,6 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import { GenerateUuid } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
+import SquareButton from './SquareButton';
 
 const _ = require('lodash');
 
@@ -20,9 +21,17 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
-  width: 100%;
-  margin-top: 1.5rem;
+const Button = styled(SquareButton)`
+  margin-top: 0.7rem;
+  svg {
+    position: relative;
+    top: 0.6rem;
+    left: 0.6rem;
+  }
+
+  &.minus svg {
+    top: 1.7rem;
+  }
 `;
 
 const ValidationMessage = styled(FormInputValidationMessage)``;
@@ -32,7 +41,10 @@ const StringsInput = ({
   setFieldTouched,
   setFieldValue,
   setFieldError,
-  strings,
+  values,
+  touched,
+  errors,
+  className,
 }) => {
   const getInitialStateValues = passedInStrings => {
     let initialStrings;
@@ -53,7 +65,7 @@ const StringsInput = ({
     } else {
       initialStrings = passedInStrings.map(s => {
         return {
-          id: s.id,
+          id: s.id || GenerateUuid(),
           text: s.text,
           valid: s.text,
           touched: false,
@@ -66,7 +78,7 @@ const StringsInput = ({
     return { initialStrings, initialValidity };
   };
 
-  const initialStateValues = getInitialStateValues(strings);
+  const initialStateValues = getInitialStateValues(values[field]);
   const [stateStrings, setStateStrings] = useState(
     initialStateValues.initialStrings,
   );
@@ -134,9 +146,10 @@ const StringsInput = ({
     <div id={field} name={field}>
       <MainGrid columns={36}>
         {stateStrings.map((s, index) => {
+          const topLevelInvalid = touched[field] && errors[field];
           const invalid = s.touched && !s.valid;
-          const className = `${index === 0 ? 'first' : 'not-first'} ${
-            invalid ? 'invalid' : ''
+          const ctrlClassName = `${index === 0 ? 'first' : 'not-first'} ${
+            topLevelInvalid ? 'invalid' : ''
           }`;
           return (
             <React.Fragment key={s.id}>
@@ -145,25 +158,32 @@ const StringsInput = ({
                   value={s.text}
                   onChange={e => onChange(e, index)}
                   onBlur={() => onBlur(index)}
-                  className={className}
+                  className={`${className} ${ctrlClassName}`}
                 />
                 <ValidationMessage>
                   {invalid ? 'Required' : ''}
                 </ValidationMessage>
               </Cell>
               <Cell width={2} center>
-                <Button type="button" onClick={() => onDelete(s.id)}>
-                  -
-                </Button>
+                <Button
+                  icon="minus"
+                  iconHeight="30"
+                  iconWidth="30"
+                  className="minus"
+                  onClick={() => onDelete(s.id)}
+                />
               </Cell>
             </React.Fragment>
           );
         })}
       </MainGrid>
       {stateValiditiy && (
-        <button type="button" onClick={onAdd}>
-          + Add
-        </button>
+        <Button
+          icon="plus"
+          iconHeight="30"
+          iconWidth="30"
+          onClick={() => onAdd()}
+        />
       )}
     </div>
   );

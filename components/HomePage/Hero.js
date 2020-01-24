@@ -4,7 +4,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
 
-import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above } from '../../utilities';
 
 const twoColBp = 'large';
 
@@ -46,7 +46,7 @@ const ActionButtons = styled.div`
     float: left;
   }
 
-  a:first-child {
+  a:not(:last-child) {
     margin-right: 2rem;
   }
 
@@ -81,7 +81,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 9rem;
+  top: 6rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;
@@ -132,7 +132,7 @@ const Hero = ({ event, className }) => {
           <Slogan>{event.slogan}</Slogan>
           <ActionButtons>
             <LinkButton
-              href={DEFAULT_WIP_PAGE}
+              href="wi/tickets"
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
@@ -151,9 +151,19 @@ const Hero = ({ event, className }) => {
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
+            <LinkButton
+              href="wi/call-for-counselors"
+              label="Become A Counselor"
+              color="thatBlue"
+              borderColor="thatBlue"
+              className="stretch-sm"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
           </ActionButtons>
         </SideDetail>
-        <HeroImage src="images/clark_stage.jpg" />
+        <HeroImage src="images/clark_stage.jpg" loading="lazy" />
         <HeroSocials />
       </Main>
       <Description className="large-body-copy">

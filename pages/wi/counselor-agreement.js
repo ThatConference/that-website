@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
+import _ from 'lodash';
 
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import togglePage from '../../utilities/togglePage';
-
 import Header from '../../components/CounselorAgreement/Header';
 import Commitments from '../../components/CounselorAgreement/Commitments';
 import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
 import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -45,11 +46,33 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const CounselorAgreement = ({ featureKeyword }) => {
+const CounselorAgreement = ({ user, loading: loadingUser }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loadingUser) {
+      if (_.isEmpty(user)) {
+        router.push('/api/login?redirect-url=/member/create');
+      }
+
+      if (!user.profileComplete) {
+        router.push('/member/create').then(() => window.scrollTo(0, 0));
+      }
+
+      if (user.acceptedCommitments) {
+        router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
+      }
+    }
+  });
+
+  if (loadingUser) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <div>
       <Head>
-        <title key="title">Counselor Selection Process - THAT Conference</title>
+        <title key="title">Counselor Agreement - THAT Conference</title>
       </Head>
       <MainContent>
         <MainGrid columns={6}>
@@ -58,7 +81,7 @@ const CounselorAgreement = ({ featureKeyword }) => {
             <Header />
             <Commitments />
             <WhatsProvided />
-            <Acknowledgment featureKeyword={featureKeyword} />
+            <Acknowledgment acceptedCommitments={user.acceptedCommitments} />
           </Cell>
           <Cell width={1} />
         </MainGrid>
@@ -67,4 +90,4 @@ const CounselorAgreement = ({ featureKeyword }) => {
   );
 };
 
-export default togglePage(CounselorAgreement);
+export default CounselorAgreement;

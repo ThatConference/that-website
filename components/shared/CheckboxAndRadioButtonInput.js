@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { FormInputValidationMessage, FormLabel } from './FormLayout';
+import {
+  FormInputValidationMessage,
+  FormLabel,
+  FormInputRequiredIndicator,
+} from './FormLayout';
 
 const Label = styled.label`
   margin-left: 1rem;
@@ -51,11 +55,14 @@ export class CheckboxGroup extends React.Component {
   };
 
   render() {
-    const { id, label, value, error, touched, children } = this.props;
+    const { id, label, value, error, touched, required, children } = this.props;
 
     return (
       <FormLabel htmlFor={id}>
         {label}
+        {required && (
+          <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
+        )}
         <div>
           {React.Children.map(children, child => {
             return React.cloneElement(child, {
@@ -99,10 +106,18 @@ export const RadioButtonGroupItem = ({
   );
 };
 
-export const RadioButtonGroup = ({ id, error, touched, label, children }) => {
+export const RadioButtonGroup = ({
+  id,
+  error,
+  touched,
+  label,
+  required,
+  children,
+}) => {
   return (
     <FormLabel htmlFor={id}>
       {label}
+      {required && <FormInputRequiredIndicator> *</FormInputRequiredIndicator>}
       <div>
         {children}
         <FormInputValidationMessage>

@@ -43,7 +43,26 @@ _Coming soon_
 
 THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
 
-Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place, and then `now dev` to startup `localhost`.
+If you are on a mac, it is helpful to make sure Xcode and  Xcode command line tools are up to date.
+
+Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place.
+
+Edit the .env.build file:
+* `DEBUG=that:*`
+* `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
+* `API_GATEWAY` should be `https://api.that.tech`
+
+Edit the .env file, adding
+* `DEBUG=that:*`
+* `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
+* `API_GATEWAY=https://api.that.tech`
+
+Edit package.json
+* Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
+
+After you edit those files, run `now dev` to startup `localhost`.
+
+
 
 #### 6. Community
 

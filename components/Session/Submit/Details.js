@@ -1,85 +1,119 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
+import debug from 'debug';
 
+import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import {
   FormRow,
-  FormRule,
+  FormRuleWithRequired,
   FormCancel,
   FormSubmit,
 } from '../../shared/FormLayout';
 
-const categories = [
-  { value: 'accessibility', label: 'Accessibility' },
-  { value: 'architecture', label: 'Architecture' },
-  { value: 'arvr', label: 'AR/VR' },
-];
+const dlog = debug('that:session:details');
 
-const audiences = [
-  { value: 'anybody', label: 'Anybody' },
-  { value: 'developers', label: 'Developers' },
-  { value: 'managers', label: 'Managers' },
-];
+const categories = sessionConstants.SessionCategories;
+const audiences = sessionConstants.SessionAudiences;
 
-const DetailForm = ({ featureKeyword }) => {
+const UPDATE_SESSION = gql`
+  mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
+    sessions {
+      session(id: $sessionId) {
+        update(session: $session) {
+          id
+          type
+          category
+          status
+          title
+          shortDescription
+          longDescription
+          primaryCategory
+          secondaryCategory
+          targetAudience
+          supportingArtifacts {
+            name
+            url
+          }
+        }
+      }
+    }
+  }
+`;
+
+const DetailForm = ({ session, setSession, setStepNumber, formCancel }) => {
+  const [updateSession] = useMutation(UPDATE_SESSION, {
+    onCompleted: ({ sessions }) => {
+      dlog('session updated %o', sessions.session.update);
+      setSession({ ...session, ...sessions.session.update });
+      setStepNumber();
+    },
+    onError: createError => {
+      dlog('Error updating session %o', createError);
+      throw new Error(createError);
+    },
+  });
+
   return (
     <Formik
       initialValues={{
-        title: '',
-        shortDescription: '',
-        longDescription: '',
-        primaryCategory: '',
-        secondaryCategories: [],
-        targetAudiences: [],
-        supportingArtifacts: [],
+        shortDescription: session.shortDescription || '',
+        longDescription: session.longDescription || '',
+        primaryCategory: session.primaryCategory
+          ? categories.find(c => c.value === session.primaryCategory)
+          : '',
+        secondaryCategories: session.secondaryCategory
+          ? categories.filter(
+              c => session.secondaryCategory.indexOf(c.value) !== -1,
+            )
+          : [],
+        targetAudiences: session.targetAudience
+          ? audiences.filter(
+              a => session.targetAudience.indexOf(a.value) !== -1,
+            )
+          : [],
+        supportingArtifacts: session.supportingArtifacts
+          ? session.supportingArtifacts.map(m => {
+              return { name: m.name, url: m.url };
+            })
+          : [],
       }}
       validationSchema={Yup.object({
-        title: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        shortDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .max(100, 'Must be 100 characters or less')
-          .required('Required'),
-        longDescription: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required('Required'),
-        primaryCategory: Yup.string().required('Required'),
-        secondaryCategories: Yup.array().required('At least one is required'),
-        targetAudiences: Yup.array().required('At least one is required'),
-        supportingArtifacts: Yup.array(),
+        ...sessionConstants.sessionValidations.details,
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          console.log(JSON.stringify(values));
-          // eslint-disable-next-line no-alert
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-          window.location = `additional-info?feature=${featureKeyword}`;
-        }, 400);
+      onSubmit={values => {
+        const updates = {
+          title: values.title,
+          shortDescription: values.shortDescription,
+          longDescription: values.longDescription,
+          primaryCategory: values.primaryCategory.value,
+          secondaryCategory: values.secondaryCategories
+            ? values.secondaryCategories.map(sc => sc.value)
+            : null,
+          targetAudience: values.targetAudiences
+            ? values.targetAudiences.map(sc => sc.value)
+            : null,
+          supportingArtifacts: values.supportingArtifacts,
+        };
+        updateSession({
+          variables: { session: updates, sessionId: session.id },
+        });
       }}
     >
       {({
-        getFieldProps,
         errors,
-        touched,
-        setFieldValue,
-        setFieldTouched,
+        getFieldProps,
+        isSubmitting,
         setFieldError,
+        setFieldTouched,
+        setFieldValue,
+        touched,
         values,
       }) => (
         <Form className="input-form">
-          <FormRow>
-            <FormInput
-              fieldName="title"
-              label="Title"
-              getFieldProps={getFieldProps}
-              errors={errors}
-              touched={touched}
-            />
-          </FormRow>
           <FormRow>
             <FormInput
               fieldName="shortDescription"
@@ -88,6 +122,7 @@ const DetailForm = ({ featureKeyword }) => {
               getFieldProps={getFieldProps}
               errors={errors}
               touched={touched}
+              required
             />
           </FormRow>
           <FormRow>
@@ -102,6 +137,7 @@ const DetailForm = ({ featureKeyword }) => {
               errors={errors}
               touched={touched}
               values={values}
+              required
             />
           </FormRow>
           <FormRow>
@@ -115,6 +151,7 @@ const DetailForm = ({ featureKeyword }) => {
               touched={touched}
               errors={errors}
               helpText="You might not find a perfect fit, just choose the one that applies the most"
+              required
             />
           </FormRow>
           <FormRow>
@@ -141,6 +178,7 @@ const DetailForm = ({ featureKeyword }) => {
               values={values}
               touched={touched}
               errors={errors}
+              required
             />
           </FormRow>
           <FormRow>
@@ -154,12 +192,12 @@ const DetailForm = ({ featureKeyword }) => {
               errors={errors}
               touched={touched}
               label="Supporting Links/Related Resources"
-              links={[]}
+              values={values}
             />
           </FormRow>
-          <FormRule />
-          <FormCancel />
-          <FormSubmit label="Continue" />
+          <FormRuleWithRequired />
+          <FormCancel label="Back" onClick={formCancel} />
+          <FormSubmit label="Continue" disabled={isSubmitting} />
         </Form>
       )}
     </Formik>

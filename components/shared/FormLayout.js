@@ -37,6 +37,18 @@ export const FormRule = styled.hr`
   color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
+export const FormRuleWithRequired = () => {
+  return (
+    <>
+      <p style={{ marginTop: '6rem', fontSize: '1.3rem' }}>
+        <FormInputRequiredIndicator>* </FormInputRequiredIndicator>
+        Required field
+      </p>
+      <FormRule style={{ marginTop: '0' }} />
+    </>
+  );
+};
+
 const StyledFormSubmit = styled(SquareButton)`
   ${sharedButtonStyles}
   float: right;
@@ -52,14 +64,23 @@ export const FormInputValidationMessage = styled.div`
   color: ${({ theme }) => theme.colors.danger};
 `;
 
-export const FormSubmit = ({ label }) => {
+export const FormInputRequiredIndicator = styled.span`
+  color: ${({ theme }) => theme.colors.danger};
+`;
+
+export const FormSubmit = ({ label, validateForm, inactive }) => {
   return (
     <StyledFormSubmit
-      color="dark"
+      color="thatBlue"
       backgroundColor="white"
-      borderColor="gray"
+      borderColor="thatBlue"
+      hoverBorderColor="thatBlue"
+      hoverBackgroundColor="thatBlue"
+      hoverColor="white"
       label={label || 'Submit'}
       isSubmit
+      onClick={validateForm}
+      className={inactive ? 'inactive' : ''}
     />
   );
 };
