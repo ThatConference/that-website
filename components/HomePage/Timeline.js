@@ -158,7 +158,7 @@ const Date = styled(Detail)`
 `;
 
 const TimelineSection = ({ event, className }) => {
-  const milestones = _(event.milestones)
+  const milestones = _(event.get.milestones)
     .map(m => {
       const momentDue = moment.utc(m.dueDate);
       return {
@@ -172,7 +172,7 @@ const TimelineSection = ({ event, className }) => {
     })
     .value();
 
-  const featured = _.find(event.notifications, n => {
+  const featured = _.find(event.get.notifications, n => {
     return n.shouldFeature === true;
   });
 

@@ -16,31 +16,33 @@ const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        id
-        startDate
-        endDate
-        venues {
+        get {
           id
-          name
-          address
-          city
-          state
-          zip
-        }
-        milestones {
-          title
-          description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
           startDate
           endDate
-          link
-          linkText
+          venues {
+            id
+            name
+            address
+            city
+            state
+            zip
+          }
+          milestones {
+            title
+            description
+            dueDate
+          }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
         }
       }
     }
@@ -94,10 +96,12 @@ const contact = () => {
 
   const { event } = data.events;
 
-  const formattedStartDate = moment(event.startDate).format(
+  const formattedStartDate = moment(event.get.startDate).format(
     'dddd, MMMM D, YYYY',
   );
-  const formattedEndDate = moment(event.endDate).format('dddd, MMMM D, YYYY');
+  const formattedEndDate = moment(event.get.endDate).format(
+    'dddd, MMMM D, YYYY',
+  );
 
   return (
     <>
@@ -144,11 +148,11 @@ const contact = () => {
           <StyledImageContainer>
             <Title>Where</Title>
             <p style={{ flexGrow: '2' }}>
-              <strong>{event.venues[0].name}</strong>
+              <strong>{event.get.venues[0].name}</strong>
               <br />
-              {event.venues[0].address}
+              {event.get.venues[0].address}
               <br />
-              {`${event.venues[0].city}, ${event.venues[0].state} ${event.venues[0].zip}`}
+              {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
             </p>
             <LinkButton
               href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
