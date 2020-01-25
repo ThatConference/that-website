@@ -96,10 +96,12 @@ const contact = () => {
 
   const { event } = data.events;
 
-  const formattedStartDate = moment(event.startDate).format(
+  const formattedStartDate = moment(event.get.startDate).format(
     'dddd, MMMM D, YYYY',
   );
-  const formattedEndDate = moment(event.endDate).format('dddd, MMMM D, YYYY');
+  const formattedEndDate = moment(event.get.endDate).format(
+    'dddd, MMMM D, YYYY',
+  );
 
   return (
     <>

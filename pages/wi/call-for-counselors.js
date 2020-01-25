@@ -47,7 +47,10 @@ const CallForCounselors = ({ featureKeyword }) => {
       <SummerCamp />
       {/* TO DO: commenting out until we have past sessions in place */}
       {/* <TalkIdeas /> */}
-      <Process featureKeyword={featureKeyword} milestones={event.milestones} />
+      <Process
+        featureKeyword={featureKeyword}
+        milestones={event.get.milestones}
+      />
       <Perks />
     </div>
   );
