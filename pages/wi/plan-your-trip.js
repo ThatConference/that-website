@@ -146,11 +146,11 @@ const contact = () => {
           <StyledImageContainer>
             <Title>Where</Title>
             <p style={{ flexGrow: '2' }}>
-              <strong>{event.venues[0].name}</strong>
+              <strong>{event.get.venues[0].name}</strong>
               <br />
-              {event.venues[0].address}
+              {event.get.venues[0].address}
               <br />
-              {`${event.venues[0].city}, ${event.venues[0].state} ${event.venues[0].zip}`}
+              {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
             </p>
             <LinkButton
               href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
