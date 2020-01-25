@@ -129,7 +129,7 @@ const Hero = ({ event, className }) => {
           <DateLocation>
             August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
-          <Slogan>{event.slogan}</Slogan>
+          <Slogan>{event.get.slogan}</Slogan>
           <ActionButtons>
             <LinkButton
               href="wi/tickets"

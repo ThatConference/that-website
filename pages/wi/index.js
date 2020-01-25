@@ -19,33 +19,35 @@ const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        id
-        name
-        slogan
-        startDate
-        endDate
-        venues {
+        get {
           id
           name
-          address
-          city
-          state
-          zip
-        }
-        milestones {
-          title
-          description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
+          slogan
           startDate
           endDate
-          link
-          linkText
+          venues {
+            id
+            name
+            address
+            city
+            state
+            zip
+          }
+          milestones {
+            title
+            description
+            dueDate
+          }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
         }
       }
     }
