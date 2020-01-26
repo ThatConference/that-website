@@ -82,7 +82,6 @@ const MenuIcon = styled.div`
     display: none;
   `};
 
-
   &:after,
   &:before,
   div {
