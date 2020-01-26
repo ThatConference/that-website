@@ -171,6 +171,7 @@ export const socialConstants = {
     medium: 'https://medium.com/that-conference',
     youtube: 'https://www.youtube.com/thatconference/',
     flickr: 'https://www.flickr.com/photos/thatconference/',
+    github: 'https://github.com/ThatConference',
   }),
 
   socialIcons: {
@@ -182,6 +183,21 @@ export const socialConstants = {
       },
       className: 'is-bigger',
     },
+    flickr: {
+      icon: {
+        name: 'flickr',
+        width: 35,
+        height: 17,
+      },
+    },
+    github: {
+      icon: {
+        name: 'github',
+        width: 24,
+        height: 24,
+      },
+      className: 'is-round',
+    },
     instagram: {
       icon: {
         name: 'instagram',
@@ -190,13 +206,6 @@ export const socialConstants = {
       },
       className: 'is-bigger',
     },
-    twitter: {
-      icon: {
-        name: 'twitter',
-        width: 32,
-        height: 26,
-      },
-    },
     medium: {
       icon: {
         name: 'medium',
@@ -204,18 +213,18 @@ export const socialConstants = {
         height: 19,
       },
     },
+    twitter: {
+      icon: {
+        name: 'twitter',
+        width: 32,
+        height: 26,
+      },
+    },
     youtube: {
       icon: {
         name: 'youtube',
         width: 90,
         height: 63,
-      },
-    },
-    flickr: {
-      icon: {
-        name: 'flickr',
-        width: 35,
-        height: 17,
       },
     },
   },

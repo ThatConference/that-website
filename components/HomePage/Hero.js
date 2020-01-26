@@ -4,7 +4,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
 
-import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';
+import { below, above } from '../../utilities';
 
 const twoColBp = 'large';
 
@@ -81,7 +81,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 9rem;
+  top: 6rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;
@@ -129,10 +129,10 @@ const Hero = ({ event, className }) => {
           <DateLocation>
             August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
-          <Slogan>{event.slogan}</Slogan>
+          <Slogan>{event.get.slogan}</Slogan>
           <ActionButtons>
             <LinkButton
-              href={DEFAULT_WIP_PAGE}
+              href="wi/tickets"
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
