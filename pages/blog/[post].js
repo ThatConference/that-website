@@ -6,7 +6,7 @@ import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
 import styled from 'styled-components';
 import Error from '../_error';
-import { below } from '../../utilities/breakpoint';
+import { below } from '../../utilities';
 
 import ContentSection from '../../components/shared/ContentSection';
 
@@ -14,6 +14,11 @@ const SlimContentSection = styled(ContentSection)`
   width: 70vw;
   margin: auto;
   padding-top: 0;
+
+  ${below.small`
+    width 100vw;
+    padding: 5rem 1rem;
+  `}
 
   h2 {
     margin-top: 0;
