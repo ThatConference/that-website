@@ -82,6 +82,10 @@ const MenuIcon = styled.div`
     display: none;
   `};
 
+  ${below.small`
+    right: 0;
+  `};
+
   &:after,
   &:before,
   div {
