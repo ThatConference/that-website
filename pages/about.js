@@ -42,6 +42,7 @@ const HighlightImage = styled.img`
   ${below[twoColBp]`
     margin-left: auto;
     margin-right: auto;
+    min-width: 30rem;
   `};
 
   ${above[twoColBp]`
