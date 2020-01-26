@@ -36,7 +36,7 @@ const SlimContentSection = styled(ContentSection)`
       color: ${({ theme }) => theme.colors.white};
     }
   }
-    ${below.med`
+  ${below.med`
     width: 90vw;
   `};
 `;
