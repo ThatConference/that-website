@@ -58,6 +58,10 @@ const ActionButtons = styled.div`
     flex-direction: column;
     align-items: stretch;
   `};
+
+  ${below.xlarge`
+    a{min-width:inherit}
+  `}
 `;
 
 const HeroImage = styled.img`
