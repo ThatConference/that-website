@@ -39,6 +39,10 @@ const MainGrid = styled(Grid)`
 
 const MainContent = styled(ContentSection)`
   padding-top: 0;
+
+  ${below.med`
+    padding-top: 3rem;
+  `};
 `;
 
 const CounselorStart = ({ user, loading }) => {
