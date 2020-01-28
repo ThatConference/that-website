@@ -4,7 +4,8 @@ import { gql } from 'apollo-boost';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
-import debug from 'debug';
+// import debug from 'debug';
+import Error from 'next/error';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
@@ -16,7 +17,7 @@ import Testimonials from '../../components/HomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
 
-const dlog = debug('that:website:pages:wi:index');
+// const dlog = debug('that:website:pages:wi:index');
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -71,9 +72,8 @@ const home = () => {
   if (loading) return null;
 
   if (error) {
-    dlog('TCL: error', error.networkError.response.statusCode);
-
-    throw new Error(error.message);
+    console.log('TCL: error', error);
+    return <Error statusCode={400} />;
   }
 
   const { event } = data.events;

@@ -2,9 +2,12 @@
 import React from 'react';
 import Head from 'next/head';
 import * as Sentry from '@sentry/node';
+// import debug from 'debug';
 
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton';
+
+// const dlog = debug('that:website:pages:error');
 
 const genericError = (
   <>
@@ -39,9 +42,13 @@ const pageNotFound = requestedUrl => {
   );
 };
 
-function Error({ statusCode, requestedUrl, eventId }) {
+function Error({ title, statusCode, requestedUrl, eventId }) {
+  console.log('eventId %s', eventId);
+  console.log('title %s', title);
+
   const errorBlock =
     statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
+
   return (
     <>
       <Head>
@@ -74,7 +81,9 @@ function Error({ statusCode, requestedUrl, eventId }) {
   );
 }
 
-Error.getInitialProps = ({ res, err, req }) => {
+Error.getInitialProps = async ({ res, err, req }) => {
+  console.log('in error getInitalprops');
+
   const requestedUrl = req.url;
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
