@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
-import { below, DEFAULT_WIP_PAGE, gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
@@ -136,7 +136,7 @@ const contact = () => {
               {formattedEndDate}
             </p>
             <LinkButton
-              href={`/${DEFAULT_WIP_PAGE}`}
+              href="/wi/tickets"
               label="Ticket Options"
               borderColor="thatBlue"
               color="thatBlue"

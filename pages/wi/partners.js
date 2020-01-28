@@ -5,23 +5,33 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 
+import debug from 'debug';
+
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
 
+const dlog = debug('that:partners');
+
 const GET_PARTNERS = gql`
-  query getPartners {
-    partners {
-      all {
-        id
-        slug
-        year
-        partnershipLevel
-        companyName
-        companyLogo
-        heroImage
-        website
+  query getPartners($eventId: ID!) {
+    events {
+      event(id: $eventId) {
+        get {
+          id
+          name
+          partners {
+            id
+            slug
+            year
+            partnershipLevel
+            companyName
+            companyLogo
+            heroImage
+            website
+          }
+        }
       }
     }
   }
@@ -99,18 +109,29 @@ const renderPartner = (
 };
 
 const partnerListing = () => {
-  const { loading, error, data } = useQuery(GET_PARTNERS);
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    variables: {
+      eventId: 'ByE7Dc7eCGcRFzLhWhuI',
+    },
+  });
 
   if (loading) return null;
-  if (error) return null;
+  if (error) {
+    dlog('error %o', error);
+    return null;
+  }
 
-  const partners = data.partners.all;
+  dlog('data %o', data.events.event.get.partners);
+
+  const { partners } = data.events.event.get;
+
+  dlog('partners %o', partners);
   return (
     <div>
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>2019 Partners</Header>
+            <Header>2020 Partners</Header>
             <LinkButton
               href="/wi/become-a-partner"
               label="Become a Partner"
