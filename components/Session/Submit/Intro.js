@@ -134,7 +134,10 @@ const Intro = ({ session, setSession, setStepNumber }) => {
             status: 'DRAFT',
           };
           createSession({
-            variables: { session: newSession, eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+            variables: {
+              session: newSession,
+              eventId: process.env.CURRENT_EVENT_ID,
+            },
           });
         }
       }}
