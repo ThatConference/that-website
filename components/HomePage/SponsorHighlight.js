@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below, above } from '../../utilities';
@@ -77,25 +79,58 @@ const PartnerUpLink = styled(LinkButton)`
   `}
 `;
 
+const GET_PARTNERS = gql`
+  query getPartnerByLevel($eventId: ID!, $level: PartnershipLevel!) {
+    events {
+      event(id: $eventId) {
+        partners {
+          level(level: $level) {
+            id
+            companyName
+            companyLogo
+            placement
+          }
+        }
+      }
+    }
+  }
+`;
+
 const SponsorHighlight = ({ className, eventSlug }) => {
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI', level: 'PIONEER' },
+  });
+
+  if (loading) return null;
+  if (error) return null;
+
+  const partners = data.events.event.partners.level.sort((a, b) => {
+    if (a.placement < b.placement) {
+      return -1;
+    }
+    if (a.placement > b.placement) {
+      return 1;
+    }
+    return 0;
+  });
+  const havePartners = !!(partners && partners.length && partners.length > 0);
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
         <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
         <SideDetail>
-          <FeaturedPartners>
-            <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
-            <PartnerLogo
-              src="https://res.cloudinary.com/that-conference/image/upload/v1572186444/partnerlogo/Northwestern_Mutual_-_Web.png"
-              alt="Northwestern mutual"
-              loading="lazy"
-            />
-            <PartnerLogo
-              src="https://res.cloudinary.com/that-conference/image/upload/v1572186444/partnerlogo/Cuna_-_web.png"
-              alt="CUNA Mutual Group"
-              loading="lazy"
-            />
-          </FeaturedPartners>
+          {havePartners && (
+            <FeaturedPartners>
+              <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
+              {partners.map(s => (
+                <PartnerLogo
+                  src={s.companyLogo}
+                  alt={s.companyName}
+                  loading="lazy"
+                />
+              ))}
+            </FeaturedPartners>
+          )}
           <p className="large-body-copy" style={{ margin: '0.5rem 0' }}>
             Interested In Partner Opportunities?
           </p>
