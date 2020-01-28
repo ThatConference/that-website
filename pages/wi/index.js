@@ -63,13 +63,14 @@ const BottomImage = styled.img`
 const home = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
-    errorPolicy: 'all',
   });
 
   if (loading) return null;
 
   if (error) {
-    throw new Error(error);
+    console.log('TCL: error', error.message);
+
+    throw new Error(error.message);
   }
 
   const { event } = data.events;
