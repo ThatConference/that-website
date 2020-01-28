@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Head from 'next/head';
+import * as Sentry from '@sentry/node';
 
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton';
@@ -37,7 +39,7 @@ const pageNotFound = requestedUrl => {
   );
 };
 
-function Error({ statusCode, requestedUrl }) {
+function Error({ statusCode, requestedUrl, eventId }) {
   const errorBlock =
     statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
   return (
@@ -46,6 +48,28 @@ function Error({ statusCode, requestedUrl }) {
         <title key="title">Oh No! - THAT Conference</title>
       </Head>
       <ContentSection>{errorBlock}</ContentSection>;
+      <section>
+        <h1>There was an error!</h1>
+        <p>
+          <a href="#" onClick={() => Sentry.showReportDialog({ eventId })}>
+            <span role="img" aria-label="Megaphone">
+              📣
+            </span>{' '}
+            Report this error
+          </a>
+        </p>
+        <p>
+          <a
+            href="#"
+            onClick={() => {
+              window.location.reload(true);
+            }}
+          >
+            Or, try reloading the page
+          </a>
+        </p>
+      </section>
+      )
     </>
   );
 }

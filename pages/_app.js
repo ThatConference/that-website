@@ -4,6 +4,7 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
+import Error from 'next/error';
 
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
@@ -12,7 +13,7 @@ import Page from '../components/Page';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
-const { Sentry, captureException } = sentry();
+const { captureException } = sentry();
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -64,32 +65,7 @@ class MyApp extends App {
     const { Component, pageProps, apolloClient, displayFeature } = this.props;
 
     return this.state.hasError ? (
-      <section>
-        <h1>There was an error!</h1>
-        <p>
-          <a
-            href="#"
-            onClick={() =>
-              Sentry.showReportDialog({ eventId: this.state.errorEventId })
-            }
-          >
-            <span role="img" aria-label="Megaphone">
-              📣
-            </span>{' '}
-            Report this error
-          </a>
-        </p>
-        <p>
-          <a
-            href="#"
-            onClick={() => {
-              window.location.reload(true);
-            }}
-          >
-            Or, try reloading the page
-          </a>
-        </p>
-      </section>
+      <Error statusCode={500} eventId={this.state.errorEventId} />
     ) : (
       <ApolloProvider client={apolloClient}>
         <Page displayFeature={displayFeature}>
