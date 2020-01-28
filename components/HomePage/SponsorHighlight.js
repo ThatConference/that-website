@@ -2,29 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import debug from 'debug';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below, above } from '../../utilities';
-
-const dlog = debug('that:home:sponsor_highlight');
-
-const GET_PARTNERS_BY_LEVEL = gql`
-  query getPartnerByLevel($eventId: ID!, $level: PartnershipLevel!) {
-    events {
-      event(id: $eventId) {
-        partners {
-          level(level: $level) {
-            companyName
-            companyLogo
-            id
-            placement
-          }
-        }
-      }
-    }
-  }
-`;
 
 const HighlightImage = styled.img`
   width: 100%;
@@ -99,41 +79,58 @@ const PartnerUpLink = styled(LinkButton)`
   `}
 `;
 
+const GET_PARTNERS = gql`
+  query getPartnerByLevel($eventId: ID!, $level: PartnershipLevel!) {
+    events {
+      event(id: $eventId) {
+        partners {
+          level(level: $level) {
+            id
+            companyName
+            companyLogo
+            placement
+          }
+        }
+      }
+    }
+  }
+`;
+
 const SponsorHighlight = ({ className, eventSlug }) => {
-  const { loading, error, data } = useQuery(GET_PARTNERS_BY_LEVEL, {
-    variables: {
-      eventId: 'ByE7Dc7eCGcRFzLhWhuI',
-      level: 'PIONEER',
-    },
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI', level: 'PIONEER' },
   });
 
   if (loading) return null;
-  if (error) {
-    dlog('error %o', error);
-    return null;
-  }
+  if (error) return null;
 
-  const { level } = data.events.event.partners;
-
-  dlog('partners %o', level);
-
+  const partners = data.events.event.partners.level.sort((a, b) => {
+    if (a.placement < b.placement) {
+      return -1;
+    }
+    if (a.placement > b.placement) {
+      return 1;
+    }
+    return 0;
+  });
+  const havePartners = !!(partners && partners.length && partners.length > 0);
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
         <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
         <SideDetail>
-          <FeaturedPartners>
-            <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
-            {level.map(partner => {
-              return (
+          {havePartners && (
+            <FeaturedPartners>
+              <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
+              {partners.map(s => (
                 <PartnerLogo
-                  src={partner.companyLogo}
-                  alt={partner.companyName}
+                  src={s.companyLogo}
+                  alt={s.companyName}
                   loading="lazy"
                 />
-              );
-            })}
-          </FeaturedPartners>
+              ))}
+            </FeaturedPartners>
+          )}
           <p className="large-body-copy" style={{ margin: '0.5rem 0' }}>
             Interested In Partner Opportunities?
           </p>
