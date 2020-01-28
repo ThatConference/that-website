@@ -4,7 +4,6 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import Error from 'next/error';
 
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
@@ -63,10 +62,7 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, apolloClient, displayFeature } = this.props;
-
-    return this.state.hasError ? (
-      <Error statusCode={500} eventId={this.state.errorEventId} />
-    ) : (
+    return (
       <ApolloProvider client={apolloClient}>
         <Page displayFeature={displayFeature}>
           <Component {...pageProps} />
