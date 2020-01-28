@@ -61,15 +61,15 @@ const BottomImage = styled.img`
 `;
 
 const home = () => {
-  const { loading, error, data } = useQuery(GET_EVENT, {
+  const { loading, data } = useQuery(GET_EVENT, {
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
   });
 
   if (loading) return null;
 
-  if (error) {
-    throw new Error(error.message);
-  }
+  // if (error) {
+  //   throw new Error(error.message);
+  // }
 
   const { event } = data.events;
 
