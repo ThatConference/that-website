@@ -64,15 +64,26 @@ const MenuIcon = styled.div`
   vertical-align: middle;
   width: 3em;
   position: absolute;
-  right: 5rem;
   top: 9rem;
 
   &:hover {
     cursor: pointer;
   }
 
+  ${below.med`
+    right: 5rem;
+  `};
+
+  ${below.xsmall`
+    right: 0;
+  `};
+
   ${above.med`
     display: none;
+  `};
+
+  ${below.small`
+    right: 0;
   `};
 
   &:after,

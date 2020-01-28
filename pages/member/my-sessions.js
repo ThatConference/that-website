@@ -7,6 +7,7 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import CurrentSessions from '../../components/Member/MySessions/Current';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import Title from '../../components/shared/Title';
 import LinkButton from '../../components/shared/LinkButton';
 
 const MainGrid = styled(Grid)`
@@ -42,21 +43,6 @@ const MainSection = styled.div`
   margin-bottom: 6rem;
 `;
 
-const Title = styled.h1`
-  font-weight: 100;
-  font-size: 8.5rem;
-  margin-bottom: 0;
-`;
-
-const TopParagraph = styled.p`
-  font-size: 2rem;
-  margin-bottom: 4rem;
-`;
-
-const MainContent = styled(ContentSection)`
-  padding-top: 0;
-`;
-
 const MySessions = ({ user, loading }) => {
   const router = useRouter();
 
@@ -71,7 +57,7 @@ const MySessions = ({ user, loading }) => {
       <Head>
         <title key="title">My Sessions - THAT Conference</title>
       </Head>
-      <MainContent>
+      <ContentSection>
         {loading && <LoadingIndicator />}
         {!loading && (
           <MainGrid columns={6}>
@@ -79,14 +65,14 @@ const MySessions = ({ user, loading }) => {
             <Cell width={4}>
               <MainSection>
                 <Title>Your Sessions</Title>
-                <TopParagraph>
+                <p className="medium-body-copy">
                   Submit a topic to become a counselor or edit existing
                   sessions. Let the creative juices flow here. We all like to
                   read a good abstract and this might be the first thing a
                   camper knows about you. Not sure which topic to present?
                   Submit more than one! We’ll pick the coolest ones on April
                   17th.
-                </TopParagraph>
+                </p>
                 <LinkButton
                   label="Create a New Session"
                   href="/wi/session/create"
@@ -102,7 +88,7 @@ const MySessions = ({ user, loading }) => {
             <Cell width={1} />
           </MainGrid>
         )}
-      </MainContent>
+      </ContentSection>
     </div>
   );
 };

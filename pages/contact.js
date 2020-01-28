@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import Head from 'next/head';
-import { below } from '../../utilities/breakpoint';
+import { below } from '../utilities/breakpoint';
 
-import ContentSection from '../../components/shared/ContentSection';
-import ImageContainer from '../../components/shared/ImageContainer';
-import LinkButton from '../../components/shared/LinkButton';
+import ContentSection from '../components/shared/ContentSection';
+import ImageContainer from '../components/shared/ImageContainer';
+import LinkButton from '../components/shared/LinkButton';
 
-import { gridRepeat } from '../../utilities';
+import { gridRepeat } from '../utilities';
 
 const StyledImageContainer = styled(ImageContainer)`
   padding: 2.5rem;
