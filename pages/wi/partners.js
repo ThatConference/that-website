@@ -21,11 +21,12 @@ const GET_PARTNERS = gql`
         get {
           id
           name
+          year
           partners {
             id
             slug
-            year
-            partnershipLevel
+            level
+            placement
             companyName
             companyLogo
             heroImage
@@ -111,7 +112,7 @@ const renderPartner = (
 const partnerListing = () => {
   const { loading, error, data } = useQuery(GET_PARTNERS, {
     variables: {
-      eventId: 'ByE7Dc7eCGcRFzLhWhuI',
+      eventId: process.env.CURRENT_EVENT_ID,
     },
   });
 
@@ -123,7 +124,12 @@ const partnerListing = () => {
 
   dlog('data %o', data.events.event.get.partners);
 
-  const { partners } = data.events.event.get;
+  const partners = data.events.event.get.partners.sort((a, b) => {
+    if (a.placement < b.placement) return -1;
+    if (a.placement > b.placement) return 1;
+    return 0;
+  });
+  const eventYear = data.events.event.get.year;
 
   dlog('partners %o', partners);
   return (
@@ -131,7 +137,7 @@ const partnerListing = () => {
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>2020 Partners</Header>
+            <Header>{eventYear} Partners</Header>
             <LinkButton
               href="/wi/become-a-partner"
               label="Become a Partner"
@@ -158,7 +164,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'PIONEER') {
+            if (value.level === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
             return null;
@@ -169,7 +175,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'EXPLORER') {
+            if (value.level === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
             return null;
@@ -180,7 +186,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'SCOUT') {
+            if (value.level === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
             return null;
@@ -191,7 +197,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'PATRON') {
+            if (value.level === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
             return null;
@@ -202,7 +208,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'MEDIA') {
+            if (value.level === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
             return null;

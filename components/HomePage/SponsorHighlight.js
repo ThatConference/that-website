@@ -101,7 +101,7 @@ const GET_PARTNERS = gql`
 
 const SponsorHighlight = ({ className, eventSlug }) => {
   const { loading, error, data } = useQuery(GET_PARTNERS, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI', level: 'PIONEER' },
+    variables: { eventId: process.env.CURRENT_EVENT_ID, level: 'PIONEER' },
   });
 
   if (loading) return null;
