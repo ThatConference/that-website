@@ -9,7 +9,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 
-import { sessionConstants } from '../../../utilities';
+import { sessionConstants, below } from '../../../utilities';
 
 const dlog = debug('that:sessions:current');
 
@@ -32,6 +32,11 @@ const SessionsGrid = styled(Grid)`
 
 const SessionTitle = styled(Cell)`
   font-size: 2rem;
+
+  ${below.med`
+    font-size: 1.6rem;
+    line-height: 1.3;
+  `};
 `;
 
 const SessionStatus = styled(Cell)`

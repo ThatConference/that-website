@@ -79,6 +79,30 @@ const Footer = () => {
           </a>
           <FooterNav>
             <FooterNavColumn>
+              <Title>THAT</Title>
+              <NavLink href="/about" onClick={() => clickTracking('about')}>
+                About
+              </NavLink>
+              <NavLink href="/contact" onClick={() => clickTracking('contact')}>
+                Contact
+              </NavLink>
+              <NavLink href="/blog" onClick={() => clickTracking('blog')}>
+                Blog
+              </NavLink>
+              <NavLink
+                href="/wi/tickets"
+                onClick={() => clickTracking('tickets')}
+              >
+                Tickets
+              </NavLink>
+              <NavLink
+                href="/wi/partners"
+                onClick={() => clickTracking('partners')}
+              >
+                Partners
+              </NavLink>
+            </FooterNavColumn>
+            <FooterNavColumn>
               <Title>Resources</Title>
               <NavLink href="/wi/faq" onClick={() => clickTracking('faq')}>
                 FAQ
@@ -108,24 +132,6 @@ const Footer = () => {
                 Family Handbook
               </NavLink>
             </FooterNavColumn>
-            {/* <FooterNavColumn>
-              <Title>Plan Your Trip</Title>
-              <NavLink
-                href="/"
-                onClick={() => clickTracking('important dates')}
-              >
-                Important Dates
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('travel info')}>
-                Travel Information
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('handbook')}>
-                Handbooks
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('faq')}>
-                FAQ
-              </NavLink>
-            </FooterNavColumn> */}
             <FooterNavColumn>
               <Title>Policies</Title>
               <NavLink

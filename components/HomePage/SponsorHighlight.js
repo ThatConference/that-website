@@ -2,9 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+<<<<<<< HEAD
+=======
+import debug from 'debug';
+>>>>>>> master
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { below, above } from '../../utilities';
+
+const dlog = debug('that:home:sponsor_highlight');
+
+const GET_PARTNERS_BY_LEVEL = gql`
+  query getPartnerByLevel($eventId: ID!, $level: PartnershipLevel!) {
+    events {
+      event(id: $eventId) {
+        partners {
+          level(level: $level) {
+            companyName
+            companyLogo
+            id
+            placement
+          }
+        }
+      }
+    }
+  }
+`;
 
 const HighlightImage = styled.img`
   width: 100%;

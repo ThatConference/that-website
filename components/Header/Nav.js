@@ -49,6 +49,13 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
           </NavListItem>
           <NavListItem>
             <NavItem
+              title="Tickets"
+              href="/wi/tickets"
+              onClick={() => onClick(false)}
+            />
+          </NavListItem>
+          <NavListItem>
+            <NavItem
               title="Plan Your Trip"
               href="/wi/plan-your-trip"
               onClick={() => onClick(false)}
@@ -69,7 +76,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
           <NavListItem>
             <NavItem
               title="Contact"
-              href="/wi/contact"
+              href="/contact"
               onClick={() => onClick(false)}
             />
           </NavListItem>
