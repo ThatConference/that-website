@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import App from 'next/app';
@@ -11,7 +12,7 @@ import Page from '../components/Page';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
-const { captureException } = sentry();
+const { Sentry, captureException } = sentry();
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -62,7 +63,34 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient, displayFeature } = this.props;
 
-    return (
+    return this.state.hasError ? (
+      <section>
+        <h1>There was an error!</h1>
+        <p>
+          <a
+            href="#"
+            onClick={() =>
+              Sentry.showReportDialog({ eventId: this.state.errorEventId })
+            }
+          >
+            <span role="img" aria-label="Megaphone">
+              📣
+            </span>{' '}
+            Report this error
+          </a>
+        </p>
+        <p>
+          <a
+            href="#"
+            onClick={() => {
+              window.location.reload(true);
+            }}
+          >
+            Or, try reloading the page
+          </a>
+        </p>
+      </section>
+    ) : (
       <ApolloProvider client={apolloClient}>
         <Page displayFeature={displayFeature}>
           <Component {...pageProps} />
