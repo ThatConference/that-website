@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ContentSection from '../shared/ContentSection';
@@ -57,6 +58,7 @@ const PartnerLogo = styled.img`
   height: 13rem;
   margin: 1rem;
   align-self: flex-end;
+  cursor: pointer;
 
   ${below.med`
     align-self: auto;
@@ -86,6 +88,7 @@ const GET_PARTNERS = gql`
         partners {
           level(level: $level) {
             id
+            slug
             companyName
             companyLogo
             placement
@@ -123,11 +126,13 @@ const SponsorHighlight = ({ className, eventSlug }) => {
             <FeaturedPartners>
               <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
               {partners.map(s => (
-                <PartnerLogo
-                  src={s.companyLogo}
-                  alt={s.companyName}
-                  loading="lazy"
-                />
+                <Link href="/wi/partner/[slug]" as={`/wi/partner/${s.slug}`}>
+                  <PartnerLogo
+                    src={s.companyLogo}
+                    alt={s.companyName}
+                    loading="lazy"
+                  />
+                </Link>
               ))}
             </FeaturedPartners>
           )}
