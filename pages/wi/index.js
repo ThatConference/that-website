@@ -4,7 +4,6 @@ import { gql } from 'apollo-boost';
 import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
-import Error from 'next/error';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
@@ -69,9 +68,7 @@ const home = () => {
   if (loading) return null;
 
   if (error) {
-    // log sentry error here.
-    return <Error statusCode={500} />;
-    // throw new Error(error.message);
+    throw new Error(error.message);
   }
 
   const { event } = data.events;
