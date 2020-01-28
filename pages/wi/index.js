@@ -72,8 +72,7 @@ const home = () => {
   if (loading) return null;
 
   if (error) {
-    console.log('TCL: error', error);
-    return <Error statusCode={400} />;
+    throw new Error(error.message);
   }
 
   const { event } = data.events;

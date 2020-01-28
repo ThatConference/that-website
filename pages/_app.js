@@ -4,13 +4,13 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import Error from 'next/error';
 import debug from 'debug';
 
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
 import withApolloClient from '../lib/withApolloClient';
 import Page from '../components/Page';
+import HandledError from '../components/HandledError';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
@@ -60,8 +60,6 @@ class MyApp extends App {
 
   componentDidCatch(error, errorInfo) {
     const errorEventId = captureException(error, { errorInfo });
-    dlog('errored and logged event: %s', errorEventId);
-    console.log('errored and logged event: %s', errorEventId);
 
     // Store the event id at this point as we don't have access to it within
     // `getDerivedStateFromError`.
@@ -71,7 +69,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient, displayFeature } = this.props;
     return this.state.hasError ? (
-      <Error statusCode={500} />
+      <HandledError eventId={this.state.errorEventId} />
     ) : (
       <ApolloProvider client={apolloClient}>
         <Page displayFeature={displayFeature}>

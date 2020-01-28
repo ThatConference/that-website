@@ -1,13 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Head from 'next/head';
-import * as Sentry from '@sentry/node';
-// import debug from 'debug';
 
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton';
-
-// const dlog = debug('that:website:pages:error');
 
 const genericError = (
   <>
@@ -42,10 +38,7 @@ const pageNotFound = requestedUrl => {
   );
 };
 
-function Error({ title, statusCode, requestedUrl, eventId }) {
-  console.log('eventId %s', eventId);
-  console.log('title %s', title);
-
+function Error({ title, statusCode, requestedUrl }) {
   const errorBlock =
     statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
 
@@ -54,36 +47,12 @@ function Error({ title, statusCode, requestedUrl, eventId }) {
       <Head>
         <title key="title">Oh No! - THAT Conference</title>
       </Head>
-      <ContentSection>{errorBlock}</ContentSection>;
-      <section>
-        <h1>There was an error!</h1>
-        <p>
-          <a href="#" onClick={() => Sentry.showReportDialog({ eventId })}>
-            <span role="img" aria-label="Megaphone">
-              📣
-            </span>{' '}
-            Report this error
-          </a>
-        </p>
-        <p>
-          <a
-            href="#"
-            onClick={() => {
-              window.location.reload(true);
-            }}
-          >
-            Or, try reloading the page
-          </a>
-        </p>
-      </section>
-      )
+      <ContentSection>{errorBlock}</ContentSection>; )
     </>
   );
 }
 
 Error.getInitialProps = async ({ res, err, req }) => {
-  console.log('in error getInitalprops');
-
   const requestedUrl = req.url;
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
