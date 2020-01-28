@@ -63,6 +63,7 @@ const BottomImage = styled.img`
 const home = () => {
   const { loading, data } = useQuery(GET_EVENT, {
     variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    errorPolicy: 'all',
   });
 
   if (loading) return null;
