@@ -54,7 +54,6 @@ function Error({ title, statusCode, hasGetInitialPropsRun, err, eventId }) {
   }
 
   // return <Error statusCode={statusCode} />;
-
   return (
     <>
       <Head>
