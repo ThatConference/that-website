@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -10,70 +8,29 @@ import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
 import withApolloClient from '../lib/withApolloClient';
 import Page from '../components/Page';
-import HandledError from '../components/HandledError';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const dlog = debug('that:website:app');
 
-const { captureException } = sentry();
+sentry.init();
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    const { feature } = ctx.query;
-
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(ctx)
-      : {};
-
-    return {
-      pageProps,
-      displayFeature: feature === process.env.FEATURE_KEYWORD,
-    };
-  }
-
-  constructor() {
-    // eslint-disable-next-line prefer-rest-params
-    super(...arguments);
-    this.state = {
-      hasError: false,
-      errorEventId: undefined,
-    };
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    // If there was an error generated within getInitialProps, and we haven't
-    // yet seen an error, we add it to this.state here
-    dlog('getDerivedStateFromProps');
-    return {
-      hasError: props.hasError || state.hasError || false,
-      errorEventId: props.errorEventId || state.errorEventId || undefined,
-    };
-  }
-
-  static getDerivedStateFromError() {
-    // React Error Boundary here allows us to set state flagging the error (and
-    // later render a fallback UI).
-    dlog('getDerivedStateFromError');
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    const errorEventId = captureException(error, { errorInfo });
-
-    // Store the event id at this point as we don't have access to it within
-    // `getDerivedStateFromError`.
-    this.setState({ errorEventId });
-  }
-
   render() {
-    const { Component, pageProps, apolloClient, displayFeature } = this.props;
-    return this.state.hasError ? (
-      <HandledError eventId={this.state.errorEventId} />
-    ) : (
+    dlog('_app render');
+    const {
+      Component,
+      pageProps,
+      apolloClient,
+      displayFeature,
+      err,
+    } = this.props;
+    const modifiedPageProps = { err, ...pageProps };
+
+    return (
       <ApolloProvider client={apolloClient}>
         <Page displayFeature={displayFeature}>
-          <Component {...pageProps} />
+          <Component {...modifiedPageProps} />
         </Page>
       </ApolloProvider>
     );

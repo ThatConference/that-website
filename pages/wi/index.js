@@ -23,7 +23,7 @@ const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        gett {
+        gettt {
           id
           name
           slogan
@@ -72,6 +72,7 @@ const home = () => {
   if (loading) return null;
 
   if (error) {
+    console.log('in error of component');
     throw new Error(error.message);
   }
 
