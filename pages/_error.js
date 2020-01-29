@@ -45,8 +45,7 @@ const dlog = debug('that:website:error');
 // };
 
 function Error({ title, statusCode, hasGetInitialPropsRun, err, eventId }) {
-  console.log('>>>> CLARK <<<<');
-  dlog('>>>> CLARK ERROR <<<<');
+  dlog('>>>> ERROR RENDER <<<<');
   let renderEventId;
 
   if (!hasGetInitialPropsRun && err) {
@@ -74,17 +73,19 @@ function Error({ title, statusCode, hasGetInitialPropsRun, err, eventId }) {
             Report this error
           </a>
         </p>
-        <Error statusCode={statusCode} />
+
+        {/* <Error statusCode={statusCode} /> */}
       </ContentSection>
     </>
   );
 }
 
 Error.getInitialProps = async ({ req, res, err, asPath }) => {
-  console.log('>>>> get inital props of ERROR <<<<');
-  dlog('>>>> get inital prpps ERROR <<<<');
+  dlog('>>>> Error.getInitialProps <<<<');
 
-  const errorInitialProps = await Error.getInitialProps({ res, err });
+  // const errorInitialProps = await Error.getInitialProps({ res, err });
+
+  const errorInitialProps = {};
 
   errorInitialProps.hasGetInitialPropsRun = true;
   errorInitialProps.requestedUrl = req.url;
@@ -111,6 +112,7 @@ Error.getInitialProps = async ({ req, res, err, asPath }) => {
 
   errorInitialProps.eventId = eventId;
 
+  console.log('>>>>>>>about to return out from get inital');
   return errorInitialProps;
 };
 
