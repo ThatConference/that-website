@@ -8,17 +8,13 @@ Many of you have contacted us and asked questions and many of the questions have
 
 <a href="#section-before" name="section-before">### Before the Conference</a>
 
-<a href="#q1" name="q1">**Q: I love THAT Conference! How can I help make it MOAR AWESOME!**</a>
 
-**A:** We always could use more volunteers to help things run smoothly. If interested, head over to the volunteers page and submit your interest form.
-
+#### Counselors
 
 <a href="#q2" name="q2">**Q: How do I become a Camp Counselor (Speaker)?**</a>
 
-**A:** We welcome anyone regardless of background, skill level, or age to submit a talk proposal. We have both a professional and family track, where we encourage kids to teach other kids! For more information, please see our [Call for Counselors ](https://www.thatconference.com/wi/call-for-counselors "Call for Counselors") page.
+**A:** We welcome anyone regardless of background, skill level, or age to submit a talk proposal. We have both a professional and family track, where we encourage kids to teach other kids! For more information, please see our [Call for Counselors](https://www.thatconference.com/wi/call-for-counselors) page.
 
-
-#### Counselors
 
 <a href="#q3" name="q3">**Q: Will I be paid to be a Counselor (Speaker)?**</a>
 
