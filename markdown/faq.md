@@ -23,7 +23,7 @@ Many of you have contacted us and asked questions and many of the questions have
 
 <a href="#q4" name="q4">**Q: Will THAT Conference pay my travel expenses if I am selected to be a Counselor (Speaker)?**</a>
 
-**A:** No. We are conference run by a small team of dedicated volunteers. We do not have the financial ability to pay travel expenses for our Counselors outside of the 2 night room compensation ( 3 nights max per family of speakers).
+**A:** No. We are conference run by a small team of dedicated volunteers. We do not have the financial ability to pay travel expenses for our Counselors outside of the 2 night room compensation (3 nights max per family of speakers).
 
 
 #### Tickets & Food
@@ -33,17 +33,17 @@ Many of you have contacted us and asked questions and many of the questions have
 
 **A:** That's a bummer you can't attend anymore. If you can find someone to take your paid ticket, it can be transferred using the link in your ticket receipt email.
 If you encounter any issues doing this, email us at hello@thatconference.com.
-If you absolutely cannot find anyone to transfer your ticket to, all cancellations will need to be initiated with an email to hello@thatconference.com. Refunds will not be issued for requests received after July 4th. Please note that a processing fee will be applied per ticket refund as follows: - $30 processing fee for all Professional tickets ( 4 day, 3 day, 3 day- no food) - $10 processing fee for Pre-Conference, Family, and Pig Roast Only tickets
+If you absolutely cannot find anyone to transfer your ticket to, all cancellations will need to be initiated with an email to hello@thatconference.com. Refunds will not be issued for requests received after July 4th. Please note that a processing fee will be applied per ticket refund as follows: - $30 processing fee for all Professional tickets ( 4 day, 3 day, 3 day- no food) - $10 processing fee for Pre-Conference, Family, and Pig Roast Only tickets.
 
 
 <a href="#q6" name="q6">**Q: Can I grab a soda or coffee if I don't have a food ticket?**</a>
 
-**A:** Unfortunately no. The beverages are tied to the food ticket. There is ice water provided through out the conference for all to enjoy.
+**A:** Unfortunately, no. The beverages are tied to the food ticket. There is ice water provided through out the conference for all to enjoy.
 
 
 <a href="#q7" name="q7">**Q: I have a food ticket. Can my family eat with me?**</a>
 
-**A:** Food from the buffet lines is limited to those with a food ticket. We ask that if your family wishes to join you for breakfast or lunch, they meet you in the seating area with self provided meals. This ensures that we have an accurate head count for accounting purposes.
+**A:** Food from the buffet lines is limited to those with a food ticket. We ask that if your family wishes to join you for breakfast or lunch, they meet you in the seating area with self-provided meals. This ensures that we have an accurate head count for accounting purposes.
 
 
 <a href="#q8" name="q8">**Q: What is the wristband I received at registration for?**</a>
@@ -58,7 +58,7 @@ If you absolutely cannot find anyone to transfer your ticket to, all cancellatio
 
 <a href="#q10" name="q10">**Q: I have a no food ticket but would like to attend the Pig Roast. Can I purchase a ticket to that only?**</a>
 
-**A:** Yes. A Pig Roast Only ticket is $50 per child or adult. One may be purchased here https://www.thatconference.com/wi/tickets
+**A:** Yes. A Pig Roast Only ticket is $50 per child or adult. One may be purchased here https://www.thatconference.com/wi/tickets.
 
 
 <a href="#q11" name="q11">**Q: I have dietary restrictions. Will I be able to eat at the conference provided meals?**</a>
@@ -101,9 +101,7 @@ If you absolutely cannot find anyone to transfer your ticket to, all cancellatio
 
 <a href="#q18" name="q18">**Q: I need to make changes to my hotel reservation or have questions about it or the resort. Who do I contact?**</a>
 
-**A:** Please contact the hotel you booked at directly. If you booked as part of a THAT Conference room block:
-Kalahari:
-Great Wolf:
+**A:** Please contact the hotel you booked at directly.
 
 
 <a href="#q19" name="q19">**Q: What is Open Spaces?**</a>
@@ -128,7 +126,7 @@ Great Wolf:
 
 <a href="#q23" name="q23">**Q: Where is THAT Conference held and how do I get there?**</a>
 
-**A:** THAT Conference in held at the Kalahari Resorts and Conventions in the Wisconsin Dells, WI in South-Central Wisconsin. For more info on this and how to get there, please check out our [Plan Your Trip](https://www.thatconference.com/wi/plan-your-trip "Plan Your Trip") page.
+**A:** THAT Conference in held at the Kalahari Resorts and Conventions in the Wisconsin Dells, WI in South-Central Wisconsin. For more info on this and how to get there, please check out our [Plan Your Trip](https://www.thatconference.com/wi/plan-your-trip) page.
 
 
 <a href="#q24" name="q24">**Q: What's the WiFi like?**</a>
