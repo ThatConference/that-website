@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
+import LayeredHeaderLayout from '../../../components/layouts/layeredHeader';
 import HeroSection from '../../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
 import AboutGoalsSection from '../../../components/PartnerDetail/AboutGoalsSection';
@@ -37,6 +38,21 @@ const GET_PARTNER = gql`
           id
           title
           description
+        }
+        members {
+          id
+          firstName
+          lastName
+          jobTitle
+        }
+        sessions {
+          id
+          isSponsored
+          speakers {
+            firstName
+            lastName
+            profileImage
+          }
         }
       }
     }
@@ -91,5 +107,7 @@ function PartnerDetail() {
     </MainDiv>
   );
 }
+
+PartnerDetail.Layout = LayeredHeaderLayout;
 
 export default PartnerDetail;

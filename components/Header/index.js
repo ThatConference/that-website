@@ -38,6 +38,7 @@ const PageHeader = styled.div`
 
 const LogoLink = styled.a`
   height: 100%;
+  fill: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledLogo = styled.img`
@@ -54,8 +55,11 @@ const ActionButton = styled(LinkButton)`
   `};
 `;
 
-const Logo = () => {
-  return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+const Logo = ({ layered }) => {
+  const logoPath = layered
+    ? '/svgs/THATConference-white.svg'
+    : '/svgs/THATConference.svg';
+  return <StyledLogo src={logoPath} alt="THAT Conference" />;
 };
 
 const MenuIcon = styled.div`
@@ -111,7 +115,7 @@ const MenuIcon = styled.div`
   }
 `;
 
-const HeaderLogo = () => {
+const HeaderLogo = ({ layered }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -123,16 +127,16 @@ const HeaderLogo = () => {
 
   const theRouter = useRouter();
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
-    return <Logo />;
+    return <Logo layered={layered} />;
   }
   return (
     <LogoLink href="/wi" onClick={clickTracking}>
-      <Logo />
+      <Logo layered={layered} />
     </LogoLink>
   );
 };
 
-const Header = ({ className, user, loading }) => {
+const Header = ({ className, layered, user, loading }) => {
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -156,18 +160,20 @@ const Header = ({ className, user, loading }) => {
   return (
     <header className={[className, scrolled()].join(' ')}>
       <MessageBar user={user} loading={loading} />
-      <HeaderSection>
+      <HeaderSection backgroundColor="transparent">
         <PageHeader>
-          <HeaderLogo />
+          <HeaderLogo layered={layered} />
           <Nav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
+            color={layered ? 'white' : ''}
           />
           <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
             user={user}
             loading={loading}
+            color={layered ? 'white' : ''}
           />
           <div style={{ display: 'flex' }}>
             <ActionButton
@@ -197,6 +203,8 @@ export default styled(Header)`
   background-color: transparent;
   z-index: 1;
   width: 100vw;
+
+  position: ${({ layered }) => (layered ? 'absolute' : 'relative')};
 
   &::before {
     content: '';

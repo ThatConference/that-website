@@ -24,8 +24,10 @@ const LoadingDiv = styled.div`
   text-align: right;
 `;
 
-const MemberNav = ({ className, onClick, user, loading }) => {
+const MemberNav = ({ className, color, onClick, user, loading }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  console.log('color ===== ', color);
 
   const menuClick = e => {
     e.preventDefault();
@@ -57,6 +59,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}
             onClick={menuClick}
+            color={color}
           />
 
           <SecondaryNav userMenuOpen={userMenuOpen}>
