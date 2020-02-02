@@ -5,14 +5,14 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
-import LayeredHeaderLayout from '../../../components/layouts/layeredHeader';
-import ContentSection from '../../../components/shared/ContentSection';
-import Icon from '../../../components/shared/Icon';
-import HeroSection from '../../../components/PartnerDetail/HeroSection';
-import MainLogoSection from '../../../components/PartnerDetail/MainLogoSection';
-import PartnerDetailSubHeading from '../../../components/PartnerDetail/PartnerDetailSubHeading';
+import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
+import ContentSection from '../../components/shared/ContentSection';
+import Icon from '../../components/shared/Icon';
+import HeroSection from '../../components/PartnerDetail/HeroSection';
+import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
+import PartnerDetailSubHeading from '../../components/PartnerDetail/PartnerDetailSubHeading';
 
-import { below, gridRepeat } from '../../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 const GET_PARTNER = gql`
   query getPartnerBySlug($slug: String!) {
