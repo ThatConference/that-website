@@ -10,7 +10,6 @@ const PartnerDetailSubHeading = styled.h4`
 
   ${below.med`
     font-size: 2rem;
-    
   `};
 `;
 

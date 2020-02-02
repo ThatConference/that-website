@@ -7,7 +7,7 @@ import ContentSection from '../shared/ContentSection';
 import SocialLinks from '../shared/SocialLinks';
 
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
-import { below, gridRepeat } from '../../utilities';
+import { gridRepeat } from '../../utilities';
 
 const PartnerContact = styled.div`
   display: flex;

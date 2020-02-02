@@ -71,7 +71,7 @@ const partners = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNERS);
 
   if (loading) return <LoadingIndicator />;
-  console.log('data', data);
+
   return (
     <>
       <Head>
