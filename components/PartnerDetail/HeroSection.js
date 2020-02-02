@@ -42,6 +42,7 @@ const BackToPartnersLink = styled.a`
 
 const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
+  transform: scaleX(-1);
 `;
 
 const HeroPartnerName = styled.h3`
@@ -71,11 +72,12 @@ const HeroSection = ({
       <HeroBlock>
         <BackToPartnersLink href={backToPartnerUrl}>
           <BackArrow
-            icon="backArrow"
+            icon="fullArrow"
             height="20"
             width="12"
             viewBoxHeight="100"
             viewBoxWidth="100"
+            title="Back"
           />
           <span>Back to Partners</span>
         </BackToPartnersLink>

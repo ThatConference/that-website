@@ -73,6 +73,7 @@ const BackLink = styled.a`
 
 const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
+  transform: scaleX(-1);
 `;
 
 const CounselorSelection = () => {
@@ -87,7 +88,7 @@ const CounselorSelection = () => {
             <Link href="call-for-counselors">
               <BackLink>
                 <BackArrow
-                  icon="backArrow"
+                  icon="fullArrow"
                   height="2rem"
                   width="2rem"
                   viewBoxHeight="100"

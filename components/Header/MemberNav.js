@@ -27,8 +27,6 @@ const LoadingDiv = styled.div`
 const MemberNav = ({ className, color, onClick, user, loading }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-  console.log('color ===== ', color);
-
   const menuClick = e => {
     e.preventDefault();
     setUserMenuOpen(!userMenuOpen);
@@ -104,6 +102,7 @@ const MemberNav = ({ className, color, onClick, user, loading }) => {
           title="Sign In"
           href="/api/login"
           onClick={() => onClick(false)}
+          color={color}
         />
       )}
     </div>
