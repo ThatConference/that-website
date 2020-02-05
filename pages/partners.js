@@ -67,6 +67,10 @@ const Image = styled.img`
   bottom: 0;
   max-width: 14rem;
   max-height: 10rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const partners = () => {
