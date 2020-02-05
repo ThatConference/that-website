@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Imgix from 'react-imgix';
-
+import _ from 'lodash';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import SocialLinks from '../shared/SocialLinks';
-
+import NavItem from '../shared/NavItem';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
 import { gridRepeat } from '../../utilities';
 
 const PartnerContact = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: ${({ alignment }) => alignment};
   flex-grow: 2;
 `;
 
@@ -105,10 +105,18 @@ const MainLogoSection = ({ partner }) => {
 
   const LogoWithInfo = () => {
     return (
-      <PartnerContact>
+      <PartnerContact
+        alignment={_.isEmpty(partner.members) ? 'center' : 'flex-start'}
+      >
         <MainLogo src={partner.companyLogo} alt={partner.companyName} />
         <VisitUs>Visit us online at:</VisitUs>
-        <a href={partner.website}>{getHostName(partner.website)}</a>
+        <NavItem
+          href={partner.website}
+          title={getHostName(partner.website)}
+          target="blank"
+          isLocal={false}
+          style={{ paddingBottom: '1rem' }}
+        />
         <SocialLinks socialLinks={getPartnerSocialLinks()} />
       </PartnerContact>
     );
@@ -117,10 +125,13 @@ const MainLogoSection = ({ partner }) => {
   return (
     <ContentSection backgroundColor="lightGray">
       <Grid columns={gridRepeat.xxsmall}>
-        <Cell>
+        <Cell
+          center={_.isEmpty(partner.members)}
+          middle={_.isEmpty(partner.members)}
+        >
           <LogoWithInfo />
         </Cell>
-        {partner.members && (
+        {!_.isEmpty(partner.members) && (
           <Cell>
             <SayHiDetail>
               <PartnerDetailSubHeading>

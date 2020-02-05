@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
+import _ from 'lodash';
 import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
@@ -250,17 +251,17 @@ function PartnerDetail() {
         connectWithUsUrl={partner.website}
         location="wi"
       />
-      <MainLogoSection partner={data.partners.partnerBySlug[0]} />
+      <MainLogoSection partner={partner} />
 
       <ContentSection>
         <Grid columns={gridRepeat.xxsmall}>
           <Cell>
             <AboutUs />
-            <Sessions />
+            {!_.isEmpty(partner.sessions) && <Sessions />}
           </Cell>
           <Cell>
-            <Goals />
-            <Jobs />
+            {!_.isEmpty(partner.goals) && <Goals />}
+            {!_.isEmpty(partner.jobs) && <Jobs />}
           </Cell>
         </Grid>
       </ContentSection>
