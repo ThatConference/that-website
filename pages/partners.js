@@ -100,19 +100,21 @@ const partners = () => {
 
       <ContentSection>
         <Grid columns={gridRepeat.xxsmall} alignContent="center">
-          {_.sortBy(data.partners.all, p => p.companyName).map(partner => {
-            return (
-              <PaddedImageContainer key={partner.id}>
-                <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
-                  <Image
-                    src={partner.companyLogo}
-                    alt={partner.companyName}
-                    loading="lazy"
-                  />
-                </Link>
-              </PaddedImageContainer>
-            );
-          })}
+          {_.sortBy(data.partners.all, p => p.companyName.toLowerCase()).map(
+            partner => {
+              return (
+                <PaddedImageContainer key={partner.id}>
+                  <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+                    <Image
+                      src={partner.companyLogo}
+                      alt={partner.companyName}
+                      loading="lazy"
+                    />
+                  </Link>
+                </PaddedImageContainer>
+              );
+            },
+          )}
         </Grid>
       </ContentSection>
     </>
