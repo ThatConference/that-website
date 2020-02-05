@@ -93,7 +93,7 @@ const MenuIcon = styled.div`
   &:after,
   &:before,
   div {
-    background-color: ${({ theme }) => theme.colors.thatBlue};
+    background-color: ${({ color, theme }) => color || theme.colors.thatBlue};
     border-radius: 0.3rem;
     content: '';
     display: block;
@@ -186,6 +186,7 @@ const Header = ({ className, layered, user, loading }) => {
           <MenuIcon
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={mobileMenuOpen ? 'open' : ''}
+            color={layered ? 'white' : ''}
           >
             <div />
           </MenuIcon>

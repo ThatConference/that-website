@@ -7,13 +7,17 @@ import ContentSection from '../shared/ContentSection';
 import SocialLinks from '../shared/SocialLinks';
 import NavItem from '../shared/NavItem';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
-import { gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 const PartnerContact = styled.div`
   display: flex;
   flex-direction: column;
   align-items: ${({ alignment }) => alignment};
   flex-grow: 2;
+
+  ${below.med`
+    align-items: center;
+  `};
 `;
 
 const MainLogo = styled.img`
@@ -125,10 +129,7 @@ const MainLogoSection = ({ partner }) => {
   return (
     <ContentSection backgroundColor="lightGray">
       <Grid columns={gridRepeat.xxsmall}>
-        <Cell
-          center={_.isEmpty(partner.members)}
-          middle={_.isEmpty(partner.members)}
-        >
+        <Cell>
           <LogoWithInfo />
         </Cell>
         {!_.isEmpty(partner.members) && (

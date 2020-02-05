@@ -38,6 +38,11 @@ const BackToPartnersLink = styled.a`
   span {
     margin-left: 0.5rem;
   }
+
+  ${below.med`
+    margin-top: 16rem;
+    padding: 0 2rem;
+  `};
 `;
 
 const BackArrow = styled(Icon)`
@@ -53,6 +58,10 @@ const HeroPartnerName = styled.h3`
   ${below.med`
     font-size: 4.5rem;
   `};
+`;
+
+const SmallLinkButton = styled(LinkButton)`
+  max-width: 7rem;
 `;
 
 const HeroSection = ({
@@ -83,7 +92,7 @@ const HeroSection = ({
         </BackToPartnersLink>
         <div style={{ flexGrow: 2, textAlign: 'center', width: '100%' }}>
           <HeroPartnerName>{companyName}</HeroPartnerName>
-          <LinkButton
+          <SmallLinkButton
             href={connectWithUsUrl}
             label="Connect with Us"
             color="white"
