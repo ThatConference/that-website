@@ -4,15 +4,12 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-// import debug from 'debug';
 import Head from 'next/head';
+import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
-// import LinkButton from '../components/shared/LinkButton';
 import LoadingIndicator from '../components/shared/LoadingIndicator';
 import { below, gridRepeat } from '../utilities';
-
-// const dlog = debug('that:partners:root-listing');
 
 const GET_ALL_PARTNERS = gql`
   query getAllPartners {
@@ -38,6 +35,7 @@ const HighlightImage = styled.img`
   position: absolute;
   top: 3rem;
   margin-left: 6rem;
+  object-fit: contain;
 
   ${below.small`
     margin-left: 0;
@@ -46,14 +44,18 @@ const HighlightImage = styled.img`
 
   ${below.med`
     position: relative;
-    margin-top: 2rem;
+    left: -2rem;
   `};
 `;
 
 const PaddedImageContainer = styled(ImageContainer)`
-  margin: 1rem;
+  margin: 1rem 0.5rem;
   height: 13rem;
   width: 17rem;
+
+  ${below.small`
+    margin: 0.5rem auto;
+  `};
 `;
 
 const Image = styled.img`
@@ -79,7 +81,7 @@ const partners = () => {
       </Head>
 
       <ContentSection>
-        <Grid columns={gridRepeat.small}>
+        <Grid columns={gridRepeat.xsmall}>
           <Cell width={1}>
             <h1 style={{ marginBottom: '0.5rem' }}>Partners</h1>
             <p className="medium-body-copy">
@@ -98,7 +100,7 @@ const partners = () => {
 
       <ContentSection>
         <Grid columns={gridRepeat.xxsmall} alignContent="center">
-          {data.partners.all.map(partner => {
+          {_.sortBy(data.partners.all, p => p.companyName).map(partner => {
             return (
               <PaddedImageContainer key={partner.id}>
                 <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
