@@ -29,7 +29,7 @@ const NavListItem = styled.div`
   padding-right: 2.5rem;
 `;
 
-const Nav = ({ className, mobileMenuOpen, onClick }) => {
+const Nav = ({ className, color, mobileMenuOpen, onClick }) => {
   return (
     <>
       <nav className={className}>
@@ -45,6 +45,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               title="Partners"
               href="/wi/partners"
               onClick={() => onClick(false)}
+              color={color}
             />
           </NavListItem>
           <NavListItem>
@@ -52,6 +53,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               title="Tickets"
               href="/wi/tickets"
               onClick={() => onClick(false)}
+              color={color}
             />
           </NavListItem>
           <NavListItem>
@@ -59,6 +61,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               title="Plan Your Trip"
               href="/wi/plan-your-trip"
               onClick={() => onClick(false)}
+              color={color}
             />
           </NavListItem>
           {/* <NavListItem>
@@ -71,13 +74,19 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
             />
           </NavListItem> */}
           <NavListItem>
-            <NavItem title="Blog" href="/blog" onClick={() => onClick(false)} />
+            <NavItem
+              title="Blog"
+              href="/blog"
+              onClick={() => onClick(false)}
+              color={color}
+            />
           </NavListItem>
           <NavListItem>
             <NavItem
               title="Contact"
               href="/contact"
               onClick={() => onClick(false)}
+              color={color}
             />
           </NavListItem>
           <NavListItem>
@@ -85,6 +94,7 @@ const Nav = ({ className, mobileMenuOpen, onClick }) => {
               title="About"
               href="/about"
               onClick={() => onClick(false)}
+              color={color}
             />
           </NavListItem>
         </NavList>

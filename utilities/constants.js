@@ -171,6 +171,7 @@ export const socialConstants = {
     medium: 'https://medium.com/that-conference',
     youtube: 'https://www.youtube.com/thatconference/',
     flickr: 'https://www.flickr.com/photos/thatconference/',
+    linkedin: 'https://www.linkedin.com/company/25065729/admin/',
     github: 'https://github.com/ThatConference',
   }),
 
@@ -205,6 +206,13 @@ export const socialConstants = {
         height: 24,
       },
       className: 'is-bigger',
+    },
+    linkedin: {
+      icon: {
+        name: 'linkedin',
+        width: 24,
+        height: 24,
+      },
     },
     medium: {
       icon: {

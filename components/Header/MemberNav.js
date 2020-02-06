@@ -24,7 +24,7 @@ const LoadingDiv = styled.div`
   text-align: right;
 `;
 
-const MemberNav = ({ className, onClick, user, loading }) => {
+const MemberNav = ({ className, color, onClick, user, loading }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const menuClick = e => {
@@ -57,6 +57,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}
             onClick={menuClick}
+            color={color}
           />
 
           <SecondaryNav userMenuOpen={userMenuOpen}>
@@ -101,6 +102,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
           title="Sign In"
           href="/api/login"
           onClick={() => onClick(false)}
+          color={color}
         />
       )}
     </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import Icon from '../shared/Icon';
@@ -13,8 +12,13 @@ const HeroContentSection = styled(ContentSection)`
   background: ${({ background }) => background};
 `;
 
-const HeroGrid = styled(Grid)`
-  height: 86.6rem;
+const HeroBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 75rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
 
   ${below.med`
     height: 43.3rem;
@@ -23,12 +27,10 @@ const HeroGrid = styled(Grid)`
 
 const BackToPartnersLink = styled.a`
   font-size: 1.4rem;
-  position: absolute;
-  float: left;
-  top: 0;
-  margin-top: 5rem;
-  margin-left: 5rem;
   color: ${({ theme }) => theme.colors.fonts.light};
+  align-self: flex-start;
+  width: 100%;
+  margin-top: 19rem;
 
   svg {
     vertical-align: middle;
@@ -38,12 +40,14 @@ const BackToPartnersLink = styled.a`
   }
 
   ${below.med`
-    margin-left: -25px;
+    margin-top: 16rem;
+    padding: 0 2rem;
   `};
 `;
 
 const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
+  transform: scaleX(-1);
 `;
 
 const HeroPartnerName = styled.h3`
@@ -56,11 +60,8 @@ const HeroPartnerName = styled.h3`
   `};
 `;
 
-const ConnectWithUs = styled(LinkButton)`
-  margin: 0;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+const SmallLinkButton = styled(LinkButton)`
+  max-width: 7rem;
 `;
 
 const HeroSection = ({
@@ -77,20 +78,21 @@ const HeroSection = ({
 
   return (
     <HeroContentSection background={background}>
-      <HeroGrid columns="1fr" rows="1fr">
-        <Cell center middle>
-          <BackToPartnersLink href={backToPartnerUrl}>
-            <BackArrow
-              icon="backArrow"
-              height="25px"
-              width="25px"
-              viewBoxHeight="100"
-              viewBoxWidth="100"
-            />
-            <span>Back to Partners</span>
-          </BackToPartnersLink>
+      <HeroBlock>
+        <BackToPartnersLink href={backToPartnerUrl}>
+          <BackArrow
+            icon="fullArrow"
+            height="20"
+            width="12"
+            viewBoxHeight="100"
+            viewBoxWidth="100"
+            title="Back"
+          />
+          <span>Back to Partners</span>
+        </BackToPartnersLink>
+        <div style={{ flexGrow: 2, textAlign: 'center', width: '100%' }}>
           <HeroPartnerName>{companyName}</HeroPartnerName>
-          <ConnectWithUs
+          <SmallLinkButton
             href={connectWithUsUrl}
             label="Connect with Us"
             color="white"
@@ -100,8 +102,8 @@ const HeroSection = ({
             hoverColor="primary"
             hoverBackgroundColor="white"
           />
-        </Cell>
-      </HeroGrid>
+        </div>
+      </HeroBlock>
     </HeroContentSection>
   );
 };

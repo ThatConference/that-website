@@ -30,6 +30,7 @@ const Icon = ({
   width,
   viewBoxHeight,
   viewBoxWidth,
+  title,
   icon,
 }) => {
   return (
@@ -46,7 +47,7 @@ const Icon = ({
         ${viewBoxHeight || height || '24'}
        `}
     >
-      <title>{svgs[icon].title}</title>
+      <title>{title || svgs[icon].title}</title>
       {svgs[icon].path.map(item => {
         return <path key={item} d={item} />;
       })}
