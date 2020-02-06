@@ -57,7 +57,7 @@ const SessionStatus = styled(Cell)`
     color: ${({ theme }) => theme.colors.fonts.light};
     background-color: ${({ theme }) => theme.colors.success};
   }
-  div.DENIED {
+  div.NOT_ACCEPTED {
     color: ${({ theme }) => theme.colors.fonts.light};
     background-color: ${({ theme }) => theme.colors.danger};
   }
