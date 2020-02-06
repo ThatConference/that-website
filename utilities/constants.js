@@ -54,7 +54,7 @@ export const sessionConstants = {
     { value: 'DRAFT', label: 'Draft' },
     { value: 'SUBMITTED', label: 'Submitted' },
     { value: 'ACCEPTED', label: 'Accepted' },
-    { value: 'DENIED', label: 'Declined' },
+    { value: 'NOT_ACCEPTED', label: 'Not Accepted' },
     { value: 'WITHDREW', label: 'Withdrew' },
     { value: 'WAIT_LIST', label: 'Wait List' },
     { value: 'CANCELLED', label: 'Canceled' },
