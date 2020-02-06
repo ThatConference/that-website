@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
-import MeetCampers from '../../components/HomePage/MeetCampers';
 import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
 import TimelineSection from '../../components/HomePage/Timeline';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
@@ -83,7 +82,6 @@ const home = () => {
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />
       <NewsletterSignup />
-      <MeetCampers />
       <BottomImage src="./images/mess-hall.jpg" loading="lazy" />
 
       <script
