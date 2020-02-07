@@ -77,7 +77,7 @@ const home = () => {
       <Hero event={event} />
       <LearnMore />
       <WhatToExpect />
-      <SpeakerHighlight />
+      {/* <SpeakerHighlight /> */}
       <TimelineSection event={event} />
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />
