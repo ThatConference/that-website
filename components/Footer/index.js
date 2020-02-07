@@ -35,7 +35,7 @@ const FooterNav = styled.div`
 const FooterNavColumn = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 6rem;
+  padding-right: 3rem;
 
   ${below.large`
     padding: 0 2rem;
@@ -90,14 +90,23 @@ const Footer = () => {
                 Blog
               </NavLink>
               <NavLink
+                href="/partners"
+                onClick={() => clickTracking('partners')}
+              >
+                Partners
+              </NavLink>
+            </FooterNavColumn>
+            <FooterNavColumn>
+              <Title>WI</Title>
+              <NavLink
                 href="/wi/tickets"
-                onClick={() => clickTracking('tickets')}
+                onClick={() => clickTracking('wi/tickets')}
               >
                 Tickets
               </NavLink>
               <NavLink
                 href="/wi/partners"
-                onClick={() => clickTracking('partners')}
+                onClick={() => clickTracking('wi/partners')}
               >
                 Partners
               </NavLink>

@@ -123,6 +123,14 @@ const GlobalStyle = createGlobalStyle`
     background: ${({ theme }) => theme.colors.primary};
   }
 
+  .float-right {
+    float: right;
+  }
+
+  .float-left {
+    float: left;
+  }
+
   form {
     input {
       padding: 1rem;
