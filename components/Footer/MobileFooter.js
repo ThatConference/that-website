@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Icon from '../shared/Icon';
-import NavItem from '../shared/NavItem';
+import ThatLink from '../shared/ThatLink';
 import SocialLinks from '../shared/SocialLinks';
 import { below } from '../../utilities';
 
@@ -97,7 +97,7 @@ const MobileFooter = ({ className }) => {
         More
       </NavLink>
       <FullNav mobileMenuOpen={mobileMenuOpen}>
-        <NavItem title="home" href="/" image="" imageWidth="13rem" />
+        <ThatLink title="home" href="/" image="" imageWidth="13rem" />
         <CloseIcon
           icon="close"
           height="80"
@@ -106,13 +106,13 @@ const MobileFooter = ({ className }) => {
             setMobileMenuOpen(false);
           }}
         />
-        <NavItem
+        <ThatLink
           title="menu"
           color="highlight"
           href="/menu"
           onClick={() => setMobileMenuOpen(false)}
         />
-        <NavItem
+        <ThatLink
           title="gallery"
           color="highlight"
           href="/gallery"
