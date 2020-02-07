@@ -77,7 +77,7 @@ export default styled(SquareButton)`
   tabindex: ${({ tabIndex }) => tabIndex || 0};
 
   &.inactive {
-    background: ${({ theme }) => theme.colors.lightGray};
+    background: ${({ theme }) => theme.colors.mediumGray};
     border-color: ${({ theme }) => theme.colors.mediumGray};
     cursor: not-allowed;
     pointer-events: none;

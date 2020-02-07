@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
-import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
+// import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
 import TimelineSection from '../../components/HomePage/Timeline';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
