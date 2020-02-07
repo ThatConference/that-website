@@ -137,7 +137,7 @@ const Detail = styled.span`
   overflow: hidden;
   white-space: normal;
   line-height: 1.5;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 const Name = styled(Detail)`
