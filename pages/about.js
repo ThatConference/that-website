@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import ContentSection from '../components/shared/ContentSection';
 import { below, above } from '../utilities';
 
@@ -57,9 +57,10 @@ const SectionHeading = styled.h3`
 
 const about = () => (
   <>
-    <Head>
-      <title key="title">About - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="About - THAT Conference"
+      description="Our goal with THAT is to bridge the gap between professionals and businesses, beginner and experienced technologists, all while shining a light on the importance of family and caring for your whole self."
+    />
 
     <ContentSection>
       <Main>

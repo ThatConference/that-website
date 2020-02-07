@@ -1,13 +1,12 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 import React from 'react';
-import Head from 'next/head';
 import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
 import styled from 'styled-components';
+import { NextSeo } from 'next-seo';
 import Error from '../_error';
 import { below } from '../../utilities';
-
 import ContentSection from '../../components/shared/ContentSection';
 
 const SlimContentSection = styled(ContentSection)`
@@ -46,7 +45,7 @@ const SlimContentSection = styled(ContentSection)`
   `};
 `;
 
-const RenderedMarkdown = ({ markdownContent, statusCode }) => {
+const RenderedMarkdown = ({ markdownContent, slug, statusCode }) => {
   if (statusCode) {
     return <Error statusCode={statusCode} />;
   }
@@ -55,11 +54,16 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
 
   return (
     <div>
-      <Head>
-        <title key="title">
-          {parsedMarkdown.attributes.title} - THAT Conference
-        </title>
-      </Head>
+      <NextSeo
+        title={`${parsedMarkdown.attributes.title} - THAT Conference`}
+        description={parsedMarkdown.attributes.description}
+        canonical={`https://www.thatconference.com/blog/${slug}`}
+        openGraph={{
+          images: [
+            { url: `../../images/blog/${parsedMarkdown.attributes.leadImage}` },
+          ],
+        }}
+      />
 
       <SlimContentSection>
         {parsedMarkdown.attributes.title && (
@@ -76,7 +80,7 @@ RenderedMarkdown.getInitialProps = async context => {
 
   try {
     const markdownContent = require(`../../markdown/blog/${slug}.md`).default;
-    return { markdownContent };
+    return { markdownContent, slug };
   } catch (err) {
     return { statusCode: 404 };
   }

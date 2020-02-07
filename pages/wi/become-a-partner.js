@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { below } from '../../utilities/breakpoint';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -64,9 +64,10 @@ class ScriptInjector extends Component {
 
 const becomeAPartner = () => (
   <div>
-    <Head>
-      <title key="title">Become a Partner - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Become a Partner - THAT Conference"
+      description="Are you ready to speak at the biggest tech conference in the US Midwest? THAT Call for Counselors (Speakers) is open through March 1st!"
+    />
 
     <ContentSection>
       <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
