@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import SocialLinks from '../shared/SocialLinks';
-import NavItem from '../shared/NavItem';
+import ThatLink from '../shared/ThatLink';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
 import { below, gridRepeat } from '../../utilities';
 
@@ -114,7 +114,7 @@ const MainLogoSection = ({ partner }) => {
       >
         <MainLogo src={partner.companyLogo} alt={partner.companyName} />
         <VisitUs>Visit us online at:</VisitUs>
-        <NavItem
+        <ThatLink
           href={partner.website}
           title={getHostName(partner.website)}
           target="blank"
