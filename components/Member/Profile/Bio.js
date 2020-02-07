@@ -30,6 +30,17 @@ const Bio = ({
           required
         />
       </FormRow>
+      <FormRow>
+        <FormInput
+          fieldName="canFeature"
+          getFieldProps={getFieldProps}
+          errors={errors}
+          touched={touched}
+          values={values}
+          label="Can we feature your profile as a Camper on THAT home page?"
+          inputType="checkbox"
+        />
+      </FormRow>
       {showButtons && (
         <>
           <FormCancel label="Back" onClick={formCancel} />
