@@ -31,6 +31,7 @@ const GET_MEMBER = gql`
       me {
         id
         bio
+        canFeature
         city
         company
         country
@@ -120,6 +121,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
 
   const {
     bio,
+    canFeature,
     city,
     company,
     country,
@@ -194,6 +196,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
         <Formik
           initialValues={{
             bio,
+            canFeature,
             city,
             company,
             country,
