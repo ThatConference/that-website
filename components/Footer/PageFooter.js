@@ -19,11 +19,11 @@ const Copyright = styled.p`
 `;
 
 const Footer = ({ className }) => {
+  const copyrightMessage = `All Rights Reserved. Copyright ${new Date().getFullYear()} THAT Conference.
+        Version 4.0.`;
   return (
     <div className={className}>
-      <Copyright>
-        All Rights Reserved. Copyright 2019 THAT Conference. Version 4.0.
-      </Copyright>
+      <Copyright>{copyrightMessage}</Copyright>
       <SocialLinks />
     </div>
   );
