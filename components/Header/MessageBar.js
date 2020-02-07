@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
-import Link from 'next/link';
 import { below } from '../../utilities';
 import ThatLink from '../shared/ThatLink';
-import * as gtag from '../../lib/gtag';
 
 const _ = require('lodash');
 
@@ -44,38 +42,21 @@ const MessageBar = ({ className, user, loading, notifications }) => {
     return n.shouldFeature === true;
   });
 
-  const clickTracking = () => {
-    gtag.event({
-      clientWindow: window,
-      action: 'click',
-      category: 'link button',
-      label: 'message bar link',
-    });
-  };
-
   const featuredMessage = () => {
     return (
       <LinkContainer>
         {featured.message}
-        <ThatLink
-          className="message-bar-link"
-          title={featured.linkText}
-          href={featured.link}
-        />
+        <ThatLink title={featured.linkText} href={featured.link} />
       </LinkContainer>
     );
   };
 
   const createProfileMessage = () => {
     return (
-      <>
+      <LinkContainer>
         Tell Us More About Yourself!
-        <Link href="/member/create">
-          <StyledLink onClick={clickTracking}>
-            Complete Your Profile Today!
-          </StyledLink>
-        </Link>
-      </>
+        <ThatLink title="Complete Your Profile Today!" href="/member/create" />
+      </LinkContainer>
     );
   };
 
