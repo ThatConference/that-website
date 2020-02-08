@@ -6,6 +6,7 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
 import _ from 'lodash';
+import { NextSeo } from 'next-seo';
 import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
@@ -49,6 +50,8 @@ const GET_PARTNER = gql`
           firstName
           lastName
           jobTitle
+          isSponsoredFeatured
+          partnerFeaturedOrder
           profileImage
         }
         sessions {
@@ -69,6 +72,10 @@ const GET_PARTNER = gql`
 
 const MainDiv = styled.div`
   padding-bottom: 4rem;
+`;
+
+const MainGrid = styled(Grid)`
+  grid-gap: 3rem;
 `;
 
 const StyledP = styled.p`
@@ -244,28 +251,38 @@ function PartnerDetail() {
   );
 
   return (
-    <MainDiv>
-      <HeroSection
-        companyName={partner.companyName}
-        heroImageUrl={partner.heroImage}
-        connectWithUsUrl={partner.website}
-        location="wi"
+    <>
+      <NextSeo
+        title={`${partner.companyName} - THAT Conference`}
+        description={`Thank you to ${partner.companyName} for partnering with THAT Conference!`}
+        canonical={`https://www.thatconference.com/partner/${partner.slug}`}
+        openGraph={{
+          images: [{ url: partner.companyLogo }],
+        }}
       />
-      <MainLogoSection partner={partner} />
+      <MainDiv>
+        <HeroSection
+          companyName={partner.companyName}
+          heroImageUrl={partner.heroImage}
+          connectWithUsUrl={partner.website}
+          location="wi"
+        />
+        <MainLogoSection partner={partner} />
 
-      <ContentSection>
-        <Grid columns={gridRepeat.xxsmall}>
-          <Cell>
-            <AboutUs />
-            {!_.isEmpty(partner.sessions) && <Sessions />}
-          </Cell>
-          <Cell>
-            {!_.isEmpty(partner.goals) && <Goals />}
-            {!_.isEmpty(partner.jobs) && <Jobs />}
-          </Cell>
-        </Grid>
-      </ContentSection>
-    </MainDiv>
+        <ContentSection>
+          <MainGrid columns={gridRepeat.xxsmall}>
+            <Cell>
+              <AboutUs />
+              {!_.isEmpty(partner.sessions) && <Sessions />}
+            </Cell>
+            <Cell>
+              {!_.isEmpty(partner.goals) && <Goals />}
+              {!_.isEmpty(partner.jobListings) && <Jobs />}
+            </Cell>
+          </MainGrid>
+        </ContentSection>
+      </MainDiv>
+    </>
   );
 }
 

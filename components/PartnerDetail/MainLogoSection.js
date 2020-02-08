@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import SocialLinks from '../shared/SocialLinks';
-import NavItem from '../shared/NavItem';
+import ThatLink from '../shared/ThatLink';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
 import { below, gridRepeat } from '../../utilities';
 
@@ -23,6 +23,16 @@ const PartnerContact = styled.div`
 const MainLogo = styled.img`
   height: 15rem;
   padding-bottom: 2rem;
+  max-width: 42rem;
+
+  ${below.med`
+    align-items: center;
+    max-width: 35rem;
+  `};
+
+  ${below.small`
+    max-width: 25rem;
+  `};
 `;
 
 const VisitUs = styled.h5`
@@ -94,6 +104,14 @@ const renderMember = member => {
 };
 
 const MainLogoSection = ({ partner }) => {
+  let { members } = partner;
+  if (members && members.length && members.length > 0) {
+    members = _.chain(members)
+      .filter(m => m.isSponsoredFeatured)
+      .orderBy(members, ['partnerFeaturedOrder', 'asc'])
+      .value();
+  }
+
   const getPartnerSocialLinks = () => {
     const socials = {};
 
@@ -114,10 +132,10 @@ const MainLogoSection = ({ partner }) => {
       >
         <MainLogo src={partner.companyLogo} alt={partner.companyName} />
         <VisitUs>Visit us online at:</VisitUs>
-        <NavItem
+        <ThatLink
           href={partner.website}
           title={getHostName(partner.website)}
-          target="blank"
+          target="_blank"
           isLocal={false}
           style={{ paddingBottom: '1rem' }}
         />
@@ -139,7 +157,7 @@ const MainLogoSection = ({ partner }) => {
                 Who to Say Hi to During THAT Conference
               </PartnerDetailSubHeading>
               <Grid columns={gridRepeat.xsmall}>
-                {partner.members.map(member => {
+                {members.map(member => {
                   return renderMember(member);
                 })}
               </Grid>

@@ -14,13 +14,6 @@ const Main = styled(ContentSection)`
   ${below.med`
     margin-bottom: 0;
   `};
-
-  h3 {
-    font-size: 3.5rem;
-    text-transform: unset;
-    color: ${({ theme }) => theme.colors.fonts.dark};
-    font-weight: 500;
-  }
 `;
 
 const ProcessAndDatesGrid = styled(Grid)`
@@ -73,7 +66,7 @@ const Process = ({ milestones }) => {
     <Main>
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
-          <h3>Talk Audiences and Formats</h3>
+          <h3 className="font-dark">Talk Audiences and Formats</h3>
           <p>You can apply to speak for the following audiences and formats:</p>
           <ProcessBlock>
             <ProcessAndDatesSubHeading>
@@ -119,7 +112,7 @@ const Process = ({ milestones }) => {
           </ProcessBlock>
         </Cell>
         <Cell className="keyDates">
-          <h3>Key Dates You Need to Know</h3>
+          <h3 className="font-dark">Key Dates You Need to Know</h3>
           {milestones.map((m, index) => {
             const className = index === 0 ? 'first' : '';
             return (

@@ -10,7 +10,7 @@ import Error from '../_error';
 import { below, memberConstants, socialConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
-import NavItem from '../../components/shared/NavItem';
+import ThatLink from '../../components/shared/ThatLink';
 import SocialLinks from '../../components/shared/SocialLinks';
 import Icon from '../../components/shared/Icon';
 
@@ -185,7 +185,7 @@ const member = ({ slug, user, loading: loadingUser }) => {
   const getWebsiteLink = () => {
     const websiteLink = getProfileLinkFor('WEBSITE');
     if (websiteLink) {
-      return <NavItem title={websiteLink.url} href={websiteLink.url} />;
+      return <ThatLink title={websiteLink.url} href={websiteLink.url} />;
     }
     return '';
   };
@@ -199,7 +199,7 @@ const member = ({ slug, user, loading: loadingUser }) => {
       </Head>
       <ContentSection>
         {/* Not sure why next but using this to link to edit causes a hook re-render issue */}
-        {/* <NavItem
+        {/* <ThatLink
           title="Edit My Profile"
           href="/member/edit"
           icon="edit"

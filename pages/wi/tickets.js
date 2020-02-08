@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 import ContentSection from '../../components/shared/ContentSection';
 import YouTubeVideo from '../../components/shared/YouTubeVideo';
@@ -201,14 +201,18 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
 
 const tickets = () => (
   <>
-    <Head>
-      <title key="title">Tickets - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Tickets - THAT Conference"
+      description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+    />
     <ContentSection>
       <Main>
         <SideDetail>
           <HighlightText>On Sale Starting April 13, 2020</HighlightText>
-          <h1 style={{ marginBottom: '0.5rem' }}>Tickets</h1>
+          <h1>Tickets</h1>
           <p className="medium-body-copy">
             THAT Conference is unlike any other technical conference. This
             unique four days of summer camp is full of workshops, sessions, open

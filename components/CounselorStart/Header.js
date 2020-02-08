@@ -4,7 +4,7 @@ import LinkButton from '../shared/LinkButton';
 import Title from '../shared/Title';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import { below } from '../../utilities/breakpoint';
-import NavItem from '../shared/NavItem';
+import ThatLink from '../shared/ThatLink';
 
 const _ = require('lodash');
 
@@ -66,7 +66,7 @@ const Header = ({ user, loading }) => {
           <>
             To get started you will need to{' '}
             <strong>
-              <NavItem
+              <ThatLink
                 title="sign in and create your THAT Profile"
                 href="/api/login?redirect-url=/member/create"
               />
@@ -82,7 +82,7 @@ const Header = ({ user, loading }) => {
           <>
             To get started,{' '}
             <strong>
-              <NavItem
+              <ThatLink
                 title="complete your THAT Profile"
                 href="/member/create"
               />
@@ -128,7 +128,7 @@ const Header = ({ user, loading }) => {
             {getHelpText()}
             Checkout{' '}
             <strong>
-              <NavItem
+              <ThatLink
                 title="THAT Counselor Submission FAQ"
                 href="/wi/counselor-submission-faq"
               />

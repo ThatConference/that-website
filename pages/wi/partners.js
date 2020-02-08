@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-
+import { NextSeo } from 'next-seo';
 import debug from 'debug';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -38,20 +38,20 @@ const GET_PARTNERS = gql`
   }
 `;
 
-const Header = styled.h1`
-  margin-bottom: 0;
-  margin-right: 50px;
-`;
-
 const RobotImage = styled.img`
-  height: 50rem;
-  float: right;
-  margin-right: 3.5rem;
+  height: 45rem;
+  margin-left: 4rem;
+  transform: scaleX(-1);
+  position: relative;
+  top: -5rem;
 
-  ${below.med`
-    margin-top: 2rem;
-    margin-right: unset;
+  ${below.large`
+    top: 0;
     height: 40rem;
+  `};
+
+  ${below.small`
+    display: none;
   `};
 `;
 
@@ -76,10 +76,46 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
   max-width: ${({ maxWidth }) => maxWidth};
+  padding: 1.25rem;
+`;
+
+const TopContentSection = styled(ContentSection)`
+  padding-bottom: 0;
+
+  ${below.xlarge`
+    padding-bottom: 5rem;
+  `};
+`;
+
+const PioneerContentSection = styled(ContentSection)`
+  padding-top: 0;
+
+  ${below.xlarge`
+    padding-top: 5rem;
+  `};
 `;
 
 const PaddedImageContainer = styled(ImageContainer)`
-  margin: 3rem;
+  margin: 1rem;
+`;
+
+const ActionButtons = styled.div`
+  display: flex;
+  justify-content: left;
+
+  a {
+    margin-left: 0;
+    float: left;
+  }
+
+  a:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  ${below.small`
+    flex-direction: column;
+    align-items: stretch;
+  `};
 `;
 
 const renderPartner = (
@@ -134,49 +170,65 @@ const partnerListing = () => {
   dlog('partners %o', partners);
   return (
     <div>
-      <ContentSection>
+      <NextSeo
+        title={`${eventYear} WI Partners - THAT Conference`}
+        description="THAT Conference wouldn’t be possible without the support of our partners. A large portion of the conference costs are paid from sponsorships so that we can keep ticket costs affordable."
+      />
+
+      <TopContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>{eventYear} Partners</Header>
-            <LinkButton
-              href="/wi/become-a-partner"
-              label="Become a Partner"
-              color="thatBlue"
-              borderColor="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-            <RobotImage src="/images/robot.png" />
-          </Cell>
-          <Cell>
-            <p className="large-body-copy">
+            <h1>{eventYear} Partners</h1>
+            <p className="medium-body-copy">
               THAT Conference wouldn’t be possible without the support of our
               partners. A large portion of the conference costs are paid from
               sponsorships so that we can keep ticket costs affordable. Please
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
+            <ActionButtons>
+              <LinkButton
+                href="/wi/become-a-partner"
+                label="Become a Partner"
+                color="thatBlue"
+                borderColor="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+              <LinkButton
+                href="/partners"
+                label="View Past Partners"
+                color="thatBlue"
+                borderColor="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </ActionButtons>
+          </Cell>
+          <Cell center>
+            <RobotImage src="/images/robot.png" />
           </Cell>
         </Grid>
-      </ContentSection>
-      <ContentSection>
+      </TopContentSection>
+      <PioneerContentSection>
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
             if (value.level === 'PIONEER') {
-              return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
+              return renderPartner(value, '48rem', '31rem', '37rem');
             }
             return null;
           })}
         </Partners>
-      </ContentSection>
+      </PioneerContentSection>
       <ContentSection>
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
             if (value.level === 'EXPLORER') {
-              return renderPartner(value, '39.9rem', '25.5rem', '28rem');
+              return renderPartner(value, '37rem', '23rem', '30rem');
             }
             return null;
           })}
@@ -209,7 +261,7 @@ const partnerListing = () => {
         <Partners>
           {partners.map(value => {
             if (value.level === 'MEDIA') {
-              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
+              return renderPartner(value, '21rem', '14rem', '14.5rem');
             }
             return null;
           })}

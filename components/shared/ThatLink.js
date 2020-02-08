@@ -40,7 +40,7 @@ const NavIcon = styled(Icon)`
   margin-left: 0.7rem;
 `;
 
-const NavItem = ({
+const ThatLink = ({
   color,
   href,
   icon,
@@ -112,7 +112,7 @@ const NavItem = ({
   );
 };
 
-NavItem.propTypes = {
+ThatLink.propTypes = {
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
   icon: PropTypes.string,
@@ -126,7 +126,7 @@ NavItem.propTypes = {
   title: PropTypes.string,
 };
 
-NavItem.defaultProps = {
+ThatLink.defaultProps = {
   color: '',
   icon: '',
   iconClass: '',
@@ -139,4 +139,4 @@ NavItem.defaultProps = {
   title: '',
 };
 
-export default NavItem;
+export default ThatLink;

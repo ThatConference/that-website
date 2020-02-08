@@ -43,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 11rem;
     margin-top: 0;
+    margin-bottom: 0.5rem;
 
     ${below.med`
       font-size: 9rem;
@@ -83,6 +84,13 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+
+    &.basic-link {
+      color: ${props => props.theme.colors.secondary};
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
+    }
   }
   
   p { 
@@ -121,6 +129,14 @@ const GlobalStyle = createGlobalStyle`
   ::selection { 
     color: ${({ theme }) => theme.colors.fonts.light}; 
     background: ${({ theme }) => theme.colors.primary};
+  }
+
+  .float-right {
+    float: right;
+  }
+
+  .float-left {
+    float: left;
   }
 
   form {

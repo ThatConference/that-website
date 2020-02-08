@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
-import Link from 'next/link';
 import { below } from '../../utilities';
-import * as gtag from '../../lib/gtag';
+import ThatLink from '../shared/ThatLink';
 
 const _ = require('lodash');
 
@@ -24,50 +23,40 @@ const Location = styled.p`
   `};
 `;
 
-const StyledLink = styled.a`
-  margin-left: 2rem;
-  color: ${({ theme }) => theme.colors.white};
-  // text-decoration: underline;
-  border-bottom: solid 1px ${({ theme }) => theme.colors.white};
+const LinkContainer = styled.div`
+  a {
+    margin-left: 2rem;
+    color: ${({ theme }) => theme.colors.white};
+    border-bottom: solid 1px ${({ theme }) => theme.colors.white};
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
-    border-bottom: solid 1px ${({ theme }) => theme.colors.highlight};
-    cursor: pointer;
+    &:hover {
+      color: ${({ theme }) => theme.colors.highlight};
+      border-bottom: solid 1px ${({ theme }) => theme.colors.highlight};
+      cursor: pointer;
+    }
   }
 `;
 
-const MessageBar = ({ className, user, loading }) => {
-  const clickTracking = () => {
-    gtag.event({
-      clientWindow: window,
-      action: 'click',
-      category: 'link button',
-      label: 'message bar link',
-    });
-  };
+const MessageBar = ({ className, user, loading, notifications }) => {
+  const featured = _.find(notifications, n => {
+    return n.shouldFeature === true;
+  });
 
-  const generalMessage = () => {
+  const featuredMessage = () => {
     return (
-      <>
-        Call for Counselors open through 3/1
-        <Link href="/wi/call-for-counselors">
-          <StyledLink onClick={clickTracking}>Learn More!</StyledLink>
-        </Link>
-      </>
+      <LinkContainer>
+        {featured.message}
+        <ThatLink title={featured.linkText} href={featured.link} />
+      </LinkContainer>
     );
   };
 
   const createProfileMessage = () => {
     return (
-      <>
+      <LinkContainer>
         Tell Us More About Yourself!
-        <Link href="/member/create">
-          <StyledLink onClick={clickTracking}>
-            Complete Your Profile Today!
-          </StyledLink>
-        </Link>
-      </>
+        <ThatLink title="Complete Your Profile Today!" href="/member/create" />
+      </LinkContainer>
     );
   };
 
@@ -77,9 +66,9 @@ const MessageBar = ({ className, user, loading }) => {
     }
 
     if (_.isEmpty(user)) {
-      return generalMessage();
+      return featuredMessage();
     }
-    return user.profileComplete ? generalMessage() : createProfileMessage();
+    return user.profileComplete ? featuredMessage() : createProfileMessage();
   };
 
   return (

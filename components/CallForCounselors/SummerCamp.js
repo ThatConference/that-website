@@ -19,11 +19,6 @@ const Main = styled(ContentSection)`
 `;
 
 const SummerCampHeader = styled.h3`
-  font-size: 5.5rem;
-  margin-top: 8rem;
-  margin-bottom: 2.5rem;
-  margin-left: 0;
-  font-weight: 100;
   color: ${({ theme }) => theme.colors.fonts.light};
 `;
 
@@ -35,9 +30,9 @@ const MegaphoneBearCell = styled(Cell)`
 
 const MegaphoneBear = styled.img`
   transform: scaleX(-1);
-  max-height: 48rem;
+  max-height: 40rem;
   position: relative;
-  top: 10rem;
+  top: 9rem;
 
   ${below.med`
     max-height: 35rem;
@@ -55,7 +50,7 @@ const SummerCamp = () => {
         <Cell>
           <div>
             <SummerCampHeader>Summer Camp for Geeks</SummerCampHeader>
-            <span className="large-body-copy">
+            <span className="medium-body-copy">
               THAT Conference is the largest tech event in the US Midwest and
               it’s held at a waterpark. We are a family-friendly conference and
               encourage children (geeklings) to submit talks as well! We are
