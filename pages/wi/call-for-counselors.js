@@ -41,7 +41,7 @@ const CallForCounselors = ({ featureKeyword }) => {
   return (
     <div>
       <Head>
-        <title key="title">Call for Speakers - THAT Conference</title>
+        <title key="title">Call for Counselors - THAT Conference</title>
       </Head>
       <Header featureKeyword={featureKeyword} />
       <SummerCamp />

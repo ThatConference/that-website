@@ -11,7 +11,7 @@ After THAT Conference 2019, we deleted our old site and created a new one from t
 
 ### What happened to my old sessions?
 
-After THAT Conference 2019, we deleted our old site and created a new one from the ground up. Everything went with it, including sessions. We are currently working to build out the rest of the site functionality, including migrating over past sessions and speakers. [Sign up for our newsletter](#newsletter), [join THAT Slack](https://thatslack.thatconference.com/) and/or watch our social media as we announce new site functionality as we release it.
+After THAT Conference 2019, we deleted our old site and created a new one from the ground up. Everything went with it, including sessions. We are currently working to build out the rest of the site functionality, including migrating over past sessions and Counselors. [Sign up for our newsletter](#newsletter), [join THAT Slack](https://thatslack.thatconference.com/) and/or watch our social media as we announce new site functionality as we release it.
 
 ### My child is under 13 years of age, what should I do?
 
