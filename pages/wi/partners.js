@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-
+import { NextSeo } from 'next-seo';
 import debug from 'debug';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -134,6 +134,11 @@ const partnerListing = () => {
   dlog('partners %o', partners);
   return (
     <div>
+      <NextSeo
+        title={`${eventYear} WI Partners - THAT Conference`}
+        description="THAT Conference wouldn’t be possible without the support of our partners. A large portion of the conference costs are paid from sponsorships so that we can keep ticket costs affordable."
+      />
+
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>

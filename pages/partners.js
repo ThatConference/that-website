@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
@@ -80,9 +80,10 @@ const partners = () => {
 
   return (
     <>
-      <Head>
-        <title key="title">Partners - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="All Partners - THAT Conference"
+        description="We thank each and every one of our partners, across all levels for all of our years for their amazing support!"
+      />
 
       <ContentSection>
         <Grid columns={gridRepeat.xsmall}>

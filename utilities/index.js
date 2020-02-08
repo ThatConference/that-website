@@ -1,4 +1,5 @@
 export * from './breakpoint';
+export * from './defaultSeo';
 export * from './svgs';
 export * from './validation';
 export * from './utilityFunctions';
