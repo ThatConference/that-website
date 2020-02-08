@@ -2,6 +2,8 @@ import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import * as gtag from '../../lib/gtag';
 
 import MessageBar from './MessageBar';
@@ -10,6 +12,28 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
 import MemberNav from './MemberNav';
+
+const GET_EVENT = gql`
+  query getEvent($eventId: ID!) {
+    events {
+      event(id: $eventId) {
+        get {
+          id
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
+        }
+      }
+    }
+  }
+`;
 
 router.onRouteChangeStart = () => {
   nprogress.start();
@@ -38,6 +62,7 @@ const PageHeader = styled.div`
 
 const LogoLink = styled.a`
   height: 100%;
+  fill: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledLogo = styled.img`
@@ -54,8 +79,11 @@ const ActionButton = styled(LinkButton)`
   `};
 `;
 
-const Logo = () => {
-  return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+const Logo = ({ layered }) => {
+  const logoPath = layered
+    ? '/svgs/THATConference-white.svg'
+    : '/svgs/THATConference.svg';
+  return <StyledLogo src={logoPath} alt="THAT Conference" />;
 };
 
 const MenuIcon = styled.div`
@@ -89,7 +117,7 @@ const MenuIcon = styled.div`
   &:after,
   &:before,
   div {
-    background-color: ${({ theme }) => theme.colors.thatBlue};
+    background-color: ${({ color, theme }) => color || theme.colors.thatBlue};
     border-radius: 0.3rem;
     content: '';
     display: block;
@@ -111,7 +139,7 @@ const MenuIcon = styled.div`
   }
 `;
 
-const HeaderLogo = () => {
+const HeaderLogo = ({ layered }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -123,16 +151,29 @@ const HeaderLogo = () => {
 
   const theRouter = useRouter();
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
-    return <Logo />;
+    return <Logo layered={layered} />;
   }
   return (
     <LogoLink href="/wi" onClick={clickTracking}>
-      <Logo />
+      <Logo layered={layered} />
     </LogoLink>
   );
 };
 
-const Header = ({ className, user, loading }) => {
+const Header = ({ className, layered, user, loading }) => {
+  const {
+    loading: eventLoading,
+    error: eventError,
+    data: eventData,
+  } = useQuery(GET_EVENT, {
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
+  });
+
+  if (eventLoading) return null;
+  if (eventError) return null;
+
+  const { event } = eventData.events;
+
   const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -155,19 +196,25 @@ const Header = ({ className, user, loading }) => {
 
   return (
     <header className={[className, scrolled()].join(' ')}>
-      <MessageBar user={user} loading={loading} />
-      <HeaderSection>
+      <MessageBar
+        user={user}
+        loading={loading}
+        notifications={event.get.notifications}
+      />
+      <HeaderSection backgroundColor="transparent">
         <PageHeader>
-          <HeaderLogo />
+          <HeaderLogo layered={layered} />
           <Nav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
+            color={layered ? 'white' : ''}
           />
           <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
             user={user}
             loading={loading}
+            color={layered ? 'white' : ''}
           />
           <div style={{ display: 'flex' }}>
             <ActionButton
@@ -180,6 +227,7 @@ const Header = ({ className, user, loading }) => {
           <MenuIcon
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={mobileMenuOpen ? 'open' : ''}
+            color={layered ? 'white' : ''}
           >
             <div />
           </MenuIcon>
@@ -197,6 +245,8 @@ export default styled(Header)`
   background-color: transparent;
   z-index: 1;
   width: 100vw;
+
+  position: ${({ layered }) => (layered ? 'absolute' : 'relative')};
 
   &::before {
     content: '';

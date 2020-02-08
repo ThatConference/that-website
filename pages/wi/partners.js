@@ -5,23 +5,34 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 
+import debug from 'debug';
+
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
 
+const dlog = debug('that:partners');
+
 const GET_PARTNERS = gql`
-  query getPartners {
-    partners {
-      all {
-        id
-        slug
-        year
-        partnershipLevel
-        companyName
-        companyLogo
-        heroImage
-        website
+  query getPartners($eventId: ID!) {
+    events {
+      event(id: $eventId) {
+        get {
+          id
+          name
+          year
+          partners {
+            id
+            slug
+            level
+            placement
+            companyName
+            companyLogo
+            heroImage
+            website
+          }
+        }
       }
     }
   }
@@ -83,7 +94,7 @@ const renderPartner = (
       height={containerHeight}
       key={partner.id}
     >
-      <Link href="/wi/partner/[slug]" as={`/wi/partner/${partner.slug}`}>
+      <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
@@ -99,18 +110,34 @@ const renderPartner = (
 };
 
 const partnerListing = () => {
-  const { loading, error, data } = useQuery(GET_PARTNERS);
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    variables: {
+      eventId: process.env.CURRENT_EVENT_ID,
+    },
+  });
 
   if (loading) return null;
-  if (error) return null;
+  if (error) {
+    dlog('error %o', error);
+    return null;
+  }
 
-  const partners = data.partners.all;
+  dlog('data %o', data.events.event.get.partners);
+
+  const partners = data.events.event.get.partners.sort((a, b) => {
+    if (a.placement < b.placement) return -1;
+    if (a.placement > b.placement) return 1;
+    return 0;
+  });
+  const eventYear = data.events.event.get.year;
+
+  dlog('partners %o', partners);
   return (
     <div>
       <ContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>2019 Partners</Header>
+            <Header>{eventYear} Partners</Header>
             <LinkButton
               href="/wi/become-a-partner"
               label="Become a Partner"
@@ -130,6 +157,16 @@ const partnerListing = () => {
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
+            <LinkButton
+              href="/partners"
+              label="View Past Partners"
+              color="thatBlue"
+              borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+              className="float-right"
+            />
           </Cell>
         </Grid>
       </ContentSection>
@@ -137,7 +174,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'PIONEER') {
+            if (value.level === 'PIONEER') {
               return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
             }
             return null;
@@ -148,7 +185,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'EXPLORER') {
+            if (value.level === 'EXPLORER') {
               return renderPartner(value, '39.9rem', '25.5rem', '28rem');
             }
             return null;
@@ -159,7 +196,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'SCOUT') {
+            if (value.level === 'SCOUT') {
               return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
             }
             return null;
@@ -170,7 +207,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'PATRON') {
+            if (value.level === 'PATRON') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
             return null;
@@ -181,7 +218,7 @@ const partnerListing = () => {
         <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
         <Partners>
           {partners.map(value => {
-            if (value.partnershipLevel === 'MEDIA') {
+            if (value.level === 'MEDIA') {
               return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
             }
             return null;

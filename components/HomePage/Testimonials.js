@@ -34,7 +34,14 @@ const TESTIMONIALS = [
 ];
 
 const ContentGrid = styled(Grid)`
+  margin: 0 8rem;
+
+  ${below.large`
+    margin: 0;
+  `};
+
   direction: rtl;
+
   ${below.small`
     display: block;
     margin-right: 2rem;
@@ -46,13 +53,18 @@ const ContentGrid = styled(Grid)`
 `;
 
 const HighlightImage = styled.img`
-  width: 100%;
+  max-width: 55rem;
+
+  ${below.xsmall`
+    max-width: 30rem;
+  `};
 `;
 
 const Detail = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 40rem;
 `;
 
 const Quote = styled.p`

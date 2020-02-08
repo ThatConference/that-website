@@ -59,7 +59,7 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   const parsedMarkdown = fm(markdownContent);
 
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' }, // WI eventId
+    variables: { eventId: process.env.CURRENT_EVENT_ID }, // WI eventId
   });
   if (loading) return null;
   if (error) return null;

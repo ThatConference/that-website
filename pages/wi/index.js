@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/react-hooks';
-
 import { gql } from 'apollo-boost';
 import Head from 'next/head';
 import React from 'react';
@@ -7,8 +6,7 @@ import styled from 'styled-components';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
-import MeetCampers from '../../components/HomePage/MeetCampers';
-import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
+// import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
 import TimelineSection from '../../components/HomePage/Timeline';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
@@ -62,7 +60,7 @@ const BottomImage = styled.img`
 
 const home = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
   });
 
   if (loading) return null;
@@ -78,12 +76,11 @@ const home = () => {
       <Hero event={event} />
       <LearnMore />
       <WhatToExpect />
-      <SpeakerHighlight />
+      {/* <SpeakerHighlight /> */}
       <TimelineSection event={event} />
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />
       <NewsletterSignup />
-      <MeetCampers />
       <BottomImage src="./images/mess-hall.jpg" loading="lazy" />
 
       <script

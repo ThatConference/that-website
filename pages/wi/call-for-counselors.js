@@ -28,7 +28,7 @@ const GET_EVENT = gql`
 
 const CallForCounselors = ({ featureKeyword }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
     onCompleted(d) {
       return d;
     },
