@@ -54,7 +54,7 @@ const contact = () => (
     <ContentSection>
       <Grid columns={gridRepeat.xsmall}>
         <Cell width={2}>
-          <h1 style={{ marginBottom: '0.5rem' }}>Contact Us</h1>
+          <h1>Contact Us</h1>
           <p className="medium-body-copy">
             Need to get in touch with us? Have a question you need to ask? Have
             an idea you want to share? Well, we are all over this Internet

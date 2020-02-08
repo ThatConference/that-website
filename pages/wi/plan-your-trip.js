@@ -116,7 +116,7 @@ const contact = () => {
       <ContentSection>
         <Grid columns={gridRepeat.xsmall}>
           <Cell width={1}>
-            <h1 style={{ marginBottom: '0.5rem' }}>Plan Your Trip</h1>
+            <h1>Plan Your Trip</h1>
             <p className="medium-body-copy">
               THAT Community spreads way beyond the midwest and we want to make
               it easy for you to book and plan your travel to Summer Camp. Here

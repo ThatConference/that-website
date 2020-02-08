@@ -8,12 +8,6 @@ import ImageContainer from '../shared/ImageContainer';
 
 import { gridRepeat } from '../../utilities';
 
-const Title = styled.h3`
-  text-align: center;
-  font-weight: 100;
-  color: ${({ theme }) => theme.colors.fonts.dark};
-`;
-
 const PerkTitle = styled.h4`
   margin-top: 0;
   margin-bottom: 0.4rem;
@@ -31,7 +25,9 @@ const Perk = styled(ImageContainer)`
 const Perks = () => {
   return (
     <ContentSection>
-      <Title>Perks If You're Selected To Speak At THAT Conference</Title>
+      <h3 className="font-dark centered-text">
+        Perks If You're Selected To Speak At THAT Conference
+      </h3>
       <Grid columns={gridRepeat.xsmall} alignContent="center">
         <Perk>
           <PerkTitle>Conference Ticket</PerkTitle>

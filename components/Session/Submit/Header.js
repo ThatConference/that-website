@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import Stepper from './Stepper';
 
 const Title = styled.h1`
-  font-weight: 100;
-  font-size: 7.5rem;
-  margin-top: 2rem;
+  font-size: 9rem;
   margin-bottom: 4rem;
 `;
 

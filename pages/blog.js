@@ -21,7 +21,7 @@ const blog = () => (
     <ContentSection>
       <Grid columns={gridRepeat.xsmall}>
         <Cell>
-          <h1 style={{ marginBottom: '0.5rem' }}>THAT Blog</h1>
+          <h1>THAT Blog</h1>
           <p className="medium-body-copy">
             A collection of articles, tutorials, stories all written by THAT
             Crew and amazing members of THAT Community.
