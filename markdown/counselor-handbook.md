@@ -47,9 +47,9 @@ to stay elsewhere. Jingle them up at ||HotelPhoneNumberReservations|| and refere
 
 Planes, Trains and Automobiles. If you’re flying, we always suggest first class. There are three different airports you can choose from:
 
-- O'Hare in Chicago (ORD) is the farthest away at 2:45 from the Kalahari but it’s all interstate.
-- Mitchell Airport in Milwaukee (MKE) is 1:51 away.
-- Dane County Regional in Madison (MSN), is the closest airport at 50 minutes away.
+- O'Hare in Chicago (ORD) is the farthest away at 2hr 45min from the Kalahari but it’s all interstate.
+- Mitchell Airport in Milwaukee (MKE) is 1hr 51min away.
+- Dane County Regional in Madison (MSN), is the closest airport at 50min away.
 
 Should I fly to MKE and take a puddle-jumper over to MSN? We don't recommend it, as it might take you longer to deal with the layover rather
 than jumping in a car and driving up to the Kalahari. Is there a shuttle from the airports? Unfortunately, no, but you might try jumping
