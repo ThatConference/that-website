@@ -15,7 +15,7 @@ author: THAT Crew
 
 In just over 6 months THAT Campsite will be set, tents lining the halls and THAT Mess Hall ready to rock. But not without the most important part, YOU! What brings the awesome to each event is the amazing community and people ready to share their unique perspective.
 
-Regardless of age, experience, tech stack... you have awesome to share and a community of people who want to hear it. So let's get to it... THAT 2020 Call for Counselors (Speakers) is NOW OPEN!
+Regardless of age, experience, tech stack... you have awesome to share and a community of people who want to hear it. So let's get to it... THAT 2020 Call for Counselors is NOW OPEN!
 
 <div style="text-align: center; padding: 3rem 0;">
   <a href="/wi/call-for-counselors" class="linkButton" target="_blank">
