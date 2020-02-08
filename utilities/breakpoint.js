@@ -5,6 +5,7 @@ const size = {
   small: 720,
   med: 960,
   large: 1140,
+  larger: 1360,
   xlarge: 1500,
 };
 
