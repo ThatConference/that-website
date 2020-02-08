@@ -45,7 +45,7 @@ const MainContent = styled(ContentSection)`
   `};
 `;
 
-const CounselorStart = ({ user, loading }) => {
+const VotingStart = ({ user, loading }) => {
   return (
     <div>
       <Head>
@@ -64,4 +64,4 @@ const CounselorStart = ({ user, loading }) => {
   );
 };
 
-export default CounselorStart;
+export default VotingStart;
