@@ -126,7 +126,11 @@ const SponsorHighlight = ({ className, eventSlug }) => {
             <FeaturedPartners>
               <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
               {partners.map(s => (
-                <Link href="/wi/partner/[slug]" as={`/wi/partner/${s.slug}`}>
+                <Link
+                  key={s.id}
+                  href="/wi/partner/[slug]"
+                  as={`/wi/partner/${s.slug}`}
+                >
                   <PartnerLogo
                     src={s.companyLogo}
                     alt={s.companyName}
