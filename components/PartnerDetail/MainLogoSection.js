@@ -88,7 +88,7 @@ const getHostName = website => {
 
 const renderMember = member => {
   return (
-    <Member>
+    <Member key={member.id}>
       <Imgix
         src={member.profileImage}
         width={60}

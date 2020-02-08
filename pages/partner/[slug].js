@@ -22,7 +22,6 @@ const GET_PARTNER = gql`
       partnerBySlug(slug: $slug) {
         id
         slug
-        year
         companyName
         companyLogo
         heroImage
@@ -234,10 +233,10 @@ function PartnerDetail() {
         partner.sessions
           .filter(i => i !== null)
           .map(session => (
-            <Session>
+            <Session key={session.id}>
               <Speaker>
                 {session.speakers.map(speaker => (
-                  <SpeakerDetail speaker={speaker} />
+                  <SpeakerDetail speaker={speaker} key={speaker.id} />
                 ))}
               </Speaker>
               <SessionDetail>
