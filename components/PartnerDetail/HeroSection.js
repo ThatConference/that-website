@@ -102,6 +102,7 @@ const HeroSection = ({
             hoverColor="primary"
             hoverBackgroundColor="white"
             target="blank"
+            isLocal={false}
           />
         </div>
       </HeroBlock>

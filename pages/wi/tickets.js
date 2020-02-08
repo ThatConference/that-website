@@ -83,7 +83,7 @@ const StyledH3 = styled.h3`
   margin-top: 0;
 `;
 
-const TicketHighlight = styled.h5`
+const TicketHighlight = styled.span`
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.thatBlue};
   margin: 0;
@@ -256,9 +256,9 @@ const tickets = () => (
         </SideDetail>
         <ResponsiveYouTube
           videoId={THAT_PROMO_VIDEO_ID}
-          autoplay="0"
-          rel="0"
-          modest="1"
+          autoplay={0}
+          rel={0}
+          modest={1}
           containerHeight="40rem"
           containerWidth="60rem"
         />
@@ -301,10 +301,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th scope="col">Price</th>
-          <th scope="col">Ticket</th>
-          <th scope="col">Includes</th>
-          <th scope="col">Dates</th>
+          <tr>
+            <th scope="col">Price</th>
+            <th scope="col">Ticket</th>
+            <th scope="col">Includes</th>
+            <th scope="col">Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd highlight">
@@ -374,10 +376,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">
@@ -424,10 +428,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">
