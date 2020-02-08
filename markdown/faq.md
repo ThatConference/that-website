@@ -71,7 +71,7 @@ If you absolutely cannot find anyone to transfer your ticket to, all cancellatio
 
 **A:** We love that your Geekling(s) want to attend the keynotes! While they are aimed at the professionals in attendance, your Geekling(s) may attend with you. We do ask that they are respectful of their surroundings so as not to disturb others.
 
-<a href="q16" name="q16" class="faq-link">**Q: Can my Geekling(s) attend sessions or events by themselves?**</a>
+<a href="#q16" name="q16" class="faq-link">**Q: Can my Geekling(s) attend sessions or events by themselves?**</a>
 
 **A:** Unfortunately, no. All Geekling(s) must be accompanied by an adult (parent or guardian) in all of our family-based sessions and events.
 
