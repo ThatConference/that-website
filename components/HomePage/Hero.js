@@ -6,7 +6,7 @@ import SocialLinks from '../shared/SocialLinks';
 
 import { below, above } from '../../utilities';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -81,7 +81,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 6rem;
+  top: 3rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;

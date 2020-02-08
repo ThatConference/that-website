@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { below } from '../utilities/breakpoint';
 
 import ContentSection from '../components/shared/ContentSection';
@@ -46,14 +46,15 @@ const HighlightImage = styled.img`
 
 const contact = () => (
   <>
-    <Head>
-      <title key="title">Contact Us - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Contact Us - THAT Conference"
+      description="Need to get in touch with us? Have a question you need to ask? Have an idea you want to share? Well, we are all over this Internet thing, so pick your favorite medium and give us a shout!"
+    />
 
     <ContentSection>
       <Grid columns={gridRepeat.xsmall}>
         <Cell width={2}>
-          <h1 style={{ marginBottom: '0.5rem' }}>Contact Us</h1>
+          <h1>Contact Us</h1>
           <p className="medium-body-copy">
             Need to get in touch with us? Have a question you need to ask? Have
             an idea you want to share? Well, we are all over this Internet

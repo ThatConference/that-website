@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
@@ -105,14 +105,18 @@ const contact = () => {
 
   return (
     <>
-      <Head>
-        <title key="title">Plan Your Trip - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Plan Your Trip - THAT Conference"
+        description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+      />
 
       <ContentSection>
         <Grid columns={gridRepeat.xsmall}>
           <Cell width={1}>
-            <h1 style={{ marginBottom: '0.5rem' }}>Plan Your Trip</h1>
+            <h1>Plan Your Trip</h1>
             <p className="medium-body-copy">
               THAT Community spreads way beyond the midwest and we want to make
               it easy for you to book and plan your travel to Summer Camp. Here

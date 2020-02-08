@@ -39,11 +39,8 @@ const WhatToExpectSection = ({ src, title }) => {
 const WhatToExpect = ({ className }) => {
   return (
     <ContentSection className={className}>
-      <h3
-        className="font-dark"
-        style={{ textAlign: 'center', paddingBottom: '2rem' }}
-      >
-        Here&apos;s What You Can Expect At That Conference
+      <h3 className="font-dark centered-text" style={{ paddingBottom: '2rem' }}>
+        Here's What You Can Expect At That Conference
       </h3>
       <Grid columns={gridRepeat.xsmall} alignContent="center">
         <WhatToExpectSection

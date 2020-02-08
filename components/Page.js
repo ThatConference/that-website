@@ -1,11 +1,16 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { DefaultSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
-
 import Meta from './Meta';
-import Header from './Header';
-import Footer from './Footer';
+
+// Need to include all layouts so that each can be rendered if/when set on page
+import DefaultLayout from './layouts/default';
+// eslint-disable-next-line no-unused-vars
+import LayeredHeaderLayout from './layouts/layeredHeader';
+import { defaultSeo } from '../utilities';
 import User from './User';
 import { useFetchUser } from '../hooks/user';
 
@@ -22,14 +27,10 @@ const CorePage = styled.div`
   grid-gap: 0;
 `;
 
-const InnerPage = styled.div`
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Page = ({ children }) => {
+const Page = ({ children, layout }) => {
   const { user, loading } = useFetchUser();
+  const Layout = layout || DefaultLayout;
+  const router = useRouter();
 
   return (
     <ThemeProvider theme={baseTheme}>
@@ -37,13 +38,15 @@ const Page = ({ children }) => {
         <GlobalStyle />
         <StyledPage>
           <Meta />
+          <DefaultSeo
+            {...defaultSeo}
+            canonical={`https://www.thatconference.com/${router.pathname}`}
+          />
           <CorePage>
             <User user={user} loading={loading}>
-              <Header user={user} loading={loading} />
-              <InnerPage>
+              <Layout user={user} loading={loading}>
                 {React.cloneElement(children, { user, loading })}
-              </InnerPage>
-              <Footer modifiers="site" />
+              </Layout>
             </User>
           </CorePage>
         </StyledPage>

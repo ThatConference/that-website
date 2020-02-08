@@ -90,14 +90,23 @@ const Footer = () => {
                 Blog
               </NavLink>
               <NavLink
+                href="/partners"
+                onClick={() => clickTracking('partners')}
+              >
+                Partners
+              </NavLink>
+            </FooterNavColumn>
+            <FooterNavColumn>
+              <Title>WI</Title>
+              <NavLink
                 href="/wi/tickets"
-                onClick={() => clickTracking('tickets')}
+                onClick={() => clickTracking('wi/tickets')}
               >
                 Tickets
               </NavLink>
               <NavLink
                 href="/wi/partners"
-                onClick={() => clickTracking('partners')}
+                onClick={() => clickTracking('wi/partners')}
               >
                 Partners
               </NavLink>

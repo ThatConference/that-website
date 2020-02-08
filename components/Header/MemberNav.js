@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import NavItem from '../shared/NavItem';
+import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
 import LoadingIndicator from '../shared/LoadingIndicator';
 
@@ -24,7 +24,7 @@ const LoadingDiv = styled.div`
   text-align: right;
 `;
 
-const MemberNav = ({ className, onClick, user, loading }) => {
+const MemberNav = ({ className, color, onClick, user, loading }) => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const menuClick = e => {
@@ -51,25 +51,26 @@ const MemberNav = ({ className, onClick, user, loading }) => {
     <div className={className}>
       {!_.isEmpty(user) && (
         <>
-          <NavItem
+          <ThatLink
             title={greeting()}
             href=""
             icon="arrow"
             iconClass={userMenuOpen ? 'up' : 'down'}
             onClick={menuClick}
+            color={color}
           />
 
           <SecondaryNav userMenuOpen={userMenuOpen}>
             <li>
               {!user.profileComplete && (
-                <NavItem
+                <ThatLink
                   title="Create Profile"
                   href="/member/create"
                   onClick={() => setUserMenuOpen(false)}
                 />
               )}
               {user.profileComplete && (
-                <NavItem
+                <ThatLink
                   title="My Profile"
                   href={`/member/${user.profileSlug}`}
                   onClick={() => setUserMenuOpen(false)}
@@ -78,7 +79,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
             </li>
             {user.profileComplete && (
               <li>
-                <NavItem
+                <ThatLink
                   title="My Sessions"
                   href="/member/my-sessions"
                   onClick={() => setUserMenuOpen(false)}
@@ -86,7 +87,7 @@ const MemberNav = ({ className, onClick, user, loading }) => {
               </li>
             )}
             <li>
-              <NavItem
+              <ThatLink
                 title="Log Out"
                 href="/api/logout"
                 onClick={() => setUserMenuOpen(false)}
@@ -97,10 +98,11 @@ const MemberNav = ({ className, onClick, user, loading }) => {
       )}
 
       {_.isEmpty(user) && (
-        <NavItem
+        <ThatLink
           title="Sign In"
           href="/api/login"
           onClick={() => onClick(false)}
+          color={color}
         />
       )}
     </div>

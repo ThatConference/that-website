@@ -165,6 +165,7 @@ const createProfile = ({ user, loading }) => {
             acceptedCodeOfConduct: false,
             acceptedTermsOfService: false,
             isOver13: false,
+            canFeature: false,
           }}
           validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -195,7 +196,6 @@ const createProfile = ({ user, loading }) => {
                   ...valuesToSave,
                   profileLinks,
                   isDeactivated: false,
-                  canFeature: false,
                   acceptedCommitments: false,
                 };
                 dlog('submitted and valuesToSave', valuesToSave);

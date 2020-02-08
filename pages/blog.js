@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 import BlogListItem from '../components/BlogList/BlogListItem';
 import ContentSection from '../components/shared/ContentSection';
@@ -13,14 +13,15 @@ const BlogList = styled(ContentSection)`
 
 const blog = () => (
   <>
-    <Head>
-      <title key="title">Blog - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Blog - THAT Conference"
+      description="A collection of articles, tutorials, stories all written by THAT Crew and amazing members of THAT Community."
+    />
 
     <ContentSection>
       <Grid columns={gridRepeat.xsmall}>
         <Cell>
-          <h1 style={{ marginBottom: '0.5rem' }}>THAT Blog</h1>
+          <h1>THAT Blog</h1>
           <p className="medium-body-copy">
             A collection of articles, tutorials, stories all written by THAT
             Crew and amazing members of THAT Community.

@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -40,9 +40,14 @@ const CallForCounselors = ({ featureKeyword }) => {
   const { event } = data.events;
   return (
     <div>
-      <Head>
-        <title key="title">Call for Speakers - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Call for Counselors - THAT Conference"
+        description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+      />
+
       <Header featureKeyword={featureKeyword} />
       <SummerCamp />
       {/* TO DO: commenting out until we have past sessions in place */}

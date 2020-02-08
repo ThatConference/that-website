@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/react-hooks';
-
 import { gql } from 'apollo-boost';
 import Head from 'next/head';
 import React from 'react';
@@ -7,7 +6,7 @@ import styled from 'styled-components';
 
 import Hero from '../../components/HomePage/Hero';
 import LearnMore from '../../components/HomePage/LearnMore';
-import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
+// import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
 import TimelineSection from '../../components/HomePage/Timeline';
 import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
 import Testimonials from '../../components/HomePage/Testimonials';
@@ -77,7 +76,7 @@ const home = () => {
       <Hero event={event} />
       <LearnMore />
       <WhatToExpect />
-      <SpeakerHighlight />
+      {/* <SpeakerHighlight /> */}
       <TimelineSection event={event} />
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />

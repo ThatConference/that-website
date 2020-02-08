@@ -72,7 +72,7 @@ const OnlinePresenceForm = ({
           getFieldProps={getFieldProps}
           errors={errors}
           touched={touched}
-          label="<a href='https://thatslack.thatconference.com' target='_blank'>THAT Slack</a> Username"
+          label="<a href='https://thatslack.thatconference.com' class='basic-link' target='_blank'>THAT Slack</a> Username"
         />
       </FormRow>
       {showButtons && (
