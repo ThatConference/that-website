@@ -50,6 +50,8 @@ const GET_PARTNER = gql`
           firstName
           lastName
           jobTitle
+          isSponsoredFeatured
+          partnerFeaturedOrder
           profileImage
         }
         sessions {
@@ -70,6 +72,10 @@ const GET_PARTNER = gql`
 
 const MainDiv = styled.div`
   padding-bottom: 4rem;
+`;
+
+const MainGrid = styled(Grid)`
+  grid-gap: 3rem;
 `;
 
 const StyledP = styled.p`
@@ -264,16 +270,16 @@ function PartnerDetail() {
         <MainLogoSection partner={partner} />
 
         <ContentSection>
-          <Grid columns={gridRepeat.xxsmall}>
+          <MainGrid columns={gridRepeat.xxsmall}>
             <Cell>
               <AboutUs />
               {!_.isEmpty(partner.sessions) && <Sessions />}
             </Cell>
             <Cell>
               {!_.isEmpty(partner.goals) && <Goals />}
-              {!_.isEmpty(partner.jobs) && <Jobs />}
+              {!_.isEmpty(partner.jobListings) && <Jobs />}
             </Cell>
-          </Grid>
+          </MainGrid>
         </ContentSection>
       </MainDiv>
     </>
