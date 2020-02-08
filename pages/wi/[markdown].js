@@ -7,6 +7,7 @@ import fm from 'front-matter';
 import flatten from 'flat';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import styled from 'styled-components';
 
 import Error from '../_error';
 import ContentSection from '../../components/shared/ContentSection';
@@ -38,6 +39,14 @@ const GET_EVENT = gql`
         }
       }
     }
+  }
+`;
+
+const StyledContentSection = styled(ContentSection)`
+  a.faq-link {
+    color: ${({ theme }) => theme.colors.primary};
+    padding-top: 6rem;
+    margin-top: -6rem;
   }
 `;
 
@@ -77,12 +86,12 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
         </title>
       </Head>
 
-      <ContentSection>
+      <StyledContentSection>
         {parsedMarkdown.attributes.title && (
           <h2>{parsedMarkdown.attributes.title}</h2>
         )}
         <Markdown>{updatedMarkdown}</Markdown>
-      </ContentSection>
+      </StyledContentSection>
     </div>
   );
 };
