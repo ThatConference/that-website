@@ -57,6 +57,7 @@ const GET_PARTNER = gql`
         sessions {
           id
           isSponsored
+          title
           shortDescription
           speakers {
             id
@@ -239,7 +240,7 @@ function PartnerDetail() {
             </Speaker>
             <SessionDetail>
               <Title>{session.title}</Title>
-              <p>{session.shortDescription}</p>
+              <StyledP>{session.shortDescription}</StyledP>
               <ViewLink href="/">
                 <span>View Session</span>
                 <ForwardArrow />
