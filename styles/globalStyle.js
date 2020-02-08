@@ -84,6 +84,13 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+
+    &.basic-link {
+      color: ${props => props.theme.colors.secondary};
+      &:hover {
+        color: ${({ theme }) => theme.colors.highlight};
+      }
+    }
   }
   
   p { 

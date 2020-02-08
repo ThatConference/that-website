@@ -49,6 +49,10 @@ const RobotImage = styled.img`
     top: 0;
     height: 40rem;
   `};
+
+  ${below.small`
+    display: none;
+  `};
 `;
 
 const PartnerLevelTitle = styled.h3`
@@ -72,6 +76,7 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
   max-width: ${({ maxWidth }) => maxWidth};
+  padding: 1.25rem;
 `;
 
 const TopContentSection = styled(ContentSection)`
@@ -91,7 +96,7 @@ const PioneerContentSection = styled(ContentSection)`
 `;
 
 const PaddedImageContainer = styled(ImageContainer)`
-  margin: 3rem;
+  margin: 1rem;
 `;
 
 const ActionButtons = styled.div`
@@ -212,7 +217,7 @@ const partnerListing = () => {
         <Partners>
           {partners.map(value => {
             if (value.level === 'PIONEER') {
-              return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
+              return renderPartner(value, '48rem', '31rem', '37rem');
             }
             return null;
           })}
@@ -223,7 +228,7 @@ const partnerListing = () => {
         <Partners>
           {partners.map(value => {
             if (value.level === 'EXPLORER') {
-              return renderPartner(value, '39.9rem', '25.5rem', '28rem');
+              return renderPartner(value, '37rem', '23rem', '30rem');
             }
             return null;
           })}
@@ -256,7 +261,7 @@ const partnerListing = () => {
         <Partners>
           {partners.map(value => {
             if (value.level === 'MEDIA') {
-              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
+              return renderPartner(value, '21rem', '14rem', '14.5rem');
             }
             return null;
           })}
