@@ -6,7 +6,7 @@ import SocialLinks from '../shared/SocialLinks';
 
 import { below, above } from '../../utilities';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
