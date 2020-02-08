@@ -23,7 +23,7 @@ const Location = styled.p`
   `};
 `;
 
-const LinkContainer = styled.div`
+const LinkContainer = styled.span`
   a {
     margin-left: 2rem;
     color: ${({ theme }) => theme.colors.white};
@@ -37,6 +37,12 @@ const LinkContainer = styled.div`
   }
 `;
 
+const getLinkForEnvironment = url => {
+  if (process.env.NODE_ENV === 'development')
+    return url.replace('www.thatconference.com', 'localhost:3000');
+  return url;
+};
+
 const MessageBar = ({ className, user, loading, notifications }) => {
   const featured = _.find(notifications, n => {
     return n.shouldFeature === true;
@@ -46,7 +52,11 @@ const MessageBar = ({ className, user, loading, notifications }) => {
     return (
       <LinkContainer>
         {featured.message}
-        <ThatLink title={featured.linkText} href={featured.link} />
+        <ThatLink
+          title={featured.linkText}
+          href={getLinkForEnvironment(featured.link)}
+          isLocal={false}
+        />
       </LinkContainer>
     );
   };
@@ -61,13 +71,9 @@ const MessageBar = ({ className, user, loading, notifications }) => {
   };
 
   const getMessage = () => {
-    if (loading) {
-      return '';
-    }
+    if (loading) return '';
+    if (_.isEmpty(user)) return featuredMessage();
 
-    if (_.isEmpty(user)) {
-      return featuredMessage();
-    }
     return user.profileComplete ? featuredMessage() : createProfileMessage();
   };
 

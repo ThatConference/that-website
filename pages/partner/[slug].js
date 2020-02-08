@@ -22,7 +22,6 @@ const GET_PARTNER = gql`
       partnerBySlug(slug: $slug) {
         id
         slug
-        year
         companyName
         companyLogo
         heroImage
@@ -57,6 +56,7 @@ const GET_PARTNER = gql`
         sessions {
           id
           isSponsored
+          title
           shortDescription
           speakers {
             id
@@ -230,23 +230,25 @@ function PartnerDetail() {
         Session By {partner.companyName}
       </PartnerDetailSubHeading>
       {partner.sessions &&
-        partner.sessions.map(session => (
-          <Session>
-            <Speaker>
-              {session.speakers.map(speaker => (
-                <SpeakerDetail speaker={speaker} />
-              ))}
-            </Speaker>
-            <SessionDetail>
-              <Title>{session.title}</Title>
-              <p>{session.shortDescription}</p>
-              <ViewLink href="/">
-                <span>View Session</span>
-                <ForwardArrow />
-              </ViewLink>
-            </SessionDetail>
-          </Session>
-        ))}
+        partner.sessions
+          .filter(i => i !== null)
+          .map(session => (
+            <Session key={session.id}>
+              <Speaker>
+                {session.speakers.map(speaker => (
+                  <SpeakerDetail speaker={speaker} key={speaker.id} />
+                ))}
+              </Speaker>
+              <SessionDetail>
+                <Title>{session.title}</Title>
+                <StyledP>{session.shortDescription}</StyledP>
+                <ViewLink href="/">
+                  <span>View Session</span>
+                  <ForwardArrow />
+                </ViewLink>
+              </SessionDetail>
+            </Session>
+          ))}
     </>
   );
 

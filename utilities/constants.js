@@ -58,6 +58,7 @@ export const sessionConstants = {
     { value: 'WITHDREW', label: 'Withdrew' },
     { value: 'WAIT_LIST', label: 'Wait List' },
     { value: 'CANCELLED', label: 'Canceled' },
+    { value: 'SCHEDULED', label: 'Scheduled' },
   ],
 
   sessionValidations: {
