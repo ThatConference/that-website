@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import Icon from '../../../shared/Icon';
 import { FormRule } from '../../../shared/FormLayout';
 
@@ -73,6 +74,20 @@ const GET_SESSIONS = gql`
   }
 `;
 
+const CAST_VOTE = gql`
+  mutation castVote($eventId: ID!, $vote: VoteInput!) {
+    sessions {
+      voting(eventId: $eventId) {
+        cast(vote: $vote) {
+          id
+          notes
+          memberId
+        }
+      }
+    }
+  }
+`;
+
 const Content = () => {
   const {
     loading: sessionsLoading,
@@ -85,21 +100,74 @@ const Content = () => {
   if (sessionsLoading) return null;
   if (sessionsError) return null;
 
+  const [notes, setNotes] = useState('');
+  const [value, setValue] = useState(0);
+
   const root = sessionsData.sessions.me.voting;
 
+  let toastId = null;
+
   const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length;
+  const totalRemaining = root.unVoted.length - (value + 1);
   const totalVotedOn = totalSubmitted - totalRemaining;
 
-  const session = root.unVoted ? root.unVoted[0] : null;
+  const session = root.unVoted ? root.unVoted[value] : null;
+
+  const forceUpdate = () => {
+    ButterToast.dismiss(toastId);
+    ButterToast.raise({
+      sticky: false,
+      content: (
+        <Cinnamon.Crisp
+          scheme={Cinnamon.Crisp.SCHEME_BLUE}
+          content={() => <div>Vote successfully cast!</div>}
+          title="Vote"
+        />
+      ),
+    });
+    setValue(value + 1);
+  };
+
+  const [castVote] = useMutation(CAST_VOTE, {
+    onCompleted: forceUpdate,
+    onError: createError => {
+      throw new Error(createError);
+    },
+  });
 
   if (session) {
+    const submitVote = yesVote => {
+      toastId = ButterToast.raise({
+        sticky: false,
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crisp.SCHEME_BLUE}
+            content={() => <div>Casting Vote...</div>}
+            title="Vote"
+          />
+        ),
+      });
+      const vars = {
+        eventId: process.env.CURRENT_EVENT_ID,
+        vote: {
+          sessionId: session.id,
+          vote: yesVote,
+          notes,
+        },
+      };
+      castVote({
+        variables: vars,
+      });
+    };
+
     const yesClick = () => {
-      console.log('YES!');
+      submitVote(true);
     };
+
     const noClick = () => {
-      console.log('NO!');
+      submitVote(false);
     };
+
     const converter = new MarkdownIt();
     return (
       <MainContent>
@@ -120,9 +188,12 @@ const Content = () => {
           </Section>
         )}
         <Section>
-          <DetailsHeader>Notes</DetailsHeader>
+          <DetailsHeader>Organizer Feedback</DetailsHeader>
           <form className="input-form">
-            <textarea rows="5" />
+            <textarea
+              rows="5"
+              onChange={event => setNotes(event.target.value)}
+            />
           </form>
         </Section>
         <ThumbsContainer columns={2}>
@@ -149,14 +220,21 @@ const Content = () => {
         </ThumbsContainer>
         <Rule />
         <StatsContainer columns={3}>
-          <Cell width={1}>Total Sessions: {totalSubmitted}</Cell>
+          <Cell width={1}>Total: {totalSubmitted}</Cell>
           <Cell width={1} center>
-            Total Voted On: {totalVotedOn}
+            Voted: {totalVotedOn}
           </Cell>
           <Cell width={1} className="text-right">
-            Total Remaining: {totalRemaining}
+            Left: {totalRemaining}
           </Cell>
         </StatsContainer>
+        <ButterToast
+          className="that-toast"
+          position={{
+            vertical: POS_TOP,
+            horizontal: POS_RIGHT,
+          }}
+        />
       </MainContent>
     );
   }
