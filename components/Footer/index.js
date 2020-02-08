@@ -83,11 +83,14 @@ const Footer = () => {
               <NavLink href="/about" onClick={() => clickTracking('about')}>
                 About
               </NavLink>
+              <NavLink href="/blog" onClick={() => clickTracking('blog')}>
+                Blog
+              </NavLink>
               <NavLink href="/contact" onClick={() => clickTracking('contact')}>
                 Contact
               </NavLink>
-              <NavLink href="/blog" onClick={() => clickTracking('blog')}>
-                Blog
+              <NavLink href="/jobs" onClick={() => clickTracking('jobs')}>
+                Jobs
               </NavLink>
               <NavLink
                 href="/partners"
@@ -99,16 +102,16 @@ const Footer = () => {
             <FooterNavColumn>
               <Title>WI</Title>
               <NavLink
-                href="/wi/tickets"
-                onClick={() => clickTracking('wi/tickets')}
-              >
-                Tickets
-              </NavLink>
-              <NavLink
                 href="/wi/partners"
                 onClick={() => clickTracking('wi/partners')}
               >
                 Partners
+              </NavLink>
+              <NavLink
+                href="/wi/tickets"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Tickets
               </NavLink>
             </FooterNavColumn>
             <FooterNavColumn>
