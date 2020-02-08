@@ -88,7 +88,7 @@ const partners = () => {
       <ContentSection>
         <Grid columns={gridRepeat.xsmall}>
           <Cell width={1}>
-            <h1 style={{ marginBottom: '0.5rem' }}>Partners</h1>
+            <h1>Partners</h1>
             <p className="medium-body-copy">
               Since the start of THAT, it has been the continuous support from
               companies and organizations partnering with us to help create

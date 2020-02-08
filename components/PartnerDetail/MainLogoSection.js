@@ -23,6 +23,16 @@ const PartnerContact = styled.div`
 const MainLogo = styled.img`
   height: 15rem;
   padding-bottom: 2rem;
+  max-width: 42rem;
+
+  ${below.med`
+    align-items: center;
+    max-width: 35rem;
+  `};
+
+  ${below.small`
+    max-width: 25rem;
+  `};
 `;
 
 const VisitUs = styled.h5`
@@ -117,7 +127,7 @@ const MainLogoSection = ({ partner }) => {
         <ThatLink
           href={partner.website}
           title={getHostName(partner.website)}
-          target="blank"
+          target="_blank"
           isLocal={false}
           style={{ paddingBottom: '1rem' }}
         />

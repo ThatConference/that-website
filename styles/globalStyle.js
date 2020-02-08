@@ -43,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-size: 11rem;
     margin-top: 0;
+    margin-bottom: 0.5rem;
 
     ${below.med`
       font-size: 9rem;

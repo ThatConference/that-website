@@ -65,7 +65,7 @@ const about = () => (
     <ContentSection>
       <Main>
         <SideDetail>
-          <h1 style={{ marginBottom: '0.5rem' }}>About THAT</h1>
+          <h1>About THAT</h1>
           <p>
             At THAT, technology is the theme that brings us all together. It's
             the common connection that links our community of professionals,
