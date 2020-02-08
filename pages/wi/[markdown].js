@@ -47,6 +47,10 @@ const StyledContentSection = styled(ContentSection)`
     color: ${({ theme }) => theme.colors.primary};
     padding-top: 6rem;
     margin-top: -6rem;
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
