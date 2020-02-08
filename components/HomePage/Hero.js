@@ -129,7 +129,7 @@ const ThirdButton = ({ event }) => {
     label = 'Become A Counselor';
   }
   if (event.get.isVotingOpen) {
-    href = 'wi/session-voting';
+    href = 'wi/session/voting/start';
     label = 'Vote for Sessions';
   }
   if (href && label) {
