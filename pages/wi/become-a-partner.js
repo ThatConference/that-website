@@ -81,6 +81,16 @@ const becomeAPartner = () => (
             and entrepreneurs while enjoying the perks of summer camp at a giant
             waterpark. Join us and become part of THAT family.
           </p>
+          <LinkButton
+            href="/partners"
+            label="View Past Partners"
+            color="thatBlue"
+            borderColor="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
+            className="float-right"
+          />
         </Cell>
       </Grid>
     </ContentSection>

@@ -157,6 +157,16 @@ const partnerListing = () => {
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
+            <LinkButton
+              href="/partners"
+              label="View Past Partners"
+              color="thatBlue"
+              borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+              className="float-right"
+            />
           </Cell>
         </Grid>
       </ContentSection>
