@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
@@ -48,9 +48,11 @@ const MainContent = styled(ContentSection)`
 const VotingStart = ({ user, loading }) => {
   return (
     <div>
-      <Head>
-        <title key="title">Session Voting Process - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Session Voting Process - THAT Conference"
+        description="Make THAT Conference your conference by letting us know what session you want to see. This page is the introduction to voting."
+      />
+
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1} />

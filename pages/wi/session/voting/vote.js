@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
 import ContentSection from '../../../../components/shared/ContentSection';
@@ -32,9 +32,10 @@ const SessionVoting = () => {
 
   return (
     <User user={user} loading={loadingUser}>
-      <Head>
-        <title key="title">Session Voting - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Session Voting Process - THAT Conference"
+        description="Make THAT Conference your conference by letting us know what session you want to see."
+      />
       <ContentSection>
         <Header title="Session Voting" />
         <Content />
