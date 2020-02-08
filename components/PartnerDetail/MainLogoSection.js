@@ -104,6 +104,14 @@ const renderMember = member => {
 };
 
 const MainLogoSection = ({ partner }) => {
+  let { members } = partner;
+  if (members && members.length && members.length > 0) {
+    members = _.chain(members)
+      .filter(m => m.isSponsoredFeatured)
+      .orderBy(members, ['partnerFeaturedOrder', 'asc'])
+      .value();
+  }
+
   const getPartnerSocialLinks = () => {
     const socials = {};
 
@@ -149,7 +157,7 @@ const MainLogoSection = ({ partner }) => {
                 Who to Say Hi to During THAT Conference
               </PartnerDetailSubHeading>
               <Grid columns={gridRepeat.xsmall}>
-                {partner.members.map(member => {
+                {members.map(member => {
                   return renderMember(member);
                 })}
               </Grid>
