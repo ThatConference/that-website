@@ -5,13 +5,14 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
-import Stats from '../Shared/Stats';
+import NavLinks from '../Shared/NavLinks';
 import Thumbs from '../Shared/Thumbs';
+import Stats from '../Shared/Stats';
 
 const MarkdownIt = require('markdown-it');
 
 const MainContent = styled.div`
-  margin-top: 10rem;
+  margin-top: 0rem;
 `;
 
 const Section = styled.div`
@@ -134,6 +135,10 @@ const Content = () => {
     const converter = new MarkdownIt();
     return (
       <MainContent>
+        <NavLinks
+          forwardLabel="Review Your Votes"
+          forwardLink="/wi/session/voting/review"
+        />
         <h3>{session.title}</h3>
         <Section>{parse(converter.render(session.longDescription))}</Section>
         {session.takeaways && (

@@ -6,13 +6,14 @@ import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import _ from 'lodash';
 
+import NavLinks from '../Shared/NavLinks';
 import Thumbs from '../Shared/Thumbs';
 import Stats from '../Shared/Stats';
 
 const MarkdownIt = require('markdown-it');
 
 const MainContent = styled.div`
-  margin-top: 10rem;
+  margin-top: 0rem;
 `;
 
 const SessionsContainer = styled.div`
@@ -156,6 +157,10 @@ const Content = () => {
   const converter = new MarkdownIt();
   return (
     <MainContent>
+      <NavLinks
+        forwardLabel="Continue Voting"
+        forwardLink="/wi/session/voting/vote"
+      />
       <SessionsContainer>
         {_.sortBy(sessions, s => s.title.toLowerCase()).map(s => {
           return (

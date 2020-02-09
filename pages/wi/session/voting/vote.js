@@ -33,7 +33,7 @@ const SessionVoting = () => {
   return (
     <User user={user} loading={loadingUser}>
       <NextSeo
-        title="Session Voting Process - THAT Conference"
+        title="Session Voting - THAT Conference"
         description="Make THAT Conference your conference by letting us know what session you want to see."
       />
       <ContentSection>
