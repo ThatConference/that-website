@@ -163,6 +163,14 @@ const GlobalStyle = createGlobalStyle`
     float: left;
   }
 
+  .text-center {
+    text-align: center;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
   form {
     input {
       padding: 1rem;
@@ -171,6 +179,7 @@ const GlobalStyle = createGlobalStyle`
     &.input-form {
 
       input, textarea {
+        width: 100%;
         margin-top: 0.75rem;
         border: 1px solid ${({ theme }) => theme.colors.mediumGray};
         background-color: ${({ theme }) => theme.colors.mediumLightGray};
