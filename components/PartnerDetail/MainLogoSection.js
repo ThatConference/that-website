@@ -6,7 +6,16 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import PartnerLogoWithInfo from '../shared/PartnerLogoWithInfo';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
-import { gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
+
+const LogoMemberSection = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  ${below.med`
+    flex-direction: column;
+  `};
+`;
 
 const Name = styled.p`
   font-family: franklin-gothic-urw, sans-serif;
@@ -29,9 +38,16 @@ const Title = styled.p`
 const SayHiDetail = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 2;
+
+  ${below.med`
+    padding-top: 4rem;
+    max-width: 70%;
+    margin: auto;
+  `};
 `;
 
-const Member = styled.div`
+const Member = styled(Cell)`
   display: flex;
   flex-direction: row;
 `;
@@ -71,25 +87,21 @@ const MainLogoSection = ({ partner }) => {
 
   return (
     <ContentSection backgroundColor="lightGray">
-      <Grid columns={gridRepeat.xxsmall}>
-        <Cell>
-          <PartnerLogoWithInfo partner={partner} />
-        </Cell>
+      <LogoMemberSection>
+        <PartnerLogoWithInfo partner={partner} />
         {!_.isEmpty(partner.members) && (
-          <Cell>
-            <SayHiDetail>
-              <PartnerDetailSubHeading>
-                Who to Say Hi to During THAT Conference
-              </PartnerDetailSubHeading>
-              <Grid columns={gridRepeat.xsmall}>
-                {members.map(member => {
-                  return renderMember(member);
-                })}
-              </Grid>
-            </SayHiDetail>
-          </Cell>
+          <SayHiDetail>
+            <PartnerDetailSubHeading>
+              Who to Say Hi to During THAT Conference
+            </PartnerDetailSubHeading>
+            <Grid columns={gridRepeat.xsmall}>
+              {members.map(member => {
+                return renderMember(member);
+              })}
+            </Grid>
+          </SayHiDetail>
         )}
-      </Grid>
+      </LogoMemberSection>
     </ContentSection>
   );
 };

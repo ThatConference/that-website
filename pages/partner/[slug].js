@@ -39,6 +39,8 @@ const GET_PARTNER = gql`
         chat
         blog
         vlog
+        city
+        state
         jobListings {
           id
           title
@@ -81,6 +83,19 @@ const MainGrid = styled(Grid)`
 const StyledP = styled.p`
   padding-right: 1rem;
   margin-top: 0;
+  font-weight: 200;
+  line-height: 1.6;
+
+  ${below.med`
+    margin-top: 0;
+  `};
+`;
+
+const JobDescription = styled.p`
+  padding-right: 1rem;
+  margin-top: 0;
+  font-weight: 200;
+  line-height: 1.6;
 
   ${below.med`
     margin-top: 0;
@@ -89,15 +104,22 @@ const StyledP = styled.p`
 
 const GoalsList = styled.ul`
   padding-inline-start: 2rem;
+  font-weight: 200;
+  line-height: 1.6;
+
+  li {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const JobDiv = styled.div`
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
 `;
 
 const Title = styled.h5`
   margin-bottom: 0;
   margin-top: 0;
+  font-weight: 500;
 `;
 
 const ViewLink = styled.a`
@@ -116,8 +138,9 @@ const Name = styled.p`
   line-height: 1;
   color: ${({ theme }) => theme.colors.fonts.dark};
   margin-bottom: 0.25rem;
-  font-weight: 500;
-  margin-top: 0;
+  font-weight: 400;
+  margin-top: 1rem;
+  text-align: center;
 `;
 
 const Arrow = styled(Icon)`
@@ -127,7 +150,7 @@ const Arrow = styled(Icon)`
 const Session = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 `;
 
 const Speaker = styled.div`
@@ -141,6 +164,12 @@ const SessionDetail = styled.div`
   flex-direction: column;
 `;
 
+const SpeakerDetailBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const ForwardArrow = () => (
   <Arrow
     icon="fullArrow"
@@ -151,19 +180,23 @@ const ForwardArrow = () => (
   />
 );
 const SpeakerDetail = ({ speaker }) => (
-  <div key={speaker.id}>
+  <SpeakerDetailBlock key={speaker.id}>
     <Imgix
       src={speaker.profileImage}
-      width={60}
-      height={60}
+      width={90}
+      height={90}
       imgixParams={{
         mask: 'ellipse',
         fit: 'facearea',
         facepad: 4,
       }}
     />
-    <Name>{`${speaker.firstName} ${speaker.lastName}`}</Name>
-  </div>
+    <Name>
+      {speaker.firstName}
+      <br />
+      {speaker.lastName}
+    </Name>
+  </SpeakerDetailBlock>
 );
 
 function PartnerDetail() {
@@ -214,7 +247,7 @@ function PartnerDetail() {
         partner.jobListings.map(job => (
           <JobDiv key={job.id}>
             <Title>{job.title}</Title>
-            <StyledP>{job.description}</StyledP>
+            <JobDescription>{job.description}</JobDescription>
           </JobDiv>
         ))}
       <ViewLink href="/">
@@ -274,7 +307,7 @@ function PartnerDetail() {
         <ContentSection>
           <MainGrid columns={gridRepeat.xxsmall}>
             <Cell>
-              <AboutUs />
+              {!_.isEmpty(partner.aboutUs) && <AboutUs />}
               {!_.isEmpty(partner.sessions) && <Sessions />}
             </Cell>
             <Cell>
