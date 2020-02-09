@@ -205,7 +205,7 @@ function PartnerDetail() {
   const { loading, error, data } = useQuery(GET_PARTNER, {
     variables: { slug: router.query.slug },
     onCompleted(d) {
-      const [partner] = d.partners.partnerBySlug;
+      const partner = d.partners.partnerBySlug;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -218,7 +218,7 @@ function PartnerDetail() {
   if (loading) return null;
   if (error) return null;
 
-  const partner = data.partners.partnerBySlug[0];
+  const partner = data.partners.partnerBySlug;
 
   const AboutUs = () => (
     <>
