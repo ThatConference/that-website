@@ -99,6 +99,34 @@ const SideDetail = styled.div`
   `};
 `;
 
+const ThirdButton = ({ event }) => {
+  let href = null;
+  let label = null;
+  if (event.get.isCallForSpeakersOpen) {
+    href = 'wi/call-for-counselors';
+    label = 'Become A Counselor';
+  }
+  if (event.get.isVotingOpen) {
+    href = 'wi/session/voting/start';
+    label = 'Vote for Sessions';
+  }
+  if (href && label) {
+    return (
+      <LinkButton
+        href={href}
+        label={label}
+        color="thatBlue"
+        borderColor="thatBlue"
+        className="stretch-sm"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
+    );
+  }
+  return null;
+};
+
 const Hero = ({ event, className }) => {
   return (
     <ContentSection className={className}>
@@ -129,17 +157,8 @@ const Hero = ({ event, className }) => {
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-            <LinkButton
-              href="wi/call-for-counselors"
-              label="Become A Counselor"
-              color="thatBlue"
-              borderColor="thatBlue"
-              className="stretch-sm"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </ActionButtonRow>
+            <ThirdButton event={event} />
+          </ActionButtons>
         </SideDetail>
         <HeroImage
           src="images/clark_stage.jpg"
