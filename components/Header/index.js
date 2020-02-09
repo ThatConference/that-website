@@ -160,7 +160,14 @@ const HeaderLogo = ({ layered }) => {
   );
 };
 
-const Header = ({ className, layered, user, loading }) => {
+const Header = ({
+  className,
+  layered,
+  user,
+  loading,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}) => {
   const {
     loading: eventLoading,
     error: eventError,
@@ -173,9 +180,7 @@ const Header = ({ className, layered, user, loading }) => {
   if (eventError) return null;
 
   const { event } = eventData.events;
-
   const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setScrollY(window.pageYOffset);
