@@ -10,7 +10,7 @@ import { above, below } from '../../utilities';
 // Currently points to 2018 promo video
 const THAT_PROMO_VIDEO_ID = 'R67gLABGvVE';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const Main = styled.div`
   display: flex;
@@ -181,10 +181,12 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
   min-width: 55rem;
   min-height: 30rem;
 
-  ${below.large`
+  ${below.larger`
     min-width: 50rem;
     min-height: 35rem;
     display: inline-grid;
+    max-width: 55rem;
+    margin: auto;
   `};
 
   ${below.med`
