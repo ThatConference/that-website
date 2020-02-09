@@ -55,6 +55,10 @@ const ContentGrid = styled(Grid)`
 const HighlightImage = styled.img`
   max-width: 55rem;
 
+  ${below.larger`
+    max-width: 100%;
+  `};
+
   ${below.xsmall`
     max-width: 30rem;
   `};
