@@ -92,10 +92,16 @@ const StyledP = styled.p`
 `;
 
 const JobDescription = styled.p`
+  position: relative;
   padding-right: 1rem;
   margin-top: 0;
   font-weight: 200;
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
 
   ${below.med`
     margin-top: 0;
@@ -124,12 +130,19 @@ const Title = styled.h5`
 
 const ViewLink = styled.a`
   font-size: 1.4rem;
-  float: left;
+  width: 100%;
   color: ${({ theme }) => theme.colors.thatBlue};
+  fill: ${({ theme }) => theme.colors.thatBlue};
+
   svg {
     vertical-align: middle;
     height: 2rem;
     margin-left: 1rem;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+    fill: ${({ theme }) => theme.colors.highlight};
   }
 `;
 
@@ -141,10 +154,6 @@ const Name = styled.p`
   font-weight: 400;
   margin-top: 1rem;
   text-align: center;
-`;
-
-const Arrow = styled(Icon)`
-  fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
 const Session = styled.div`
@@ -171,7 +180,7 @@ const SpeakerDetailBlock = styled.div`
 `;
 
 const ForwardArrow = () => (
-  <Arrow
+  <Icon
     icon="fullArrow"
     height="20"
     width="12"
@@ -248,9 +257,15 @@ function PartnerDetail() {
           <JobDiv key={job.id}>
             <Title>{job.title}</Title>
             <JobDescription>{job.description}</JobDescription>
+            <div>
+              <ViewLink href={`/partner/${partner.slug}/job/to-do-job-slug`}>
+                <span>View Job</span>
+                <ForwardArrow />
+              </ViewLink>
+            </div>
           </JobDiv>
         ))}
-      <ViewLink href="/">
+      <ViewLink href={`/partner/${partner.slug}/jobs`}>
         <span>View all Job Listings</span>
         <ForwardArrow />
       </ViewLink>
