@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SquareButton from './SquareButton';
+import { below } from '../../utilities';
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  min-with: 20rem;
+  min-width: 20rem;
   justify-content: center;
+
+  ${below.larger`
+    max-width: 33rem;
+  `};
+
+  ${below.large`
+    max-width: unset;
+  `};
 `;
 
 const Title = styled.h5`

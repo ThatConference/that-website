@@ -35,7 +35,11 @@ const FooterNav = styled.div`
 const FooterNavColumn = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 3rem;
+  padding-right: 3.5rem;
+
+  ${below.larger`
+    padding-right: 4rem;
+  `};
 
   ${below.large`
     padding: 0 2rem;
