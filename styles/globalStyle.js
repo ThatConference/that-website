@@ -24,6 +24,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
+    position: relative;
+    min-height: 100%;
   }
 
   h1, h2, h3 {

@@ -76,7 +76,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <ContentSection id="newsletter">
+      <ContentSection id="newsletter" backgroundColor="offWhite">
         <Detail>
           <a href="/" onClick={() => clickTracking('logo')}>
             <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
@@ -190,14 +190,4 @@ const Footer = () => {
   );
 };
 
-export default styled(Footer)`
-  display: flex;
-  align-items: center;
-  padding: 0 2rem;
-  min-height: 18rem;
-  background-color: ${({ theme }) => theme.colors.offWhite};
-
-  ${below.med`
-    min-height: 33rem;
-  `};
-`;
+export default Footer;
