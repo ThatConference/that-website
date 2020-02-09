@@ -227,7 +227,7 @@ function PartnerDetail() {
   if (loading) return null;
   if (error) return null;
 
-  const partner = data.partners.partnerBySlug;
+  const { partnerBySlug: partner } = data.partners;
 
   const AboutUs = () => (
     <>

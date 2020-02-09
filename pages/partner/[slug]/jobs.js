@@ -11,9 +11,9 @@ import Icon from '../../../components/shared/Icon';
 import { below, above } from '../../../utilities';
 
 const GET_ALL_PARTNER_JOBS = gql`
-  query getPartnerBySlug($slug: String!) {
+  query getJobListingBySlug($partnerSlug: String!) {
     partners {
-      partnerBySlug(slug: $slug) {
+      partnerBySlug(slug: $partnerSlug) {
         id
         companyName
         companyLogo
@@ -27,9 +27,9 @@ const GET_ALL_PARTNER_JOBS = gql`
         twitter
         facebook
         jobListings {
+          slug
           id
           title
-          description
         }
       }
     }
@@ -154,7 +154,7 @@ const ViewLink = styled.a`
 const jobs = () => {
   const router = useRouter();
   const { loading, data } = useQuery(GET_ALL_PARTNER_JOBS, {
-    variables: { slug: router.query.slug },
+    variables: { partnerSlug: router.query.slug },
     onCompleted(d) {
       const [partner] = d.partners.partnerBySlug;
       let hostName = new URL(partner.website).hostname;

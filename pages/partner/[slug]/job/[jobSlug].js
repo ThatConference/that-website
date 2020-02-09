@@ -50,6 +50,10 @@ const Main = styled.div`
 
 const StyledH1 = styled.h1`
   font-size: 7rem;
+
+  ${below[twoColBp]`
+    text-align: center;
+  `};
 `;
 
 const HighlightText = styled.h2`
@@ -60,6 +64,12 @@ const HighlightText = styled.h2`
   text-transform: none;
   margin: 0;
   padding-bottom: 1rem;
+  text-align: left;
+  width: 100%;
+
+  ${below[twoColBp]`
+    text-align: center;
+  `};
 `;
 
 const SideDetail = styled.div`
@@ -119,6 +129,12 @@ const HighlightImage = styled.img`
 const LogoDiv = styled.div`
   min-width: 45rem;
   margin: 3rem;
+
+  ${below.med`
+    min-width: unset;
+    max-width: 80%;
+    margin: auto;
+  `};
 `;
 
 const jobs = () => {
