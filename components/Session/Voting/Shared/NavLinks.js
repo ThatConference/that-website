@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import parse from 'html-react-parser';
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import { below } from '../../../../utilities';
 import Icon from '../../../shared/Icon';
 
