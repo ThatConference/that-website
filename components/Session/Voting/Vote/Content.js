@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { Grid, Cell } from 'styled-css-grid';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
-import Icon from '../../../shared/Icon';
-import { FormRule } from '../../../shared/FormLayout';
+
+import Stats from '../Shared/Stats';
+import Thumbs from '../Shared/Thumbs';
 
 const MarkdownIt = require('markdown-it');
 
@@ -16,43 +16,14 @@ const MainContent = styled.div`
 
 const Section = styled.div`
   margin-bottom: 3rem;
+
+  ul {
+    margin-top: 0;
+  }
 `;
 
 const DetailsHeader = styled.div`
   font-size: 2rem;
-`;
-
-const ThumbsContainer = styled(Grid)`
-  margin-top: 8rem;
-`;
-
-const ThumbsIcon = css`
-  height: 15rem;
-  cursor: pointer;
-  &:hover {
-    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-      brightness(104%) contrast(97%);
-  }
-`;
-
-const ThumbsDownIcon = styled(Icon)`
-  ${ThumbsIcon}
-  fill: ${({ theme }) => theme.colors.danger};
-  transform: scaleY(-1);
-`;
-
-const ThumbsUpIcon = styled(Icon)`
-  ${ThumbsIcon}
-  float: right;
-  fill: ${({ theme }) => theme.colors.success};
-`;
-
-const Rule = styled(FormRule)`
-  margin-bottom: 1rem;
-`;
-
-const StatsContainer = styled(Grid)`
-  margin-top: 0;
 `;
 
 const GET_SESSIONS = gql`
@@ -160,14 +131,6 @@ const Content = () => {
       });
     };
 
-    const yesClick = () => {
-      submitVote(true);
-    };
-
-    const noClick = () => {
-      submitVote(false);
-    };
-
     const converter = new MarkdownIt();
     return (
       <MainContent>
@@ -196,38 +159,12 @@ const Content = () => {
             />
           </form>
         </Section>
-        <ThumbsContainer columns={2}>
-          <Cell width={1}>
-            <ThumbsDownIcon
-              icon="thumbsUp"
-              height="30"
-              width="30"
-              viewBoxHeight="20"
-              viewBoxWidth="20"
-              onClick={noClick}
-            />
-          </Cell>
-          <Cell width={1}>
-            <ThumbsUpIcon
-              icon="thumbsUp"
-              height="30"
-              width="30"
-              viewBoxHeight="20"
-              viewBoxWidth="20"
-              onClick={yesClick}
-            />
-          </Cell>
-        </ThumbsContainer>
-        <Rule />
-        <StatsContainer columns={3}>
-          <Cell width={1}>Total: {totalSubmitted}</Cell>
-          <Cell width={1} center>
-            Voted: {totalVotedOn}
-          </Cell>
-          <Cell width={1} className="text-right">
-            Left: {totalRemaining}
-          </Cell>
-        </StatsContainer>
+        <Thumbs iconHeight="15rem" submit={submitVote} />
+        <Stats
+          totalSubmitted={totalSubmitted}
+          totalVotedOn={totalVotedOn}
+          totalRemaining={totalRemaining}
+        />
         <ButterToast
           className="that-toast"
           position={{
