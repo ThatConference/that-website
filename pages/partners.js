@@ -76,8 +76,6 @@ const Image = styled.img`
 const partners = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNERS);
 
-  if (loading) return <LoadingIndicator />;
-
   return (
     <>
       <NextSeo
