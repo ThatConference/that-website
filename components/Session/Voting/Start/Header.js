@@ -151,7 +151,7 @@ const Header = ({ user, loading }) => {
                 <strong>
                   <ThatLink
                     title="review your votes"
-                    href="/wi/session/voting/vote"
+                    href="/wi/session/voting/review"
                   />
                 </strong>{' '}
                 for more info on sharing your awesome.
