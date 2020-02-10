@@ -58,7 +58,7 @@ const GET_SESSIONS = gql`
           isVotingOpen
           totalSubmitted
           voted {
-            id
+            sessionId
             title
             longDescription
             takeaways
@@ -130,28 +130,30 @@ const Content = () => {
   });
 
   const submitVote = (yesVote, id) => {
-    const index = sessions.findIndex(s => s.id === id);
-    sessions[index].vote = yesVote;
-    toastId = ButterToast.raise({
-      sticky: false,
-      content: (
-        <Cinnamon.Crisp
-          scheme={Cinnamon.Crisp.SCHEME_BLUE}
-          content={() => <div>Casting Vote...</div>}
-          title="Vote"
-        />
-      ),
-    });
-    const vars = {
-      eventId: process.env.CURRENT_EVENT_ID,
-      vote: {
-        sessionId: id,
-        vote: yesVote,
-      },
-    };
-    castVote({
-      variables: vars,
-    });
+    const index = sessions.findIndex(s => s.sessionId === id);
+    if (sessions[index].vote !== yesVote) {
+      sessions[index].vote = yesVote;
+      toastId = ButterToast.raise({
+        sticky: false,
+        content: (
+          <Cinnamon.Crisp
+            scheme={Cinnamon.Crisp.SCHEME_BLUE}
+            content={() => <div>Casting Vote...</div>}
+            title="Vote"
+          />
+        ),
+      });
+      const vars = {
+        eventId: process.env.CURRENT_EVENT_ID,
+        vote: {
+          sessionId: id,
+          vote: yesVote,
+        },
+      };
+      castVote({
+        variables: vars,
+      });
+    }
   };
 
   const converter = new MarkdownIt();
@@ -182,7 +184,7 @@ const Content = () => {
               <Thumbs
                 iconHeight="5rem"
                 submit={submitVote}
-                id={s.id}
+                id={s.sessionId}
                 vote={s.vote}
               />
             </SessionContainer>
