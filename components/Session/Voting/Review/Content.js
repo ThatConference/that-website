@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import _ from 'lodash';
 
 import NavLinks from '../Shared/NavLinks';
 import Thumbs from '../Shared/Thumbs';
@@ -15,9 +16,31 @@ const MainContent = styled.div`
   margin-top: 0rem;
 `;
 
+const SessionsContainer = styled.div`
+  .session-divider:last-of-type {
+    display: none;
+  }
+`;
+
+const SessionContainer = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.mediumGray};
+  padding-bottom: 3rem;
+
+  h4 {
+    margin-bottom: 1rem;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  .thumbs-container {
+    margin-top: 0;
+  }
+`;
+
 const Section = styled.div`
   margin-bottom: 3rem;
-
   ul {
     margin-top: 0;
   }
@@ -28,17 +51,18 @@ const DetailsHeader = styled.div`
 `;
 
 const GET_SESSIONS = gql`
-  query getVotingSessions($eventId: ID!) {
+  query getVotedSessions($eventId: ID!) {
     sessions {
       me {
         voting(eventId: $eventId) {
           isVotingOpen
           totalSubmitted
-          unVoted {
-            id
+          voted {
+            sessionId
             title
             longDescription
             takeaways
+            vote
           }
         }
       }
@@ -72,18 +96,16 @@ const Content = () => {
   if (sessionsLoading) return null;
   if (sessionsError) return null;
 
-  const [notes, setNotes] = useState('');
-  const [value, setValue] = useState(0);
-
   const root = sessionsData.sessions.me.voting;
 
   let toastId = null;
 
   const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length - (value + 1);
-  const totalVotedOn = totalSubmitted - totalRemaining;
+  const rootSessions = root.voted;
+  const totalRemaining = totalSubmitted - rootSessions.length;
+  const totalVotedOn = rootSessions.length;
 
-  const session = root.unVoted ? root.unVoted[value] : null;
+  const [sessions, setStateSessions] = useState(rootSessions);
 
   const forceUpdate = () => {
     ButterToast.dismiss(toastId);
@@ -97,7 +119,7 @@ const Content = () => {
         />
       ),
     });
-    setValue(value + 1);
+    setStateSessions(sessions);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
@@ -107,8 +129,10 @@ const Content = () => {
     },
   });
 
-  if (session) {
-    const submitVote = yesVote => {
+  const submitVote = (yesVote, id) => {
+    const index = sessions.findIndex(s => s.sessionId === id);
+    if (sessions[index].vote !== yesVote) {
+      sessions[index].vote = yesVote;
       toastId = ButterToast.raise({
         sticky: false,
         content: (
@@ -122,66 +146,65 @@ const Content = () => {
       const vars = {
         eventId: process.env.CURRENT_EVENT_ID,
         vote: {
-          sessionId: session.id,
+          sessionId: id,
           vote: yesVote,
-          notes,
         },
       };
       castVote({
         variables: vars,
       });
-    };
+    }
+  };
 
-    const converter = new MarkdownIt();
-    return (
-      <MainContent>
-        <NavLinks
-          forwardLabel="Review Your Votes"
-          forwardLink="/wi/session/voting/review"
-        />
-        <h3>{session.title}</h3>
-        <Section>{parse(converter.render(session.longDescription))}</Section>
-        {session.takeaways && (
-          <Section>
-            <DetailsHeader>Key Takeaways</DetailsHeader>
-            <ul>
-              {session.takeaways.map(s => {
-                return (
-                  <React.Fragment key={s}>
-                    <li>{s}</li>
-                  </React.Fragment>
-                );
-              })}
-            </ul>
-          </Section>
-        )}
-        <Section>
-          <DetailsHeader>Organizer Feedback</DetailsHeader>
-          <form className="input-form">
-            <textarea
-              rows="5"
-              onChange={event => setNotes(event.target.value)}
-            />
-          </form>
-        </Section>
-        <Thumbs iconHeight="15rem" submit={submitVote} />
-        <Stats
-          totalSubmitted={totalSubmitted}
-          totalVotedOn={totalVotedOn}
-          totalRemaining={totalRemaining}
-        />
-        <ButterToast
-          className="that-toast"
-          position={{
-            vertical: POS_TOP,
-            horizontal: POS_RIGHT,
-          }}
-        />
-      </MainContent>
-    );
-  }
-
-  return <p>You have voted for all the sessions....GOOD JOB!</p>;
+  const converter = new MarkdownIt();
+  return (
+    <MainContent>
+      <NavLinks
+        forwardLabel="Continue Voting"
+        forwardLink="/wi/session/voting/vote"
+      />
+      <SessionsContainer>
+        {_.sortBy(sessions, s => s.title.toLowerCase()).map(s => {
+          return (
+            <SessionContainer key={s.id}>
+              <h4>{s.title}</h4>
+              <div>{parse(converter.render(s.longDescription))}</div>
+              <Section>
+                <DetailsHeader>Key Takeaways</DetailsHeader>
+                <ul>
+                  {s.takeaways.map(t => {
+                    return (
+                      <React.Fragment key={t}>
+                        <li>{t}</li>
+                      </React.Fragment>
+                    );
+                  })}
+                </ul>
+              </Section>
+              <Thumbs
+                iconHeight="5rem"
+                submit={submitVote}
+                id={s.sessionId}
+                vote={s.vote}
+              />
+            </SessionContainer>
+          );
+        })}
+      </SessionsContainer>
+      <Stats
+        totalSubmitted={totalSubmitted}
+        totalVotedOn={totalVotedOn}
+        totalRemaining={totalRemaining}
+      />
+      <ButterToast
+        className="that-toast"
+        position={{
+          vertical: POS_TOP,
+          horizontal: POS_RIGHT,
+        }}
+      />
+    </MainContent>
+  );
 };
 
 export default Content;

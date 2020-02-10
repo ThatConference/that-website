@@ -5,8 +5,8 @@ import debug from 'debug';
 import ContentSection from '../../../../components/shared/ContentSection';
 import User from '../../../../components/User';
 import { useFetchUser } from '../../../../hooks/user';
-import Header from '../../../../components/Session/Voting/Vote/Header';
-import Content from '../../../../components/Session/Voting/Vote/Content';
+import Header from '../../../../components/Session/Voting/Review/Header';
+import Content from '../../../../components/Session/Voting/Review/Content';
 
 const _ = require('lodash');
 
@@ -33,11 +33,11 @@ const SessionVoting = () => {
   return (
     <User user={user} loading={loadingUser}>
       <NextSeo
-        title="Session Voting - THAT Conference"
-        description="Make THAT Conference your conference by letting us know what session you want to see."
+        title="Session Voting Review - THAT Conference"
+        description="Review the sessions you have already voted on."
       />
       <ContentSection>
-        <Header title="Session Voting" />
+        <Header title="Session Voting Review" />
         <Content />
       </ContentSection>
     </User>
