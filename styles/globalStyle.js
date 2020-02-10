@@ -50,6 +50,10 @@ const GlobalStyle = createGlobalStyle`
     ${below.med`
       font-size: 9rem;
     `};
+
+    ${below.small`
+      font-size: 7rem;
+    `};
   }
 
   h2 {

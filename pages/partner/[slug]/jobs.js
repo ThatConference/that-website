@@ -101,13 +101,18 @@ const HighlightImage = styled.img`
   `};
 
   ${below.small`
-    width: 90%;
+    max-width: 80%;
   `};
 `;
 
 const LogoDiv = styled.div`
   min-width: 45rem;
   margin: 3rem;
+
+  ${below.med`
+    min-width: unset;
+    text-align: center;
+  `};
 `;
 
 const Jobs = styled.div`
@@ -119,7 +124,10 @@ const Jobs = styled.div`
 
 const JobTitle = styled.h4`
   margin: 0;
-  margin-top: 4rem;
+
+  &:not(:first_child) {
+    margin-top: 4rem;
+  }
 `;
 const Description = styled.p`
   margin-top: 0.25rem;
@@ -215,7 +223,7 @@ const jobs = () => {
         </Main>
       </ContentSection>
 
-      <ContentSection>
+      <ContentSection style={{ paddingTop: 0 }}>
         <Jobs>
           {partner.jobListings.map(job => (
             <JobRow>
