@@ -10,9 +10,9 @@ import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
 import { below, above } from '../../../../utilities';
 
 const GET_PARTNER_JOB = gql`
-  query getPartnerBySlug($slug: String!) {
+  query getJobListingBySlug($partnerSlug: String!, $jobListingSlug: String!) {
     partners {
-      partnerBySlug(slug: $slug) {
+      partnerBySlug(slug: $partnerSlug) {
         id
         companyName
         companyLogo
@@ -25,7 +25,8 @@ const GET_PARTNER_JOB = gql`
         instagram
         twitter
         facebook
-        jobListings {
+        jobListing(slug: $jobListingSlug) {
+          slug
           id
           title
           description
@@ -137,13 +138,35 @@ const LogoDiv = styled.div`
   `};
 `;
 
-const jobs = () => {
+const JobNotFound = ({ slug }) => (
+  <ContentSection>
+    <StyledH1>Job Not Found</StyledH1>
+    <LinkButton
+      href={`/partner/${slug}`}
+      label="Back to Partner Profile"
+      color="thatBlue"
+      borderColor="thatBlue"
+      className="stretch-sm"
+      hoverBorderColor="thatBlue"
+      hoverColor="white"
+      hoverBackgroundColor="thatBlue"
+    />
+  </ContentSection>
+);
+
+const jobDetail = () => {
   const router = useRouter();
 
+  if (router.query.jobSlug === 'null')
+    return <JobNotFound slug={router.query.slug} />;
+
   const { loading, data } = useQuery(GET_PARTNER_JOB, {
-    variables: { slug: router.query.slug, jobSlug: router.query.jobSlug },
+    variables: {
+      partnerSlug: router.query.slug,
+      jobListingSlug: router.query.jobSlug,
+    },
     onCompleted(d) {
-      const [partner] = d.partners.partnerBySlug;
+      const { partnerBySlug: partner } = d.partners;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -153,11 +176,16 @@ const jobs = () => {
     },
   });
 
-  if (loading) return <LoadingIndicator />;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
 
-  const partner = data.partners.partnerBySlug[0];
-
-  const job = partner.jobListings[0];
+  const { partnerBySlug: partner } = data.partners;
+  const job = partner.jobListing;
 
   return (
     <>
@@ -206,4 +234,4 @@ const jobs = () => {
   );
 };
 
-export default jobs;
+export default jobDetail;

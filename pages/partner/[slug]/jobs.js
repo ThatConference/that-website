@@ -30,6 +30,8 @@ const GET_ALL_PARTNER_JOBS = gql`
           slug
           id
           title
+          description
+          slug
         }
       }
     }
@@ -156,7 +158,7 @@ const jobs = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNER_JOBS, {
     variables: { partnerSlug: router.query.slug },
     onCompleted(d) {
-      const [partner] = d.partners.partnerBySlug;
+      const { partnerBySlug: partner } = d.partners;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -168,7 +170,7 @@ const jobs = () => {
 
   if (loading) return <LoadingIndicator />;
 
-  const partner = data.partners.partnerBySlug[0];
+  const { partnerBySlug: partner } = data.partners;
 
   return (
     <>
@@ -219,7 +221,7 @@ const jobs = () => {
             <JobRow>
               <JobTitle>{job.title}</JobTitle>
               <Description>{job.description}</Description>
-              <ViewLink href={`/partner/${partner.slug}/job/to-do-job-slug`}>
+              <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
                 <span>View Job</span>
                 <Icon
                   icon="fullArrow"

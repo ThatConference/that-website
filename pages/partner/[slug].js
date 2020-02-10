@@ -45,6 +45,7 @@ const GET_PARTNER = gql`
           id
           title
           description
+          slug
         }
         members {
           id
@@ -258,7 +259,7 @@ function PartnerDetail() {
             <Title>{job.title}</Title>
             <JobDescription>{job.description}</JobDescription>
             <div>
-              <ViewLink href={`/partner/${partner.slug}/job/to-do-job-slug`}>
+              <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
                 <span>View Job</span>
                 <ForwardArrow />
               </ViewLink>
