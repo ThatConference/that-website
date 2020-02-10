@@ -7,6 +7,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
 import _ from 'lodash';
 import { NextSeo } from 'next-seo';
+import pluralize from 'pluralize';
 import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
@@ -241,7 +242,10 @@ function PartnerDetail() {
 
   const Goals = () => (
     <>
-      <PartnerDetailSubHeading>Our Goals</PartnerDetailSubHeading>
+      <PartnerDetailSubHeading>{`Our ${pluralize(
+        'Goal',
+        partner.goals.length,
+      )}`}</PartnerDetailSubHeading>
       <GoalsList>
         {partner.goals && partner.goals.map(goal => <li key={goal}>{goal}</li>)}
       </GoalsList>
@@ -251,7 +255,7 @@ function PartnerDetail() {
   const Jobs = () => (
     <>
       <PartnerDetailSubHeading style={{ paddingTop: '3.5rem' }}>
-        Job Listings
+        {`Job ${pluralize('Listing', partner.jobListings.length)}`}
       </PartnerDetailSubHeading>
       {partner.jobListings &&
         partner.jobListings.map(job => (
@@ -276,7 +280,9 @@ function PartnerDetail() {
   const Sessions = () => (
     <>
       <PartnerDetailSubHeading style={{ paddingTop: '3.5rem' }}>
-        Session By {partner.companyName}
+        {`${pluralize('Session', partner.sessions.length)} By ${
+          partner.companyName
+        }`}
       </PartnerDetailSubHeading>
       {partner.sessions &&
         partner.sessions
