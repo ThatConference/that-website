@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 import Meta from './Meta';
-
-// Need to include all layouts so that each can be rendered if/when set on page
-import DefaultLayout from './layouts/default';
-// eslint-disable-next-line no-unused-vars
-import LayeredHeaderLayout from './layouts/layeredHeader';
+import Header from './Header';
+import Footer from './Footer';
 import { defaultSeo } from '../utilities';
 import User from './User';
 import { useFetchUser } from '../hooks/user';
@@ -27,10 +24,30 @@ const CorePage = styled.div`
   grid-gap: 0;
 `;
 
-const Page = ({ children, layout }) => {
+const PageDiv = styled.div`
+  position: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'fixed' : 'relative')};
+  display: flex;
+  flex-direction: column;
+`;
+
+const InnerPage = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  min-height: 100%;
+`;
+
+const Page = ({ children, headerType }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [layeredHeader, setLayeredHeader] = useState(false);
+
   const { user, loading } = useFetchUser();
-  const Layout = layout || DefaultLayout;
   const router = useRouter();
+
+  useEffect(() => {
+    setLayeredHeader(headerType === 'layered');
+  });
 
   return (
     <ThemeProvider theme={baseTheme}>
@@ -48,9 +65,19 @@ const Page = ({ children, layout }) => {
           />
           <CorePage>
             <User user={user} loading={loading}>
-              <Layout user={user} loading={loading}>
-                {React.cloneElement(children, { user, loading })}
-              </Layout>
+              <PageDiv mobileMenuOpen={mobileMenuOpen}>
+                <Header
+                  user={user}
+                  loading={loading}
+                  layered={layeredHeader}
+                  mobileMenuOpen={mobileMenuOpen}
+                  setMobileMenuOpen={setMobileMenuOpen}
+                />
+                <InnerPage>
+                  {React.cloneElement(children, { user, loading })}
+                </InnerPage>
+                <Footer modifiers="site" />
+              </PageDiv>
             </User>
           </CorePage>
         </StyledPage>

@@ -8,7 +8,6 @@ import Imgix from 'react-imgix';
 import _ from 'lodash';
 import { NextSeo } from 'next-seo';
 import pluralize from 'pluralize';
-import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
 import HeroSection from '../../components/PartnerDetail/HeroSection';
@@ -416,6 +415,6 @@ function PartnerDetail() {
   );
 }
 
-PartnerDetail.Layout = LayeredHeaderLayout;
+PartnerDetail.headerType = 'layered';
 
 export default PartnerDetail;
