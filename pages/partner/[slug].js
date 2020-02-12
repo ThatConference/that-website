@@ -348,6 +348,7 @@ function PartnerDetail() {
     </>
   );
 
+  const filteredSessions = partner.sessions.filter(i => i !== null);
   const Sessions = () => (
     <>
       <PartnerDetailSubHeading style={{ paddingTop: '3.5rem' }}>
@@ -355,27 +356,25 @@ function PartnerDetail() {
           partner.companyName
         }`}
       </PartnerDetailSubHeading>
-      {partner.sessions &&
-        _.sortBy(partner.sessions, s => s.title.toLowerCase())
-          .filter(i => i !== null)
-          .map(session => (
-            <Session key={session.id}>
-              <Speaker>
-                {session.speakers.map(speaker => (
-                  <SpeakerDetail speaker={speaker} key={speaker.id} />
-                ))}
-              </Speaker>
-              <SessionDetail>
-                <Title>{session.title}</Title>
-                <StyledP>{session.shortDescription}</StyledP>
-                {/* Uncomment once sessionb view is wired up */}
-                {/* <ViewLink href="/">
+      {filteredSessions &&
+        _.sortBy(filteredSessions, s => s.title.toLowerCase()).map(session => (
+          <Session key={session.id}>
+            <Speaker>
+              {session.speakers.map(speaker => (
+                <SpeakerDetail speaker={speaker} key={speaker.id} />
+              ))}
+            </Speaker>
+            <SessionDetail>
+              <Title>{session.title}</Title>
+              <StyledP>{session.shortDescription}</StyledP>
+              {/* Uncomment once sessionb view is wired up */}
+              {/* <ViewLink href="/">
                   <span>View Session</span>
                   <ForwardArrow />
                 </ViewLink> */}
-              </SessionDetail>
-            </Session>
-          ))}
+            </SessionDetail>
+          </Session>
+        ))}
     </>
   );
 
