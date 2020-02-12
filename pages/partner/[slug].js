@@ -14,6 +14,8 @@ import Icon from '../../components/shared/Icon';
 import HeroSection from '../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
 import PartnerDetailSubHeading from '../../components/PartnerDetail/PartnerDetailSubHeading';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import LinkButton from '../../components/shared/LinkButton';
 
 import { below, gridRepeat } from '../../utilities';
 
@@ -181,6 +183,29 @@ const SpeakerDetailBlock = styled.div`
   align-items: center;
 `;
 
+const ActionButtons = styled.div`
+  display: flex;
+  justify-content: left;
+
+  a {
+    margin-left: 0;
+    float: left;
+  }
+
+  a:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  ${below.large`
+    padding-bottom: 3rem;
+  `};
+
+  ${below.small`
+    flex-direction: column;
+    align-items: stretch;
+  `};
+`;
+
 const ForwardArrow = () => (
   <Icon
     icon="fullArrow"
@@ -210,6 +235,38 @@ const SpeakerDetail = ({ speaker }) => (
   </SpeakerDetailBlock>
 );
 
+const CompanyNotFound = () => (
+  <ContentSection
+    style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignContent: 'center',
+    }}
+  >
+    <h2>Not Yet a THAT Partner</h2>
+    <ActionButtons>
+      <LinkButton
+        href="/wi/become-a-partner"
+        label="Become a Partner"
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
+      <LinkButton
+        href="/partners"
+        label="View Past Partners"
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
+    </ActionButtons>
+  </ContentSection>
+);
+
 function PartnerDetail() {
   const router = useRouter();
 
@@ -217,19 +274,34 @@ function PartnerDetail() {
     variables: { slug: router.query.slug },
     onCompleted(d) {
       const partner = d.partners.partnerBySlug;
-      let hostName = new URL(partner.website).hostname;
-      if (hostName.toLowerCase().startsWith('www.')) {
-        hostName = hostName.replace('www.', '');
+      if (partner !== null) {
+        let hostName = new URL(partner.website).hostname;
+        if (hostName.toLowerCase().startsWith('www.')) {
+          hostName = hostName.replace('www.', '');
+        }
+        partner.hostName = hostName;
       }
-      partner.hostName = hostName;
       return partner;
     },
   });
 
-  if (loading) return null;
+  if (loading)
+    return (
+      <ContentSection
+        style={{
+          minHeight: 'calc(100vh - 29rem)',
+          display: 'flex',
+          alignContent: 'center',
+        }}
+      >
+        <LoadingIndicator />
+      </ContentSection>
+    );
   if (error) return null;
 
   const { partnerBySlug: partner } = data.partners;
+
+  if (partner === null) return <CompanyNotFound />;
 
   const AboutUs = () => (
     <>
@@ -258,7 +330,7 @@ function PartnerDetail() {
         {`Job ${pluralize('Listing', partner.jobListings.length)}`}
       </PartnerDetailSubHeading>
       {partner.jobListings &&
-        partner.jobListings.map(job => (
+        _.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(job => (
           <JobDiv key={job.id}>
             <Title>{job.title}</Title>
             <JobDescription>{job.description}</JobDescription>
@@ -285,7 +357,7 @@ function PartnerDetail() {
         }`}
       </PartnerDetailSubHeading>
       {partner.sessions &&
-        partner.sessions
+        _.sortBy(partner.sessions, s => s.title.toLowerCase())
           .filter(i => i !== null)
           .map(session => (
             <Session key={session.id}>
@@ -297,10 +369,11 @@ function PartnerDetail() {
               <SessionDetail>
                 <Title>{session.title}</Title>
                 <StyledP>{session.shortDescription}</StyledP>
-                <ViewLink href="/">
+                {/* Uncomment once sessionb view is wired up */}
+                {/* <ViewLink href="/">
                   <span>View Session</span>
                   <ForwardArrow />
-                </ViewLink>
+                </ViewLink> */}
               </SessionDetail>
             </Session>
           ))}

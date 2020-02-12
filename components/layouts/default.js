@@ -5,7 +5,6 @@ import Footer from '../Footer';
 
 const PageDiv = styled.div`
   position: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'fixed' : 'relative')};
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 `;
@@ -15,6 +14,7 @@ const InnerPage = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  min-height: 100%;
 `;
 
 const DefaultLayout = ({ children, user, loading }) => {

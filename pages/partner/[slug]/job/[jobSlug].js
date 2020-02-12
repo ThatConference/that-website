@@ -212,6 +212,17 @@ const jobDetail = () => {
                 hoverBackgroundColor="thatBlue"
               />
               <LinkButton
+                href={`/partner/${partner.slug}/jobs`}
+                label={`View All ${partner.companyName} Jobs`}
+                color="thatBlue"
+                borderColor="thatBlue"
+                className="stretch-sm"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+                isLocal={false}
+              />
+              <LinkButton
                 href={partner.website}
                 label={`Visit ${partner.companyName}`}
                 color="thatBlue"

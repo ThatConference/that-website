@@ -105,27 +105,34 @@ const partners = () => {
       </ContentSection>
 
       <ContentSection>
-        <Grid columns={gridRepeat.xxsmall} alignContent="center">
-          {_.sortBy(data.partners.all, p => p.companyName.toLowerCase()).map(
-            partner => {
-              return (
-                <PaddedImageContainer key={partner.id}>
-                  <Link
-                    href="/partner/[slug]"
-                    as={`/partner/${partner.slug}`}
-                    prefetch={false}
-                  >
-                    <Image
-                      src={partner.companyLogo}
-                      alt={partner.companyName}
-                      loading="lazy"
-                    />
-                  </Link>
-                </PaddedImageContainer>
-              );
-            },
-          )}
-        </Grid>
+        {loading && (
+          <div style={{ textAlign: 'center' }}>
+            <LoadingIndicator />
+          </div>
+        )}
+        {!loading && (
+          <Grid columns={gridRepeat.xxsmall} alignContent="center">
+            {_.sortBy(data.partners.all, p => p.companyName.toLowerCase()).map(
+              partner => {
+                return (
+                  <PaddedImageContainer key={partner.id}>
+                    <Link
+                      href="/partner/[slug]"
+                      as={`/partner/${partner.slug}`}
+                      prefetch={false}
+                    >
+                      <Image
+                        src={partner.companyLogo}
+                        alt={partner.companyName}
+                        loading="lazy"
+                      />
+                    </Link>
+                  </PaddedImageContainer>
+                );
+              },
+            )}
+          </Grid>
+        )}
       </ContentSection>
     </>
   );

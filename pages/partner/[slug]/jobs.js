@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { NextSeo } from 'next-seo';
+import _ from 'lodash';
 import LinkButton from '../../../components/shared/LinkButton';
 import ContentSection from '../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
@@ -225,22 +226,24 @@ const jobs = () => {
 
       <ContentSection style={{ paddingTop: 0 }}>
         <Jobs>
-          {partner.jobListings.map(job => (
-            <JobRow>
-              <JobTitle>{job.title}</JobTitle>
-              <Description>{job.description}</Description>
-              <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
-                <span>View Job</span>
-                <Icon
-                  icon="fullArrow"
-                  height="20"
-                  width="12"
-                  viewBoxHeight="100"
-                  viewBoxWidth="100"
-                />
-              </ViewLink>
-            </JobRow>
-          ))}
+          {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
+            job => (
+              <JobRow>
+                <JobTitle>{job.title}</JobTitle>
+                <Description>{job.description}</Description>
+                <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
+                  <span>View Job</span>
+                  <Icon
+                    icon="fullArrow"
+                    height="20"
+                    width="12"
+                    viewBoxHeight="100"
+                    viewBoxWidth="100"
+                  />
+                </ViewLink>
+              </JobRow>
+            ),
+          )}
         </Jobs>
       </ContentSection>
     </>
