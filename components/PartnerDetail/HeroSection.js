@@ -7,6 +7,9 @@ import Icon from '../shared/Icon';
 
 import { below } from '../../utilities';
 
+const DEFAULT_HERO_IMAGE =
+  'https://storage.googleapis.com/that-bucket/site/partner_hero_default.jpg';
+
 const HeroContentSection = styled(ContentSection)`
   padding: 0;
   background: ${({ background }) => background};
@@ -77,7 +80,7 @@ const HeroSection = ({
 }) => {
   const loc = location || 'wi';
   const backToPartnerUrl = `/${loc}/partners`;
-  const heroUrl = heroImageUrl || '/images/partner_hero_default.jpg';
+  const heroUrl = heroImageUrl || DEFAULT_HERO_IMAGE;
   const background = `linear-gradient(rgba(17, 53, 95, 0.65), rgba(17, 53, 95, 0.65)),
     url('${heroUrl}');`;
 
