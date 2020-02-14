@@ -10,6 +10,7 @@ import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
 import LoadingIndicator from '../components/shared/LoadingIndicator';
 import { below, gridRepeat } from '../utilities';
+import LinkButton from '../components/shared/LinkButton';
 
 const GET_ALL_PARTNERS = gql`
   query getAllPartners {
@@ -94,6 +95,15 @@ const partners = () => {
               one of our partners, across all levels for all of our years for
               their amazing support!
             </p>
+            <LinkButton
+              href="/wi/become-a-partner"
+              label="Become a Partner"
+              color="thatBlue"
+              borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
           </Cell>
           <ImageCell>
             <HighlightImage

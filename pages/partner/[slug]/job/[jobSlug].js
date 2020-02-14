@@ -7,6 +7,8 @@ import { NextSeo } from 'next-seo';
 import LinkButton from '../../../../components/shared/LinkButton';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
+import { ActionButtonRow } from '../../../../components/shared/StandardStyles';
+import PartnerLogoWithInfo from '../../../../components/shared/PartnerLogoWithInfo';
 import { below, above } from '../../../../utilities';
 
 const GET_PARTNER_JOB = gql`
@@ -30,6 +32,13 @@ const GET_PARTNER_JOB = gql`
           id
           title
           description
+          jobType
+          internship
+          experienceLevel
+          relocationOffered
+          remote
+          role
+          featured
         }
       }
     }
@@ -87,55 +96,32 @@ const SideDetail = styled.div`
   `};
 `;
 
-const ActionButtons = styled.div`
+const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
+  min-width: 50rem;
+
+  img {
+    height: 34rem;
+    max-width: 34rem;
+  }
+`;
+
+const AttributesRow = styled.div`
   display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
+  margin-top: 1rem;
 `;
 
-const HighlightImage = styled.img`
-  max-height: 24rem;
-  object-fit: contain;
+const AttributeTag = styled.div`
+  margin: 0 0.25rem;
+  font-size: 1.3rem;
+  background-color: ${({ color, theme }) => theme.colors[color]};
+  width: fit-content;
 
-  ${below.large`
-    margin-left: 4rem;
-  `};
-
-  ${below.med`
-    margin-left: 0;
-  `};
-
-  ${below.small`
-    width: 90%;
-  `};
-`;
-
-const LogoDiv = styled.div`
-  min-width: 45rem;
-  margin: 3rem;
-
-  ${below.med`
-    min-width: unset;
-    max-width: 80%;
-    margin: auto;
-  `};
+  span {
+    padding: 0.1rem 1rem;
+    color: ${({ theme }) => theme.colors.white};
+    font-weight: 700;
+    vertical-align: middle;
+  }
 `;
 
 const JobNotFound = ({ slug }) => (
@@ -192,6 +178,10 @@ const jobDetail = () => {
       <NextSeo
         title={`${job.title} @ ${partner.companyName} - THAT Conference`}
         description={job.description}
+        canonical={`https://www.thatconference.com/partner/${partner.slug}/job/${job.slug}`}
+        openGraph={{
+          images: [{ url: partner.companyLogo }],
+        }}
       />
 
       <ContentSection>
@@ -199,11 +189,31 @@ const jobDetail = () => {
           <SideDetail>
             <HighlightText>THAT Partner: {partner.companyName}</HighlightText>
             <StyledH1>{job.title}</StyledH1>
+            <AttributesRow>
+              {job.jobType && (
+                <AttributeTag
+                  className={job.jobType.toLowerCase().replace('_', ' ')}
+                  color="highlight"
+                >
+                  <span>{job.jobType.replace('_', ' ')}</span>
+                </AttributeTag>
+              )}
+              {job.experienceLevel && (
+                <AttributeTag
+                  className={job.experienceLevel
+                    .toLowerCase()
+                    .replace('_', ' ')}
+                  color="primary"
+                >
+                  <span>{job.experienceLevel.replace('_', ' ')}</span>
+                </AttributeTag>
+              )}
+            </AttributesRow>
             <p className="medium-body-copy">{job.description}</p>
-            <ActionButtons>
+            <ActionButtonRow>
               <LinkButton
                 href={`/partner/${partner.slug}`}
-                label={`THAT ${partner.companyName} Profile`}
+                label={`View ${partner.companyName} Profile`}
                 color="thatBlue"
                 borderColor="thatBlue"
                 className="stretch-sm"
@@ -234,11 +244,9 @@ const jobDetail = () => {
                 isLocal={false}
                 target="blank"
               />
-            </ActionButtons>
+            </ActionButtonRow>
           </SideDetail>
-          <LogoDiv>
-            <HighlightImage src={partner.companyLogo} />
-          </LogoDiv>
+          <StyledPartnerLogoWithInfo partner={partner} alignment="center" />
         </Main>
       </ContentSection>
     </>

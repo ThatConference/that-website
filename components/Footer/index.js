@@ -93,9 +93,6 @@ const Footer = () => {
               <NavLink href="/contact" onClick={() => clickTracking('contact')}>
                 Contact
               </NavLink>
-              <NavLink href="/jobs" onClick={() => clickTracking('jobs')}>
-                Jobs
-              </NavLink>
               <NavLink
                 href="/partners"
                 onClick={() => clickTracking('partners')}
@@ -110,6 +107,18 @@ const Footer = () => {
                 onClick={() => clickTracking('wi/partners')}
               >
                 Partners
+              </NavLink>
+              <NavLink
+                href="/wi/become-a-partner"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Become a Partner
+              </NavLink>
+              <NavLink
+                href="/wi/jobs"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Jobs
               </NavLink>
               <NavLink
                 href="/wi/tickets"

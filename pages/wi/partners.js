@@ -12,6 +12,7 @@ import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
 
 const dlog = debug('that:partners');
 
@@ -100,25 +101,6 @@ const PaddedImageContainer = styled(ImageContainer)`
   margin: 1rem;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const renderPartner = (
   partner,
   containerWidth,
@@ -157,10 +139,11 @@ const partnerListing = () => {
     },
   });
 
+  // remove loading here and sorting to functions
   if (loading) return null;
   if (error) {
     dlog('error %o', error);
-    return null;
+    throw error;
   }
 
   dlog('data %o', data.events.event.get.partners);
@@ -191,7 +174,7 @@ const partnerListing = () => {
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
-            <ActionButtons>
+            <ActionButtonRow>
               <LinkButton
                 href="/wi/become-a-partner"
                 label="Become a Partner"
@@ -210,7 +193,7 @@ const partnerListing = () => {
                 hoverColor="white"
                 hoverBackgroundColor="thatBlue"
               />
-            </ActionButtons>
+            </ActionButtonRow>
           </Cell>
           <Cell center>
             <RobotImage src="/images/robot.png" alt="Become A THAT Partner" />

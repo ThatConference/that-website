@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo';
 import ContentSection from '../../components/shared/ContentSection';
 import YouTubeVideo from '../../components/shared/YouTubeVideo';
 import LinkButton from '../../components/shared/LinkButton';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
 import { above, below } from '../../utilities';
 
 // Currently points to 2018 promo video
@@ -52,29 +53,6 @@ const Description = styled.p`
   text-align: center;
   padding: 7rem 0 0 0;
   max-width: 110rem;
-`;
-
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
 `;
 
 const StyledH3 = styled.h3`
@@ -223,7 +201,7 @@ const tickets = () => (
             friendly event is comprised of professional and family tracks so
             there is something to learn and experience at all ages.
           </p>
-          <ActionButtons>
+          <ActionButtonRow>
             <LinkButton
               href="#camper"
               label="Camper"
@@ -254,7 +232,7 @@ const tickets = () => (
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
         <ResponsiveYouTube
           videoId={THAT_PROMO_VIDEO_ID}

@@ -87,12 +87,15 @@ const MainLogoSection = ({ partner }) => {
       .value();
   }
 
-  const sortedMembers = _.sortBy(members, ['lastName', 'firstName']);
+  const sortedMembers = _.sortBy(members, 'firstName');
 
   return (
     <ContentSection backgroundColor="lightGray">
       <LogoMemberSection>
-        <PartnerLogoWithInfo partner={partner} />
+        <PartnerLogoWithInfo
+          partner={partner}
+          alignment={_.isEmpty(partner.members) ? 'center' : 'flex-start'}
+        />
         {!_.isEmpty(partner.members) && (
           <SayHiDetail>
             <PartnerDetailSubHeading>

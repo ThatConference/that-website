@@ -15,6 +15,10 @@ import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
 import PartnerDetailSubHeading from '../../components/PartnerDetail/PartnerDetailSubHeading';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import LinkButton from '../../components/shared/LinkButton';
+import {
+  ActionButtonRow,
+  StyledP,
+} from '../../components/shared/StandardStyles';
 
 import { below, gridRepeat } from '../../utilities';
 
@@ -30,6 +34,8 @@ const GET_PARTNER = gql`
         website
         goals
         aboutUs
+        city
+        state
         contactNumber
         linkedIn
         github
@@ -81,17 +87,6 @@ const MainDiv = styled.div`
 
 const MainGrid = styled(Grid)`
   grid-gap: 3rem;
-`;
-
-const StyledP = styled.p`
-  padding-right: 1rem;
-  margin-top: 0;
-  font-weight: 200;
-  line-height: 1.6;
-
-  ${below.med`
-    margin-top: 0;
-  `};
 `;
 
 const JobDescription = styled.p`
@@ -182,29 +177,6 @@ const SpeakerDetailBlock = styled.div`
   align-items: center;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below.large`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const ForwardArrow = () => (
   <Icon
     icon="fullArrow"
@@ -234,6 +206,13 @@ const SpeakerDetail = ({ speaker }) => (
   </SpeakerDetailBlock>
 );
 
+const getCityState = ({ partner }) => {
+  if (partner.city || partner.state) {
+    return <p>{`${partner.city}, ${partner.state}`}</p>;
+  }
+  return '';
+};
+
 const CompanyNotFound = () => (
   <ContentSection
     style={{
@@ -243,7 +222,7 @@ const CompanyNotFound = () => (
     }}
   >
     <h2>Not Yet a THAT Partner</h2>
-    <ActionButtons>
+    <ActionButtonRow>
       <LinkButton
         href="/wi/become-a-partner"
         label="Become a Partner"
@@ -262,7 +241,7 @@ const CompanyNotFound = () => (
         hoverColor="white"
         hoverBackgroundColor="thatBlue"
       />
-    </ActionButtons>
+    </ActionButtonRow>
   </ContentSection>
 );
 
@@ -308,6 +287,7 @@ function PartnerDetail() {
         About {partner.companyName}
       </PartnerDetailSubHeading>
       <StyledP>{partner.aboutUs}</StyledP>
+      <StyledP>{getCityState({ partner })}</StyledP>
     </>
   );
 

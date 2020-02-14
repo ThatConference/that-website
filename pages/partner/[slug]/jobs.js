@@ -8,7 +8,9 @@ import _ from 'lodash';
 import LinkButton from '../../../components/shared/LinkButton';
 import ContentSection from '../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
-import Icon from '../../../components/shared/Icon';
+import { ActionButtonRow } from '../../../components/shared/StandardStyles';
+import PartnerLogoWithInfo from '../../../components/shared/PartnerLogoWithInfo';
+import JobListing from '../../../components/shared/JobListing';
 import { below, above } from '../../../utilities';
 
 const GET_ALL_PARTNER_JOBS = gql`
@@ -32,7 +34,13 @@ const GET_ALL_PARTNER_JOBS = gql`
           id
           title
           description
-          slug
+          jobType
+          internship
+          experienceLevel
+          relocationOffered
+          remote
+          role
+          featured
         }
       }
     }
@@ -66,56 +74,6 @@ const SideDetail = styled.div`
   `};
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
-const HighlightImage = styled.img`
-  max-height: 30rem;
-  object-fit: contain;
-
-  ${below.large`
-    margin-left: 4rem;
-  `};
-
-  ${below.med`
-    margin-left: 0;
-  `};
-
-  ${below.small`
-    max-width: 80%;
-  `};
-`;
-
-const LogoDiv = styled.div`
-  min-width: 45rem;
-  margin: 3rem;
-
-  ${below.med`
-    min-width: unset;
-    text-align: center;
-  `};
-`;
-
 const Jobs = styled.div`
   display: flex;
   flex-direction: column;
@@ -123,42 +81,12 @@ const Jobs = styled.div`
   margin: auto;
 `;
 
-const JobTitle = styled.h4`
-  margin: 0;
+const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
+  min-width: 50rem;
 
-  &:not(:first_child) {
-    margin-top: 4rem;
-  }
-`;
-const Description = styled.p`
-  margin-top: 0.25rem;
-  line-height: 1.6;
-  margin-bottom: 0.25rem;
-`;
-
-const JobRow = styled.div`
-  margin-top: 2.5rem;
-
-  &:first-child {
-    margin-top: 0;
-  }
-`;
-
-const ViewLink = styled.a`
-  font-size: 1.4rem;
-  width: 100%;
-  color: ${({ theme }) => theme.colors.thatBlue};
-  fill: ${({ theme }) => theme.colors.thatBlue};
-
-  svg {
-    vertical-align: middle;
-    height: 2rem;
-    margin-left: 1rem;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.highlight};
-    fill: ${({ theme }) => theme.colors.highlight};
+  img {
+    height: 34rem;
+    max-width: 34rem;
   }
 `;
 
@@ -186,6 +114,10 @@ const jobs = () => {
       <NextSeo
         title={`${partner.companyName} Jobs - THAT Conference`}
         description={`Job openings for THAT partner ${partner.companyName}`}
+        canonical={`https://www.thatconference.com/partner/${partner.slug}/jobs`}
+        openGraph={{
+          images: [{ url: partner.companyLogo }],
+        }}
       />
 
       <ContentSection>
@@ -193,7 +125,7 @@ const jobs = () => {
           <SideDetail>
             <h1>{`${partner.companyName} Jobs`}</h1>
             <p className="medium-body-copy">{partner.aboutUs}</p>
-            <ActionButtons>
+            <ActionButtonRow>
               <LinkButton
                 href={`/partner/${partner.slug}`}
                 label={`THAT ${partner.companyName} Profile`}
@@ -216,11 +148,9 @@ const jobs = () => {
                 isLocal={false}
                 target="blank"
               />
-            </ActionButtons>
+            </ActionButtonRow>
           </SideDetail>
-          <LogoDiv>
-            <HighlightImage src={partner.companyLogo} />
-          </LogoDiv>
+          <StyledPartnerLogoWithInfo partner={partner} alignment="center" />
         </Main>
       </ContentSection>
 
@@ -228,20 +158,7 @@ const jobs = () => {
         <Jobs>
           {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
             job => (
-              <JobRow>
-                <JobTitle>{job.title}</JobTitle>
-                <Description>{job.description}</Description>
-                <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
-                  <span>View Job</span>
-                  <Icon
-                    icon="fullArrow"
-                    height="20"
-                    width="12"
-                    viewBoxHeight="100"
-                    viewBoxWidth="100"
-                  />
-                </ViewLink>
-              </JobRow>
+              <JobListing job={job} partner={partner} key={job.id} />
             ),
           )}
         </Jobs>

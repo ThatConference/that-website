@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import _ from 'lodash';
+import { useRouter } from 'next/router';
 import SocialLinks from './SocialLinks';
 import ThatLink from './ThatLink';
 import { below } from '../../utilities';
@@ -47,14 +47,9 @@ const getHostName = website => {
   return hostName;
 };
 
-const getCityState = ({ partner }) => {
-  if (partner.city || partner.state) {
-    return <p>{`${partner.city}, ${partner.state}`}</p>;
-  }
-  return '';
-};
+const PartnerLogoWithInfo = ({ alignment, partner, className }) => {
+  const router = useRouter();
 
-const PartnerLogoWithInfo = ({ partner }) => {
   const getPartnerSocialLinks = () => {
     const socials = {};
 
@@ -68,12 +63,16 @@ const PartnerLogoWithInfo = ({ partner }) => {
     return socials;
   };
 
+  const partnerLogo = (
+    <MainLogo src={partner.companyLogo} alt={partner.companyName} />
+  );
+
   return (
-    <PartnerContact
-      alignment={_.isEmpty(partner.members) ? 'center' : 'flex-start'}
-    >
-      <MainLogo src={partner.companyLogo} alt={partner.companyName} />
-      {getCityState({ partner })}
+    <PartnerContact alignment={alignment} className={className}>
+      {router.pathname === '/partner/[slug]' && partnerLogo}
+      {router.pathname !== '/partner/[slug]' && (
+        <a href={`/partner/${partner.slug}`}>{partnerLogo}</a>
+      )}
       <VisitUs>Visit us online at:</VisitUs>
       <ThatLink
         href={partner.website}
