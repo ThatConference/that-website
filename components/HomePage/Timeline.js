@@ -168,7 +168,7 @@ const TimelineSection = ({ event, className }) => {
       };
     })
     .sortBy(m => {
-      return moment(m.due);
+      return moment(m.due, 'MM/DD/YY');
     })
     .value();
 
