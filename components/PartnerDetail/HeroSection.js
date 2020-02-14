@@ -72,6 +72,13 @@ const SmallLinkButton = styled(LinkButton)`
   max-width: 7rem;
 `;
 
+const DownArrow = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
+  width: 3rem;
+  height: 3rem;
+  margin-top: 3rem;
+`;
+
 const HeroSection = ({
   companyName,
   heroImageUrl,
@@ -98,7 +105,16 @@ const HeroSection = ({
           />
           <span>Back to Partners</span>
         </BackToPartnersLink>
-        <div style={{ flexGrow: 2, textAlign: 'center', width: '100%' }}>
+        <div
+          style={{
+            flexGrow: 2,
+            textAlign: 'center',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <HeroPartnerName>{companyName}</HeroPartnerName>
           <SmallLinkButton
             href={connectWithUsUrl}
@@ -112,6 +128,7 @@ const HeroSection = ({
             target="blank"
             isLocal={false}
           />
+          <DownArrow icon="arrow" />
         </div>
       </HeroBlock>
     </HeroContentSection>

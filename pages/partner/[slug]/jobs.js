@@ -77,8 +77,6 @@ const SideDetail = styled.div`
 const Jobs = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 90rem;
-  margin: auto;
 `;
 
 const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
@@ -155,6 +153,7 @@ const jobs = () => {
       </ContentSection>
 
       <ContentSection style={{ paddingTop: 0 }}>
+        <h3>{`Current Opportunites at ${partner.companyName}`}</h3>
         <Jobs>
           {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
             job => (

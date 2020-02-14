@@ -89,14 +89,15 @@ const SideDetail = styled.div`
 const Jobs = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 90rem;
   margin: auto;
   align-content: flex-start;
   flex-grow: 2;
+  margin-left: 3rem;
 
   ${below.large`
-    max-width: unset;
-    min-width: 100%;
+    // max-width: unset;
+    margin-left: 0;
+    // min-width: 100%;
   `}
 `;
 
@@ -147,7 +148,7 @@ const jobs = () => {
       <ContentSection>
         <Main>
           <SideDetail>
-            <h1>THAT WI 2020 Jobs</h1>
+            <h1>THAT WI 2020 - Partner Jobs</h1>
             <p className="medium-body-copy">
               Full list of all the open opportunities at the amazing
               organizations partnering with us to make THAT Wisconsin 2020

@@ -106,7 +106,7 @@ const Footer = () => {
                 href="/wi/partners"
                 onClick={() => clickTracking('wi/partners')}
               >
-                Partners
+                2020 Partners
               </NavLink>
               <NavLink
                 href="/wi/become-a-partner"
