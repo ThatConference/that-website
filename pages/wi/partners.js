@@ -139,8 +139,13 @@ const partnerListing = () => {
     },
   });
 
-  // remove loading here and sorting to functions
-  if (loading) return null;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
   if (error) {
     dlog('error %o', error);
     throw error;
@@ -201,66 +206,63 @@ const partnerListing = () => {
         </Grid>
       </TopContentSection>
 
-      {loading && <LoadingIndicator />}
-      {!loading && (
-        <>
-          <PioneerContentSection>
-            <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
-            <Partners>
-              {partners.map(value => {
-                if (value.level === 'PIONEER') {
-                  return renderPartner(value, '48rem', '31rem', '37rem');
-                }
-                return null;
-              })}
-            </Partners>
-          </PioneerContentSection>
-          <ContentSection>
-            <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
-            <Partners>
-              {partners.map(value => {
-                if (value.level === 'EXPLORER') {
-                  return renderPartner(value, '37rem', '23rem', '30rem');
-                }
-                return null;
-              })}
-            </Partners>
-          </ContentSection>
-          <ContentSection>
-            <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
-            <Partners>
-              {partners.map(value => {
-                if (value.level === 'SCOUT') {
-                  return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
-                }
-                return null;
-              })}
-            </Partners>
-          </ContentSection>
-          <ContentSection>
-            <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
-            <Partners>
-              {partners.map(value => {
-                if (value.level === 'PATRON') {
-                  return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
-                }
-                return null;
-              })}
-            </Partners>
-          </ContentSection>
-          <ContentSection>
-            <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
-            <Partners>
-              {partners.map(value => {
-                if (value.level === 'MEDIA') {
-                  return renderPartner(value, '21rem', '14rem', '14.5rem');
-                }
-                return null;
-              })}
-            </Partners>
-          </ContentSection>
-        </>
-      )}
+      <>
+        <PioneerContentSection>
+          <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PIONEER') {
+                return renderPartner(value, '48rem', '31rem', '37rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </PioneerContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'EXPLORER') {
+                return renderPartner(value, '37rem', '23rem', '30rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'SCOUT') {
+                return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PATRON') {
+                return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'MEDIA') {
+                return renderPartner(value, '21rem', '14rem', '14.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+      </>
     </div>
   );
 };

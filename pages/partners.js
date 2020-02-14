@@ -11,6 +11,7 @@ import ImageContainer from '../components/shared/ImageContainer';
 import LoadingIndicator from '../components/shared/LoadingIndicator';
 import { below, gridRepeat } from '../utilities';
 import LinkButton from '../components/shared/LinkButton';
+import { HeroGraphicDiv } from '../components/shared/StandardStyles';
 
 const GET_ALL_PARTNERS = gql`
   query getAllPartners {
@@ -25,17 +26,10 @@ const GET_ALL_PARTNERS = gql`
   }
 `;
 
-const ImageCell = styled(Cell)`
-  ${below.med`
-    text-align: center;
-  `};
-`;
-
 const HighlightImage = styled.img`
   max-height: 30rem;
   position: absolute;
   top: 3rem;
-  margin-left: 6rem;
   object-fit: contain;
 
   ${below.small`
@@ -105,12 +99,12 @@ const partners = () => {
               hoverBackgroundColor="thatBlue"
             />
           </Cell>
-          <ImageCell>
+          <HeroGraphicDiv>
             <HighlightImage
               src="/images/moose_with_lantern.png"
               alt="THAT Partners"
             />
-          </ImageCell>
+          </HeroGraphicDiv>
         </Grid>
       </ContentSection>
 
