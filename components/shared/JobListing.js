@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { StyledP, ViewLink } from './StandardStyles';
+import { StyledPre, ViewLink } from './StandardStyles';
 import Icon from './Icon';
 import { below } from '../../utilities';
+
+const TRUNCATED_HEIGHT_SIZE = 140;
 
 const JobRow = styled.div`
   margin-top: 4rem;
@@ -27,19 +29,6 @@ const JobDetail = styled.div`
     opacity: 0;
     position: absolute;
     pointer-events: none;
-  }
-
-  input:focus ~ label {
-    outline: -webkit-focus-ring-color auto 5px;
-  }
-
-  input:checked + p {
-    -webkit-line-clamp: unset;
-  }
-
-  input:checked ~ label,
-  p:not(.truncated) ~ label {
-    display: none;
   }
 `;
 
@@ -84,8 +73,7 @@ const JobTitle = styled.a`
   }
 `;
 
-const JobDescription = styled(StyledP)`
-  flex-grow: 2;
+const JobDescription = styled(StyledPre)`
   display: -webkit-box;
   -webkit-line-clamp: ${({ expandedDescription }) =>
     expandedDescription ? 'unset' : 6};
@@ -119,6 +107,7 @@ const AttributeTag = styled.div`
 `;
 
 const ShowMore = styled.p`
+  flex-grow: 2;
   font-size: 1.4rem;
   width: 100%;
   color: ${({ theme }) => theme.colors.thatBlue};
@@ -143,7 +132,13 @@ const StyledViewLink = styled(ViewLink)`
 
 const JobListing = ({ job, partner }) => {
   const [expandedDescription, setExpandedDescription] = useState(false);
+  const [height, setHeight] = useState(0);
+  const ref = useRef(null);
   const jobPath = `/partner/${partner.slug}/job/${job.slug}`;
+
+  useEffect(() => {
+    setHeight(ref.current.clientHeight);
+  }, []);
 
   return (
     <JobRow>
@@ -151,12 +146,13 @@ const JobListing = ({ job, partner }) => {
         <JobTitle href={jobPath}>{job.title}</JobTitle>
 
         <input type="checkbox" id="expanded" />
-        <JobDescription expandedDescription={expandedDescription}>
+        <JobDescription expandedDescription={expandedDescription} ref={ref}>
           {job.description}
         </JobDescription>
-        {job.description.length > 750 && (
+        {height > TRUNCATED_HEIGHT_SIZE && (
           <ShowMore
             onClick={() => setExpandedDescription(!expandedDescription)}
+            className="show-more"
           >
             {`Show ${expandedDescription ? 'Less' : 'More'}`}
           </ShowMore>

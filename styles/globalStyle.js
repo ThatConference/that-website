@@ -99,8 +99,26 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   
-  p { 
+  p, pre { 
     color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  pre {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    // font-size: 1.5rem;
+    white-space: pre-wrap;
+    line-height: 2;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    font-size: 10px;
+    
+    scroll-behavior: smooth;
   }
 
   .large-body-copy {

@@ -12,6 +12,18 @@ export const StyledP = styled.p`
   `};
 `;
 
+export const StyledPre = styled.pre`
+  padding-right: 1rem;
+  margin-top: 0;
+  font-weight: 200;
+  line-height: 1.6;
+  font-size: 1.5rem;
+
+  ${below.med`
+    margin-top: 0;
+  `};
+`;
+
 export const ActionButtonRow = styled.div`
   display: flex;
   justify-content: left;
