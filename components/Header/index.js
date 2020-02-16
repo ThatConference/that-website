@@ -1,11 +1,10 @@
 import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import * as gtag from '../../lib/gtag';
-
 import MessageBar from './MessageBar';
 import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
@@ -163,10 +162,10 @@ const HeaderLogo = ({ layered }) => {
 const Header = ({
   className,
   layered,
-  user,
   loading,
   mobileMenuOpen,
   setMobileMenuOpen,
+  user,
 }) => {
   const {
     loading: eventLoading,
@@ -177,30 +176,12 @@ const Header = ({
   });
 
   if (eventLoading) return null;
-  if (eventError) return null;
+  if (eventError) throw eventError;
 
   const { event } = eventData.events;
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    setScrollY(window.pageYOffset);
-
-    const handleScroll = () => {
-      setScrollY(window.pageYOffset);
-    };
-
-    handleScroll();
-    document.addEventListener('scroll', handleScroll);
-
-    return () => document.removeEventListener('scroll', handleScroll);
-  });
-
-  const scrolled = () => {
-    return parseInt(scrollY) > 0 ? 'scrolled' : '';
-  };
 
   return (
-    <header className={[className, scrolled()].join(' ')}>
+    <header className={className}>
       <MessageBar
         user={user}
         loading={loading}

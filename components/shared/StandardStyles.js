@@ -75,6 +75,22 @@ export const HeroGraphicImg = styled.img`
   `};
 `;
 
+export const Placeholder = styled.div`
+  background: linear-gradient(
+    270deg,
+    ${({ theme }) => theme.colors.lightGray},
+    ${({ theme }) => theme.colors.placeholderGray}
+  );
+  height: ${({ height }) => height || '1.5rem'};
+  width: ${({ width }) => width || '100%'};
+  margin: ${({ margin }) => margin || '1rem'};
+  background-size: 200% 200%;
+
+  -webkit-animation: BackgroundAnimation 2s ease infinite;
+  -moz-animation: BackgroundAnimation 2s ease infinite;
+  animation: BackgroundAnimation 2s ease infinite;
+`;
+
 export const ViewLink = styled.a`
   font-size: 1.4rem;
   width: 100%;
