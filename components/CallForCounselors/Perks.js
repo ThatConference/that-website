@@ -1,26 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Grid } from 'styled-css-grid';
+import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-// import LinkButton from '../shared/LinkButton';
 import ImageContainer from '../shared/ImageContainer';
 
 import { gridRepeat } from '../../utilities';
 
-const PerkTitle = styled.h4`
-  margin-top: 0;
-  margin-bottom: 0.4rem;
+const WhatToExpectImage = styled.img`
+  max-width: ${({ maxWidth }) => maxWidth || '16rem'};
+  position: relative;
+  top: -1.5rem;
 `;
 
-const Perk = styled(ImageContainer)`
-  padding: 2.5rem;
-  margin: 2rem;
+const StyledCell = styled(Cell)`
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
-// const GetStartedNow = styled(LinkButton)`
-//   float: right;
-// `;
+const StyledTitle = styled.span`
+  font-weight: 700;
+  position: absolute;
+  top: 14rem;
+`;
+
+const StyledDescription = styled.p`
+  margin: 1rem 3rem 3rem;
+  position: absolute;
+  top: 17rem;
+  left: 0;
+`;
+
+const CounselorPerk = ({ src, title, description, maxWidth }) => {
+  return (
+    <StyledCell>
+      <ImageContainer width="40rem" height="30rem" key="">
+        <WhatToExpectImage src={src} maxWidth={maxWidth} />
+        <StyledTitle className="medium-body-copy">{title}</StyledTitle>
+        <StyledDescription>{description}</StyledDescription>
+      </ImageContainer>
+    </StyledCell>
+  );
+};
 
 const Perks = () => {
   return (
@@ -28,40 +52,28 @@ const Perks = () => {
       <h3 className="font-dark centered-text">
         Perks If You're Selected To Speak At THAT Conference
       </h3>
-      <Grid columns={gridRepeat.xsmall} alignContent="center">
-        <Perk>
-          <PerkTitle>Conference Ticket</PerkTitle>
-          <p style={{ flexGrow: '2' }}>
-            A ticket to attend all four days of THAT Conference! Including all
+      <Grid columns={gridRepeat.small} alignContent="center">
+        <CounselorPerk
+          title="Conference Ticket"
+          src="/images/conference_ticket.svg"
+          maxWidth="13rem"
+          description="To attend all 4 days of THAT Conference! Including all
             conference meals, THAT Pig Roast and all social/networking
-            activities!
-          </p>
-        </Perk>
-        <Perk>
-          <PerkTitle>Hotel Accomodations</PerkTitle>
-          <p style={{ flexGrow: '2' }}>
-            For each talk accepted we cover 2 nights at the Kalahari, up to a 3
-            night max per family!
-          </p>
-        </Perk>
-        <Perk>
-          <PerkTitle>Professionally Recorded</PerkTitle>
-          <p style={{ flexGrow: '2' }}>
-            If you are accepted and choose to be included, we are set to offer
-            professional video recording for a majority of our sessions!
-          </p>
-        </Perk>
+            activities!"
+        />
+        <CounselorPerk
+          title="Hotel Accomodations"
+          src="/images/hotel_accomodations.svg"
+          description="For each talk accepted we cover 2 nights at the Kalahari, up to a 3
+            night max per family!"
+        />
+        <CounselorPerk
+          title="Professionally Recorded"
+          src="/images/professionally_recorded.svg"
+          description="If you are accepted and choose to be included, we are set to offer
+            professional video recording for a majority of sessions!"
+        />
       </Grid>
-      {/* <GetStartedNow
-        href={`counselor-agreement?feature=${featureKeyword}`}
-        borderColor="thatBlue"
-        color="thatBlue"
-        backgroundColor="white"
-        hoverBorderColor="thatBlue"
-        hoverColor="white"
-        hoverBackgroundColor="thatBlue"
-        label="Get started now!"
-      /> */}
     </ContentSection>
   );
 };

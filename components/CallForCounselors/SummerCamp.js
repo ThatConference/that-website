@@ -7,15 +7,7 @@ import ContentSection from '../shared/ContentSection';
 import { below } from '../../utilities';
 
 const Main = styled(ContentSection)`
-  margin-bottom: 14rem;
-
-  ${below.large`
-
-  `};
-
-  ${below.med`
-
-  `};
+  margin-bottom: 5rem;
 `;
 
 const SummerCampHeader = styled.h3`
