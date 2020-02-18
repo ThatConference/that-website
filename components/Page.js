@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { DefaultSeo } from 'next-seo';
+import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
@@ -41,6 +41,10 @@ const Page = ({ children, layout }) => {
           <DefaultSeo
             {...defaultSeo}
             canonical={`https://www.thatconference.com/${router.pathname}`}
+          />
+          <LogoJsonLd
+            logo="https://www.thatconference.com/images/svgs/THATConference-WI.svg"
+            url="https://www.thatconference.com"
           />
           <CorePage>
             <User user={user} loading={loading}>
