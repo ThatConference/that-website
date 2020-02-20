@@ -64,7 +64,10 @@ const home = () => {
   });
 
   if (loading) return null;
-  if (error) return null;
+
+  if (error) {
+    throw new Error(error);
+  }
 
   const { event } = data.events;
 

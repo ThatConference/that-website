@@ -130,6 +130,7 @@ const SponsorHighlight = ({ className, eventSlug }) => {
                   key={s.id}
                   href="/partner/[slug]"
                   as={`/partner/${s.slug}`}
+                  prefetch={false}
                 >
                   <PartnerLogo
                     src={s.companyLogo}

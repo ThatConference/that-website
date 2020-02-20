@@ -109,7 +109,11 @@ const partners = () => {
             partner => {
               return (
                 <PaddedImageContainer key={partner.id}>
-                  <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+                  <Link
+                    href="/partner/[slug]"
+                    as={`/partner/${partner.slug}`}
+                    prefetch={false}
+                  >
                     <Image
                       src={partner.companyLogo}
                       alt={partner.companyName}
