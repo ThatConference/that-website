@@ -130,7 +130,11 @@ const renderPartner = (
       height={containerHeight}
       key={partner.id}
     >
-      <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+      <Link
+        href="/partner/[slug]"
+        as={`/partner/${partner.slug}`}
+        prefetch={false}
+      >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image

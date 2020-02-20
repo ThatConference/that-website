@@ -87,7 +87,7 @@ const ThatLink = ({
   return (
     <>
       {isLocal ? (
-        <Link href={href} passHref>
+        <Link href={href} prefetch={false} passHref>
           <StyledLink
             onClick={handleClick}
             color={color}
