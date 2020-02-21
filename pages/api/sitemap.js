@@ -1,4 +1,8 @@
 import fs from 'fs';
+import debug from 'debug';
+import * as Sentry from '@sentry/browser';
+
+const dlog = debug('that:api:sitemap');
 
 const OMIT_FILES = [
   '_app.js',
@@ -22,33 +26,38 @@ const OMIT_FILES = [
 
 const walkSync = dir => {
   const fileObj = {};
+  dlog('auth0 callback executed', dir);
+  try {
+    // Get all files of the current directory & iterate over them
+    const files = fs.readdirSync(dir);
+    files.forEach(file => {
+      if (OMIT_FILES.includes(file)) return;
 
-  // Get all files of the current directory & iterate over them
-  const files = fs.readdirSync(dir);
-  files.forEach(file => {
-    if (OMIT_FILES.includes(file)) return;
+      const filePath = `${dir}${file}`;
+      const fileStat = fs.statSync(filePath);
 
-    const filePath = `${dir}${file}`;
-    const fileStat = fs.statSync(filePath);
+      if (fileStat.isDirectory()) {
+        // Recurse one folder deeper
+        const results = walkSync(`${filePath}/`);
 
-    if (fileStat.isDirectory()) {
-      // Recurse one folder deeper
-      const results = walkSync(`${filePath}/`);
+        Object.assign(fileObj, results);
+      } else {
+        // Construct this file's pathname excluding the "pages" folder & its extension
+        const cleanFileName = filePath
+          .substr(0, filePath.lastIndexOf('.'))
+          .replace('pages/', '');
 
-      Object.assign(fileObj, results);
-    } else {
-      // Construct this file's pathname excluding the "pages" folder & its extension
-      const cleanFileName = filePath
-        .substr(0, filePath.lastIndexOf('.'))
-        .replace('pages/', '');
-
-      // Add this file to `fileObj`
-      fileObj[cleanFileName] = {
-        page: `/${cleanFileName}`,
-        lastModified: fileStat.mtime,
-      };
-    }
-  });
+        // Add this file to `fileObj`
+        fileObj[cleanFileName] = {
+          page: `/${cleanFileName}`,
+          lastModified: fileStat.mtime,
+        };
+      }
+    });
+  } catch (error) {
+    dlog('walksync errored: %o', error);
+    Sentry.captureException(error);
+  }
 
   return fileObj;
 };
