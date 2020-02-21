@@ -70,6 +70,7 @@ module.exports = {
     SESSION_COOKIE_DOMAIN: process.env.SESSION_COOKIE_DOMAIN,
     SESSION_COOKIE_LIFETIME: 7200,
     CURRENT_EVENT_ID: process.env.CURRENT_EVENT_ID,
+    PROJECT_ROOT: __dirname,
   },
   ...sourceMaps,
   generateBuildId,
