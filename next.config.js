@@ -13,12 +13,6 @@ const sourceMaps = nextSourceMaps({
       }),
     );
 
-    if (!isServer) {
-      config.node = {
-        fs: 'empty',
-      };
-    }
-
     config.module.rules.push({
       test: /\.md$/,
       use: 'raw-loader',
