@@ -163,7 +163,11 @@ const Hero = ({ event, className }) => {
             />
           </ActionButtons>
         </SideDetail>
-        <HeroImage src="images/clark_stage.jpg" loading="lazy" />
+        <HeroImage
+          src="images/clark_stage.jpg"
+          loading="lazy"
+          alt="Founder Clark Sell Kicking off THAT Conference"
+        />
         <HeroSocials />
       </Main>
       <Description className="large-body-copy">

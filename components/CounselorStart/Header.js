@@ -145,7 +145,10 @@ const Header = ({ user, loading }) => {
             hoverBackgroundColor="thatBlue"
           />
         </div>
-        <HighlightImage src="/images/bear-eyelashes.png" />
+        <HighlightImage
+          src="/images/bear-eyelashes.png"
+          alt="Call For Counselors"
+        />
       </GetStartedDetail>
     </>
   );

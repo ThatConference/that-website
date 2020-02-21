@@ -98,7 +98,10 @@ const partners = () => {
             </p>
           </Cell>
           <ImageCell>
-            <HighlightImage src="/images/moose_with_lantern.png" />
+            <HighlightImage
+              src="/images/moose_with_lantern.png"
+              alt="THAT Partners"
+            />
           </ImageCell>
         </Grid>
       </ContentSection>

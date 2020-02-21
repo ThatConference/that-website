@@ -38,7 +38,11 @@ const CounselorPerk = ({ src, title, description, maxWidth }) => {
   return (
     <StyledCell>
       <ImageContainer width="40rem" height="30rem" key="">
-        <WhatToExpectImage src={src} maxWidth={maxWidth} />
+        <WhatToExpectImage
+          src={src}
+          maxWidth={maxWidth}
+          alt="What To Expect At THAT Conference"
+        />
         <StyledTitle className="medium-body-copy">{title}</StyledTitle>
         <StyledDescription>{description}</StyledDescription>
       </ImageContainer>

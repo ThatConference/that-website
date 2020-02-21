@@ -213,6 +213,7 @@ const TimelineSection = ({ event, className }) => {
           src="/images/moose_with_lantern.png"
           haveLink={haveLink}
           loading="lazy"
+          alt="THAT Conference Timeline"
         />
       </Content>
     </Main>

@@ -94,7 +94,11 @@ const Testimonials = ({ className }) => {
     <ContentSection className={className}>
       <ContentGrid columns={gridRepeat.small}>
         <Cell>
-          <HighlightImage src={testimonial.imageUrl} loading="lazy" />
+          <HighlightImage
+            src={testimonial.imageUrl}
+            loading="lazy"
+            alt="THAT Conference Highlight"
+          />
         </Cell>
         <Cell style={{ direction: 'ltr' }}>
           <Detail>

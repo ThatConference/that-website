@@ -54,7 +54,7 @@ const ContentSection = ({
       forForm={forForm}
       style={style}
     >
-      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
+      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" alt="THAT Conference" />}
       <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );
