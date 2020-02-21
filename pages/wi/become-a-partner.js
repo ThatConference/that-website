@@ -123,7 +123,10 @@ const becomeAPartner = () => (
         </Cell>
         <Cell style={{ textAlign: 'center' }}>
           <div>
-            <SasquatchCanoeImage src="/images/sasquatch_kayaking.png" />
+            <SasquatchCanoeImage
+              src="/images/sasquatch_kayaking.png"
+              alt="Becoming A THAT Partner"
+            />
           </div>
         </Cell>
       </Grid>
@@ -146,7 +149,10 @@ const becomeAPartner = () => (
       <div>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell center>
-            <SasquatchStandingImage src="/images/sassy_with_badge.svg" />
+            <SasquatchStandingImage
+              src="/images/sassy_with_badge.svg"
+              alt="Community Interaction"
+            />
           </Cell>
           <Cell>
             <div style={{ maxWidth: '65rem' }}>
@@ -183,7 +189,10 @@ const becomeAPartner = () => (
             </span>
           </div>
           <div className="centered-text">
-            <SasquatchCloseUpCanoeImage src="/images/sasquatch_close_up.png" />
+            <SasquatchCloseUpCanoeImage
+              src="/images/sasquatch_close_up.png"
+              alt="Get THAT Prospectus"
+            />
           </div>
         </Cell>
         <Cell>

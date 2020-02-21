@@ -113,7 +113,11 @@ const home = () => {
       <SponsorHighlight eventSlug="/wi" />
       <Testimonials />
       <NewsletterSignup />
-      <BottomImage src="./images/mess-hall.jpg" loading="lazy" />
+      <BottomImage
+        src="./images/mess-hall.jpg"
+        loading="lazy"
+        alt="THAT Mess Hall"
+      />
 
       <script
         src="https://thatconference.activehosted.com/f/embed.php?id=1"

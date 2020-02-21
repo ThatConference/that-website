@@ -212,7 +212,7 @@ const partnerListing = () => {
             </ActionButtons>
           </Cell>
           <Cell center>
-            <RobotImage src="/images/robot.png" />
+            <RobotImage src="/images/robot.png" alt="Become A THAT Partner" />
           </Cell>
         </Grid>
       </TopContentSection>

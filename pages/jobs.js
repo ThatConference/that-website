@@ -132,7 +132,10 @@ const jobs = () => {
             </p>
           </Cell>
           <ImageCell center>
-            <HighlightImage src="/images/bear_with_drone.png" />
+            <HighlightImage
+              src="/images/bear_with_drone.png"
+              alt="Job Opportiunites for THAT Partners"
+            />
           </ImageCell>
         </Grid>
       </ContentSection>

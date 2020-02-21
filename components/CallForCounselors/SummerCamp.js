@@ -53,7 +53,10 @@ const SummerCamp = () => {
           </div>
         </Cell>
         <MegaphoneBearCell>
-          <MegaphoneBear src="/images/bear-pig.png" />
+          <MegaphoneBear
+            src="/images/bear-pig.png"
+            alt="Summer Camp For Geeks"
+          />
         </MegaphoneBearCell>
       </MainGrid>
     </Main>

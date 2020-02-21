@@ -120,7 +120,11 @@ const SponsorHighlight = ({ className, eventSlug }) => {
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
-        <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
+        <HighlightImage
+          src="/images/octopus_with_flag.png"
+          loading="lazy"
+          alt="THAT Partners"
+        />
         <SideDetail>
           {havePartners && (
             <FeaturedPartners>
