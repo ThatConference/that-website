@@ -29,7 +29,7 @@ const Sitemap = () => {
 };
 
 Sitemap.getInitialProps = async ({ res }) => {
-  const apiResponse = await fetch('http://localhost:3000/api/sitemap');
+  const apiResponse = await fetch('/api/sitemap');
   const json = await apiResponse.json();
 
   res.writeHead(200, { 'Content-Type': 'text/xml' });
