@@ -139,10 +139,6 @@ const GlobalStyle = createGlobalStyle`
     float: left;
   }
 
-  .text-center {
-    text-align: center;
-  }
-
   .text-right {
     text-align: right;
   }

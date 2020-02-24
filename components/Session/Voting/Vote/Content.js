@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
+import LoadingIndicator from '../../../shared/LoadingIndicator';
 import NavLinks from '../Shared/NavLinks';
 import Thumbs from '../Shared/Thumbs';
 import Stats from '../Shared/Stats';
@@ -96,8 +97,14 @@ const Content = () => {
     variables: { eventId: process.env.CURRENT_EVENT_ID },
   });
 
-  if (sessionsLoading) return null;
-  if (sessionsError) return null;
+  if (sessionsLoading) {
+    return (
+      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+        <LoadingIndicator />
+      </div>
+    );
+  }
+  if (sessionsError) throw new Error(sessionsError);
 
   const root = sessionsData.sessions.me.voting;
 
