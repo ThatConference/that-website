@@ -44,6 +44,27 @@ const SlimContentSection = styled(ContentSection)`
   ${below.med`
     width: 90vw;
   `};
+
+  p.caption {
+    font-style: italic;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1.4rem;
+    color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  p.quote {
+    font-style: italic;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin: 0 3rem;
+    color: ${({ theme }) => theme.colors.fonts.dark};
+
+    ${below.small`
+      margin: 0 1rem;
+    `};
+  }
 `;
 
 const RenderedMarkdown = ({ markdownContent, slug, statusCode }) => {
