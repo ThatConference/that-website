@@ -61,30 +61,10 @@ const CAST_VOTE = gql`
 `;
 
 const Content = () => {
-  const {
-    loading: sessionsLoading,
-    error: sessionsError,
-    data: sessionsData,
-  } = useQuery(GET_SESSIONS, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
-  });
-
-  if (sessionsLoading) return null;
-  if (sessionsError) return null;
-
   const [notes, setNotes] = useState('');
   const [value, setValue] = useState(0);
 
-  const root = sessionsData.sessions.me.voting;
-
   let toastId = null;
-
-  const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length - (value + 1);
-  const totalVotedOn = totalSubmitted - totalRemaining;
-
-  const session = root.unVoted ? root.unVoted[value] : null;
-
   const forceUpdate = () => {
     ButterToast.dismiss(toastId);
     ButterToast.raise({
@@ -98,6 +78,7 @@ const Content = () => {
       ),
     });
     setValue(value + 1);
+    window.scrollTo(0, 0);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
@@ -106,6 +87,25 @@ const Content = () => {
       throw new Error(createError);
     },
   });
+
+  const {
+    loading: sessionsLoading,
+    error: sessionsError,
+    data: sessionsData,
+  } = useQuery(GET_SESSIONS, {
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
+  });
+
+  if (sessionsLoading) return null;
+  if (sessionsError) return null;
+
+  const root = sessionsData.sessions.me.voting;
+
+  const { totalSubmitted } = root;
+  const totalRemaining = root.unVoted.length - (value + 1);
+  const totalVotedOn = totalSubmitted - totalRemaining;
+
+  const session = root.unVoted ? root.unVoted[value] : null;
 
   if (session) {
     const submitVote = yesVote => {

@@ -85,27 +85,9 @@ const CAST_VOTE = gql`
 `;
 
 const Content = () => {
-  const {
-    loading: sessionsLoading,
-    error: sessionsError,
-    data: sessionsData,
-  } = useQuery(GET_SESSIONS, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
-  });
-
-  if (sessionsLoading) return null;
-  if (sessionsError) return null;
-
-  const root = sessionsData.sessions.me.voting;
-
   let toastId = null;
-
-  const { totalSubmitted } = root;
-  const rootSessions = root.voted;
-  const totalRemaining = totalSubmitted - rootSessions.length;
-  const totalVotedOn = rootSessions.length;
-
-  const [sessions, setStateSessions] = useState(rootSessions);
+  const [sessions, setStateSessions] = useState();
+  let sessionsToUse = sessions;
 
   const forceUpdate = () => {
     ButterToast.dismiss(toastId);
@@ -119,7 +101,7 @@ const Content = () => {
         />
       ),
     });
-    setStateSessions(sessions);
+    setStateSessions(sessionsToUse);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
@@ -130,9 +112,9 @@ const Content = () => {
   });
 
   const submitVote = (yesVote, id) => {
-    const index = sessions.findIndex(s => s.sessionId === id);
-    if (sessions[index].vote !== yesVote) {
-      sessions[index].vote = yesVote;
+    const index = sessionsToUse.findIndex(s => s.sessionId === id);
+    if (sessionsToUse[index].vote !== yesVote) {
+      sessionsToUse[index].vote = yesVote;
       toastId = ButterToast.raise({
         sticky: false,
         content: (
@@ -155,6 +137,25 @@ const Content = () => {
       });
     }
   };
+  const {
+    loading: sessionsLoading,
+    error: sessionsError,
+    data: sessionsData,
+  } = useQuery(GET_SESSIONS, {
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
+  });
+
+  if (sessionsLoading) return null;
+  if (sessionsError) return null;
+
+  const root = sessionsData.sessions.me.voting;
+
+  const { totalSubmitted } = root;
+  const rootSessions = root.voted;
+  const totalRemaining = totalSubmitted - rootSessions.length;
+  const totalVotedOn = rootSessions.length;
+
+  sessionsToUse = rootSessions;
 
   const converter = new MarkdownIt();
   return (
@@ -164,7 +165,7 @@ const Content = () => {
         forwardLink="/wi/session/voting/vote"
       />
       <SessionsContainer>
-        {_.sortBy(sessions, s => s.title.toLowerCase()).map(s => {
+        {_.sortBy(sessionsToUse, s => s.title.toLowerCase()).map(s => {
           return (
             <SessionContainer key={s.id}>
               <h4>{s.title}</h4>
