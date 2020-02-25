@@ -1,2 +1,3 @@
 User-agent: * 
 Disallow: 
+Sitemap: https://www.thatconference.com/sitemap.xml

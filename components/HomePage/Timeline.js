@@ -168,7 +168,7 @@ const TimelineSection = ({ event, className }) => {
       };
     })
     .sortBy(m => {
-      return moment(m.due);
+      return moment(m.due, 'MM/DD/YY');
     })
     .value();
 
@@ -213,6 +213,7 @@ const TimelineSection = ({ event, className }) => {
           src="/images/moose_with_lantern.png"
           haveLink={haveLink}
           loading="lazy"
+          alt="THAT Conference Timeline"
         />
       </Content>
     </Main>

@@ -85,7 +85,7 @@ const CounselorSelection = () => {
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1}>
-            <Link href="call-for-counselors">
+            <Link href="call-for-counselors" prefetch={false}>
               <BackLink>
                 <BackArrow
                   icon="fullArrow"

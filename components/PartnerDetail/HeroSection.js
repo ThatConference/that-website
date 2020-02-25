@@ -39,9 +39,14 @@ const BackToPartnersLink = styled.a`
     margin-left: 0.5rem;
   }
 
+  ${below.xlarge`
+    margin-left: 6rem;
+  `};
+
   ${below.med`
     margin-top: 16rem;
     padding: 0 2rem;
+    margin-left: 2rem;
   `};
 `;
 

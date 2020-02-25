@@ -47,7 +47,7 @@ const CallForCounselors = ({ featureKeyword }) => {
               is the one stop show of dates, places and related travel goodness
               to help get you to camp!"
       />
-      <Header featureKeyword={featureKeyword} />
+      <Header />
       <SummerCamp />
       {/* TO DO: commenting out until we have past sessions in place */}
       {/* <TalkIdeas /> */}

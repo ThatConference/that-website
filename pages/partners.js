@@ -98,7 +98,10 @@ const partners = () => {
             </p>
           </Cell>
           <ImageCell>
-            <HighlightImage src="/images/moose_with_lantern.png" />
+            <HighlightImage
+              src="/images/moose_with_lantern.png"
+              alt="THAT Partners"
+            />
           </ImageCell>
         </Grid>
       </ContentSection>
@@ -109,7 +112,11 @@ const partners = () => {
             partner => {
               return (
                 <PaddedImageContainer key={partner.id}>
-                  <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+                  <Link
+                    href="/partner/[slug]"
+                    as={`/partner/${partner.slug}`}
+                    prefetch={false}
+                  >
                     <Image
                       src={partner.companyLogo}
                       alt={partner.companyName}

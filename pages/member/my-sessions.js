@@ -71,7 +71,7 @@ const MySessions = ({ user, loading }) => {
                   read a good abstract and this might be the first thing a
                   camper knows about you. Not sure which topic to present?
                   Submit more than one! We’ll pick the coolest ones on April
-                  17th.
+                  13th.
                 </p>
                 <LinkButton
                   label="Create a New Session"

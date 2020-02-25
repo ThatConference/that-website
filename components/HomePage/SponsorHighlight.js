@@ -120,7 +120,11 @@ const SponsorHighlight = ({ className, eventSlug }) => {
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
-        <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
+        <HighlightImage
+          src="/images/octopus_with_flag.png"
+          loading="lazy"
+          alt="THAT Partners"
+        />
         <SideDetail>
           {havePartners && (
             <FeaturedPartners>
@@ -128,8 +132,9 @@ const SponsorHighlight = ({ className, eventSlug }) => {
               {partners.map(s => (
                 <Link
                   key={s.id}
-                  href="/wi/partner/[slug]"
-                  as={`/wi/partner/${s.slug}`}
+                  href="/partner/[slug]"
+                  as={`/partner/${s.slug}`}
+                  prefetch={false}
                 >
                   <PartnerLogo
                     src={s.companyLogo}

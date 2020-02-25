@@ -125,7 +125,10 @@ const contact = () => {
             </p>
           </Cell>
           <ImageCell>
-            <HighlightImage src="/images/sasquatch_kayaking.png" />
+            <HighlightImage
+              src="/images/sasquatch_kayaking.png"
+              alt="Plan Your THAT Trip"
+            />
           </ImageCell>
         </Grid>
       </ContentSection>

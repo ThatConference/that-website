@@ -17,6 +17,7 @@ const PartnerH3 = styled.h3`
 const SasquatchCanoeImage = styled.img`
   width: 100%;
   margin-left: 5rem;
+  transform: scaleX(-1);
 
   ${below.small`
     margin-left: 0;
@@ -29,22 +30,17 @@ const SasquatchCanoeImage = styled.img`
 `;
 
 const SasquatchStandingImage = styled.img`
-  height: 50rem;
+  height: 40rem;
 `;
 
 const SasquatchCloseUpCanoeImage = styled.img`
   margin-top: 5rem;
   height: 30rem;
+  transform: scaleX(-1);
 
   ${below.large`
     height: 20rem;
   `};
-`;
-
-const NeedInfoH4 = styled.h4`
-  margin-bottom: 0;
-  margin-top: 6rem;
-  margin-left: 2rem;
 `;
 
 class ScriptInjector extends Component {
@@ -127,7 +123,10 @@ const becomeAPartner = () => (
         </Cell>
         <Cell style={{ textAlign: 'center' }}>
           <div>
-            <SasquatchCanoeImage src="/images/sasquatch_kayaking.png" />
+            <SasquatchCanoeImage
+              src="/images/sasquatch_kayaking.png"
+              alt="Becoming A THAT Partner"
+            />
           </div>
         </Cell>
       </Grid>
@@ -147,10 +146,13 @@ const becomeAPartner = () => (
     </ContentSection>
 
     <ContentSection>
-      <div style={{ marginBottom: '7rem' }}>
+      <div>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
-          <Cell centered>
-            <SasquatchStandingImage src="/images/sasquatch_with_badge.png" />
+          <Cell center>
+            <SasquatchStandingImage
+              src="/images/sassy_with_badge.svg"
+              alt="Community Interaction"
+            />
           </Cell>
           <Cell>
             <div style={{ maxWidth: '65rem' }}>
@@ -187,14 +189,14 @@ const becomeAPartner = () => (
             </span>
           </div>
           <div className="centered-text">
-            <SasquatchCloseUpCanoeImage src="/images/sasquatch_close_up.png" />
+            <SasquatchCloseUpCanoeImage
+              src="/images/sasquatch_close_up.png"
+              alt="Get THAT Prospectus"
+            />
           </div>
         </Cell>
         <Cell>
           <div>
-            <NeedInfoH4 className="font-light">
-              WE NEED A LITTLE INFO FIRST
-            </NeedInfoH4>
             <ScriptInjector />
           </div>
         </Cell>

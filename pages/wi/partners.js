@@ -130,7 +130,11 @@ const renderPartner = (
       height={containerHeight}
       key={partner.id}
     >
-      <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+      <Link
+        href="/partner/[slug]"
+        as={`/partner/${partner.slug}`}
+        prefetch={false}
+      >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
@@ -208,7 +212,7 @@ const partnerListing = () => {
             </ActionButtons>
           </Cell>
           <Cell center>
-            <RobotImage src="/images/robot.png" />
+            <RobotImage src="/images/robot.png" alt="Become A THAT Partner" />
           </Cell>
         </Grid>
       </TopContentSection>

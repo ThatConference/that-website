@@ -122,7 +122,7 @@ const MenuIcon = styled.div`
     content: '';
     display: block;
     height: 0.6rem;
-    margin: 0.7rem 0;
+    margin: 0.65rem 0;
     transition: all 0.3s ease-in-out;
   }
 
@@ -160,7 +160,14 @@ const HeaderLogo = ({ layered }) => {
   );
 };
 
-const Header = ({ className, layered, user, loading }) => {
+const Header = ({
+  className,
+  layered,
+  user,
+  loading,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+}) => {
   const {
     loading: eventLoading,
     error: eventError,
@@ -173,9 +180,7 @@ const Header = ({ className, layered, user, loading }) => {
   if (eventError) return null;
 
   const { event } = eventData.events;
-
   const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setScrollY(window.pageYOffset);

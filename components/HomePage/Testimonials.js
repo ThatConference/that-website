@@ -55,6 +55,10 @@ const ContentGrid = styled(Grid)`
 const HighlightImage = styled.img`
   max-width: 55rem;
 
+  ${below.larger`
+    max-width: 100%;
+  `};
+
   ${below.xsmall`
     max-width: 30rem;
   `};
@@ -90,7 +94,11 @@ const Testimonials = ({ className }) => {
     <ContentSection className={className}>
       <ContentGrid columns={gridRepeat.small}>
         <Cell>
-          <HighlightImage src={testimonial.imageUrl} loading="lazy" />
+          <HighlightImage
+            src={testimonial.imageUrl}
+            loading="lazy"
+            alt="THAT Conference Highlight"
+          />
         </Cell>
         <Cell style={{ direction: 'ltr' }}>
           <Detail>

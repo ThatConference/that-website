@@ -17,10 +17,13 @@ const NavList = styled.div`
     background-color: ${({ theme }) => theme.colors.white};
     flex-direction: column;
     width: 100vw;
-    height: calc(100vh - 20rem);
+    height: calc(100vh - 14rem);
     left: 0;
-    top: 20rem;
-    padding-top: 2rem;
+    top: 18rem;
+
+    a:first-child {
+      padding-top: 2rem;
+    }
   `};
 `;
 
