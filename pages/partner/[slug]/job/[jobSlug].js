@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { NextSeo } from 'next-seo';
+import { NextSeo, JobPostingJsonLd } from 'next-seo';
 import LinkButton from '../../../../components/shared/LinkButton';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
@@ -182,6 +182,16 @@ const jobDetail = () => {
         openGraph={{
           images: [{ url: partner.companyLogo }],
         }}
+      />
+      <JobPostingJsonLd
+        description={job.description}
+        hiringOrganization={{
+          name: partner.companyName,
+          sameAs: partner.website,
+        }}
+        title={job.title}
+        employmentType={job.type}
+        jobLocationType="TELECOMMUTE"
       />
 
       <ContentSection>
