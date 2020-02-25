@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 
+import LoadingIndicator from '../../../shared/LoadingIndicator';
 import NavLinks from '../Shared/NavLinks';
 import Thumbs from '../Shared/Thumbs';
 import Stats from '../Shared/Stats';
@@ -61,30 +62,10 @@ const CAST_VOTE = gql`
 `;
 
 const Content = () => {
-  const {
-    loading: sessionsLoading,
-    error: sessionsError,
-    data: sessionsData,
-  } = useQuery(GET_SESSIONS, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
-  });
-
-  if (sessionsLoading) return null;
-  if (sessionsError) return null;
-
   const [notes, setNotes] = useState('');
   const [value, setValue] = useState(0);
 
-  const root = sessionsData.sessions.me.voting;
-
   let toastId = null;
-
-  const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length - (value + 1);
-  const totalVotedOn = totalSubmitted - totalRemaining;
-
-  const session = root.unVoted ? root.unVoted[value] : null;
-
   const forceUpdate = () => {
     ButterToast.dismiss(toastId);
     ButterToast.raise({
@@ -98,6 +79,7 @@ const Content = () => {
       ),
     });
     setValue(value + 1);
+    window.scrollTo(0, 0);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
@@ -106,6 +88,31 @@ const Content = () => {
       throw new Error(createError);
     },
   });
+
+  const {
+    loading: sessionsLoading,
+    error: sessionsError,
+    data: sessionsData,
+  } = useQuery(GET_SESSIONS, {
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
+  });
+
+  if (sessionsLoading) {
+    return (
+      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
+        <LoadingIndicator />
+      </div>
+    );
+  }
+  if (sessionsError) throw new Error(sessionsError);
+
+  const root = sessionsData.sessions.me.voting;
+
+  const { totalSubmitted } = root;
+  const totalRemaining = root.unVoted.length - (value + 1);
+  const totalVotedOn = totalSubmitted - totalRemaining;
+
+  const session = root.unVoted ? root.unVoted[value] : null;
 
   if (session) {
     const submitVote = yesVote => {
