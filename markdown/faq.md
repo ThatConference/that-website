@@ -19,7 +19,7 @@ Many of you have contacted us and asked questions and many of the questions have
 
 <a href="#q4" name="q4" class="faq-link">**Q: Will THAT Conference pay my travel expenses if I am selected to be a Counselor?**</a>
 
-**A:** No. We are conference run by a small team of dedicated volunteers. We do not have the financial ability to pay travel expenses for our Counselors outside of the 2 night room compensation (3 nights max per family, base rate).
+**A:** No. We are a conference run by a small team of dedicated volunteers. We do not have the financial ability to pay travel expenses for our Counselors outside of the 2 night room compensation (3 nights max per family, base rate).
 
 #### Tickets & Food
 
@@ -117,7 +117,7 @@ If you absolutely cannot find anyone to transfer your ticket to, all cancellatio
 
 <a href="#q27" name="q27" class="faq-link">**Q: What is the dress code like?**</a>
 
-**A:** We would like all attendees to be comfortable during the sessions at THAT Conference and we are at a resort. The dress code is casual but please be mindful that this is a professional community conference and, while not the primary focus, there are some family sessions included in the schedule so children may be in the conference areas. We do recommend to dress in layers as temperatures can vary through out the conference area.
+**A:** We would like all attendees to be comfortable during the sessions at THAT Conference and we are at a resort. The dress code is casual but please be mindful that this is a professional community conference and, while not the primary focus, there are some family sessions included in the schedule so children may be in the conference areas. We do recommend to dress in layers as temperatures can vary throughout the conference area.
 
 <a href="#q28" name="q28" class="faq-link">**Q: When are the sessions held?**</a>
 
