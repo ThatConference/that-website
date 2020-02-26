@@ -8,25 +8,28 @@ const OMIT_FILES = [
   'pages/_app.js',
   'pages/_document.js',
   'pages/_error.js',
-  'pages/api/me.js',
-  'pages/api/logout.js',
-  'pages/api/login.js',
-  'pages/api/callback.js',
-  'pages/work-in-progress.js',
-  'pages/wi/[markdown].js',
-  'pages/samples/sample-form.js',
-  'pages/samples/toggle-page.js',
-  'pages/[post].js',
   'pages/[memberSlug].js',
+  'pages/[post].js',
   'pages/[sessionId].js',
   'pages/[slug].js',
+  'pages/api/callback.js',
+  'pages/api/login.js',
+  'pages/api/logout.js',
+  'pages/api/me.js',
+  'pages/blog/[post].js',
+  'pages/member/[memberSlug].js',
+  'pages/member/session-edit/[sessionId].js',
+  'pages/member/session-preview/[sessionId].js',
+  'pages/partner/[slug].js',
+  'pages/samples/sample-form.js',
+  'pages/samples/toggle-page.js',
+  'pages/wi/[markdown].js',
+  'pages/work-in-progress.js',
 ];
 
 const walkSync = details => {
   const fileObj = [];
-
   const filesFound = glob.sync(`${details.dir}/**/*.${details.ext}`);
-  // console.log('filesFound', filesFound);
 
   filesFound.forEach(file => {
     if (OMIT_FILES.includes(file)) return;
@@ -53,7 +56,7 @@ const walkSync = details => {
       ...walkSync({ dir: 'markdown', ext: 'md' }),
     ];
 
-    fs.writeFileSync('./siteMap/siteMap.json', JSON.stringify(allStaticFiles), {
+    fs.writeFileSync('./sitemap/pages.json', JSON.stringify(allStaticFiles), {
       encoding: 'utf8',
       flag: 'w',
     });

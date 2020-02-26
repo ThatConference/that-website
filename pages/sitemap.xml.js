@@ -1,4 +1,5 @@
 import moment from 'moment';
+import pages from '../sitemap/pages.json';
 
 const getXml = pageValues => {
   const pageName = pageValues.page.replace('/markdown', '');
@@ -11,7 +12,7 @@ const getXml = pageValues => {
   `;
 };
 
-const sitemapXml = ({ pages }) => {
+const sitemapXml = () => {
   return `
     <urlset
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
@@ -29,11 +30,8 @@ const Sitemap = () => {
 };
 
 Sitemap.getInitialProps = async ({ res }) => {
-  const apiResponse = await fetch('/api/sitemap');
-  const json = await apiResponse.json();
-
   res.writeHead(200, { 'Content-Type': 'text/xml' });
-  res.write(sitemapXml({ pages: json }));
+  res.write(sitemapXml());
   res.end();
 };
 

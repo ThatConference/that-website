@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev": "next ./ -p 3001",
-    "postbuild": "node ./siteMap/createSiteMap.js",
+    "postbuild": "node ./sitemap/createSitemap.js",
     "build": "next build",
     "now-build": "npm run validate",
     "start": "next start -p 4000",

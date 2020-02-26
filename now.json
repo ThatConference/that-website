@@ -21,10 +21,5 @@
       "SESSION_COOKIE_DOMAIN": "@thatwebsite_session_cookie_domain",
       "CURRENT_EVENT_ID": "ByE7Dc7eCGcRFzLhWhuI"
     }
-  },
-  "functions": {
-    "pages/api/sitemap.js": {
-      "includeFiles": "markdown/**"
-    }
   }
 }
