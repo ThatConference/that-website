@@ -273,7 +273,7 @@ function PartnerDetail() {
         <LoadingIndicator />
       </ContentSection>
     );
-  if (error) return null;
+  if (error) throw new Error(error);
 
   const { partnerBySlug: partner } = data.partners;
 

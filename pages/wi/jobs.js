@@ -133,7 +133,7 @@ const jobs = () => {
   });
 
   if (loading) return <LoadingIndicator />;
-  if (error) throw error;
+  if (error) throw new Error(error);
 
   const { partners } = data.events.event.get;
   const filteredPartners = partners.filter(p => p.jobListings.length);

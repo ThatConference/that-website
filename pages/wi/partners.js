@@ -148,7 +148,7 @@ const partnerListing = () => {
   }
   if (error) {
     dlog('error %o', error);
-    throw error;
+    throw new Error(error);
   }
 
   dlog('data %o', data.events.event.get.partners);

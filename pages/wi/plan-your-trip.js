@@ -10,6 +10,7 @@ import { below, gridRepeat } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import TimelineSection from '../../components/HomePage/Timeline';
 
 const GET_EVENT = gql`
@@ -84,6 +85,10 @@ const HighlightImage = styled.img`
 `;
 
 const contact = () => {
+  let event = {};
+  let formattedStartDate;
+  let formattedEndDate;
+
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: process.env.CURRENT_EVENT_ID },
     onCompleted(d) {
@@ -91,17 +96,15 @@ const contact = () => {
     },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (error) throw new Error(error);
 
-  const { event } = data.events;
-
-  const formattedStartDate = moment(event.get.startDate).format(
-    'dddd, MMMM D, YYYY',
-  );
-  const formattedEndDate = moment(event.get.endDate).format(
-    'dddd, MMMM D, YYYY',
-  );
+  if (!loading) {
+    event = data.events.event;
+    formattedStartDate = moment(event.get.startDate).format(
+      'dddd, MMMM D, YYYY',
+    );
+    formattedEndDate = moment(event.get.endDate).format('dddd, MMMM D, YYYY');
+  }
 
   return (
     <>
@@ -134,62 +137,65 @@ const contact = () => {
       </ContentSection>
 
       <ContentSection>
-        <Grid columns={gridRepeat.xsmall} alignContent="center">
-          <StyledImageContainer>
-            <Title>When</Title>
-            <p style={{ flexGrow: '2' }}>
-              {formattedStartDate} -
-              <br />
-              {formattedEndDate}
-            </p>
-            <LinkButton
-              href="/wi/tickets"
-              label="Ticket Options"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-          <StyledImageContainer>
-            <Title>Where</Title>
-            <p style={{ flexGrow: '2' }}>
-              <strong>{event.get.venues[0].name}</strong>
-              <br />
-              {event.get.venues[0].address}
-              <br />
-              {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
-            </p>
-            <LinkButton
-              href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
-              label="X Marks The Spot"
-              target="_blank"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-          <StyledImageContainer>
-            <Title>Other Accommodations</Title>
-            <p>
-              Besides the Kalahari we partner with other great locations to
-              bring you the best rates to stay while at THAT. Checkout all the
-              options.
-            </p>
-            <LinkButton
-              href="#where-to-stay"
-              label="Where To Stay"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-        </Grid>
+        {loading && <LoadingIndicator />}
+        {!loading && (
+          <Grid columns={gridRepeat.xsmall} alignContent="center">
+            <StyledImageContainer>
+              <Title>When</Title>
+              <p style={{ flexGrow: '2' }}>
+                {formattedStartDate} -
+                <br />
+                {formattedEndDate}
+              </p>
+              <LinkButton
+                href="/wi/tickets"
+                label="Ticket Options"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+            <StyledImageContainer>
+              <Title>Where</Title>
+              <p style={{ flexGrow: '2' }}>
+                <strong>{event.get.venues[0].name}</strong>
+                <br />
+                {event.get.venues[0].address}
+                <br />
+                {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
+              </p>
+              <LinkButton
+                href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
+                label="X Marks The Spot"
+                target="_blank"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+            <StyledImageContainer>
+              <Title>Other Accommodations</Title>
+              <p>
+                Besides the Kalahari we partner with other great locations to
+                bring you the best rates to stay while at THAT. Checkout all the
+                options.
+              </p>
+              <LinkButton
+                href="#where-to-stay"
+                label="Where To Stay"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+          </Grid>
+        )}
       </ContentSection>
       <ContentSection>
         <h3 className="font-dark" style={{ marginTop: '0' }}>
@@ -214,7 +220,7 @@ const contact = () => {
         shuttle from the airports? Unfortunately no but I would suggest jumping
         on Slack and see if anyone is interested in ride sharing.
       </ContentSection>
-      <TimelineSection event={event} />
+      {!loading && <TimelineSection event={event} />}
       <ContentSection id="where-to-stay">
         <h3 className="font-dark" style={{ marginTop: '0' }}>
           Pitching Tents

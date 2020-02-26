@@ -7,10 +7,9 @@ import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import debug from 'debug';
-
 import { sessionConstants, below } from '../../utilities';
-
 import { FormRule, FormCancel, FormSubmit } from './FormLayout';
+import LoadingIndicator from './LoadingIndicator';
 
 const dlog = debug('that:session:preview');
 
@@ -155,8 +154,8 @@ const Preview = ({ sessionId, formCancel }) => {
     variables: { sessionId },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading) return <LoadingIndicator />;
+  if (error) throw new Error(error);
 
   const { session } = data.sessions.me;
   const hasBeenSubmitted = session.status === 'SUBMITTED';
