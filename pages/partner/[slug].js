@@ -49,7 +49,7 @@ const GET_PARTNER = gql`
         vlog
         city
         state
-        jobListings {
+        jobListings(isFeatured: true) {
           id
           title
           description
@@ -60,13 +60,11 @@ const GET_PARTNER = gql`
           firstName
           lastName
           jobTitle
-          isSponsoredFeatured
           partnerFeaturedOrder
           profileImage
         }
         sessions {
           id
-          isSponsored
           title
           shortDescription
           speakers {

@@ -79,24 +79,20 @@ const renderMember = member => {
 };
 
 const MainLogoSection = ({ partner }) => {
-  let { members } = partner;
-  if (members && members.length && members.length > 0) {
-    members = _.chain(members)
-      .filter(m => m.isSponsoredFeatured)
-      .orderBy(members, ['partnerFeaturedOrder', 'asc'])
-      .value();
-  }
-
-  const sortedMembers = _.sortBy(members, 'firstName');
+  const { members } = partner;
+  const sortedMembers = _.sortBy(members, [
+    'partnerFeaturedOrder',
+    'firstName',
+  ]);
 
   return (
     <ContentSection backgroundColor="lightGray">
       <LogoMemberSection>
         <PartnerLogoWithInfo
           partner={partner}
-          alignment={_.isEmpty(partner.members) ? 'center' : 'flex-start'}
+          alignment={_.isEmpty(sortedMembers) ? 'center' : 'flex-start'}
         />
-        {!_.isEmpty(partner.members) && (
+        {!_.isEmpty(sortedMembers) && (
           <SayHiDetail>
             <PartnerDetailSubHeading>
               Who to Say Hi to During THAT Conference
