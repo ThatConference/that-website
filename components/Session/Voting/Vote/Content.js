@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
+import { HotKeys } from 'react-hotkeys';
 
 import LoadingIndicator from '../../../shared/LoadingIndicator';
 import NavLinks from '../Shared/NavLinks';
@@ -11,6 +12,12 @@ import Thumbs from '../Shared/Thumbs';
 import Stats from '../Shared/Stats';
 
 const MarkdownIt = require('markdown-it');
+
+const HotKeysStyled = styled(HotKeys)`
+  &:focus {
+    outline: none;
+  }
+`;
 
 const MainContent = styled.div`
   margin-top: 0rem;
@@ -79,6 +86,7 @@ const Content = () => {
       ),
     });
     setValue(value + 1);
+    setNotes('');
     window.scrollTo(0, 0);
   };
 
@@ -88,6 +96,17 @@ const Content = () => {
       throw new Error(createError);
     },
   });
+
+  const handlers = {
+    VOTE_YES: React.useCallback(() => {
+      // eslint-disable-next-line no-use-before-define
+      submitVote(true);
+    }, []),
+    VOTE_NO: React.useCallback(() => {
+      // eslint-disable-next-line no-use-before-define
+      submitVote(false);
+    }, []),
+  };
 
   const {
     loading: sessionsLoading,
@@ -109,82 +128,86 @@ const Content = () => {
   const root = sessionsData.sessions.me.voting;
 
   const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length - (value + 1);
+  const totalRemaining = root.unVoted.length - value;
   const totalVotedOn = totalSubmitted - totalRemaining;
 
   const session = root.unVoted ? root.unVoted[value] : null;
 
-  if (session) {
-    const submitVote = yesVote => {
-      toastId = ButterToast.raise({
-        sticky: false,
-        content: (
-          <Cinnamon.Crisp
-            scheme={Cinnamon.Crisp.SCHEME_BLUE}
-            content={() => <div>Casting Vote...</div>}
-            title="Vote"
-          />
-        ),
-      });
-      const vars = {
-        eventId: process.env.CURRENT_EVENT_ID,
-        vote: {
-          sessionId: session.id,
-          vote: yesVote,
-          notes,
-        },
-      };
-      castVote({
-        variables: vars,
-      });
+  const submitVote = yesVote => {
+    toastId = ButterToast.raise({
+      sticky: false,
+      content: (
+        <Cinnamon.Crisp
+          scheme={Cinnamon.Crisp.SCHEME_BLUE}
+          content={() => <div>Casting Vote...</div>}
+          title="Vote"
+        />
+      ),
+    });
+    const vars = {
+      eventId: process.env.CURRENT_EVENT_ID,
+      vote: {
+        sessionId: session.id,
+        vote: yesVote,
+        notes,
+      },
     };
+    castVote({
+      variables: vars,
+    });
+  };
 
+  if (session) {
     const converter = new MarkdownIt();
     return (
-      <MainContent>
-        <NavLinks
-          forwardLabel="Review Your Votes"
-          forwardLink="/wi/session/voting/review"
-        />
-        <h3>{session.title}</h3>
-        <Section>{parse(converter.render(session.longDescription))}</Section>
-        {session.takeaways && (
+      <HotKeysStyled handlers={handlers}>
+        <MainContent>
+          <NavLinks
+            showForwardLink={totalVotedOn > 0}
+            forwardLabel="Review Your Votes"
+            forwardLink="/wi/session/voting/review"
+          />
+          <h3>{session.title}</h3>
+          <Section>{parse(converter.render(session.longDescription))}</Section>
+          {session.takeaways && (
+            <Section>
+              <DetailsHeader>Key Takeaways</DetailsHeader>
+              <ul>
+                {session.takeaways.map(s => {
+                  return (
+                    <React.Fragment key={s}>
+                      <li>{s}</li>
+                    </React.Fragment>
+                  );
+                })}
+              </ul>
+            </Section>
+          )}
           <Section>
-            <DetailsHeader>Key Takeaways</DetailsHeader>
-            <ul>
-              {session.takeaways.map(s => {
-                return (
-                  <React.Fragment key={s}>
-                    <li>{s}</li>
-                  </React.Fragment>
-                );
-              })}
-            </ul>
+            <DetailsHeader>Organizer Feedback</DetailsHeader>
+            <form className="input-form">
+              <textarea
+                rows="5"
+                value={notes}
+                onChange={event => setNotes(event.target.value)}
+              />
+            </form>
           </Section>
-        )}
-        <Section>
-          <DetailsHeader>Organizer Feedback</DetailsHeader>
-          <form className="input-form">
-            <textarea
-              rows="5"
-              onChange={event => setNotes(event.target.value)}
-            />
-          </form>
-        </Section>
-        <Thumbs iconHeight="15rem" submit={submitVote} />
-        <Stats
-          totalSubmitted={totalSubmitted}
-          totalVotedOn={totalVotedOn}
-          totalRemaining={totalRemaining}
-        />
-        <ButterToast
-          className="that-toast"
-          position={{
-            vertical: POS_TOP,
-            horizontal: POS_RIGHT,
-          }}
-        />
-      </MainContent>
+          <Thumbs iconHeight="15rem" submit={submitVote} />
+          <Stats
+            totalSubmitted={totalSubmitted}
+            totalVotedOn={totalVotedOn}
+            totalRemaining={totalRemaining}
+          />
+          <ButterToast
+            className="that-toast"
+            position={{
+              vertical: POS_TOP,
+              horizontal: POS_RIGHT,
+            }}
+          />
+        </MainContent>
+      </HotKeysStyled>
     );
   }
 
