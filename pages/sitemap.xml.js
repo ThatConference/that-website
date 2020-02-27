@@ -1,5 +1,5 @@
+/* eslint-disable global-require */
 import moment from 'moment';
-import pages from '../sitemap/pages.json';
 
 const getXml = pageValues => {
   const pageName = pageValues.page.replace('/markdown', '');
@@ -13,6 +13,8 @@ const getXml = pageValues => {
 };
 
 const sitemapXml = () => {
+  const pages = require('../sitemap/pages.json');
+
   return `
     <urlset
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"

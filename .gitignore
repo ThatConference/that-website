@@ -19,3 +19,6 @@ node_modules/
 .env
 .next
 .env.build
+
+# just keep out the seo stuff from the build action
+sitemap/pages.json

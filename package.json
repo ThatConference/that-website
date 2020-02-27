@@ -6,14 +6,15 @@
   },
   "scripts": {
     "dev": "next ./ -p 3001",
-    "postbuild": "node ./sitemap/createSitemap.js",
+    "prebuild": "node ./sitemap/createSitemap.js",
     "build": "next build",
     "now-build": "npm run validate",
     "start": "next start -p 4000",
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint '**/*.js'",
-    "validate": "concurrently npm:test npm:lint npm:build"
+    "prevalidate": "npm run build",
+    "validate": "concurrently npm:test npm:lint"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
