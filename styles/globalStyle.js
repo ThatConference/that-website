@@ -24,6 +24,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
+    position: relative;
+    min-height: 100%;
   }
 
   h1, h2, h3 {
@@ -47,6 +49,10 @@ const GlobalStyle = createGlobalStyle`
 
     ${below.med`
       font-size: 9rem;
+    `};
+
+    ${below.small`
+      font-size: 7rem;
     `};
   }
 
@@ -93,8 +99,26 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   
-  p { 
+  p, pre { 
     color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  pre {
+    font-family: 'Open Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    // font-size: 1.5rem;
+    white-space: pre-wrap;
+    line-height: 2;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    font-size: 10px;
+    
+    scroll-behavior: smooth;
   }
 
   .large-body-copy {
@@ -203,6 +227,22 @@ const GlobalStyle = createGlobalStyle`
     } //input-form
 
   } //form
+
+  @-webkit-keyframes BackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  @-moz-keyframes BackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  @keyframes BackgroundAnimation {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
 `;
 
 export default GlobalStyle;

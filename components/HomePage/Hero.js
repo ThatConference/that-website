@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
+import { ActionButtonRow } from '../shared/StandardStyles';
 
 import { below, above } from '../../utilities';
 
@@ -35,29 +36,6 @@ const Description = styled.p`
   text-align: center;
   padding: 3rem 0 6rem;
   max-width: 110rem;
-`;
-
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
 `;
 
 const HeroImage = styled.img`
@@ -130,7 +108,7 @@ const Hero = ({ event, className }) => {
             August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
           <Slogan>{event.get.slogan}</Slogan>
-          <ActionButtons>
+          <ActionButtonRow>
             <LinkButton
               href="wi/tickets"
               label="Ticket Options"
@@ -161,7 +139,7 @@ const Hero = ({ event, className }) => {
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
         <HeroImage
           src="images/clark_stage.jpg"

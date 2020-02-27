@@ -7,12 +7,18 @@ import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
 import _ from 'lodash';
 import { NextSeo } from 'next-seo';
-import LayeredHeaderLayout from '../../components/layouts/layeredHeader';
+import pluralize from 'pluralize';
 import ContentSection from '../../components/shared/ContentSection';
 import Icon from '../../components/shared/Icon';
 import HeroSection from '../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
 import PartnerDetailSubHeading from '../../components/PartnerDetail/PartnerDetailSubHeading';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import LinkButton from '../../components/shared/LinkButton';
+import {
+  ActionButtonRow,
+  StyledP,
+} from '../../components/shared/StandardStyles';
 
 import { below, gridRepeat } from '../../utilities';
 
@@ -28,6 +34,8 @@ const GET_PARTNER = gql`
         website
         goals
         aboutUs
+        city
+        state
         contactNumber
         linkedIn
         github
@@ -41,23 +49,22 @@ const GET_PARTNER = gql`
         vlog
         city
         state
-        jobListings {
+        jobListings(isFeatured: true) {
           id
           title
           description
+          slug
         }
         members {
           id
           firstName
           lastName
           jobTitle
-          isSponsoredFeatured
           partnerFeaturedOrder
           profileImage
         }
         sessions {
           id
-          isSponsored
           title
           shortDescription
           speakers {
@@ -80,22 +87,17 @@ const MainGrid = styled(Grid)`
   grid-gap: 3rem;
 `;
 
-const StyledP = styled.p`
-  padding-right: 1rem;
-  margin-top: 0;
-  font-weight: 200;
-  line-height: 1.6;
-
-  ${below.med`
-    margin-top: 0;
-  `};
-`;
-
 const JobDescription = styled.p`
+  position: relative;
   padding-right: 1rem;
   margin-top: 0;
   font-weight: 200;
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
 
   ${below.med`
     margin-top: 0;
@@ -124,12 +126,19 @@ const Title = styled.h5`
 
 const ViewLink = styled.a`
   font-size: 1.4rem;
-  float: left;
+  width: 100%;
   color: ${({ theme }) => theme.colors.thatBlue};
+  fill: ${({ theme }) => theme.colors.thatBlue};
+
   svg {
     vertical-align: middle;
     height: 2rem;
     margin-left: 1rem;
+  }
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+    fill: ${({ theme }) => theme.colors.highlight};
   }
 `;
 
@@ -141,10 +150,6 @@ const Name = styled.p`
   font-weight: 400;
   margin-top: 1rem;
   text-align: center;
-`;
-
-const Arrow = styled(Icon)`
-  fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
 const Session = styled.div`
@@ -171,7 +176,7 @@ const SpeakerDetailBlock = styled.div`
 `;
 
 const ForwardArrow = () => (
-  <Arrow
+  <Icon
     icon="fullArrow"
     height="20"
     width="12"
@@ -199,6 +204,45 @@ const SpeakerDetail = ({ speaker }) => (
   </SpeakerDetailBlock>
 );
 
+const getCityState = ({ partner }) => {
+  if (partner.city || partner.state) {
+    return <p>{`${partner.city}, ${partner.state}`}</p>;
+  }
+  return '';
+};
+
+const CompanyNotFound = () => (
+  <ContentSection
+    style={{
+      minHeight: '100vh',
+      display: 'flex',
+      alignContent: 'center',
+    }}
+  >
+    <h2>Not Yet a THAT Partner</h2>
+    <ActionButtonRow>
+      <LinkButton
+        href="/wi/become-a-partner"
+        label="Become a Partner"
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
+      <LinkButton
+        href="/partners"
+        label="View Past Partners"
+        color="thatBlue"
+        borderColor="thatBlue"
+        hoverBorderColor="thatBlue"
+        hoverColor="white"
+        hoverBackgroundColor="thatBlue"
+      />
+    </ActionButtonRow>
+  </ContentSection>
+);
+
 function PartnerDetail() {
   const router = useRouter();
 
@@ -206,19 +250,34 @@ function PartnerDetail() {
     variables: { slug: router.query.slug },
     onCompleted(d) {
       const partner = d.partners.partnerBySlug;
-      let hostName = new URL(partner.website).hostname;
-      if (hostName.toLowerCase().startsWith('www.')) {
-        hostName = hostName.replace('www.', '');
+      if (partner !== null) {
+        let hostName = new URL(partner.website).hostname;
+        if (hostName.toLowerCase().startsWith('www.')) {
+          hostName = hostName.replace('www.', '');
+        }
+        partner.hostName = hostName;
       }
-      partner.hostName = hostName;
       return partner;
     },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading)
+    return (
+      <ContentSection
+        style={{
+          minHeight: 'calc(100vh - 29rem)',
+          display: 'flex',
+          alignContent: 'center',
+        }}
+      >
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  if (error) throw new Error(error);
 
-  const partner = data.partners.partnerBySlug;
+  const { partnerBySlug: partner } = data.partners;
+
+  if (partner === null) return <CompanyNotFound />;
 
   const AboutUs = () => (
     <>
@@ -226,12 +285,16 @@ function PartnerDetail() {
         About {partner.companyName}
       </PartnerDetailSubHeading>
       <StyledP>{partner.aboutUs}</StyledP>
+      <StyledP>{getCityState({ partner })}</StyledP>
     </>
   );
 
   const Goals = () => (
     <>
-      <PartnerDetailSubHeading>Our Goals</PartnerDetailSubHeading>
+      <PartnerDetailSubHeading>{`Our ${pluralize(
+        'Goal',
+        partner.goals.length,
+      )}`}</PartnerDetailSubHeading>
       <GoalsList>
         {partner.goals && partner.goals.map(goal => <li key={goal}>{goal}</li>)}
       </GoalsList>
@@ -241,47 +304,55 @@ function PartnerDetail() {
   const Jobs = () => (
     <>
       <PartnerDetailSubHeading style={{ paddingTop: '3.5rem' }}>
-        Job Listings
+        {`Job ${pluralize('Listing', partner.jobListings.length)}`}
       </PartnerDetailSubHeading>
       {partner.jobListings &&
-        partner.jobListings.map(job => (
+        _.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(job => (
           <JobDiv key={job.id}>
             <Title>{job.title}</Title>
             <JobDescription>{job.description}</JobDescription>
+            <div>
+              <ViewLink href={`/partner/${partner.slug}/job/${job.slug}`}>
+                <span>View Job</span>
+                <ForwardArrow />
+              </ViewLink>
+            </div>
           </JobDiv>
         ))}
-      <ViewLink href="/">
+      <ViewLink href={`/partner/${partner.slug}/jobs`}>
         <span>View all Job Listings</span>
         <ForwardArrow />
       </ViewLink>
     </>
   );
 
+  const filteredSessions = partner.sessions.filter(i => i !== null);
   const Sessions = () => (
     <>
       <PartnerDetailSubHeading style={{ paddingTop: '3.5rem' }}>
-        Session By {partner.companyName}
+        {`${pluralize('Session', partner.sessions.length)} By ${
+          partner.companyName
+        }`}
       </PartnerDetailSubHeading>
-      {partner.sessions &&
-        partner.sessions
-          .filter(i => i !== null)
-          .map(session => (
-            <Session key={session.id}>
-              <Speaker>
-                {session.speakers.map(speaker => (
-                  <SpeakerDetail speaker={speaker} key={speaker.id} />
-                ))}
-              </Speaker>
-              <SessionDetail>
-                <Title>{session.title}</Title>
-                <StyledP>{session.shortDescription}</StyledP>
-                <ViewLink href="/">
+      {filteredSessions &&
+        _.sortBy(filteredSessions, s => s.title.toLowerCase()).map(session => (
+          <Session key={session.id}>
+            <Speaker>
+              {session.speakers.map(speaker => (
+                <SpeakerDetail speaker={speaker} key={speaker.id} />
+              ))}
+            </Speaker>
+            <SessionDetail>
+              <Title>{session.title}</Title>
+              <StyledP>{session.shortDescription}</StyledP>
+              {/* Uncomment once sessionb view is wired up */}
+              {/* <ViewLink href="/">
                   <span>View Session</span>
                   <ForwardArrow />
-                </ViewLink>
-              </SessionDetail>
-            </Session>
-          ))}
+                </ViewLink> */}
+            </SessionDetail>
+          </Session>
+        ))}
     </>
   );
 
@@ -321,6 +392,6 @@ function PartnerDetail() {
   );
 }
 
-PartnerDetail.Layout = LayeredHeaderLayout;
+PartnerDetail.headerType = 'layered';
 
 export default PartnerDetail;

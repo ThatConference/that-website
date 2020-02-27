@@ -50,6 +50,7 @@ const SayHiDetail = styled.div`
 const Member = styled(Cell)`
   display: flex;
   flex-direction: row;
+  height: auto;
 `;
 
 const MemberDetail = styled.div`
@@ -57,6 +58,7 @@ const MemberDetail = styled.div`
   flex-direction: column;
   padding-left: 2rem;
   justify-content: center;
+  max-height: 6rem;
 `;
 
 const renderMember = member => {
@@ -77,25 +79,26 @@ const renderMember = member => {
 };
 
 const MainLogoSection = ({ partner }) => {
-  let { members } = partner;
-  if (members && members.length && members.length > 0) {
-    members = _.chain(members)
-      .filter(m => m.isSponsoredFeatured)
-      .orderBy(members, ['partnerFeaturedOrder', 'asc'])
-      .value();
-  }
+  const { members } = partner;
+  const sortedMembers = _.sortBy(members, [
+    'partnerFeaturedOrder',
+    'firstName',
+  ]);
 
   return (
     <ContentSection backgroundColor="lightGray">
       <LogoMemberSection>
-        <PartnerLogoWithInfo partner={partner} />
-        {!_.isEmpty(partner.members) && (
+        <PartnerLogoWithInfo
+          partner={partner}
+          alignment={_.isEmpty(sortedMembers) ? 'center' : 'flex-start'}
+        />
+        {!_.isEmpty(sortedMembers) && (
           <SayHiDetail>
             <PartnerDetailSubHeading>
               Who to Say Hi to During THAT Conference
             </PartnerDetailSubHeading>
             <Grid columns={gridRepeat.xsmall}>
-              {members.map(member => {
+              {sortedMembers.map(member => {
                 return renderMember(member);
               })}
             </Grid>

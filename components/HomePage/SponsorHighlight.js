@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import LoadingIndicator from '../shared/LoadingIndicator';
 import { below, above } from '../../utilities';
 
 const HighlightImage = styled.img`
@@ -104,8 +105,14 @@ const SponsorHighlight = ({ className, eventSlug }) => {
     variables: { eventId: process.env.CURRENT_EVENT_ID, level: 'PIONEER' },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
+  if (error) throw new Error(error);
 
   const partners = data.events.event.partners.level.sort((a, b) => {
     if (a.placement < b.placement) {

@@ -145,7 +145,7 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
     return <LoadingIndicator />;
   }
 
-  if (error) return null;
+  if (error) throw new Error(error);
 
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;

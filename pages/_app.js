@@ -64,7 +64,7 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <Page displayFeature={displayFeature} layout={Component.Layout}>
+        <Page displayFeature={displayFeature} headerType={Component.headerType}>
           <Component {...pageProps} />
         </Page>
       </ApolloProvider>
