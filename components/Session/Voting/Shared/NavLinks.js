@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Link from 'next/link';
 import { below } from '../../../../utilities';
 import Icon from '../../../shared/Icon';
 
@@ -51,23 +50,21 @@ const ForwardArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
 `;
 
-const NavLinks = ({ forwardLabel, forwardLink }) => {
+const NavLinks = ({ showForwardLink, forwardLabel, forwardLink }) => {
   return (
     <>
-      <Link href="/wi/session/voting/start">
-        <BackLink>
-          <BackArrow
-            icon="fullArrow"
-            height="2rem"
-            width="2rem"
-            viewBoxHeight="100"
-            viewBoxWidth="100"
-          />
-          <span>Voting Help</span>
-        </BackLink>
-      </Link>
-      <Link href={forwardLink}>
-        <ForwardLink className="float-right">
+      <BackLink href="/wi/session/voting/start">
+        <BackArrow
+          icon="fullArrow"
+          height="2rem"
+          width="2rem"
+          viewBoxHeight="100"
+          viewBoxWidth="100"
+        />
+        <span>Voting Help</span>
+      </BackLink>
+      {showForwardLink !== false && (
+        <ForwardLink href={forwardLink} className="float-right">
           <span>{forwardLabel}</span>
           <ForwardArrow
             icon="fullArrow"
@@ -77,7 +74,7 @@ const NavLinks = ({ forwardLabel, forwardLink }) => {
             viewBoxWidth="100"
           />
         </ForwardLink>
-      </Link>
+      )}
     </>
   );
 };

@@ -168,7 +168,7 @@ const Content = () => {
   return (
     <MainContent>
       <NavLinks
-        forwardLabel="Continue Voting"
+        forwardLabel={totalVotedOn > 0 ? 'Continue Voting' : 'Start Voting'}
         forwardLink="/wi/session/voting/vote"
       />
       <SessionsContainer>
