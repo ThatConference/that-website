@@ -189,6 +189,7 @@ const jobDetail = () => {
           name: partner.companyName,
           sameAs: partner.website,
         }}
+        jobLocation={{}}
         title={job.title}
         employmentType={job.type}
         jobLocationType="TELECOMMUTE"
