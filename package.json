@@ -55,6 +55,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-facebook": "^8.1.4",
+    "react-hotkeys": "^2.0.0",
     "react-id-generator": "^3.0.0",
     "react-imgix": "^9.0.1",
     "react-scroll-parallax": "^2.3.1",
