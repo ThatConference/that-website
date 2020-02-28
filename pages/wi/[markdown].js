@@ -7,9 +7,11 @@ import fm from 'front-matter';
 import flatten from 'flat';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
+import styled from 'styled-components';
 
 import Error from '../_error';
 import ContentSection from '../../components/shared/ContentSection';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 // Query for event specific data to use in markdown rendering
 const GET_EVENT = gql`
@@ -22,21 +24,20 @@ const GET_EVENT = gql`
           slogan
           startDate
           endDate
-          venues {
-            id
-            name
-            address
-            city
-            state
-            zip
-          }
-          milestones {
-            title
-            description
-            dueDate
-          }
         }
       }
+    }
+  }
+`;
+
+const StyledContentSection = styled(ContentSection)`
+  a.faq-link {
+    color: ${({ theme }) => theme.colors.primary};
+    padding-top: 6rem;
+    margin-top: -6rem;
+
+    &:focus {
+      outline: none;
     }
   }
 `;
@@ -61,8 +62,15 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: process.env.CURRENT_EVENT_ID }, // WI eventId
   });
-  if (loading) return null;
-  if (error) return null;
+
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
+  if (error) throw new Error(error);
 
   const updatedMarkdown = replaceVariables(
     parsedMarkdown.body,
@@ -77,12 +85,12 @@ const RenderedMarkdown = ({ markdownContent, statusCode }) => {
         </title>
       </Head>
 
-      <ContentSection>
+      <StyledContentSection>
         {parsedMarkdown.attributes.title && (
           <h2>{parsedMarkdown.attributes.title}</h2>
         )}
         <Markdown>{updatedMarkdown}</Markdown>
-      </ContentSection>
+      </StyledContentSection>
     </div>
   );
 };

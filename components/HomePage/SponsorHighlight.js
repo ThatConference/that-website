@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import LoadingIndicator from '../shared/LoadingIndicator';
 import { below, above } from '../../utilities';
 
 const HighlightImage = styled.img`
@@ -104,8 +105,14 @@ const SponsorHighlight = ({ className, eventSlug }) => {
     variables: { eventId: process.env.CURRENT_EVENT_ID, level: 'PIONEER' },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
+  if (error) throw new Error(error);
 
   const partners = data.events.event.partners.level.sort((a, b) => {
     if (a.placement < b.placement) {
@@ -120,13 +127,22 @@ const SponsorHighlight = ({ className, eventSlug }) => {
   return (
     <ContentSection className={className} id="sponsors">
       <Main>
-        <HighlightImage src="/images/octopus_with_flag.png" loading="lazy" />
+        <HighlightImage
+          src="/images/octopus_with_flag.png"
+          loading="lazy"
+          alt="THAT Partners"
+        />
         <SideDetail>
           {havePartners && (
             <FeaturedPartners>
               <PartnerTitle>Our Featured Camp Partners</PartnerTitle>
               {partners.map(s => (
-                <Link href="/wi/partner/[slug]" as={`/wi/partner/${s.slug}`}>
+                <Link
+                  key={s.id}
+                  href="/partner/[slug]"
+                  as={`/partner/${s.slug}`}
+                  prefetch={false}
+                >
                   <PartnerLogo
                     src={s.companyLogo}
                     alt={s.companyName}

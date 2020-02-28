@@ -21,7 +21,7 @@ const TheProcess = () => {
         people we trust, will review all submissions and select the ones that
         think will make the most interesting mix at THAT Conference. We aim to
         to have all Counselors notified of the acceptance of their talks by
-        April 17, 2020.
+        April 13, 2020.
       </p>
       <NumberedItem className="first-item">01. Initial Review</NumberedItem>
       <p>

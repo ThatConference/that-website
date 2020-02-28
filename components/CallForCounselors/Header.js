@@ -6,7 +6,7 @@ import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import Title from '../shared/Title';
 
-import { below } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 const Main = styled(ContentSection)`
   margin-bottom: 5rem;
@@ -15,7 +15,7 @@ const Main = styled(ContentSection)`
 const MainGrid = styled(Grid)`
   grid-gap: 5rem;
 
-  ${below.med`
+  ${below.large`
     grid-gap: 0;
   `};
 `;
@@ -36,13 +36,21 @@ const Callout = styled.h2`
 const TextCell = styled(Cell)``;
 
 const BecomeACounselor = styled(LinkButton)`
-  margin-left: 0;
+  margin-right: 2rem;
+`;
+
+const ActionButtons = styled.div`
+  display: flex;
+
+  ${below.small`
+    flex-direction: column;
+  `};
 `;
 
 const Header = () => {
   return (
     <Main>
-      <MainGrid columns="repeat(auto-fit,minmax(320px,1fr))">
+      <MainGrid columns={gridRepeat.small}>
         <Cell>
           <Callout>Submissions Now Open Through March 1st!</Callout>
           <Title>Call for Counselors</Title>
@@ -56,16 +64,28 @@ const Header = () => {
             bloggers, business owners, site builders, translators, community
             organizers, and everything in-between.
           </p>
-          <BecomeACounselor
-            href="counselor-start"
-            borderColor="thatBlue"
-            color="thatBlue"
-            backgroundColor="white"
-            hoverBorderColor="thatBlue"
-            hoverBackgroundColor="thatBlue"
-            hoverColor="white"
-            label="Become a Counselor"
-          />
+          <ActionButtons>
+            <BecomeACounselor
+              href="counselor-start"
+              borderColor="thatBlue"
+              color="thatBlue"
+              backgroundColor="white"
+              hoverBorderColor="thatBlue"
+              hoverBackgroundColor="thatBlue"
+              hoverColor="white"
+              label="Become a Counselor"
+            />
+            <LinkButton
+              href="#process"
+              borderColor="thatBlue"
+              color="thatBlue"
+              backgroundColor="white"
+              hoverBorderColor="thatBlue"
+              hoverBackgroundColor="thatBlue"
+              hoverColor="white"
+              label="View Formats and Dates"
+            />
+          </ActionButtons>
         </TextCell>
       </MainGrid>
     </Main>

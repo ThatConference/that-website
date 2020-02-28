@@ -1,11 +1,10 @@
 import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import * as gtag from '../../lib/gtag';
-
 import MessageBar from './MessageBar';
 import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
@@ -122,7 +121,7 @@ const MenuIcon = styled.div`
     content: '';
     display: block;
     height: 0.6rem;
-    margin: 0.7rem 0;
+    margin: 0.65rem 0;
     transition: all 0.3s ease-in-out;
   }
 
@@ -160,7 +159,14 @@ const HeaderLogo = ({ layered }) => {
   );
 };
 
-const Header = ({ className, layered, user, loading }) => {
+const Header = ({
+  className,
+  layered,
+  loading,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+  user,
+}) => {
   const {
     loading: eventLoading,
     error: eventError,
@@ -170,32 +176,12 @@ const Header = ({ className, layered, user, loading }) => {
   });
 
   if (eventLoading) return null;
-  if (eventError) return null;
+  if (eventError) throw eventError;
 
   const { event } = eventData.events;
 
-  const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setScrollY(window.pageYOffset);
-
-    const handleScroll = () => {
-      setScrollY(window.pageYOffset);
-    };
-
-    handleScroll();
-    document.addEventListener('scroll', handleScroll);
-
-    return () => document.removeEventListener('scroll', handleScroll);
-  });
-
-  const scrolled = () => {
-    return parseInt(scrollY) > 0 ? 'scrolled' : '';
-  };
-
   return (
-    <header className={[className, scrolled()].join(' ')}>
+    <header className={className}>
       <MessageBar
         user={user}
         loading={loading}

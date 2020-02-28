@@ -4,7 +4,8 @@ import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import fm from 'front-matter';
 import styled from 'styled-components';
-import { NextSeo } from 'next-seo';
+import { NextSeo, BlogJsonLd } from 'next-seo';
+
 import Error from '../_error';
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
@@ -43,6 +44,27 @@ const SlimContentSection = styled(ContentSection)`
   ${below.med`
     width: 90vw;
   `};
+
+  p.caption {
+    font-style: italic;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1.4rem;
+    color: ${({ theme }) => theme.colors.fonts.dark};
+  }
+
+  p.quote {
+    font-style: italic;
+    padding: 0.5rem 0;
+    text-align: center;
+    margin: 0 3rem;
+    color: ${({ theme }) => theme.colors.fonts.dark};
+
+    ${below.small`
+      margin: 0 1rem;
+    `};
+  }
 `;
 
 const RenderedMarkdown = ({ markdownContent, slug, statusCode }) => {
@@ -51,11 +73,12 @@ const RenderedMarkdown = ({ markdownContent, slug, statusCode }) => {
   }
 
   const parsedMarkdown = fm(markdownContent);
+  const pageTitle = `${parsedMarkdown.attributes.title} - THAT Conference`;
 
   return (
     <div>
       <NextSeo
-        title={`${parsedMarkdown.attributes.title} - THAT Conference`}
+        title={pageTitle}
         description={parsedMarkdown.attributes.description}
         canonical={`https://www.thatconference.com/blog/${slug}`}
         openGraph={{
@@ -63,6 +86,17 @@ const RenderedMarkdown = ({ markdownContent, slug, statusCode }) => {
             { url: `../../images/blog/${parsedMarkdown.attributes.leadImage}` },
           ],
         }}
+      />
+      <BlogJsonLd
+        url={`https://www.thatconference.com/blog/${slug}`}
+        title={pageTitle}
+        images={[
+          `https://www.thatconference.com/images/blog/${parsedMarkdown.attributes.leadImage}`,
+        ]}
+        datePublished={new Date(parsedMarkdown.attributes.publishedDate)}
+        dateModified={new Date(parsedMarkdown.attributes.publishedDate)}
+        authorName={parsedMarkdown.attributes.author}
+        description={parsedMarkdown.attributes.description}
       />
 
       <SlimContentSection>

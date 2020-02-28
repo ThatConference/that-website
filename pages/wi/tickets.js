@@ -5,12 +5,13 @@ import { NextSeo } from 'next-seo';
 import ContentSection from '../../components/shared/ContentSection';
 import YouTubeVideo from '../../components/shared/YouTubeVideo';
 import LinkButton from '../../components/shared/LinkButton';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
 import { above, below } from '../../utilities';
 
 // Currently points to 2018 promo video
 const THAT_PROMO_VIDEO_ID = 'R67gLABGvVE';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const Main = styled.div`
   display: flex;
@@ -54,36 +55,13 @@ const Description = styled.p`
   max-width: 110rem;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const StyledH3 = styled.h3`
   text-align: 'center';
   padding-bottom: '2rem';
   margin-top: 0;
 `;
 
-const TicketHighlight = styled.h5`
+const TicketHighlight = styled.span`
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.thatBlue};
   margin: 0;
@@ -181,10 +159,12 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
   min-width: 55rem;
   min-height: 30rem;
 
-  ${below.large`
+  ${below.larger`
     min-width: 50rem;
     min-height: 35rem;
     display: inline-grid;
+    max-width: 55rem;
+    margin: auto;
   `};
 
   ${below.med`
@@ -221,7 +201,7 @@ const tickets = () => (
             friendly event is comprised of professional and family tracks so
             there is something to learn and experience at all ages.
           </p>
-          <ActionButtons>
+          <ActionButtonRow>
             <LinkButton
               href="#camper"
               label="Camper"
@@ -252,13 +232,13 @@ const tickets = () => (
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
         <ResponsiveYouTube
           videoId={THAT_PROMO_VIDEO_ID}
-          autoplay="0"
-          rel="0"
-          modest="1"
+          autoplay={0}
+          rel={0}
+          modest={1}
           containerHeight="40rem"
           containerWidth="60rem"
         />
@@ -301,10 +281,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th scope="col">Price</th>
-          <th scope="col">Ticket</th>
-          <th scope="col">Includes</th>
-          <th scope="col">Dates</th>
+          <tr>
+            <th scope="col">Price</th>
+            <th scope="col">Ticket</th>
+            <th scope="col">Includes</th>
+            <th scope="col">Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd highlight">
@@ -374,10 +356,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">
@@ -424,10 +408,12 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">

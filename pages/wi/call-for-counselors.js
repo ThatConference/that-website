@@ -8,6 +8,7 @@ import SummerCamp from '../../components/CallForCounselors/SummerCamp';
 // import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
 import Process from '../../components/CallForCounselors/Process';
 import Perks from '../../components/CallForCounselors/Perks';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -26,7 +27,7 @@ const GET_EVENT = gql`
   }
 `;
 
-const CallForCounselors = ({ featureKeyword }) => {
+const CallForCounselors = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: process.env.CURRENT_EVENT_ID },
     onCompleted(d) {
@@ -34,10 +35,8 @@ const CallForCounselors = ({ featureKeyword }) => {
     },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (error) throw new Error(error);
 
-  const { event } = data.events;
   return (
     <div>
       <NextSeo
@@ -47,16 +46,17 @@ const CallForCounselors = ({ featureKeyword }) => {
               is the one stop show of dates, places and related travel goodness
               to help get you to camp!"
       />
-
-      <Header featureKeyword={featureKeyword} />
+      <Header />
       <SummerCamp />
-      {/* TO DO: commenting out until we have past sessions in place */}
-      {/* <TalkIdeas /> */}
-      <Process
-        featureKeyword={featureKeyword}
-        milestones={event.get.milestones}
-      />
-      <Perks />
+      {loading && <LoadingIndicator />}
+      {!loading && (
+        <>
+          {/* TO DO: commenting out until we have past sessions in place */}
+          {/* <TalkIdeas /> */}
+          <Process milestones={data.events.event.get.milestones} />
+          <Perks />
+        </>
+      )}
     </div>
   );
 };

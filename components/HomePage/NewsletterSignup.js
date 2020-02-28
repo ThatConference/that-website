@@ -59,7 +59,11 @@ const NewsletterSignUp = ({ className }) => {
             subtitle="Sign up for secrets, poetry, theories on black holes, and other important conference info, dates and inspiration."
           />
         </SideDetail>
-        <HighlightImage src="/images/bear_with_megaphone.png" loading="lazy" />
+        <HighlightImage
+          src="/images/bear_with_megaphone.png"
+          loading="lazy"
+          alt="Signup for THAT Newsletter"
+        />
       </Main>
     </ContentSection>
   );

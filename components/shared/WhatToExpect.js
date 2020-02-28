@@ -20,7 +20,7 @@ const StyledCell = styled(Cell)`
 `;
 
 const StyledTitle = styled.span`
-  font-weight: 800;
+  font-weight: 700;
   position: absolute;
   bottom: 2rem;
 `;

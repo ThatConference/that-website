@@ -11,6 +11,8 @@ import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
 
 const dlog = debug('that:partners');
 
@@ -99,25 +101,6 @@ const PaddedImageContainer = styled(ImageContainer)`
   margin: 1rem;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const renderPartner = (
   partner,
   containerWidth,
@@ -130,7 +113,11 @@ const renderPartner = (
       height={containerHeight}
       key={partner.id}
     >
-      <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
+      <Link
+        href="/partner/[slug]"
+        as={`/partner/${partner.slug}`}
+        prefetch={false}
+      >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
@@ -152,10 +139,16 @@ const partnerListing = () => {
     },
   });
 
-  if (loading) return null;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
   if (error) {
     dlog('error %o', error);
-    return null;
+    throw new Error(error);
   }
 
   dlog('data %o', data.events.event.get.partners);
@@ -186,7 +179,7 @@ const partnerListing = () => {
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
-            <ActionButtons>
+            <ActionButtonRow>
               <LinkButton
                 href="/wi/become-a-partner"
                 label="Become a Partner"
@@ -205,68 +198,71 @@ const partnerListing = () => {
                 hoverColor="white"
                 hoverBackgroundColor="thatBlue"
               />
-            </ActionButtons>
+            </ActionButtonRow>
           </Cell>
           <Cell center>
-            <RobotImage src="/images/robot.png" />
+            <RobotImage src="/images/robot.png" alt="Become A THAT Partner" />
           </Cell>
         </Grid>
       </TopContentSection>
-      <PioneerContentSection>
-        <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.level === 'PIONEER') {
-              return renderPartner(value, '48rem', '31rem', '37rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </PioneerContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.level === 'EXPLORER') {
-              return renderPartner(value, '37rem', '23rem', '30rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.level === 'SCOUT') {
-              return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.level === 'PATRON') {
-              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.level === 'MEDIA') {
-              return renderPartner(value, '21rem', '14rem', '14.5rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
+
+      <>
+        <PioneerContentSection>
+          <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PIONEER') {
+                return renderPartner(value, '48rem', '31rem', '37rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </PioneerContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'EXPLORER') {
+                return renderPartner(value, '37rem', '23rem', '30rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'SCOUT') {
+                return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PATRON') {
+                return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'MEDIA') {
+                return renderPartner(value, '21rem', '14rem', '14.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+      </>
     </div>
   );
 };

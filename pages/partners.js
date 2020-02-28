@@ -8,8 +8,12 @@ import { NextSeo } from 'next-seo';
 import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
-import LoadingIndicator from '../components/shared/LoadingIndicator';
 import { below, gridRepeat } from '../utilities';
+import LinkButton from '../components/shared/LinkButton';
+import {
+  HeroGraphicDiv,
+  Placeholder,
+} from '../components/shared/StandardStyles';
 
 const GET_ALL_PARTNERS = gql`
   query getAllPartners {
@@ -24,17 +28,10 @@ const GET_ALL_PARTNERS = gql`
   }
 `;
 
-const ImageCell = styled(Cell)`
-  ${below.med`
-    text-align: center;
-  `};
-`;
-
 const HighlightImage = styled.img`
   max-height: 30rem;
   position: absolute;
   top: 3rem;
-  margin-left: 6rem;
   object-fit: contain;
 
   ${below.small`
@@ -73,10 +70,21 @@ const Image = styled.img`
   }
 `;
 
+const SkeletonLoader = () => {
+  const items = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < 28; i++) {
+    items.push(<Placeholder width="17rem" height="13rem" />);
+  }
+  return (
+    <Grid columns={gridRepeat.xxsmall} alignContent="center">
+      {items}
+    </Grid>
+  );
+};
+
 const partners = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNERS);
-
-  if (loading) return <LoadingIndicator />;
 
   return (
     <>
@@ -96,31 +104,54 @@ const partners = () => {
               one of our partners, across all levels for all of our years for
               their amazing support!
             </p>
+            <LinkButton
+              href="/wi/become-a-partner"
+              label="Become a Partner"
+              color="thatBlue"
+              borderColor="thatBlue"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+            />
           </Cell>
-          <ImageCell>
-            <HighlightImage src="/images/moose_with_lantern.png" />
-          </ImageCell>
+          <HeroGraphicDiv>
+            <HighlightImage
+              src="/images/moose_with_lantern.png"
+              alt="THAT Partners"
+            />
+          </HeroGraphicDiv>
         </Grid>
       </ContentSection>
 
       <ContentSection>
-        <Grid columns={gridRepeat.xxsmall} alignContent="center">
-          {_.sortBy(data.partners.all, p => p.companyName.toLowerCase()).map(
-            partner => {
-              return (
-                <PaddedImageContainer key={partner.id}>
-                  <Link href="/partner/[slug]" as={`/partner/${partner.slug}`}>
-                    <Image
-                      src={partner.companyLogo}
-                      alt={partner.companyName}
-                      loading="lazy"
-                    />
-                  </Link>
-                </PaddedImageContainer>
-              );
-            },
-          )}
-        </Grid>
+        {loading && (
+          <div style={{ textAlign: 'center' }}>
+            <SkeletonLoader />
+          </div>
+        )}
+        {!loading && (
+          <Grid columns={gridRepeat.xxsmall} alignContent="center">
+            {_.sortBy(data.partners.all, p => p.companyName.toLowerCase()).map(
+              partner => {
+                return (
+                  <PaddedImageContainer key={partner.id}>
+                    <Link
+                      href="/partner/[slug]"
+                      as={`/partner/${partner.slug}`}
+                      prefetch={false}
+                    >
+                      <Image
+                        src={partner.companyLogo}
+                        alt={partner.companyName}
+                        loading="lazy"
+                      />
+                    </Link>
+                  </PaddedImageContainer>
+                );
+              },
+            )}
+          </Grid>
+        )}
       </ContentSection>
     </>
   );

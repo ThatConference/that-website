@@ -53,7 +53,7 @@ const SpeakerHighlight = ({ className }) => {
         </Header>
         <SpeakersLink
           href={DEFAULT_WIP_PAGE}
-          label="Meet The Speakers"
+          label="Meet The Counselors"
           color="thatBlue"
           borderColor="thatBlue"
           hoverBorderColor="thatBlue"
