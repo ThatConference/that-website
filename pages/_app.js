@@ -16,11 +16,6 @@ Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 Sentry.init(getSentryConfig());
 LogRocket.init(process.env.LOG_ROCKET);
 
-const keyMap = {
-  VOTE_YES: 'y',
-  VOTE_NO: 'n',
-};
-
 class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient, err } = this.props;

@@ -180,13 +180,9 @@ const Content = () => {
               <Section>
                 <DetailsHeader>Key Takeaways</DetailsHeader>
                 <ul>
-                  {s.takeaways.map(t => {
-                    return (
-                      <React.Fragment key={t}>
-                        <li>{t}</li>
-                      </React.Fragment>
-                    );
-                  })}
+                  {s.takeaways.map(t => (
+                    <li>{t}</li>
+                  ))}
                 </ul>
               </Section>
               <Thumbs

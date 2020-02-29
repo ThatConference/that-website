@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
-import { HotKeys } from 'react-hotkeys';
+import { GlobalHotKeys } from 'react-hotkeys';
 
 import LoadingIndicator from '../../../shared/LoadingIndicator';
 import NavLinks from '../Shared/NavLinks';
@@ -13,7 +13,12 @@ import Stats from '../Shared/Stats';
 
 const MarkdownIt = require('markdown-it');
 
-const HotKeysStyled = styled(HotKeys)`
+const keyMap = {
+  VOTE_YES: 'y',
+  VOTE_NO: 'n',
+};
+
+const GlobalHotKeyStyled = styled(GlobalHotKeys)`
   &:focus {
     outline: none;
   }
@@ -97,17 +102,6 @@ const Content = () => {
     },
   });
 
-  const handlers = {
-    VOTE_YES: React.useCallback(() => {
-      // eslint-disable-next-line no-use-before-define
-      submitVote(true);
-    }, []),
-    VOTE_NO: React.useCallback(() => {
-      // eslint-disable-next-line no-use-before-define
-      submitVote(false);
-    }, []),
-  };
-
   const {
     loading: sessionsLoading,
     error: sessionsError,
@@ -157,10 +151,16 @@ const Content = () => {
     });
   };
 
+  const handlers = {
+    VOTE_YES: () => submitVote(true),
+    VOTE_NO: () => submitVote(false),
+  };
+
   if (session) {
     const converter = new MarkdownIt();
     return (
-      <HotKeysStyled handlers={handlers}>
+      <>
+        <GlobalHotKeyStyled keyMap={keyMap} handlers={handlers} />
         <MainContent>
           <NavLinks
             showForwardLink={totalVotedOn > 0}
@@ -173,13 +173,9 @@ const Content = () => {
             <Section>
               <DetailsHeader>Key Takeaways</DetailsHeader>
               <ul>
-                {session.takeaways.map(s => {
-                  return (
-                    <React.Fragment key={s}>
-                      <li>{s}</li>
-                    </React.Fragment>
-                  );
-                })}
+                {session.takeaways.map(s => (
+                  <li>{s}</li>
+                ))}
               </ul>
             </Section>
           )}
@@ -207,11 +203,11 @@ const Content = () => {
             }}
           />
         </MainContent>
-      </HotKeysStyled>
+      </>
     );
   }
 
-  return <p>You have voted for all the sessions....GOOD JOB!</p>;
+  return <p>You have voted for all the sessions! Thank You - THAT Crew</p>;
 };
 
 export default Content;
