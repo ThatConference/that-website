@@ -3,8 +3,6 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import LogRocket from 'logrocket';
-import * as Sentry from '@sentry/node';
 
 import { getSentryConfig } from '../lib/sentry';
 import * as gtag from '../lib/gtag';
@@ -15,11 +13,6 @@ Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 Sentry.init(getSentryConfig());
 LogRocket.init(process.env.LOG_ROCKET);
-
-const keyMap = {
-  VOTE_YES: 'y',
-  VOTE_NO: 'n',
-};
 
 class MyApp extends App {
   render() {

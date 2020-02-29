@@ -37,13 +37,8 @@ const ThumbsUpIcon = styled(Icon)`
 `;
 
 const Thumbs = ({ iconHeight, submit, vote, id }) => {
-  const yesClick = () => {
-    submit(true, id);
-  };
-
-  const noClick = () => {
-    submit(false, id);
-  };
+  const yesClick = () => submit(true, id);
+  const noClick = () => submit(false, id);
 
   return (
     <ThumbsContainer className="thumbs-container" columns={2}>
