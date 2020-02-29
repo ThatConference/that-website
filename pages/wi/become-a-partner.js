@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { below } from '../../utilities/breakpoint';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -17,6 +17,7 @@ const PartnerH3 = styled.h3`
 const SasquatchCanoeImage = styled.img`
   width: 100%;
   margin-left: 5rem;
+  transform: scaleX(-1);
 
   ${below.small`
     margin-left: 0;
@@ -29,22 +30,17 @@ const SasquatchCanoeImage = styled.img`
 `;
 
 const SasquatchStandingImage = styled.img`
-  height: 50rem;
+  height: 40rem;
 `;
 
 const SasquatchCloseUpCanoeImage = styled.img`
   margin-top: 5rem;
   height: 30rem;
+  transform: scaleX(-1);
 
   ${below.large`
     height: 20rem;
   `};
-`;
-
-const NeedInfoH4 = styled.h4`
-  margin-bottom: 0;
-  margin-top: 6rem;
-  margin-left: 2rem;
 `;
 
 class ScriptInjector extends Component {
@@ -64,9 +60,10 @@ class ScriptInjector extends Component {
 
 const becomeAPartner = () => (
   <div>
-    <Head>
-      <title key="title">Become a Partner - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Become a Partner - THAT Conference"
+      description="Are you ready to speak at the biggest tech conference in the US Midwest? THAT Call for Counselors (Speakers) is open through March 1st!"
+    />
 
     <ContentSection>
       <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
@@ -81,6 +78,16 @@ const becomeAPartner = () => (
             and entrepreneurs while enjoying the perks of summer camp at a giant
             waterpark. Join us and become part of THAT family.
           </p>
+          <LinkButton
+            href="/partners"
+            label="View Past Partners"
+            color="thatBlue"
+            borderColor="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="white"
+            hoverBackgroundColor="thatBlue"
+            className="float-right"
+          />
         </Cell>
       </Grid>
     </ContentSection>
@@ -116,7 +123,10 @@ const becomeAPartner = () => (
         </Cell>
         <Cell style={{ textAlign: 'center' }}>
           <div>
-            <SasquatchCanoeImage src="/images/sasquatch_kayaking.png" />
+            <SasquatchCanoeImage
+              src="/images/sasquatch_kayaking.png"
+              alt="Becoming A THAT Partner"
+            />
           </div>
         </Cell>
       </Grid>
@@ -136,10 +146,13 @@ const becomeAPartner = () => (
     </ContentSection>
 
     <ContentSection>
-      <div style={{ marginBottom: '7rem' }}>
+      <div>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
-          <Cell centered>
-            <SasquatchStandingImage src="/images/sasquatch_with_badge.png" />
+          <Cell center>
+            <SasquatchStandingImage
+              src="/images/sassy_with_badge.svg"
+              alt="Community Interaction"
+            />
           </Cell>
           <Cell>
             <div style={{ maxWidth: '65rem' }}>
@@ -176,14 +189,14 @@ const becomeAPartner = () => (
             </span>
           </div>
           <div className="centered-text">
-            <SasquatchCloseUpCanoeImage src="/images/sasquatch_close_up.png" />
+            <SasquatchCloseUpCanoeImage
+              src="/images/sasquatch_close_up.png"
+              alt="Get THAT Prospectus"
+            />
           </div>
         </Cell>
         <Cell>
           <div>
-            <NeedInfoH4 className="font-light">
-              WE NEED A LITTLE INFO FIRST
-            </NeedInfoH4>
             <ScriptInjector />
           </div>
         </Cell>

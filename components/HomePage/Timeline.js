@@ -137,7 +137,7 @@ const Detail = styled.span`
   overflow: hidden;
   white-space: normal;
   line-height: 1.5;
-  font-weight: bold;
+  font-weight: 400;
 `;
 
 const Name = styled(Detail)`
@@ -158,7 +158,7 @@ const Date = styled(Detail)`
 `;
 
 const TimelineSection = ({ event, className }) => {
-  const milestones = _(event.milestones)
+  const milestones = _(event.get.milestones)
     .map(m => {
       const momentDue = moment.utc(m.dueDate);
       return {
@@ -168,11 +168,11 @@ const TimelineSection = ({ event, className }) => {
       };
     })
     .sortBy(m => {
-      return moment(m.due);
+      return moment(m.due, 'MM/DD/YY');
     })
     .value();
 
-  const featured = _.find(event.notifications, n => {
+  const featured = _.find(event.get.notifications, n => {
     return n.shouldFeature === true;
   });
 
@@ -213,6 +213,7 @@ const TimelineSection = ({ event, className }) => {
           src="/images/moose_with_lantern.png"
           haveLink={haveLink}
           loading="lazy"
+          alt="THAT Conference Timeline"
         />
       </Content>
     </Main>

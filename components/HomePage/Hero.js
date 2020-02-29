@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
+import { ActionButtonRow } from '../shared/StandardStyles';
 
 import { below, above } from '../../utilities';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const DateLocation = styled.h2`
   color: ${({ theme }) => theme.colors.tertiary};
@@ -37,29 +38,6 @@ const Description = styled.p`
   max-width: 110rem;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const HeroImage = styled.img`
   max-width: 100%;
   object-fit: cover;
@@ -81,7 +59,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 6rem;
+  top: 3rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;
@@ -129,8 +107,8 @@ const Hero = ({ event, className }) => {
           <DateLocation>
             August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
           </DateLocation>
-          <Slogan>{event.slogan}</Slogan>
-          <ActionButtons>
+          <Slogan>{event.get.slogan}</Slogan>
+          <ActionButtonRow>
             <LinkButton
               href="wi/tickets"
               label="Ticket Options"
@@ -161,9 +139,13 @@ const Hero = ({ event, className }) => {
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
-        <HeroImage src="images/clark_stage.jpg" loading="lazy" />
+        <HeroImage
+          src="images/clark_stage.jpg"
+          loading="lazy"
+          alt="Founder Clark Sell Kicking off THAT Conference"
+        />
         <HeroSocials />
       </Main>
       <Description className="large-body-copy">

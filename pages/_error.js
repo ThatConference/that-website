@@ -7,25 +7,25 @@ import LinkButton from '../components/shared/LinkButton';
 const genericError = (
   <>
     <h2>Whoops</h2>
-    <p>Well that&apos;s not good.</p>
+    <p>Well that's not good.</p>
   </>
 );
 
-const pageNotFound = requestedUrl => {
-  const scrubbedUrl = `https://old.thatconference.com${requestedUrl}`;
+const pageNotFound = () => {
+  const oldSiteUrl = `https://old.thatconference.com`;
 
   return (
     <>
       <h2>Page not found</h2>
       <p>
-        Truth be told, were building a new website. In fact this is it but we
-        don&apos;t have all the pieces completed yet.
+        Truth be told, were building a new website. In fact, this is it but we
+        don't have all the pieces completed yet.
       </p>
 
-      <p>Don&apos;t worry, we still have our old Website around.</p>
+      <p>Don't worry, we still have our old Website around.</p>
 
       <LinkButton
-        href={scrubbedUrl}
+        href={oldSiteUrl}
         label="Yes, take me now!"
         color="thatBlue"
         borderColor="thatBlue"
@@ -37,9 +37,8 @@ const pageNotFound = requestedUrl => {
   );
 };
 
-function Error({ statusCode, requestedUrl }) {
-  const errorBlock =
-    statusCode === 404 ? pageNotFound(requestedUrl) : genericError;
+function Error({ statusCode }) {
+  const errorBlock = statusCode === 404 ? pageNotFound() : genericError;
   return (
     <>
       <Head>
@@ -50,11 +49,10 @@ function Error({ statusCode, requestedUrl }) {
   );
 }
 
-Error.getInitialProps = ({ res, err, req }) => {
-  const requestedUrl = req.url;
+Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
-  return { statusCode, requestedUrl };
+  return { statusCode };
 };
 
 export default Error;

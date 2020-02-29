@@ -73,6 +73,7 @@ const BackLink = styled.a`
 
 const BackArrow = styled(Icon)`
   fill: ${({ theme }) => theme.colors.thatBlue};
+  transform: scaleX(-1);
 `;
 
 const CounselorSelection = () => {
@@ -84,10 +85,10 @@ const CounselorSelection = () => {
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1}>
-            <Link href="call-for-counselors">
+            <Link href="call-for-counselors" prefetch={false}>
               <BackLink>
                 <BackArrow
-                  icon="backArrow"
+                  icon="fullArrow"
                   height="2rem"
                   width="2rem"
                   viewBoxHeight="100"

@@ -113,7 +113,7 @@ const DetailForm = ({ sessionId }) => {
       </div>
     );
   }
-  if (sessionError) return null;
+  if (sessionError) throw new Error(sessionError);
 
   const { session } = data.sessions.me;
 

@@ -1,46 +1,49 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
-import { below, DEFAULT_WIP_PAGE, gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../utilities';
 
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import TimelineSection from '../../components/HomePage/Timeline';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        id
-        startDate
-        endDate
-        venues {
+        get {
           id
-          name
-          address
-          city
-          state
-          zip
-        }
-        milestones {
-          title
-          description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
           startDate
           endDate
-          link
-          linkText
+          venues {
+            id
+            name
+            address
+            city
+            state
+            zip
+          }
+          milestones {
+            title
+            description
+            dueDate
+          }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
         }
       }
     }
@@ -82,33 +85,41 @@ const HighlightImage = styled.img`
 `;
 
 const contact = () => {
+  let event = {};
+  let formattedStartDate;
+  let formattedEndDate;
+
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
     onCompleted(d) {
       return d;
     },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (error) throw new Error(error);
 
-  const { event } = data.events;
-
-  const formattedStartDate = moment(event.startDate).format(
-    'dddd, MMMM D, YYYY',
-  );
-  const formattedEndDate = moment(event.endDate).format('dddd, MMMM D, YYYY');
+  if (!loading) {
+    event = data.events.event;
+    formattedStartDate = moment(event.get.startDate).format(
+      'dddd, MMMM D, YYYY',
+    );
+    formattedEndDate = moment(event.get.endDate).format('dddd, MMMM D, YYYY');
+  }
 
   return (
     <>
-      <Head>
-        <title key="title">Plan Your Trip - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Plan Your Trip - THAT Conference"
+        description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+      />
 
       <ContentSection>
         <Grid columns={gridRepeat.xsmall}>
           <Cell width={1}>
-            <h1 style={{ marginBottom: '0.5rem' }}>Plan Your Trip</h1>
+            <h1>Plan Your Trip</h1>
             <p className="medium-body-copy">
               THAT Community spreads way beyond the midwest and we want to make
               it easy for you to book and plan your travel to Summer Camp. Here
@@ -117,68 +128,74 @@ const contact = () => {
             </p>
           </Cell>
           <ImageCell>
-            <HighlightImage src="/images/sasquatch_kayaking.png" />
+            <HighlightImage
+              src="/images/sasquatch_kayaking.png"
+              alt="Plan Your THAT Trip"
+            />
           </ImageCell>
         </Grid>
       </ContentSection>
 
       <ContentSection>
-        <Grid columns={gridRepeat.xsmall} alignContent="center">
-          <StyledImageContainer>
-            <Title>When</Title>
-            <p style={{ flexGrow: '2' }}>
-              {formattedStartDate} -
-              <br />
-              {formattedEndDate}
-            </p>
-            <LinkButton
-              href={`/${DEFAULT_WIP_PAGE}`}
-              label="Ticket Options"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-          <StyledImageContainer>
-            <Title>Where</Title>
-            <p style={{ flexGrow: '2' }}>
-              <strong>{event.venues[0].name}</strong>
-              <br />
-              {event.venues[0].address}
-              <br />
-              {`${event.venues[0].city}, ${event.venues[0].state} ${event.venues[0].zip}`}
-            </p>
-            <LinkButton
-              href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
-              label="X Marks The Spot"
-              target="_blank"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-          <StyledImageContainer>
-            <Title>Other Accommodations</Title>
-            <p>
-              Besides the Kalahari we partner with other great locations to
-              bring you the best rates to stay while at THAT. Checkout all the
-              options.
-            </p>
-            <LinkButton
-              href="#where-to-stay"
-              label="Where To Stay"
-              borderColor="thatBlue"
-              color="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-          </StyledImageContainer>
-        </Grid>
+        {loading && <LoadingIndicator />}
+        {!loading && (
+          <Grid columns={gridRepeat.xsmall} alignContent="center">
+            <StyledImageContainer>
+              <Title>When</Title>
+              <p style={{ flexGrow: '2' }}>
+                {formattedStartDate} -
+                <br />
+                {formattedEndDate}
+              </p>
+              <LinkButton
+                href="/wi/tickets"
+                label="Ticket Options"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+            <StyledImageContainer>
+              <Title>Where</Title>
+              <p style={{ flexGrow: '2' }}>
+                <strong>{event.get.venues[0].name}</strong>
+                <br />
+                {event.get.venues[0].address}
+                <br />
+                {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
+              </p>
+              <LinkButton
+                href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
+                label="X Marks The Spot"
+                target="_blank"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+            <StyledImageContainer>
+              <Title>Other Accommodations</Title>
+              <p>
+                Besides the Kalahari we partner with other great locations to
+                bring you the best rates to stay while at THAT. Checkout all the
+                options.
+              </p>
+              <LinkButton
+                href="#where-to-stay"
+                label="Where To Stay"
+                borderColor="thatBlue"
+                color="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </StyledImageContainer>
+          </Grid>
+        )}
       </ContentSection>
       <ContentSection>
         <h3 className="font-dark" style={{ marginTop: '0' }}>
@@ -203,7 +220,7 @@ const contact = () => {
         shuttle from the airports? Unfortunately no but I would suggest jumping
         on Slack and see if anyone is interested in ride sharing.
       </ContentSection>
-      <TimelineSection event={event} />
+      {!loading && <TimelineSection event={event} />}
       <ContentSection id="where-to-stay">
         <h3 className="font-dark" style={{ marginTop: '0' }}>
           Pitching Tents

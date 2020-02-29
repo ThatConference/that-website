@@ -20,7 +20,7 @@ const StyledCell = styled(Cell)`
 `;
 
 const StyledTitle = styled.span`
-  font-weight: 800;
+  font-weight: 700;
   position: absolute;
   bottom: 2rem;
 `;
@@ -39,11 +39,8 @@ const WhatToExpectSection = ({ src, title }) => {
 const WhatToExpect = ({ className }) => {
   return (
     <ContentSection className={className}>
-      <h3
-        className="font-dark"
-        style={{ textAlign: 'center', paddingBottom: '2rem' }}
-      >
-        Here&apos;s What You Can Expect At That Conference
+      <h3 className="font-dark centered-text" style={{ paddingBottom: '2rem' }}>
+        Here's What You Can Expect At That Conference
       </h3>
       <Grid columns={gridRepeat.xsmall} alignContent="center">
         <WhatToExpectSection

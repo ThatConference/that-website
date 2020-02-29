@@ -18,7 +18,9 @@
       "SESSION_COOKIE_SECRET": "@thatwebsite_session_cookie_secret",
       "REDIRECT_URI": "@thatwebsite_redirect_uri",
       "POST_LOGOUT_REDIRECT_URI": "@thatwebsite_post_logout_redirect_uri",
-      "SESSION_COOKIE_DOMAIN": "@thatwebsite_session_cookie_domain"
+      "SESSION_COOKIE_DOMAIN": "@thatwebsite_session_cookie_domain",
+      "CURRENT_EVENT_ID": "ByE7Dc7eCGcRFzLhWhuI"
     }
-  }
+  },
+  "regions": ["cle"]
 }

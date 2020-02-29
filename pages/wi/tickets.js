@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 import ContentSection from '../../components/shared/ContentSection';
 import YouTubeVideo from '../../components/shared/YouTubeVideo';
 import LinkButton from '../../components/shared/LinkButton';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
 import { above, below } from '../../utilities';
 
 // Currently points to 2018 promo video
 const THAT_PROMO_VIDEO_ID = 'R67gLABGvVE';
 
-const twoColBp = 'large';
+const twoColBp = 'larger';
 
 const Main = styled.div`
   display: flex;
@@ -54,36 +55,13 @@ const Description = styled.p`
   max-width: 110rem;
 `;
 
-const ActionButtons = styled.div`
-  display: flex;
-  justify-content: left;
-
-  a {
-    margin-left: 0;
-    float: left;
-  }
-
-  a:not(:last-child) {
-    margin-right: 2rem;
-  }
-
-  ${below[twoColBp]`
-    padding-bottom: 3rem;
-  `};
-
-  ${below.small`
-    flex-direction: column;
-    align-items: stretch;
-  `};
-`;
-
 const StyledH3 = styled.h3`
   text-align: 'center';
   padding-bottom: '2rem';
   margin-top: 0;
 `;
 
-const TicketHighlight = styled.h5`
+const TicketHighlight = styled.span`
   font-size: 2rem;
   color: ${({ theme }) => theme.colors.thatBlue};
   margin: 0;
@@ -95,7 +73,6 @@ const Heavy = styled.span`
 
 const TicketTable = styled.table`
   min-width: 100%;
-  // border-spacing: 0;
   border-collapse: collapse;
 
   th {
@@ -110,8 +87,9 @@ const TicketTable = styled.table`
   }
 
   tr.highlight {
-    border: 2px solid ${({ theme }) => theme.colors.tertiary};
+    border: 4px solid ${({ theme }) => theme.colors.highlight};
     font-size: 1.7rem;
+    padding: 0.5rem;
 
     .price {
       color: ${({ theme }) => theme.colors.thatBlue};
@@ -134,18 +112,87 @@ const TicketTable = styled.table`
     color: ${({ theme }) => theme.colors.thatBlue};
     font-weight: 700;
   }
+
+  ${below.med`
+    thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    tr {
+      border-bottom: 2px solid  ${({ theme }) => theme.colors.mediumGray};;
+      display: block;
+      margin-bottom: 2em;
+
+      &.no-bottom-border {
+        border-bottom: none;
+      }
+    }
+    
+    td {
+      border-bottom: 1px solid  ${({ theme }) => theme.colors.mediumGray};;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    td:last-child {
+      border-bottom: 0;
+    }
+  `};
+`;
+
+const ResponsiveYouTube = styled(YouTubeVideo)`
+  min-width: 55rem;
+  min-height: 30rem;
+
+  ${below.larger`
+    min-width: 50rem;
+    min-height: 35rem;
+    display: inline-grid;
+    max-width: 55rem;
+    margin: auto;
+  `};
+
+  ${below.med`
+    min-width: 40rem;
+    max-width: 45rem;
+    min-height: 30rem;
+  `};
+
+  ${below.small`
+    min-width: 40rem;
+    min-height: 30rem;
+  `};
 `;
 
 const tickets = () => (
   <>
-    <Head>
-      <title key="title">Tickets - THAT Conference</title>
-    </Head>
+    <NextSeo
+      title="Tickets - THAT Conference"
+      description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+    />
     <ContentSection>
       <Main>
         <SideDetail>
           <HighlightText>On Sale Starting April 13, 2020</HighlightText>
-          <h1 style={{ marginBottom: '0.5rem' }}>Tickets</h1>
+          <h1>Tickets</h1>
           <p className="medium-body-copy">
             THAT Conference is unlike any other technical conference. This
             unique four days of summer camp is full of workshops, sessions, open
@@ -154,7 +201,7 @@ const tickets = () => (
             friendly event is comprised of professional and family tracks so
             there is something to learn and experience at all ages.
           </p>
-          <ActionButtons>
+          <ActionButtonRow>
             <LinkButton
               href="#camper"
               label="Camper"
@@ -185,13 +232,13 @@ const tickets = () => (
               hoverColor="white"
               hoverBackgroundColor="thatBlue"
             />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
-        <YouTubeVideo
+        <ResponsiveYouTube
           videoId={THAT_PROMO_VIDEO_ID}
-          autoplay="0"
-          rel="0"
-          modest="1"
+          autoplay={0}
+          rel={0}
+          modest={1}
           containerHeight="40rem"
           containerWidth="60rem"
         />
@@ -234,39 +281,49 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th scope="col">Price</th>
+            <th scope="col">Ticket</th>
+            <th scope="col">Includes</th>
+            <th scope="col">Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd highlight">
-            <td className="price">$799</td>
-            <td>
+            <td data-label="Price" className="price">
+              $799
+            </td>
+            <td data-label="Ticket">
               <span className="upper">Everything</span> 4-day
             </td>
-            <td>Most Popular! Main Event and Pre-Conference ticket combined</td>
-            <td>August 3 - 6</td>
+            <td data-label="Includes">
+              Most Popular! Main Event and Pre-Conference ticket combined
+            </td>
+            <td data-label="Dates">August 3 - 6</td>
           </tr>
           <tr>
-            <td className="price">$725</td>
-            <td>
+            <td data-label="Price" className="price">
+              $725
+            </td>
+            <td data-label="Ticket">
               <span className="upper">Camper</span> 3-day
             </td>
-            <td>Main Event; NO PRECON</td>
-            <td>August 4 - 6</td>
+            <td data-label="Includes">Main Event; NO PRECON</td>
+            <td data-label="Dates">August 4 - 6</td>
           </tr>
           <tr className="odd">
-            <td className="price">$425</td>
-            <td>
+            <td data-label="Price" className="price">
+              $425
+            </td>
+            <td data-label="Ticket">
               <span className="upper">No-Food</span> 3-day
             </td>
-            <td>
+            <td data-label="Includes">
               Main Event, NO FOOD (no meals, no drinks, no pig roast), NO PRECON
             </td>
-            <td>August 4 - 6</td>
+            <td data-label="Dates">August 4 - 6</td>
           </tr>
-          <tr>
+          <tr className="no-bottom-border">
             <td colSpan={4} className="notes">
               Ordering 15 or more tickets? Contact us at{' '}
               <a href="mailto:Hello@THATConference.com">
@@ -299,21 +356,23 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">
-            <td>$99</td>
-            <td>
+            <td data-label="Price">$99</td>
+            <td data-label="Ticket">
               <span className="upper">Pre-Conference</span> 1-day
             </td>
-            <td>
+            <td data-label="Includes">
               This ticket includes the first day precon with lunch and drinks.
             </td>
-            <td>August 3rd</td>
+            <td data-label="Dates">August 3rd</td>
           </tr>
         </tbody>
       </TicketTable>
@@ -349,41 +408,42 @@ const tickets = () => (
       </p>
       <TicketTable>
         <thead>
-          <th>Price</th>
-          <th>Ticket</th>
-          <th>Includes</th>
-          <th>Dates</th>
+          <tr>
+            <th>Price</th>
+            <th>Ticket</th>
+            <th>Includes</th>
+            <th>Dates</th>
+          </tr>
         </thead>
         <tbody>
           <tr className="odd">
-            <td>$99</td>
-            <td>
+            <td data-label="Price">$99</td>
+            <td data-label="Ticket">
               <span className="upper">Campmate</span> (adult) 4-day
             </td>
-            <td>
+            <td data-label="Includes">
               Family Pre-Conference Session, Family Sessions, Waterpark Party,
               Pig Roast, Game Night and a t-shirt.
             </td>
-            <td>August 3 - 6</td>
+            <td data-label="Dates">August 3 - 6</td>
           </tr>
           <tr>
-            <td>$79</td>
-            <td>
+            <td data-label="Price">$79</td>
+            <td data-label="Ticket">
               <span className="upper">Geekling</span> (child) 4-day
             </td>
-            <td>
+            <td data-label="Includes">
               Family Pre-Conference Session, Family Sessions, Waterpark Party,
               Pig Roast, Game Night and a t-shirt.
             </td>
-            <td>August 3 - 6</td>
+            <td data-label="Dates">August 3 - 6</td>
           </tr>
           <tr className="odd">
-            <td>$49</td>
-            <td>
+            <td data-label="Price">$49</td>
+            <td data-label="Ticket" colSpan={2}>
               <span className="upper">Pig Roast Only</span>
             </td>
-            <td />
-            <td>Evening of August 5th</td>
+            <td data-label="Dates">Evening of August 5th</td>
           </tr>
         </tbody>
       </TicketTable>

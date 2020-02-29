@@ -1,15 +1,38 @@
 import router, { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import * as gtag from '../../lib/gtag';
-
 import MessageBar from './MessageBar';
 import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
 import MemberNav from './MemberNav';
+
+const GET_EVENT = gql`
+  query getEvent($eventId: ID!) {
+    events {
+      event(id: $eventId) {
+        get {
+          id
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
+        }
+      }
+    }
+  }
+`;
 
 router.onRouteChangeStart = () => {
   nprogress.start();
@@ -38,6 +61,7 @@ const PageHeader = styled.div`
 
 const LogoLink = styled.a`
   height: 100%;
+  fill: ${({ theme }) => theme.colors.white};
 `;
 
 const StyledLogo = styled.img`
@@ -54,8 +78,11 @@ const ActionButton = styled(LinkButton)`
   `};
 `;
 
-const Logo = () => {
-  return <StyledLogo src="/svgs/THATConference.svg" alt="THAT Conference" />;
+const Logo = ({ layered }) => {
+  const logoPath = layered
+    ? '/svgs/THATConference-white.svg'
+    : '/svgs/THATConference.svg';
+  return <StyledLogo src={logoPath} alt="THAT Conference" />;
 };
 
 const MenuIcon = styled.div`
@@ -64,26 +91,37 @@ const MenuIcon = styled.div`
   vertical-align: middle;
   width: 3em;
   position: absolute;
-  right: 5rem;
   top: 9rem;
 
   &:hover {
     cursor: pointer;
   }
 
+  ${below.med`
+    right: 5rem;
+  `};
+
+  ${below.xsmall`
+    right: 0;
+  `};
+
   ${above.med`
     display: none;
+  `};
+
+  ${below.small`
+    right: 0;
   `};
 
   &:after,
   &:before,
   div {
-    background-color: ${({ theme }) => theme.colors.thatBlue};
+    background-color: ${({ color, theme }) => color || theme.colors.thatBlue};
     border-radius: 0.3rem;
     content: '';
     display: block;
     height: 0.6rem;
-    margin: 0.7rem 0;
+    margin: 0.65rem 0;
     transition: all 0.3s ease-in-out;
   }
 
@@ -100,7 +138,7 @@ const MenuIcon = styled.div`
   }
 `;
 
-const HeaderLogo = () => {
+const HeaderLogo = ({ layered }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -112,51 +150,57 @@ const HeaderLogo = () => {
 
   const theRouter = useRouter();
   if (theRouter.route === '/wi' || theRouter.route === '/tx') {
-    return <Logo />;
+    return <Logo layered={layered} />;
   }
   return (
     <LogoLink href="/wi" onClick={clickTracking}>
-      <Logo />
+      <Logo layered={layered} />
     </LogoLink>
   );
 };
 
-const Header = ({ className, user, loading }) => {
-  const [scrollY, setScrollY] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setScrollY(window.pageYOffset);
-
-    const handleScroll = () => {
-      setScrollY(window.pageYOffset);
-    };
-
-    handleScroll();
-    document.addEventListener('scroll', handleScroll);
-
-    return () => document.removeEventListener('scroll', handleScroll);
+const Header = ({
+  className,
+  layered,
+  loading,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+  user,
+}) => {
+  const {
+    loading: eventLoading,
+    error: eventError,
+    data: eventData,
+  } = useQuery(GET_EVENT, {
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
   });
 
-  const scrolled = () => {
-    return parseInt(scrollY) > 0 ? 'scrolled' : '';
-  };
+  if (eventLoading) return null;
+  if (eventError) throw eventError;
+
+  const { event } = eventData.events;
 
   return (
-    <header className={[className, scrolled()].join(' ')}>
-      <MessageBar user={user} loading={loading} />
-      <HeaderSection>
+    <header className={className}>
+      <MessageBar
+        user={user}
+        loading={loading}
+        notifications={event.get.notifications}
+      />
+      <HeaderSection backgroundColor="transparent">
         <PageHeader>
-          <HeaderLogo />
+          <HeaderLogo layered={layered} />
           <Nav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
+            color={layered ? 'white' : ''}
           />
           <MemberNav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}
             user={user}
             loading={loading}
+            color={layered ? 'white' : ''}
           />
           <div style={{ display: 'flex' }}>
             <ActionButton
@@ -169,6 +213,7 @@ const Header = ({ className, user, loading }) => {
           <MenuIcon
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={mobileMenuOpen ? 'open' : ''}
+            color={layered ? 'white' : ''}
           >
             <div />
           </MenuIcon>
@@ -186,6 +231,8 @@ export default styled(Header)`
   background-color: transparent;
   z-index: 1;
   width: 100vw;
+
+  position: ${({ layered }) => (layered ? 'absolute' : 'relative')};
 
   &::before {
     content: '';

@@ -149,6 +149,8 @@ const createProfile = ({ user, loading }) => {
     );
   }
 
+  dlog('user from session on create::', user);
+
   return (
     <div>
       <Head>
@@ -159,10 +161,11 @@ const createProfile = ({ user, loading }) => {
         <Title>{steps[currentStep].label}</Title>
         <Formik
           initialValues={{
-            email: user.session.email,
+            email: user.session ? user.session.email : '',
             acceptedCodeOfConduct: false,
             acceptedTermsOfService: false,
             isOver13: false,
+            canFeature: false,
           }}
           validationSchema={getValidationSchema}
           onSubmit={(values, { setSubmitting }) => {
@@ -193,7 +196,6 @@ const createProfile = ({ user, loading }) => {
                   ...valuesToSave,
                   profileLinks,
                   isDeactivated: false,
-                  canFeature: false,
                   acceptedCommitments: false,
                 };
                 dlog('submitted and valuesToSave', valuesToSave);

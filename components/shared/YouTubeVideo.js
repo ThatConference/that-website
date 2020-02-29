@@ -1,21 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const YouTubeVideo = ({
-  autoplay,
-  containerHeight,
-  containerWidth,
-  modest,
-  rel,
-  videoId,
-}) => {
+const YouTubeVideo = ({ className, autoplay, modest, rel, videoId }) => {
   const fullUrl = `https://www.youtube.com/embed/${videoId}?autoplay=${autoplay}&rel=${rel}&modestbranding=${modest}`;
 
   return (
-    <div
-      className="container"
-      style={{ minHeight: containerHeight, minWidth: containerWidth }}
-    >
+    <div className={className}>
       <iframe
         className="player"
         type="text/html"
@@ -31,8 +21,7 @@ const YouTubeVideo = ({
 
 YouTubeVideo.propTypes = {
   autoplay: PropTypes.number,
-  containerHeight: PropTypes.string,
-  containerWidth: PropTypes.string,
+  className: PropTypes.string,
   modest: PropTypes.number,
   rel: PropTypes.number,
   videoId: PropTypes.string.isRequired,
@@ -40,8 +29,7 @@ YouTubeVideo.propTypes = {
 
 YouTubeVideo.defaultProps = {
   autoplay: 0,
-  containerHeight: '30rem',
-  containerWidth: '50rem',
+  className: '',
   modest: 1,
   rel: 0,
 };

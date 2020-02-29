@@ -41,7 +41,8 @@ _Coming soon_
 
 #### 5. Setting up your environment
 
-THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
+THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now@16.7.3` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
+Note: The 17.* version of Zeit Now introduced project hot linking and is currently problematic.
 
 If you are on a mac, it is helpful to make sure Xcode and  Xcode command line tools are up to date.
 

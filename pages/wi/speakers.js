@@ -8,11 +8,11 @@ const speakers = () => {
   return (
     <>
       <Head>
-        <title key="title">Speakers - THAT Conference</title>
+        <title key="title">Counselors (Speakers) - THAT Conference</title>
       </Head>
 
       <ContentSection>
-        <h1>Speakers</h1>
+        <h1>Counselors (Speakers)</h1>
       </ContentSection>
     </>
   );

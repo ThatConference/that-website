@@ -17,6 +17,9 @@ const baseTheme = {
     darkGray: '#707070',
     white: '#FFFFFF',
     offWhite: '#F7F7F7',
+    transparent: 'transparent',
+
+    placeholderGray: '#ededed',
 
     // standard user messaging
     success: '#28a745',

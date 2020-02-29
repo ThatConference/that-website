@@ -34,7 +34,14 @@ const TESTIMONIALS = [
 ];
 
 const ContentGrid = styled(Grid)`
+  margin: 0 8rem;
+
+  ${below.large`
+    margin: 0;
+  `};
+
   direction: rtl;
+
   ${below.small`
     display: block;
     margin-right: 2rem;
@@ -46,13 +53,22 @@ const ContentGrid = styled(Grid)`
 `;
 
 const HighlightImage = styled.img`
-  width: 100%;
+  max-width: 55rem;
+
+  ${below.larger`
+    max-width: 100%;
+  `};
+
+  ${below.xsmall`
+    max-width: 30rem;
+  `};
 `;
 
 const Detail = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  max-width: 40rem;
 `;
 
 const Quote = styled.p`
@@ -78,7 +94,11 @@ const Testimonials = ({ className }) => {
     <ContentSection className={className}>
       <ContentGrid columns={gridRepeat.small}>
         <Cell>
-          <HighlightImage src={testimonial.imageUrl} loading="lazy" />
+          <HighlightImage
+            src={testimonial.imageUrl}
+            loading="lazy"
+            alt="THAT Conference Highlight"
+          />
         </Cell>
         <Cell style={{ direction: 'ltr' }}>
           <Detail>

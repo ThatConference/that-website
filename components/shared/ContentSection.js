@@ -37,12 +37,13 @@ const Trees = styled.img`
 
 const ContentSection = ({
   backgroundColor,
-  fontColor,
+  children,
   className,
-  id,
+  fontColor,
   forForm,
   hasTrees,
-  children,
+  id,
+  style,
 }) => {
   return (
     <Container
@@ -51,8 +52,9 @@ const ContentSection = ({
       className={className}
       id={id}
       forForm={forForm}
+      style={style}
     >
-      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" />}
+      {hasTrees && <Trees src="/svgs/THAT-Trees.svg" alt="THAT Conference" />}
       <ContainerInner forForm={forForm}>{children}</ContainerInner>
     </Container>
   );

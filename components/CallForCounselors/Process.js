@@ -14,13 +14,6 @@ const Main = styled(ContentSection)`
   ${below.med`
     margin-bottom: 0;
   `};
-
-  h3 {
-    font-size: 3.5rem;
-    text-transform: unset;
-    color: ${({ theme }) => theme.colors.fonts.dark};
-    font-weight: 500;
-  }
 `;
 
 const ProcessAndDatesGrid = styled(Grid)`
@@ -63,17 +56,29 @@ const KeyDatesCell = styled(Cell)`
   }
 `;
 
-const MoreAboutProcess = styled(LinkButton)`
+const ActionButtons = styled.div`
+  display: flex;
   margin-top: 5rem;
-  margin-left: 0;
+
+  ${below.xlarge`
+    flex-direction: column;
+  `};
+`;
+
+const MoreAboutProcess = styled(LinkButton)`
+  margin-left: 2rem;
+
+  ${below.xlarge`
+    margin-left: 0;
+  `};
 `;
 
 const Process = ({ milestones }) => {
   return (
-    <Main>
+    <Main id="process">
       <ProcessAndDatesGrid columns="repeat(auto-fit,minmax(320px,1fr))">
         <Cell>
-          <h3>Talk Audiences and Formats</h3>
+          <h3 className="font-dark">Talk Audiences and Formats</h3>
           <p>You can apply to speak for the following audiences and formats:</p>
           <ProcessBlock>
             <ProcessAndDatesSubHeading>
@@ -119,7 +124,7 @@ const Process = ({ milestones }) => {
           </ProcessBlock>
         </Cell>
         <Cell className="keyDates">
-          <h3>Key Dates You Need to Know</h3>
+          <h3 className="font-dark">Key Dates You Need to Know</h3>
           {milestones.map((m, index) => {
             const className = index === 0 ? 'first' : '';
             return (
@@ -135,16 +140,28 @@ const Process = ({ milestones }) => {
               </KeyDatesGrid>
             );
           })}
-          <MoreAboutProcess
-            href="counselor-selection-process"
-            borderColor="thatBlue"
-            color="thatBlue"
-            backgroundColor="white"
-            hoverBorderColor="thatBlue"
-            hoverColor="white"
-            hoverBackgroundColor="thatBlue"
-            label="More About The Counselor Selection Process"
-          />
+          <ActionButtons>
+            <LinkButton
+              href="counselor-start"
+              borderColor="thatBlue"
+              color="thatBlue"
+              backgroundColor="white"
+              hoverBorderColor="thatBlue"
+              hoverBackgroundColor="thatBlue"
+              hoverColor="white"
+              label="Become a Counselor"
+            />
+            <MoreAboutProcess
+              href="counselor-selection-process"
+              borderColor="thatBlue"
+              color="thatBlue"
+              backgroundColor="white"
+              hoverBorderColor="thatBlue"
+              hoverColor="white"
+              hoverBackgroundColor="thatBlue"
+              label="More About THAT Selection Process"
+            />
+          </ActionButtons>
         </Cell>
       </ProcessAndDatesGrid>
     </Main>

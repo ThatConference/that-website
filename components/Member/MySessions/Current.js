@@ -6,10 +6,11 @@ import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+import _ from 'lodash';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 
-import { sessionConstants } from '../../../utilities';
+import { sessionConstants, below } from '../../../utilities';
 
 const dlog = debug('that:sessions:current');
 
@@ -32,6 +33,11 @@ const SessionsGrid = styled(Grid)`
 
 const SessionTitle = styled(Cell)`
   font-size: 2rem;
+
+  ${below.med`
+    font-size: 1.6rem;
+    line-height: 1.3;
+  `};
 `;
 
 const SessionStatus = styled(Cell)`
@@ -52,7 +58,7 @@ const SessionStatus = styled(Cell)`
     color: ${({ theme }) => theme.colors.fonts.light};
     background-color: ${({ theme }) => theme.colors.success};
   }
-  div.DENIED {
+  div.NOT_ACCEPTED {
     color: ${({ theme }) => theme.colors.fonts.light};
     background-color: ${({ theme }) => theme.colors.danger};
   }
@@ -139,7 +145,7 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
     return <LoadingIndicator />;
   }
 
-  if (error) return null;
+  if (error) throw new Error(error);
 
   const sessions = data.sessions.me.all;
   const hasCurrentSessions = sessions && sessions.length && sessions.length > 0;
@@ -161,7 +167,7 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
   const yesCurrentSessions = () => {
     return (
       <SessionsGrid columns={12}>
-        {sessions.map(session => {
+        {_.sortBy(sessions, s => s.title.toLowerCase()).map(session => {
           return (
             <React.Fragment key={session.id}>
               <SessionTitle className="cell" width={8}>

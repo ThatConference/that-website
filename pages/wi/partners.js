@@ -4,43 +4,56 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+import { NextSeo } from 'next-seo';
+import debug from 'debug';
 
 import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import { below } from '../../utilities/breakpoint';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { ActionButtonRow } from '../../components/shared/StandardStyles';
+
+const dlog = debug('that:partners');
 
 const GET_PARTNERS = gql`
-  query getPartners {
-    partners {
-      all {
-        id
-        slug
-        year
-        partnershipLevel
-        companyName
-        companyLogo
-        heroImage
-        website
+  query getPartners($eventId: ID!) {
+    events {
+      event(id: $eventId) {
+        get {
+          id
+          name
+          year
+          partners {
+            id
+            slug
+            level
+            placement
+            companyName
+            companyLogo
+            heroImage
+            website
+          }
+        }
       }
     }
   }
 `;
 
-const Header = styled.h1`
-  margin-bottom: 0;
-  margin-right: 50px;
-`;
-
 const RobotImage = styled.img`
-  height: 50rem;
-  float: right;
-  margin-right: 3.5rem;
+  height: 45rem;
+  margin-left: 4rem;
+  transform: scaleX(-1);
+  position: relative;
+  top: -5rem;
 
-  ${below.med`
-    margin-top: 2rem;
-    margin-right: unset;
+  ${below.large`
+    top: 0;
     height: 40rem;
+  `};
+
+  ${below.small`
+    display: none;
   `};
 `;
 
@@ -65,10 +78,27 @@ const Image = styled.img`
   right: 0;
   bottom: 0;
   max-width: ${({ maxWidth }) => maxWidth};
+  padding: 1.25rem;
+`;
+
+const TopContentSection = styled(ContentSection)`
+  padding-bottom: 0;
+
+  ${below.xlarge`
+    padding-bottom: 5rem;
+  `};
+`;
+
+const PioneerContentSection = styled(ContentSection)`
+  padding-top: 0;
+
+  ${below.xlarge`
+    padding-top: 5rem;
+  `};
 `;
 
 const PaddedImageContainer = styled(ImageContainer)`
-  margin: 3rem;
+  margin: 1rem;
 `;
 
 const renderPartner = (
@@ -83,7 +113,11 @@ const renderPartner = (
       height={containerHeight}
       key={partner.id}
     >
-      <Link href="/wi/partner/[slug]" as={`/wi/partner/${partner.slug}`}>
+      <Link
+        href="/partner/[slug]"
+        as={`/partner/${partner.slug}`}
+        prefetch={false}
+      >
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a>
           <Image
@@ -99,95 +133,136 @@ const renderPartner = (
 };
 
 const partnerListing = () => {
-  const { loading, error, data } = useQuery(GET_PARTNERS);
+  const { loading, error, data } = useQuery(GET_PARTNERS, {
+    variables: {
+      eventId: process.env.CURRENT_EVENT_ID,
+    },
+  });
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading) {
+    return (
+      <ContentSection>
+        <LoadingIndicator />
+      </ContentSection>
+    );
+  }
+  if (error) {
+    dlog('error %o', error);
+    throw new Error(error);
+  }
 
-  const partners = data.partners.all;
+  dlog('data %o', data.events.event.get.partners);
+
+  const partners = data.events.event.get.partners.sort((a, b) => {
+    if (a.placement < b.placement) return -1;
+    if (a.placement > b.placement) return 1;
+    return 0;
+  });
+  const eventYear = data.events.event.get.year;
+
+  dlog('partners %o', partners);
   return (
     <div>
-      <ContentSection>
+      <NextSeo
+        title={`${eventYear} WI Partners - THAT Conference`}
+        description="THAT Conference wouldn’t be possible without the support of our partners. A large portion of the conference costs are paid from sponsorships so that we can keep ticket costs affordable."
+      />
+
+      <TopContentSection>
         <Grid columns="repeat(auto-fit,minmax(32rem,1fr))">
           <Cell>
-            <Header>2019 Partners</Header>
-            <LinkButton
-              href="/wi/become-a-partner"
-              label="Become a Partner"
-              color="thatBlue"
-              borderColor="thatBlue"
-              hoverBorderColor="thatBlue"
-              hoverColor="white"
-              hoverBackgroundColor="thatBlue"
-            />
-            <RobotImage src="/images/robot.png" />
-          </Cell>
-          <Cell>
-            <p className="large-body-copy">
+            <h1>{eventYear} Partners</h1>
+            <p className="medium-body-copy">
               THAT Conference wouldn’t be possible without the support of our
               partners. A large portion of the conference costs are paid from
               sponsorships so that we can keep ticket costs affordable. Please
               take a few minutes to learn about our partners and let them know
               you appreciate their support of our community!
             </p>
+            <ActionButtonRow>
+              <LinkButton
+                href="/wi/become-a-partner"
+                label="Become a Partner"
+                color="thatBlue"
+                borderColor="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+              <LinkButton
+                href="/partners"
+                label="View Past Partners"
+                color="thatBlue"
+                borderColor="thatBlue"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+              />
+            </ActionButtonRow>
+          </Cell>
+          <Cell center>
+            <RobotImage src="/images/robot.png" alt="Become A THAT Partner" />
           </Cell>
         </Grid>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.partnershipLevel === 'PIONEER') {
-              return renderPartner(value, '60.9rem', '38.7rem', '32.3rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.partnershipLevel === 'EXPLORER') {
-              return renderPartner(value, '39.9rem', '25.5rem', '28rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.partnershipLevel === 'SCOUT') {
-              return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.partnershipLevel === 'PATRON') {
-              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
-      <ContentSection>
-        <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
-        <Partners>
-          {partners.map(value => {
-            if (value.partnershipLevel === 'MEDIA') {
-              return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
-            }
-            return null;
-          })}
-        </Partners>
-      </ContentSection>
+      </TopContentSection>
+
+      <>
+        <PioneerContentSection>
+          <PartnerLevelTitle>Pioneer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PIONEER') {
+                return renderPartner(value, '48rem', '31rem', '37rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </PioneerContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Explorer Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'EXPLORER') {
+                return renderPartner(value, '37rem', '23rem', '30rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Scout Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'SCOUT') {
+                return renderPartner(value, '31.2rem', '20.3rem', '21.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Patron Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'PATRON') {
+                return renderPartner(value, '25.7rem', '16.7rem', '17.7rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+        <ContentSection>
+          <PartnerLevelTitle>Media Partners</PartnerLevelTitle>
+          <Partners>
+            {partners.map(value => {
+              if (value.level === 'MEDIA') {
+                return renderPartner(value, '21rem', '14rem', '14.5rem');
+              }
+              return null;
+            })}
+          </Partners>
+        </ContentSection>
+      </>
     </div>
   );
 };

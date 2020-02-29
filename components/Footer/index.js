@@ -35,7 +35,11 @@ const FooterNav = styled.div`
 const FooterNavColumn = styled.div`
   display: flex;
   flex-direction: column;
-  padding-right: 3rem;
+  padding-right: 3.5rem;
+
+  ${below.larger`
+    padding-right: 4rem;
+  `};
 
   ${below.large`
     padding: 0 2rem;
@@ -72,12 +76,57 @@ const Footer = () => {
 
   return (
     <footer>
-      <ContentSection id="newsletter">
+      <ContentSection id="newsletter" backgroundColor="offWhite">
         <Detail>
           <a href="/" onClick={() => clickTracking('logo')}>
             <Logo src="/svgs/THATConference.svg" alt="THAT Conference" />
           </a>
           <FooterNav>
+            <FooterNavColumn>
+              <Title>THAT</Title>
+              <NavLink href="/about" onClick={() => clickTracking('about')}>
+                About
+              </NavLink>
+              <NavLink href="/blog" onClick={() => clickTracking('blog')}>
+                Blog
+              </NavLink>
+              <NavLink href="/contact" onClick={() => clickTracking('contact')}>
+                Contact
+              </NavLink>
+              <NavLink
+                href="/partners"
+                onClick={() => clickTracking('partners')}
+              >
+                Partners
+              </NavLink>
+            </FooterNavColumn>
+            <FooterNavColumn>
+              <Title>WI</Title>
+              <NavLink
+                href="/wi/partners"
+                onClick={() => clickTracking('wi/partners')}
+              >
+                2020 Partners
+              </NavLink>
+              <NavLink
+                href="/wi/become-a-partner"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Become a Partner
+              </NavLink>
+              <NavLink
+                href="/wi/jobs"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Jobs
+              </NavLink>
+              <NavLink
+                href="/wi/tickets"
+                onClick={() => clickTracking('wi/tickets')}
+              >
+                Tickets
+              </NavLink>
+            </FooterNavColumn>
             <FooterNavColumn>
               <Title>Resources</Title>
               <NavLink href="/wi/faq" onClick={() => clickTracking('faq')}>
@@ -108,24 +157,6 @@ const Footer = () => {
                 Family Handbook
               </NavLink>
             </FooterNavColumn>
-            {/* <FooterNavColumn>
-              <Title>Plan Your Trip</Title>
-              <NavLink
-                href="/"
-                onClick={() => clickTracking('important dates')}
-              >
-                Important Dates
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('travel info')}>
-                Travel Information
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('handbook')}>
-                Handbooks
-              </NavLink>
-              <NavLink href="/" onClick={() => clickTracking('faq')}>
-                FAQ
-              </NavLink>
-            </FooterNavColumn> */}
             <FooterNavColumn>
               <Title>Policies</Title>
               <NavLink
@@ -168,14 +199,4 @@ const Footer = () => {
   );
 };
 
-export default styled(Footer)`
-  display: flex;
-  align-items: center;
-  padding: 0 2rem;
-  min-height: 18rem;
-  background-color: ${({ theme }) => theme.colors.offWhite};
-
-  ${below.med`
-    min-height: 33rem;
-  `};
-`;
+export default Footer;

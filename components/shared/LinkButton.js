@@ -76,7 +76,11 @@ const LinkButton = ({
   return (
     <ConditionalWrapper
       condition={isLocal}
-      wrapper={children => <Link href={href}>{children}</Link>}
+      wrapper={children => (
+        <Link href={href} prefetch={false}>
+          {children}
+        </Link>
+      )}
     >
       <StyledOutlineLink
         href={href}

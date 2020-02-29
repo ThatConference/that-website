@@ -1,94 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Imgix from 'react-imgix';
+import _ from 'lodash';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
-import Icon from '../shared/Icon';
-import RoundImage from '../shared/RoundImage';
-
+import PartnerLogoWithInfo from '../shared/PartnerLogoWithInfo';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
+import { below, gridRepeat } from '../../utilities';
 
-import { below } from '../../utilities';
-
-const MainSection = styled(ContentSection)`
-  padding: 0;
-  padding-top: 10rem;
-  padding-bottom: 2rem;
-  background-color: ${({ theme }) => theme.colors.lightGray};
-
-  ${below.med`
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  `};
-`;
-
-const MainLogoGrid = styled(Grid)`
-  ${below.med`
-    display: block;
-  `};
-`;
-
-const MainLogoCell = styled(Cell)`
-  line-height: 1.2;
-
-  ${below.med`
-    text-align: left;
-  `};
-`;
-
-const MainLogo = styled.img`
-  height: 17.5rem;
-`;
-
-const PartnerSocialsContainer = styled.div`
+const LogoMemberSection = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: ${({ justification }) => justification};
-  margin-top: 1rem;
 
   ${below.med`
-    justify-content: left;
+    flex-direction: column;
   `};
-`;
-
-const PartnerSocialLink = styled.a`
-  height: 3.5rem;
-  background-color: ${({ theme }) => theme.colors.highlight};
-  border-radius: 3.5rem;
-  height: 3.5rem;
-  background-color: ${({ theme }) => theme.colors.highlight};
-  border-radius: 3.5rem;
-  margin-right: 0.2rem;
-  margin-top: 0;
-
-  svg {
-    position: relative;
-    top: 0.6rem;
-    left: 0.6rem;
-    fill: ${({ theme }) => theme.colors.white};
-  }
-
-  &:hover {
-    svg {
-      fill: ${({ theme }) => theme.colors.white};
-    }
-  }
-`;
-
-const VisitUs = styled.h5`
-  font-family: 'Open Sans', sans-serif;
-  margin-bottom: 0;
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: bold;
 `;
 
 const Name = styled.p`
   font-family: franklin-gothic-urw, sans-serif;
   line-height: 1;
   color: ${({ theme }) => theme.colors.fonts.dark};
-  margin-bottom: 0.5rem;
-  font-weight: 400;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  margin-top: 0;
 `;
 
 const Title = styled.p`
@@ -96,120 +31,81 @@ const Title = styled.p`
   line-height: 1.2;
   padding-right: 3rem;
   color: ${({ theme }) => theme.colors.fonts.dark};
+  font-weight: 400;
+  margin: 0;
 `;
 
-const getHostName = website => {
-  let hostName = new URL(website).hostname;
-  if (hostName.toLowerCase().startsWith('www.')) {
-    hostName = hostName.replace('www.', '');
-  }
-  return hostName;
-};
+const SayHiDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
 
-const LogoWithInfo = ({ partner, justification }) => {
-  return (
-    <>
-      <MainLogo src={partner.companyLogo} alt={partner.companyName} />
-      <VisitUs>Visit us online at:</VisitUs>
-      <a href={partner.website}>{getHostName(partner.website)}</a>
-      <PartnerSocials partner={partner} justification={justification} />
-    </>
-  );
-};
+  ${below.med`
+    padding-top: 4rem;
+    max-width: 70%;
+    margin: auto;
+  `};
+`;
 
-const JustLogo = ({ partner }) => {
-  return (
-    <MainLogoGrid columns="1">
-      <MainLogoCell center>
-        <LogoWithInfo partner={partner} justification="center" />
-      </MainLogoCell>
-    </MainLogoGrid>
-  );
-};
+const Member = styled(Cell)`
+  display: flex;
+  flex-direction: row;
+  height: auto;
+`;
 
-const renderWho = who => {
-  return (
-    <Cell key={who.name}>
-      <Grid columns="9rem 1fr">
-        <Cell>
-          <RoundImage
-            imageUrl={who.headshotUrl}
-            size="80"
-            showAccentLine={false}
-          />
-        </Cell>
-        <Cell>
-          <Name>{who.name}</Name>
-          <Title>{who.title}</Title>
-        </Cell>
-      </Grid>
-    </Cell>
-  );
-};
+const MemberDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 2rem;
+  justify-content: center;
+  max-height: 6rem;
+`;
 
-const LogoAndSayHi = ({ partner }) => {
+const renderMember = member => {
   return (
-    <MainLogoGrid columns="67.5rem 1fr">
-      <MainLogoCell>
-        <LogoWithInfo partner={partner} justification="left" />
-      </MainLogoCell>
-      <Cell>
-        <PartnerDetailSubHeading>
-          Who to Say Hi to During THAT Conference
-        </PartnerDetailSubHeading>
-        <Grid columns="repeat(auto-fit,minmax(22rem,1fr))">
-          {partner.whoToSayHiTo.map(w => {
-            return renderWho(w);
-          })}
-        </Grid>
-      </Cell>
-    </MainLogoGrid>
-  );
-};
-
-const PartnerSocials = ({ partner, justification }) => {
-  return (
-    <PartnerSocialsContainer justification={justification}>
-      {partner.instagram && (
-        <PartnerSocialLink href={partner.instagram} target="_blank">
-          <Icon icon="instagram" height="38" width="38" />
-        </PartnerSocialLink>
-      )}
-      {partner.facebook && (
-        <PartnerSocialLink href={partner.facebook} target="_blank">
-          <Icon icon="facebook" height="38" width="38" />
-        </PartnerSocialLink>
-      )}
-      {partner.twitter && (
-        <PartnerSocialLink href={partner.twitter} target="_blank">
-          <Icon icon="twitter" height="38" width="38" />
-        </PartnerSocialLink>
-      )}
-      {partner.youtube && (
-        <PartnerSocialLink href={partner.youtube} target="_blank">
-          <Icon icon="youtube" height="70" width="70" />
-        </PartnerSocialLink>
-      )}
-      {partner.linkedIn && (
-        <PartnerSocialLink href={partner.linkedIn} target="_blank">
-          <Icon icon="linkedin" height="38" width="38" />
-        </PartnerSocialLink>
-      )}
-      {partner.github && (
-        <PartnerSocialLink href={partner.github} target="_blank">
-          <Icon icon="github" height="38" width="38" />
-        </PartnerSocialLink>
-      )}
-    </PartnerSocialsContainer>
+    <Member key={member.id}>
+      <Imgix
+        src={member.profileImage}
+        width={60}
+        height={60}
+        imgixParams={{ mask: 'ellipse', fit: 'facearea', facepad: 4 }}
+      />
+      <MemberDetail>
+        <Name>{`${member.firstName} ${member.lastName}`}</Name>
+        <Title>{member.jobTitle}</Title>
+      </MemberDetail>
+    </Member>
   );
 };
 
 const MainLogoSection = ({ partner }) => {
+  const { members } = partner;
+  const sortedMembers = _.sortBy(members, [
+    'partnerFeaturedOrder',
+    'firstName',
+  ]);
+
   return (
-    <MainSection>
-      {partner.whoToSayHiTo && <LogoAndSayHi partner={partner} />}
-      {!partner.whoToSayHiTo && <JustLogo partner={partner} />}
-    </MainSection>
+    <ContentSection backgroundColor="lightGray">
+      <LogoMemberSection>
+        <PartnerLogoWithInfo
+          partner={partner}
+          alignment={_.isEmpty(sortedMembers) ? 'center' : 'flex-start'}
+        />
+        {!_.isEmpty(sortedMembers) && (
+          <SayHiDetail>
+            <PartnerDetailSubHeading>
+              Who to Say Hi to During THAT Conference
+            </PartnerDetailSubHeading>
+            <Grid columns={gridRepeat.xsmall}>
+              {sortedMembers.map(member => {
+                return renderMember(member);
+              })}
+            </Grid>
+          </SayHiDetail>
+        )}
+      </LogoMemberSection>
+    </ContentSection>
   );
 };
 

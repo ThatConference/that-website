@@ -54,10 +54,11 @@ export const sessionConstants = {
     { value: 'DRAFT', label: 'Draft' },
     { value: 'SUBMITTED', label: 'Submitted' },
     { value: 'ACCEPTED', label: 'Accepted' },
-    { value: 'DENIED', label: 'Declined' },
+    { value: 'NOT_ACCEPTED', label: 'Not Accepted' },
     { value: 'WITHDREW', label: 'Withdrew' },
     { value: 'WAIT_LIST', label: 'Wait List' },
     { value: 'CANCELLED', label: 'Canceled' },
+    { value: 'SCHEDULED', label: 'Scheduled' },
   ],
 
   sessionValidations: {
@@ -171,6 +172,7 @@ export const socialConstants = {
     medium: 'https://medium.com/that-conference',
     youtube: 'https://www.youtube.com/thatconference/',
     flickr: 'https://www.flickr.com/photos/thatconference/',
+    linkedin: 'https://www.linkedin.com/company/25065729/admin/',
     github: 'https://github.com/ThatConference',
   }),
 
@@ -205,6 +207,13 @@ export const socialConstants = {
         height: 24,
       },
       className: 'is-bigger',
+    },
+    linkedin: {
+      icon: {
+        name: 'linkedin',
+        width: 24,
+        height: 24,
+      },
     },
     medium: {
       icon: {

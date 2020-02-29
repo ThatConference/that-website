@@ -64,7 +64,11 @@ const LearnMore = ({ className }) => {
   return (
     <ContentSection className={className} id="learn-more">
       <Main>
-        <HighlightImage src="/images/bear_with_drone.png" loading="lazy" />
+        <HighlightImage
+          src="/images/bear_with_drone.png"
+          loading="lazy"
+          alt="Learn More About THAT"
+        />
         <SideDetail>
           <StandardBodyCopy>
             An inclusive, multi-day event for anyone passionate about learning

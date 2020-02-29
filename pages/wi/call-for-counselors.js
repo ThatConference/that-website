@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
@@ -8,45 +8,55 @@ import SummerCamp from '../../components/CallForCounselors/SummerCamp';
 // import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
 import Process from '../../components/CallForCounselors/Process';
 import Perks from '../../components/CallForCounselors/Perks';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
       event(id: $eventId) {
-        id
-        milestones {
-          title
-          description
-          dueDate
+        get {
+          id
+          milestones {
+            title
+            description
+            dueDate
+          }
         }
       }
     }
   }
 `;
 
-const CallForCounselors = ({ featureKeyword }) => {
+const CallForCounselors = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: 'ByE7Dc7eCGcRFzLhWhuI' },
+    variables: { eventId: process.env.CURRENT_EVENT_ID },
     onCompleted(d) {
       return d;
     },
   });
 
-  if (loading) return null;
-  if (error) return null;
+  if (error) throw new Error(error);
 
-  const { event } = data.events;
   return (
     <div>
-      <Head>
-        <title key="title">Call for Speakers - THAT Conference</title>
-      </Head>
-      <Header featureKeyword={featureKeyword} />
+      <NextSeo
+        title="Call for Counselors - THAT Conference"
+        description="THAT Community spreads way beyond the midwest and we want to make
+              it easy for you to book and plan your travel to Summer Camp. Here
+              is the one stop show of dates, places and related travel goodness
+              to help get you to camp!"
+      />
+      <Header />
       <SummerCamp />
-      {/* TO DO: commenting out until we have past sessions in place */}
-      {/* <TalkIdeas /> */}
-      <Process featureKeyword={featureKeyword} milestones={event.milestones} />
-      <Perks />
+      {loading && <LoadingIndicator />}
+      {!loading && (
+        <>
+          {/* TO DO: commenting out until we have past sessions in place */}
+          {/* <TalkIdeas /> */}
+          <Process milestones={data.events.event.get.milestones} />
+          <Perks />
+        </>
+      )}
     </div>
   );
 };
