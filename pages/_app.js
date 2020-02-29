@@ -3,7 +3,6 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import { HotKeys } from 'react-hotkeys';
 
 import sentry from '../lib/sentry';
 import * as gtag from '../lib/gtag';
@@ -13,11 +12,6 @@ import Page from '../components/Page';
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 const { captureException } = sentry();
-
-const keyMap = {
-  VOTE_YES: 'y',
-  VOTE_NO: 'n',
-};
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -70,14 +64,9 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <HotKeys keyMap={keyMap}>
-          <Page
-            displayFeature={displayFeature}
-            headerType={Component.headerType}
-          >
-            <Component {...pageProps} />
-          </Page>
-        </HotKeys>
+        <Page displayFeature={displayFeature} headerType={Component.headerType}>
+          <Component {...pageProps} />
+        </Page>
       </ApolloProvider>
     );
   }
