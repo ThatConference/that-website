@@ -6,12 +6,5 @@ const Title = styled.h1`
   margin-bottom: 4rem;
 `;
 
-const Header = ({ title }) => {
-  return (
-    <>
-      <Title>{title}</Title>
-    </>
-  );
-};
-
+const Header = ({ title }) => <Title>{title}</Title>;
 export default Header;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
+
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 import Meta from './Meta';
