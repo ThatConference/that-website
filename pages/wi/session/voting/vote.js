@@ -43,7 +43,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   dlog('session voting');
 
   const router = useRouter();
-  const [currenstSessionIndex, setCurrenstSessionIndex] = useState(0);
+  const [currentSessionIndex, setCurrentSessionIndex] = useState(0);
 
   const {
     loading: sessionsLoading,
@@ -69,9 +69,9 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
     }
   });
 
-  const showForwardLink = () => totalSubmitted > 0 || currenstSessionIndex > 0;
-
-  const totalRemaining = () => unVoted.length - currenstSessionIndex;
+  const showForwardLink = () => totalSubmitted > 0 || currentSessionIndex > 0;
+  const totalRemaining = () => unVoted.length - currentSessionIndex;
+  const getVotedOnCount = () => totalSubmitted - totalRemaining();
 
   return (
     <>
@@ -93,10 +93,15 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
           <>
             <Stats
               totalSubmitted={totalSubmitted}
-              totalVotedOn={currenstSessionIndex}
+              totalVotedOn={getVotedOnCount()}
               totalRemaining={totalRemaining()}
             />
-            <Content session={unVoted[currenstSessionIndex]} />
+            <Content
+              session={unVoted[currentSessionIndex]}
+              increaseVoteCount={() =>
+                setCurrentSessionIndex(currentSessionIndex + 1)
+              }
+            />
           </>
         )}
       </RelativeContentSection>
