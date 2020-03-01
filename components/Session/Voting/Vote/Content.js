@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import parse from 'html-react-parser';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import { GlobalHotKeys } from 'react-hotkeys';
-
-import LoadingIndicator from '../../../shared/LoadingIndicator';
-import NavLinks from '../Shared/NavLinks';
-import Thumbs from '../Shared/Thumbs';
-import Stats from '../Shared/Stats';
+import Icon from '../../../shared/Icon';
+import { below } from '../../../../utilities';
 
 const MarkdownIt = require('markdown-it');
 
@@ -24,38 +21,62 @@ const GlobalHotKeyStyled = styled(GlobalHotKeys)`
   }
 `;
 
-const MainContent = styled.div`
-  margin-top: 0rem;
-`;
-
-const Section = styled.div`
-  margin-bottom: 3rem;
-
-  ul {
+const BodyDiv = styled.div`
+  max-width: 80rem;
+  p {
     margin-top: 0;
   }
 `;
 
-const DetailsHeader = styled.div`
-  font-size: 2rem;
+const SideColumn = styled.div`
+  min-width: 4rem;
+  padding-left: 8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+
+  ${below.large`
+    padding-left: 0;
+    padding-top: 4rem;
+  `};
 `;
 
-const GET_SESSIONS = gql`
-  query getVotingSessions($eventId: ID!) {
-    sessions {
-      me {
-        voting(eventId: $eventId) {
-          isVotingOpen
-          totalSubmitted
-          unVoted {
-            id
-            title
-            longDescription
-            takeaways
-          }
-        }
-      }
-    }
+const ThumbRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+`;
+
+const SessionDetails = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  ${below.large`
+    flex-direction: column;
+  `};
+`;
+
+const ThumbsIcon = css`
+  cursor: pointer;
+  fill: ${({ theme }) => theme.colors.primary};
+`;
+
+const ThumbsDownIcon = styled(Icon)`
+  ${ThumbsIcon}
+  transform: scaleY(-1);
+  &:hover,
+  &.vote-selected {
+    fill: ${({ theme }) => theme.colors.danger};
+  }
+`;
+
+const ThumbsUpIcon = styled(Icon)`
+  ${ThumbsIcon}
+  padding-right: 2rem;
+  &:hover,
+  &.vote-selected {
+    fill: ${({ theme }) => theme.colors.success};
   }
 `;
 
@@ -73,72 +94,45 @@ const CAST_VOTE = gql`
   }
 `;
 
-const Content = () => {
+const Content = ({ session }) => {
   const [notes, setNotes] = useState('');
-  const [value, setValue] = useState(0);
+  const [vote, setVote] = useState(null);
 
-  let toastId = null;
-  const forceUpdate = () => {
-    ButterToast.dismiss(toastId);
-    ButterToast.raise({
-      sticky: false,
-      content: (
-        <Cinnamon.Crisp
-          scheme={Cinnamon.Crisp.SCHEME_BLUE}
-          content={() => <div>Vote successfully cast!</div>}
-          title="Vote"
-        />
-      ),
-    });
-    setValue(value + 1);
-    setNotes('');
-    window.scrollTo(0, 0);
+  const voteComplete = () => {
+    console.log('vote mutation completed');
+    // ButterToast.dismiss(toastId);
+    // ButterToast.raise({
+    //   sticky: false,
+    //   content: (
+    //     <Cinnamon.Crisp
+    //       scheme={Cinnamon.Crisp.SCHEME_BLUE}
+    //       content={() => <div>Vote successfully cast!</div>}
+    //       title="Vote"
+    //     />
+    //   ),
+    // });
+    // setValue(value + 1);
+    // setNotes('');
+    // window.scrollTo(0, 0);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
-    onCompleted: forceUpdate,
+    onCompleted: voteComplete,
     onError: createError => {
       throw new Error(createError);
     },
   });
 
-  const {
-    loading: sessionsLoading,
-    error: sessionsError,
-    data: sessionsData,
-  } = useQuery(GET_SESSIONS, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
-  });
+  // const { totalSubmitted } = root;
+  // const totalRemaining = root.unVoted.length - value;
+  // const totalVotedOn = totalSubmitted - totalRemaining;
 
-  if (sessionsLoading) {
-    return (
-      <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
-        <LoadingIndicator />
-      </div>
-    );
-  }
-  if (sessionsError) throw new Error(sessionsError);
-
-  const root = sessionsData.sessions.me.voting;
-
-  const { totalSubmitted } = root;
-  const totalRemaining = root.unVoted.length - value;
-  const totalVotedOn = totalSubmitted - totalRemaining;
-
-  const session = root.unVoted ? root.unVoted[value] : null;
+  // const session = root.unVoted ? root.unVoted[value] : null;
 
   const submitVote = yesVote => {
-    toastId = ButterToast.raise({
-      sticky: false,
-      content: (
-        <Cinnamon.Crisp
-          scheme={Cinnamon.Crisp.SCHEME_BLUE}
-          content={() => <div>Casting Vote...</div>}
-          title="Vote"
-        />
-      ),
-    });
-    const vars = {
+    console.log('SUBMIT VOTE');
+    setVote(yesVote);
+    const queryVariables = {
       eventId: process.env.CURRENT_EVENT_ID,
       vote: {
         sessionId: session.id,
@@ -147,7 +141,7 @@ const Content = () => {
       },
     };
     castVote({
-      variables: vars,
+      variables: queryVariables,
     });
   };
 
@@ -158,29 +152,29 @@ const Content = () => {
 
   if (session) {
     const converter = new MarkdownIt();
+    const { longDescription, takeaways, title } = session;
+
     return (
       <>
         <GlobalHotKeyStyled keyMap={keyMap} handlers={handlers} />
-        <MainContent>
-          <NavLinks
-            showForwardLink={totalVotedOn > 0}
-            forwardLabel="Review Your Votes"
-            forwardLink="/wi/session/voting/review"
-          />
-          <h3>{session.title}</h3>
-          <Section>{parse(converter.render(session.longDescription))}</Section>
-          {session.takeaways && (
-            <Section>
-              <DetailsHeader>Key Takeaways</DetailsHeader>
-              <ul>
-                {session.takeaways.map(s => (
-                  <li>{s}</li>
-                ))}
-              </ul>
-            </Section>
-          )}
-          <Section>
-            <DetailsHeader>Organizer Feedback</DetailsHeader>
+
+        <h3>{title}</h3>
+        <SessionDetails>
+          <BodyDiv>
+            {parse(converter.render(longDescription))}
+            {session.takeaways && (
+              <>
+                <h4 style={{ marginBottom: 0 }}>Key Takeaways</h4>
+                <ul>
+                  {takeaways.map(s => (
+                    <li>{s}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </BodyDiv>
+          <SideColumn>
+            <h4 style={{ margin: 0 }}>Organizer Feedback</h4>
             <form className="input-form">
               <textarea
                 rows="5"
@@ -188,21 +182,38 @@ const Content = () => {
                 onChange={event => setNotes(event.target.value)}
               />
             </form>
-          </Section>
-          <Thumbs iconHeight="15rem" submit={submitVote} />
-          <Stats
-            totalSubmitted={totalSubmitted}
-            totalVotedOn={totalVotedOn}
-            totalRemaining={totalRemaining}
-          />
-          <ButterToast
-            className="that-toast"
-            position={{
-              vertical: POS_TOP,
-              horizontal: POS_RIGHT,
-            }}
-          />
-        </MainContent>
+            <ThumbRow>
+              <ThumbsUpIcon
+                icon="thumbsUp"
+                title="Thumbs Up, I would attend"
+                height="50"
+                width="50"
+                viewBoxHeight="25"
+                viewBoxWidth="25"
+                onClick={handlers.VOTE_YES}
+                className={vote === true ? 'vote-selected' : ''}
+              />
+              <ThumbsDownIcon
+                icon="thumbsUp"
+                title="Thumbs Down, I would NOT attend"
+                height="50"
+                width="50"
+                viewBoxHeight="25"
+                viewBoxWidth="25"
+                onClick={handlers.VOTE_NO}
+                className={vote === false ? 'vote-selected' : ''}
+              />
+            </ThumbRow>
+          </SideColumn>
+        </SessionDetails>
+
+        <ButterToast
+          className="that-toast"
+          position={{
+            vertical: POS_TOP,
+            horizontal: POS_RIGHT,
+          }}
+        />
       </>
     );
   }
