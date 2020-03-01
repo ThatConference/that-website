@@ -91,6 +91,10 @@ export const Placeholder = styled.div`
   animation: BackgroundAnimation 2s ease infinite;
 `;
 
+export const SmallerH1 = styled.h1`
+  font-size: 9rem;
+`;
+
 export const ViewLink = styled.a`
   font-size: 1.4rem;
   width: 100%;
