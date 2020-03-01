@@ -91,6 +91,19 @@ export const Placeholder = styled.div`
   animation: BackgroundAnimation 2s ease infinite;
 `;
 
+export const ShowMore = styled.p`
+  flex-grow: 2;
+  font-size: 1.4rem;
+  width: 100%;
+  color: ${({ theme }) => theme.colors.thatBlue};
+  margin-top: 0;
+  text-align: right;
+
+  &:hover {
+    fill: ${({ theme }) => theme.colors.highlight};
+  }
+`;
+
 export const SmallerH1 = styled.h1`
   font-size: 9rem;
 `;
