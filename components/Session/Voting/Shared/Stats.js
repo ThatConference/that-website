@@ -2,20 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { FormRule } from '../../../shared/FormLayout';
+import { gridRepeat } from '../../../../utilities';
 
 const Rule = styled(FormRule)`
   margin-bottom: 1rem;
-`;
-
-const StatsContainer = styled(Grid)`
-  margin-top: 0;
+  margin-top: 3rem;
 `;
 
 const Stats = ({ totalSubmitted, totalVotedOn, totalRemaining }) => {
   return (
     <>
       <Rule />
-      <StatsContainer columns={3}>
+      <Grid columns={gridRepeat.small}>
         <Cell width={1}>
           <strong>Total:</strong> {totalSubmitted}
         </Cell>
@@ -23,9 +21,9 @@ const Stats = ({ totalSubmitted, totalVotedOn, totalRemaining }) => {
           <strong>Voted:</strong> {totalVotedOn}
         </Cell>
         <Cell width={1} className="text-right">
-          <strong>Left:</strong> {totalRemaining}
+          <strong>Remaining:</strong> {totalRemaining}
         </Cell>
-      </StatsContainer>
+      </Grid>
     </>
   );
 };

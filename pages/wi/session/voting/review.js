@@ -3,8 +3,8 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
 import ContentSection from '../../../../components/shared/ContentSection';
-import Header from '../../../../components/Session/Voting/Review/Header';
 import Content from '../../../../components/Session/Voting/Review/Content';
+import { SmallerH1 } from '../../../../components/shared/StandardStyles';
 
 const _ = require('lodash');
 
@@ -34,7 +34,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
         description="Review the sessions you have already voted on."
       />
       <ContentSection>
-        <Header title="Session Voting Review" />
+        <SmallerH1>Session Voting Review</SmallerH1>
         <Content />
       </ContentSection>
     </>
