@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import debug from 'debug';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
-import Content from '../../../../components/Session/Voting/Vote/Content';
+import SessionContent from '../../../../components/Session/Voting/Shared/SessionContent';
 import { SmallerH1 } from '../../../../components/shared/StandardStyles';
 import NavLinks from '../../../../components/Session/Voting/Shared/NavLinks';
 import Stats from '../../../../components/Session/Voting/Shared/Stats';
@@ -15,10 +14,6 @@ import Stats from '../../../../components/Session/Voting/Shared/Stats';
 const _ = require('lodash');
 
 const dlog = debug('that:session:create');
-
-const RelativeContentSection = styled(ContentSection)`
-  position: relative;
-`;
 
 const GET_SESSIONS = gql`
   query getVotingSessions($eventId: ID!) {
@@ -71,7 +66,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
 
   const showForwardLink = () => totalSubmitted > 0 || currentSessionIndex > 0;
   const totalRemaining = () => unVoted.length - currentSessionIndex;
-  const getVotedOnCount = () => totalSubmitted - totalRemaining();
+  const votedOnCount = () => totalSubmitted - totalRemaining();
 
   return (
     <>
@@ -79,7 +74,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
         title="Session Voting - THAT Conference"
         description="Make THAT Conference your conference by letting us know what session you want to see."
       />
-      <RelativeContentSection>
+      <ContentSection>
         <SmallerH1>Session Voting</SmallerH1>
         {!sessionsLoading && (
           <NavLinks
@@ -93,10 +88,10 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
           <>
             <Stats
               totalSubmitted={totalSubmitted}
-              totalVotedOn={getVotedOnCount()}
+              totalVotedOn={votedOnCount()}
               totalRemaining={totalRemaining()}
             />
-            <Content
+            <SessionContent
               session={unVoted[currentSessionIndex]}
               increaseVoteCount={() =>
                 setCurrentSessionIndex(currentSessionIndex + 1)
@@ -104,7 +99,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
             />
           </>
         )}
-      </RelativeContentSection>
+      </ContentSection>
     </>
   );
 };

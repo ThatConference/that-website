@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { StyledPre, ViewLink } from './StandardStyles';
+import { ShowMore, StyledPre, ViewLink } from './StandardStyles';
 import Icon from './Icon';
 import { below } from '../../utilities';
 
@@ -104,19 +104,6 @@ const AttributeTag = styled.div`
   ${below.med`
     margin: 0.75rem;
   `};
-`;
-
-const ShowMore = styled.p`
-  flex-grow: 2;
-  font-size: 1.4rem;
-  width: 100%;
-  color: ${({ theme }) => theme.colors.thatBlue};
-  margin-top: 0;
-  text-align: right;
-
-  &:hover {
-    fill: ${({ theme }) => theme.colors.highlight};
-  }
 `;
 
 const StyledViewLink = styled(ViewLink)`
