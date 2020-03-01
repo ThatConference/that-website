@@ -6,7 +6,6 @@ import ThatLink from '../shared/ThatLink';
 const _ = require('lodash');
 
 const Message = styled.p`
-  background-color: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.fonts.light};
 
   ${below.med`
