@@ -38,6 +38,8 @@ const GET_SESSIONS = gql`
             title
             longDescription
             takeaways
+            type
+            category
           }
         }
       }
@@ -174,6 +176,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               setNotes={setNotes}
               handlers={handlers}
               currentVote={currentVote}
+              submitting={submitting}
             />
           </>
         )}
