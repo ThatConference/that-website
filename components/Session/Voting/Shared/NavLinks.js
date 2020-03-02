@@ -30,7 +30,7 @@ const StyledLink = styled.a`
 const NavLinks = ({ showForwardLink, forwardLabel, forwardLink }) => {
   return (
     <Links>
-      <StyledLink href="/wi/session/voting/start">
+      <StyledLink href="/wi/voting">
         <span>Voting Help</span>
       </StyledLink>
       {showForwardLink !== false && (
