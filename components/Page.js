@@ -21,7 +21,7 @@ const CorePage = styled.div`
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto;
   grid-gap: 0;
 `;
 
@@ -36,7 +36,6 @@ const InnerPage = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 2;
-  min-height: 100%;
 `;
 
 const Page = ({ children, headerType }) => {
