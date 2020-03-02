@@ -78,5 +78,6 @@ export default styled(SavingOverlay)`
 
   .trees {
     width: 15rem;
+    z-index: 1000;
   }
 `;
