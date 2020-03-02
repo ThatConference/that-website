@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { StyledPre } from '../../../shared/StandardStyles';
 import SavingOverlay from '../../../shared/SavingOverlay';
-import Thumbs from './Thumbs';
+import { ThumbsUpIcon, ThumbsDownIcon } from './Icons';
 import { below } from '../../../../utilities';
 
 const Description = styled(StyledPre)`
@@ -85,6 +85,13 @@ const ShowMore = styled.p`
   }
 `;
 
+const ThumbRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+`;
+
 const CAST_VOTE = gql`
   mutation castVote($eventId: ID!, $vote: VoteInput!) {
     sessions {
@@ -105,6 +112,7 @@ const SlimSession = ({ session }) => {
   const [expandedDescription, setExpandedDescription] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [currentVote, setCurrentVote] = useState(vote);
+  console.log('currentVote', currentVote);
 
   const voteComplete = () => {
     setTimeout(() => {
@@ -161,12 +169,18 @@ const SlimSession = ({ session }) => {
           {`Show ${expandedDescription ? 'Less' : 'More'}`}
         </ShowMore>
         <div>
-          <Thumbs
-            voteUp={() => submitVote(true)}
-            voteDown={() => submitVote(false)}
-            currentVote={currentVote}
-            style={{ marginTop: 0 }}
-          />
+          <ThumbRow>
+            <ThumbsUpIcon
+              clickHandler={() => submitVote(true)}
+              currentVote={currentVote}
+              color="primary"
+            />
+            <ThumbsDownIcon
+              clickHandler={() => submitVote(false)}
+              currentVote={currentVote}
+              color="primary"
+            />
+          </ThumbRow>
         </div>
       </MainBlock>
     </SessionContainer>
