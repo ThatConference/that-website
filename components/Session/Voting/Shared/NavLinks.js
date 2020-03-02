@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { below } from '../../../../utilities/breakpoint';
 
 const Links = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  position: absolute;
-  top: 30px;
-  right: 0;
+  align-self: center;
+
+  ${below.med`
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    top: 1.5rem;
+  `}
 `;
 
 const StyledLink = styled.a`
@@ -23,7 +30,7 @@ const StyledLink = styled.a`
 const NavLinks = ({ showForwardLink, forwardLabel, forwardLink }) => {
   return (
     <Links>
-      <StyledLink href="/wi/session/voting/start">
+      <StyledLink href="/wi/voting">
         <span>Voting Help</span>
       </StyledLink>
       {showForwardLink !== false && (

@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
-import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { GlobalHotKeys } from 'react-hotkeys';
-import Thumbs from './Thumbs';
-import { below } from '../../../../utilities';
+import { below, sessionConstants } from '../../../../utilities';
 import SavingOverlay from '../../../shared/SavingOverlay';
+import { ThumbsUpIcon, ThumbsDownIcon } from './Icons';
 
 const MarkdownIt = require('markdown-it');
 
@@ -36,8 +34,7 @@ const SideColumn = styled.div`
   flex-grow: 2;
 
   ${below.large`
-    padding-left: 0;
-    padding-top: 4rem;
+    display: none;
   `};
 `;
 
@@ -50,66 +47,39 @@ const SessionDetails = styled.div`
   `};
 `;
 
-const CAST_VOTE = gql`
-  mutation castVote($eventId: ID!, $vote: VoteInput!) {
-    sessions {
-      voting(eventId: $eventId) {
-        cast(vote: $vote) {
-          id
-          notes
-          memberId
-        }
-      }
-    }
+const ThumbRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 2rem;
+`;
+
+const TypeRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  ${below.small`
+    flex-direction: column;
+  `};
+
+  p {
+    margin: 0;
   }
 `;
 
-const Content = ({ session, increaseVoteCount }) => {
-  const [notes, setNotes] = useState('');
-  const [vote, setVote] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
-
-  const voteComplete = () => {
-    increaseVoteCount();
-    setVote(null);
-    setNotes('');
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1500);
-  };
-
-  const [castVote] = useMutation(CAST_VOTE, {
-    onCompleted: voteComplete,
-    onError: createError => {
-      throw new Error(createError);
-    },
-  });
-
-  const submitVote = yesVote => {
-    setSubmitting(true);
-    setVote(yesVote);
-    const queryVariables = {
-      eventId: process.env.CURRENT_EVENT_ID,
-      vote: {
-        sessionId: session.id,
-        vote: yesVote,
-        notes,
-      },
-    };
-    castVote({
-      variables: queryVariables,
-    });
-  };
-
-  const handlers = {
-    VOTE_YES: () => submitVote(true),
-    VOTE_NO: () => submitVote(false),
-  };
-
+const Content = ({ handlers, notes, session, setNotes, submitting }) => {
   if (session) {
     const converter = new MarkdownIt();
-    const { longDescription, takeaways, title } = session;
+    const { category, longDescription, takeaways, title, type, vote } = session;
+
+    const audience = sessionConstants.SessionFors.find(
+      sf => sf.value === category,
+    ).label;
+
+    const sessionType = sessionConstants.SessionTypes.find(
+      st => st.value === type,
+    ).label;
 
     return (
       <div style={{ position: 'relative' }}>
@@ -118,10 +88,18 @@ const Content = ({ session, increaseVoteCount }) => {
           <GlobalHotKeyStyled keyMap={keyMap} handlers={handlers} />
         )}
 
-        <h3>{title}</h3>
+        <h3 style={{ marginBottom: '2rem' }}>{title}</h3>
+        <TypeRow>
+          <p>
+            <strong>Category:</strong> {audience}
+          </p>
+          <p>
+            <strong>Type:</strong> {sessionType}
+          </p>
+        </TypeRow>
         <SessionDetails>
           <BodyDiv>
-            {parse(converter.render(longDescription))}
+            {longDescription && parse(converter.render(longDescription))}
             {session.takeaways && (
               <>
                 <h4 style={{ marginBottom: 0 }}>Key Takeaways</h4>
@@ -142,11 +120,18 @@ const Content = ({ session, increaseVoteCount }) => {
                 onChange={event => setNotes(event.target.value)}
               />
             </form>
-            <Thumbs
-              voteUp={handlers.VOTE_YES}
-              voteDown={handlers.VOTE_NO}
-              currentVote={vote}
-            />
+            <ThumbRow>
+              <ThumbsUpIcon
+                clickHandler={handlers.VOTE_YES}
+                currentVote={vote}
+                color="primary"
+              />
+              <ThumbsDownIcon
+                clickHandler={handlers.VOTE_NO}
+                currentVote={vote}
+                color="primary"
+              />
+            </ThumbRow>
           </SideColumn>
         </SessionDetails>
       </div>
