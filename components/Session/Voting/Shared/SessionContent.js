@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { GlobalHotKeys } from 'react-hotkeys';
-import { below } from '../../../../utilities';
+import { below, sessionConstants } from '../../../../utilities';
 import SavingOverlay from '../../../shared/SavingOverlay';
 import { ThumbsUpIcon, ThumbsDownIcon } from './Icons';
 
@@ -54,10 +54,32 @@ const ThumbRow = styled.div`
   margin-top: 2rem;
 `;
 
+const TypeRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  ${below.small`
+    flex-direction: column;
+  `};
+
+  p {
+    margin: 0;
+  }
+`;
+
 const Content = ({ handlers, notes, session, setNotes, submitting }) => {
   if (session) {
     const converter = new MarkdownIt();
-    const { longDescription, takeaways, title, vote } = session;
+    const { category, longDescription, takeaways, title, type, vote } = session;
+
+    const audience = sessionConstants.SessionFors.find(
+      sf => sf.value === category,
+    ).label;
+
+    const sessionType = sessionConstants.SessionTypes.find(
+      st => st.value === type,
+    ).label;
 
     return (
       <div style={{ position: 'relative' }}>
@@ -66,7 +88,15 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
           <GlobalHotKeyStyled keyMap={keyMap} handlers={handlers} />
         )}
 
-        <h3>{title}</h3>
+        <h3 style={{ marginBottom: '2rem' }}>{title}</h3>
+        <TypeRow>
+          <p>
+            <strong>Category:</strong> {audience}
+          </p>
+          <p>
+            <strong>Type:</strong> {sessionType}
+          </p>
+        </TypeRow>
         <SessionDetails>
           <BodyDiv>
             {longDescription && parse(converter.render(longDescription))}

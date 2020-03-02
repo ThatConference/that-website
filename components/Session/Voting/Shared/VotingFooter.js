@@ -41,12 +41,23 @@ const NotesDrawer = styled.div`
   }
 `;
 
+const Overlay = styled.div`
+  background-color: rgba(255, 255, 255, 0.85);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  top: 0;
+  left: 0;
+`;
+
 const VotingFooter = ({
   className,
   currentVote,
   handlers,
   notes,
   setNotes,
+  submitting,
 }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -56,6 +67,7 @@ const VotingFooter = ({
 
   return (
     <div className={className}>
+      <Overlay style={{ display: submitting ? 'flex' : 'none' }} />
       <SessionActions>
         <ThumbsUpIcon
           clickHandler={() => {
@@ -93,7 +105,7 @@ const VotingFooter = ({
 export default styled(VotingFooter)`
   position: fixed;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
   height: 10rem;
   bottom: 0;
   left: 0;
