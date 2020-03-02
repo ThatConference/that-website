@@ -248,6 +248,15 @@ const GlobalStyle = createGlobalStyle`
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
   }
+
+  @keyframes slideIn {
+    0%   { top: 100rem; }
+    100% { top: -20rem; }
+  }
+  @keyframes slideOut {
+    0%   { top: -20rem; }
+    100% { top: 100rem; }
+  }
 `;
 
 export default GlobalStyle;
