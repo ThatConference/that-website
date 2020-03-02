@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import ContentSection from '../../../../components/shared/ContentSection';
-import { SmallerH1 } from '../../../../components/shared/StandardStyles';
-import NavLinks from '../../../../components/Session/Voting/Shared/NavLinks';
-import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
-import SlimSession from '../../../../components/Session/Voting/Shared/SlimSession';
-import Stats from '../../../../components/Session/Voting/Shared/Stats';
+import ContentSection from '../../../components/shared/ContentSection';
+import { SmallerH1 } from '../../../components/shared/StandardStyles';
+import NavLinks from '../../../components/Session/Voting/Shared/NavLinks';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
+import SlimSession from '../../../components/Session/Voting/Shared/SlimSession';
+import Stats from '../../../components/Session/Voting/Shared/Stats';
 
 const dlog = debug('that:session:create');
 
@@ -88,7 +88,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               forwardLabel={
                 votedOnCount > 0 ? 'Continue Voting' : 'Start Voting'
               }
-              forwardLink="/wi/session/voting/vote"
+              forwardLink="/wi/voting/vote"
             />
             <Stats
               totalSubmitted={totalSubmitted}
