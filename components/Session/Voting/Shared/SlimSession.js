@@ -112,7 +112,6 @@ const SlimSession = ({ session }) => {
   const [expandedDescription, setExpandedDescription] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [currentVote, setCurrentVote] = useState(vote);
-  console.log('currentVote', currentVote);
 
   const voteComplete = () => {
     setTimeout(() => {

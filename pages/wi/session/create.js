@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
 import ContentSection from '../../../components/shared/ContentSection';
@@ -46,9 +46,11 @@ const SessionCreate = () => {
 
   return (
     <User user={user} loading={loadingUser}>
-      <Head>
-        <title key="title">Session Submission: Intro - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Create Submission - THAT Conference"
+        description="Create for your submission for THAT Conference."
+        noindex
+      />
       <ContentSection forForm>
         {stepNumber === 0 && (
           <>

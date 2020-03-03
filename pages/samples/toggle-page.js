@@ -1,5 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import togglePage from '../../utilities/togglePage';
 
 import ContentSection from '../../components/shared/ContentSection';
@@ -7,9 +7,11 @@ import ContentSection from '../../components/shared/ContentSection';
 const TogglePage = () => {
   return (
     <>
-      <Head>
-        <title key="title">Sample Toggle Page - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Sample Toggle Page - THAT Conference"
+        description="Sample toggle page functionality as part of THAT standard functions."
+        noindex
+      />
 
       <ContentSection>
         <h1>Sample Toggle Page</h1>

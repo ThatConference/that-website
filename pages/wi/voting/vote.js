@@ -144,6 +144,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
       <NextSeo
         title="Session Voting - THAT Conference"
         description="Make THAT Conference your conference by letting us know what session you want to see."
+        noindex
       />
       <ContentSection>
         <TitleRow>
