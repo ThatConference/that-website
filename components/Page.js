@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
+import LogRocket from 'logrocket';
+import * as Sentry from '@sentry/browser';
+
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 import Meta from './Meta';
@@ -47,6 +50,20 @@ const Page = ({ children, headerType }) => {
   useEffect(() => {
     setLayeredHeader(headerType === 'layered');
   });
+
+  if (user) {
+    LogRocket.identify(user.id, {
+      email: user.email,
+    });
+
+    Sentry.configureScope(scope => {
+      scope.setUser({
+        email: user.email,
+        id: user.id,
+      });
+      scope.setExtra('sessionURL', LogRocket.sessionURL);
+    });
+  }
 
   return (
     <ThemeProvider theme={baseTheme}>

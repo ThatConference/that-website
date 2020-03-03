@@ -41,6 +41,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
+    "logrocket": "^1.0.6",
     "markdown-it": "^10.0.0",
     "markdown-to-jsx": "^6.11.0",
     "moment": "^2.24.0",
@@ -63,6 +64,7 @@
     "styled-components": "^4.4.1",
     "styled-components-modifiers": "^1.2.5",
     "styled-css-grid": "^1.2.1",
+    "uuid": "^7.0.1",
     "webpack": "^4.41.6",
     "yup": "^0.28.1"
   },
