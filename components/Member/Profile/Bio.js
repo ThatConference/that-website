@@ -13,6 +13,7 @@ const Bio = ({
   setFieldTouched,
   values,
 }) => {
+  const { canFeature, profileImage } = values;
   return (
     <>
       <FormRow>
@@ -27,7 +28,7 @@ const Bio = ({
           errors={errors}
           touched={touched}
           label="Bio"
-          required
+          required={canFeature}
         />
       </FormRow>
       <FormRow>
