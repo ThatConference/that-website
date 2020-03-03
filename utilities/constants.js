@@ -155,11 +155,19 @@ export const memberConstants = {
       twitter: Yup.string().url('Invalid URL'),
       website: Yup.string().url('Invalid URL'),
     },
-    image: { profileImage: Yup.mixed().required() },
+    image: {
+      profileImage: Yup.mixed().when('canFeature', {
+        is: true,
+        then: Yup.mixed().required(),
+      }),
+    },
     bio: {
       bio: Yup.string()
         .min(10, 'Must be at least 10 characters')
-        .required(),
+        .when('canFeature', {
+          is: true,
+          then: Yup.string().required(),
+        }),
     },
   },
 };
