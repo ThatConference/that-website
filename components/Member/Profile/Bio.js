@@ -13,7 +13,7 @@ const Bio = ({
   setFieldTouched,
   values,
 }) => {
-  const { canFeature, profileImage } = values;
+  const { canFeature } = values;
   return (
     <>
       <FormRow>
