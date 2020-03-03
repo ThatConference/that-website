@@ -121,6 +121,7 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
               <textarea
                 rows="5"
                 value={notes}
+                style={{ width: '100%' }}
                 onChange={event => setNotes(event.target.value)}
               />
             </form>
