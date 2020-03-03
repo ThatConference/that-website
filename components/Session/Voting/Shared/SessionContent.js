@@ -85,7 +85,11 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
       <div style={{ position: 'relative' }}>
         <SavingOverlay submitting={submitting} />
         {!submitting && (
-          <GlobalHotKeyStyled keyMap={keyMap} handlers={handlers} />
+          <GlobalHotKeyStyled
+            keyMap={keyMap}
+            handlers={handlers}
+            allowChanges
+          />
         )}
 
         <h3 style={{ marginBottom: '2rem' }}>{title}</h3>
@@ -105,7 +109,7 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
                 <h4 style={{ marginBottom: 0 }}>Key Takeaways</h4>
                 <ul>
                   {takeaways.map(s => (
-                    <li>{s}</li>
+                    <li key={s}>{s}</li>
                   ))}
                 </ul>
               </>
