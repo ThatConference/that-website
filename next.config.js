@@ -53,6 +53,7 @@ module.exports = {
   target: 'serverless',
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
   env: {
+    LOG_ROCKET: process.env.LOG_ROCKET,
     SENTRY_DSN: process.env.SENTRY_DSN,
     API_GATEWAY: process.env.API_GATEWAY,
     WI_PROSPECTUS_URL:

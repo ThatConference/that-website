@@ -3,11 +3,13 @@
   "name": "THATConference.com",
   "env": {
     "SENTRY_DSN": "@sentry_dsn",
+    "LOG_ROCKET": "@thatwebsite_log_rocket",
     "FEATURE_KEYWORD": "@thatwebsite_feature_keyword"
   },
   "build": {
     "env": {
       "SENTRY_DSN": "@sentry_dsn",
+      "LOG_ROCKET": "@thatwebsite_log_rocket",
       "API_GATEWAY": "https://api.that.tech",
       "AUTH0_DOMAIN": "@thatwebsite_auth0_domain",
       "AUTH0_CLIENT_ID": "@thatwebsite_auth0_client_id",

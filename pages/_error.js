@@ -1,58 +1,66 @@
 import React from 'react';
-import Head from 'next/head';
+import Error from 'next/error';
 
-import ContentSection from '../components/shared/ContentSection';
-import LinkButton from '../components/shared/LinkButton';
+import { captureException } from '../lib/sentry';
 
-const genericError = (
-  <>
-    <h2>Whoops</h2>
-    <p>Well that's not good.</p>
-  </>
-);
+const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
+  if (!hasGetInitialPropsRun && err) {
+    // getInitialProps is not called in case of
+    // https://github.com/zeit/next.js/issues/8592. As a workaround, we pass
+    // err via _app.js so it can be captured
+    captureException(err);
+  }
 
-const pageNotFound = () => {
-  const oldSiteUrl = `https://old.thatconference.com`;
-
-  return (
-    <>
-      <h2>Page not found</h2>
-      <p>
-        Truth be told, were building a new website. In fact, this is it but we
-        don't have all the pieces completed yet.
-      </p>
-
-      <p>Don't worry, we still have our old Website around.</p>
-
-      <LinkButton
-        href={oldSiteUrl}
-        label="Yes, take me now!"
-        color="thatBlue"
-        borderColor="thatBlue"
-        hoverBorderColor="thatBlue"
-        hoverColor="white"
-        hoverBackgroundColor="thatBlue"
-      />
-    </>
-  );
+  return <Error statusCode={statusCode} />;
 };
 
-function Error({ statusCode }) {
-  const errorBlock = statusCode === 404 ? pageNotFound() : genericError;
-  return (
-    <>
-      <Head>
-        <title key="title">Oh No! - THAT Conference</title>
-      </Head>
-      <ContentSection>{errorBlock}</ContentSection>;
-    </>
+MyError.getInitialProps = async ctx => {
+  const { res, err, asPath } = ctx;
+  const errorInitialProps = await Error.getInitialProps({ res, err });
+
+  // Workaround for https://github.com/zeit/next.js/issues/8592, mark when
+  // getInitialProps has run
+  errorInitialProps.hasGetInitialPropsRun = true;
+
+  if (res) {
+    // Running on the server, the response object is available.
+
+    // Next.js will pass an err on the server if a page's `getInitialProps`
+    // threw or returned a Promise that rejected
+
+    if (res.statusCode === 404) {
+      // Opinionated: do not record an exception in Sentry for 404
+      return { statusCode: 404 };
+    }
+
+    if (err) {
+      captureException(err, ctx);
+      return errorInitialProps;
+    }
+  } else if (err) {
+    // Running on the client (browser).
+    //
+    // Next.js will provide an err if:
+    //
+    //  - a page's `getInitialProps` threw or returned a Promise that rejected
+    //  - an exception was thrown somewhere in the React lifecycle (render,
+    //    componentDidMount, etc) that was caught by Next.js's React Error
+    //    Boundary. Read more about what types of exceptions are caught by Error
+    //    Boundaries: https://reactjs.org/docs/error-boundaries.html
+
+    captureException(err, ctx);
+    return errorInitialProps;
+  }
+
+  // If this point is reached, getInitialProps was called without any
+  // information about what the error might be. This is unexpected and may
+  // indicate a bug introduced in Next.js, so record it in Sentry
+  captureException(
+    new Error(`_error.js getInitialProps missing data at path: ${asPath}`),
+    ctx,
   );
-}
 
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-
-  return { statusCode };
+  return errorInitialProps;
 };
 
-export default Error;
+export default MyError;
