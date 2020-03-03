@@ -57,12 +57,16 @@ const Image = ({
     fileUpload(event.currentTarget.files[0]);
   };
 
+  const { canFeature, profileImage } = values;
+
   return (
     <>
       <FormRow style={{ display: 'flex', alignItems: 'center' }}>
         <label htmlFor="profileImage" style={{ paddingRight: '1.5rem' }}>
           File upload
-          <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
+          {canFeature && (
+            <FormInputRequiredIndicator> *</FormInputRequiredIndicator>
+          )}
         </label>
         <input
           id="profileImage"
@@ -73,9 +77,9 @@ const Image = ({
           style={{ maxHeight: '4.5rem' }}
           accept="image/*"
         />
-        {!fileUploading && values.profileImage && (
+        {!fileUploading && profileImage && (
           <StyledImgix
-            src={values.profileImage}
+            src={profileImage}
             width={80}
             height={80}
             imgixParams={{ fit: 'facearea', facepad: 4 }}
