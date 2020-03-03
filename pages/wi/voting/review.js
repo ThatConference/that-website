@@ -88,6 +88,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
       <NextSeo
         title="Session Voting Review - THAT Conference"
         description="Review the sessions you have already voted on."
+        noindex
       />
       <ContentSection>
         <TitleRow>

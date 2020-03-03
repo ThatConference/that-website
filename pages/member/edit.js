@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
@@ -169,11 +169,11 @@ const editProfile = ({ user, loading: loadingUser }) => {
   if (loading) {
     return (
       <div>
-        <Head>
-          <title key="title">
-            Member Profile: Contact Info - THAT Conference
-          </title>
-        </Head>
+        <NextSeo
+          title="Edit Your Profile - THAT Conference"
+          description="Edit your THAT member profile."
+          noindex
+        />
         <ContentSection forForm>
           <Title>Edit Profile</Title>
           <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
@@ -186,11 +186,11 @@ const editProfile = ({ user, loading: loadingUser }) => {
 
   return (
     <div>
-      <Head>
-        <title key="title">
-          Member Profile: Contact Info - THAT Conference
-        </title>
-      </Head>
+      <NextSeo
+        title="Edit Your Profile - THAT Conference"
+        description="Edit your THAT member profile."
+        noindex
+      />
       <ContentSection forForm>
         <Title>Edit Profile</Title>
         <Formik

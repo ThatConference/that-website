@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Grid, Cell } from 'styled-css-grid';
@@ -61,9 +61,11 @@ const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
 
   return (
     <div>
-      <Head>
-        <title key="title">Edit Session - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Edit Session - THAT Conference"
+        description="Edit your THAT Conference session."
+        noindex
+      />
       <MainContent>
         <MainGrid columns={6}>
           <Cell width={1} />
