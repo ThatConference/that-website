@@ -150,15 +150,14 @@ const VotingStart = ({ user, loading }) => {
             <GetStartedDetail>
               <div>
                 <p className="medium-body-copy">
-                  **** NEED VOTING BLURB **** We’re stoked to hear you’re
-                  interested in speaking at THAT Conference! Being a counselor
-                  is more than just showing up, giving a talk, and heading back
-                  home. We’re looking for people not only to speak, but attend,
-                  collaborate, and contribute to the event while they are there.
-                  We’d also love for you to be a part of THAT Community
-                  year-round! You should be passionate about the topic(s) you’re
-                  submitting and excited to have conversations about your talk
-                  beyond the scheduled timeslot.
+                  It’s time to get your clicking finger ready! Why? Because
+                  community voting for THAT Conference 2020 is open and waiting
+                  for you! Every year after close of our Call for Counselor
+                  submissions, we ask you to read through the hundreds of
+                  submissions and tell us what interests you. This year we are
+                  asking the same request of our amazing community! Your
+                  feedback helps us select the most interesting, the most
+                  engaging, the most awesome sessions!
                 </p>
                 <p>{getHelpText()}</p>
                 <Notes>
