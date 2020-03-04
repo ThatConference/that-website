@@ -3,6 +3,8 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
+import LogRocket from 'logrocket';
+import * as Sentry from '@sentry/node';
 
 import { getSentryConfig } from '../lib/sentry';
 import * as gtag from '../lib/gtag';
