@@ -50,16 +50,14 @@ const Page = ({ children, headerType }) => {
 
   useEffect(() => {
     setLayeredHeader(headerType === 'layered');
-
-    if (!_.isNil(user)) {
-      document.tidioIdentify = {
-        distinct_id: user.id,
-        email: user.email,
-      };
-    }
   });
 
   if (!_.isNil(user)) {
+    document.tidioIdentify = {
+      distinct_id: user.id,
+      email: user.email,
+    };
+
     LogRocket.identify(user.id, {
       email: user.email,
     });
