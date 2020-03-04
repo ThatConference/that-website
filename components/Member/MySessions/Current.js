@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -108,17 +107,7 @@ const UPDATE_SESSION = gql`
   }
 `;
 
-const CurrentSessions = ({ user, loading: loadingUser }) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loadingUser && !user) {
-      router
-        .push('/api/login?redirect-url=/wi/session/create')
-        .then(() => window.scrollTo(0, 0));
-    }
-  });
-
+const CurrentSessions = ({ loading: loadingUser }) => {
   const { loading, error, data } = useQuery(GET_MY_SESSIONS);
   const [updateSession] = useMutation(UPDATE_SESSION, {
     onCompleted: () => {

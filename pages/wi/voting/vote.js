@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import _ from 'lodash';
 import ContentSection from '../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 import SessionContent from '../../../components/Session/Voting/Shared/SessionContent';
@@ -61,26 +59,12 @@ const CAST_VOTE = gql`
   }
 `;
 
-const SessionVoting = ({ user, loading: loadingUser }) => {
+const SessionVoting = () => {
   dlog('session voting');
-
-  const router = useRouter();
   const [currentSessionIndex, setCurrentSessionIndex] = useState(0);
   const [notes, setNotes] = useState('');
   const [currentVote, setCurrentVote] = useState('');
   const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (!loadingUser) {
-      if (_.isEmpty(user)) {
-        router.push('/api/login?redirect-url=/member/create');
-      }
-
-      if (!user.profileComplete) {
-        router.push('/member/create').then(() => window.scrollTo(0, 0));
-      }
-    }
-  });
 
   const {
     loading: sessionsLoading,
@@ -185,5 +169,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
     </>
   );
 };
+
+SessionVoting.secure = true;
 
 export default SessionVoting;

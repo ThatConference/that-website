@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
 import _ from 'lodash';
-
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 import Meta from './Meta';
@@ -41,16 +40,24 @@ const InnerPage = styled.div`
   flex-grow: 2;
 `;
 
-const Page = ({ children, headerType }) => {
+const Page = ({ children, headerType, secure }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [layeredHeader, setLayeredHeader] = useState(false);
+  const [layeredHeader] = useState(headerType === 'layered');
 
   const { user, loading } = useFetchUser();
   const router = useRouter();
 
-  useEffect(() => {
-    setLayeredHeader(headerType === 'layered');
-  });
+  if (secure) {
+    if (!loading) {
+      if (_.isEmpty(user)) {
+        router.push(`/api/login?redirect-url=${router.pathname}`);
+      } else if (!user.profileComplete && router.path !== '/member/create') {
+        router.push('/member/create');
+      } else if (user.profileComplete && router.path === '/member/create') {
+        router.push('/wi').then(() => window.scrollTo(0, 0));
+      }
+    }
+  }
 
   if (!_.isNil(user)) {
     LogRocket.identify(user.id, {

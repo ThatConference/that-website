@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../utilities';
@@ -44,14 +43,6 @@ const MainSection = styled.div`
 `;
 
 const MySessions = ({ user, loading }) => {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/api/login?redirect-url=/wi/session/create');
-    }
-  });
-
   return (
     <div>
       <NextSeo
@@ -94,5 +85,7 @@ const MySessions = ({ user, loading }) => {
     </div>
   );
 };
+
+MySessions.secure = true;
 
 export default MySessions;

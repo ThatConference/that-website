@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
-
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import Header from '../../components/CounselorAgreement/Header';
@@ -49,21 +47,9 @@ const MainContent = styled(ContentSection)`
 const CounselorAgreement = ({ user, loading: loadingUser }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loadingUser) {
-      if (_.isEmpty(user)) {
-        router.push('/api/login?redirect-url=/member/create');
-      }
-
-      if (!user.profileComplete) {
-        router.push('/member/create').then(() => window.scrollTo(0, 0));
-      }
-
-      if (user.acceptedCommitments) {
-        router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
-      }
-    }
-  });
+  if (user && user.acceptedCommitments) {
+    router.push('/wi/session/create').then(() => window.scrollTo(0, 0));
+  }
 
   if (loadingUser) {
     return <LoadingIndicator />;
@@ -89,5 +75,7 @@ const CounselorAgreement = ({ user, loading: loadingUser }) => {
     </div>
   );
 };
+
+CounselorAgreement.secure = true;
 
 export default CounselorAgreement;

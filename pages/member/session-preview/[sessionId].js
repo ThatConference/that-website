@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -6,8 +6,6 @@ import { Grid, Cell } from 'styled-css-grid';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import SessionPreview from '../../../components/shared/SessionPreview';
-
-const _ = require('lodash');
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -42,22 +40,12 @@ const MainContent = styled(ContentSection)`
   padding-top: 0;
 `;
 
-const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
+const SessionEdit = ({ sessionId }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loadingUser && _.isEmpty(user)) {
-      router.push('/api/login?redirect-url=/wi/session/create');
-    }
-
-    if (!loadingUser && !user.profileComplete) {
-      router.push('/member/create').then(() => window.scrollTo(0, 0));
-    }
-
-    if (!sessionId) {
-      router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
-    }
-  });
+  if (!sessionId) {
+    router.push('/member/my-sessions').then(() => window.scrollTo(0, 0));
+  }
 
   return (
     <div>
@@ -83,5 +71,7 @@ SessionEdit.getInitialProps = ({ query }) => {
   const { sessionId } = query;
   return { sessionId };
 };
+
+SessionEdit.secure = true;
 
 export default SessionEdit;
