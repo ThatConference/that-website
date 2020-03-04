@@ -84,7 +84,7 @@ const VotingFooter = ({
             handlers.VOTE_NO();
           }}
           color="lightGray"
-          vote={currentVote}
+          currentVote={currentVote}
         />
       </SessionActions>
 

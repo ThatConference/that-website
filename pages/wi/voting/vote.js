@@ -102,13 +102,13 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   const currentSession = unVoted[currentSessionIndex];
 
   const voteComplete = () => {
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 1800);
+    window.scrollTo(0, 0);
     setCurrentSessionIndex(currentSessionIndex + 1);
     setNotes('');
     setCurrentVote('');
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 1500);
   };
 
   const [castVote] = useMutation(CAST_VOTE, {
@@ -171,6 +171,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               handlers={handlers}
               notes={notes}
               setNotes={setNotes}
+              currentVote={currentVote}
             />
             <VotingFooter
               notes={notes}

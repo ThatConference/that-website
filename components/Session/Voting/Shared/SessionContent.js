@@ -68,10 +68,17 @@ const TypeRow = styled.div`
   }
 `;
 
-const Content = ({ handlers, notes, session, setNotes, submitting }) => {
+const Content = ({
+  currentVote,
+  handlers,
+  notes,
+  session,
+  setNotes,
+  submitting,
+}) => {
   if (session) {
     const converter = new MarkdownIt();
-    const { category, longDescription, takeaways, title, type, vote } = session;
+    const { category, longDescription, takeaways, title, type } = session;
 
     const audience = sessionConstants.SessionFors.find(
       sf => sf.value === category,
@@ -128,12 +135,12 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
             <ThumbRow>
               <ThumbsUpIcon
                 clickHandler={handlers.VOTE_YES}
-                currentVote={vote}
+                currentVote={currentVote}
                 color="primary"
               />
               <ThumbsDownIcon
                 clickHandler={handlers.VOTE_NO}
-                currentVote={vote}
+                currentVote={currentVote}
                 color="primary"
               />
             </ThumbRow>

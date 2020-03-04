@@ -2,16 +2,21 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from '../../../shared/Icon';
 
+const isTouch =
+  !!('ontouchstart' in window) || window.navigator.msMaxTouchPoints > 0;
+
 const OrganizerNotesIcon = styled(Icon)`
   cursor: pointer;
   fill: ${({ color, theme }) => theme.colors[color]};
   height: 5.5rem;
   position: relative;
   top: 0.6rem;
-
-  &:hover,
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.highlight};
+  }
+  &:hover {
+    fill: ${({ color, theme }) =>
+      isTouch ? theme.colors[color] : theme.colors.highlight};
   }
 `;
 
@@ -23,18 +28,24 @@ const ThumbsIcon = css`
 const ThumbsDownStyledIcon = styled(Icon)`
   ${ThumbsIcon}
   transform: scaleY(-1);
-  &:hover,
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.danger};
+  }
+  &:hover {
+    fill: ${({ color, theme }) =>
+      isTouch ? theme.colors[color] : theme.colors.danger};
   }
 `;
 
 const ThumbsUpStyledIcon = styled(Icon)`
   ${ThumbsIcon}
   padding-right: 2rem;
-  &:hover,
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.success};
+  }
+  &:hover {
+    fill: ${({ color, theme }) =>
+      isTouch ? theme.colors[color] : theme.colors.success};
   }
 `;
 
@@ -65,6 +76,7 @@ export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
       onClick={clickHandler}
       className={currentVote === false ? 'vote-selected' : ''}
       color={color}
+      isTouch={isTouch}
     />
   );
 };
@@ -72,6 +84,7 @@ export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
 export const ThumbsUpIcon = ({ color, currentVote, clickHandler }) => {
   return (
     <ThumbsUpStyledIcon
+      ontouchmove
       icon="thumbsUp"
       title="Thumbs Up, I would attend"
       height="50"
