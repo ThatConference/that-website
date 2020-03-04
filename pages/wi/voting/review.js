@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import debug from 'debug';
 import styled from 'styled-components';
 import _ from 'lodash';
@@ -51,22 +50,8 @@ const GET_SESSIONS = gql`
   }
 `;
 
-const SessionVoting = ({ user, loading: loadingUser }) => {
+const SessionVoting = () => {
   dlog('session voting');
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loadingUser) {
-      if (_.isEmpty(user)) {
-        router.push('/api/login?redirect-url=/member/create');
-      }
-
-      if (!user.profileComplete) {
-        router.push('/member/create').then(() => window.scrollTo(0, 0));
-      }
-    }
-  });
 
   const {
     loading: sessionsLoading,
@@ -121,5 +106,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
     </>
   );
 };
+
+SessionVoting.secure = true;
 
 export default SessionVoting;

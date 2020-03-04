@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { Formik, Form } from 'formik';
@@ -100,24 +100,10 @@ const editProfile = ({ user, loading: loadingUser }) => {
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (!loadingUser && _.isEmpty(user)) {
-      router
-        .push('/api/login?redirect-url=/member/edit')
-        .then(() => window.scrollTo(0, 0));
-    }
-
-    if (!loadingUser && !user.profileComplete) {
-      router.push('/member/create').then(() => window.scrollTo(0, 0));
-    }
-  });
-
   const { loading, error, data } = useQuery(GET_MEMBER);
 
   if (loading) return null;
-  if (error) {
-    throw new Error(error.message);
-  }
+  if (error) throw new Error(error.message);
 
   const {
     bio,
@@ -299,5 +285,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
     </div>
   );
 };
+
+editProfile.secure = true;
 
 export default editProfile;

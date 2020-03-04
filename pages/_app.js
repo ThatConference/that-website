@@ -25,7 +25,7 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <Page headerType={Component.headerType}>
+        <Page headerType={Component.headerType} secure={Component.secure}>
           <Component {...modifiedPageProps} />
         </Page>
       </ApolloProvider>

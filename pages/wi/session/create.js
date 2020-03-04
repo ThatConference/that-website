@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NextSeo } from 'next-seo';
-import { useRouter } from 'next/router';
 import debug from 'debug';
+import { useRouter } from 'next/router';
 import ContentSection from '../../../components/shared/ContentSection';
 import Header from '../../../components/Session/Submit/Header';
 import Intro from '../../../components/Session/Submit/Intro';
@@ -11,8 +11,6 @@ import Lastly from '../../../components/Session/Submit/Lastly';
 import Preview from '../../../components/Session/Submit/Preview';
 import User from '../../../components/User';
 import { useFetchUser } from '../../../hooks/user';
-
-const _ = require('lodash');
 
 const dlog = debug('that:session:create');
 
@@ -26,23 +24,9 @@ const SessionCreate = () => {
     status: 'DRAFT',
   });
 
-  useEffect(() => {
-    if (!loadingUser) {
-      if (_.isEmpty(user)) {
-        router.push('/api/login?redirect-url=/member/create');
-      }
-
-      if (!user.profileComplete) {
-        router.push('/member/create').then(() => window.scrollTo(0, 0));
-      }
-
-      if (!user.acceptedCommitments) {
-        router
-          .push('/wi/counselor-agreement')
-          .then(() => window.scrollTo(0, 0));
-      }
-    }
-  });
+  if (!user.acceptedCommitments) {
+    router.push('/wi/counselor-agreement').then(() => window.scrollTo(0, 0));
+  }
 
   return (
     <User user={user} loading={loadingUser}>
@@ -114,5 +98,7 @@ const SessionCreate = () => {
     </User>
   );
 };
+
+SessionCreate.secure = true;
 
 export default SessionCreate;

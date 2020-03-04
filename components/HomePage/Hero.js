@@ -158,7 +158,7 @@ const Hero = ({ event, className }) => {
               hoverBackgroundColor="thatBlue"
             />
             <ThirdButton event={event} />
-          </ActionButtons>
+          </ActionButtonRow>
         </SideDetail>
         <HeroImage
           src="images/clark_stage.jpg"

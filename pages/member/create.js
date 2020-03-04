@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 import { Form, Formik } from 'formik';
@@ -67,18 +67,6 @@ const createProfile = ({ user, loading }) => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [fileUploading, setFileUplaoding] = useState(false);
-
-  useEffect(() => {
-    if (!loading && _.isEmpty(user)) {
-      router
-        .push('/api/login?redirect-url=/member/create')
-        .then(() => window.scrollTo(0, 0));
-    }
-
-    if (!loading && user.profileComplete) {
-      router.push('/wi').then(() => window.scrollTo(0, 0));
-    }
-  });
 
   const [createMember] = useMutation(CREATE_MEMBER, {
     onCompleted: ({ members }) => {
