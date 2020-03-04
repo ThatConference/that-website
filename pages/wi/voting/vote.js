@@ -70,6 +70,9 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   const [currentVote, setCurrentVote] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
+  const isTouch =
+    !!('ontouchstart' in window) || window.navigator.msMaxTouchPoints > 0;
+
   useEffect(() => {
     if (!loadingUser) {
       if (_.isEmpty(user)) {
@@ -172,6 +175,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               notes={notes}
               setNotes={setNotes}
               currentVote={currentVote}
+              isTouch={isTouch}
             />
             <VotingFooter
               notes={notes}
@@ -179,6 +183,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               handlers={handlers}
               currentVote={currentVote}
               submitting={submitting}
+              isTouch={isTouch}
             />
           </>
         )}

@@ -56,12 +56,8 @@ const ThumbRow = styled.div`
 
 const TypeRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-bottom: 2rem;
-
-  ${below.small`
-    flex-direction: column;
-  `};
 
   p {
     margin: 0;

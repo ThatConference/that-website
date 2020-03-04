@@ -7,6 +7,7 @@ const Links = styled.div`
   flex-direction: column;
   align-items: flex-end;
   align-self: center;
+  flex-grow: 2;
 
   ${below.med`
     flex-direction: row;

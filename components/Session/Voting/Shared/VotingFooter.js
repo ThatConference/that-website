@@ -55,6 +55,7 @@ const VotingFooter = ({
   className,
   currentVote,
   handlers,
+  isTouch,
   notes,
   setNotes,
   submitting,
@@ -85,16 +86,21 @@ const VotingFooter = ({
           }}
           color="lightGray"
           currentVote={currentVote}
+          isTouch={isTouch}
         />
       </SessionActions>
 
-      <NotesDrawer className={drawerOpen === true ? 'on' : 'off'}>
+      <NotesDrawer
+        className={drawerOpen === true ? 'on' : 'off'}
+        isTouch={isTouch}
+      >
         <h4>Organizer Notes</h4>
         <form className="input-form">
           <textarea
             rows="7"
             value={notes}
             onChange={event => setNotes(event.target.value)}
+            isTouch={isTouch}
           />
         </form>
       </NotesDrawer>

@@ -2,9 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Icon from '../../../shared/Icon';
 
-const isTouch =
-  !!('ontouchstart' in window) || window.navigator.msMaxTouchPoints > 0;
-
 const OrganizerNotesIcon = styled(Icon)`
   cursor: pointer;
   fill: ${({ color, theme }) => theme.colors[color]};
@@ -15,7 +12,7 @@ const OrganizerNotesIcon = styled(Icon)`
     fill: ${({ theme }) => theme.colors.highlight};
   }
   &:hover {
-    fill: ${({ color, theme }) =>
+    fill: ${({ color, isTouch, theme }) =>
       isTouch ? theme.colors[color] : theme.colors.highlight};
   }
 `;
@@ -32,7 +29,7 @@ const ThumbsDownStyledIcon = styled(Icon)`
     fill: ${({ theme }) => theme.colors.danger};
   }
   &:hover {
-    fill: ${({ color, theme }) =>
+    fill: ${({ color, isTouch, theme }) =>
       isTouch ? theme.colors[color] : theme.colors.danger};
   }
 `;
@@ -44,12 +41,12 @@ const ThumbsUpStyledIcon = styled(Icon)`
     fill: ${({ theme }) => theme.colors.success};
   }
   &:hover {
-    fill: ${({ color, theme }) =>
+    fill: ${({ color, isTouch, theme }) =>
       isTouch ? theme.colors[color] : theme.colors.success};
   }
 `;
 
-export const NotesIcon = ({ clickHandler }) => {
+export const NotesIcon = ({ clickHandler, isTouch }) => {
   return (
     <OrganizerNotesIcon
       icon="notes"
@@ -60,11 +57,17 @@ export const NotesIcon = ({ clickHandler }) => {
       viewBoxWidth="30"
       color="lightGray"
       onClick={clickHandler}
+      isTouch={isTouch}
     />
   );
 };
 
-export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
+export const ThumbsDownIcon = ({
+  color,
+  currentVote,
+  clickHandler,
+  isTouch,
+}) => {
   return (
     <ThumbsDownStyledIcon
       icon="thumbsUp"
@@ -81,7 +84,7 @@ export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
   );
 };
 
-export const ThumbsUpIcon = ({ color, currentVote, clickHandler }) => {
+export const ThumbsUpIcon = ({ color, currentVote, clickHandler, isTouch }) => {
   return (
     <ThumbsUpStyledIcon
       ontouchmove
@@ -94,6 +97,7 @@ export const ThumbsUpIcon = ({ color, currentVote, clickHandler }) => {
       onClick={clickHandler}
       className={currentVote === true ? 'vote-selected' : ''}
       color={color}
+      isTouch={isTouch}
     />
   );
 };
