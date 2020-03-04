@@ -4,6 +4,7 @@ import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
+import _ from 'lodash';
 
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
@@ -51,7 +52,7 @@ const Page = ({ children, headerType }) => {
     setLayeredHeader(headerType === 'layered');
   });
 
-  if (user) {
+  if (!_.isNil(user)) {
     LogRocket.identify(user.id, {
       email: user.email,
     });
