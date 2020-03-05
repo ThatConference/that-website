@@ -1,27 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import baseTheme from '../../styles/baseTheme';
 
-const icon = {
-  hidden: {
-    opacity: 0,
-    pathLength: 0,
-    fill: '#F74646',
-  },
-  visible: {
-    opacity: 1,
-    pathLength: 1,
-    fill: '#F74646',
-  },
-};
+const SavingOverlay = ({ className, submitting, treeColor }) => {
+  const icon = {
+    hidden: {
+      opacity: 0,
+      pathLength: 0,
+      fill: treeColor ? baseTheme.colors[treeColor] : baseTheme.colors.tertiary,
+    },
+    visible: {
+      opacity: 1,
+      pathLength: 1,
+      fill: treeColor ? baseTheme.colors[treeColor] : baseTheme.colors.tertiary,
+    },
+  };
 
-const SavingOverlay = ({ className, submitting }) => {
   return (
     <div
       style={{ display: submitting ? 'flex' : 'none' }}
       className={className}
     >
-      <div style={{ height: '15rem' }}>
+      <div>
         {submitting && (
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
@@ -73,11 +74,11 @@ export default styled(SavingOverlay)`
   z-index: 999;
   top: -1rem;
   left: -1rem;
-  align-items: center;
   justify-content: center;
+  padding-top: 12rem;
 
   .trees {
-    width: 15rem;
+    width: 18rem;
     z-index: 1000;
   }
 `;

@@ -89,7 +89,6 @@ const ThumbRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 2rem;
 `;
 
 const CAST_VOTE = gql`

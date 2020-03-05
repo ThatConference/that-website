@@ -5,11 +5,9 @@ import Icon from '../../../shared/Icon';
 const OrganizerNotesIcon = styled(Icon)`
   cursor: pointer;
   fill: ${({ color, theme }) => theme.colors[color]};
-  height: 5.5rem;
+  height: 5rem;
   position: relative;
-  top: 0.6rem;
-
-  &:hover,
+  top: 0;
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.highlight};
   }
@@ -22,8 +20,7 @@ const ThumbsIcon = css`
 
 const ThumbsDownStyledIcon = styled(Icon)`
   ${ThumbsIcon}
-  transform: scaleY(-1);
-  &:hover,
+  transform: scale(-1, -1);
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.danger};
   }
@@ -32,19 +29,18 @@ const ThumbsDownStyledIcon = styled(Icon)`
 const ThumbsUpStyledIcon = styled(Icon)`
   ${ThumbsIcon}
   padding-right: 2rem;
-  &:hover,
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.success};
   }
 `;
 
-export const NotesIcon = ({ clickHandler }) => {
+export const NotesIcon = ({ clickHandler, size }) => {
   return (
     <OrganizerNotesIcon
       icon="notes"
       title="Add notes for organizers"
-      height="50"
-      width="50"
+      height={size}
+      width={size}
       viewBoxHeight="30"
       viewBoxWidth="30"
       color="lightGray"
@@ -53,13 +49,13 @@ export const NotesIcon = ({ clickHandler }) => {
   );
 };
 
-export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
+export const ThumbsDownIcon = ({ color, currentVote, clickHandler, size }) => {
   return (
     <ThumbsDownStyledIcon
       icon="thumbsUp"
       title="Thumbs Down, I would NOT attend"
-      height="50"
-      width="50"
+      height={size}
+      width={size}
       viewBoxHeight="25"
       viewBoxWidth="25"
       onClick={clickHandler}
@@ -69,13 +65,14 @@ export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
   );
 };
 
-export const ThumbsUpIcon = ({ color, currentVote, clickHandler }) => {
+export const ThumbsUpIcon = ({ color, currentVote, clickHandler, size }) => {
   return (
     <ThumbsUpStyledIcon
+      ontouchmove
       icon="thumbsUp"
       title="Thumbs Up, I would attend"
-      height="50"
-      width="50"
+      height={size}
+      width={size}
       viewBoxHeight="25"
       viewBoxWidth="25"
       onClick={clickHandler}

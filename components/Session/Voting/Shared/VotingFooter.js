@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { above } from '../../../../utilities/breakpoint';
 import { ThumbsUpIcon, ThumbsDownIcon, NotesIcon } from './Icons';
 
@@ -10,6 +11,7 @@ const SessionActions = styled.div`
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
+  margin-top: 0.3rem;
 `;
 
 const NotesDrawer = styled.div`
@@ -69,23 +71,41 @@ const VotingFooter = ({
     <div className={className}>
       <Overlay style={{ display: submitting ? 'flex' : 'none' }} />
       <SessionActions>
-        <ThumbsUpIcon
-          clickHandler={() => {
-            reset();
-            handlers.VOTE_YES();
+        <motion.div
+          whileHover={{ scale: 1.4, rotate: 45 }}
+          whileTap={{
+            scale: 1,
+            rotate: -45,
           }}
-          color="lightGray"
-          currentVote={currentVote}
-        />
-        <NotesIcon clickHandler={() => setDrawerOpen(!drawerOpen)} />
-        <ThumbsDownIcon
-          clickHandler={() => {
-            reset();
-            handlers.VOTE_NO();
+        >
+          <ThumbsUpIcon
+            clickHandler={() => {
+              reset();
+              handlers.VOTE_YES();
+            }}
+            color="lightGray"
+            currentVote={currentVote}
+            size={45}
+          />
+        </motion.div>
+        <NotesIcon clickHandler={() => setDrawerOpen(!drawerOpen)} size={45} />
+        <motion.div
+          whileHover={{ scale: 1.4, rotate: -45 }}
+          whileTap={{
+            scale: 1,
+            rotate: 45,
           }}
-          color="lightGray"
-          vote={currentVote}
-        />
+        >
+          <ThumbsDownIcon
+            clickHandler={() => {
+              reset();
+              handlers.VOTE_NO();
+            }}
+            color="lightGray"
+            currentVote={currentVote}
+            size={45}
+          />
+        </motion.div>
       </SessionActions>
 
       <NotesDrawer className={drawerOpen === true ? 'on' : 'off'}>
@@ -95,6 +115,7 @@ const VotingFooter = ({
             rows="7"
             value={notes}
             onChange={event => setNotes(event.target.value)}
+            style={{ width: '100%' }}
           />
         </form>
       </NotesDrawer>

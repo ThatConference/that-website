@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
+import { motion } from 'framer-motion';
 import { GlobalHotKeys } from 'react-hotkeys';
 import { below, sessionConstants } from '../../../../utilities';
 import SavingOverlay from '../../../shared/SavingOverlay';
@@ -56,22 +57,31 @@ const ThumbRow = styled.div`
 
 const TypeRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-bottom: 2rem;
-
-  ${below.small`
-    flex-direction: column;
-  `};
 
   p {
     margin: 0;
   }
 `;
 
-const Content = ({ handlers, notes, session, setNotes, submitting }) => {
+const Content = ({
+  currentVote,
+  handlers,
+  notes,
+  session,
+  setNotes,
+  submitting,
+}) => {
+  const getTreeColor = () => {
+    if (currentVote === true) return 'success';
+    if (currentVote === false) return 'danger';
+    return null;
+  };
+
   if (session) {
     const converter = new MarkdownIt();
-    const { category, longDescription, takeaways, title, type, vote } = session;
+    const { category, longDescription, takeaways, title, type } = session;
 
     const audience = sessionConstants.SessionFors.find(
       sf => sf.value === category,
@@ -83,7 +93,7 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
 
     return (
       <div style={{ position: 'relative' }}>
-        <SavingOverlay submitting={submitting} />
+        <SavingOverlay submitting={submitting} treeColor={getTreeColor()} />
         {!submitting && (
           <GlobalHotKeyStyled
             keyMap={keyMap}
@@ -126,16 +136,34 @@ const Content = ({ handlers, notes, session, setNotes, submitting }) => {
               />
             </form>
             <ThumbRow>
-              <ThumbsUpIcon
-                clickHandler={handlers.VOTE_YES}
-                currentVote={vote}
-                color="primary"
-              />
-              <ThumbsDownIcon
-                clickHandler={handlers.VOTE_NO}
-                currentVote={vote}
-                color="primary"
-              />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: -45 }}
+                whileTap={{
+                  scale: 1,
+                  rotate: 45,
+                }}
+              >
+                <ThumbsUpIcon
+                  clickHandler={handlers.VOTE_YES}
+                  currentVote={currentVote}
+                  color="primary"
+                  size={50}
+                />
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 45 }}
+                whileTap={{
+                  scale: 1,
+                  rotate: -45,
+                }}
+              >
+                <ThumbsDownIcon
+                  clickHandler={handlers.VOTE_NO}
+                  currentVote={currentVote}
+                  color="primary"
+                  size={50}
+                />
+              </motion.div>
             </ThumbRow>
           </SideColumn>
         </SessionDetails>
