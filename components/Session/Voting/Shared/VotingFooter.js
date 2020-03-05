@@ -11,6 +11,7 @@ const SessionActions = styled.div`
   justify-content: space-evenly;
   width: 100%;
   align-items: center;
+  margin-top: 0.3rem;
 `;
 
 const NotesDrawer = styled.div`
@@ -84,9 +85,10 @@ const VotingFooter = ({
             }}
             color="lightGray"
             currentVote={currentVote}
+            size={45}
           />
         </motion.div>
-        <NotesIcon clickHandler={() => setDrawerOpen(!drawerOpen)} />
+        <NotesIcon clickHandler={() => setDrawerOpen(!drawerOpen)} size={45} />
         <motion.div
           whileHover={{ scale: 1.4, rotate: -45 }}
           whileTap={{
@@ -101,6 +103,7 @@ const VotingFooter = ({
             }}
             color="lightGray"
             currentVote={currentVote}
+            size={45}
           />
         </motion.div>
       </SessionActions>
@@ -112,6 +115,7 @@ const VotingFooter = ({
             rows="7"
             value={notes}
             onChange={event => setNotes(event.target.value)}
+            style={{ width: '100%' }}
           />
         </form>
       </NotesDrawer>

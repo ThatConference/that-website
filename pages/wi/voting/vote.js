@@ -105,7 +105,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
     setTimeout(() => {
       setSubmitting(false);
     }, 1800);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 300);
     setCurrentSessionIndex(currentSessionIndex + 1);
     setNotes('');
     setCurrentVote('');

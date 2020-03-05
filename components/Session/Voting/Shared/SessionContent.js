@@ -131,7 +131,7 @@ const Content = ({
             </form>
             <ThumbRow>
               <motion.div
-                whileHover={{ scale: 1.4, rotate: -45 }}
+                whileHover={{ scale: 1.2, rotate: -45 }}
                 whileTap={{
                   scale: 1,
                   rotate: 45,
@@ -141,10 +141,11 @@ const Content = ({
                   clickHandler={handlers.VOTE_YES}
                   currentVote={currentVote}
                   color="primary"
+                  size={50}
                 />
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.4, rotate: 45 }}
+                whileHover={{ scale: 1.2, rotate: 45 }}
                 whileTap={{
                   scale: 1,
                   rotate: -45,
@@ -154,6 +155,7 @@ const Content = ({
                   clickHandler={handlers.VOTE_NO}
                   currentVote={currentVote}
                   color="primary"
+                  size={50}
                 />
               </motion.div>
             </ThumbRow>

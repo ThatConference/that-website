@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
@@ -10,6 +10,7 @@ import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import { SmallerH1 } from '../../../components/shared/StandardStyles';
 import NavLinks from '../../../components/Session/Voting/Shared/NavLinks';
+import Icon from '../../../components/shared/Icon';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 import SlimSession from '../../../components/Session/Voting/Shared/SlimSession';
 import Stats from '../../../components/Session/Voting/Shared/Stats';
@@ -29,6 +30,25 @@ const TitleRow = styled.div`
   ${below.med`
     flex-direction: column;
   `}
+`;
+
+const ScrollToTop = styled.div`
+  position: fixed;
+  bottom: 4rem;
+  right: 0;
+  width: 4rem;
+  height: 4rem;
+  background-color: ${({ theme }) => theme.colors.thatBlue};
+  fill: ${({ theme }) => theme.colors.fonts.light};
+
+  svg {
+    position: relative;
+    left: 0.1rem;
+
+    &:hover {
+      fill: ${({ theme }) => theme.colors.highlight};
+    }
+  }
 `;
 
 const GET_SESSIONS = gql`
@@ -55,6 +75,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   dlog('session voting');
 
   const router = useRouter();
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     if (!loadingUser) {
@@ -66,6 +87,13 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
         router.push('/member/create').then(() => window.scrollTo(0, 0));
       }
     }
+
+    const handleScroll = () => {
+      setScrollY(window.pageYOffset);
+    };
+    document.addEventListener('scroll', handleScroll);
+
+    return () => document.removeEventListener('scroll', handleScroll);
   });
 
   const {
@@ -118,6 +146,13 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
           </>
         )}
       </ContentSection>
+      <ScrollToTop
+        onClick={() => window.scrollTo(0, 300)}
+        title="Scroll to top"
+        style={{ display: scrollY > 300 ? 'block' : 'none' }}
+      >
+        <Icon icon="arrow" className="up" title="Scroll to top" />
+      </ScrollToTop>
     </>
   );
 };
