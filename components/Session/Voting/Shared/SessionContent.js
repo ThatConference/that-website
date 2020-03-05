@@ -73,6 +73,12 @@ const Content = ({
   setNotes,
   submitting,
 }) => {
+  const getTreeColor = () => {
+    if (currentVote === true) return 'success';
+    if (currentVote === false) return 'danger';
+    return null;
+  };
+
   if (session) {
     const converter = new MarkdownIt();
     const { category, longDescription, takeaways, title, type } = session;
@@ -87,7 +93,7 @@ const Content = ({
 
     return (
       <div style={{ position: 'relative' }}>
-        <SavingOverlay submitting={submitting} />
+        <SavingOverlay submitting={submitting} treeColor={getTreeColor()} />
         {!submitting && (
           <GlobalHotKeyStyled
             keyMap={keyMap}

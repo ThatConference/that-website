@@ -104,8 +104,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   const voteComplete = () => {
     setTimeout(() => {
       setSubmitting(false);
-    }, 1800);
-    window.scrollTo(0, 300);
+    }, 1500);
     setCurrentSessionIndex(currentSessionIndex + 1);
     setNotes('');
     setCurrentVote('');
@@ -119,6 +118,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
   });
 
   const submitVote = yesVote => {
+    window.scrollTo(0, 300);
     setSubmitting(true);
     setCurrentVote(yesVote);
     const queryVariables = {
