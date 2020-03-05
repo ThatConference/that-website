@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { above } from '../../../../utilities/breakpoint';
 import { ThumbsUpIcon, ThumbsDownIcon, NotesIcon } from './Icons';
 
@@ -55,7 +56,6 @@ const VotingFooter = ({
   className,
   currentVote,
   handlers,
-  isTouch,
   notes,
   setNotes,
   submitting,
@@ -70,37 +70,48 @@ const VotingFooter = ({
     <div className={className}>
       <Overlay style={{ display: submitting ? 'flex' : 'none' }} />
       <SessionActions>
-        <ThumbsUpIcon
-          clickHandler={() => {
-            reset();
-            handlers.VOTE_YES();
+        <motion.div
+          whileHover={{ scale: 1.4, rotate: 45 }}
+          whileTap={{
+            scale: 1,
+            rotate: -45,
           }}
-          color="lightGray"
-          currentVote={currentVote}
-        />
+        >
+          <ThumbsUpIcon
+            clickHandler={() => {
+              reset();
+              handlers.VOTE_YES();
+            }}
+            color="lightGray"
+            currentVote={currentVote}
+          />
+        </motion.div>
         <NotesIcon clickHandler={() => setDrawerOpen(!drawerOpen)} />
-        <ThumbsDownIcon
-          clickHandler={() => {
-            reset();
-            handlers.VOTE_NO();
+        <motion.div
+          whileHover={{ scale: 1.4, rotate: -45 }}
+          whileTap={{
+            scale: 1,
+            rotate: 45,
           }}
-          color="lightGray"
-          currentVote={currentVote}
-          isTouch={isTouch}
-        />
+        >
+          <ThumbsDownIcon
+            clickHandler={() => {
+              reset();
+              handlers.VOTE_NO();
+            }}
+            color="lightGray"
+            currentVote={currentVote}
+          />
+        </motion.div>
       </SessionActions>
 
-      <NotesDrawer
-        className={drawerOpen === true ? 'on' : 'off'}
-        isTouch={isTouch}
-      >
+      <NotesDrawer className={drawerOpen === true ? 'on' : 'off'}>
         <h4>Organizer Notes</h4>
         <form className="input-form">
           <textarea
             rows="7"
             value={notes}
             onChange={event => setNotes(event.target.value)}
-            isTouch={isTouch}
           />
         </form>
       </NotesDrawer>

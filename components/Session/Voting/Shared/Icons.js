@@ -11,10 +11,6 @@ const OrganizerNotesIcon = styled(Icon)`
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.highlight};
   }
-  &:hover {
-    fill: ${({ color, isTouch, theme }) =>
-      isTouch ? theme.colors[color] : theme.colors.highlight};
-  }
 `;
 
 const ThumbsIcon = css`
@@ -24,13 +20,9 @@ const ThumbsIcon = css`
 
 const ThumbsDownStyledIcon = styled(Icon)`
   ${ThumbsIcon}
-  transform: scaleY(-1);
+  transform: scale(-1, -1);
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.danger};
-  }
-  &:hover {
-    fill: ${({ color, isTouch, theme }) =>
-      isTouch ? theme.colors[color] : theme.colors.danger};
   }
 `;
 
@@ -40,13 +32,9 @@ const ThumbsUpStyledIcon = styled(Icon)`
   &.vote-selected {
     fill: ${({ theme }) => theme.colors.success};
   }
-  &:hover {
-    fill: ${({ color, isTouch, theme }) =>
-      isTouch ? theme.colors[color] : theme.colors.success};
-  }
 `;
 
-export const NotesIcon = ({ clickHandler, isTouch }) => {
+export const NotesIcon = ({ clickHandler }) => {
   return (
     <OrganizerNotesIcon
       icon="notes"
@@ -57,17 +45,11 @@ export const NotesIcon = ({ clickHandler, isTouch }) => {
       viewBoxWidth="30"
       color="lightGray"
       onClick={clickHandler}
-      isTouch={isTouch}
     />
   );
 };
 
-export const ThumbsDownIcon = ({
-  color,
-  currentVote,
-  clickHandler,
-  isTouch,
-}) => {
+export const ThumbsDownIcon = ({ color, currentVote, clickHandler }) => {
   return (
     <ThumbsDownStyledIcon
       icon="thumbsUp"
@@ -79,12 +61,11 @@ export const ThumbsDownIcon = ({
       onClick={clickHandler}
       className={currentVote === false ? 'vote-selected' : ''}
       color={color}
-      isTouch={isTouch}
     />
   );
 };
 
-export const ThumbsUpIcon = ({ color, currentVote, clickHandler, isTouch }) => {
+export const ThumbsUpIcon = ({ color, currentVote, clickHandler }) => {
   return (
     <ThumbsUpStyledIcon
       ontouchmove
@@ -97,7 +78,6 @@ export const ThumbsUpIcon = ({ color, currentVote, clickHandler, isTouch }) => {
       onClick={clickHandler}
       className={currentVote === true ? 'vote-selected' : ''}
       color={color}
-      isTouch={isTouch}
     />
   );
 };

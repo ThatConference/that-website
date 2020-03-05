@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import parse from 'html-react-parser';
+import { motion } from 'framer-motion';
 import { GlobalHotKeys } from 'react-hotkeys';
 import { below, sessionConstants } from '../../../../utilities';
 import SavingOverlay from '../../../shared/SavingOverlay';
@@ -129,16 +130,32 @@ const Content = ({
               />
             </form>
             <ThumbRow>
-              <ThumbsUpIcon
-                clickHandler={handlers.VOTE_YES}
-                currentVote={currentVote}
-                color="primary"
-              />
-              <ThumbsDownIcon
-                clickHandler={handlers.VOTE_NO}
-                currentVote={currentVote}
-                color="primary"
-              />
+              <motion.div
+                whileHover={{ scale: 1.4, rotate: -45 }}
+                whileTap={{
+                  scale: 1,
+                  rotate: 45,
+                }}
+              >
+                <ThumbsUpIcon
+                  clickHandler={handlers.VOTE_YES}
+                  currentVote={currentVote}
+                  color="primary"
+                />
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.4, rotate: 45 }}
+                whileTap={{
+                  scale: 1,
+                  rotate: -45,
+                }}
+              >
+                <ThumbsDownIcon
+                  clickHandler={handlers.VOTE_NO}
+                  currentVote={currentVote}
+                  color="primary"
+                />
+              </motion.div>
             </ThumbRow>
           </SideColumn>
         </SessionDetails>
