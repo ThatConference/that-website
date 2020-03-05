@@ -142,7 +142,7 @@ const SlimSession = ({ session }) => {
 
   return (
     <SessionContainer>
-      <SavingOverlay submitting={submitting} />
+      <SavingOverlay submitting={submitting} displayTrees={false} />
       <h4 style={{ marginBottom: 0 }}>{title}</h4>
       <MainBlock>
         <Details>
@@ -172,11 +172,13 @@ const SlimSession = ({ session }) => {
               clickHandler={() => submitVote(true)}
               currentVote={currentVote}
               color="primary"
+              size={45}
             />
             <ThumbsDownIcon
               clickHandler={() => submitVote(false)}
               currentVote={currentVote}
               color="primary"
+              size={45}
             />
           </ThumbRow>
         </div>

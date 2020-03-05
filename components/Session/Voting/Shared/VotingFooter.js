@@ -20,7 +20,7 @@ const NotesDrawer = styled.div`
   position: absolute;
   height: 20rem;
   top: 100rem;
-  width: 100vw;
+  width: 100%;
   padding: 1rem;
   left: 0;
   @extend .box-shadow;
@@ -109,13 +109,13 @@ const VotingFooter = ({
       </SessionActions>
 
       <NotesDrawer className={drawerOpen === true ? 'on' : 'off'}>
-        <h4>Organizer Notes</h4>
+        <h4>Organizer Feedback</h4>
         <form className="input-form">
           <textarea
             rows="7"
             value={notes}
             onChange={event => setNotes(event.target.value)}
-            style={{ width: '100%' }}
+            style={{ width: '95%' }}
           />
         </form>
       </NotesDrawer>
@@ -135,6 +135,7 @@ export default styled(VotingFooter)`
   padding-left: 5rem;
   display: flex;
   align-items: center;
+  max-width: 100vw;
 
   ${above.large`
     display: none;
