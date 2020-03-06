@@ -31,6 +31,10 @@ const FooterNav = styled.div`
   ${below.large`
     margin: 3rem 0;
   `};
+
+  ${below.small`
+    flex-wrap: wrap;
+  `};
 `;
 const FooterNavColumn = styled.div`
   display: flex;
@@ -43,6 +47,11 @@ const FooterNavColumn = styled.div`
 
   ${below.large`
     padding: 0 2rem;
+  `};
+
+  ${below.small`
+    padding: 1rem
+    width: 50%;
   `};
 `;
 
