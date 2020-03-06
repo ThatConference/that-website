@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
@@ -54,9 +54,11 @@ const MySessions = ({ user, loading }) => {
 
   return (
     <div>
-      <Head>
-        <title key="title">My Sessions - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="My Sessions - THAT Conference"
+        description="Your list of THAT Conference session."
+        noindex
+      />
       <ContentSection>
         {loading && <LoadingIndicator />}
         {!loading && (

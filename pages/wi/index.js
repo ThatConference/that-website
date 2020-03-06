@@ -24,6 +24,8 @@ const GET_EVENT = gql`
           slogan
           startDate
           endDate
+          isVotingOpen
+          isCallForSpeakersOpen
           venues {
             id
             name

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/react-hooks';
@@ -136,9 +136,10 @@ const createProfile = ({ user, loading }) => {
   if (loading) {
     return (
       <div>
-        <Head>
-          <title key="title">Create Member Profile - THAT Conference</title>
-        </Head>
+        <NextSeo
+          title="Create Member Profile - THAT Conference"
+          description="Creat your THAT member profile."
+        />
         <ContentSection forForm>
           <Title>{steps[currentStep].label}</Title>
           <div style={{ textAlign: 'center', margin: '10rem 0 7rem 0' }}>
@@ -153,9 +154,10 @@ const createProfile = ({ user, loading }) => {
 
   return (
     <div>
-      <Head>
-        <title key="title">Create Member Profile - THAT Conference</title>
-      </Head>
+      <NextSeo
+        title="Create Member Profile - THAT Conference"
+        description="Creat your THAT member profile."
+      />
       <ContentSection forForm>
         <BaseStepper steps={steps} header="Create Your Profile" />
         <Title>{steps[currentStep].label}</Title>

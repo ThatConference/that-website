@@ -29,7 +29,7 @@ const WhatToExpectSection = ({ src, title }) => {
   return (
     <StyledCell>
       <ImageContainer width="30rem" height="16rem" key="">
-        <WhatToExpectImage src={src} />
+        <WhatToExpectImage src={src} alt={title} />
         <StyledTitle className="medium-body-copy">{title}</StyledTitle>
       </ImageContainer>
     </StyledCell>

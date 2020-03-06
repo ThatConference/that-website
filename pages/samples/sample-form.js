@@ -1,6 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
-
+import { NextSeo } from 'next-seo';
 import ContentSection from '../../components/shared/ContentSection';
 import { FormTitle } from '../../components/shared/FormLayout';
 import Form from '../../components/Samples/Form';
@@ -8,9 +7,11 @@ import Form from '../../components/Samples/Form';
 const SampleForm = () => {
   return (
     <div>
-      <Head>
-        <title key="title">THAT Conference - Sample Form</title>
-      </Head>
+      <NextSeo
+        title="Sample Form - THAT Conference"
+        description="Sample form and elements for THAT website style guide"
+        noindex
+      />
 
       <ContentSection forForm>
         <FormTitle>Sample Form</FormTitle>
