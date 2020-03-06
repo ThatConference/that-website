@@ -119,8 +119,8 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
 
   const submitVote = yesVote => {
     window.scrollTo(0, 300);
-    setSubmitting(true);
     setCurrentVote(yesVote);
+    setSubmitting(true);
     const queryVariables = {
       eventId: process.env.CURRENT_EVENT_ID,
       vote: {
