@@ -182,6 +182,13 @@ const VotingStart = ({ user, loading }) => {
                       the 'Y' key for a thumbs up or yes vote.
                     </li>
                     <li>
+                      Want to provide additional comments to the organizers?
+                      There will be an 'Organizer Feedback' box provided on each
+                      session. Only THAT Staff will see these comments. Note:
+                      Mobile browser users will want to tap on the pen and paper
+                      icon (between the thumbs) to open this box.
+                    </li>
+                    <li>
                       You can{' '}
                       <strong>
                         <ThatLink
