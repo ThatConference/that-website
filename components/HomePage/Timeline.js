@@ -85,12 +85,12 @@ const Message = styled.div`
   `};
 `;
 
-const Timeline = styled.section`
+const Timeline = styled.div`
   margin-top: 15rem;
-  margin-bottom: 15rem;
-  text-align: center;
-  white-space: nowrap;
-  overflow-x: hidden;
+  margin-bottom: 8rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
 
   ${below.med`
     display: none;
@@ -98,7 +98,23 @@ const Timeline = styled.section`
 `;
 
 const TimelineItem = styled.div`
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:first-child {
+    hr {
+      width: 50%;
+      margin-left: 50%;
+    }
+  }
+
+  &:last-child {
+    hr {
+      width: 50%;
+      margin-right: 50%;
+    }
+  }
 `;
 
 const Marker = styled.span`
@@ -106,7 +122,7 @@ const Marker = styled.span`
   width: 2.5rem;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
-  display: inline-block;
+  margin: 0.75rem 0;
 
   &.past {
     background-color: ${({ theme }) => theme.colors.teal};
@@ -116,10 +132,11 @@ const Marker = styled.span`
 const Line = styled.hr`
   border: 1px solid ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.white};
-  display: inline-block;
-  width: 4rem;
   height: 0.1rem;
-  margin-bottom: 1rem;
+  width: 100%;
+  margin: 0;
+  position: relative;
+  top: -2rem;
 
   &.past {
     border-color: ${({ theme }) => theme.colors.teal};
@@ -129,27 +146,17 @@ const Line = styled.hr`
 
 const Detail = styled.span`
   color: ${({ theme }) => theme.colors.fonts.light};
-  text-align: center;
-  position: absolute;
-  display: inline-block;
-  height: auto;
   word-wrap: break-word;
-  overflow: hidden;
   white-space: normal;
   line-height: 1.5;
   font-weight: 400;
+  margin-bottom: 1.25rem;
+  padding: 0 0.75rem;
 `;
 
-const Name = styled(Detail)`
-  margin-top: 3rem;
-  margin-left: -5.5rem;
-  width: 8.5rem;
-`;
+const Name = styled(Detail)``;
 
 const Date = styled(Detail)`
-  margin-top: -2.5rem;
-  width: 8rem;
-  margin-left: -2.8rem;
   color: ${({ theme }) => theme.colors.fonts.light};
 
   &.past {
@@ -158,21 +165,10 @@ const Date = styled(Detail)`
 `;
 
 const TimelineSection = ({ event, className }) => {
-  const milestones = _(event.get.milestones)
-    .map(m => {
-      const momentDue = moment.utc(m.dueDate);
-      return {
-        title: m.title,
-        due: momentDue.format('MM/DD/YY'),
-        state: momentDue < moment() ? 'past' : 'future',
-      };
-    })
-    .sortBy(m => {
-      return moment(m.due, 'MM/DD/YY');
-    })
-    .value();
+  const { milestones, notifications } = event.get;
+  const groupedMilestones = _.groupBy(milestones, m => moment.utc(m.dueDate));
 
-  const featured = _.find(event.get.notifications, n => {
+  const featured = _.find(notifications, n => {
     return n.shouldFeature === true;
   });
 
@@ -181,6 +177,7 @@ const TimelineSection = ({ event, className }) => {
   const link = featured ? featured.link : null;
   const linkText = featured ? featured.linkText : null;
   const haveLink = link !== null;
+
   return (
     <Main backgroundColor="primary" className={className} hasTrees="true">
       <Content>
@@ -199,15 +196,23 @@ const TimelineSection = ({ event, className }) => {
           />
         )}
         <Timeline>
-          {milestones.map((m, index, all) => (
-            <TimelineItem key={m.title}>
-              {index !== 0 && <Line className={m.state} />}
-              <Date className={m.state}>{m.due}</Date>
-              <Marker className={m.state} />
-              <Name>{m.title}</Name>
-              {index !== all.length - 1 && <Line className={m.state} />}
-            </TimelineItem>
-          ))}
+          {Object.entries(groupedMilestones).map(([key, value]) => {
+            const momentDue = moment.utc(key);
+            const milestoneState = momentDue < moment() ? 'past' : 'future';
+
+            return (
+              <TimelineItem key={key}>
+                <Date className={milestoneState}>
+                  {momentDue.format('M/D/YY')}
+                </Date>
+                <Marker className={milestoneState} />
+                <Line className={milestoneState} />
+                {value.map(milestone => {
+                  return <Name>{milestone.title}</Name>;
+                })}
+              </TimelineItem>
+            );
+          })}
         </Timeline>
         <Moose
           src="/images/moose_with_lantern.png"

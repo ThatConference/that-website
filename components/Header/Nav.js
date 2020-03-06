@@ -20,9 +20,10 @@ const NavList = styled.div`
     height: calc(100vh - 14rem);
     left: 0;
     top: 18rem;
+    padding-top: 3rem;
 
-    a:first-child {
-      padding-top: 2rem;
+    a {
+      color: ${({ theme }) => theme.colors.primary};
     }
   `};
 `;
@@ -30,6 +31,12 @@ const NavList = styled.div`
 const NavListItem = styled.div`
   text-align: right;
   padding-right: 2.5rem;
+
+  ${below.med`
+    text-align: center;
+    padding-right: 0;
+    padding-top: 1rem;
+  `}
 `;
 
 const Nav = ({ className, color, mobileMenuOpen, onClick }) => {
