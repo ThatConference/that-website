@@ -8,7 +8,6 @@ import ContentSection from '../../components/shared/ContentSection';
 import CurrentSessions from '../../components/Member/MySessions/Current';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import Title from '../../components/shared/Title';
-import LinkButton from '../../components/shared/LinkButton';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
