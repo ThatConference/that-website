@@ -31,7 +31,7 @@ const Footer = ({ className }) => {
 
 export default styled(Footer)`
   padding: 1.7rem;
-  width: 100vw;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   font-size: 1.2rem;
   line-height: 1.2;
