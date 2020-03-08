@@ -48,6 +48,8 @@ If you are on a mac, it is helpful to make sure Xcode and  Xcode command line to
 
 Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place.
 
+If you have previously setup your environment, make sure that all keys from `.env.sample` and `.env.build.sample` are present in your `.env` and `.env.build` files. New entries may have been added and need to be present for this to run for you.
+
 Edit the .env.build file:
 * `DEBUG=that:*`
 * `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
