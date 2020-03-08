@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 import { StyledPre } from '../../../shared/StandardStyles';
 import SavingOverlay from '../../../shared/SavingOverlay';
 import { ThumbsUpIcon, ThumbsDownIcon } from './Icons';
-import { below } from '../../../../utilities';
+import { below, above } from '../../../../utilities';
 
 const Description = styled(StyledPre)`
   margin-bottom: 0;
@@ -89,6 +89,10 @@ const ThumbRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${above.med`
+    min-width: 8rem;
+  `}
 `;
 
 const CAST_VOTE = gql`
@@ -166,22 +170,20 @@ const SlimSession = ({ session }) => {
         >
           {`Show ${expandedDescription ? 'Less' : 'More'}`}
         </ShowMore>
-        <div>
-          <ThumbRow>
-            <ThumbsUpIcon
-              clickHandler={() => submitVote(true)}
-              currentVote={currentVote}
-              color="primary"
-              size={45}
-            />
-            <ThumbsDownIcon
-              clickHandler={() => submitVote(false)}
-              currentVote={currentVote}
-              color="primary"
-              size={45}
-            />
-          </ThumbRow>
-        </div>
+        <ThumbRow>
+          <ThumbsUpIcon
+            clickHandler={() => submitVote(true)}
+            currentVote={currentVote}
+            color="primary"
+            size={45}
+          />
+          <ThumbsDownIcon
+            clickHandler={() => submitVote(false)}
+            currentVote={currentVote}
+            color="primary"
+            size={45}
+          />
+        </ThumbRow>
       </MainBlock>
     </SessionContainer>
   );
