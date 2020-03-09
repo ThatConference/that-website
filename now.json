@@ -24,5 +24,17 @@
       "CURRENT_EVENT_ID": "ByE7Dc7eCGcRFzLhWhuI"
     }
   },
-  "regions": ["cle"]
+  "regions": ["cle"],
+  "redirects": [
+    {
+      "source": "/sessions/(.*)",
+      "destination": "https://old.thatconference.com/sessions/$1",
+      "statusCode": 302
+    },
+    {
+      "source": "/speakers/(.*)",
+      "destination": "https://old.thatconference.com/speakers/$1",
+      "statusCode": 302
+    }
+  ]
 }
