@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import parse from 'html-react-parser';
 import { motion } from 'framer-motion';
 import { GlobalHotKeys } from 'react-hotkeys';
-import { below, sessionConstants } from '../../../../utilities';
+import { below, generateUuid, sessionConstants } from '../../../../utilities';
 import SavingOverlay from '../../../shared/SavingOverlay';
 import { ThumbsUpIcon, ThumbsDownIcon } from './Icons';
 
@@ -118,8 +118,8 @@ const Content = ({
               <>
                 <h4 style={{ marginBottom: 0 }}>Key Takeaways</h4>
                 <ul>
-                  {takeaways.map(s => (
-                    <li key={s}>{s}</li>
+                  {takeaways.map(takeaway => (
+                    <li key={generateUuid()}>{takeaway}</li>
                   ))}
                 </ul>
               </>
