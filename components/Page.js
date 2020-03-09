@@ -82,7 +82,7 @@ const Page = ({ children, headerType }) => {
             canonical={`https://www.thatconference.com/${router.pathname}`}
           />
           <LogoJsonLd
-            logo="https://www.thatconference.com/images/svgs/THATConference-WI.svg"
+            logo="https://www.thatconference.com/svgs/THATConference-WI.svg"
             url="https://www.thatconference.com"
           />
           <CorePage>

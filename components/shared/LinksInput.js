@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
-import { GenerateUuid, IsValidUrl } from '../../utilities';
+import { generateUuid, IsValidUrl } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
 import SquareButton from './SquareButton';
 
@@ -50,7 +50,7 @@ const LinksInput = ({
     if (!passedInLinks || !passedInLinks.length || passedInLinks.length === 0) {
       initialLinks = [
         {
-          id: GenerateUuid(),
+          id: generateUuid(),
           name: '',
           url: '',
           nameTouched: false,
@@ -64,7 +64,7 @@ const LinksInput = ({
     } else {
       initialLinks = passedInLinks.map(l => {
         return {
-          id: l.id || GenerateUuid(),
+          id: l.id || generateUuid(),
           name: l.name,
           url: l.url,
           nameTouched: false,
@@ -114,7 +114,7 @@ const LinksInput = ({
 
   const onAdd = () => {
     const l = stateLinks.concat({
-      id: GenerateUuid(),
+      id: generateUuid(),
       name: '',
       url: '',
       nameTouched: false,

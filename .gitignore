@@ -22,3 +22,4 @@ node_modules/
 
 # just keep out the seo stuff from the build action
 sitemap/pages.json
+.now
