@@ -27,13 +27,13 @@
   "regions": ["cle"],
   "redirects": [
     {
-      "source": "/sessions/(.*)",
-      "destination": "https://old.thatconference.com/sessions/$1",
+      "source": "/([Ss])essions/(.*)",
+      "destination": "https://old.thatconference.com/sessions/$2",
       "statusCode": 302
     },
     {
-      "source": "/speakers/(.*)",
-      "destination": "https://old.thatconference.com/speakers/$1",
+      "source": "/([Ss])peakers/(.*)",
+      "destination": "https://old.thatconference.com/speakers/$2",
       "statusCode": 302
     }
   ]
