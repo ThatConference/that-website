@@ -197,7 +197,7 @@ const TimelineSection = ({ event, className }) => {
         )}
         <Timeline>
           {Object.entries(groupedMilestones).map(([key, value]) => {
-            const momentDue = moment.utc(key);
+            const momentDue = moment.utc(key, 'ddd MMM DD YYYY');
             const milestoneState = momentDue < moment() ? 'past' : 'future';
 
             return (
@@ -208,7 +208,7 @@ const TimelineSection = ({ event, className }) => {
                 <Marker className={milestoneState} />
                 <Line className={milestoneState} />
                 {value.map(milestone => {
-                  return <Name>{milestone.title}</Name>;
+                  return <Name key={milestone.title}>{milestone.title}</Name>;
                 })}
               </TimelineItem>
             );
