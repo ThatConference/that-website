@@ -86,7 +86,7 @@ const Message = styled.div`
 `;
 
 const Timeline = styled.div`
-  margin-top: 15rem;
+  margin-top: 18rem;
   margin-bottom: 8rem;
   display: flex;
   width: 100%;
