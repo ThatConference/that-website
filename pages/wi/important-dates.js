@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import { below, gridRepeat } from '../../utilities';
+import { above, below, gridRepeat } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import TimelineSection from '../../components/HomePage/Timeline';
+
+const _ = require('lodash');
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -96,10 +99,47 @@ const StyledTimelineSection = styled(TimelineSection)`
       }
     }
   }
+
+  ${below.med`
+    display: none;
+  `};
 `;
+
+const MobileTimeline = styled.div`
+  text-align: center;
+  margin-bottom: 10rem;
+
+  ${above.med`
+    display: none;
+  `};
+
+  div.past {
+    span.date,
+    span.name {
+      display: block;
+      color: ${({ theme }) => theme.colors.mediumGray};
+    }
+  }
+  div.future {
+    span.date,
+    span.name {
+      display: block;
+      color: ${({ theme }) => theme.colors.fonts.dark};
+    }
+  }
+`;
+
+const Date = styled.span`
+  font-weight: bold;
+  margin-top: 3rem;
+`;
+
+const Name = styled.span``;
 
 const importantDates = () => {
   let event = {};
+  let milestones = [];
+  let groupedMilestones = [];
 
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { eventId: process.env.CURRENT_EVENT_ID },
@@ -112,6 +152,8 @@ const importantDates = () => {
 
   if (!loading) {
     event = data.events.event;
+    milestones = event.get.milestones;
+    groupedMilestones = _.groupBy(milestones, m => moment.utc(m.dueDate));
   }
 
   return (
@@ -138,7 +180,33 @@ const importantDates = () => {
         </Grid>
       </ContentSection>
       {!loading && (
-        <StyledTimelineSection className="important-dates" event={event} />
+        <>
+          <StyledTimelineSection className="important-dates" event={event} />
+          <MobileTimeline>
+            {Object.entries(groupedMilestones).map(([key, value]) => {
+              const momentDue = moment.utc(key, 'ddd MMM DD YYYY');
+              const milestoneState = momentDue < moment() ? 'past' : 'future';
+              const itemClassName = `timelineitem ${milestoneState}`;
+              const dateClassName = `date ${milestoneState}`;
+              const nameClassName = `name ${milestoneState}`;
+
+              return (
+                <div key={key} className={itemClassName}>
+                  <Date className={dateClassName}>
+                    {momentDue.format('M/D/YY')}
+                  </Date>
+                  {value.map(milestone => {
+                    return (
+                      <Name key={milestone.title} className={nameClassName}>
+                        {milestone.title}
+                      </Name>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </MobileTimeline>
+        </>
       )}
     </>
   );
