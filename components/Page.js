@@ -22,7 +22,7 @@ const StyledPage = styled.div`
 
 const CorePage = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: grid;
   grid-template-rows: auto;
   grid-gap: 0;
@@ -35,7 +35,7 @@ const PageDiv = styled.div`
 `;
 
 const InnerPage = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
@@ -82,7 +82,7 @@ const Page = ({ children, headerType }) => {
             canonical={`https://www.thatconference.com/${router.pathname}`}
           />
           <LogoJsonLd
-            logo="https://www.thatconference.com/images/svgs/THATConference-WI.svg"
+            logo="https://www.thatconference.com/svgs/THATConference-WI.svg"
             url="https://www.thatconference.com"
           />
           <CorePage>

@@ -140,7 +140,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
             />
             <SessionsContainer>
               {_.sortBy(voted, s => s.title.toLowerCase()).map(session => (
-                <SlimSession session={session} />
+                <SlimSession session={session} key={session.sessionId} />
               ))}
             </SessionsContainer>
           </>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
-import { GenerateUuid } from '../../utilities';
+import { generateUuid } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
 import SquareButton from './SquareButton';
 
@@ -56,7 +56,7 @@ const StringsInput = ({
     ) {
       initialStrings = [
         {
-          id: GenerateUuid(),
+          id: generateUuid(),
           text: '',
           touched: false,
           valid: false,
@@ -65,7 +65,7 @@ const StringsInput = ({
     } else {
       initialStrings = passedInStrings.map(s => {
         return {
-          id: s.id || GenerateUuid(),
+          id: s.id || generateUuid(),
           text: s.text,
           valid: s.text,
           touched: false,
@@ -112,7 +112,7 @@ const StringsInput = ({
 
   const onAdd = () => {
     const s = stateStrings.concat({
-      id: GenerateUuid(),
+      id: generateUuid(),
       text: '',
       valid: false,
       touched: false,
