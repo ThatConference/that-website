@@ -121,7 +121,7 @@ const AttributeTag = styled.div`
   span {
     padding: 0.1rem 1rem;
     color: ${({ fontColor, theme }) =>
-    fontColor ? theme.colors[fontColor] : theme.colors.white};
+      fontColor ? theme.colors[fontColor] : theme.colors.white};
     font-weight: 700;
     vertical-align: middle;
   }
