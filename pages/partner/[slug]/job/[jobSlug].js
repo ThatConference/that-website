@@ -115,10 +115,13 @@ const AttributeTag = styled.div`
   font-size: 1.3rem;
   background-color: ${({ color, theme }) => theme.colors[color]};
   width: fit-content;
+  border: ${({ border, theme }) =>
+    border ? `1px solid ${theme.colors.primary}` : 'none'};
 
   span {
     padding: 0.1rem 1rem;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ fontColor, theme }) =>
+      fontColor ? theme.colors[fontColor] : theme.colors.white};
     font-weight: 700;
     vertical-align: middle;
   }
@@ -217,6 +220,16 @@ const jobDetail = () => {
                   color="primary"
                 >
                   <span>{job.experienceLevel.replace('_', ' ')}</span>
+                </AttributeTag>
+              )}
+              {job.remote && (
+                <AttributeTag
+                  className="remote"
+                  color="transparent"
+                  border
+                  fontColor="primary"
+                >
+                  <span>REMOTE</span>
                 </AttributeTag>
               )}
             </AttributesRow>
