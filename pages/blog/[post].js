@@ -58,7 +58,7 @@ const SlimContentSection = styled(ContentSection)`
     font-style: italic;
     padding: 0.5rem 0;
     text-align: center;
-    margin: 0 3rem;
+    margin: 0 5rem;
     color: ${({ theme }) => theme.colors.fonts.dark};
 
     ${below.small`

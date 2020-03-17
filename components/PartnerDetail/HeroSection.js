@@ -13,6 +13,8 @@ const DEFAULT_HERO_IMAGE =
 const HeroContentSection = styled(ContentSection)`
   padding: 0;
   background: ${({ background }) => background};
+  background-size: cover;
+  background-position: center;
 `;
 
 const HeroBlock = styled.div`

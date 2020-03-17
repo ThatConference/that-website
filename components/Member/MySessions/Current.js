@@ -201,11 +201,8 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
 
   return (
     <div>
-      <h3>Submitted & Drafted</h3>
-      <Subheading>
-        These are sessions that you have already submitted or drafted. Please
-        click the session you would like to update.
-      </Subheading>
+      <h3>Submitted Sessions</h3>
+      <Subheading> Please see below for your submitted sessions.</Subheading>
       <SessionsContainer>
         {hasCurrentSessions ? yesCurrentSessions() : noCurrentSessions()}
       </SessionsContainer>

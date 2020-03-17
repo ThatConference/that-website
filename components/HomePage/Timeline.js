@@ -86,7 +86,7 @@ const Message = styled.div`
 `;
 
 const Timeline = styled.div`
-  margin-top: 15rem;
+  margin-top: 18rem;
   margin-bottom: 8rem;
   display: flex;
   width: 100%;
@@ -197,24 +197,34 @@ const TimelineSection = ({ event, className }) => {
         )}
         <Timeline>
           {Object.entries(groupedMilestones).map(([key, value]) => {
-            const momentDue = moment.utc(key);
+            const momentDue = moment.utc(key, 'ddd MMM DD YYYY');
             const milestoneState = momentDue < moment() ? 'past' : 'future';
+            const itemClassName = `timelineitem ${milestoneState}`;
+            const dateClassName = `date ${milestoneState}`;
+            const markerClassName = `marker ${milestoneState}`;
+            const lineClassName = `line ${milestoneState}`;
+            const nameClassName = `name ${milestoneState}`;
 
             return (
-              <TimelineItem key={key}>
-                <Date className={milestoneState}>
+              <TimelineItem key={key} className={itemClassName}>
+                <Date className={dateClassName}>
                   {momentDue.format('M/D/YY')}
                 </Date>
-                <Marker className={milestoneState} />
-                <Line className={milestoneState} />
+                <Marker className={markerClassName} />
+                <Line className={lineClassName} />
                 {value.map(milestone => {
-                  return <Name>{milestone.title}</Name>;
+                  return (
+                    <Name key={milestone.title} className={nameClassName}>
+                      {milestone.title}
+                    </Name>
+                  );
                 })}
               </TimelineItem>
             );
           })}
         </Timeline>
         <Moose
+          className="moose"
           src="/images/moose_with_lantern.png"
           haveLink={haveLink}
           loading="lazy"

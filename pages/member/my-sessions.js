@@ -8,7 +8,6 @@ import ContentSection from '../../components/shared/ContentSection';
 import CurrentSessions from '../../components/Member/MySessions/Current';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import Title from '../../components/shared/Title';
-import LinkButton from '../../components/shared/LinkButton';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -68,22 +67,10 @@ const MySessions = ({ user, loading }) => {
               <MainSection>
                 <Title>Your Sessions</Title>
                 <p className="medium-body-copy">
-                  Submit a topic to become a counselor or edit existing
-                  sessions. Let the creative juices flow here. We all like to
-                  read a good abstract and this might be the first thing a
-                  camper knows about you. Not sure which topic to present?
-                  Submit more than one! We’ll pick the coolest ones on April
-                  13th.
+                  Community voting is now in progress through March 22nd!
+                  Sessions chosen for THAT Conference 2020 will be announced on
+                  April 13th.
                 </p>
-                <LinkButton
-                  label="Create a New Session"
-                  href="/wi/session/create"
-                  color="thatBlue"
-                  borderColor="thatBlue"
-                  hoverBorderColor="thatBlue"
-                  hoverColor="white"
-                  hoverBackgroundColor="thatBlue"
-                />
               </MainSection>
               <CurrentSessions user={user} loading={loading} />
             </Cell>
