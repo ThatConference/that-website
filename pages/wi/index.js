@@ -57,7 +57,7 @@ const GET_EVENT = gql`
 
 const BottomImage = styled.img`
   object-fit: cover;
-  width: 100%;
+  width: 100vw;
   height: 45rem;
 `;
 

@@ -230,7 +230,7 @@ export default styled(Header)`
   padding: 0 0 2rem 0;
   background-color: transparent;
   z-index: 1;
-  width: 100%;
+  width: 100vw;
 
   position: ${({ layered }) => (layered ? 'absolute' : 'relative')};
 
