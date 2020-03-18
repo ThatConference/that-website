@@ -85,7 +85,7 @@ const MessageBar = ({ className, user, loading, notifications }) => {
 };
 
 export default styled(MessageBar)`
-  width: 100vw;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   position: fixed;
   z-index: 20;
