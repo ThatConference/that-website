@@ -3,8 +3,7 @@
   "name": "THATConference.com",
   "env": {
     "SENTRY_DSN": "@sentry_dsn",
-    "LOG_ROCKET": "@thatwebsite_log_rocket",
-    "FEATURE_KEYWORD": "@thatwebsite_feature_keyword"
+    "LOG_ROCKET": "@thatwebsite_log_rocket"
   },
   "build": {
     "env": {
