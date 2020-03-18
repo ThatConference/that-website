@@ -14,11 +14,10 @@ const Container = styled.div`
       : props.theme.colors.fonts.dark};
   position: relative;
   display: block;
-  width: 100%;
+  width: 100vw;
 
   ${below.xsmall`
     padding: 5rem 1rem;
-    width: 100vw;
   `}
 `;
 
