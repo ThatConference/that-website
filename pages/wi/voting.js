@@ -198,6 +198,10 @@ const VotingStart = ({ user, loading }) => {
                       </strong>{' '}
                       for more info on sharing your awesome.
                     </li>
+                    <li>
+                      {/* This should not be hard coded */}
+                      <strong>Voting is open until March 22nd</strong>
+                    </li>
                   </ul>
                 </Notes>
                 <LinkButton
