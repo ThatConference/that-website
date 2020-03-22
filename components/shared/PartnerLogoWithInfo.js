@@ -71,7 +71,9 @@ const PartnerLogoWithInfo = ({ alignment, partner, className }) => {
     <PartnerContact alignment={alignment} className={className}>
       {router.pathname === '/partner/[slug]' && partnerLogo}
       {router.pathname !== '/partner/[slug]' && (
-        <a href={`/partner/${partner.slug}`}>{partnerLogo}</a>
+        <a href={`/partner/${partner.slug}`} style={{ textAlign: 'center' }}>
+          {partnerLogo}
+        </a>
       )}
       <VisitUs>Visit us online at:</VisitUs>
       <ThatLink
