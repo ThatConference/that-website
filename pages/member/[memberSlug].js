@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Imgix from 'react-imgix';
 import Error from '../_error';
+import LoadingIndicator from '../../components/shared/LoadingIndicator';
 import { below, memberConstants, socialConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
@@ -17,31 +18,6 @@ import Icon from '../../components/shared/Icon';
 const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
 
 const _ = require('lodash');
-
-const GET_MEMBER = gql`
-  query getMember {
-    members {
-      me {
-        id
-        bio
-        city
-        company
-        firstName
-        interests
-        jobTitle
-        lastName
-        lifeHack
-        profileImage
-        profileSlug
-        profileLinks {
-          linkType
-          url
-        }
-        state
-      }
-    }
-  }
-`;
 
 const StyledGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -111,15 +87,74 @@ const EditIcon = styled(Icon)`
 `;
 
 const member = ({ slug, user, loading: loadingUser }) => {
-  if (!loadingUser && _.isEmpty(user)) {
-    return <Error statusCode="404" />;
+  const isPublicView = !user || user.profileSlug !== slug;
+
+  const GET_MEMBER_PUBLIC = gql`
+    query getMember {
+      members {
+        member(slug: "${slug}") {
+          id
+          bio
+          firstName
+          lastName
+          company
+          jobTitle
+          profileSlug
+          profileLinks {
+            isPublic
+            linkType
+            url
+          }
+          interests
+        }
+      }
+    }
+  `;
+
+  const GET_MEMBER_PRIVATE = gql`
+    query getMember {
+      members {
+        me {
+          id
+          bio
+          city
+          company
+          firstName
+          interests
+          jobTitle
+          lastName
+          lifeHack
+          profileImage
+          profileSlug
+          profileLinks {
+            linkType
+            url
+          }
+          state
+        }
+      }
+    }
+  `;
+
+  if (loadingUser) {
+    return <LoadingIndicator />;
   }
 
-  const { loading, error, data } = useQuery(GET_MEMBER);
+  const { loading, error, data } = isPublicView
+    ? useQuery(GET_MEMBER_PUBLIC)
+    : useQuery(GET_MEMBER_PRIVATE);
 
-  if (loading) return null;
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+
   if (error) {
     throw new Error(error.message);
+  }
+
+  const dataRoot = isPublicView ? data.members.member : data.members.me;
+  if (!dataRoot) {
+    return <Error statusCode="404" />;
   }
 
   const {
@@ -133,13 +168,8 @@ const member = ({ slug, user, loading: loadingUser }) => {
     lifeHack,
     profileImage,
     profileLinks,
-    profileSlug,
     state,
-  } = data.members.me;
-
-  if (slug !== profileSlug) {
-    return <Error statusCode="404" />;
-  }
+  } = dataRoot;
 
   const location = () => {
     if (city && state) {
@@ -205,12 +235,14 @@ const member = ({ slug, user, loading: loadingUser }) => {
           icon="edit"
           style={{ float: 'right' }}
         /> */}
-        <EditLink href="/member/edit">
-          <span>
-            Edit My Profile
-            <EditIcon icon="edit" height="20" width="20" />
-          </span>
-        </EditLink>
+        {!isPublicView && (
+          <EditLink href="/member/edit">
+            <span>
+              Edit My Profile
+              <EditIcon icon="edit" height="20" width="20" />
+            </span>
+          </EditLink>
+        )}
         <StyledGrid columns="repeat(auto-fit,minmax(12rem,1fr))">
           <MemberInfoCell>
             {profileImage && (
