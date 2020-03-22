@@ -16,7 +16,7 @@ const Container = styled.div`
   display: block;
   width: 100%;
 
-  ${below.xsmall`
+  ${below.small`
     padding: 5rem 1rem;
     width: 100vw;
   `}
