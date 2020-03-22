@@ -86,23 +86,39 @@ const SideDetail = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  order: 1;
 
   ${above[twoColBp]`
     margin-right: 4rem;
   `};
 
   ${below[twoColBp]`
+    order: 2;
     align-items: center;
   `};
 `;
 
 const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
   min-width: 50rem;
+  order 2;
 
   img {
     height: 34rem;
     max-width: 34rem;
+
+    ${below.small`
+      max-width: 80%;
+    `};
   }
+
+  ${below.med`
+    min-width: 90%;
+  `};
+
+  ${below[twoColBp]`
+    order: 1;
+    padding-bottom: 7rem;
+  `};
 `;
 
 const AttributesRow = styled.div`
