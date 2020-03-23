@@ -376,7 +376,7 @@ function PartnerDetail() {
         <MainLogoSection partner={partner} />
 
         <ContentSection>
-          <MainGrid columns={gridRepeat.xxsmall}>
+          <MainGrid columns={gridRepeat.xsmall}>
             <Cell>
               {!_.isEmpty(partner.aboutUs) && <AboutUs />}
               {!_.isEmpty(partner.sessions) && <Sessions />}
