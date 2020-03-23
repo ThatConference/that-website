@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
+import { getMomentDate } from '../../utilities/dates/wi-dates';
 import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import Title from '../../components/shared/Title';
@@ -135,6 +136,10 @@ const VotingStart = ({ user, loading }) => {
     return 'Get Started';
   };
 
+  const formattedEndDate = getMomentDate('SESSION_VOTING_ENDS').format(
+    'MMMM Do',
+  );
+
   return (
     <div>
       <NextSeo
@@ -198,6 +203,7 @@ const VotingStart = ({ user, loading }) => {
                       </strong>{' '}
                       for more info on sharing your awesome.
                     </li>
+                    <li>Voting is open until midnight {formattedEndDate}</li>
                   </ul>
                 </Notes>
                 <LinkButton
