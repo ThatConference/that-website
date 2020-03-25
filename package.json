@@ -5,7 +5,7 @@
     "node": "^10"
   },
   "scripts": {
-    "dev": "next ./ -p 3001",
+    "dev": "next ./ -p 3000",
     "prebuild": "node ./sitemap/createSitemap.js",
     "build": "next build",
     "now-build": "npm run validate",

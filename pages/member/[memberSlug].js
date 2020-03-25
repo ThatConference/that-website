@@ -97,6 +97,7 @@ const member = ({ slug, user, loading: loadingUser }) => {
           lastName
           company
           jobTitle
+          profileImage
           profileSlug
           profileLinks {
             isPublic
