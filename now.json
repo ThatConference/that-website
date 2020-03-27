@@ -34,6 +34,11 @@
       "source": "/([Ss])peakers/(.*)",
       "destination": "https://old.thatconference.com/speakers/$2",
       "statusCode": 302
+    },
+    {
+      "source": "/([Aa])pi3/(.*)",
+      "destination": "https://old.thatconference.com/api3/$2",
+      "statusCode": 302
     }
   ]
 }
