@@ -4,8 +4,6 @@ import { ShowMore, StyledPre, ViewLink } from './StandardStyles';
 import Icon from './Icon';
 import { below } from '../../utilities';
 
-const TRUNCATED_HEIGHT_SIZE = 140;
-
 const JobRow = styled.div`
   margin-top: 4rem;
   display: flex;
@@ -119,12 +117,12 @@ const StyledViewLink = styled(ViewLink)`
 
 const JobListing = ({ job, partner }) => {
   const [expandedDescription, setExpandedDescription] = useState(false);
-  const [height, setHeight] = useState(0);
+  const [canExpand, setCanExpand] = useState(false);
   const ref = useRef(null);
   const jobPath = `/partner/${partner.slug}/job/${job.slug}`;
 
   useEffect(() => {
-    setHeight(ref.current.clientHeight);
+    setCanExpand(ref.current.scrollHeight > ref.current.clientHeight);
   }, []);
 
   return (
@@ -136,7 +134,7 @@ const JobListing = ({ job, partner }) => {
         <JobDescription expandedDescription={expandedDescription} ref={ref}>
           {job.description}
         </JobDescription>
-        {height > TRUNCATED_HEIGHT_SIZE && (
+        {canExpand && (
           <ShowMore
             onClick={() => setExpandedDescription(!expandedDescription)}
             className="show-more"
