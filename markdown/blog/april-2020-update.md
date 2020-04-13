@@ -1,5 +1,5 @@
 ---
-title: Uncertian times, and many unanswerd questions. April update.
+title: Uncertain times, and many unanswered questions. April update.
 description: Given today's current events were delaying both ticket sales and speaker announcements.
 leadImage: that-blog-april-update-2020.jpg
 publishedDate: April 13, 2020
@@ -11,7 +11,7 @@ author: THAT Crew
      style="width: 100%" />
 <br/>
 
-### Uncertian times and many unanswerd questions. April update
+### Uncertain times, and many unanswered questions. April update.
 
 First and foremost, from the crew at THAT, we hope that you're healthy. These are unprecedented times and regardless of who we are, the tech we use, we're all affected.
 
