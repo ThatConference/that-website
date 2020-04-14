@@ -42,30 +42,33 @@ _Coming soon_
 #### 5. Setting up your environment
 
 THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now@16.7.3` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
-Note: The 17.* version of Zeit Now introduced project hot linking and is currently problematic.
+Note: The 17.\*+ version of Zeit Now introduced project hot linking and is currently problematic.
 
-If you are on a mac, it is helpful to make sure Xcode and  Xcode command line tools are up to date.
+If you are experiencing http **404 errors** on dynamic pages, e.g. blog posts, user profiles, etc. this is probably do to an issue with Zeit Now cli. the command `now dev` isn't redering dynamic pages correctly on version 16.7 any longer. As a work-around use `npm run dev`, which uses next to run your the site locally on the same port, `3000`. Be aware that while running the site using `npm run dev` local api function calls do not work at this time (e.g. /api/me).
+
+If you are on a mac, it is helpful to make sure Xcode and Xcode command line tools are up to date.
 
 Run `cp .env.sample .env && cp .env.build.sample .env.build` to get basic configuration in place.
 
 If you have previously setup your environment, make sure that all keys from `.env.sample` and `.env.build.sample` are present in your `.env` and `.env.build` files. New entries may have been added and need to be present for this to run for you.
 
 Edit the .env.build file:
-* `DEBUG=that:*`
-* `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
-* `API_GATEWAY` should be `https://api.that.tech`
+
+- `DEBUG=that:*`
+- `SESSION_COOKIE_SECRET` requires at least a 32 character value.
+- `API_GATEWAY` should be `https://api.that.tech`
 
 Edit the .env file, adding
-* `DEBUG=that:*`
-* `SESSION_COOKIE_SECRET` requires at least a 32 character value. 
-* `API_GATEWAY=https://api.that.tech`
+
+- `DEBUG=that:*`
+- `SESSION_COOKIE_SECRET` requires at least a 32 character value.
+- `API_GATEWAY=https://api.that.tech`
 
 Edit package.json
-* Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
+
+- Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
 
 After you edit those files, run `now dev` to startup `localhost`.
-
-
 
 #### 6. Community
 
@@ -98,6 +101,7 @@ In order to iterate collectivlely when developing a new page we have a higher or
 Here is how it works, in your `.env` file give `FEATURE_KEYWORD` some value. Then wrap your page componet (_NOTE: currently only works for pages_) in `togglePage`. This adds the logic that will allow this page to render **only when** a query param is present and matches the value set in `FEATURE_KEYWORD`.
 
 Example - Check out `samples/toggle-page.js`. Here is a sample page wrapped in `togglePage`. Now, set FEATURE_KEYWORD in your `.env` to a value, let's go with `baconisgreat`, then fire up the local environment.
-Go to: http://localhost:3000/samples/toggle-page?feature=baconisgreat and page will load.
-Go to: http://localhost:3000/samples/toggle-page?feature=baconisgood, page not found
-Go to: http://localhost:3000/samples/toggle-page, page not found
+
+Go to: [http://localhost:3000/samples/toggle-page?feature=baconisgreat](http://localhost:3000/samples/toggle-page?feature=baconisgreat) and page will load.  
+Go to: [http://localhost:3000/samples/toggle-page?feature=baconisgood](http://localhost:3000/samples/toggle-page?feature=baconisgood), page not found  
+Go to: [http://localhost:3000/samples/toggle-page](http://localhost:3000/samples/toggle-page), page not found
