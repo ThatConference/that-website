@@ -11,7 +11,7 @@ author: THAT Crew
      style="width: 100%" />
 <br/>
 
-### Uncertain times, and many unanswered questions. April update.
+### Learn how COVID-19 is impacting our schedule.
 
 First and foremost, from the crew at THAT, we hope that you're healthy. These are unprecedented times and regardless of who we are, the tech we use, we're all affected.
 
