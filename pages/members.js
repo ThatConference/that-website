@@ -1,14 +1,9 @@
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
-import Imgix from 'react-imgix';
-import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
 import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
-import ImageContainer from '../components/shared/ImageContainer';
 import { below, gridRepeat } from '../utilities';
 import LinkButton from '../components/shared/LinkButton';
 import ProfileItem from '../components/shared/ProfileItem';
