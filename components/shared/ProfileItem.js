@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import RoundImage from './RoundImage';
 
 const Name = styled.p`
@@ -25,21 +26,28 @@ const ProfileItem = ({
   name,
   title,
   company,
+  slug,
   nameFontSize,
   showAccentLine,
 }) => {
   const baseFontSize = nameFontSize || '2';
+  const titleFontSize = baseFontSize - 0.2;
+  const companyFontSize = baseFontSize - 0.3;
 
   return (
     <div className={className}>
-      <RoundImage
-        imageUrl={imageUrl}
-        size={size}
-        showAccentLine={showAccentLine}
-      />
-      <Name fontSize={baseFontSize}>{name}</Name>
-      <Title fontSize={baseFontSize - 0.2}>{title}</Title>
-      <Company fontSize={baseFontSize - 0.2}>{company}</Company>
+      <Link href="/memeber/[slug]" as={`/member/${slug}`} prefetch={false}>
+        <RoundImage
+          imageUrl={imageUrl}
+          size={size}
+          showAccentLine={showAccentLine}
+        />
+      </Link>
+      <Link href="/memeber/[slug]" as={`/member/${slug}`} prefetch={false}>
+        <Name fontSize={`${baseFontSize}em`}>{name}</Name>
+      </Link>
+      <Title fontSize={`${titleFontSize}em`}>{title}</Title>
+      <Company fontSize={`${companyFontSize}em`}>{company}</Company>
     </div>
   );
 };
@@ -50,6 +58,8 @@ export default styled(ProfileItem)`
   align-items: center;
   padding: 0 2rem;
   position: relative;
+  text-align: center;
+  margin-bottom: 2em;
 
   p {
     margin: 0;

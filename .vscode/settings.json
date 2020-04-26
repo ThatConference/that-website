@@ -18,5 +18,9 @@
   "peacock.color": "#fff",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  },
+  "emmet.excludeLanguages": ["markdown"],
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
   }
 }
