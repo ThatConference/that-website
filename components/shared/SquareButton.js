@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
@@ -29,7 +30,6 @@ const SquareButton = ({
 
   return (
     // KNOWN bug: https://github.com/yannickcr/eslint-plugin-react/issues/1555
-    // eslint-disable-next-line react/button-has-type
     <button
       className={className}
       color={color}

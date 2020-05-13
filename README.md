@@ -9,27 +9,31 @@
 3. How to contribute
 4. Style guide
 5. Setting up your environment
+   5b. Vercel/Zeit linked project setup
 6. Community
 
 #### 1. Types of contributions we are looking for
 
 There are many ways you can contribute, here are just some of the broader items we love to have help from the community on:
 
-- Find a bug, report a bug... if/when you find something please let us know! We count on your eyes to spot things we miss. Open an issue and will will follow up and prioritize.
-- Grab an issue to fix. See an open issue you would like to tackle? Go for it! Assign yourself the issue and get started.
-- Review open pull requests. If there an an open PR of changes, review it! Eyes and feedback on incoming work is appreciated by all!
+- Find a bug, report a bug...
+  - if/when you find something please let us know! We count on your eyes to spot things we miss. Open an [issue](https://github.com/ThatConference/that-website/issues) and will will follow up and prioritize.
+- Grab an [issue](https://github.com/ThatConference/that-website/issues) to fix.
+  - See an open issue you would like to tackle? Go for it! Assign yourself the issue and get started.
+- Review open [pull](https://github.com/ThatConference/that-website/pulls) requests.
+  - If there an an open PR of changes, review it! Eyes and feedback on incoming work is appreciated by all!
 
 #### 2. Ground rules and expectations
 
 Before we get started, here are a few things we expect from you (and that you should expect from others):
 
 - Be kind and thoughtful in your conversations around this project. We all come from different backgrounds and projects, which means we likely have different perspectives on "how open source is done." Try to listen to others rather than convince them that your way is correct.
-- THAT Conference has a released Code of Conduct. By participating in this project, you agree to abide by its terms.
+- THAT Conference has a released [Code of Conduct](https://www.thatconference.com/wi/code-of-conduct). By participating in this project, you agree to abide by its terms.
 - If you open a pull request, please ensure that your contribution passes all tests. If there are test failures, you will need to address them before we can merge your contribution.
 
 #### 3. How to contribute
 
-The best place to start is the open issues. Any ones we feel are a great first step into the code base we have labeled as `good first issue`. But don't feel limited to just those issues. Any open issue is up for grabs to be worked on.
+The best place to start is the open [issues](https://github.com/ThatConference/that-website/issues). Any ones we feel are a great first step into the code base we have labeled as `good first issue`. But don't feel limited to just those issues. Any open issue is up for grabs to be worked on.
 
 Find one you would be interested working on, assign yourself and get started! Once complete open a pull request and label as `ready for review`. Want to pull more community in? Yeah you do! Mention in THAT Slack or on the socials that you have a PR that needs to be reviewed. We love having community involvement across the entire flow.
 
@@ -41,8 +45,8 @@ _Coming soon_
 
 #### 5. Setting up your environment
 
-THAT website is server-side rendered React via Next. To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now@16.7.3` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
-Note: The 17.\*+ version of Zeit Now introduced project hot linking and is currently problematic.
+THAT website is server-side rendered React via [Nextjs](https://nextjs.org/). To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now@16.7.3` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
+Note: The 17.\*+ version of Zeit Now introduced project hot linking and is currently problematic. A possible work-around has been added in section **5b** if you would like to try that with the latest version of Zeit now/Vercel.
 
 If you are experiencing http **404 errors** on dynamic pages, e.g. blog posts, user profiles, etc. this is probably do to an issue with Zeit Now cli. the command `now dev` isn't redering dynamic pages correctly on version 16.7 any longer. As a work-around use `npm run dev`, which uses next to run your the site locally on the same port, `3000`. Be aware that while running the site using `npm run dev` local api function calls do not work at this time (e.g. /api/me).
 
@@ -69,6 +73,44 @@ Edit package.json
 - Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
 
 After you edit those files, run `now dev` to startup `localhost`.
+
+#### 5b. Vercel/Zeit linked project setup
+
+As mentined in section 5 the Zeit/Vercel cli from version 17 and above requires project linking to work correctly. The instructions in this section walk through one way you can configure this locally so you may use newer versions. These instructions were tested with Vercel/Now cli version 19.0.1. In April 2020 Zeit changed it's name to Vercel, so the term `Vercel` will be used going forward. Read [here](https://vercel.com/blog/zeit-is-now-vercel) for more information about this change.
+
+**Assumptions:** These instructions assume that you currently don't have a Vercel account or project to point to for that-website. You will not need to deploy any code to Vercel, the account is only needed for project linking, a confusing feature/reqirement of the Vercel cli.
+
+1. [Create](https://vercel.com/signup) a vercel account
+1. [Install](https://vercel.com/download) the Vercel CLI
+1. Clone [that-website](https://github.com/ThatConference/that-website) to your local computer
+
+At this point ensure you're in the cloned that-website directory
+
+1. Login to Vercel cli: `$ vercel login`
+1. Setup vercel project for linking by running: `$ vercel`
+   - Setup and deploy 'your current directory', **Y**
+   - Select scope (if you have more than one vercel account/team)
+   - Link to existing project? **N**
+   - What is your project's name? (type some name to use, e.g. that-conference-com)
+   - Which directory is code located? **./**
+   - Overwrite build settings? **N**
+1. At this point the deploy will fail, but we have the pieces we need to finish the link. So we go through this again:
+1. Again run, `$ vercel`
+   - Set up and deploy 'current directory' **Y**
+   - Select scope, if needed
+   - Link to existing project? **Y** (THIS IS IMPORTANT!)
+   - What is the name of existing project? (Using the name created above, e.g. that-conference-com)
+   - **Link is created by cli**
+   - Overwrite build settings? **N**
+1. Again at this point the deployment will fail due to missing set secrets.
+
+Yes this is ugly, but we are now ready to develop locally. Vercel cli has the project link it needs to run the code locally. To develop locally run:
+
+`$ vercel dev`  
+or  
+`$ vc dev`
+
+**So what was created?** The cli added a new folder, `.vercel` to the that-website project directory. The name `.vercel` is in `.gitignore` and should NOT be committed to the repository. It is unique to your local environment. This should be all that is needed to get working locally again. If you run into any troubles, please open an [issue](https://github.com/ThatConference/that-website/issues).
 
 #### 6. Community
 
