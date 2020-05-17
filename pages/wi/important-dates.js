@@ -7,7 +7,7 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import { above, below, gridRepeat } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
-import TimelineSection from '../../components/EventHomePage/Timeline';
+import TimelineSection from '../../components/shared/Timeline';
 
 const _ = require('lodash');
 

@@ -8,7 +8,7 @@ import { EventJsonLd } from 'next-seo';
 import Hero from '../../components/EventHomePage/Hero';
 import LearnMore from '../../components/EventHomePage/LearnMore';
 // import SpeakerHighlight from '../../components/EventHomePage/SpeakerHighlight';
-import TimelineSection from '../../components/EventHomePage/Timeline';
+import TimelineSection from '../../components/shared/Timeline';
 import SponsorHighlight from '../../components/EventHomePage/SponsorHighlight';
 import Testimonials from '../../components/EventHomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import ContentSection from './ContentSection';
+import LinkButton from './LinkButton';
 import { below } from '../../utilities';
 
 const _ = require('lodash');
