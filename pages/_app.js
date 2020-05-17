@@ -9,7 +9,7 @@ import * as Sentry from '@sentry/node';
 import { getSentryConfig } from '../lib/sentry';
 import * as gtag from '../lib/gtag';
 import withApolloClient from '../lib/withApolloClient';
-import Page from '../components/Page';
+import DefaultLayout from '../components/layouts/Default';
 
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
@@ -19,15 +19,16 @@ LogRocket.init(process.env.LOG_ROCKET);
 class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient, err } = this.props;
+    const Layout = Component.Layout || DefaultLayout;
 
     // Workaround for https://github.com/zeit/next.js/issues/8592
     const modifiedPageProps = { ...pageProps, err };
 
     return (
       <ApolloProvider client={apolloClient}>
-        <Page headerType={Component.headerType}>
+        <Layout headerType={Component.headerType}>
           <Component {...modifiedPageProps} />
-        </Page>
+        </Layout>
       </ApolloProvider>
     );
   }

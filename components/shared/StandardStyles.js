@@ -1,6 +1,34 @@
 import styled from 'styled-components';
 import { below } from '../../utilities';
 
+/** * BEGIN: Page elements shared in layouts ** */
+export const StyledPage = styled.div`
+  background: ${({ theme }) => theme.colors.backgroundColor};
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+export const CorePage = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 0;
+`;
+
+export const PageDiv = styled.div`
+  position: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'fixed' : 'relative')};
+  display: flex;
+  flex-direction: column;
+`;
+
+export const InnerPage = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+`;
+/** * END: Page elements shared in layouts ** */
+
 export const StyledP = styled.p`
   padding-right: 1rem;
   margin-top: 0;
