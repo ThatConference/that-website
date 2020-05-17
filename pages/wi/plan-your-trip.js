@@ -11,7 +11,7 @@ import ContentSection from '../../components/shared/ContentSection';
 import ImageContainer from '../../components/shared/ImageContainer';
 import LinkButton from '../../components/shared/LinkButton';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import TimelineSection from '../../components/EventHomePage/Timeline';
+import TimelineSection from '../../components/shared/Timeline';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
