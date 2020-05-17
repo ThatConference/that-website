@@ -5,14 +5,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { EventJsonLd } from 'next-seo';
 
-import Hero from '../../components/HomePage/Hero';
-import LearnMore from '../../components/HomePage/LearnMore';
-// import SpeakerHighlight from '../../components/HomePage/SpeakerHighlight';
-import TimelineSection from '../../components/HomePage/Timeline';
-import SponsorHighlight from '../../components/HomePage/SponsorHighlight';
-import Testimonials from '../../components/HomePage/Testimonials';
+import Hero from '../../components/EventHomePage/Hero';
+import LearnMore from '../../components/EventHomePage/LearnMore';
+// import SpeakerHighlight from '../../components/EventHomePage/SpeakerHighlight';
+import TimelineSection from '../../components/EventHomePage/Timeline';
+import SponsorHighlight from '../../components/EventHomePage/SponsorHighlight';
+import Testimonials from '../../components/EventHomePage/Testimonials';
 import WhatToExpect from '../../components/shared/WhatToExpect';
-import NewsletterSignup from '../../components/HomePage/NewsletterSignup';
+import NewsletterSignup from '../../components/EventHomePage/NewsletterSignup';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
