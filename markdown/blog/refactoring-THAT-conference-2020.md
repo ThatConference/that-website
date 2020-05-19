@@ -1,7 +1,7 @@
 ---
 title: Refactoring THAT Conference 2020
 description: Refactoring THAT 2020, Announcing THAT WI 2021, and THAT TX 2021! Yes, you heard that all right.
-leadImage:
+leadImage: refactoring-THAT-conference-2020.jpg
 publishedDate: May 19, 2020
 author: THAT Crew
 ---
