@@ -37,7 +37,7 @@ const LinkContainer = styled.span`
 `;
 
 const getLinkForEnvironment = url => {
-  if (process.env.NODE_ENV === 'development')
+  if (process.env.NODE_ENV !== 'production')
     return url.replace('www.thatconference.com', 'localhost:3000');
   return url;
 };
