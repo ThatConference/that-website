@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContentSection from '../shared/ContentSection';
 
 const Container = styled.div`
   position: relative;
   text-align: center;
+  height: 80vh;
 `;
 
 const HeroImage = styled.img`
   object-fit: cover;
   width: 100%;
-  height: 80vh;
+  height: 100%;
   -webkit-filter: brightness(0.4);
   filter: brightness(0.4);
 `;
@@ -28,8 +28,8 @@ const Text = styled.div`
   p {
     text-align: justify;
     font-size: 1.6rem;
-    padding-left: 7rem;
-    padding-right: 7rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
     color: ${({ theme }) => theme.colors.fonts.light};
   }
 `;
@@ -37,11 +37,7 @@ const Text = styled.div`
 const Hero = ({ className }) => {
   return (
     <Container className={className}>
-      <HeroImage
-        src="./images/landing_hero.jpg"
-        loading="lazy"
-        alt="THAT Mess Hall"
-      />
+      <HeroImage src="./images/landing_hero.jpg" loading="lazy" alt="THAT" />
       <Text>
         <h1>We. Love.</h1>
         <h1>Geeks.</h1>
