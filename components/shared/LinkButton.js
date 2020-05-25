@@ -99,7 +99,7 @@ const LinkButton = ({
         hoverBorderColor={hoverBorderColor}
       >
         <>
-          {image && <img src={image} />}
+          {image && <img src={image} alt={label} />}
           <p>{label}</p>
         </>
       </StyledOutlineLink>
