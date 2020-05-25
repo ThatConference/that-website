@@ -1,18 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 47.2rem;
-  background-image: linear-gradient(
-      rgba(17, 53, 95, 0.85),
-      rgba(17, 53, 95, 0.85)
-    ),
-    url('./images/events_meetups_gatherings.jpg');
-  background-size: cover;
-  background-position: center;
-`;
+import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
 
 const Text = styled.div`
   float: left;
@@ -43,7 +32,11 @@ const Logo = styled.div`
 
 const SectionHeader = ({ className }) => {
   return (
-    <Container className={className}>
+    <ContainerWithBGImageAndLG
+      height={47.2}
+      className={className}
+      image="./images/events_meetups_gatherings.jpg"
+    >
       <Text>
         <h1>Events,</h1>
         <h1>Meet-Ups, &</h1>
@@ -52,7 +45,7 @@ const SectionHeader = ({ className }) => {
       <LogoContainer>
         <Logo>{/* <img src="/images/that_trees_white.png" /> */}</Logo>
       </LogoContainer>
-    </Container>
+    </ContainerWithBGImageAndLG>
   );
 };
 
