@@ -8,7 +8,7 @@
 2. Ground rules and expectations
 3. How to contribute
 4. Style guide
-5. Setting up your environment
+5. Setting up your environment  
    5b. Vercel/Zeit linked project setup
 6. Community
 
@@ -46,7 +46,7 @@ _Coming soon_
 #### 5. Setting up your environment
 
 THAT website is server-side rendered React via [Nextjs](https://nextjs.org/). To get started, clone the repo and run `npm install` to get all the dependencies in place. Also run `npm i -g now@16.7.3` to install [Zeit Now](https://zeit.co/docs) globally on your machine.
-Note: The 17.\*+ version of Zeit Now introduced project hot linking and is currently problematic. A possible work-around has been added in section **5b** if you would like to try that with the latest version of Zeit now/Vercel.
+Note: The 17.\*+ version of Zeit Now introduced project linking and is currently problematic. A possible work-around has been added in section **5b** if you would like to try that with the latest version of Zeit now/Vercel.
 
 If you are experiencing http **404 errors** on dynamic pages, e.g. blog posts, user profiles, etc. this is probably do to an issue with Zeit Now cli. the command `now dev` isn't redering dynamic pages correctly on version 16.7 any longer. As a work-around use `npm run dev`, which uses next to run your the site locally on the same port, `3000`. Be aware that while running the site using `npm run dev` local api function calls do not work at this time (e.g. /api/me).
 
@@ -67,10 +67,6 @@ Edit the .env file, adding
 - `DEBUG=that:*`
 - `SESSION_COOKIE_SECRET` requires at least a 32 character value.
 - `API_GATEWAY=https://api.that.tech`
-
-Edit package.json
-
-- Change the `Auth0` module version number to `0.7.0` (be sure to remove the ^ before the version name)
 
 After you edit those files, run `now dev` to startup `localhost`.
 
@@ -94,13 +90,13 @@ At this point ensure you're in the cloned that-website directory
    - What is your project's name? (type some name to use, e.g. that-conference-com)
    - Which directory is code located? **./**
    - Overwrite build settings? **N**
-1. At this point the deploy will fail, but we have the pieces we need to finish the link. So we go through this again:
+1. At this point the deploy will fail (due to missing secrets), but we have the pieces we need to finish the link. So we go through this again:
 1. Again run, `$ vercel`
    - Set up and deploy 'current directory' **Y**
    - Select scope, if needed
    - Link to existing project? **Y** (THIS IS IMPORTANT!)
    - What is the name of existing project? (Using the name created above, e.g. that-conference-com)
-   - **Link is created by cli**
+   - **Link is created by cli at this point**
    - Overwrite build settings? **N**
 1. Again at this point the deployment will fail due to missing set secrets.
 
