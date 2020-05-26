@@ -19,16 +19,6 @@ const GET_EVENTS = gql`
         startDate
         endDate
         website
-        notifications {
-          id
-          shouldFeature
-          title
-          message
-          startDate
-          endDate
-          link
-          linkText
-        }
         partners {
           id
           slug
