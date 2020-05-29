@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContentSection from '../shared/ContentSection';
 import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
+
+const Container = styled(ContentSection)`
+  margin-top: 0;
+  background-color: transparent;
+`;
 
 const Text = styled.div`
   float: left;
   width: 50%;
-  padding: 4rem 8rem;
   line-break: auto;
   h1 {
     font-size: 13rem;
@@ -16,9 +21,8 @@ const Text = styled.div`
 
 const LogoContainer = styled.div`
   float: right;
-  width: 50%;
-  height: 100%;
-  padding: 4rem 8rem;
+  width: 400px;
+  height: 400px;
 `;
 
 const Logo = styled.div`
@@ -37,14 +41,16 @@ const SectionHeader = ({ className }) => {
       className={className}
       image="./images/events_meetups_gatherings.jpg"
     >
-      <Text>
-        <h1>Events,</h1>
-        <h1>Meet-Ups, &</h1>
-        <h1>Gatherings</h1>
-      </Text>
-      <LogoContainer>
-        <Logo>{/* <img src="/images/that_trees_white.png" /> */}</Logo>
-      </LogoContainer>
+      <Container>
+        <Text>
+          <h1>Events,</h1>
+          <h1>Meet-Ups, &</h1>
+          <h1>Gatherings</h1>
+        </Text>
+        <LogoContainer>
+          <Logo>{/* <img src="/images/that_trees_white.png" /> */}</Logo>
+        </LogoContainer>
+      </Container>
     </ContainerWithBGImageAndLG>
   );
 };

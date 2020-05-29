@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContentSection from '../shared/ContentSection';
+
 const Container = styled.div`
   position: relative;
   text-align: center;
@@ -15,7 +17,8 @@ const HeroImage = styled.img`
   filter: brightness(0.4);
 `;
 
-const Text = styled.div`
+const Text = styled(ContentSection)`
+  background-color: transparent;
   position: absolute;
   top: 60%;
   left: 50%;
@@ -38,6 +41,7 @@ const Hero = ({ className }) => {
   return (
     <Container className={className}>
       <HeroImage src="./images/landing_hero.jpg" loading="lazy" alt="THAT" />
+
       <Text>
         <h1>We. Love.</h1>
         <h1>Geeks.</h1>

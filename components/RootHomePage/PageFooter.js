@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ContentSection from '../shared/ContentSection';
 
 import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
 
@@ -7,6 +8,11 @@ const Container = styled(ContainerWithBGImageAndLG)`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const Content = styled(ContentSection)`
+  background-color: transparent;
+  text-align: center;
 `;
 
 const Trees = styled.img`
@@ -20,7 +26,9 @@ const PageFooter = ({ className }) => {
       className={className}
       image="./images/root_join_conversation.jpg"
     >
-      <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
+      <Content>
+        <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
+      </Content>
     </Container>
   );
 };

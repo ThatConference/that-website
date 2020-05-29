@@ -1,27 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Grid, Cell } from 'styled-css-grid';
+import ContentSection from '../shared/ContentSection';
 import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
 import NewsletterSignupForm from '../shared/NewsletterSignupForm';
 import LinkButton from '../shared/LinkButton';
+import { gridRepeat } from '../../utilities';
 
 const Container = styled(ContainerWithBGImageAndLG)`
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
-  align-items: center;
   padding: 5rem 10rem;
 `;
 
-const Section = styled.div`
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  align-self: auto;
-  width: 33.33333333%;
-  text-align: center;
-  display: inline-block;
+const Content = styled(ContentSection)`
+  background-color: transparent;
+`;
 
+const Section = styled(Cell)`
+  padding: 2rem;
   h3 {
     color: ${({ theme }) => theme.colors.fonts.light};
   }
@@ -34,7 +29,10 @@ const ConversationSection = styled(Section)`
   }
 
   .slack-button {
+    width: 25rem;
     height: 4.4rem;
+    margin-right: auto;
+    margin-left: auto;
 
     img {
       height: 6rem;
@@ -48,6 +46,10 @@ const ConversationSection = styled(Section)`
       font-size: 2rem;
     }
   }
+`;
+
+const TreeSection = styled(Cell)`
+  margin: auto;
 `;
 
 const Trees = styled.img`
@@ -80,21 +82,25 @@ const SignUp = ({ className }) => {
       image="./images/root_join_conversation.jpg"
       className={className}
     >
-      <ConversationSection>
-        <h3>Join The Conversation</h3>
-        <LinkButton
-          className="slack-button"
-          label="THAT Slack"
-          href="https://wwww.thatslack.slack.com"
-          image="./images/Slack_Mark.svg"
-        />
-      </ConversationSection>
-      <Section>
-        <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
-      </Section>
-      <NewsletterSection>
-        <NewsletterSignupForm headerType="h3" title="Stay Up-To Date" />
-      </NewsletterSection>
+      <Content>
+        <Grid columns={gridRepeat.small} alignContent="center">
+          <ConversationSection middle center>
+            <h3>Join The Conversation</h3>
+            <LinkButton
+              className="slack-button"
+              label="THAT Slack"
+              href="https://wwww.thatslack.slack.com"
+              image="./images/Slack_Mark.svg"
+            />
+          </ConversationSection>
+          <TreeSection middle center>
+            <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
+          </TreeSection>
+          <NewsletterSection middle center>
+            <NewsletterSignupForm headerType="h3" title="Stay Up-To Date" />
+          </NewsletterSection>
+        </Grid>
+      </Content>
     </Container>
   );
 };
