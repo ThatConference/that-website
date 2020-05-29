@@ -42,6 +42,11 @@ const VideoBlock = styled.div`
   max-height: 55rem;
   padding-top: 4rem;
   padding-bottom: 1rem;
+
+  ${below[twoColBp]`
+    min-width: 80%;
+    height: 50rem;
+  `};
 `;
 
 const StyledH3 = styled.h3`
