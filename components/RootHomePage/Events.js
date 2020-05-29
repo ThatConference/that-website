@@ -27,6 +27,21 @@ const GET_EVENTS = gql`
           companyName
           companyLogo
         }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
+          startDate
+          endDate
+          link
+          linkText
+        }
+        theme {
+          primary
+          secondary
+          heroSlug
+        }
       }
     }
   }
@@ -103,11 +118,13 @@ const BecomeAPartner = styled.div`
 `;
 
 const BuildEvent = e => {
+  const primary = `#${e.theme.primary}`;
+  const secondary = `#${e.theme.secondary}`;
   return (
     <Cell center>
-      <Event primaryColor={e.primary} secondaryColor={e.secondary}>
+      <Event primaryColor={primary} secondaryColor={secondary}>
         <h1>{e.name}</h1>
-        <img src={e.heroSlug} alt={e.name} />
+        <img src={e.theme.heroSlug} alt={e.name} />
         <div className="description">
           <p>{e.description}</p>
         </div>
@@ -157,9 +174,7 @@ const Events = ({ className }) => {
 
   // This will go away once the theme fields are added to the Graph result
   events = _.map(events, e => {
-    e.heroSlug = './images/landing_hero.jpg';
-    e.primary = '#1A5276';
-    e.secondary = '#5499C7';
+    e.theme.heroSlug = './images/landing_hero.jpg';
     e.featuredNotification = _.find(e.notifications, n => {
       return n.shouldFeature === true;
     }) || {
