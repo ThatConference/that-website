@@ -2,12 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { gridRepeat } from '../../utilities';
+import ContentSection from '../shared/ContentSection';
 
 import SocialLinks from '../shared/SocialLinks';
-
-const Container = styled.div`
-  padding: 10rem;
-`;
 
 const StyledGrid = styled(Grid)`
   grid-gap: 8rem;
@@ -25,8 +22,8 @@ const StyledGrid = styled(Grid)`
     flex-wrap: wrap;
         
     a {
-      width: 16rem;
-      height: 16rem;
+      width: 14rem;
+      height: 14rem;
       margin: 4rem;
       margin-bottom: 0;
       border-radius 8rem;
@@ -42,7 +39,7 @@ const StyledCell = styled(Cell)`
 
 const StayInTouch = ({ className }) => {
   return (
-    <Container className={className}>
+    <ContentSection className={className}>
       <StyledGrid
         columns={gridRepeat.xsmall}
         alignContent="center"
@@ -63,7 +60,7 @@ const StayInTouch = ({ className }) => {
           <SocialLinks flexDirection="row" className="social-links" />
         </StyledCell>
       </StyledGrid>
-    </Container>
+    </ContentSection>
   );
 };
 

@@ -2,11 +2,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 import LinkButton from '../shared/LinkButton';
+import ContentSection from '../shared/ContentSection';
 
-const Container = styled.div`
-  padding: 5rem;
+const Container = styled(ContentSection)`
   text-align: center;
-  height: 50rem;
 `;
 
 const sharedBearStyles = css`
@@ -30,6 +29,7 @@ const CenterSection = styled.div`
 
   h4 {
     text-transform: uppercase;
+    text-align: center;
     font-size: 2.5rem;
   }
 

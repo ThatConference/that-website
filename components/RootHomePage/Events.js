@@ -5,6 +5,7 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
 import Link from 'next/link';
+import ContentSection from '../shared/ContentSection';
 import { gridRepeat } from '../../utilities';
 
 const GET_EVENTS = gql`
@@ -56,7 +57,7 @@ const Event = styled.div`
   position: relative;
   margin: auto;
   height: 750px;
-  width: 500px;
+  width: 400px;
   background-color: ${props => props.primaryColor};
 
   h1 {
@@ -69,7 +70,7 @@ const Event = styled.div`
 
   img {
     object-fit: cover;
-    height: 33.3rem;
+    width: 100%;
   }
 
   div.description {
@@ -198,7 +199,7 @@ const Events = ({ className }) => {
   });
 
   return (
-    <Container className={className}>
+    <ContentSection className={className}>
       <Grid
         columns={gridRepeat.xsmall}
         alignContent="center"
@@ -224,7 +225,7 @@ const Events = ({ className }) => {
           <a>Become a Partner</a>
         </Link>
       </BecomeAPartner>
-    </Container>
+    </ContentSection>
   );
 };
 

@@ -6,9 +6,10 @@ import YouTube from 'react-youtube';
 import { gridRepeat } from '../../utilities';
 import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
 
+import ContentSection from '../shared/ContentSection';
+
 const Container = styled.div``;
-const Content = styled.div`
-  padding: 10rem;
+const Content = styled(ContentSection)`
   text-align: center;
 
   h1 {
@@ -57,11 +58,6 @@ const Keynotes = ({ className }) => {
             <YouTube videoId="cU2q7SxE9Vw" opts={YouTubeOptions} />
             <Title>Adventure as a Career Plan</Title>
             <Counselor>Jason Lengstorf</Counselor>
-          </Cell>
-          <Cell>
-            <YouTube videoId="wsjqnrwkXqI" opts={YouTubeOptions} />
-            <Title>You. Are. Awesome.</Title>
-            <Counselor>David Neal</Counselor>
           </Cell>
         </Grid>
       </Content>
