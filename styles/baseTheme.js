@@ -31,11 +31,6 @@ const baseTheme = {
       light: '#FFFFFF',
       dark: '#555555',
     },
-
-    maps: {
-      landscape: '#f2f2f2',
-      water: '#ff9100',
-    },
   },
 };
 

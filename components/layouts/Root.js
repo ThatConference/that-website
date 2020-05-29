@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
