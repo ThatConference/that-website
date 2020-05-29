@@ -48,11 +48,6 @@ const GET_EVENTS = gql`
   }
 `;
 
-const Container = styled.div`
-  position: relative;
-  padding: 5rem 10rem 1rem 10rem;
-`;
-
 const Event = styled.div`
   position: relative;
   margin: auto;
