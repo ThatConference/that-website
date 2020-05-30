@@ -6,7 +6,7 @@ import Community from '../components/RootHomePage/Community';
 import Events from '../components/RootHomePage/Events';
 import Hero from '../components/RootHomePage/Hero';
 import Keynotes from '../components/RootHomePage/Keynotes';
-// import LiveStream from '../components/RootHomePage/LiveStream';
+import LiveStream from '../components/RootHomePage/LiveStream';
 import PageFooter from '../components/RootHomePage/PageFooter';
 import SectionHeader from '../components/RootHomePage/SectionHeader';
 import Shop from '../components/RootHomePage/Shop';
@@ -23,7 +23,7 @@ const index = () => {
       <StayInTouch />
       <SignUp />
       <Community />
-      {/* <LiveStream /> */}
+      <LiveStream />
       <Shop />
       <Keynotes />
       <PageFooter />
