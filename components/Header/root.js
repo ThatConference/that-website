@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Icon from '../shared/Icon';
 import SecondaryMemberNav from './SecondaryMemberNav';
 
+import { below } from '../../utilities';
+
 const StyledIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   padding: 1rem 2rem;
@@ -31,6 +33,11 @@ const NavIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   width: 5rem;
   padding: 0 1rem;
+
+  ${below.small`
+      width: 3rem;
+      padding: 0;
+    `};
 `;
 
 const StyledSecondaryNav = styled(SecondaryMemberNav)`
