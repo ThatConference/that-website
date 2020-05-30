@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
@@ -21,16 +21,11 @@ import {
   InnerPage,
 } from '../shared/StandardStyles';
 
-const Default = ({ children, headerType }) => {
+const Default = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [layeredHeader, setLayeredHeader] = useState(false);
 
   const { user, loading } = useFetchUser();
   const router = useRouter();
-
-  useEffect(() => {
-    setLayeredHeader(headerType === 'layered');
-  });
 
   if (!_.isNil(user)) {
     document.tidioIdentify = {
@@ -71,7 +66,6 @@ const Default = ({ children, headerType }) => {
                 <Header
                   user={user}
                   loading={loading}
-                  layered={layeredHeader}
                   mobileMenuOpen={mobileMenuOpen}
                   setMobileMenuOpen={setMobileMenuOpen}
                 />
