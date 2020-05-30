@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import { gridRepeat } from '../../utilities';
+import { gridRepeat, below } from '../../utilities';
 import ContentSection from '../shared/ContentSection';
 
 import SocialLinks from '../shared/SocialLinks';
 
 const StyledGrid = styled(Grid)`
   grid-gap: 8rem;
+
+  ${below.small`
+      grid-gap: 0;
+      text-align: center;
+  `};
 
   h5 {
     margin-top: 2rem;
@@ -28,7 +33,11 @@ const StyledGrid = styled(Grid)`
       margin-bottom: 0;
       border-radius 8rem;
       background-color: ${({ theme }) => theme.colors.primary};
-      
+
+      ${below.small`
+        width: 8rem;
+        height: 8rem;
+      `};
     }
   }
 `;

@@ -61,7 +61,6 @@
     "react-imgix": "^9.0.2",
     "react-scroll-parallax": "^2.3.2",
     "react-select": "^3.1.0",
-    "react-youtube": "^7.11.2",
     "react-twitch-embed-video": "^2.0.3",
     "redux": "^4.0.5",
     "sentry-testkit": "^3.2.1",

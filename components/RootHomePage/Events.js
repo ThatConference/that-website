@@ -5,8 +5,9 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
 import Link from 'next/link';
+import ThatLink from '../shared/ThatLink';
 import ContentSection from '../shared/ContentSection';
-import { gridRepeat } from '../../utilities';
+import { gridRepeat, below } from '../../utilities';
 
 const GET_EVENTS = gql`
   query activeEvents {
@@ -55,12 +56,19 @@ const Event = styled.div`
   width: 400px;
   background-color: ${props => props.primaryColor};
 
+  ${below.small`
+      width: 300px;
+  `};
+
   h1 {
     text-align: center;
     font-size: 5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: ${({ theme }) => theme.colors.fonts.light};
+    ${below.small`
+      font-size: 3rem;
+  `};
   }
 
   img {
@@ -100,6 +108,10 @@ const BroughtToYouBy = styled.h1`
 
 const PartnerImage = styled.img`
   width: 45rem;
+
+  ${below.small`
+      width: 25rem;
+  `};
 `;
 
 const BecomeAPartner = styled.div`
@@ -215,10 +227,11 @@ const Events = ({ className }) => {
         })}
       </Grid>
       <BecomeAPartner>
-        <Link href="/wi/become-a-partner" prefetch={false}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a>Become a Partner</a>
-        </Link>
+        <ThatLink
+          title="Becoma a Partner"
+          href="/wi/become-a-partner/"
+          isLocal
+        />
       </BecomeAPartner>
     </ContentSection>
   );
