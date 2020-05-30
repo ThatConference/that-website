@@ -4,6 +4,7 @@ description: Given today's current events were delaying both ticket sales and sp
 leadImage: that-blog-april-update-2020.jpg
 publishedDate: April 13, 2020
 author: THAT Crew
+excerpt: Today, we were originally scheduled to announce this year's speakers along with opening ticket sales and room blocks. Also today, like you, we're sheltering at home and have a growing list of unanswered questions. It's this laundry list of questions that's honestly been more upsetting than we could have imagined, but we refuse to just throw in the towel because times are tough.
 ---
 
 <img src="../../images/blog/that-blog-april-update-2020.jpg"

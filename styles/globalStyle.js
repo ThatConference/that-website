@@ -142,6 +142,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.fonts.light};
   }
 
+  .bold {
+    font-weight: 700;
+  }
+
   .centered-text {
     text-align: center;
   }
