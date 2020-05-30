@@ -1,13 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import { below } from '../../utilities';
+import styled, { withTheme } from 'styled-components';
+import PropTypes from 'prop-types';
+import { below, hexToRgb } from '../../utilities';
 
 const Container = styled.div`
   padding: 5rem;
-  background-color: ${props =>
-    props.backgroundColor
-      ? props.theme.colors[props.backgroundColor]
-      : props.theme.colors.backgroundColor};
+  background: ${({ background }) => background};
+  background-size: cover;
+  background-position: center;
   color: ${props =>
     props.fontColor
       ? props.theme.colors.fonts[props.fontColor]
@@ -38,6 +38,8 @@ const Trees = styled.img`
 
 const ContentSection = ({
   backgroundColor,
+  backgroundImage,
+  backgroundOpacity,
   children,
   className,
   fontColor,
@@ -45,10 +47,24 @@ const ContentSection = ({
   hasTrees,
   id,
   style,
+  theme,
 }) => {
+  const getBackgroundSettings = () => {
+    const backgroundColorToUse = backgroundColor
+      ? theme.colors[backgroundColor]
+      : theme.colors.backgroundColor;
+
+    if (backgroundColorToUse === 'transparent') return backgroundColorToUse;
+
+    const backgroundRgb = hexToRgb(backgroundColorToUse, backgroundOpacity);
+    return `linear-gradient(${backgroundRgb}, ${backgroundRgb}) ${
+      backgroundImage ? `, url(${backgroundImage}) no-repeat` : ''
+    }}`;
+  };
+
   return (
     <Container
-      backgroundColor={backgroundColor}
+      background={getBackgroundSettings()}
       fontColor={fontColor}
       className={className}
       id={id}
@@ -61,4 +77,15 @@ const ContentSection = ({
   );
 };
 
-export default ContentSection;
+ContentSection.propTypes = {
+  backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string,
+  backgroundOpacity: PropTypes.number,
+};
+ContentSection.defaultProps = {
+  backgroundColor: '',
+  backgroundImage: '',
+  backgroundOpacity: 1,
+};
+
+export default withTheme(ContentSection);

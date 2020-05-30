@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
 import LoadingIndicator from '../shared/LoadingIndicator';
+import SecondaryMemberNav from './SecondaryMemberNav';
 
 const _ = require('lodash');
 
-const SecondaryNav = styled.ul`
+const StyledSecondaryNav = styled(SecondaryMemberNav)`
   display: ${({ userMenuOpen }) => (userMenuOpen ? '' : 'none')};
   background-color: ${({ theme }) => theme.colors.white};
   position: absolute;
@@ -60,40 +61,10 @@ const MemberNav = ({ className, color, onClick, user, loading }) => {
             color={color}
           />
 
-          <SecondaryNav userMenuOpen={userMenuOpen}>
-            <li>
-              {!user.profileComplete && (
-                <ThatLink
-                  title="Create Profile"
-                  href="/member/create"
-                  onClick={() => setUserMenuOpen(false)}
-                />
-              )}
-              {user.profileComplete && (
-                <ThatLink
-                  title="My Profile"
-                  href={`/member/${user.profileSlug}`}
-                  onClick={() => setUserMenuOpen(false)}
-                />
-              )}
-            </li>
-            {user.profileComplete && (
-              <li>
-                <ThatLink
-                  title="My Sessions"
-                  href="/member/my-sessions"
-                  onClick={() => setUserMenuOpen(false)}
-                />
-              </li>
-            )}
-            <li>
-              <ThatLink
-                title="Log Out"
-                href="/api/logout"
-                onClick={() => setUserMenuOpen(false)}
-              />
-            </li>
-          </SecondaryNav>
+          <StyledSecondaryNav
+            user={user}
+            onLinkClick={() => setUserMenuOpen(false)}
+          />
         </>
       )}
 
