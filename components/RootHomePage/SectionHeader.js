@@ -35,6 +35,7 @@ const TreeIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
 
   ${below[twoColBp]`
+    margin-top: 5rem;
     width: 60%;
   `};
 `;

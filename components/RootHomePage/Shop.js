@@ -14,41 +14,45 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
 
-  ${below.small`
+  ${below.med`
     flex-direction: column;
   `};
-`;
-
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
 `;
 
 const sharedBearStyles = css`
   height: 40rem;
 
-  ${below.small`
-    height: 30rem;
+  ${below.med`
+    height: 25rem;
   `};
 `;
 
 const LeftBear = styled.img`
   ${sharedBearStyles};
+  margin-right: 5rem;
+
+  ${below.med`
+    margin-right: 0;
+    margin-bottom: 4rem;
+  `};
 `;
 
 const RightBear = styled.img`
   ${sharedBearStyles}
   transform: scaleX(-1);
+  margin-left: 5rem;
+
+  ${below.med`
+    margin-left: 0;
+    margin-top: 4rem;
+  `};
 `;
 
 const Shop = ({ className }) => {
   return (
     <ContentSection className={className}>
       <Main>
-        <Section>
-          <LeftBear src="./images/bear_pink_hoodie.png" />
-        </Section>
+        <LeftBear src="./images/bear_pink_hoodie.png" />
         <div>
           <SlimCenteredH2>Get That Gear</SlimCenteredH2>
           <h4>That Store Has Your Favorite Merch</h4>
@@ -68,9 +72,7 @@ const Shop = ({ className }) => {
             hoverBackgroundColor="white"
           />
         </div>
-        <Section>
-          <RightBear src="./images/bear_green_purple_tree_shirt.png" />
-        </Section>
+        <RightBear src="./images/bear_green_purple_tree_shirt.png" />
       </Main>
     </ContentSection>
   );
