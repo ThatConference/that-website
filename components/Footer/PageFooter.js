@@ -44,4 +44,8 @@ export default styled(Footer)`
     flex-direction: column;
     align-items: center;
   `};
+
+  div.social-block {
+    margin: 0.3rem;
+  }
 `;

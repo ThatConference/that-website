@@ -10,12 +10,21 @@ const StyledIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   padding: 1rem 2rem;
   height: 8rem;
+  align-self: center;
+
+  ${below.small`
+    height: 7rem;
+  `};
 `;
 
 const Member = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary};
   display: flex;
   align-items: center;
+
+  ${below.xsmall`
+    display: none;
+  `};
 `;
 
 const Greeting = styled.p`
@@ -33,11 +42,6 @@ const NavIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   width: 5rem;
   padding: 0 1rem;
-
-  ${below.small`
-      width: 3rem;
-      padding: 0;
-    `};
 `;
 
 const StyledSecondaryNav = styled(SecondaryMemberNav)`
