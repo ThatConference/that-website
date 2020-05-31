@@ -195,7 +195,7 @@ const Events = ({ className }) => {
   return (
     <ContentSection className={className}>
       <Grid
-        columns={gridRepeat.xsmall}
+        columns={gridRepeat.small}
         alignContent="center"
         justifyContent="space-between"
       >
