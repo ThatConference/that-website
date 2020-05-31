@@ -100,12 +100,6 @@ const Event = styled.div`
   }
 `;
 
-const BroughtToYouBy = styled.h1`
-  text-align: center;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-`;
-
 const PartnerImage = styled.img`
   width: 45rem;
 
@@ -115,14 +109,7 @@ const PartnerImage = styled.img`
 `;
 
 const BecomeAPartner = styled.div`
-  text-align: center;
   margin-top: 5rem;
-
-  a {
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.fonts.dark};
-    text-decoration: underline;
-  }
 `;
 
 const BuildEvent = e => {
@@ -216,7 +203,7 @@ const Events = ({ className }) => {
           return BuildEvent(e);
         })}
       </Grid>
-      <BroughtToYouBy>Events Brought To You By</BroughtToYouBy>
+      <h2 className="centered-text">Events Brought To You By</h2>
       <Grid
         columns={gridRepeat.xsmall}
         alignContent="center"
@@ -226,11 +213,12 @@ const Events = ({ className }) => {
           return BuildPartner(p);
         })}
       </Grid>
-      <BecomeAPartner>
+      <BecomeAPartner className="centered-text">
         <ThatLink
-          title="Becoma a Partner"
+          title="Become a Partner"
           href="/wi/become-a-partner/"
           isLocal
+          style={{ marginTop: '4rem' }}
         />
       </BecomeAPartner>
     </ContentSection>
