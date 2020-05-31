@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ContentSection from '../shared/ContentSection';
+import Icon from '../shared/Icon';
 import { below } from '../../utilities';
 
 const twoColBp = 'larger';
@@ -9,49 +10,32 @@ const twoColBp = 'larger';
 const Main = styled.div`
   display: flex;
   flex-direction: row;
-  margin: auto;
-
+  width: 100%;
   align-items: center;
+  justify-content: space-between;
 
   ${below[twoColBp]`
     flex-direction: column;
   `};
 `;
 
-const Text = styled.div`
-  width: 100%;
-  line-break: auto;
-
-  h1 {
-    font-size: 13rem;
-    color: ${({ theme }) => theme.colors.fonts.light};
-
-    ${below.small`
-      font-size: 6rem;
-      text-align: center;
-    `};
-  }
-`;
-
-const LogoContainer = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const Logo = styled.div`
-  float: right;
-  width: 40rem;
-  height: 40rem;
-  background-image: url('./images/that_trees_white.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+const StyledHeading = styled.h2`
+  font-size: 12rem;
+  min-width: 55rem;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.fonts.light};
 
   ${below.small`
-    float: none;
-    margin: auto;
-    width: 15rem;
-    height: 15rem;
+    font-size: 6rem;
+    text-align: center;
+  `};
+`;
+
+const TreeIcon = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
+
+  ${below[twoColBp]`
+    width: 60%;
   `};
 `;
 
@@ -61,17 +45,23 @@ const SectionHeader = ({ className }) => {
       className={className}
       backgroundColor="thatBlue"
       backgroundOpacity={0.82}
-      backgroundImage="/images/events_meetups_gatherings.jpg"
+      backgroundImage="/images/group.jpg"
     >
       <Main>
-        <Text>
-          <h1>Events,</h1>
-          <h1>Meet-Ups, &</h1>
-          <h1>Gatherings</h1>
-        </Text>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
+        <StyledHeading>
+          Events,
+          <br />
+          Meet-Ups, &
+          <br />
+          Gatherings
+        </StyledHeading>
+        <TreeIcon
+          icon="thatTrees"
+          width="600"
+          height="250"
+          viewBoxHeight="87"
+          viewBoxWidth="200"
+        />
       </Main>
     </ContentSection>
   );
