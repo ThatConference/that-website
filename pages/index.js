@@ -1,4 +1,5 @@
 import React from 'react';
+import { NextSeo } from 'next-seo';
 import RootLayout from '../components/layouts/Root';
 
 import ContentSection from '../components/shared/ContentSection';
@@ -18,6 +19,19 @@ import StayInTouch from '../components/RootHomePage/StayInTouch';
 const index = () => {
   return (
     <div className="docs">
+      <NextSeo
+        title="THAT - Tech Events and Community"
+        description="Our goal with THAT is to bridge the gap between professionals and businesses, beginner and experienced technologists, all while shining a light on the importance of family and caring for your whole self."
+        images={[
+          'https://www.thatconference.com/images/clark_stage.jpg',
+          'https://www.thatconference.com/images/maker_space.jpg',
+          'https://www.thatconference.com/images/keynote.jpg',
+          'https://www.thatconference.com/images/partner_hero_default.jpg',
+          'https://www.thatconference.com/images/battle-bots.jpg',
+          'https://www.thatconference.com/images/mess-hall.jpg',
+        ]}
+      />
+
       <Hero />
       <SectionHeader />
       <Events />

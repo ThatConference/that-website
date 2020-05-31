@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { DefaultSeo, LogoJsonLd } from 'next-seo';
+import { DefaultSeo, LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
@@ -11,7 +11,7 @@ import baseTheme from '../../styles/baseTheme';
 import Meta from '../Meta';
 import Header from '../Header/root';
 import Footer from '../Footer';
-import { defaultSeo } from '../../utilities';
+import { defaultSeo, socialConstants } from '../../utilities';
 import User from '../User';
 import { useFetchUser } from '../../hooks/user';
 import {
@@ -46,6 +46,11 @@ const Default = ({ children }) => {
     });
   }
 
+  const socialUrls = _.map(
+    socialConstants.thatSocialLinks,
+    socialLink => socialLink.url,
+  );
+
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -59,6 +64,13 @@ const Default = ({ children }) => {
           <LogoJsonLd
             logo="https://www.thatconference.com/svgs/THAT.svg"
             url="https://www.thatconference.com"
+          />
+          <SocialProfileJsonLd
+            type="Organization"
+            name="THAT"
+            url="http://www.thatconference.com"
+            logo="https://www.thatconference.com/svgs/THAT.svg"
+            sameAs={socialUrls}
           />
           <CorePage>
             <User user={user} loading={loading}>
