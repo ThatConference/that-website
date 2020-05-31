@@ -1,92 +1,79 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import YouTubeVideo from '../shared/YouTubeVideo';
-
-import { gridRepeat, below } from '../../utilities';
-import ContainerWithBGImageAndLG from './ContainerWithBGImageAndLG';
 
 import ContentSection from '../shared/ContentSection';
+import LinkButton from '../shared/LinkButton';
+import YouTubeVideo from '../shared/YouTubeVideo';
 
-const Container = styled.div``;
-const Content = styled(ContentSection)`
+import { SlimCenteredH2 } from '../shared/StandardStyles';
+import { gridRepeat, below } from '../../utilities';
+
+const VideoCell = styled(Cell)`
+  width: 39rem;
+  margin: auto;
   text-align: center;
 
-  h1 {
-    margin-bottom: 5rem;
-  }
-`;
-
-const StyledGrid = styled(Grid)`
-  ${below.small`
-    display: flex;
-    flex-direction: column;
+  ${below.xsmall`
+    width: 30rem;
   `};
 `;
 
-const Title = styled.div`
-  font-weight: bold;
+const Title = styled.p`
   line-height: 1.4;
+  margin-bottom: 0.5rem;
 `;
 
 const Counselor = styled.p`
   margin: 0;
   font-size: 1.3rem;
-  margin-bottom: 1rem;
 `;
 
-const ResponseiveYouTube = styled(YouTubeVideo)`
-  width: 35rem;
+const ResponsiveYouTube = styled(YouTubeVideo)`
   height: 20rem;
-  margin: auto;
-
-  ${below.small`
-    width: 25rem;
-    height: 15rem;
-  `};
 `;
 
-const YouTube = ({ videoId }) => {
-  return (
-    <ResponseiveYouTube
-      videoId={videoId}
-      autoplay={0}
-      rel={0}
-      modest={1}
-      containerHeight="35rem"
-      containerWidth="20rem"
-    />
-  );
-};
+const PaddedLinkButton = styled(LinkButton)`
+  margin-top: 6rem;
+  margin-left: 3rem;
+`;
 
 const Keynotes = ({ className }) => {
   return (
-    <Container className={className}>
-      <ContainerWithBGImageAndLG
-        height={5.7}
-        image="./images/root_join_conversation.jpg"
+    <ContentSection className={className}>
+      <SlimCenteredH2>Past Keynotes</SlimCenteredH2>
+      <Grid columns={gridRepeat.small} alignContent="center">
+        <VideoCell center>
+          <ResponsiveYouTube videoId="Lp-Xqj8wSMg" />
+          <Title className="bold">
+            The History of Opera and the Future of Programming
+          </Title>
+          <Counselor>Jessica Kerr</Counselor>
+        </VideoCell>
+        <VideoCell>
+          <ResponsiveYouTube videoId="Nks_Fb5TUjs" />
+          <Title className="bold">The 7 Pillar Developer</Title>
+          <Counselor>Cory House</Counselor>
+        </VideoCell>
+        <VideoCell>
+          <ResponsiveYouTube videoId="cU2q7SxE9Vw" />
+          <Title className="bold">Adventure as a Career Plan</Title>
+          <Counselor>Jason Lengstorf</Counselor>
+        </VideoCell>
+      </Grid>
+
+      <PaddedLinkButton
+        href="http://youtube.com/thatconference/"
+        label="See More on THAT You Tube"
+        target="_blank"
+        backgroundColor="primary"
+        borderColor="white"
+        color="white"
+        hoverBorderColor="primary"
+        hoverColor="primary"
+        hoverBackgroundColor="white"
       />
-      <Content>
-        <h1>Past Keynotes</h1>
-        <StyledGrid columns={gridRepeat.small} alignContent="center">
-          <Cell>
-            <YouTube videoId="Lp-Xqj8wSMg" />
-            <Title>The History of Opera and the Future of Programming</Title>
-            <Counselor>Jessica Kerr</Counselor>
-          </Cell>
-          <Cell>
-            <YouTube videoId="Nks_Fb5TUjs" />
-            <Title>The 7 Pillar Developer</Title>
-            <Counselor>Cory House</Counselor>
-          </Cell>
-          <Cell>
-            <YouTube videoId="cU2q7SxE9Vw" />
-            <Title>Adventure as a Career Plan</Title>
-            <Counselor>Jason Lengstorf</Counselor>
-          </Cell>
-        </StyledGrid>
-      </Content>
-    </Container>
+    </ContentSection>
   );
 };
 

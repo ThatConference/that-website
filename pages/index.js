@@ -1,6 +1,8 @@
 import React from 'react';
 import RootLayout from '../components/layouts/Root';
 
+import ContentSection from '../components/shared/ContentSection';
+
 import Blog from '../components/RootHomePage/Blog';
 import Community from '../components/RootHomePage/Community';
 import Events from '../components/RootHomePage/Events';
@@ -25,6 +27,11 @@ const index = () => {
       <Community />
       <LiveStream />
       <Shop />
+      <ContentSection
+        backgroundColor="thatBlue"
+        backgroundOpacity={0.82}
+        backgroundImage="/images/group.jpg"
+      />
       <Keynotes />
       <PageFooter />
     </div>
