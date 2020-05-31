@@ -13,33 +13,6 @@ const StyledGrid = styled(Grid)`
       grid-gap: 0;
       text-align: center;
   `};
-
-  h5 {
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    margin-top: 0;
-  }
-
-  div.social-links {
-    flex-wrap: wrap;
-        
-    a {
-      width: 14rem;
-      height: 14rem;
-      margin: 4rem;
-      margin-bottom: 0;
-      border-radius 8rem;
-      background-color: ${({ theme }) => theme.colors.primary};
-
-      ${below.small`
-        width: 8rem;
-        height: 8rem;
-      `};
-    }
-  }
 `;
 
 const StyledCell = styled(Cell)`
@@ -55,22 +28,61 @@ const StayInTouch = ({ className }) => {
         justifyContent="space-around"
       >
         <Cell width={1}>
-          <h1>Stay in Touch</h1>
+          <h2>Stay in Touch</h2>
           <h5>We want to talk with YOU!</h5>
           <p>
-            Donec vehicula id sapien vel dapibus. Nulla a odio diam. Nunc vel
-            odio ex. Etiam dictum mollis placerat. Pellentesque vel posuere
-            velit. Aliquam accumsan felis orci, a hendrerit est placerat nec.
-            Nulla non magna sit amet dui vulputate rutrum sed imperdiet odio.
-            Nullam id rhoncus nibh. Cras ut egestas libero.
+            Show us your awesome, stay in touch, ask questions, be supported...
+            you name it THAT is here for you! Checkout all the platforms we are
+            on and what you can find there from THAT. Reach out anytime, we love
+            hearing from THAT Community!
           </p>
         </Cell>
         <StyledCell width={2}>
-          <SocialLinks flexDirection="row" className="social-links" />
+          <SocialLinks
+            flexDirection="row"
+            includeDescription
+            className="social-links"
+            size="14rem"
+          />
         </StyledCell>
       </StyledGrid>
     </ContentSection>
   );
 };
 
-export default styled(StayInTouch)``;
+export default styled(StayInTouch)`
+  h2 {
+    margin: 3rem 0;
+  }
+
+  h5 {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  div.social-links {
+    flex-wrap: wrap;
+
+    div.social-block {
+      margin: 0 4rem 2rem;
+    }
+
+    p.social-description {
+      line-height: 1.6;
+    }
+
+    a {
+      margin-bottom: 0;
+      background-color: ${({ theme }) => theme.colors.primary};
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.highlight};
+      }
+
+      ${below.small`
+        width: 8rem;
+        height: 8rem;
+      `};
+    }
+  }
+`;

@@ -53,9 +53,9 @@ const Shop = ({ className }) => {
           <SlimCenteredH2>Get That Gear</SlimCenteredH2>
           <h4>That Store Has Your Favorite Merch</h4>
           <p className="blurb">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac
-            hendrerit sem, at ullamcorper nunc. Donec vehicula id sapien vel
-            dapibus. Nulla a odio diam.
+            Looking for a new favorite THAT T-Shirt? What about a THAT Hoodie?
+            THAT Store is now open and has the latest THAT merch waiting for
+            you.
           </p>
           <LinkButton
             label="Go to THAT Store"

@@ -82,22 +82,22 @@ const LiveStream = ({ className }) => {
           <StyledH3>We're Going Live</StyledH3>
           <p className="font-light bold">Livestream Title</p>
           <p className="font-light">
-            Livestream Title Donec vehicula id sapien vel dapibus. Nulla a odio
-            diam. Nunc vel odio ex. Etiam dictum mollis placerat. Pellentesque
-            vel posuere velit. Aliquam accumsan felis orci, a hendrerit est
-            placerat nec. Nulla non magna sit amet dui vulputate rutrum sed
-            imperdiet odio. Nullam id rhoncus nibh. Cras ut egestas libero.
-            Donec vehicula id sapien vel dapibus. Nulla a odio diam. Nunc vel
-            odio ex. Etiam dictum mollis placerat. Pellentesque vel posuere
-            velit. Aliquam accumsan felis orci, a hendrerit est placerat nec.
-            Nulla non magna sit amet dui vulputate rutrum sed imperdiet odio.
+            Broadcasting every Monday and Wednesday, THAT.Live is, well, live!
+            Over on our Twitch channel, community members collaborate with host
+            Clark Sell and share their knowledge and best practices for all
+            things technology and not technology. We invite you to watch and
+            listen in. Viewers with a Twitch account are encouraged to become
+            part of the broadcast by commenting and asking questions in real
+            time using the chat feature. Miss a broadcast? Past live stream
+            videos are available to watch too!
           </p>
           <Links>
             <li>
-              <ThatLink title="Video Link" href="#" color="white" />
-            </li>
-            <li>
-              <ThatLink title="Podcast Link" href="#" color="white" />
+              <ThatLink
+                title="Watch THAT.live"
+                href="http://that.live"
+                color="white"
+              />
             </li>
           </Links>
         </SideDetail>
