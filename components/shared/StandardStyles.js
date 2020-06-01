@@ -136,6 +136,11 @@ export const SmallerH1 = styled.h1`
   font-size: 9rem;
 `;
 
+export const SlimCenteredH2 = styled.h2`
+  margin-top: 1.5rem;
+  text-align: center;
+`;
+
 export const ViewLink = styled.a`
   font-size: 1.4rem;
   width: 100%;

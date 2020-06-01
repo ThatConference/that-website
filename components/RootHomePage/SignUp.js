@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
+import Icon from '../shared/Icon';
 import NewsletterSignupForm from '../shared/NewsletterSignupForm';
 import LinkButton from '../shared/LinkButton';
 import { gridRepeat, below } from '../../utilities';
@@ -47,19 +48,6 @@ const ConversationSection = styled(Section)`
   }
 `;
 
-const TreeSection = styled(Cell)`
-  margin: auto;
-`;
-
-const Trees = styled.img`
-  width: 31.1rem;
-  vertical-align: middle;
-
-  ${below.small`
-    width: 15rem;
-  `};
-`;
-
 const NewsletterSection = styled(Section)`
   h3 {
     margin-bottom: 2rem;
@@ -76,6 +64,15 @@ const NewsletterSection = styled(Section)`
       }
     }
   }
+`;
+
+const TreeIcon = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
+  margin: auto;
+
+  ${below.small`
+    width: 60%;
+  `};
 `;
 
 const SignUp = ({ className }) => {
@@ -96,9 +93,13 @@ const SignUp = ({ className }) => {
             image="./images/Slack_Mark.svg"
           />
         </ConversationSection>
-        <TreeSection middle center>
-          <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
-        </TreeSection>
+        <TreeIcon
+          icon="thatTrees"
+          width="600"
+          height="250"
+          viewBoxHeight="87"
+          viewBoxWidth="200"
+        />
         <NewsletterSection middle center>
           <NewsletterSignupForm headerType="h3" title="Stay Up-To Date" />
         </NewsletterSection>

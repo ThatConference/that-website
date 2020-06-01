@@ -52,7 +52,6 @@ const TitleBlock = styled.div`
   }
   p {
     text-align: justify;
-    font-size: 1.6rem;
     padding-left: 20rem;
     padding-right: 20rem;
     color: ${({ theme }) => theme.colors.fonts.light};
@@ -74,15 +73,15 @@ const Hero = ({ className }) => {
           <TitleBlock>
             <h1>We. Love.</h1>
             <h1>Geeks.</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              ac hendrerit sem, at ullamcorper nunc. Donec vehicula id sapien
-              vel dapibus. Nulla a odio diam. Nunc vel odio ex. Etiam dictum
-              mollis placerat. Pellentesque vel posuere velit. Aliquam accumsan
-              felis orci, a hendrerit est placerat nec. Nulla non magna sit amet
-              dui vulputate rutrum sed imperdiet odio. Nullam id rhoncus nibh.
-              Cras ut egestas libero. Phasellus ac varius diam, quis interdum
-              odio.{' '}
+            <p className="large-body-copy">
+              THAT is a polyglot community for all things technology where
+              members help, teach and support each other year round. What
+              started as an annual technology conference has grown into
+              community of practitioners teaching, sharing and supporting each
+              other daily. Through our multiple in-person and virtual events
+              each year we continual push to bring positive impact across our
+              industry and welcome everyone regardless of experience, tech stack
+              or background.
             </p>
           </TitleBlock>
         </Main>

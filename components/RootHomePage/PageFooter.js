@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
+import Icon from '../shared/Icon';
 import { below } from '../../utilities';
 
 const Container = styled(ContentSection)`
@@ -9,11 +10,12 @@ const Container = styled(ContentSection)`
   justify-content: center;
 `;
 
-const Trees = styled.img`
-  width: 31.1rem;
+const TreeIcon = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
+  margin: 10rem 0;
 
-  ${below.small`
-    width: 20rem;
+  ${below.med`
+    width: 60%;
   `};
 `;
 
@@ -23,9 +25,15 @@ const PageFooter = ({ className }) => {
       className={className}
       backgroundColor="thatBlue"
       backgroundOpacity={0.82}
-      backgroundImage="/images/root_join_conversation.jpg"
+      backgroundImage="/images//group.jpg"
     >
-      <Trees src="./images/that_trees_white.png" alt="THAT Conference" />
+      <TreeIcon
+        icon="thatTrees"
+        width="300"
+        height="100"
+        viewBoxHeight="87"
+        viewBoxWidth="200"
+      />
     </Container>
   );
 };
