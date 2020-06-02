@@ -1,56 +1,70 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import Icon from '../shared/Icon';
 import NewsletterSignupForm from '../shared/NewsletterSignupForm';
 import LinkButton from '../shared/LinkButton';
-import { gridRepeat, below } from '../../utilities';
+import { below } from '../../utilities';
 
-const Container = styled(ContentSection)``;
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-const StyledGrid = styled(Grid)`
-  ${below.small`
-    display: flex;
+  ${below.large`
     flex-direction: column;
-  `};
+  `}
 `;
 
-const Section = styled(Cell)`
-  h3 {
-    color: ${({ theme }) => theme.colors.fonts.light};
-  }
+const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ${below.large`
+    width: auto;
+  `}
 `;
 
 const ConversationSection = styled(Section)`
+  width: 40%;
+
   h3 {
     margin-bottom: 0;
     margin-top: 0;
   }
+`;
 
-  .slack-button {
-    width: 25rem;
-    height: 4.4rem;
-    margin-right: auto;
-    margin-left: auto;
+const SlackButton = styled(LinkButton)`
+  width: 25rem;
+  height: 4.4rem;
+  margin-right: auto;
+  margin-left: auto;
 
-    img {
-      height: 6rem;
-      margin-top: -1rem;
-      float: left;
-    }
+  img {
+    height: 6rem;
+    margin-top: -1rem;
+    float: left;
+  }
 
-    p {
-      margin-top: 0;
-      margin-right: 1rem;
-      font-size: 2rem;
-    }
+  p {
+    margin-top: 0;
+    margin-right: 1rem;
+    font-size: 2rem;
   }
 `;
 
 const NewsletterSection = styled(Section)`
+  width: 40%;
+
+  form {
+    min-width: 35rem;
+  }
+
   h3 {
     margin-bottom: 2rem;
+    color: ${({ theme }) => theme.colors.fonts.light};
+    text-align: center;
   }
 
   button {
@@ -66,45 +80,52 @@ const NewsletterSection = styled(Section)`
   }
 `;
 
+const TreeSection = styled(Section)`
+  width: 20%;
+
+  ${below.large`
+    margin: 5rem 0;
+  `}
+`;
+
 const TreeIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   margin: auto;
-
-  ${below.small`
-    width: 60%;
-  `};
+  width: 20rem;
+  height: 10rem;
 `;
 
 const SignUp = ({ className }) => {
   return (
-    <Container
+    <ContentSection
       className={className}
       backgroundColor="thatBlue"
       backgroundOpacity={0.82}
       backgroundImage="/images/root_join_conversation.jpg"
     >
-      <StyledGrid columns={gridRepeat.small} alignContent="center">
-        <ConversationSection middle center>
-          <h3>Join The Conversation</h3>
-          <LinkButton
-            className="slack-button"
+      <Main>
+        <ConversationSection>
+          <h3 className="font-light">Join The Conversation</h3>
+          <SlackButton
             label="THAT Slack"
             href="https://wwww.thatslack.slack.com"
             image="./images/Slack_Mark.svg"
           />
         </ConversationSection>
-        <TreeIcon
-          icon="thatTrees"
-          width="600"
-          height="250"
-          viewBoxHeight="87"
-          viewBoxWidth="200"
-        />
-        <NewsletterSection middle center>
+        <TreeSection>
+          <TreeIcon
+            icon="thatTrees"
+            width="600"
+            height="250"
+            viewBoxHeight="87"
+            viewBoxWidth="200"
+          />
+        </TreeSection>
+        <NewsletterSection>
           <NewsletterSignupForm headerType="h3" title="Stay Up-To Date" />
         </NewsletterSection>
-      </StyledGrid>
-    </Container>
+      </Main>
+    </ContentSection>
   );
 };
 

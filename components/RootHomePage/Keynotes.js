@@ -36,10 +36,15 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
 const PaddedLinkButton = styled(LinkButton)`
   margin-top: 6rem;
   margin-left: 3rem;
+
+  ${below.small`
+    margin-left: 0;
+  `};
 `;
 
 const Keynotes = ({ className }) => {
   return (
+    // TO DO - mobile width is off
     <ContentSection className={className}>
       <SlimCenteredH2>Past Keynotes</SlimCenteredH2>
       <Grid columns={gridRepeat.small} alignContent="center">

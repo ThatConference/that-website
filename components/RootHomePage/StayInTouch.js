@@ -1,33 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
-import { gridRepeat, below } from '../../utilities';
+import { below } from '../../utilities';
 import ContentSection from '../shared/ContentSection';
 
 import SocialLinks from '../shared/SocialLinks';
 
-const StyledGrid = styled(Grid)`
-  grid-gap: 8rem;
+const Main = styled.div`
+  display: flex;
 
-  ${below.small`
-      grid-gap: 0;
-      text-align: center;
-  `};
+  ${below.med`
+    flex-direction: column;
+    align-items: center;
+  `}
 `;
+const TextBlock = styled.div`
+  width: 55rem;
 
-const StyledCell = styled(Cell)`
-  text-align: center;
+  ${below.med`
+    padding-bottom: 5rem;
+    width: auto;
+  `}
 `;
 
 const StayInTouch = ({ className }) => {
   return (
     <ContentSection className={className}>
-      <StyledGrid
-        columns={gridRepeat.xsmall}
-        alignContent="center"
-        justifyContent="space-around"
-      >
-        <Cell width={1}>
+      <Main>
+        <TextBlock>
           <h2>Stay in Touch</h2>
           <h5>We want to talk with YOU!</h5>
           <p>
@@ -36,16 +35,16 @@ const StayInTouch = ({ className }) => {
             on and what you can find there from THAT. Reach out anytime, we love
             hearing from THAT Community!
           </p>
-        </Cell>
-        <StyledCell width={2}>
+        </TextBlock>
+        <div>
           <SocialLinks
             flexDirection="row"
             includeDescription
             className="social-links"
-            size="14rem"
+            size="12rem"
           />
-        </StyledCell>
-      </StyledGrid>
+        </div>
+      </Main>
     </ContentSection>
   );
 };
@@ -69,6 +68,13 @@ export default styled(StayInTouch)`
 
     p.social-description {
       line-height: 1.6;
+      width: 130%;
+      position: relative;
+      right: 15%;
+
+      ${below.small`
+        right: 30%;
+      `};
     }
 
     a {
