@@ -26,8 +26,13 @@ const StyledHeading = styled.h2`
   color: ${({ theme }) => theme.colors.fonts.light};
 
   ${below.small`
-    font-size: 6rem;
+    font-size: 7rem;
     text-align: center;
+    min-width: auto;
+  `};
+
+  ${below[twoColBp]`
+    order: 2;
   `};
 `;
 
@@ -35,8 +40,18 @@ const TreeIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
 
   ${below[twoColBp]`
-    margin-top: 5rem;
-    width: 60%;
+    margin-bottom: 5rem;
+    width: 50rem;
+    order: 1;
+  `};
+
+  ${below.small`
+    width: 30rem;
+    margin-bottom: 1rem;
+  `};
+
+  ${below.xsmall`
+    width: 25rem;
   `};
 `;
 

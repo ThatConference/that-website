@@ -207,6 +207,10 @@ export const socialConstants = {
       url: 'https://github.com/ThatConference',
       description: 'Our platform is open source and we love contributors!',
     },
+    twitch: {
+      url: 'http://that.live',
+      description: 'Watch us LIVE every Mon + Wed @ 12pm CST',
+    },
   }),
 
   socialIcons: {
@@ -254,6 +258,14 @@ export const socialConstants = {
         width: 24,
         height: 19,
       },
+    },
+    twitch: {
+      icon: {
+        name: 'twitch',
+        width: 52,
+        height: 52,
+      },
+      className: 'is-bigger',
     },
     twitter: {
       icon: {

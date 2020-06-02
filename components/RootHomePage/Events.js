@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Link from 'next/link';
 import ThatLink from '../shared/ThatLink';
 import ContentSection from '../shared/ContentSection';
+import LinkButton from '../shared/LinkButton';
 import { gridRepeat, below } from '../../utilities';
 
 const GET_EVENTS = gql`
@@ -55,34 +56,15 @@ const Event = styled.div`
   height: 750px;
   width: 400px;
   background-color: ${props => props.primaryColor};
+  margin-bottom: 4rem;
 
   ${below.small`
-      width: 300px;
+    width: 80%;
   `};
-
-  h1 {
-    text-align: center;
-    font-size: 5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    color: ${({ theme }) => theme.colors.fonts.light};
-    ${below.small`
-      font-size: 3rem;
-  `};
-  }
 
   img {
     object-fit: cover;
     width: 100%;
-  }
-
-  div.description {
-    padding: 1rem;
-    text-align: center;
-
-    p {
-      color: ${({ theme }) => theme.colors.fonts.light};
-    }
   }
 
   div.message {
@@ -91,13 +73,51 @@ const Event = styled.div`
     background-color: ${props => props.secondaryColor};
     bottom: 2rem;
     position: absolute;
-    width: inherit;
+    width: 100%;
 
     h5 {
       margin: 0;
       color: ${({ theme }) => theme.colors.fonts.light};
+      font-weight: 400;
     }
   }
+`;
+
+const EventHeading = styled.h3`
+  ext-align: center;
+  font-size: 5rem;
+  padding: 1rem;
+  color: ${({ theme }) => theme.colors.fonts.light};
+  margin: 0.75rem 0 0.25rem;
+
+  ${below.small`
+    font-size: 3rem;
+  `};
+`;
+
+const EventLink = styled(LinkButton)`
+  ${below.small`
+    width: auto;
+  `};
+
+  border-color: ${props => props.secondaryColor};
+  p {
+    color: ${props => props.secondaryColor};
+  }
+
+  &:hover {
+    border-color: ${props => props.secondaryColor};
+    background-color: ${props => props.secondaryColor};
+    p {
+      color: ${({ theme }) => theme.colors.fonts.light};
+    }
+  }
+`;
+
+const Description = styled.p`
+  padding: 1rem;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.fonts.light};
 `;
 
 const PartnerImage = styled.img`
@@ -115,14 +135,19 @@ const BecomeAPartner = styled.div`
 const BuildEvent = e => {
   const primary = `#${e.theme.primary}`;
   const secondary = `#${e.theme.secondary}`;
+  console.log('e.thtme', e.theme);
   return (
     <Cell center>
       <Event primaryColor={primary} secondaryColor={secondary}>
-        <h1>{e.name}</h1>
+        <EventHeading>{e.name}</EventHeading>
         <img src={e.theme.heroSlug} alt={e.name} />
-        <div className="description">
-          <p>{e.description}</p>
-        </div>
+        <Description>{e.description}</Description>
+        <EventLink
+          href={`/${e.slug}`}
+          label="Visit Camp"
+          primaryColor={primary}
+          secondaryColor={secondary}
+        />
         <div className="message">
           <Link href={e.featuredNotification.link} prefetch={false}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

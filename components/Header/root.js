@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import styled from 'styled-components';
 import Icon from '../shared/Icon';
-import SecondaryMemberNav from './SecondaryMemberNav';
-
+import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
 
 const StyledIcon = styled(Icon)`
@@ -33,78 +33,76 @@ const Greeting = styled.p`
   margin: 0;
 `;
 
-const RootNav = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkBlue};
-  position: relative;
-`;
+// const RootNav = styled.div`
+//   background-color: ${({ theme }) => theme.colors.darkBlue};
+//   position: relative;
+// `;
 
-const NavIcon = styled(Icon)`
-  fill: ${({ theme }) => theme.colors.white};
-  width: 5rem;
-  padding: 0 1rem;
-`;
+// const NavIcon = styled(Icon)`
+//   fill: ${({ theme }) => theme.colors.white};
+//   width: 5rem;
+//   padding: 0 1rem;
+// `;
 
-const StyledSecondaryNav = styled(SecondaryMemberNav)`
-  background-color: ${({ theme }) => theme.colors.white};
-  position: absolute;
-  list-style: none;
-  right: -1rem;
-  padding: 2rem;
-  margin: 0;
-  top: 10rem;
-  width: 20rem;
-  z-index: 100;
-  text-align: right;
-  padding-right: 3rem;
+// const StyledSecondaryNav = styled(SecondaryMemberNav)`
+//   background-color: ${({ theme }) => theme.colors.white};
+//   position: absolute;
+//   list-style: none;
+//   right: -1rem;
+//   padding: 2rem;
+//   margin: 0;
+//   top: 10rem;
+//   width: 20rem;
+//   z-index: 100;
+//   text-align: right;
+//   padding-right: 3rem;
 
-  &.on {
-    overflow: hidden;
-    transition: all 0.5s ease;
-    will-change: transform;
-    border: 1px solid gray;
-  }
+//   &.on {
+//     overflow: hidden;
+//     transition: all 0.5s ease;
+//     will-change: transform;
+//     border: 1px solid gray;
+//   }
 
-  &.off {
-    overflow: hidden;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    transition: all 0.5s ease;
-    will-change: transform;
-  }
-`;
+//   &.off {
+//     overflow: hidden;
+//     max-height: 0;
+//     padding-top: 0;
+//     padding-bottom: 0;
+//     margin-top: 0;
+//     margin-bottom: 0;
+//     transition: all 0.5s ease;
+//     will-change: transform;
+//   }
+// `;
 
 const RootHeader = ({ className, loading, user }) => {
-  const [navOpen, setNavOpen] = useState(false);
+  // const [navOpen, setNavOpen] = useState(false);
 
   return (
     <header className={className}>
       <StyledIcon icon="thatLogo" width="250" height="50" viewBoxWidth="400" />
       <div style={{ flexGrow: 2 }} />
 
-      {!loading && user.firstName && (
-        <Member>
+      <Member>
+        {!loading && !isEmpty(user) && (
           <Greeting>{`Hello, ${user.firstName}`}</Greeting>
-        </Member>
-      )}
-      <RootNav>
+        )}
+        {!loading && isEmpty(user) && (
+          <Greeting>
+            <ThatLink title="Sign In" href="/api/login" color="white" />
+          </Greeting>
+        )}
+      </Member>
+
+      {/* Soon to be built into full site nav */}
+      {/* <RootNav>
         <NavIcon
           icon="arrow"
           className={navOpen ? 'up' : 'down'}
           onClick={() => setNavOpen(!navOpen)}
         />
-
-        {!loading && (
-          <StyledSecondaryNav
-            user={user}
-            onLinkClick={() => setNavOpen(false)}
-            navOpen={navOpen}
-            className={navOpen === true ? 'on' : 'off'}
-          />
-        )}
-      </RootNav>
+      </RootNav> */}
     </header>
   );
 };

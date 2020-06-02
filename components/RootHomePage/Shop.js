@@ -23,13 +23,13 @@ const sharedBearStyles = css`
   height: 40rem;
 
   ${below.med`
-    height: 25rem;
+    height: 20rem;
   `};
 `;
 
 const LeftBear = styled.img`
   ${sharedBearStyles};
-  margin-right: 5rem;
+  margin-right: 7rem;
 
   ${below.med`
     margin-right: 0;
@@ -40,7 +40,7 @@ const LeftBear = styled.img`
 const RightBear = styled.img`
   ${sharedBearStyles}
   transform: scaleX(-1);
-  margin-left: 5rem;
+  margin-left: 7rem;
 
   ${below.med`
     margin-left: 0;

@@ -41,6 +41,7 @@ const NavIcon = styled(Icon)`
 `;
 
 const ThatLink = ({
+  className,
   color,
   href,
   icon,
@@ -93,6 +94,7 @@ const ThatLink = ({
             color={color}
             target={target}
             style={style}
+            className={className}
           >
             {displayedLink()}
           </StyledLink>
@@ -104,6 +106,7 @@ const ThatLink = ({
           target={target}
           onClick={handleClick}
           style={style}
+          className={className}
         >
           {displayedLink()}
         </StyledLink>
@@ -113,6 +116,7 @@ const ThatLink = ({
 };
 
 ThatLink.propTypes = {
+  className: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
   icon: PropTypes.string,
@@ -127,6 +131,7 @@ ThatLink.propTypes = {
 };
 
 ThatLink.defaultProps = {
+  className: '',
   color: '',
   icon: '',
   iconClass: '',

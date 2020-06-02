@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import fm from 'front-matter';
+import Link from 'next/link';
 import ContentSection from '../shared/ContentSection';
 import ThatLink from '../shared/ThatLink';
 import { above, below } from '../../utilities';
@@ -42,6 +43,16 @@ const StyledH3 = styled.h3`
 const StyledH2 = styled.h2`
   color: ${({ theme }) => theme.colors.fonts.light};
   margin: 1rem 0 0 0;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.highlight};
+  }
+`;
+
+const BlogLink = styled(ThatLink)`
+  ${below[twoColBp]`
+    display: none;
+  `};
 `;
 
 const RoundImageBlock = styled.div`
@@ -53,6 +64,10 @@ const RoundImageBlock = styled.div`
   overflow: hidden;
   flex-grow: 0;
   flex-shrink: 0;
+
+  ${below[twoColBp]`
+    margin-top: 4rem;
+  `};
 `;
 const HighlightImage = styled.img`
   width: 25rem;
@@ -95,9 +110,10 @@ const Blog = ({ className }) => {
       <Main>
         <TitleBlock>
           <StyledH3>Latest Update From</StyledH3>
-          <StyledH2>THAT Blog</StyledH2>
-
-          <ThatLink
+          <Link href="/blog" prefetch={false} passHref>
+            <StyledH2>THAT Blog</StyledH2>
+          </Link>
+          <BlogLink
             title="See All Blog Entries"
             href="/blog"
             isLocal
