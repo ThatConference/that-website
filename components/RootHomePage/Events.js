@@ -135,7 +135,7 @@ const BecomeAPartner = styled.div`
 const BuildEvent = e => {
   const primary = `#${e.theme.primary}`;
   const secondary = `#${e.theme.secondary}`;
-  console.log('e.thtme', e.theme);
+
   return (
     <Cell center>
       <Event primaryColor={primary} secondaryColor={secondary}>
