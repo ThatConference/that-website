@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import ContentSection from '../shared/ContentSection';
-import { below } from '../../utilities';
+import { above, below } from '../../utilities';
 
 const Container = styled.div`
   position: relative;
   text-align: center;
   height: 80vh;
+
+  ${below.xsmall`
+    max-width: 100vw;
+  `};
 `;
 
 const HeroImage = styled.img`
@@ -18,74 +20,75 @@ const HeroImage = styled.img`
   filter: brightness(0.4);
 `;
 
-const Content = styled(ContentSection)`
-  background: none;
-  position: absolute;
-  top: 30%;
-  height: 100%;
-
-  ${below.small`
-      top: 0;
-  `};
-`;
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-`;
-
 const TitleBlock = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+`;
 
-  h1 {
+const HeadingBlock = styled.div`
+  flex-grow: 2;
+  display: flex;
+  align-items: flex-end;
+  margin: auto;
+`;
+
+const StyledH1 = styled.h1`
+  font-size: 10rem;
+
+  ${above.large`
     font-size: 15rem;
-    color: ${({ theme }) => theme.colors.fonts.light};
+  `}
 
-    ${below.small`
-      font-size: 10rem;
-    `};
-  }
-  p {
-    text-align: justify;
-    padding-left: 20rem;
-    padding-right: 20rem;
-    color: ${({ theme }) => theme.colors.fonts.light};
+  ${below.xsmall`
+    font-size: 8rem;
+  `};
+`;
 
-    ${below.small`
-      font-size: 1.2rem;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    `};
-  }
+const WelcomeText = styled.p`
+  align-self: flex-end;
+  text-align: justify;
+  padding-left: 20rem;
+  padding-right: 20rem;
+  color: ${({ theme }) => theme.colors.fonts.light};
+  height: auto;
+  padding-bottom: 2rem;
+
+  ${below.med`
+    padding-left: 3rem;
+    padding-right: 3rem;
+  `};
+
+  ${below.xsmall`
+    font-size: 1.6rem;
+  `};
 `;
 
 const Hero = ({ className }) => {
   return (
     <Container className={className}>
       <HeroImage src="./images/landing_hero.jpg" loading="lazy" alt="THAT" />
-      <Content>
-        <Main>
-          <TitleBlock>
-            <h1>We. Love.</h1>
-            <h1>Geeks.</h1>
-            <p className="large-body-copy">
-              THAT is a polyglot community for all things technology where
-              members help, teach and support each other year round. What
-              started as an annual technology conference has grown into
-              community of practitioners teaching, sharing and supporting each
-              other daily. Through our multiple in-person and virtual events
-              each year we continual push to bring positive impact across our
-              industry and welcome everyone regardless of experience, tech stack
-              or background.
-            </p>
-          </TitleBlock>
-        </Main>
-      </Content>
+      <TitleBlock>
+        <HeadingBlock>
+          <StyledH1 className="font-light">
+            We. Love.
+            <br />
+            Geeks.
+          </StyledH1>
+        </HeadingBlock>
+        <WelcomeText className="large-body-copy">
+          THAT is a polyglot community for all things technology where members
+          help, teach and support each other year round. What started as an
+          annual technology conference has grown into community of practitioners
+          teaching, sharing and supporting each other daily. Through our
+          multiple in-person and virtual events each year we continual push to
+          bring positive impact across our industry and welcome everyone
+          regardless of experience, tech stack or background.
+        </WelcomeText>
+      </TitleBlock>
     </Container>
   );
 };

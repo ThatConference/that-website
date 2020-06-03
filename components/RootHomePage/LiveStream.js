@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import loadable from '@loadable/component';
 import ContentSection from '../shared/ContentSection';
-import ThatLink from '../shared/ThatLink';
+import LinkButton from '../shared/LinkButton';
 import { above, below } from '../../utilities';
 
 const ReactTwitchEmbedVideo = loadable(
@@ -79,8 +79,10 @@ const LiveStream = ({ className }) => {
     >
       <Main>
         <SideDetail>
-          <StyledH3>We're Going Live</StyledH3>
-          <p className="font-light bold">Livestream Title</p>
+          <StyledH3>
+            We're Live Every
+            <br /> Monday & Wednesday
+          </StyledH3>
           <p className="font-light">
             Broadcasting every Monday and Wednesday, THAT.Live is, well, live!
             Over on our Twitch channel, community members collaborate with host
@@ -93,11 +95,7 @@ const LiveStream = ({ className }) => {
           </p>
           <Links>
             <li>
-              <ThatLink
-                title="Watch THAT.live"
-                href="http://that.live"
-                color="white"
-              />
+              <LinkButton label="Watch THAT.live" href="http://that.live" />
             </li>
           </Links>
         </SideDetail>
