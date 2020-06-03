@@ -6,6 +6,10 @@ const Container = styled.div`
   position: relative;
   text-align: center;
   height: 80vh;
+
+  ${below.xsmall`
+    max-width: 100vw;
+  `};
 `;
 
 const HeroImage = styled.img`
@@ -38,6 +42,10 @@ const StyledH1 = styled.h1`
   ${above.large`
     font-size: 15rem;
   `}
+
+  ${below.xsmall`
+    font-size: 8rem;
+  `};
 `;
 
 const WelcomeText = styled.p`
@@ -52,6 +60,10 @@ const WelcomeText = styled.p`
   ${below.med`
     padding-left: 3rem;
     padding-right: 3rem;
+  `};
+
+  ${below.xsmall`
+    font-size: 1.6rem;
   `};
 `;
 
