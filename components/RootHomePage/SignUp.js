@@ -101,7 +101,7 @@ const SignUp = ({ className }) => {
       className={className}
       backgroundColor="thatBlue"
       backgroundOpacity={0.82}
-      backgroundImage="/images/root_join_conversation.jpg"
+      backgroundImage="/images/group.jpg"
     >
       <Main>
         <ConversationSection>
