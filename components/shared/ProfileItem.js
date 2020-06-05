@@ -21,6 +21,13 @@ const Company = styled.p`
   text-align: center;
 `;
 
+const ProfileLink = styled.a`
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+`;
+
 const ProfileItem = ({
   className,
   company,
@@ -36,24 +43,21 @@ const ProfileItem = ({
 
   return (
     <div className={className}>
-      <a href={`/member/${profileSlug}`} prefetch={false}>
+      <ProfileLink href={`/member/${profileSlug}`} prefetch={false}>
         <RoundImage
           imageUrl={imageUrl}
           size={size}
           showAccentLine={showAccentLine}
         />
-      </a>
-      <Name fontSize={baseFontSize}>{name}</Name>
-      <Title fontSize={baseFontSize - 0.4}>{title}</Title>
-      <Company fontSize={baseFontSize - 0.4}>{company}</Company>
+        <Name fontSize={baseFontSize}>{name}</Name>
+        <Title fontSize={baseFontSize - 0.4}>{title}</Title>
+        <Company fontSize={baseFontSize - 0.4}>{company}</Company>
+      </ProfileLink>
     </div>
   );
 };
 
 export default styled(ProfileItem)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 0 2rem;
   position: relative;
 
@@ -65,5 +69,12 @@ export default styled(ProfileItem)`
   img {
     margin-bottom: 1rem;
     object-fit: cover;
+  }
+
+  &:hover {
+    p {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
+    cursor: pointer;
   }
 `;

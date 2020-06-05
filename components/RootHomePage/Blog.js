@@ -46,6 +46,7 @@ const StyledH2 = styled.h2`
 
   &:hover {
     color: ${({ theme }) => theme.colors.highlight};
+    cursor: pointer;
   }
 `;
 
@@ -79,6 +80,14 @@ const HighlightImage = styled.img`
 
 const LatestBlogBlock = styled.div`
   padding-left: 4rem;
+
+  &:hover {
+    p,
+    h4 {
+      color: ${({ theme }) => theme.colors.highlight};
+    }
+    cursor: pointer;
+  }
 `;
 
 const BlogTitle = styled.h4`
@@ -128,17 +137,13 @@ const Blog = ({ className }) => {
             alt="Latest From THAT Blog"
           />
         </RoundImageBlock>
-        <LatestBlogBlock>
-          <BlogTitle>{parsedMarkdown.attributes.title}</BlogTitle>
-          <p className="font-light">{parsedMarkdown.attributes.excerpt}</p>
-          <ThatLink
-            title="Continue Reading..."
-            href={`/blog/${currentBlogSlug}`}
-            isLocal
-            color="white"
-            style={{ float: 'right' }}
-          />
-        </LatestBlogBlock>
+        <a href={`/blog/${currentBlogSlug}`} prefecth={false}>
+          <LatestBlogBlock>
+            <BlogTitle>{parsedMarkdown.attributes.title}</BlogTitle>
+            <p className="font-light">{parsedMarkdown.attributes.excerpt}</p>
+            <p className="float-right font-light">Continue Reading...</p>
+          </LatestBlogBlock>
+        </a>
       </Main>
     </ContentSection>
   );
