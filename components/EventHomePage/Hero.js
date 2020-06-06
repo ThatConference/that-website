@@ -59,7 +59,7 @@ const HeroImage = styled.img`
 const HeroSocials = styled(SocialLinks)`
   position: absolute;
   right: 1rem;
-  top: 3rem;
+  top: 1.2rem;
   flex-direction: column;
   a {
     margin: 0.3rem 0;
@@ -161,7 +161,7 @@ const Hero = ({ event, className }) => {
           </ActionButtonRow>
         </SideDetail>
         <HeroImage
-          src="images/clark_stage.jpg"
+          src="/images/clark_stage.jpg"
           loading="lazy"
           alt="Founder Clark Sell Kicking off THAT Conference"
         />

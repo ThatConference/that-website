@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-import togglePage from '../../utilities/togglePage';
+import togglePage from '../../../utilities/togglePage';
 
-import ContentSection from '../../components/shared/ContentSection';
+import ContentSection from '../../../components/shared/ContentSection';
 
 const speakers = () => {
   return (

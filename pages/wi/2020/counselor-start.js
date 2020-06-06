@@ -3,10 +3,10 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
 
-import Header from '../../components/CounselorStart/Header';
+import Header from '../../../components/CounselorStart/Header';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

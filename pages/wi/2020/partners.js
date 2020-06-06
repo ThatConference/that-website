@@ -7,12 +7,12 @@ import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
 import debug from 'debug';
 
-import ContentSection from '../../components/shared/ContentSection';
-import ImageContainer from '../../components/shared/ImageContainer';
-import LinkButton from '../../components/shared/LinkButton';
-import { below } from '../../utilities/breakpoint';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import { ActionButtonRow } from '../../components/shared/StandardStyles';
+import ContentSection from '../../../components/shared/ContentSection';
+import ImageContainer from '../../../components/shared/ImageContainer';
+import LinkButton from '../../../components/shared/LinkButton';
+import { below } from '../../../utilities/breakpoint';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
+import { ActionButtonRow } from '../../../components/shared/StandardStyles';
 
 const dlog = debug('that:partners');
 

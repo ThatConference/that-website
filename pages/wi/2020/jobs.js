@@ -4,17 +4,17 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { NextSeo } from 'next-seo';
 import _ from 'lodash';
-import LinkButton from '../../components/shared/LinkButton';
-import ContentSection from '../../components/shared/ContentSection';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import PartnerLogoWithInfo from '../../components/shared/PartnerLogoWithInfo';
-import JobListing from '../../components/shared/JobListing';
+import LinkButton from '../../../components/shared/LinkButton';
+import ContentSection from '../../../components/shared/ContentSection';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
+import PartnerLogoWithInfo from '../../../components/shared/PartnerLogoWithInfo';
+import JobListing from '../../../components/shared/JobListing';
 import {
   ActionButtonRow,
   HeroGraphicDiv,
   HeroGraphicImg,
-} from '../../components/shared/StandardStyles';
-import { below, above } from '../../utilities';
+} from '../../../components/shared/StandardStyles';
+import { below, above } from '../../../utilities';
 
 const GET_EVENT_PARTNER_JOBS = gql`
   query getPartners($eventId: ID!) {
