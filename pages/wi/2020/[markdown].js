@@ -9,9 +9,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import styled from 'styled-components';
 
-import Error from '../_error';
-import ContentSection from '../../components/shared/ContentSection';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import Error from '../../_error';
+import ContentSection from '../../../components/shared/ContentSection';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 // Query for event specific data to use in markdown rendering
 const GET_EVENT = gql`
@@ -99,7 +99,7 @@ RenderedMarkdown.getInitialProps = async context => {
   const slug = context.query.markdown;
 
   try {
-    const markdownContent = require(`../../markdown/${slug}.md`).default;
+    const markdownContent = require(`../../../markdown/${slug}.md`).default;
     return { markdownContent };
   } catch (err) {
     return { statusCode: 404 };

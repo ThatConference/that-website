@@ -18,7 +18,7 @@ import StayInTouch from '../components/RootHomePage/StayInTouch';
 
 const index = () => {
   return (
-    <div className="docs">
+    <div>
       <NextSeo
         title="THAT - Tech Events and Community"
         description="Our goal with THAT is to bridge the gap between professionals and businesses, beginner and experienced technologists, all while shining a light on the importance of family and caring for your whole self."

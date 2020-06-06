@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { Grid, Cell } from 'styled-css-grid';
 
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-import Icon from '../../components/shared/Icon';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import Icon from '../../../components/shared/Icon';
 
-import Header from '../../components/CounselorSelectionProcess/Header';
-import TheProcess from '../../components/CounselorSelectionProcess/TheProcess';
-import Bottom from '../../components/CounselorSelectionProcess/Bottom';
+import Header from '../../../components/CounselorSelectionProcess/Header';
+import TheProcess from '../../../components/CounselorSelectionProcess/TheProcess';
+import Bottom from '../../../components/CounselorSelectionProcess/Bottom';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

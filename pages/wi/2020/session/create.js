@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
-import ContentSection from '../../../components/shared/ContentSection';
-import Header from '../../../components/Session/Submit/Header';
-import Intro from '../../../components/Session/Submit/Intro';
-import Details from '../../../components/Session/Submit/Details';
-import AdditionalInfo from '../../../components/Session/Submit/AdditionalInfo';
-import Lastly from '../../../components/Session/Submit/Lastly';
-import Preview from '../../../components/Session/Submit/Preview';
-import User from '../../../components/User';
-import { useFetchUser } from '../../../hooks/user';
+import ContentSection from '../../../../components/shared/ContentSection';
+import Header from '../../../../components/Session/Submit/Header';
+import Intro from '../../../../components/Session/Submit/Intro';
+import Details from '../../../../components/Session/Submit/Details';
+import AdditionalInfo from '../../../../components/Session/Submit/AdditionalInfo';
+import Lastly from '../../../../components/Session/Submit/Lastly';
+import Preview from '../../../../components/Session/Submit/Preview';
+import User from '../../../../components/User';
+import { useFetchUser } from '../../../../hooks/user';
 
 const _ = require('lodash');
 

@@ -6,14 +6,14 @@ import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import _ from 'lodash';
-import ContentSection from '../../../components/shared/ContentSection';
-import LoadingIndicator from '../../../components/shared/LoadingIndicator';
-import SessionContent from '../../../components/Session/Voting/Shared/SessionContent';
-import { SmallerH1 } from '../../../components/shared/StandardStyles';
-import NavLinks from '../../../components/Session/Voting/Shared/NavLinks';
-import VotingFooter from '../../../components/Session/Voting/Shared/VotingFooter';
-import Stats from '../../../components/Session/Voting/Shared/Stats';
-import { below } from '../../../utilities/breakpoint';
+import ContentSection from '../../../../components/shared/ContentSection';
+import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
+import SessionContent from '../../../../components/Session/Voting/Shared/SessionContent';
+import { SmallerH1 } from '../../../../components/shared/StandardStyles';
+import NavLinks from '../../../../components/Session/Voting/Shared/NavLinks';
+import VotingFooter from '../../../../components/Session/Voting/Shared/VotingFooter';
+import Stats from '../../../../components/Session/Voting/Shared/Stats';
+import { below } from '../../../../utilities/breakpoint';
 
 const dlog = debug('that:session:create');
 

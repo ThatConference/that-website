@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
-import { below } from '../../utilities/breakpoint';
+import { below } from '../../../utilities/breakpoint';
 
-import ContentSection from '../../components/shared/ContentSection';
-import LinkButton from '../../components/shared/LinkButton';
-import WhatToExpect from '../../components/shared/WhatToExpect';
+import ContentSection from '../../../components/shared/ContentSection';
+import LinkButton from '../../../components/shared/LinkButton';
+import WhatToExpect from '../../../components/shared/WhatToExpect';
 
 const PartnerH3 = styled.h3`
   margin-bottom: 2.5rem;

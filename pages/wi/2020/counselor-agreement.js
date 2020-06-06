@@ -5,13 +5,13 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
 
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-import Header from '../../components/CounselorAgreement/Header';
-import Commitments from '../../components/CounselorAgreement/Commitments';
-import WhatsProvided from '../../components/CounselorAgreement/WhatsProvided';
-import Acknowledgment from '../../components/CounselorAgreement/Acknowledgment';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import Header from '../../../components/CounselorAgreement/Header';
+import Commitments from '../../../components/CounselorAgreement/Commitments';
+import WhatsProvided from '../../../components/CounselorAgreement/WhatsProvided';
+import Acknowledgment from '../../../components/CounselorAgreement/Acknowledgment';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

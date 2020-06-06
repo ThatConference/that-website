@@ -5,13 +5,13 @@ import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import moment from 'moment';
-import { below, gridRepeat } from '../../utilities';
+import { below, gridRepeat } from '../../../utilities';
 
-import ContentSection from '../../components/shared/ContentSection';
-import ImageContainer from '../../components/shared/ImageContainer';
-import LinkButton from '../../components/shared/LinkButton';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import TimelineSection from '../../components/shared/Timeline';
+import ContentSection from '../../../components/shared/ContentSection';
+import ImageContainer from '../../../components/shared/ImageContainer';
+import LinkButton from '../../../components/shared/LinkButton';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
+import TimelineSection from '../../../components/shared/Timeline';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {

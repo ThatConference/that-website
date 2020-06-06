@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { NextSeo } from 'next-seo';
 
-import ContentSection from '../../components/shared/ContentSection';
-import YouTubeVideo from '../../components/shared/YouTubeVideo';
-import LinkButton from '../../components/shared/LinkButton';
-import { ActionButtonRow } from '../../components/shared/StandardStyles';
-import { above, below } from '../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import YouTubeVideo from '../../../components/shared/YouTubeVideo';
+import LinkButton from '../../../components/shared/LinkButton';
+import { ActionButtonRow } from '../../../components/shared/StandardStyles';
+import { above, below } from '../../../utilities';
 
 // Currently points to 2018 promo video
 const THAT_PROMO_VIDEO_ID = 'R67gLABGvVE';
