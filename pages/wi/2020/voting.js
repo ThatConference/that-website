@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
-import { getMomentDate } from '../../utilities/dates/wi-dates';
-import { below } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-import Title from '../../components/shared/Title';
-import ThatLink from '../../components/shared/ThatLink';
-import LinkButton from '../../components/shared/LinkButton';
+import { getMomentDate } from '../../../utilities/dates/wi-dates';
+import { below } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import Title from '../../../components/shared/Title';
+import ThatLink from '../../../components/shared/ThatLink';
+import LinkButton from '../../../components/shared/LinkButton';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

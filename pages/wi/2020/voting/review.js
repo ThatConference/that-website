@@ -6,14 +6,14 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import { below } from '../../../utilities';
-import ContentSection from '../../../components/shared/ContentSection';
-import { SmallerH1 } from '../../../components/shared/StandardStyles';
-import NavLinks from '../../../components/Session/Voting/Shared/NavLinks';
-import Icon from '../../../components/shared/Icon';
-import LoadingIndicator from '../../../components/shared/LoadingIndicator';
-import SlimSession from '../../../components/Session/Voting/Shared/SlimSession';
-import Stats from '../../../components/Session/Voting/Shared/Stats';
+import { below } from '../../../../utilities';
+import ContentSection from '../../../../components/shared/ContentSection';
+import { SmallerH1 } from '../../../../components/shared/StandardStyles';
+import NavLinks from '../../../../components/Session/Voting/Shared/NavLinks';
+import Icon from '../../../../components/shared/Icon';
+import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
+import SlimSession from '../../../../components/Session/Voting/Shared/SlimSession';
+import Stats from '../../../../components/Session/Voting/Shared/Stats';
 
 const dlog = debug('that:session:create');
 

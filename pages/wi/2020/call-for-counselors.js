@@ -3,12 +3,12 @@ import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 
-import Header from '../../components/CallForCounselors/Header';
-import SummerCamp from '../../components/CallForCounselors/SummerCamp';
+import Header from '../../../components/CallForCounselors/Header';
+import SummerCamp from '../../../components/CallForCounselors/SummerCamp';
 // import TalkIdeas from '../../components/CallForCounselors/TalkIdeas';
-import Process from '../../components/CallForCounselors/Process';
-import Perks from '../../components/CallForCounselors/Perks';
-import LoadingIndicator from '../../components/shared/LoadingIndicator';
+import Process from '../../../components/CallForCounselors/Process';
+import Perks from '../../../components/CallForCounselors/Perks';
+import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {

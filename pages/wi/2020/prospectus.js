@@ -1,6 +1,6 @@
 import React from 'react';
 
-import redirect from '../../lib/redirect';
+import redirect from '../../../lib/redirect';
 
 const Prospectus = () => {
   return <> </>;

@@ -5,9 +5,9 @@ import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import { above, below, gridRepeat } from '../../utilities';
-import ContentSection from '../../components/shared/ContentSection';
-import TimelineSection from '../../components/shared/Timeline';
+import { above, below, gridRepeat } from '../../../utilities';
+import ContentSection from '../../../components/shared/ContentSection';
+import TimelineSection from '../../../components/shared/Timeline';
 
 const _ = require('lodash');
 
