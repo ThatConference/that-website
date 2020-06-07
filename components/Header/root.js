@@ -12,7 +12,7 @@ const StyledIcon = styled(Icon)`
   height: 8rem;
   align-self: center;
 
-  ${below.small`
+  ${below.small`    
     height: 7rem;
   `};
 `;
@@ -21,16 +21,16 @@ const Member = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary};
   display: flex;
   align-items: center;
-
-  ${below.xsmall`
-    display: none;
-  `};
 `;
 
 const Greeting = styled.p`
   color: ${({ theme }) => theme.colors.fonts.light};
   padding: 0 2rem;
   margin: 0;
+
+  ${below.xsmall`
+    padding: 0 0.75rem
+  `};
 `;
 
 // const RootNav = styled.div`
@@ -79,15 +79,20 @@ const Greeting = styled.p`
 const RootHeader = ({ className, loading, user }) => {
   // const [navOpen, setNavOpen] = useState(false);
 
+  const greeting = () => {
+    if (user.firstName) {
+      return `Hi ${user.firstName}!`;
+    }
+    return 'Heyo Camper!';
+  };
+
   return (
     <header className={className}>
       <StyledIcon icon="thatLogo" width="250" height="50" viewBoxWidth="400" />
       <div style={{ flexGrow: 2 }} />
 
       <Member>
-        {!loading && !isEmpty(user) && (
-          <Greeting>{`Hello, ${user.firstName}`}</Greeting>
-        )}
+        {!loading && !isEmpty(user) && <Greeting>{`${greeting()}`}</Greeting>}
         {!loading && isEmpty(user) && (
           <Greeting>
             <ThatLink title="Sign In" href="/api/login" color="white" />

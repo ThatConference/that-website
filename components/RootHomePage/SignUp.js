@@ -67,6 +67,10 @@ const NewsletterSection = styled(Section)`
     text-align: center;
   }
 
+  p {
+    color: ${({ theme }) => theme.colors.fonts.light};
+  }
+
   button {
     background-color: ${({ theme }) => theme.colors.backgroundColor};
 
@@ -108,7 +112,7 @@ const SignUp = ({ className }) => {
           <h3 className="font-light">Join The Conversation</h3>
           <SlackButton
             label="THAT Slack"
-            href="https://wwww.thatslack.slack.com"
+            href="https://thatslack.thatconference.com/"
             image="./images/Slack_Mark.svg"
           />
         </ConversationSection>

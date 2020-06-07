@@ -63,7 +63,7 @@ const Shop = ({ className }) => {
           </p>
           <LinkButton
             label="Go to THAT Store"
-            href="http://wwww.thatconference.store"
+            href="http://thatconference.store"
             backgroundColor="primary"
             borderColor="white"
             color="white"
