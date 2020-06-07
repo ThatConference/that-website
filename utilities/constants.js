@@ -208,8 +208,8 @@ export const socialConstants = {
       description: 'Our platform is open source and we love contributors!',
     },
     twitch: {
-      url: 'https://that.live',
-      description: 'Watch us LIVE every Mon + Wed @ 12pm CST',
+      url: 'http://that.live',
+      description: 'Watch us LIVE every Mon + Wed @ 12pm Central',
     },
   }),
 

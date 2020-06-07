@@ -9,6 +9,13 @@ import YouTubeVideo from '../shared/YouTubeVideo';
 import { SlimCenteredH2 } from '../shared/StandardStyles';
 import { gridRepeat, below } from '../../utilities';
 
+const VideosGrid = styled(Grid)`
+  ${below.xsmall`
+    display: block;
+
+  `};
+`;
+
 const VideoCell = styled(Cell)`
   width: 39rem;
   margin: auto;
@@ -16,6 +23,7 @@ const VideoCell = styled(Cell)`
 
   ${below.xsmall`
     width: 30rem;
+    margin-bottom: 2rem;
   `};
 `;
 
@@ -33,9 +41,14 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
   height: 20rem;
 `;
 
+const FlexCenteredContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const PaddedLinkButton = styled(LinkButton)`
   margin-top: 6rem;
-  margin-left: 3rem;
 
   ${below.small`
     margin-left: 0;
@@ -47,7 +60,7 @@ const Keynotes = ({ className }) => {
     // TO DO - mobile width is off
     <ContentSection className={className}>
       <SlimCenteredH2>Past Keynotes</SlimCenteredH2>
-      <Grid columns={gridRepeat.small} alignContent="center">
+      <VideosGrid columns={gridRepeat.small} alignContent="center">
         <VideoCell center>
           <ResponsiveYouTube videoId="Lp-Xqj8wSMg" />
           <Title className="bold">
@@ -65,19 +78,21 @@ const Keynotes = ({ className }) => {
           <Title className="bold">Adventure as a Career Plan</Title>
           <Counselor>Jason Lengstorf</Counselor>
         </VideoCell>
-      </Grid>
+      </VideosGrid>
 
-      <PaddedLinkButton
-        href="http://youtube.com/thatconference/"
-        label="See More on THAT You Tube"
-        target="_blank"
-        backgroundColor="primary"
-        borderColor="white"
-        color="white"
-        hoverBorderColor="primary"
-        hoverColor="primary"
-        hoverBackgroundColor="white"
-      />
+      <FlexCenteredContainer>
+        <PaddedLinkButton
+          href="http://youtube.com/thatconference/"
+          label="See More on THAT YouTube"
+          target="_blank"
+          backgroundColor="primary"
+          borderColor="white"
+          color="white"
+          hoverBorderColor="primary"
+          hoverColor="primary"
+          hoverBackgroundColor="white"
+        />
+      </FlexCenteredContainer>
     </ContentSection>
   );
 };

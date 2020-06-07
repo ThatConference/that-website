@@ -45,6 +45,10 @@ export default styled(Footer)`
     align-items: center;
   `};
 
+  ${below.xsmall`
+    padding: 0.3rem;
+  `};
+
   div.social-block {
     margin: 0.3rem;
   }
