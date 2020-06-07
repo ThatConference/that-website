@@ -7,7 +7,7 @@ import { FormRow } from '../../shared/FormLayout';
 // import IconText from '../../shared/IconText';
 
 const GET_PROFILE_SLUG_VALID = gql`
-  query isProfileSlugTaken($slug: String!) {
+  query isProfileSlugTaken($slug: Slug!) {
     members {
       isProfileSlugTaken(slug: $slug)
     }
@@ -56,6 +56,7 @@ const ContactInfoForm = ({
       onCompleted: ({ members }) => {
         setValidProfileSlug(!members.isProfileSlugTaken);
       },
+      onError: () => setValidProfileSlug(false),
     },
   );
 
@@ -70,7 +71,7 @@ const ContactInfoForm = ({
       }
 
       if (validProfileSlug === false) {
-        return 'Already Taken';
+        return 'Slug already taken or invalid characters';
       }
     }
     return null;
@@ -121,7 +122,7 @@ const ContactInfoForm = ({
             }
           }}
           required
-          helpText="Part of the path to your THAT Profile (i.e. thatconference.com/member/camper1)"
+          helpText="Part of the path to your THAT Profile (i.e. thatconference.com/member/<Profile Slug>). Valid characters: letters, numbers, underscore and dash"
         />
         {/* <ProfileSlugValid>
           {!validProfileSlug && (
