@@ -31,6 +31,12 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h3 {
+    ${below.xsmall`
+     text-align: center;
+   `};
+  }
 `;
 
 const ProfileSection = styled.div`

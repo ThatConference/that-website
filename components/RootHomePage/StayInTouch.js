@@ -52,11 +52,24 @@ const StayInTouch = ({ className }) => {
 export default styled(StayInTouch)`
   h2 {
     margin: 3rem 0;
+
+    ${below.xsmall`
+     text-align: center;
+   `};
   }
 
   h5 {
     margin-top: 2rem;
     margin-bottom: 0.5rem;
+  }
+
+  h2,
+  h5,
+  p,
+  div.social-links {
+    ${below.xsmall`
+     text-align: center;
+   `};
   }
 
   div.social-links {
@@ -74,6 +87,10 @@ export default styled(StayInTouch)`
 
       ${below.small`
         right: 30%;
+      `};
+
+      ${below.xsmall`
+        right: 15%;
       `};
     }
 

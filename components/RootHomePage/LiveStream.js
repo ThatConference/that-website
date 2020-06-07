@@ -65,6 +65,10 @@ const Links = styled.ul`
 
     &:first-child {
       padding-right: 4rem;
+
+      ${below.xsmall`
+        padding-right: 0;
+      `};
     }
   }
 `;
