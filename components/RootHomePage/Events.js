@@ -50,6 +50,12 @@ const GET_EVENTS = gql`
   }
 `;
 
+const EventsGrid = styled(Grid)`
+  ${below.xsmall`
+    display: block;
+  `};
+`;
+
 const Event = styled.div`
   position: relative;
   margin: auto;
@@ -219,7 +225,7 @@ const Events = ({ className }) => {
 
   return (
     <ContentSection className={className}>
-      <Grid
+      <EventsGrid
         columns={gridRepeat.small}
         alignContent="center"
         justifyContent="space-between"
@@ -227,7 +233,7 @@ const Events = ({ className }) => {
         {events.map(e => {
           return BuildEvent(e);
         })}
-      </Grid>
+      </EventsGrid>
       <h2 className="centered-text">Events Brought To You By</h2>
       <Grid
         columns={gridRepeat.xsmall}
