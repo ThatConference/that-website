@@ -127,8 +127,8 @@ const HeroSection = ({
             hoverBorderColor="white"
             hoverColor="primary"
             hoverBackgroundColor="white"
-            target="blank"
-            isLocal={false}
+            target={connectWithUsUrl.startsWith('/') ? '' : 'blank'}
+            isLocal={connectWithUsUrl.startsWith('/')}
           />
           <DownArrow icon="arrow" />
         </div>

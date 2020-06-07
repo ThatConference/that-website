@@ -212,35 +212,48 @@ const getCityState = ({ partner }) => {
 };
 
 const CompanyNotFound = () => (
-  <ContentSection
-    style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignContent: 'center',
-    }}
-  >
-    <h2>Not Yet a THAT Partner</h2>
-    <ActionButtonRow>
-      <LinkButton
-        href="/wi/become-a-partner"
-        label="Become a Partner"
-        color="thatBlue"
-        borderColor="thatBlue"
-        hoverBorderColor="thatBlue"
-        hoverColor="white"
-        hoverBackgroundColor="thatBlue"
-      />
-      <LinkButton
-        href="/partners"
-        label="View Past Partners"
-        color="thatBlue"
-        borderColor="thatBlue"
-        hoverBorderColor="thatBlue"
-        hoverColor="white"
-        hoverBackgroundColor="thatBlue"
-      />
-    </ActionButtonRow>
-  </ContentSection>
+  <MainDiv>
+    <HeroSection
+      companyName="Not Yet A THAT Partner"
+      heroImageUrl=""
+      connectWithUsUrl="/wi/become-a-partner"
+      location="wi"
+    />
+    <ContentSection
+      style={{
+        display: 'flex',
+        alignContent: 'center',
+      }}
+    >
+      <p className="large-body-copy">
+        We believe that by partnering with our sponsors not only can we help
+        enable your goals but it also creates a more engaging environment for
+        for our attendees. Engage with true practitioners, thought leaders and
+        entrepreneurs while enjoying the perks of summer camp at a giant
+        waterpark. Join us and become part of THAT family.
+      </p>
+      <ActionButtonRow>
+        <LinkButton
+          href="/wi/become-a-partner"
+          label="Become a Partner"
+          color="thatBlue"
+          borderColor="thatBlue"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
+        />
+        <LinkButton
+          href="/partners"
+          label="View Past Partners"
+          color="thatBlue"
+          borderColor="thatBlue"
+          hoverBorderColor="thatBlue"
+          hoverColor="white"
+          hoverBackgroundColor="thatBlue"
+        />
+      </ActionButtonRow>
+    </ContentSection>
+  </MainDiv>
 );
 
 function PartnerDetail() {
