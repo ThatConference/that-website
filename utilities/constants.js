@@ -175,41 +175,41 @@ export const memberConstants = {
 export const socialConstants = {
   thatSocialLinks: Object.freeze({
     facebook: {
-      url: 'https://www.facebook.com/ThatConference/',
+      url: 'https://www.facebook.com/THATconference/',
       description: 'Latest news, announcements and happenings',
     },
     instagram: {
-      url: 'https://www.instagram.com/thatconference/',
+      url: 'https://www.instagram.com/THATconference/',
       description: "Who doesn't love seeing pics of all THAT goodness!",
     },
     twitter: {
-      url: 'https://twitter.com/ThatConference',
+      url: 'https://twitter.com/THATconference',
       description: 'Latest news, announcements and happenings',
     },
     medium: {
-      url: 'https://medium.com/that-conference',
+      url: 'https://medium.com/THAT-conference',
       description: 'Amazing articles written by members of THAT Community',
     },
     youtube: {
-      url: 'https://www.youtube.com/thatconference/',
+      url: 'https://www.youtube.com/THATconference/',
       description:
         'All of our past recordings, live broadcasts and THAT Conference keynotes',
     },
     flickr: {
-      url: 'https://www.flickr.com/photos/thatconference/',
+      url: 'https://www.flickr.com/photos/THATconference/',
       description: 'Pics of all past THAT Conferences. We mean, all.the.pics.',
     },
     linkedin: {
-      url: 'https://www.linkedin.com/company/that-conference',
+      url: 'https://www.linkedin.com/company/THAT-conference',
       description: 'Where we connect to all our community and partners',
     },
     github: {
-      url: 'https://github.com/ThatConference',
+      url: 'https://github.com/THATconference',
       description: 'Our platform is open source and we love contributors!',
     },
     twitch: {
-      url: 'http://that.live',
-      description: 'Watch us LIVE every Mon + Wed @ 12pm Central',
+      url: 'https://that.live',
+      description: 'Watch us LIVE every Mon + Wed @ 12pm CST',
     },
   }),
 
