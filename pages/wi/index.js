@@ -1,7 +1,11 @@
-import React from 'react';
+/**
+ * WI landing page
+ */
 
-const index = () => {
-  return <p>This is the root page for Wisconsin</p>;
-};
+import redirect from '../../components/shared/Redirect';
 
-export default index;
+/**
+ * TO DO: hardcoded for now, eventually be great to have this
+ * dynamically pull current event for location
+ */
+export default redirect('/wi/2020');
