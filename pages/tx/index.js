@@ -1,7 +1,11 @@
-import React from 'react';
+/**
+ * TX landing page
+ */
 
-const index = () => {
-  return <p>This is the root page for Texas</p>;
-};
+import redirect from '../../components/shared/Redirect';
 
-export default index;
+/**
+ * TO DO: hardcoded for now, eventually be great to have this
+ * dynamically pull current event for location
+ */
+export default redirect('/tx/2021');

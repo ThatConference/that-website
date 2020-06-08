@@ -9,7 +9,7 @@ import SecondaryMemberNav from './SecondaryMemberNav';
 const _ = require('lodash');
 
 const StyledSecondaryNav = styled(SecondaryMemberNav)`
-  display: ${({ userMenuOpen }) => (userMenuOpen ? '' : 'none')};
+  display: ${({ userMenuOpen }) => (userMenuOpen ? 'block' : 'none')};
   background-color: ${({ theme }) => theme.colors.white};
   position: absolute;
   list-style: none;
