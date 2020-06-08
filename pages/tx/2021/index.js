@@ -31,6 +31,7 @@ const GET_EVENT = gql`
         name
         slogan
         slug
+        description
         startDate
         endDate
         isVotingOpen
@@ -58,6 +59,14 @@ const GET_EVENT = gql`
           link
           linkText
         }
+        partners {
+          id
+          slug
+          level
+          placement
+          companyName
+          companyLogo
+        }
       }
     }
   }
@@ -75,6 +84,8 @@ const Index = ({ incomingSlug }) => {
   }
 
   const { eventBySlug: event } = data.events;
+
+  console.log(event);
 
   return (
     <div>
