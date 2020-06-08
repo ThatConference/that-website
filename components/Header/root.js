@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import styled from 'styled-components';
+import Link from 'next/link';
 import Icon from '../shared/Icon';
 import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
@@ -81,7 +82,14 @@ const RootHeader = ({ className, loading, user }) => {
 
   return (
     <header className={className}>
-      <StyledIcon icon="thatLogo" width="250" height="50" viewBoxWidth="400" />
+      <Link href="/" prefetch={false}>
+        <StyledIcon
+          icon="thatLogo"
+          width="250"
+          height="50"
+          viewBoxWidth="400"
+        />
+      </Link>
       <div style={{ flexGrow: 2 }} />
 
       <Member>
