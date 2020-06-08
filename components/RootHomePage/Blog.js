@@ -97,7 +97,7 @@ const BlogTitle = styled.h4`
 
 const Blog = ({ className }) => {
   let markdownContent = '';
-  const currentBlogSlug = 'april-2020-update';
+  const currentBlogSlug = 'refactoring-THAT-conference-2020';
 
   try {
     // eslint-disable-next-line global-require, import/no-dynamic-require
