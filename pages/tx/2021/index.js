@@ -67,6 +67,11 @@ const GET_EVENT = gql`
           companyName
           companyLogo
         }
+        theme {
+          primary
+          secondary
+          heroSlug
+        }
       }
     }
   }
