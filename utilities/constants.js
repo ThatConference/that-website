@@ -209,7 +209,7 @@ export const socialConstants = {
     },
     twitch: {
       url: 'https://that.live',
-      description: 'Watch us LIVE every Mon + Wed @ 12pm CST',
+      description: 'Watch us LIVE every Mon + Wed @ 12pm Central',
     },
   }),
 
