@@ -166,7 +166,10 @@ const Date = styled(Detail)`
 
 const TimelineSection = ({ event, className }) => {
   const { milestones, notifications } = event.get;
-  const groupedMilestones = _.groupBy(milestones, m => moment.utc(m.dueDate));
+  const sortedMilestones = _.sortBy(milestones, m => moment.utc(m.dueDate));
+  const groupedMilestones = _.groupBy(sortedMilestones, m =>
+    moment.utc(m.dueDate),
+  );
 
   const featured = _.find(notifications, n => {
     return n.shouldFeature === true;

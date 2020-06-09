@@ -14,8 +14,11 @@ import DefaultLayout from '../components/layouts/Default';
 Router.events.on('routeChangeComplete', url => gtag.pageview(url));
 
 Sentry.init(getSentryConfig());
-LogRocket.init(process.env.LOG_ROCKET);
-
+if (process.env.NODE_ENV !== 'development') {
+  // only initialize LogRocket in non-dev environments
+  // https://docs.logrocket.com/docs/development#using-logrocket-in-development
+  LogRocket.init(process.env.LOG_ROCKET);
+}
 class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient, err } = this.props;
