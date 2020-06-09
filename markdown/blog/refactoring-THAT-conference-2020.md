@@ -4,6 +4,7 @@ description: Refactoring THAT 2020, Announcing THAT WI 2021, and THAT TX 2021! Y
 leadImage: refactoring-THAT-conference-2020.jpg
 publishedDate: May 19, 2020
 author: THAT Crew
+excerpt: The vast majority of us have been sheltered at home now for months. At first what seemed like a few screwed up timelines, has quickly become a global historic event. Uniformly, our road ahead has many unanswered questions, but one thing still remains true, our community is more important than ever and so is our collective safety.
 ---
 
 ### Refactoring THAT Conference 2020
