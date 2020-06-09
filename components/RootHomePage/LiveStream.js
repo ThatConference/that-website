@@ -88,7 +88,7 @@ const LiveStream = ({ className }) => {
             <br /> Monday & Wednesday
           </StyledH3>
           <p className="font-light">
-            Broadcasting every Monday and Wednesday, THAT.Live is, well, live!
+            Broadcasting every Monday and Wednesday, THAT.live is, well, live!
             Over on our Twitch channel, community members collaborate with host
             Clark Sell and share their knowledge and best practices for all
             things technology and not technology. We invite you to watch and
