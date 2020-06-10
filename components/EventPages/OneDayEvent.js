@@ -79,8 +79,6 @@ const OneDayEvent = ({ eventSlug }) => {
 
   const { eventBySlug: event } = data.events;
 
-  console.log(event);
-
   return (
     <div>
       <EventSeo event={event} />

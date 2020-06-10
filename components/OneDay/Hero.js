@@ -25,33 +25,20 @@ const StyledH1 = styled.h1`
     font-size: 15rem;
   `}
 
-  ${below.xsmall`
-    font-size: 8rem;
+  ${below.small`
+    font-size: 7rem;
   `};
 `;
 
 const ResponsiveYouTube = styled(YouTubeVideo)`
-  height: 30rem;
-  width: 60rem;
+  height: 50vh;
+  width: 90vw;
+  max-height: 35rem;
+  max-width: 60rem;
   margin: auto;
 
-  ${below.larger`
-    min-width: 50rem;
-    min-height: 35rem;
-    display: inline-grid;
-    max-width: 55rem;
-    margin: auto;
-  `};
-
-  ${below.med`
-    min-width: 40rem;
-    max-width: 45rem;
-    min-height: 30rem;
-  `};
-
   ${below.small`
-    min-width: 40rem;
-    min-height: 30rem;
+   max-height: 25vh;
   `};
 `;
 
@@ -65,19 +52,18 @@ const Main = styled(ContentSection)`
 const StyledParagraph = styled.p`
   align-self: flex-end;
   text-align: justify;
-  padding-left: 40rem;
-  padding-right: 40rem;
+  max-width: 60rem;
   height: auto;
   padding-bottom: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   margin: 1rem auto;
 
-  ${below.med`
-    padding-left: 3rem;
-    padding-right: 3rem;
-  `};
-
-  ${below.xsmall`
+  ${below.small`
     font-size: 1.6rem;
+    padding-bottom: 0;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   `};
 `;
 

@@ -46,7 +46,7 @@ const WelcomeText = styled.p`
     padding-right: 3rem;
   `};
 
-  ${below.xsmall`
+  ${below.small`
     font-size: 1.6rem;
   `};
 `;
