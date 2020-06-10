@@ -27,6 +27,7 @@ const GET_EVENT = gql`
         id
         name
         slogan
+        description
         slug
         startDate
         endDate
@@ -78,6 +79,8 @@ const OneDayEvent = ({ eventSlug }) => {
 
   const { eventBySlug: event } = data.events;
 
+  console.log(event);
+
   return (
     <div>
       <EventSeo event={event} />
@@ -96,7 +99,7 @@ const OneDayEvent = ({ eventSlug }) => {
       />
       <Partners event={event} />
       <Upcoming />
-      {/* <StayInTouch /> */}
+      <StayInTouch />
       <PageFooter />
     </div>
   );

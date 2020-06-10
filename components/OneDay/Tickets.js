@@ -5,7 +5,7 @@ import ContentSection from '../shared/ContentSection';
 
 const Tickets = ({ className }) => {
   return (
-    <ContentSection className={className}>
+    <ContentSection id="tickets" className={className}>
       <p>this is the one day tickets</p>
     </ContentSection>
   );

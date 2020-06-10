@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 import { below } from '../../utilities';
 
 const Container = styled.div`
@@ -28,6 +28,16 @@ const HereContainer = ({ className, imageSource, imageAlt, children }) => {
       {children}
     </Container>
   );
+};
+
+HereContainer.propTypes = {
+  className: PropTypes.string,
+  imageSource: PropTypes.string.isRequired,
+  imageAlt: PropTypes.string.isRequired,
+};
+
+HereContainer.defaultProps = {
+  className: '',
 };
 
 export default styled(HereContainer)``;
