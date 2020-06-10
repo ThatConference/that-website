@@ -32,7 +32,7 @@ const StyledH1 = styled.h1`
 
 const ResponsiveYouTube = styled(YouTubeVideo)`
   height: 40rem;
-  width: 60rem;  
+  width: 60rem;
   margin: auto;
 `;
 
@@ -59,9 +59,9 @@ const Hero = ({ className, event }) => {
         </HeadingBlock>
         <Main>
           <ResponsiveYouTube videoId={VIDEO_ID} />
-         </Main>
-       </TitleBlock>
-     </HeroContainer>
+        </Main>
+      </TitleBlock>
+    </HeroContainer>
   );
 };
 

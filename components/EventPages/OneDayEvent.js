@@ -55,6 +55,11 @@ const GET_EVENT = gql`
           link
           linkText
         }
+        theme {
+          primary
+          secondary
+          heroSlug
+        }
       }
     }
   }
@@ -91,7 +96,7 @@ const OneDayEvent = ({ eventSlug }) => {
       />
       <Partners event={event} />
       <Upcoming />
-      <StayInTouch />
+      {/* <StayInTouch /> */}
       <PageFooter />
     </div>
   );
