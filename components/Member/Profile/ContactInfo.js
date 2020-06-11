@@ -116,9 +116,15 @@ const ContactInfoForm = ({
           disabled={editMode}
           onBlur={e => {
             if (!editMode && e.target.value) {
-              validateSlug({
-                variables: { slug: e.target.value },
-              });
+              let userSlug = e.target.value;
+              let isSlugValid = /^[a-zA-Z0-9-_]+$/g.test(userSlug)
+              if (isSlugValid) {
+                validateSlug({
+                  variables: { slug: userSlug },
+                });
+              } else {
+                errors.profileSlug = 'Invalid characters';
+              }
             }
           }}
           required
