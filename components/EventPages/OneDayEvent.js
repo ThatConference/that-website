@@ -12,7 +12,7 @@ import Countdown from '../OneDay/Countdown';
 import Hero from '../OneDay/Hero';
 import OpenSpaces from '../OneDay/OpenSpaces';
 import Partners from '../OneDay/Partners';
-import SessionHighlight from '../OneDay/SessionHighlight';
+import SessionHighlight from '../shared/SessionHighlight';
 import Tickets from '../OneDay/Tickets';
 import TicketUpgrades from '../OneDay/TicketUpgrades';
 import Upcoming from '../OneDay/Upcoming';
@@ -55,6 +55,14 @@ const GET_EVENT = gql`
           link
           linkText
         }
+        partners {
+          id
+          slug
+          level
+          placement
+          companyName
+          companyLogo
+        }
       }
     }
   }
@@ -79,9 +87,9 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
       <Hero event={event} />
       <Countdown event={event} />
       <About />
-      <SessionHighlight title="Opening Keynote" />
+      <SessionHighlight title="Opening Keynote" subtitle="Announcing Soon" />
       <OpenSpaces />
-      <SessionHighlight title="Closing Ceremonies" />
+      <SessionHighlight title="Closing Ceremonies" subtitle="Announcing Soon" />
       <Tickets tickets={tickets} />
       <TicketUpgrades />
       <ContentSection
@@ -89,7 +97,7 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
         backgroundOpacity={0.82}
         backgroundImage="/images/group.jpg"
       />
-      <Partners event={event} />
+      <Partners partners={event.partners} />
       <Upcoming />
       <StayInTouch />
       <PageFooter />
