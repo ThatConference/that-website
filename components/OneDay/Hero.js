@@ -77,6 +77,7 @@ const StyledButton = styled(LinkButton)`
 
 const Hero = ({ className, event }) => {
   // KB: Temporary until event is populated
+  // eslint-disable-next-line no-param-reassign
   event.theme.heroSlug = 'landing_hero.jpg';
   return (
     <HeroContainer

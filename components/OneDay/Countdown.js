@@ -94,8 +94,6 @@ const TreeIcon = styled(Icon)`
 `;
 
 const Countdown = ({ className, event }) => {
-  console.log(event.startDate);
-
   return (
     <ContentSection
       className={className}
