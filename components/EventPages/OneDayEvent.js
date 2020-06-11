@@ -60,7 +60,7 @@ const GET_EVENT = gql`
           primary
           secondary
           heroSlug
-}
+        }
         partners {
           id
           slug
