@@ -1,23 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import ContentSection from '../shared/ContentSection';
+import DetailToLearnMore from '../shared/DetailToLearnMore';
 
 // Can hardcode for now, or hardcode query to pull next event deets we want to display
-const Upcoming = ({ className }) => {
+const Upcoming = () => {
   return (
-    <ContentSection className={className}>
-      <p>this is the one day upcoming</p>
-    </ContentSection>
+    <DetailToLearnMore
+      blockDescription="Over four days, folks of diverse technology backgrounds and expertise levels gather to take advantage of multiple learning mediums to maximize one’s community and career advancements."
+      blockLinkText="Learn More"
+      blockLinkUrl="/wi/2021"
+      blockTitle="#THATConference WI 2021"
+      largeTitle="Events"
+      smallTitle="Upcoming"
+      titleLinkText="See All Upcoming Events"
+      titleLinkUrl="/"
+    />
   );
 };
 
-Upcoming.propTypes = {
-  className: PropTypes.string,
-};
-
-Upcoming.defaultProps = {
-  className: '',
-};
-
-export default styled(Upcoming)``;
+export default Upcoming;
