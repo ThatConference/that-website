@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MerhHighlight from '../shared/MerhHighlight';
+import MerchHighlight from '../shared/MerchHighlight';
 
 const TicketUpgrades = ({ className }) => {
   return (
-    <MerhHighlight
+    <MerchHighlight
       title="Ticket Upgrades"
       subtitle="Add Some Merch To Your Ticket Purch!!"
       linkText="Get Your THAT Merch + Ticket"

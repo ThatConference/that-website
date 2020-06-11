@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import MerhHighlight from '../shared/MerhHighlight';
+import MerchHighlight from '../shared/MerchHighlight';
 
 const Shop = ({ className }) => {
   return (
-    <MerhHighlight
+    <MerchHighlight
       title="Get That Gear"
       subtitle="That Store Has Your Favorite Merch"
       linkText="Go to THAT Store"
