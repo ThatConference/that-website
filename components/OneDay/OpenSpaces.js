@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ContentSection from '../shared/ContentSection';
+import TitledContentBlock from '../shared/TitledContentBlock';
 
 const OpenSpaces = ({ className }) => {
   return (
-    <ContentSection className={className}>
-      <p>this is the one day open spaces</p>
-    </ContentSection>
+    <TitledContentBlock
+      title="Open Spaces"
+      titleColor="white"
+      subtitle="#THAT2020 CREATED BY… YOU!"
+      subtitleColor="white"
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac hendrerit sem, at ullamcorper nunc. Donec vehicula id sapien vel dapibus. Nulla a odio diam. Nunc vel odio ex. Etiam dictum mollis placerat. Pellentesque vel posuere velit."
+      textColor="white"
+      backgroundColor="primary"
+      backgroundOpacity={0.7}
+      backgroundImage="/images/landing_hero.jpg"
+      buttonText="What Are Open Spaces?"
+      buttonLinkUrl="http://wwww.someyoutubeurl.com"
+      buttonIsLocal={false}
+      className={`centered-text ${className}`}
+    />
   );
 };
 
