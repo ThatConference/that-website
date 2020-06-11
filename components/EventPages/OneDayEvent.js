@@ -60,7 +60,7 @@ const GET_EVENT = gql`
   }
 `;
 
-const OneDayEvent = ({ eventSlug }) => {
+const OneDayEvent = ({ eventSlug, tickets }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { slug: eventSlug },
   });
@@ -82,7 +82,7 @@ const OneDayEvent = ({ eventSlug }) => {
       <SessionHighlight title="Opening Keynote" />
       <OpenSpaces />
       <SessionHighlight title="Closing Ceremonies" />
-      <Tickets />
+      <Tickets tickets={tickets} />
       <TicketUpgrades />
       <ContentSection
         backgroundColor="thatBlue"
@@ -99,8 +99,11 @@ const OneDayEvent = ({ eventSlug }) => {
 
 OneDayEvent.propTypes = {
   eventSlug: PropTypes.string.isRequired,
+  tickets: PropTypes.shape([]),
 };
 
-OneDayEvent.defaultProps = {};
+OneDayEvent.defaultProps = {
+  tickets: [],
+};
 
 export default styled(OneDayEvent)``;
