@@ -76,7 +76,7 @@ const SocialLinks = ({
     <SocialLinksContainer className={className} rowOrColumn={flexDirection}>
       {Object.keys(socialLinks).map(key => {
         return (
-          <SocialBlock size={size} className="social-block">
+          <SocialBlock size={size} className="social-block" key={key}>
             <StyledLink
               href={socialLinks[key].url}
               target="_blank"

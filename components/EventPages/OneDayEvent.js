@@ -27,6 +27,7 @@ const GET_EVENT = gql`
         id
         name
         slogan
+        description
         slug
         startDate
         endDate
@@ -54,6 +55,11 @@ const GET_EVENT = gql`
           endDate
           link
           linkText
+        }
+        theme {
+          primary
+          secondary
+          heroSlug
         }
         partners {
           id

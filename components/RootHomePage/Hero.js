@@ -2,23 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { above, below } from '../../utilities';
 
-const Container = styled.div`
-  position: relative;
-  text-align: center;
-  height: 80vh;
-
-  ${below.xsmall`
-    max-width: 100vw;
-  `};
-`;
-
-const HeroImage = styled.img`
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  -webkit-filter: brightness(0.4);
-  filter: brightness(0.4);
-`;
+import HeroContainer from '../shared/HeroContainer';
 
 const TitleBlock = styled.div`
   position: absolute;
@@ -62,15 +46,18 @@ const WelcomeText = styled.p`
     padding-right: 3rem;
   `};
 
-  ${below.xsmall`
+  ${below.small`
     font-size: 1.6rem;
   `};
 `;
 
 const Hero = ({ className }) => {
   return (
-    <Container className={className}>
-      <HeroImage src="./images/landing_hero.jpg" loading="lazy" alt="THAT" />
+    <HeroContainer
+      className={className}
+      imageSource="/images/landing_hero.jpg"
+      imageAlt="THAT"
+    >
       <TitleBlock>
         <HeadingBlock>
           <StyledH1 className="font-light">
@@ -89,7 +76,7 @@ const Hero = ({ className }) => {
           regardless of experience, tech stack or background.
         </WelcomeText>
       </TitleBlock>
-    </Container>
+    </HeroContainer>
   );
 };
 
