@@ -21,10 +21,12 @@ const ContentContainer = styled.div`
 const StyledH1 = styled.h1`
   font-size: 10rem;
 
-  ${above.large`
+  ${above.larger`
     font-size: 15rem;
   `}
-
+  ${below.med`
+    font-size: 8.5rem;
+  `};
   ${below.small`
     font-size: 7rem;
   `};
@@ -46,7 +48,7 @@ const Main = styled(ContentSection)`
   background: unset;
   background-color: transparent;
   margin: auto;
-  padding-top: 2rem;
+  padding-top: 0;
 `;
 
 const StyledParagraph = styled.p`

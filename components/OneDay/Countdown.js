@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import ContentSection from '../shared/ContentSection';
 import Icon from '../shared/Icon';
+import CountdownTimer from '../shared/CountdownTimer';
 import { below } from '../../utilities';
 
 const twoColBp = 'larger';
@@ -17,6 +18,59 @@ const Main = styled.div`
 
   ${below[twoColBp]`
     flex-direction: column;
+  `};
+`;
+
+const StyledCountdownTimer = styled(CountdownTimer)`
+  h2 {
+    color: ${({ theme }) => theme.colors.fonts.light};
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+`;
+
+const Section = styled.div`
+  text-align: center;
+  width: 50%;
+
+  ${below[twoColBp]`
+    width: 100%;
+  `};
+
+  &:first-child {
+    ${below[twoColBp]`
+      margin-bottom: 8rem;
+    `};
+  }
+`;
+
+const StyledH3 = styled.h3`
+  text-align: center;
+  vertical-align: top;
+  display: inline-block;
+  width: 30rem;
+  font-size: 3.5rem;
+  margin-top: 0;
+  color: ${({ theme }) => theme.colors.fonts.light};
+
+  ${below[twoColBp]`
+    width: auto;
+    display: block;
+    margin-bottom: 1rem;
+  `};
+`;
+
+const When = styled(StyledH3)`
+  float: left;
+  ${below[twoColBp]`
+    float: unset;
+  `};
+`;
+
+const Where = styled(StyledH3)`
+  float: right;
+  ${below[twoColBp]`
+    float: unset;
   `};
 `;
 
@@ -39,24 +93,9 @@ const TreeIcon = styled(Icon)`
   `};
 `;
 
-const Section = styled.div`
-  text-align: center;
-  width: 50%;
-`;
-
-const StyledH3 = styled.h3`
-  text-align: center;
-  vertical-align: top;
-  display: inline-block;
-  width: 40rem;
-  font-size: 3.5rem;
-  color: ${({ theme }) => theme.colors.fonts.light};
-  padding-left: 8rem;
-  padding-right: 8rem;
-`;
-
 const Countdown = ({ className, event }) => {
-  console.log(event);
+  console.log(event.startDate);
+
   return (
     <ContentSection
       className={className}
@@ -66,14 +105,11 @@ const Countdown = ({ className, event }) => {
     >
       <Main>
         <Section>
-          <h2>X Days</h2>
-          <h2>Y Minutes</h2>
-          <h2>Z Seconds</h2>
+          <StyledCountdownTimer endDate={event.startDate} />
         </Section>
         <Section>
-          <StyledH3>{moment(event.startDate).format('MMMM do, YYYY')}</StyledH3>
-          <StyledH3>{event.venues[0].name}</StyledH3>
-
+          <When>{moment(event.startDate).format('MMMM do, YYYY')}</When>
+          <Where>{event.venues[0].name}</Where>
           <TreeIcon
             icon="thatTrees"
             width="600"

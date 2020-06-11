@@ -85,7 +85,7 @@ const OneDayEvent = ({ eventSlug }) => {
       <Hero event={event} />
       <Countdown event={event} />
       <About />
-      <SessionHighlight title="Opening Keynote" />
+      {/* <SessionHighlight title="Opening Keynote" />
       <OpenSpaces />
       <SessionHighlight title="Closing Ceremonies" />
       <Tickets />
@@ -98,7 +98,7 @@ const OneDayEvent = ({ eventSlug }) => {
       <Partners event={event} />
       <Upcoming />
       <StayInTouch />
-      <PageFooter />
+      <PageFooter /> */}
     </div>
   );
 };
