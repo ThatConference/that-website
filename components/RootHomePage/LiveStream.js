@@ -10,7 +10,7 @@ const ReactTwitchEmbedVideo = loadable(
 
 const LiveStream = ({ className }) => {
   const description =
-    'Broadcasting every Monday and Wednesday, THAT.Live is, well, live! Over on our Twitch channel, community members collaborate with host Clark Sell and share their knowledge and best practices for all things technology and not technology. We invite you to watch and listen in. Viewers with a Twitch account are encouraged to become part of the broadcast by commenting and asking questions in real time using the chat feature. Miss a broadcast? Past live stream videos are available to watch too!';
+    'Broadcasting every Monday and Wednesday, THAT.live is, well, live! Over on our Twitch channel, community members collaborate with host Clark Sell and share their knowledge and best practices for all things technology and not technology. We invite you to watch and listen in. Viewers with a Twitch account are encouraged to become part of the broadcast by commenting and asking questions in real time using the chat feature. Miss a broadcast? Past live stream videos are available to watch too!';
 
   return (
     <SessionHighlight
