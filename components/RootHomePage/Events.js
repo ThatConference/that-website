@@ -5,9 +5,10 @@ import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import _ from 'lodash';
 import Link from 'next/link';
-import ThatLink from '../shared/ThatLink';
+
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
+import TopPartners from '../shared/TopPartners';
 import { gridRepeat, below } from '../../utilities';
 
 const GET_EVENTS = gql`
@@ -126,18 +127,6 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors.fonts.light};
 `;
 
-const PartnerImage = styled.img`
-  width: 45rem;
-
-  ${below.small`
-      width: 25rem;
-  `};
-`;
-
-const BecomeAPartner = styled.div`
-  margin-top: 5rem;
-`;
-
 const BuildEvent = e => {
   const primary = `#${e.theme.primary}`;
   const secondary = `#${e.theme.secondary}`;
@@ -164,23 +153,6 @@ const BuildEvent = e => {
           </Link>
         </div>
       </Event>
-    </Cell>
-  );
-};
-
-const BuildPartner = p => {
-  return (
-    <Cell center>
-      <Link href="/partner/[slug]" as={`/partner/${p.slug}`} prefetch={false}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a>
-          <PartnerImage
-            src={p.companyLogo}
-            alt={p.companyName}
-            loading="lazy"
-          />
-        </a>
-      </Link>
     </Cell>
   );
 };
@@ -234,24 +206,7 @@ const Events = ({ className }) => {
           return BuildEvent(e);
         })}
       </EventsGrid>
-      <h2 className="centered-text">Events Brought To You By</h2>
-      <Grid
-        columns={gridRepeat.xsmall}
-        alignContent="center"
-        justifyContent="space-between"
-      >
-        {partners.map(p => {
-          return BuildPartner(p);
-        })}
-      </Grid>
-      <BecomeAPartner className="centered-text">
-        <ThatLink
-          title="Become a Partner"
-          href="/wi/become-a-partner/"
-          isLocal
-          style={{ marginTop: '4rem' }}
-        />
-      </BecomeAPartner>
+      <TopPartners partners={partners} title="Events Brought To You By" />
     </ContentSection>
   );
 };

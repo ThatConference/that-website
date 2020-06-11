@@ -55,6 +55,14 @@ const GET_EVENT = gql`
           link
           linkText
         }
+        partners {
+          id
+          slug
+          level
+          placement
+          companyName
+          companyLogo
+        }
       }
     }
   }
@@ -89,7 +97,7 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
         backgroundOpacity={0.82}
         backgroundImage="/images/group.jpg"
       />
-      <Partners event={event} />
+      <Partners partners={event.partners} />
       <Upcoming />
       <StayInTouch />
       <PageFooter />
