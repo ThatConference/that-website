@@ -33,7 +33,7 @@ const StyledH1 = styled.h1`
 const ResponsiveYouTube = styled(YouTubeVideo)`
   height: 50vh;
   width: 90vw;
-  max-height: 35rem;
+  max-height: 30rem;
   max-width: 60rem;
   margin: auto;
 
