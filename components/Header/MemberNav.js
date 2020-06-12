@@ -64,6 +64,7 @@ const MemberNav = ({ className, color, onClick, user, loading }) => {
           <StyledSecondaryNav
             user={user}
             onLinkClick={() => setUserMenuOpen(false)}
+            userMenuOpen={userMenuOpen}
           />
         </>
       )}
