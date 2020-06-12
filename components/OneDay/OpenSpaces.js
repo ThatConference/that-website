@@ -14,8 +14,8 @@ const OpenSpaces = ({ className }) => {
       textColor="white"
       backgroundColor="primary"
       backgroundOpacity={0.7}
-      backgroundImage="/images/landing_hero.jpg"
-      buttonText="What Are Open Spaces?"
+      backgroundImage="/images/open-space-circle.jpg"
+      buttonText="Watch 2019 Open Spaces Kickoff"
       buttonLinkUrl="http://wwww.someyoutubeurl.com"
       buttonIsLocal={false}
       className={`centered-text ${className}`}

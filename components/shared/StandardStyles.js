@@ -158,3 +158,8 @@ export const ViewLink = styled.a`
     fill: ${({ theme }) => theme.colors.highlight};
   }
 `;
+
+export const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

@@ -6,6 +6,7 @@ import ContentSection from '../shared/ContentSection';
 import Icon from '../shared/Icon';
 import CountdownTimer from '../shared/CountdownTimer';
 import { below } from '../../utilities';
+import { FlexColumn } from '../shared/StandardStyles';
 
 const twoColBp = 'larger';
 
@@ -39,43 +40,41 @@ const Section = styled.div`
 
   &:first-child {
     ${below[twoColBp]`
-      margin-bottom: 8rem;
+      margin-bottom: 4rem;
     `};
   }
 `;
 
 const StyledH3 = styled.h3`
   text-align: center;
-  vertical-align: top;
-  display: inline-block;
-  width: 30rem;
   font-size: 3.5rem;
   margin-top: 0;
   color: ${({ theme }) => theme.colors.fonts.light};
+  margin-bottom: 1rem;
 
   ${below[twoColBp]`
-    width: auto;
-    display: block;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
   `};
 `;
 
-const When = styled(StyledH3)`
-  float: left;
+const WhenWhereBlock = styled.div`
+  display: flex;
+
   ${below[twoColBp]`
-    float: unset;
+    flex-direction: column;
   `};
 `;
 
-const Where = styled(StyledH3)`
-  float: right;
-  ${below[twoColBp]`
-    float: unset;
-  `};
+const WhenWhereText = styled.p`
+  color: ${({ theme }) => theme.colors.fonts.light};
+  margin-top: 0;
+  line-height: 1.2;
+  font-size: 2.4rem;
 `;
 
 const TreeIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
+  margin-top: 3rem;
 
   ${below[twoColBp]`
     margin-bottom: 5rem;
@@ -106,12 +105,22 @@ const Countdown = ({ className, event }) => {
           <StyledCountdownTimer endDate={event.startDate} />
         </Section>
         <Section>
-          <When>{moment(event.startDate).format('MMMM do, YYYY')}</When>
-          <Where>{event.venues[0].name}</Where>
+          <WhenWhereBlock>
+            <FlexColumn style={{ flex: '1 0 50%' }}>
+              <StyledH3>When</StyledH3>
+              <WhenWhereText>
+                {moment(event.startDate).format('MMMM Do, YYYY')}
+              </WhenWhereText>
+            </FlexColumn>
+            <FlexColumn style={{ flex: '1 0 50%' }}>
+              <StyledH3>Where</StyledH3>
+              <WhenWhereText>{event.venues[0].name}</WhenWhereText>
+            </FlexColumn>
+          </WhenWhereBlock>
           <TreeIcon
             icon="thatTrees"
             width="600"
-            height="250"
+            height="175"
             viewBoxHeight="87"
             viewBoxWidth="200"
           />

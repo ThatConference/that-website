@@ -14,6 +14,7 @@ const TICKETS = [
     imagePath: '/images/tickets/2020/camper.png',
     basePrice: '0',
     benefits: ['benefit 1', 'benefit 2', 'benefit 3', 'benefit 4'],
+    buttonColor: 'tertiary',
     ticketUrl:
       'https://ti.to/that-conference/that-conference-2020?odor261sw70=1',
   },
@@ -24,6 +25,7 @@ const TICKETS = [
     imagePath: '/images/tickets/2020/patron.png',
     basePrice: '25',
     benefits: ['benefit 1', 'benefit 2', 'benefit 3', 'benefit 4'],
+    buttonColor: 'primary',
     ticketUrl:
       'https://ti.to/that-conference/that-conference-2020?grocntbbmo=1',
   },
@@ -34,6 +36,7 @@ const TICKETS = [
     imagePath: '/images/tickets/2020/partner.png',
     basePrice: '250',
     benefits: ['benefit 1', 'benefit 2', 'benefit 3', 'benefit 4'],
+    buttonColor: 'teal',
     ticketUrl:
       'https://ti.to/that-conference/that-conference-2020?y32kfajepau=1',
   },
@@ -44,6 +47,7 @@ const TICKETS = [
     imagePath: '/images/tickets/2020/corporate-partner.png',
     basePrice: '1000',
     benefits: ['benefit 1', 'benefit 2', 'benefit 3', 'benefit 4'],
+    buttonColor: 'purple',
     ticketUrl:
       'https://ti.to/that-conference/that-conference-2020?dhsgaihiwps=1',
   },

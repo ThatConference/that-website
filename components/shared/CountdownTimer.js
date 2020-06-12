@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import pluralize from 'pluralize';
+import { below } from '../../utilities';
 
 const CountdownTimer = ({ endDate, className }) => {
   const calculateTimeTillStart = () => {
@@ -25,19 +26,18 @@ const CountdownTimer = ({ endDate, className }) => {
 
   return (
     <div className={className}>
-      <h2>{`${timeTillStart.days} ${pluralize('Day', timeTillStart.days)}`}</h2>
-      <h2>{`${timeTillStart.hours} ${pluralize(
-        'Hour',
-        timeTillStart.hours,
-      )}`}</h2>
-      <h2>{`${timeTillStart.minutes} ${pluralize(
-        'Minute',
-        timeTillStart.minutes,
-      )}`}</h2>
-      <h2>{`${timeTillStart.seconds} ${pluralize(
-        'Second',
-        timeTillStart.seconds,
-      )}`}</h2>
+      <div className="numbers">
+        <h2>{timeTillStart.days}</h2>
+        <h2>{timeTillStart.hours}</h2>
+        <h2>{timeTillStart.minutes}</h2>
+        <h2>{timeTillStart.seconds}</h2>
+      </div>
+      <div className="text">
+        <h2>{pluralize('Day', timeTillStart.days)}</h2>
+        <h2>{pluralize('Hour', timeTillStart.hours)}</h2>
+        <h2>{pluralize('Minute', timeTillStart.minutes)}</h2>
+        <h2>{pluralize('Second', timeTillStart.seconds)}</h2>
+      </div>
     </div>
   );
 };
@@ -51,4 +51,32 @@ CountdownTimer.defaultProps = {
   className: '',
 };
 
-export default styled(CountdownTimer)``;
+export default styled(CountdownTimer)`
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    ${below.med`
+      font-size: 7rem;
+    `};
+  }
+
+  .numbers {
+    h2 {
+      text-align: right;
+      padding-right: 2rem;
+    }
+  }
+
+  .text {
+    min-width: 32.5rem;
+
+    h2 {
+      text-align: left;
+    }
+
+    ${below.med`
+      min-width: 22.5rem;
+    `};
+  }
+`;

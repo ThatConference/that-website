@@ -12,13 +12,15 @@ import Countdown from '../OneDay/Countdown';
 import Hero from '../OneDay/Hero';
 import OpenSpaces from '../OneDay/OpenSpaces';
 import Partners from '../OneDay/Partners';
-import SessionHighlight from '../shared/SessionHighlight';
+// import SessionHighlight from '../shared/SessionHighlight';
 import Tickets from '../OneDay/Tickets';
 import TicketUpgrades from '../OneDay/TicketUpgrades';
 import Upcoming from '../OneDay/Upcoming';
 
 import PageFooter from '../RootHomePage/PageFooter';
 import StayInTouch from '../RootHomePage/StayInTouch';
+
+import { SlimCenteredH2 } from '../shared/StandardStyles';
 
 const GET_EVENT = gql`
   query getEvent($slug: String!) {
@@ -74,6 +76,41 @@ const GET_EVENT = gql`
   }
 `;
 
+const StyledH3 = styled.h3`
+  color: ${({ theme }) => theme.colors.fonts.light};
+  margin: 3rem 0;
+`;
+
+const StyledImage = styled.img`
+  max-height: 25rem;
+  margin: auto;
+  max-width: 70%;
+`;
+
+const announcingSoonPlaceholder = ({ title, image }) => {
+  return (
+    <ContentSection
+      backgroundColor="thatBlue"
+      backgroundOpacity={0.82}
+      backgroundImage="/images/group.jpg"
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <SlimCenteredH2 className="font-light" style={{ marginBottom: '1rem' }}>
+          {title}
+        </SlimCenteredH2>
+        <StyledH3>Announcing Soon!</StyledH3>
+        <StyledImage src={image} alt="Announcing Soon!" />
+      </div>
+    </ContentSection>
+  );
+};
+
 const OneDayEvent = ({ eventSlug, tickets }) => {
   const { loading, error, data } = useQuery(GET_EVENT, {
     variables: { slug: eventSlug },
@@ -93,9 +130,17 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
       <Hero event={event} />
       <Countdown event={event} />
       <About />
-      <SessionHighlight title="Opening Keynote" subtitle="Announcing Soon" />
+      {/* <SessionHighlight title="Opening Keynote" subtitle="Announcing Soon" /> */}
+      {announcingSoonPlaceholder({
+        title: 'Opening Keynote',
+        image: '/images/moose_with_lantern.png',
+      })}
       <OpenSpaces />
-      <SessionHighlight title="Closing Ceremonies" subtitle="Announcing Soon" />
+      {/* <SessionHighlight title="Closing Ceremonies" subtitle="Announcing Soon" /> */}
+      {announcingSoonPlaceholder({
+        title: 'Closing Ceremonies',
+        image: '/images/sasquatch_close_up.png',
+      })}
       <Tickets tickets={tickets} />
       <TicketUpgrades />
       <ContentSection
