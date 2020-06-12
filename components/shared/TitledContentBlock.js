@@ -10,9 +10,9 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h3`
-  font-size: 3rem;
-  margin-top: 4rem;
-  margin-bottom: 1rem;
+  font-size: 3.2rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
   color: ${({ color, theme }) =>
     color ? theme.colors[color] : theme.colors.primary};
 `;
@@ -20,6 +20,8 @@ const Subtitle = styled.h3`
 const Text = styled.p`
   color: ${({ color, theme }) =>
     color ? theme.colors[color] : theme.colors.gray};
+  max-width: 98rem;
+  margin: auto;
 `;
 
 const TitledContentBlock = ({

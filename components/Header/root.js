@@ -12,6 +12,9 @@ const StyledIcon = styled(Icon)`
   padding: 1rem 2rem;
   height: 8rem;
   align-self: center;
+  &:hover {
+    cursor: pointer;
+  }
 
   ${below.small`    
     height: 7rem;

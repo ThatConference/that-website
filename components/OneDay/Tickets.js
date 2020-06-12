@@ -72,7 +72,7 @@ const Tickets = ({ className, tickets }) => {
               <TicketImage src={ticket.imagePath} alt={ticket.name} />
               <Detail>
                 <StyledH4>{ticket.name}</StyledH4>
-                <BasePrice>{`Base Price: $${ticket.basePrice}`}</BasePrice>
+                <BasePrice>{`Min Price: $${ticket.basePrice}`}</BasePrice>
                 <Description>{ticket.description}</Description>
                 <BenefitTitle>Benefits:</BenefitTitle>
                 <ul>
@@ -84,10 +84,10 @@ const Tickets = ({ className, tickets }) => {
                   href={ticket.ticketUrl}
                   borderColor="white"
                   color="white"
-                  backgroundColor="primary"
-                  hoverBorderColor="primary"
+                  backgroundColor={ticket.buttonColor}
+                  hoverBorderColor={ticket.buttonColor}
                   hoverBackgroundColor="white"
-                  hoverColor="primary"
+                  hoverColor="darkGray"
                   label={`Reserve a ${ticket.name} Ticket`}
                   target="_blank"
                 />
