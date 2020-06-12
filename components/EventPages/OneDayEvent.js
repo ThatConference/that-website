@@ -84,6 +84,7 @@ const StyledH3 = styled.h3`
 const StyledImage = styled.img`
   max-height: 25rem;
   margin: auto;
+  max-width: 70%;
 `;
 
 const announcingSoonPlaceholder = ({ title, image }) => {

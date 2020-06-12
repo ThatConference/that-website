@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import pluralize from 'pluralize';
+import { below } from '../../utilities';
 
 const CountdownTimer = ({ endDate, className }) => {
   const calculateTimeTillStart = () => {
@@ -54,6 +55,12 @@ export default styled(CountdownTimer)`
   display: flex;
   justify-content: center;
 
+  h2 {
+    ${below.med`
+      font-size: 7rem;
+    `};
+  }
+
   .numbers {
     h2 {
       text-align: right;
@@ -63,8 +70,13 @@ export default styled(CountdownTimer)`
 
   .text {
     min-width: 32.5rem;
+
     h2 {
       text-align: left;
     }
+
+    ${below.med`
+      min-width: 22.5rem;
+    `};
   }
 `;

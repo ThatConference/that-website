@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
-import { gridRepeat, below } from '../../utilities';
+import { below } from '../../utilities';
 
-const StyledCell = styled(Cell)`
+const TicketGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  ${below.large`
+    flex-direction: column;
+  `}
+`;
+
+const StyledCell = styled.div`
   margin: auto;
   margin-bottom: 9rem;
+  flex: 1 1 0px;
 `;
 
 const TicketBlock = styled.div`
   display: flex;
+  max-width: 80%;
+  margin: auto;
 `;
 
 const TicketImage = styled.img`
@@ -21,7 +32,7 @@ const TicketImage = styled.img`
   height: 40rem;
 
   ${below.small`
-    height: 30rem;
+    display: none;
   `}
 `;
 
@@ -65,7 +76,7 @@ const Tickets = ({ className, tickets }) => {
   return (
     <ContentSection className={className}>
       <h2 className="centered-text">Tickets Are Available Now!</h2>
-      <Grid columns={gridRepeat.med}>
+      <TicketGrid>
         {tickets.map(ticket => (
           <StyledCell>
             <TicketBlock>
@@ -95,7 +106,7 @@ const Tickets = ({ className, tickets }) => {
             </TicketBlock>
           </StyledCell>
         ))}
-      </Grid>
+      </TicketGrid>
     </ContentSection>
   );
 };
