@@ -116,13 +116,14 @@ const ContactInfoForm = ({
           disabled={editMode}
           onBlur={e => {
             if (!editMode && e.target.value) {
-              let userSlug = e.target.value;
-              let isSlugValid = /^[a-zA-Z0-9-_]+$/g.test(userSlug)
+              const userSlug = e.target.value;
+              const isSlugValid = /^[a-zA-Z0-9-_]+$/g.test(userSlug);
               if (isSlugValid) {
                 validateSlug({
                   variables: { slug: userSlug },
                 });
               } else {
+                // eslint-disable-next-line no-param-reassign
                 errors.profileSlug = 'Invalid characters';
               }
             }
