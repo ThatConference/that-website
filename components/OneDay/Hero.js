@@ -4,18 +4,19 @@ import styled from 'styled-components';
 import { above, below } from '../../utilities';
 import HeroContainer from '../shared/HeroContainer';
 import YouTubeVideo from '../shared/YouTubeVideo';
-import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 
 const VIDEO_ID = 'R67gLABGvVE';
 
 const ContentContainer = styled.div`
   position: absolute;
-  top: 1rem;
+  top: 0;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin: auto;
 `;
 
 const StyledH1 = styled.h1`
@@ -33,10 +34,10 @@ const StyledH1 = styled.h1`
 `;
 
 const ResponsiveYouTube = styled(YouTubeVideo)`
-  height: 50vh;
+  height: 70%;
   width: 90vw;
-  max-height: 30rem;
-  max-width: 60rem;
+  max-height: 40rem;
+  max-width: 80rem;
   margin: auto;
 
   ${below.small`
@@ -44,19 +45,12 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
   `};
 `;
 
-const Main = styled(ContentSection)`
-  background: unset;
-  background-color: transparent;
-  margin: auto;
-  padding-top: 0;
-`;
-
 const StyledParagraph = styled.p`
   align-self: flex-end;
   text-align: justify;
-  max-width: 60rem;
+  max-width: 80rem;
   height: auto;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
   padding-left: 3rem;
   padding-right: 3rem;
   margin: 1rem auto;
@@ -71,8 +65,11 @@ const StyledParagraph = styled.p`
 
 const StyledButton = styled(LinkButton)`
   width: 26rem;
-  height: 6rem;
-  margin: 0;
+  height: 7rem;
+  margin-bottom: 3rem;
+  align-self: center;
+  font-size: 2rem;
+  font-weight: 700;
 `;
 
 const Hero = ({ className, event }) => {
@@ -87,22 +84,20 @@ const Hero = ({ className, event }) => {
     >
       <ContentContainer>
         <StyledH1 className="font-light">{event.slogan}</StyledH1>
-        <Main>
-          <ResponsiveYouTube videoId={VIDEO_ID} />
-          <StyledParagraph className="font-light large-body-copy">
-            {event.description}
-          </StyledParagraph>
-          <StyledButton
-            href="#tickets"
-            color="thatBlue"
-            backgroundColor="white"
-            borderColor="primary"
-            hoverBorderColor="primary"
-            hoverBackgroundColor="primary"
-            hoverColor="white"
-            label="Order Tickets!"
-          />
-        </Main>
+        <ResponsiveYouTube videoId={VIDEO_ID} />
+        <StyledParagraph className="font-light large-body-copy">
+          {event.description}
+        </StyledParagraph>
+        <StyledButton
+          href="#tickets"
+          color="thatBlue"
+          backgroundColor="white"
+          borderColor="primary"
+          hoverBorderColor="primary"
+          hoverBackgroundColor="primary"
+          hoverColor="white"
+          label="Order Tickets!"
+        />
       </ContentContainer>
     </HeroContainer>
   );
