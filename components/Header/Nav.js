@@ -53,7 +53,7 @@ const Nav = ({ className, color, mobileMenuOpen, onClick }) => {
           <NavListItem>
             <ThatLink
               title="Partners"
-              href="/wi/partners"
+              href="/wi/2021/partners"
               onClick={() => onClick(false)}
               color={color}
             />
@@ -61,7 +61,7 @@ const Nav = ({ className, color, mobileMenuOpen, onClick }) => {
           <NavListItem>
             <ThatLink
               title="Tickets"
-              href="/wi/tickets"
+              href="/wi/2021/tickets"
               onClick={() => onClick(false)}
               color={color}
             />
@@ -69,7 +69,7 @@ const Nav = ({ className, color, mobileMenuOpen, onClick }) => {
           <NavListItem>
             <ThatLink
               title="Plan Your Trip"
-              href="/wi/plan-your-trip"
+              href="/wi/2021/plan-your-trip"
               onClick={() => onClick(false)}
               color={color}
             />
