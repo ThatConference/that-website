@@ -27,6 +27,8 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
+let isSlugInvalid = false;
+
 // const ValidIcon = styled(IconText)`
 //   fill: green;
 // `;
@@ -70,8 +72,12 @@ const ContactInfoForm = ({
         return 'Required';
       }
 
+      if (isSlugInvalid) {
+        return 'Slug contains invalid characters';
+      }
+
       if (validProfileSlug === false) {
-        return 'Slug already taken or invalid characters';
+        return 'Slug is already taken';
       }
     }
     return null;
@@ -116,9 +122,16 @@ const ContactInfoForm = ({
           disabled={editMode}
           onBlur={e => {
             if (!editMode && e.target.value) {
-              validateSlug({
-                variables: { slug: e.target.value },
-              });
+              isSlugInvalid = false;
+              const userSlug = e.target.value;
+              const isSlugValid = /^[a-zA-Z0-9-_]+$/g.test(userSlug);
+              if (isSlugValid) {
+                validateSlug({
+                  variables: { slug: userSlug },
+                });
+              } else {
+                isSlugInvalid = true;
+              }
             }
           }}
           required
