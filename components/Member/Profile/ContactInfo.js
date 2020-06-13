@@ -27,6 +27,8 @@ const FlexFormRow = styled(FormRow)`
   }
 `;
 
+let isSlugInvalid = false;
+
 // const ValidIcon = styled(IconText)`
 //   fill: green;
 // `;
@@ -70,8 +72,12 @@ const ContactInfoForm = ({
         return 'Required';
       }
 
+      if (isSlugInvalid) {
+        return 'Invalid characters';
+      }
+
       if (validProfileSlug === false) {
-        return 'Slug already taken or invalid characters';
+        return 'Slug already taken';
       }
     }
     return null;
@@ -116,6 +122,7 @@ const ContactInfoForm = ({
           disabled={editMode}
           onBlur={e => {
             if (!editMode && e.target.value) {
+              isSlugInvalid = false;
               const userSlug = e.target.value;
               const isSlugValid = /^[a-zA-Z0-9-_]+$/g.test(userSlug);
               if (isSlugValid) {
@@ -123,8 +130,7 @@ const ContactInfoForm = ({
                   variables: { slug: userSlug },
                 });
               } else {
-                // eslint-disable-next-line no-param-reassign
-                errors.profileSlug = 'Invalid characters';
+                isSlugInvalid = true;
               }
             }
           }}
