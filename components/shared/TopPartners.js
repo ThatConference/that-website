@@ -21,6 +21,10 @@ const PartnerLink = styled.a`
   height: 18rem;
   padding: 2rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${below.small`
     height: 15rem;
     padding: 1rem;

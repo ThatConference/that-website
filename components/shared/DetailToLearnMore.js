@@ -118,7 +118,7 @@ const DetailToLearnMore = ({
       <Main>
         <TitleBlock>
           <StyledH3>{smallTitle}</StyledH3>
-          <Link href="/" prefetch={false} passHref>
+          <Link href={titleLinkUrl} prefetch={false} passHref>
             <StyledH2>{largeTitle}</StyledH2>
           </Link>
           <TitleLink
