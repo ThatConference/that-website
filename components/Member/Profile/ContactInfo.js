@@ -73,11 +73,11 @@ const ContactInfoForm = ({
       }
 
       if (isSlugInvalid) {
-        return 'Invalid characters';
+        return 'Slug contains invalid characters';
       }
 
       if (validProfileSlug === false) {
-        return 'Slug already taken';
+        return 'Slug is already taken';
       }
     }
     return null;
