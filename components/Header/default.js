@@ -150,7 +150,7 @@ const HeaderLogo = ({ layered, slug }) => {
   };
 
   const theRouter = useRouter();
-  console.log('slug', slug);
+
   if (theRouter.route === `/${slug}`) {
     return <Logo layered={layered} />;
   }
