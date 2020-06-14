@@ -1,13 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import ContentSection from '../shared/ContentSection';
 import { above, below } from '../../utilities';
 
 import HeroContainer from '../shared/HeroContainer';
 
-const TitleBlock = styled.div`
+const Content = styled(ContentSection)`
+  background: none;
   position: absolute;
-  top: 0;
+  top: 30%;
   height: 100%;
+  ${below.small`
+      top: 0;
+  `};
+`;
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TitleBlock = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -35,19 +51,14 @@ const StyledH1 = styled.h1`
 const WelcomeText = styled.p`
   align-self: flex-end;
   text-align: justify;
-  padding-left: 20rem;
-  padding-right: 20rem;
   color: ${({ theme }) => theme.colors.fonts.light};
   height: auto;
   padding-bottom: 2rem;
 
-  ${below.med`
-    padding-left: 3rem;
-    padding-right: 3rem;
-  `};
-
   ${below.small`
-    font-size: 1.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-size: 1.6rem !important;
   `};
 `;
 
@@ -58,24 +69,29 @@ const Hero = ({ className }) => {
       imageSource="/images/landing_hero.jpg"
       imageAlt="THAT"
     >
-      <TitleBlock>
-        <HeadingBlock>
-          <StyledH1 className="font-light">
-            We. Love.
-            <br />
-            Geeks.
-          </StyledH1>
-        </HeadingBlock>
-        <WelcomeText className="large-body-copy">
-          THAT is a polyglot community for all things technology where members
-          help, teach and support each other year round. What started as an
-          annual technology conference has grown into community of practitioners
-          teaching, sharing and supporting each other daily. Through our
-          multiple in-person and virtual events each year we continual push to
-          bring positive impact across our industry and welcome everyone
-          regardless of experience, tech stack or background.
-        </WelcomeText>
-      </TitleBlock>
+      <Content>
+        <Main>
+          <TitleBlock>
+            <HeadingBlock>
+              <StyledH1 className="font-light">
+                We. Love.
+                <br />
+                Geeks.
+              </StyledH1>
+            </HeadingBlock>
+            <WelcomeText className="large-body-copy">
+              THAT is a polyglot community for all things technology where
+              members help, teach and support each other year round. What
+              started as an annual technology conference has grown into
+              community of practitioners teaching, sharing and supporting each
+              other daily. Through our multiple in-person and virtual events
+              each year we continual push to bring positive impact across our
+              industry and welcome everyone regardless of experience, tech stack
+              or background.
+            </WelcomeText>
+          </TitleBlock>
+        </Main>
+      </Content>
     </HeroContainer>
   );
 };
