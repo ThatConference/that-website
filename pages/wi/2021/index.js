@@ -15,41 +15,53 @@ import WhatToExpect from '../../../components/shared/WhatToExpect';
 import NewsletterSignup from '../../../components/EventHomePage/NewsletterSignup';
 
 const GET_EVENT = gql`
-  query getEvent($eventId: ID!) {
+  query getEvent($slug: String!) {
     events {
-      event(id: $eventId) {
-        get {
+      eventBySlug(slug: $slug) {
+        id
+        name
+        slogan
+        slug
+        description
+        startDate
+        endDate
+        isVotingOpen
+        isCallForSpeakersOpen
+        theme {
+          primary
+          secondary
+          heroSlug
+        }
+        venues {
           id
           name
-          slogan
-          slug
+          address
+          city
+          state
+          zip
+        }
+        milestones {
+          title
+          description
+          dueDate
+        }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
           startDate
           endDate
-          isVotingOpen
-          isCallForSpeakersOpen
-          venues {
-            id
-            name
-            address
-            city
-            state
-            zip
-          }
-          milestones {
-            title
-            description
-            dueDate
-          }
-          notifications {
-            id
-            shouldFeature
-            title
-            message
-            startDate
-            endDate
-            link
-            linkText
-          }
+          link
+          linkText
+        }
+        partners {
+          id
+          slug
+          level
+          placement
+          companyName
+          companyLogo
         }
       }
     }
@@ -64,7 +76,7 @@ const BottomImage = styled.img`
 
 const home = () => {
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
+    variables: { slug: 'wi/2021' },
   });
 
   if (loading) return null;
@@ -73,7 +85,7 @@ const home = () => {
     throw new Error(error);
   }
 
-  const { event } = data.events;
+  const { eventBySlug: event } = data.events;
 
   return (
     <>
