@@ -21,6 +21,10 @@ const PartnerLink = styled.a`
   height: 18rem;
   padding: 2rem;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   ${below.small`
     height: 15rem;
     padding: 1rem;
@@ -44,7 +48,7 @@ const BuildPartner = p => {
   );
 };
 
-const TopPartners = ({ className, partners, title }) => {
+const TopPartners = ({ becomePartnerLink, className, partners, title }) => {
   return (
     <div className={className}>
       <h2 className="centered-text">{title}</h2>
@@ -60,7 +64,7 @@ const TopPartners = ({ className, partners, title }) => {
       <BecomeAPartner className="centered-text">
         <ThatLink
           title="Become a Partner"
-          href="/wi/become-a-partner/"
+          href={becomePartnerLink}
           isLocal
           style={{ marginTop: '4rem' }}
         />
@@ -70,6 +74,7 @@ const TopPartners = ({ className, partners, title }) => {
 };
 
 TopPartners.propTypes = {
+  becomePartnerLink: PropTypes.string.isRequired,
   className: PropTypes.string,
   event: PropTypes.shape({}).isRequired,
   partners: PropTypes.shape([]).isRequired,

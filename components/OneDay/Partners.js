@@ -13,7 +13,11 @@ const Partners = ({ partners }) => {
 
   return (
     <ContentSection>
-      <TopPartners title="Event Brought To You By" partners={topPartners} />
+      <TopPartners
+        title="Event Brought To You By"
+        partners={topPartners}
+        becomePartnerLink="#tickets"
+      />
     </ContentSection>
   );
 };

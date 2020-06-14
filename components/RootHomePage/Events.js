@@ -206,7 +206,11 @@ const Events = ({ className }) => {
           return BuildEvent(e);
         })}
       </EventsGrid>
-      <TopPartners partners={partners} title="Events Brought To You By" />
+      <TopPartners
+        partners={partners}
+        title="Events Brought To You By"
+        becomePartnerLink="/wi/2021/become-a-partner"
+      />
     </ContentSection>
   );
 };
