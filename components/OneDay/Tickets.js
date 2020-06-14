@@ -74,7 +74,7 @@ const SmallLinkButton = styled(LinkButton)`
 
 const Tickets = ({ className, tickets }) => {
   return (
-    <ContentSection className={className}>
+    <ContentSection className={className} id="tickets">
       <h2 className="centered-text">Tickets Are Available Now!</h2>
       <TicketGrid>
         {tickets.map(ticket => (

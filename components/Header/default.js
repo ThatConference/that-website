@@ -18,6 +18,7 @@ const GET_EVENT = gql`
       event(id: $eventId) {
         get {
           id
+          slug
           notifications {
             id
             shouldFeature
@@ -138,7 +139,7 @@ const MenuIcon = styled.div`
   }
 `;
 
-const HeaderLogo = ({ layered }) => {
+const HeaderLogo = ({ layered, slug }) => {
   const clickTracking = () => {
     gtag.event({
       clientWindow: window,
@@ -149,11 +150,12 @@ const HeaderLogo = ({ layered }) => {
   };
 
   const theRouter = useRouter();
-  if (theRouter.route === '/wi' || theRouter.route === '/tx') {
+
+  if (theRouter.route === `/${slug}`) {
     return <Logo layered={layered} />;
   }
   return (
-    <LogoLink href="/wi" onClick={clickTracking}>
+    <LogoLink href={`/${slug}`} onClick={clickTracking}>
       <Logo layered={layered} />
     </LogoLink>
   );
@@ -189,7 +191,7 @@ const Header = ({
       />
       <HeaderSection backgroundColor="transparent">
         <PageHeader>
-          <HeaderLogo layered={layered} />
+          <HeaderLogo layered={layered} slug={event.get.slug} />
           <Nav
             mobileMenuOpen={mobileMenuOpen}
             onClick={setTo => setMobileMenuOpen(setTo)}

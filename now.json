@@ -20,7 +20,7 @@
       "REDIRECT_URI": "@thatwebsite_redirect_uri",
       "POST_LOGOUT_REDIRECT_URI": "@thatwebsite_post_logout_redirect_uri",
       "SESSION_COOKIE_DOMAIN": "@thatwebsite_session_cookie_domain",
-      "CURRENT_EVENT_ID": "ByE7Dc7eCGcRFzLhWhuI"
+      "CURRENT_EVENT_ID": "7wiuRWI7EZjcdF4e9MDz"
     }
   },
   "regions": ["cle"],
