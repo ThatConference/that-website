@@ -131,17 +131,9 @@ const HeroSection = ({
             target={connectWithUsUrl.startsWith('/') ? '' : 'blank'}
             isLocal={connectWithUsUrl.startsWith('/')}
           />
-          <DownArrow
-            icon="arrow"
-            onClick={() => {
-              const windowWidth = window.innerWidth;
-              if (windowWidth <= 960) {
-                window.scrollTo(0, 433);
-              } else {
-                window.scrollTo(0, 750);
-              }
-            }}
-          />
+          <a href="#partner-about">
+            <DownArrow icon="arrow" />
+          </a>
         </div>
       </HeroBlock>
     </HeroContentSection>
