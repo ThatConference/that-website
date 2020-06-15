@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton';
 import SocialLinks from '../shared/SocialLinks';
@@ -102,11 +103,11 @@ const SideDetail = styled.div`
 const ThirdButton = ({ event }) => {
   let href = null;
   let label = null;
-  if (event.get.isCallForSpeakersOpen) {
+  if (event.isCallForSpeakersOpen) {
     href = 'wi/call-for-counselors';
     label = 'Become A Counselor';
   }
-  if (event.get.isVotingOpen) {
+  if (event.isVotingOpen) {
     href = 'wi/voting';
     label = 'Vote for Sessions';
   }
@@ -128,14 +129,18 @@ const ThirdButton = ({ event }) => {
 };
 
 const Hero = ({ event, className }) => {
+  const venue = event.venues[0];
+  const momentStart = moment(event.startDate);
+  const momentEnd = moment(event.endDate);
+  const dateAndLocation = `${momentStart.format('MMMM')} ${momentStart.format(
+    'D',
+  )} - ${momentEnd.format('D')} - ${venue.name}, ${venue.city}, ${venue.state}`;
   return (
     <ContentSection className={className}>
       <Main>
         <SideDetail>
-          <DateLocation>
-            August 3 - 6, 2020 - Kalahari Resort, Wisconsin Dells, WI
-          </DateLocation>
-          <Slogan>{event.get.slogan}</Slogan>
+          <DateLocation>{dateAndLocation}</DateLocation>
+          <Slogan>{event.slogan}</Slogan>
           <ActionButtonRow>
             <LinkButton
               href="wi/tickets"
