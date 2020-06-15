@@ -79,7 +79,6 @@ const DownArrow = styled(Icon)`
   width: 3rem;
   height: 3rem;
   margin-top: 3rem;
-  cursor: pointer;
 `;
 
 const HeroSection = ({
