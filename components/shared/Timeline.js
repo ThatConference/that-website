@@ -165,7 +165,7 @@ const Date = styled(Detail)`
 `;
 
 const TimelineSection = ({ event, className }) => {
-  const { milestones, notifications } = event.get;
+  const { milestones, notifications } = event;
   const sortedMilestones = _.sortBy(milestones, m => moment.utc(m.dueDate));
   const groupedMilestones = _.groupBy(sortedMilestones, m =>
     moment.utc(m.dueDate),

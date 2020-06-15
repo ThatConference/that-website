@@ -14,36 +14,53 @@ import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 import TimelineSection from '../../../components/shared/Timeline';
 
 const GET_EVENT = gql`
-  query getEvent($eventId: ID!) {
+  query getEvent($slug: String!) {
     events {
-      event(id: $eventId) {
-        get {
+      eventBySlug(slug: $slug) {
+        id
+        name
+        slogan
+        slug
+        description
+        startDate
+        endDate
+        isVotingOpen
+        isCallForSpeakersOpen
+        theme {
+          primary
+          secondary
+          heroSlug
+        }
+        venues {
           id
+          name
+          address
+          city
+          state
+          zip
+        }
+        milestones {
+          title
+          description
+          dueDate
+        }
+        notifications {
+          id
+          shouldFeature
+          title
+          message
           startDate
           endDate
-          venues {
-            id
-            name
-            address
-            city
-            state
-            zip
-          }
-          milestones {
-            title
-            description
-            dueDate
-          }
-          notifications {
-            id
-            shouldFeature
-            title
-            message
-            startDate
-            endDate
-            link
-            linkText
-          }
+          link
+          linkText
+        }
+        partners {
+          id
+          slug
+          level
+          placement
+          companyName
+          companyLogo
         }
       }
     }
@@ -90,7 +107,7 @@ const contact = () => {
   let formattedEndDate;
 
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
+    variables: { slug: 'wi/2021' },
     onCompleted(d) {
       return d;
     },
@@ -99,11 +116,9 @@ const contact = () => {
   if (error) throw new Error(error);
 
   if (!loading) {
-    event = data.events.event;
-    formattedStartDate = moment(event.get.startDate).format(
-      'dddd, MMMM D, YYYY',
-    );
-    formattedEndDate = moment(event.get.endDate).format('dddd, MMMM D, YYYY');
+    event = data.events.eventBySlug;
+    formattedStartDate = moment(event.startDate).format('dddd, MMMM D, YYYY');
+    formattedEndDate = moment(event.endDate).format('dddd, MMMM D, YYYY');
   }
 
   return (
@@ -160,11 +175,11 @@ const contact = () => {
             <StyledImageContainer>
               <Title>Where</Title>
               <p style={{ flexGrow: '2' }}>
-                <strong>{event.get.venues[0].name}</strong>
+                <strong>{event.venues[0].name}</strong>
                 <br />
-                {event.get.venues[0].address}
+                {event.venues[0].address}
                 <br />
-                {`${event.get.venues[0].city}, ${event.get.venues[0].state} ${event.get.venues[0].zip}`}
+                {`${event.venues[0].city}, ${event.venues[0].state} ${event.venues[0].zip}`}
               </p>
               <LinkButton
                 href="https://goo.gl/maps/KxxuwX2P93VvwHvc7"
