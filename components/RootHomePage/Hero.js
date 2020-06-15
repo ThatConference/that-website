@@ -13,6 +13,10 @@ const Content = styled(ContentSection)`
   ${below.small`
       top: 0;
   `};
+
+  @media (max-height: 60rem) {
+    top: 0;
+  }
 `;
 
 const Main = styled.div`
