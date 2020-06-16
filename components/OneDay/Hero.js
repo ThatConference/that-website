@@ -6,7 +6,7 @@ import HeroContainer from '../shared/HeroContainer';
 import YouTubeVideo from '../shared/YouTubeVideo';
 import LinkButton from '../shared/LinkButton';
 
-const VIDEO_ID = 'R67gLABGvVE';
+const VIDEO_ID = 'cAftppcmqRE';
 
 const ContentContainer = styled.div`
   position: absolute;
