@@ -44,7 +44,6 @@ const CountdownTimer = ({ endDate, className }) => {
 
 CountdownTimer.propTypes = {
   className: PropTypes.string,
-  // endDate: PropTypes.instanceOf(Date).isRequired,
   endDate: PropTypes.oneOfType([(instanceOf(Date), PropTypes.string)])
     .isRequired,
 };
