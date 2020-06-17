@@ -132,7 +132,7 @@ const BuildEvent = e => {
   const secondary = `#${e.theme.secondary}`;
 
   return (
-    <Cell center>
+    <Cell center key={e.slug}>
       <Event primaryColor={primary} secondaryColor={secondary}>
         <EventHeading>{e.name}</EventHeading>
         <img src={e.theme.heroSlug} alt={e.name} />
@@ -172,7 +172,6 @@ const Events = ({ className }) => {
 
   // This will go away once the theme fields are added to the Graph result
   events = _.map(events, e => {
-    e.theme.heroSlug = './images/landing_hero.jpg';
     e.featuredNotification = _.find(e.notifications, n => {
       return n.shouldFeature === true;
     }) || {

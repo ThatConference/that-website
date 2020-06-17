@@ -6,9 +6,11 @@ import TitledContentBlock from '../shared/TitledContentBlock';
 const About = ({ className }) => {
   return (
     <TitledContentBlock
-      title="A Day Full Of Community"
-      subtitle="Keynotes and open spaces run by you!"
-      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac hendrerit sem, at ullamcorper nunc. Donec vehicula id sapien vel dapibus. Nulla a odio diam. Nunc vel odio ex. Etiam dictum mollis placerat. Pellentesque vel posuere velit."
+      title="You make the schedule!"
+      subtitle="A full day of Open Spaces from the comfort of your chair."
+      text="Let's cut right to the chase, we can't predict 
+      
+      "
       className={`centered-text ${className}`}
     />
   );

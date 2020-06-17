@@ -10,8 +10,8 @@ const VIDEO_ID = 'cAftppcmqRE';
 
 const ContentContainer = styled.div`
   position: absolute;
-  top: 0;
-  height: 100%;
+  top: 6rem;
+  height: 80%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -45,49 +45,33 @@ const ResponsiveYouTube = styled(YouTubeVideo)`
   `};
 `;
 
-const StyledParagraph = styled.p`
-  align-self: flex-end;
-  text-align: justify;
-  max-width: 80rem;
-  height: auto;
-  padding-bottom: 1rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
-  margin: 1rem auto;
+const StyledButton = styled(LinkButton)`
+  width: 60rem;
+  height: 10rem;
+  margin-bottom: 3rem;
+  align-self: center;
+  font-size: 3.5rem;
+  font-weight: 700;
 
+  // TODO: give it some style for small screens
   ${below.small`
-    font-size: 1.6rem;
-    padding-bottom: 0;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    height: 7rem;
+    font-size: 2rem;
+    width: 80%;
   `};
 `;
 
-const StyledButton = styled(LinkButton)`
-  width: 26rem;
-  height: 7rem;
-  margin-bottom: 3rem;
-  align-self: center;
-  font-size: 2rem;
-  font-weight: 700;
-`;
-
 const Hero = ({ className, event }) => {
-  // KB: Temporary until event is populated
-  // eslint-disable-next-line no-param-reassign
-  event.theme.heroSlug = 'landing_hero.jpg';
   return (
     <HeroContainer
       className={className}
-      imageSource={`/images/${event.theme.heroSlug}`}
+      // imageSource={`${event.theme.heroSlug}`}
+      imageSource="/images/open-space-circle.jpg"
       imageAlt={`${event.name}-${event.slogan}`}
     >
       <ContentContainer>
-        <StyledH1 className="font-light">{event.slogan}</StyledH1>
+        <StyledH1 className="font-light">{event.name}</StyledH1>
         <ResponsiveYouTube videoId={VIDEO_ID} />
-        <StyledParagraph className="font-light large-body-copy">
-          {event.description}
-        </StyledParagraph>
         <StyledButton
           href="#tickets"
           color="thatBlue"
@@ -96,7 +80,7 @@ const Hero = ({ className, event }) => {
           hoverBorderColor="primary"
           hoverBackgroundColor="primary"
           hoverColor="white"
-          label="Order Tickets!"
+          label="Reserve Your Ticket Today!"
         />
       </ContentContainer>
     </HeroContainer>

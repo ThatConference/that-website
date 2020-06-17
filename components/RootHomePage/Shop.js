@@ -5,11 +5,11 @@ import MerchHighlight from '../shared/MerchHighlight';
 const Shop = ({ className }) => {
   return (
     <MerchHighlight
-      title="Get That Gear"
-      subtitle="That Store Has Your Favorite Merch"
-      linkText="Go to THAT Store"
-      linkUrl="http://thatconference.store"
-      description="Looking for a new favorite THAT T-Shirt? What about a THAT Hoodie? THAT Store is now open and has the latest THAT merch waiting for you."
+      title="Get THAT Gear"
+      subtitle="THAT Store Has Your Favorite Merch"
+      linkText="Shop today!"
+      linkUrl="https://store.thatconference.com"
+      description="Looking for a new favorite THAT T-Shirt? What about a Hoodie to keep ya warm? THAT Store is now open and has the latest gear for our geeks and geeklings.."
       className={className}
     />
   );

@@ -109,6 +109,7 @@ const Community = ({ className }) => {
                 company={company}
                 showAccentLine={false}
                 profileSlug={profileSlug}
+                key={`${firstName}-${lastName}`}
               />
             );
           })}
