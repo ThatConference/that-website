@@ -12,7 +12,7 @@ const TreeBlock = styled.div`
 
 const TreeIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
-  margin: 10rem 0;
+  margin: 5rem 0;
 
   ${below.med`
     width: 20rem;
@@ -25,16 +25,10 @@ const PageFooter = ({ className }) => {
       className={className}
       backgroundColor="thatBlue"
       backgroundOpacity={0.82}
-      backgroundImage="/images//group.jpg"
+      backgroundImage="/images/group.jpg"
     >
       <TreeBlock>
-        <TreeIcon
-          icon="thatTrees"
-          width="300"
-          height="100"
-          viewBoxHeight="87"
-          viewBoxWidth="200"
-        />
+        <TreeIcon icon="thatWordTrees" height="200" />
       </TreeBlock>
     </ContentSection>
   );

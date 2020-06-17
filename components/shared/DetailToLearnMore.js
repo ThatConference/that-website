@@ -138,7 +138,7 @@ const DetailToLearnMore = ({
             />
           </RoundImageBlock>
         )}
-        <a href={blockLinkUrl} prefecth={false}>
+        <a href={blockLinkUrl} prefecth="false">
           <DetailBlock>
             <DetailBlockTitle>{blockTitle}</DetailBlockTitle>
             <p className="font-light">{blockDescription}</p>

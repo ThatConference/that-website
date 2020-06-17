@@ -15,7 +15,7 @@ const TicketGrid = styled.div`
 `;
 
 const StyledCell = styled.div`
-  margin: auto;
+  // margin: auto;
   margin-bottom: 9rem;
   flex: 1 1 0px;
 `;
@@ -40,6 +40,8 @@ const Detail = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
+  flex-grow: 2;
+  height: 100%;
 `;
 
 const BasePrice = styled.p`
@@ -70,6 +72,7 @@ const BenefitTitle = styled.h5`
 const SmallLinkButton = styled(LinkButton)`
   width: 30rem;
   margin: auto;
+  align-self: flex-end;
 `;
 
 const Tickets = ({ className, tickets }) => {
@@ -78,7 +81,7 @@ const Tickets = ({ className, tickets }) => {
       <h2 className="centered-text">Tickets Are Available Now!</h2>
       <TicketGrid>
         {tickets.map(ticket => (
-          <StyledCell>
+          <StyledCell key={ticket.name}>
             <TicketBlock>
               <TicketImage src={ticket.imagePath} alt={ticket.name} />
               <Detail>
@@ -99,7 +102,7 @@ const Tickets = ({ className, tickets }) => {
                   hoverBorderColor={ticket.buttonColor}
                   hoverBackgroundColor="white"
                   hoverColor="darkGray"
-                  label={`Reserve a ${ticket.name} Ticket`}
+                  label="Reserve Ticket"
                   target="_blank"
                 />
               </Detail>

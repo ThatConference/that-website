@@ -33,7 +33,7 @@ const PartnerLink = styled.a`
 
 const BuildPartner = p => {
   return (
-    <Cell center middle>
+    <Cell center middle key={p.companyName}>
       <Link href="/partner/[slug]" as={`/partner/${p.slug}`} prefetch={false}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <PartnerLink>
