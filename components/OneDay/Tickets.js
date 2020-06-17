@@ -91,7 +91,7 @@ const Tickets = ({ className, tickets }) => {
                 <BenefitTitle>Benefits:</BenefitTitle>
                 <ul>
                   {ticket.benefits.map(benefit => (
-                    <li>{benefit}</li>
+                    <li key={benefit}>{benefit}</li>
                   ))}
                 </ul>
                 <SmallLinkButton
@@ -116,7 +116,7 @@ const Tickets = ({ className, tickets }) => {
 
 Tickets.propTypes = {
   className: PropTypes.string,
-  tickets: PropTypes.shape([]).isRequired,
+  tickets: PropTypes.oneOfType([PropTypes.array]).isRequired,
 };
 
 Tickets.defaultProps = {

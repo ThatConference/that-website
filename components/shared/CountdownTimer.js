@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { instanceOf } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import pluralize from 'pluralize';
@@ -44,7 +44,9 @@ const CountdownTimer = ({ endDate, className }) => {
 
 CountdownTimer.propTypes = {
   className: PropTypes.string,
-  endDate: PropTypes.instanceOf(Date).isRequired,
+  // endDate: PropTypes.instanceOf(Date).isRequired,
+  endDate: PropTypes.oneOfType([(instanceOf(Date), PropTypes.string)])
+    .isRequired,
 };
 
 CountdownTimer.defaultProps = {
