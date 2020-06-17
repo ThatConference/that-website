@@ -72,11 +72,11 @@ After you edit those files, run `now dev` to startup `localhost`.
 
 #### 5b. Vercel/Zeit linked project setup
 
-As mentined in section 5 the Zeit/Vercel cli from version 17 and above requires project linking to work correctly. The instructions in this section walk through one way you can configure this locally so you may use newer versions. These instructions were tested with Vercel/Now cli version 19.0.1. In April 2020 Zeit changed it's name to Vercel, so the term `Vercel` will be used going forward. Read [here](https://vercel.com/blog/zeit-is-now-vercel) for more information about this change.
+As mentioned in section 5 the Zeit/Vercel cli from version 17 and above requires project linking to work correctly. The instructions in this section walk through one way you can configure this locally so you may use newer versions. These instructions were tested with Vercel/Now cli version 19.0.1. In April 2020 Zeit changed it's name to Vercel, so the term `vercel` will be used going forward. Read [here](https://vercel.com/blog/zeit-is-now-vercel) for more information about this change.
 
-**Assumptions:** These instructions assume that you currently don't have a Vercel account or project to point to for that-website. You will not need to deploy any code to Vercel, the account is only needed for project linking, a confusing feature/reqirement of the Vercel cli.
+**Assumptions:** These instructions assume that you currently don't have a Vercel account or project to point to for that-website. You will not need to deploy any code to Vercel, the account is only needed for project linking, a confusing feature/requirement of the Vercel cli.
 
-1. [Create](https://vercel.com/signup) a vercel account
+1. [Create](https://vercel.com/signup) a Vercel account
 1. [Install](https://vercel.com/download) the Vercel CLI
 1. Clone [that-website](https://github.com/ThatConference/that-website) to your local computer
 

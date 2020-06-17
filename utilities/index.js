@@ -1,5 +1,6 @@
 export * from './breakpoint';
 export * from './defaultSeo';
+export * from './hexToRgb';
 export * from './svgs';
 export * from './validation';
 export * from './utilityFunctions';

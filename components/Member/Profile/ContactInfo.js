@@ -77,7 +77,7 @@ const ContactInfoForm = ({
       }
 
       if (validProfileSlug === false) {
-        return 'Slug is already taken';
+        return 'Slug already taken or invalid characters';
       }
     }
     return null;
