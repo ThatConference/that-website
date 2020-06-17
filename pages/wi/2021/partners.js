@@ -22,6 +22,7 @@ const GET_PARTNERS = gql`
       event: eventBySlug(slug: $slug) {
         id
         name
+        slug
         year
         partners {
           id
@@ -177,7 +178,7 @@ const partnerListing = () => {
             </p>
             <ActionButtonRow>
               <LinkButton
-                href="/wi/become-a-partner"
+                href={`/${data.events.event.slug}/become-a-partner`}
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"

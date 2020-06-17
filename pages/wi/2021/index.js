@@ -99,7 +99,7 @@ const home = () => {
       <WhatToExpect />
       {/* <SpeakerHighlight /> */}
       <TimelineSection event={event} />
-      <SponsorHighlight eventSlug="wi/2021" />
+      <SponsorHighlight eventSlug={event.slug} />
       <Testimonials />
       <NewsletterSignup />
       <BottomImage
