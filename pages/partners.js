@@ -105,7 +105,7 @@ const partners = () => {
               their amazing support!
             </p>
             <LinkButton
-              href="wi/2021/become-a-partner"
+              href="/wi/2021/become-a-partner"
               label="Become a Partner"
               color="thatBlue"
               borderColor="thatBlue"
