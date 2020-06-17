@@ -134,7 +134,9 @@ const Hero = ({ event, className }) => {
   const momentEnd = moment(event.endDate);
   const dateAndLocation = `${momentStart.format('MMMM')} ${momentStart.format(
     'D',
-  )} - ${momentEnd.format('D')} - ${venue.name}, ${venue.city}, ${venue.state}`;
+  )} - ${momentEnd.format('D')}, ${momentStart.format('YYYY')} - ${
+    venue.name
+  }, ${venue.city}, ${venue.state}`;
   return (
     <ContentSection className={className}>
       <Main>

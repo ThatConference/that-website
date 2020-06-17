@@ -102,7 +102,7 @@ const Tickets = ({ className, tickets }) => {
                   hoverBorderColor={ticket.buttonColor}
                   hoverBackgroundColor="white"
                   hoverColor="darkGray"
-                  label="Reserve Ticket"
+                  label="Reserve Your Spot Today!"
                   target="_blank"
                 />
               </Detail>

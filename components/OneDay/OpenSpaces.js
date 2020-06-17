@@ -8,15 +8,15 @@ const OpenSpaces = ({ className }) => {
     <TitledContentBlock
       title="Open Spaces"
       titleColor="white"
-      subtitle="#THAT2020 CREATED BY… YOU!"
+      subtitle="Your pick the topics. We all make the conversation!"
       subtitleColor="white"
-      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac hendrerit sem, at ullamcorper nunc. Donec vehicula id sapien vel dapibus. Nulla a odio diam. Nunc vel odio ex. Etiam dictum mollis placerat. Pellentesque vel posuere velit."
+      text="What is Open Spaces? Open Space creates a facility, an opportunity to talk about anything we like. Yes anything, from some low level assembler code to BBQ, anything goes. It’s as simple as putting the topic on the Camp board. From there other campers find the conversations they’re interested in participating in and we come together at the scheduled time. Then we let the conversation guide us where it takes us."
       textColor="white"
       backgroundColor="primary"
       backgroundOpacity={0.7}
       backgroundImage="/images/open-space-circle.jpg"
       buttonText="Watch 2019 Open Spaces Kickoff"
-      buttonLinkUrl="http://wwww.someyoutubeurl.com"
+      buttonLinkUrl="https://www.youtube.com/watch?v=IiWh8l-dRtw"
       buttonIsLocal={false}
       className={`centered-text ${className}`}
     />

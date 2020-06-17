@@ -17,23 +17,21 @@ import { ActionButtonRow } from '../../../components/shared/StandardStyles';
 const dlog = debug('that:partners');
 
 const GET_PARTNERS = gql`
-  query getPartners($eventId: ID!) {
+  query getPartners($slug: String!) {
     events {
-      event(id: $eventId) {
-        get {
+      event: eventBySlug(slug: $slug) {
+        id
+        name
+        year
+        partners {
           id
-          name
-          year
-          partners {
-            id
-            slug
-            level
-            placement
-            companyName
-            companyLogo
-            heroImage
-            website
-          }
+          slug
+          level
+          placement
+          companyName
+          companyLogo
+          heroImage
+          website
         }
       }
     }
@@ -134,9 +132,7 @@ const renderPartner = (
 
 const partnerListing = () => {
   const { loading, error, data } = useQuery(GET_PARTNERS, {
-    variables: {
-      eventId: process.env.CURRENT_EVENT_ID,
-    },
+    variables: { slug: 'wi/2021' },
   });
 
   if (loading) {
@@ -151,14 +147,14 @@ const partnerListing = () => {
     throw new Error(error);
   }
 
-  dlog('data %o', data.events.event.get.partners);
+  dlog('data %o', data.events.event.partners);
 
-  const partners = data.events.event.get.partners.sort((a, b) => {
+  const partners = data.events.event.partners.sort((a, b) => {
     if (a.placement < b.placement) return -1;
     if (a.placement > b.placement) return 1;
     return 0;
   });
-  const eventYear = data.events.event.get.year;
+  const eventYear = data.events.event.year;
 
   dlog('partners %o', partners);
   return (

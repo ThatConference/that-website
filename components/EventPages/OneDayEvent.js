@@ -152,6 +152,11 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
       <Upcoming />
       <StayInTouch />
       <PageFooter />
+      <script
+        src="https://thatconference.activehosted.com/f/embed.php?id=1"
+        type="text/javascript"
+        charSet="utf-8"
+      />
     </div>
   );
 };
