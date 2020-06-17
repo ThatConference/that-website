@@ -74,7 +74,7 @@ const SkeletonLoader = () => {
   const items = [];
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 28; i++) {
-    items.push(<Placeholder width="17rem" height="13rem" />);
+    items.push(<Placeholder width="17rem" height="13rem" key={i} />);
   }
   return (
     <Grid columns={gridRepeat.xxsmall} alignContent="center">
@@ -105,7 +105,7 @@ const partners = () => {
               their amazing support!
             </p>
             <LinkButton
-              href="/wi/become-a-partner"
+              href="wi/2021/become-a-partner"
               label="Become a Partner"
               color="thatBlue"
               borderColor="thatBlue"

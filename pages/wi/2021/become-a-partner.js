@@ -110,7 +110,7 @@ const becomeAPartner = () => (
             </span>
           </div>
           <LinkButton
-            href="/wi/become-a-partner#more-info"
+            href="/wi/2021/become-a-partner#more-info"
             borderColor="white"
             color="white"
             backgroundColor="primary"

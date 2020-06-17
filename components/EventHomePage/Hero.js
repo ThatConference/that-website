@@ -104,7 +104,7 @@ const ThirdButton = ({ event }) => {
   let href = null;
   let label = null;
   if (event.isCallForSpeakersOpen) {
-    href = 'wi/call-for-counselors';
+    href = `${event.slug}/call-for-counselors`;
     label = 'Become A Counselor';
   }
   if (event.isVotingOpen) {
@@ -145,7 +145,7 @@ const Hero = ({ event, className }) => {
           <Slogan>{event.slogan}</Slogan>
           <ActionButtonRow>
             <LinkButton
-              href="wi/tickets"
+              href={`/${event.slug}/tickets`}
               label="Ticket Options"
               color="thatBlue"
               borderColor="thatBlue"
@@ -155,7 +155,7 @@ const Hero = ({ event, className }) => {
               hoverBackgroundColor="thatBlue"
             />
             <LinkButton
-              href="wi/become-a-partner"
+              href={`/${event.slug}/become-a-partner`}
               label="Sponsor Us"
               color="thatBlue"
               borderColor="thatBlue"

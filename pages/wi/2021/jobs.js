@@ -23,6 +23,7 @@ const GET_EVENT_PARTNER_JOBS = gql`
         get {
           id
           name
+          slug
           year
           partners {
             id
@@ -156,7 +157,7 @@ const jobs = () => {
             </p>
             <ActionButtonRow>
               <LinkButton
-                href="/wi/become-a-partner"
+                href={`/${data.events.event.get.slug}/become-a-partner`}
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"
@@ -165,7 +166,7 @@ const jobs = () => {
                 hoverBackgroundColor="thatBlue"
               />
               <LinkButton
-                href="/wi/partners"
+                href={`/${data.events.event.get.slug}/partners`}
                 label="View All THAT WI 2020 Partners"
                 color="thatBlue"
                 borderColor="thatBlue"

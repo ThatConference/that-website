@@ -163,7 +163,7 @@ const contact = () => {
                 {formattedEndDate}
               </p>
               <LinkButton
-                href="/wi/tickets"
+                href={`/${event.slug}/tickets`}
                 label="Ticket Options"
                 borderColor="thatBlue"
                 color="thatBlue"
