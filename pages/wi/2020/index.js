@@ -10,7 +10,7 @@ const TICKETS = [
   {
     name: 'Camper',
     description:
-      'Get access to the event with no base contribution to THAT community.',
+      'Get access to the event with $0 base contribution to THAT Conference.',
     imagePath: '/images/tickets/2020/camper.png',
     basePrice: '0',
     benefits: ['Access to the event'],
@@ -21,13 +21,13 @@ const TICKETS = [
   {
     name: 'Patron',
     description:
-      'Access to the event with a $25 minimum contribution to THAT community.',
+      'Access to the event with a $25 minimum contribution to THAT Conference.',
     imagePath: '/images/tickets/2020/patron.png',
     basePrice: '25',
     benefits: [
       'Access to the event',
       'Unique digital merit badge on THAT profile',
-      '10% discout at THAT Store',
+      '10% discount at THAT Store',
     ],
     buttonColor: 'primary',
     ticketUrl:
@@ -36,7 +36,7 @@ const TICKETS = [
   {
     name: 'Partner',
     description:
-      'Individual Partnership for individuals, sole proprietors and start-ups with less than 1M in ARR.',
+      'Sponsorship opportunity reserved for individuals, sole proprietors and start-ups with less than 1M in annual revenue.',
     imagePath: '/images/tickets/2020/partner.png',
     basePrice: '250',
     benefits: [
@@ -50,14 +50,15 @@ const TICKETS = [
       'https://ti.to/that-conference/that-conference-2020?y32kfajepau=1',
   },
   {
-    name: 'Corporate Partnership',
-    description: 'Corporate partner ticket',
+    name: 'Corporate Partner',
+    description:
+      'Sponsorship reserved for companies with over 1m in annual revenue.',
     imagePath: '/images/tickets/2020/corporate-partner.png',
     basePrice: '1000',
     benefits: [
       'Access to the event',
       'Listed on event as a corporate partner',
-      'Linnked logo and social media',
+      'Linked logo and social media',
       'Up to three job posting on THAT Conference job board',
       '20% discount at THAT Store',
     ],

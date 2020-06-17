@@ -63,7 +63,7 @@ const TopPartners = ({ becomePartnerLink, className, partners, title }) => {
       </Grid>
       <BecomeAPartner className="centered-text">
         <ThatLink
-          title="Become a Partner"
+          title="Support THAT by Becoming a Partner Today!"
           href={becomePartnerLink}
           isLocal
           style={{ marginTop: '4rem' }}
