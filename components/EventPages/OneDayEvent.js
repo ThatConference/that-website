@@ -158,7 +158,7 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
 
 OneDayEvent.propTypes = {
   eventSlug: PropTypes.string.isRequired,
-  tickets: PropTypes.shape([]),
+  tickets: PropTypes.oneOfType([PropTypes.array]),
 };
 
 OneDayEvent.defaultProps = {

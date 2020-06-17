@@ -19,6 +19,7 @@ const LiveStream = ({ className }) => {
       linkText="Watch THAT.live"
       linkUrl="http://that.live"
       className={className}
+      title=""
     >
       <ReactTwitchEmbedVideo
         channel="thatconference"

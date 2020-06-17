@@ -23,7 +23,7 @@ const Partners = ({ partners }) => {
 };
 
 Partners.propTypes = {
-  partners: PropTypes.shape([]).isRequired,
+  partners: PropTypes.oneOfType([PropTypes.array]).isRequired,
 };
 
 Partners.defaultProps = {};

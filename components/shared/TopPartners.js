@@ -76,8 +76,8 @@ const TopPartners = ({ becomePartnerLink, className, partners, title }) => {
 TopPartners.propTypes = {
   becomePartnerLink: PropTypes.string.isRequired,
   className: PropTypes.string,
-  event: PropTypes.shape({}).isRequired,
-  partners: PropTypes.shape([]).isRequired,
+  // event: PropTypes.shape({}).isRequired,
+  partners: PropTypes.oneOfType([PropTypes.array]).isRequired,
   title: PropTypes.string.isRequired,
 };
 
