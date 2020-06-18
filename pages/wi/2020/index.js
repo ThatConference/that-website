@@ -10,7 +10,7 @@ const TICKETS = [
   {
     name: 'Camper',
     description:
-      'Get access to the event with $0 base contribution to THAT Conference.',
+      'Access to the event with $0 base contribution to THAT Conference.',
     imagePath: '/images/tickets/2020/camper.png',
     basePrice: '0',
     benefits: ['Access to the event'],
@@ -19,7 +19,7 @@ const TICKETS = [
       'https://ti.to/that-conference/that-conference-2020?odor261sw70=1',
   },
   {
-    name: 'Patron',
+    name: 'Camper Patron',
     description:
       'Access to the event with a $25 minimum contribution to THAT Conference.',
     imagePath: '/images/tickets/2020/patron.png',
