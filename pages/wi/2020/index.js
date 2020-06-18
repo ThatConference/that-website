@@ -22,7 +22,7 @@ const TICKETS = [
     name: 'Patron Camper',
     description:
       'Access to the event with a $25 minimum contribution to THAT Conference.',
-    imagePath: '/images/tickets/2020/patron.png',
+    imagePath: '/images/tickets/2020/patroncamper.png',
     basePrice: '25',
     benefits: [
       'Access to the event',
