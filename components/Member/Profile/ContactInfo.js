@@ -231,7 +231,7 @@ const ContactInfoForm = ({
             getFieldProps={getFieldProps}
             errors={errors}
             touched={touched}
-            label="Agree to the <a href='/wi/2021/code-of-conduct' target='_blank'>Code of Conduct</a>"
+            label="Agree to the <a href='/code-of-conduct' target='_blank'>Code of Conduct</a>"
             inputType="checkbox"
             values={values}
             required
@@ -251,7 +251,7 @@ const ContactInfoForm = ({
             getFieldProps={getFieldProps}
             errors={errors}
             touched={touched}
-            label="Agree to <a href='/wi/2021/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
+            label="Agree to <a href='/terms-of-use' target='_blank'>THAT Terms of Use</a>?"
             inputType="checkbox"
             values={values}
             required
