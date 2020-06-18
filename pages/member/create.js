@@ -76,7 +76,7 @@ const createProfile = ({ user, loading }) => {
     }
 
     if (!loading && user.profileComplete) {
-      router.push('/wi').then(() => window.scrollTo(0, 0));
+      router.push('/').then(() => window.scrollTo(0, 0));
     }
   });
 
@@ -121,7 +121,7 @@ const createProfile = ({ user, loading }) => {
 
   const formCancel = () => {
     if (currentStep === 0) {
-      router.push('/wi').then(() => window.scrollTo(0, 0));
+      router.push('/').then(() => window.scrollTo(0, 0));
     } else {
       setCurrentStep(currentStep - 1);
     }
