@@ -19,7 +19,7 @@ const TICKETS = [
       'https://ti.to/that-conference/that-conference-2020?odor261sw70=1',
   },
   {
-    name: 'Camper Patron',
+    name: 'Patron Camper',
     description:
       'Access to the event with a $25 minimum contribution to THAT Conference.',
     imagePath: '/images/tickets/2020/patron.png',
