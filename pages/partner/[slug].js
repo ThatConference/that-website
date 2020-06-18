@@ -216,7 +216,7 @@ const CompanyNotFound = () => (
     <HeroSection
       companyName="Not Yet A THAT Partner"
       heroImageUrl=""
-      connectWithUsUrl="/wi/become-a-partner"
+      connectWithUsUrl="/wi/2021/become-a-partner"
       location="wi"
     />
     <ContentSection
@@ -234,7 +234,7 @@ const CompanyNotFound = () => (
       </p>
       <ActionButtonRow>
         <LinkButton
-          href="/wi/become-a-partner"
+          href="/wi/2021/become-a-partner"
           label="Become a Partner"
           color="thatBlue"
           borderColor="thatBlue"
