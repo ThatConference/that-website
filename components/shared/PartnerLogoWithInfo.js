@@ -53,12 +53,12 @@ const PartnerLogoWithInfo = ({ alignment, partner, className }) => {
   const getPartnerSocialLinks = () => {
     const socials = {};
 
-    if (partner.facebook) socials.facebook = partner.facebook;
-    if (partner.twitter) socials.twitter = partner.twitter;
-    if (partner.instagram) socials.instagram = partner.instagram;
-    if (partner.youtube) socials.youtube = partner.youtube;
-    if (partner.linkedin) socials.linkedin = partner.linkedIn;
-    if (partner.github) socials.github = partner.github;
+    if (partner.facebook) socials.facebook = { url: partner.facebook };
+    if (partner.twitter) socials.twitter = { url: partner.twitter };
+    if (partner.instagram) socials.instagram = { url: partner.instagram };
+    if (partner.youtube) socials.youtube = { url: partner.youtube };
+    if (partner.linkedIn) socials.linkedin = { url: partner.linkedIn };
+    if (partner.github) socials.github = { url: partner.github };
 
     return socials;
   };
