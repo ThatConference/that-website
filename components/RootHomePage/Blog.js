@@ -4,7 +4,7 @@ import DetailToLearnMore from '../shared/DetailToLearnMore';
 
 const Blog = () => {
   let markdownContent = '';
-  const currentBlogSlug = 'refactoring-THAT-conference-2020';
+  const currentBlogSlug = '2020-that-online-tickets-available';
 
   try {
     // eslint-disable-next-line global-require, import/no-dynamic-require
