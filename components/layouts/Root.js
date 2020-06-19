@@ -11,7 +11,7 @@ import baseTheme from '../../styles/baseTheme';
 import Meta from '../Meta';
 import Header from '../Header/root';
 import Footer from '../Footer';
-import { defaultSeo, socialConstants } from '../../utilities';
+import { rootSeo, socialConstants } from '../../utilities';
 import User from '../User';
 import { useFetchUser } from '../../hooks/user';
 import {
@@ -58,7 +58,7 @@ const Default = ({ children }) => {
         <StyledPage>
           <Meta />
           <DefaultSeo
-            {...defaultSeo}
+            {...rootSeo}
             canonical={`https://www.thatconference.com/${router.pathname}`}
           />
           <LogoJsonLd
