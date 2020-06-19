@@ -151,12 +151,6 @@ const Footer = () => {
                 FAQ
               </NavLink>
               <NavLink
-                href="/wi/2021/code-of-conduct"
-                onClick={() => clickTracking('wi/2021/code-of-conduct')}
-              >
-                Code of Conduct
-              </NavLink>
-              <NavLink
                 href="/wi/2021/attendee-handbook"
                 onClick={() => clickTracking('wi/2021/attendee-handbook')}
               >
@@ -178,34 +172,40 @@ const Footer = () => {
             <FooterNavColumn>
               <Title>Policies</Title>
               <NavLink
-                href="/wi/2021/terms-of-use"
-                onClick={() => clickTracking('wi/2021/terms')}
+                href="/code-of-conduct"
+                onClick={() => clickTracking('/code-of-conduct')}
               >
-                Terms of Use
+                Code of Conduct
               </NavLink>
               <NavLink
-                href="/wi/2021/copyright"
-                onClick={() => clickTracking('wi/2021/copyright')}
-              >
-                Copyright
-              </NavLink>
-              <NavLink
-                href="/wi/2021/privacy-policy"
-                onClick={() => clickTracking('wi/2021/privacy')}
-              >
-                Privacy
-              </NavLink>
-              <NavLink
-                href="/wi/2021/anti-harassment-policy"
-                onClick={() => clickTracking('wi/2021/anti-harassment')}
+                href="/anti-harassment-policy"
+                onClick={() => clickTracking('/anti-harassment')}
               >
                 Anti-Harassment
               </NavLink>
               <NavLink
-                href="/wi/2021/commitment-to-diversity"
-                onClick={() => clickTracking('wi/2021/commitment-to-diversity')}
+                href="/commitment-to-diversity"
+                onClick={() => clickTracking('/commitment-to-diversity')}
               >
                 Commitment to Diversity
+              </NavLink>
+              <NavLink
+                href="/privacy-policy"
+                onClick={() => clickTracking('/privacy')}
+              >
+                Privacy
+              </NavLink>
+              <NavLink
+                href="/terms-of-use"
+                onClick={() => clickTracking('/terms')}
+              >
+                Terms of Use
+              </NavLink>
+              <NavLink
+                href="/copyright"
+                onClick={() => clickTracking('/copyright')}
+              >
+                Copyright
               </NavLink>
             </FooterNavColumn>
           </FooterNav>

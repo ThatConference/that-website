@@ -94,6 +94,14 @@ const Tickets = ({ className, tickets }) => {
                     <li key={benefit}>{benefit}</li>
                   ))}
                 </ul>
+                {ticket.name.includes('Partner') && (
+                  <span>
+                    Partner questions?{' '}
+                    <a href="mailto:partners@thatconference.com">
+                      partners@thatconference.com
+                    </a>
+                  </span>
+                )}
                 <SmallLinkButton
                   href={ticket.ticketUrl}
                   borderColor="white"

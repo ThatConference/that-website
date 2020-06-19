@@ -22,7 +22,7 @@ We are, after all, a Big Tent conference, and we want you to know that your fami
 
 ### Update Your Info
 
-To get the most out of your THAT Conference experience, take a moment to register at <a href="https://www.thatconference.com/" target="_blank">THATConference.com</a>. 
+To get the most out of your THAT Conference experience, take a moment to register at <a href="https://www.thatconference.com/" target="_blank">THATConference.com</a>.
 Once registered, you'll be able to build out your own personalized conference itinerary from the vast array of sessions available.
 During THAT Conference, you'll be able to carry around your personal itinerary on your mobile device using the THAT Conference apps available in the various mobile stores. Also, we encourage everyone to fill out their profile information; you'll be able to enter your networking information and include a photo of yourself.
 
@@ -44,7 +44,7 @@ The THAT Conference application will act as your compass, showing you the sessio
 
 ### Mess Hall
 
-Your THAT Conference ticket gets you into the Mess Hall, our grand meeting area. In the Mess Hall, campers with a food ticket will gather each morning for breakfast and then everyone will be inspired by our morning Keynote speaker. Our keynoters are thought leaders from both inside and outside technology, but always with a motivational message to get us hungry for self and world improvement. 
+Your THAT Conference ticket gets you into the Mess Hall, our grand meeting area. In the Mess Hall, campers with a food ticket will gather each morning for breakfast and then everyone will be inspired by our morning Keynote speaker. Our keynoters are thought leaders from both inside and outside technology, but always with a motivational message to get us hungry for self and world improvement.
 
 Gather in the Mess Hall during lunch to reflect on the morning with new colleagues and friends. We know that you brought all your co-workers along, but we encourage you to use lunch as an opportunity to get out of your comfort zone and meet new folks.
 
@@ -63,5 +63,5 @@ Note, dinner is not provided Monday or Tuesday nights, but we've got you covered
 
 ### Our Commitment
 
-Our goal is to create the best technology events you’ve ever experienced. We are <a href="https://www.thatconference.com/wi/commitment-to-diversity" target="_blank">committed to diversity</a>.
-and will not stand for <a href="https://www.thatconference.com/wi/anti-harassment-policy" target="_blank">harrassment</a> of any kind, but we cannot do this alone. We need your help and support in our mission. Everyone is expect to abide by our <a href="https://www.thatconference.com/wi/code-of-conduct" target="_blank">Code of Conduct</a>, and if you witness something please tell one of our staff members, so we have an opportunity to address it.
+Our goal is to create the best technology events you’ve ever experienced. We are <a href="https://www.thatconference.com/commitment-to-diversity" target="_blank">committed to diversity</a>.
+and will not stand for <a href="https://www.thatconference.com/anti-harassment-policy" target="_blank">harrassment</a> of any kind, but we cannot do this alone. We need your help and support in our mission. Everyone is expect to abide by our <a href="https://www.thatconference.com/code-of-conduct" target="_blank">Code of Conduct</a>, and if you witness something please tell one of our staff members, so we have an opportunity to address it.
