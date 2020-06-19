@@ -7,9 +7,13 @@ import TopPartners from '../shared/TopPartners';
 const PARTNER_LEVELS_TO_DISPLAY = ['CORPORATE_PARTNER', 'PARTNER'];
 
 const Partners = ({ partners }) => {
-  const topPartners = partners.filter(partner =>
-    PARTNER_LEVELS_TO_DISPLAY.includes(partner.level),
-  );
+  const topPartners = partners
+    .sort((a, b) => {
+      if (a.level > b.level) return 1;
+      if (a.level < b.level) return -1;
+      return 0;
+    })
+    .filter(partner => PARTNER_LEVELS_TO_DISPLAY.includes(partner.level));
 
   return (
     <ContentSection>
