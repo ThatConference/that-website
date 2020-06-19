@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 import ContentSection from '../shared/ContentSection';
 import TopPartners from '../shared/TopPartners';
 
 const PARTNER_LEVELS_TO_DISPLAY = ['CORPORATE_PARTNER', 'PARTNER'];
 
 const Partners = ({ partners }) => {
-  const topPartners = partners.filter(partner =>
+  let topPartners = partners.filter(partner =>
     PARTNER_LEVELS_TO_DISPLAY.includes(partner.level),
   );
+  topPartners = _.sortBy(topPartners, p => p.level);
 
   return (
     <ContentSection>
