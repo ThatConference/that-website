@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import styled from 'styled-components';
@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Icon from '../shared/Icon';
 import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
+import SecondaryMemberNav from './SecondaryMemberNav';
 
 const StyledIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
@@ -37,51 +38,52 @@ const Greeting = styled.p`
   `};
 `;
 
-// const RootNav = styled.div`
-//   background-color: ${({ theme }) => theme.colors.darkBlue};
-//   position: relative;
-// `;
+const RootNav = styled.div`
+  background-color: ${({ theme }) => theme.colors.darkBlue};
+  position: relative;
+`;
 
-// const NavIcon = styled(Icon)`
-//   fill: ${({ theme }) => theme.colors.white};
-//   width: 5rem;
-//   padding: 0 1rem;
-// `;
+const NavIcon = styled(Icon)`
+  fill: ${({ theme }) => theme.colors.white};
+  width: 5rem;
+  padding: 0 1rem;
+`;
 
-// const StyledSecondaryNav = styled(SecondaryMemberNav)`
-//   background-color: ${({ theme }) => theme.colors.white};
-//   position: absolute;
-//   list-style: none;
-//   right: -1rem;
-//   padding: 2rem;
-//   margin: 0;
-//   top: 10rem;
-//   width: 20rem;
-//   z-index: 100;
-//   text-align: right;
-//   padding-right: 3rem;
+const StyledSecondaryNav = styled(SecondaryMemberNav)`
+  display: ${({ navOpen }) => (navOpen ? 'block' : 'none')};
+  background-color: ${({ theme }) => theme.colors.white};
+  position: absolute;
+  list-style: none;
+  right: -1rem;
+  padding: 2rem;
+  margin: 0;
+  top: 10rem;
+  width: 20rem;
+  z-index: 100;
+  text-align: right;
+  padding-right: 3rem;
 
-//   &.on {
-//     overflow: hidden;
-//     transition: all 0.5s ease;
-//     will-change: transform;
-//     border: 1px solid gray;
-//   }
+  &.on {
+    overflow: hidden;
+    transition: all 0.5s ease;
+    will-change: transform;
+    border: 1px solid gray;
+  }
 
-//   &.off {
-//     overflow: hidden;
-//     max-height: 0;
-//     padding-top: 0;
-//     padding-bottom: 0;
-//     margin-top: 0;
-//     margin-bottom: 0;
-//     transition: all 0.5s ease;
-//     will-change: transform;
-//   }
-// `;
+  &.off {
+    overflow: hidden;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: all 0.5s ease;
+    will-change: transform;
+  }
+`;
 
 const RootHeader = ({ className, loading, user }) => {
-  // const [navOpen, setNavOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   const greeting = () => {
     if (user.firstName) {
@@ -112,13 +114,18 @@ const RootHeader = ({ className, loading, user }) => {
       </Member>
 
       {/* Soon to be built into full site nav */}
-      {/* <RootNav>
+      <RootNav>
         <NavIcon
           icon="arrow"
           className={navOpen ? 'up' : 'down'}
           onClick={() => setNavOpen(!navOpen)}
         />
-      </RootNav> */}
+        <StyledSecondaryNav
+          user={user}
+          onLinkClick={() => setNavOpen(false)}
+          navOpen={navOpen}
+        />
+      </RootNav>
     </header>
   );
 };
