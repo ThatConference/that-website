@@ -27,6 +27,8 @@ All fields are required in a blog post's front matter
 
 You will then need to add your page to the blog index at `/pages/blog.js` but simply adding a call to render a new instance of `BlogListItem` with the slug (**file name**) of your post. Example: `<BlogListItem slug="my-new-super-awesome-post" />` for a blog post with the filename of `/markdown/blog/my-new-super-awesome-post.md`.
 
+The root page `/` has a blog reference section for the latest post. Update this section with the `slug` of the new blog post.
+
 ### Adding Markdown Pages
 
 We are using dynamic routing to render markdown files. Within `/pages/wi` you will see a file `[markdown].js`. Within Next, it will first try to find a matching page file for the path being rendered. If no page file found it will render `[markdown].js`.
