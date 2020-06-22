@@ -16,7 +16,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
             onClick={() => onLinkClick()}
           />
         )}
-        {user.profileComplete && (
+        {!_.isEmpty(user) && user.profileComplete && (
           <ThatLink
             title="My Profile"
             href={`/member/${user.profileSlug}`}
@@ -24,7 +24,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
           />
         )}
       </li>
-      {user.profileComplete && (
+      {!_.isEmpty(user) && user.profileComplete && (
         <li>
           <ThatLink
             title="My Sessions"
