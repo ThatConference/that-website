@@ -130,7 +130,9 @@ const HeroSection = ({
             target={connectWithUsUrl.startsWith('/') ? '' : 'blank'}
             isLocal={connectWithUsUrl.startsWith('/')}
           />
-          <DownArrow icon="arrow" />
+          <a href="#partner-about">
+            <DownArrow icon="arrow" />
+          </a>
         </div>
       </HeroBlock>
     </HeroContentSection>

@@ -86,7 +86,7 @@ const MainLogoSection = ({ partner }) => {
   ]);
 
   return (
-    <ContentSection backgroundColor="lightGray">
+    <ContentSection id="partner-about" backgroundColor="lightGray">
       <LogoMemberSection>
         <PartnerLogoWithInfo
           partner={partner}
