@@ -33,8 +33,8 @@ const Greeting = styled.p`
   padding: 0 2rem;
   margin: 0;
 
-  ${below.xsmall`
-    padding: 0 0.75rem
+  ${below.small`
+    display: none;
   `};
 `;
 
@@ -114,18 +114,20 @@ const RootHeader = ({ className, loading, user }) => {
       </Member>
 
       {/* Soon to be built into full site nav */}
-      <RootNav>
-        <NavIcon
-          icon="arrow"
-          className={navOpen ? 'up' : 'down'}
-          onClick={() => setNavOpen(!navOpen)}
-        />
-        <StyledSecondaryNav
-          user={user}
-          onLinkClick={() => setNavOpen(false)}
-          navOpen={navOpen}
-        />
-      </RootNav>
+      {!isEmpty(user) && (
+        <RootNav>
+          <NavIcon
+            icon="arrow"
+            className={navOpen ? 'up' : 'down'}
+            onClick={() => setNavOpen(!navOpen)}
+          />
+          <StyledSecondaryNav
+            user={user}
+            onLinkClick={() => setNavOpen(false)}
+            navOpen={navOpen}
+          />
+        </RootNav>
+      )}
     </header>
   );
 };
