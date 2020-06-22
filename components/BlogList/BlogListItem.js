@@ -45,6 +45,7 @@ const Description = styled.p`
 `;
 
 const BlogLeadImage = styled.img`
+  width: 22rem;
   height: 12rem;
 `;
 
