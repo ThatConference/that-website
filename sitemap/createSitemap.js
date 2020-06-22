@@ -8,6 +8,7 @@ const OMIT_FILES = [
   'pages/_app.js',
   'pages/_document.js',
   'pages/_error.js',
+  'pages/[markdown].js',
   'pages/[memberSlug].js',
   'pages/[post].js',
   'pages/[sessionId].js',
@@ -21,9 +22,11 @@ const OMIT_FILES = [
   'pages/member/session-edit/[sessionId].js',
   'pages/member/session-preview/[sessionId].js',
   'pages/partner/[slug].js',
+  'pages/partner/[slug]/job/[jobSlug].js',
+  'pages/partner/[slug]/jobs.js',
   'pages/samples/sample-form.js',
   'pages/samples/toggle-page.js',
-  'pages/wi/[markdown].js',
+  'pages/wi/2021/[markdown].js',
   'pages/work-in-progress.js',
 ];
 

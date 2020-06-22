@@ -10,6 +10,7 @@ const baseTheme = {
 
     thatBlue: '#26529A',
     teal: '#05d69e',
+    purple: '#5E1B5E',
     gray: '#555555',
     mediumGray: '#d3d3d3',
     mediumLightGray: '#fcfcfc;',
@@ -30,11 +31,6 @@ const baseTheme = {
     fonts: {
       light: '#FFFFFF',
       dark: '#555555',
-    },
-
-    maps: {
-      landscape: '#f2f2f2',
-      water: '#ff9100',
     },
   },
 };

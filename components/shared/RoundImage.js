@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Imgix from 'react-imgix';
 
 const AccentLine = styled.span`
   height: ${({ size }) => size}rem;
@@ -10,9 +11,24 @@ const AccentLine = styled.span`
 
 const RoundImage = ({ className, imageUrl, size, showAccentLine, alt }) => {
   const showAccent = showAccentLine === null || showAccentLine !== false;
+  const intsize = parseInt(size);
   return (
     <>
-      <img src={imageUrl} className={className} alt={alt} loading="lazy" />
+      <Imgix
+        className={className}
+        src={
+          imageUrl || 'https://that.imgix.net/members/person-placeholder.jpg'
+        }
+        width={intsize}
+        height={intsize}
+        imgixParams={{
+          fit: 'facearea',
+          facepad: 10,
+          mask: 'ellipse',
+        }}
+        htmlAttributes={{ loading: 'lazy', alt }}
+      />
+
       {showAccent && <AccentLine size={size / 40} />}
     </>
   );

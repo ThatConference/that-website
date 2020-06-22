@@ -43,8 +43,8 @@ const Icon = ({
       width={width}
       viewBox={`
         0 0
-        ${viewBoxWidth || width || '24'}
-        ${viewBoxHeight || height || '24'}
+        ${svgs[icon].viewBoxWidth || viewBoxWidth || width || '24'}
+        ${svgs[icon].viewBoxHeight || viewBoxHeight || height || '24'}
        `}
     >
       <title>{title || svgs[icon].title}</title>

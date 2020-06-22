@@ -2,13 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
-import { below } from '../utilities/breakpoint';
 
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
 import LinkButton from '../components/shared/LinkButton';
 
-import { gridRepeat } from '../utilities';
+import { below, gridRepeat } from '../utilities';
 
 const StyledImageContainer = styled(ImageContainer)`
   padding: 2.5rem;

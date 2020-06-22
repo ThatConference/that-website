@@ -174,14 +174,43 @@ export const memberConstants = {
 
 export const socialConstants = {
   thatSocialLinks: Object.freeze({
-    facebook: 'https://www.facebook.com/ThatConference/',
-    instagram: 'https://www.instagram.com/thatconference/',
-    twitter: 'https://twitter.com/ThatConference',
-    medium: 'https://medium.com/that-conference',
-    youtube: 'https://www.youtube.com/thatconference/',
-    flickr: 'https://www.flickr.com/photos/thatconference/',
-    linkedin: 'https://www.linkedin.com/company/that-conference',
-    github: 'https://github.com/ThatConference',
+    facebook: {
+      url: 'https://www.facebook.com/THATconference/',
+      description: 'Latest news, announcements and happenings',
+    },
+    instagram: {
+      url: 'https://www.instagram.com/THATconference/',
+      description: "Who doesn't love seeing pics of all THAT goodness!",
+    },
+    twitter: {
+      url: 'https://twitter.com/THATconference',
+      description: 'Latest news, announcements and happenings',
+    },
+    medium: {
+      url: 'https://medium.com/THAT-conference',
+      description: 'Amazing articles written by members of THAT Community',
+    },
+    youtube: {
+      url: 'https://www.youtube.com/THATconference/',
+      description:
+        'All of our past recordings, live broadcasts and THAT Conference keynotes',
+    },
+    flickr: {
+      url: 'https://www.flickr.com/photos/THATconference/',
+      description: 'Pics of all past THAT Conferences. We mean, all.the.pics.',
+    },
+    linkedin: {
+      url: 'https://www.linkedin.com/company/THAT-conference',
+      description: 'Where we connect to all our community and partners',
+    },
+    github: {
+      url: 'https://github.com/THATconference',
+      description: 'Our platform is open source and we love contributors!',
+    },
+    twitch: {
+      url: 'https://that.live',
+      description: 'Watch us LIVE every Mon + Wed @ 12pm Central',
+    },
   }),
 
   socialIcons: {
@@ -229,6 +258,14 @@ export const socialConstants = {
         width: 24,
         height: 19,
       },
+    },
+    twitch: {
+      icon: {
+        name: 'twitch',
+        width: 52,
+        height: 52,
+      },
+      className: 'is-bigger',
     },
     twitter: {
       icon: {

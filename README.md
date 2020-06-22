@@ -28,7 +28,7 @@ There are many ways you can contribute, here are just some of the broader items 
 Before we get started, here are a few things we expect from you (and that you should expect from others):
 
 - Be kind and thoughtful in your conversations around this project. We all come from different backgrounds and projects, which means we likely have different perspectives on "how open source is done." Try to listen to others rather than convince them that your way is correct.
-- THAT Conference has a released [Code of Conduct](https://www.thatconference.com/wi/code-of-conduct). By participating in this project, you agree to abide by its terms.
+- THAT Conference has a released [Code of Conduct](https://www.thatconference.com/code-of-conduct). By participating in this project, you agree to abide by its terms.
 - If you open a pull request, please ensure that your contribution passes all tests. If there are test failures, you will need to address them before we can merge your contribution.
 
 #### 3. How to contribute
@@ -72,11 +72,11 @@ After you edit those files, run `now dev` to startup `localhost`.
 
 #### 5b. Vercel/Zeit linked project setup
 
-As mentined in section 5 the Zeit/Vercel cli from version 17 and above requires project linking to work correctly. The instructions in this section walk through one way you can configure this locally so you may use newer versions. These instructions were tested with Vercel/Now cli version 19.0.1. In April 2020 Zeit changed it's name to Vercel, so the term `Vercel` will be used going forward. Read [here](https://vercel.com/blog/zeit-is-now-vercel) for more information about this change.
+As mentioned in section 5 the Zeit/Vercel cli from version 17 and above requires project linking to work correctly. The instructions in this section walk through one way you can configure this locally so you may use newer versions. These instructions were tested with Vercel/Now cli version 19.0.1. In April 2020 Zeit changed it's name to Vercel, so the term `vercel` will be used going forward. Read [here](https://vercel.com/blog/zeit-is-now-vercel) for more information about this change.
 
-**Assumptions:** These instructions assume that you currently don't have a Vercel account or project to point to for that-website. You will not need to deploy any code to Vercel, the account is only needed for project linking, a confusing feature/reqirement of the Vercel cli.
+**Assumptions:** These instructions assume that you currently don't have a Vercel account or project to point to for that-website. You will not need to deploy any code to Vercel, the account is only needed for project linking, a confusing feature/requirement of the Vercel cli.
 
-1. [Create](https://vercel.com/signup) a vercel account
+1. [Create](https://vercel.com/signup) a Vercel account
 1. [Install](https://vercel.com/download) the Vercel CLI
 1. Clone [that-website](https://github.com/ThatConference/that-website) to your local computer
 

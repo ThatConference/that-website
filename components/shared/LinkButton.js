@@ -60,6 +60,7 @@ const LinkButton = ({
   onClick,
   label,
   target,
+  image,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -97,7 +98,10 @@ const LinkButton = ({
         hoverBackgroundColor={hoverBackgroundColor}
         hoverBorderColor={hoverBorderColor}
       >
-        <p>{label}</p>
+        <>
+          {image && <img src={image} alt={label} />}
+          <p>{label}</p>
+        </>
       </StyledOutlineLink>
     </ConditionalWrapper>
   );

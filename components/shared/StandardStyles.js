@@ -1,6 +1,34 @@
 import styled from 'styled-components';
 import { below } from '../../utilities';
 
+/** * BEGIN: Page elements shared in layouts ** */
+export const StyledPage = styled.div`
+  background: ${({ theme }) => theme.colors.backgroundColor};
+  color: ${({ theme }) => theme.colors.black};
+`;
+
+export const CorePage = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 0;
+`;
+
+export const PageDiv = styled.div`
+  position: ${({ mobileMenuOpen }) => (mobileMenuOpen ? 'fixed' : 'relative')};
+  display: flex;
+  flex-direction: column;
+`;
+
+export const InnerPage = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+`;
+/** * END: Page elements shared in layouts ** */
+
 export const StyledP = styled.p`
   padding-right: 1rem;
   margin-top: 0;
@@ -108,6 +136,11 @@ export const SmallerH1 = styled.h1`
   font-size: 9rem;
 `;
 
+export const SlimCenteredH2 = styled.h2`
+  margin-top: 1.5rem;
+  text-align: center;
+`;
+
 export const ViewLink = styled.a`
   font-size: 1.4rem;
   width: 100%;
@@ -124,4 +157,9 @@ export const ViewLink = styled.a`
     color: ${({ theme }) => theme.colors.highlight};
     fill: ${({ theme }) => theme.colors.highlight};
   }
+`;
+
+export const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
