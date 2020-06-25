@@ -48,6 +48,7 @@ const ProfileItem = ({
           imageUrl={imageUrl}
           size={size}
           showAccentLine={showAccentLine}
+          alt={name}
         />
         <Name fontSize={baseFontSize}>{name}</Name>
         <Title fontSize={baseFontSize - 0.4}>{title}</Title>

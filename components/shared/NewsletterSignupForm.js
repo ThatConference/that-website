@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SquareButton from './SquareButton';
@@ -106,7 +107,11 @@ class NewsletterSignUpForm extends Component {
             <input type="hidden" name="v" value="2" />
 
             <InputsRow>
+              <label htmlFor="email-input" style={{ display: 'none' }}>
+                Email address
+              </label>
               <input
+                id="email-input"
                 type="text"
                 name="email"
                 placeholder="ex: hello@youareawesome.com"

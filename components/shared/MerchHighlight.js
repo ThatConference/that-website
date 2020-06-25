@@ -59,7 +59,7 @@ const MerchHighlight = ({
   return (
     <ContentSection className={className}>
       <Main>
-        <LeftBear src="/images/bear_pink_hoodie.png" />
+        <LeftBear src="/images/bear_pink_hoodie.png" alt="THAT Hoodie" />
         <div>
           <SlimCenteredH2>{title}</SlimCenteredH2>
           <h4>{subtitle}</h4>
@@ -75,7 +75,10 @@ const MerchHighlight = ({
             hoverBackgroundColor="white"
           />
         </div>
-        <RightBear src="/images/bear_green_purple_tree_shirt.png" />
+        <RightBear
+          src="/images/bear_green_purple_tree_shirt.png"
+          alt="THAT Tee"
+        />
       </Main>
     </ContentSection>
   );
