@@ -112,6 +112,7 @@ const Tickets = ({ className, tickets }) => {
                   hoverColor="darkGray"
                   label="Reserve Your Spot Today!"
                   target="_blank"
+                  rel="noopener"
                 />
               </Detail>
             </TicketBlock>

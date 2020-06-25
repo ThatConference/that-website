@@ -85,6 +85,7 @@ const Keynotes = ({ className }) => {
           href="http://youtube.com/thatconference/"
           label="See More on THAT YouTube"
           target="_blank"
+          rel="noopener"
           backgroundColor="primary"
           borderColor="white"
           color="white"

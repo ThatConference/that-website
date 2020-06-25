@@ -56,11 +56,12 @@ const LinkButton = ({
   hoverBorderColor,
   hoverColor,
   href,
+  image,
   isLocal,
   onClick,
   label,
+  rel,
   target,
-  image,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -97,6 +98,7 @@ const LinkButton = ({
         hoverColor={hoverColor}
         hoverBackgroundColor={hoverBackgroundColor}
         hoverBorderColor={hoverBorderColor}
+        rel={rel}
       >
         <>
           {image && <img src={image} alt={label} />}
@@ -113,9 +115,11 @@ LinkButton.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
+  image: PropTypes.string,
   isLocal: PropTypes.bool,
   label: PropTypes.string,
   onClick: PropTypes.func,
+  rel: PropTypes.string,
   target: PropTypes.string,
 };
 
@@ -124,9 +128,11 @@ LinkButton.defaultProps = {
   borderColor: '',
   className: '',
   color: '',
+  image: '',
   isLocal: true,
   label: '',
   onClick: () => {},
+  rel: '',
   target: '',
 };
 
