@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
-import LinkButton from '../components/shared/LinkButton';
+import LinkButton from '../components/shared/LinkButton/LinkButton';
 
 import { below, gridRepeat } from '../utilities';
 

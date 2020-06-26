@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
 import Icon from '../shared/Icon';
 import NewsletterSignupForm from '../shared/NewsletterSignupForm';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import { below } from '../../utilities';
 
 const Main = styled.div`

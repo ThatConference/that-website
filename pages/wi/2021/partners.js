@@ -9,7 +9,7 @@ import debug from 'debug';
 
 import ContentSection from '../../../components/shared/ContentSection';
 import ImageContainer from '../../../components/shared/ImageContainer';
-import LinkButton from '../../../components/shared/LinkButton';
+import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import { below } from '../../../utilities/breakpoint';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 import { ActionButtonRow } from '../../../components/shared/StandardStyles';

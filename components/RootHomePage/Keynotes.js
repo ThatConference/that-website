@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import YouTubeVideo from '../shared/YouTubeVideo';
 
 import { SlimCenteredH2 } from '../shared/StandardStyles';

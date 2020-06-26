@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo';
 
 import ContentSection from '../../../components/shared/ContentSection';
 import YouTubeVideo from '../../../components/shared/YouTubeVideo';
-import LinkButton from '../../../components/shared/LinkButton';
+import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import { ActionButtonRow } from '../../../components/shared/StandardStyles';
 import { above, below } from '../../../utilities';
 

@@ -4,6 +4,22 @@ Your detailed guide to contributing the THAT Website. 🌲🌲
 
 ## Getting Started
 
+## Building components
+
+### Storybook
+
+To help wrangle the growing list of shared components we are using [Storybook](https://storybook.js.org/) to build out the visual library we can use to not only validate our components but to remember what we built.
+
+We currently do not have a deployed version of Storybook but you can check it out all day long locally. From within the project at a terminal prompt run: `npm run storybook` This will launch THAT Storybook on [http://localhost:6006/](http://localhost:6006/) where you explore all the shared components.
+
+**_NOTE_**: This library is a current on-going effort to build out. We'd love for you to jump in and help! Check out our [THAT Storybook project](https://github.com/ThatConference/that-website/projects/2) with more detail steps on getting involved.
+
+### Testing
+
+We have [Jest](https://jestjs.io/) baked in as our testing framework.
+
+**_NOTE_**: We are working to fill in specs for our components as part of our [THAT Storybook project](https://github.com/ThatConference/that-website/projects/2). See something missing or want to join in the fun? Yeah you do, follow the notes in the project to get started!
+
 ## Submitting Pull Requests
 
 ## Markdown

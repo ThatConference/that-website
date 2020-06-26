@@ -14,7 +14,7 @@ import HeroSection from '../../components/PartnerDetail/HeroSection';
 import MainLogoSection from '../../components/PartnerDetail/MainLogoSection';
 import PartnerDetailSubHeading from '../../components/PartnerDetail/PartnerDetailSubHeading';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import LinkButton from '../../components/shared/LinkButton';
+import LinkButton from '../../components/shared/LinkButton/LinkButton';
 import {
   ActionButtonRow,
   StyledP,

@@ -4,6 +4,7 @@ export * from './defaultSeo';
 export * from './hexToRgb';
 export * from './rootSeo';
 export * from './svgs';
+export * from './themeColorNames';
 export * from './utilityFunctions';
 export * from './validation';
 export const DEFAULT_WIP_PAGE = 'work-in-progress';

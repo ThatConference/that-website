@@ -5,7 +5,7 @@ import { NextSeo } from 'next-seo';
 import { below } from '../../../utilities/breakpoint';
 
 import ContentSection from '../../../components/shared/ContentSection';
-import LinkButton from '../../../components/shared/LinkButton';
+import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import WhatToExpect from '../../../components/shared/WhatToExpect';
 
 const PartnerH3 = styled.h3`

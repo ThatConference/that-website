@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import * as gtag from '../../lib/gtag';
+import * as gtag from '../../../lib/gtag';
 
-import { below } from '../../utilities';
+import { below } from '../../../utilities';
 
 const StyledOutlineLink = styled.a`
   display: inline-block;
@@ -58,8 +58,8 @@ const LinkButton = ({
   href,
   image,
   isLocal,
-  onClick,
   label,
+  onClick,
   rel,
   target,
 }) => {

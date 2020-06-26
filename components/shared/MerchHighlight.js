@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import LinkButton from './LinkButton';
+import LinkButton from './LinkButton/LinkButton';
 import ContentSection from './ContentSection';
 import { SlimCenteredH2 } from './StandardStyles';
 

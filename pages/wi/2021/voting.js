@@ -8,7 +8,7 @@ import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import Title from '../../../components/shared/Title';
 import ThatLink from '../../../components/shared/ThatLink';
-import LinkButton from '../../../components/shared/LinkButton';
+import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;
