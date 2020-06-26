@@ -70,8 +70,7 @@ const Hero = ({ className }) => {
   return (
     <HeroContainer
       className={className}
-      imageSource="/images/landing_hero.jpg"
-      imageAlt="THAT"
+      imageSource="https://images.that.tech/site/landing-hero.jpg"
     >
       <Content>
         <Main>
