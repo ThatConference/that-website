@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ContentSection from '../shared/ContentSection';
 import StandardBodyCopy from '../shared/StandardBodyCopy';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 
 import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 

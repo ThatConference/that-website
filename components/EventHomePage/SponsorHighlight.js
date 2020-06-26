@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import { below, above } from '../../utilities';
 

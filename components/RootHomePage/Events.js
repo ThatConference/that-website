@@ -7,7 +7,7 @@ import _ from 'lodash';
 import Link from 'next/link';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import TopPartners from '../shared/TopPartners';
 import { gridRepeat, below } from '../../utilities';
 

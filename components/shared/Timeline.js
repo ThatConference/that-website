@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
 import ContentSection from './ContentSection';
-import LinkButton from './LinkButton';
+import LinkButton from './LinkButton/LinkButton';
 import { below } from '../../utilities';
 
 const _ = require('lodash');

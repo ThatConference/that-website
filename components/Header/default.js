@@ -8,7 +8,7 @@ import * as gtag from '../../lib/gtag';
 import MessageBar from './MessageBar';
 import Nav from './Nav';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import { above, below } from '../../utilities';
 import MemberNav from './MemberNav';
 

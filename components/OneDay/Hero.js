@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { above, below } from '../../utilities';
 import HeroContainer from '../shared/HeroContainer';
 import YouTubeVideo from '../shared/YouTubeVideo';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 
 const VIDEO_ID = 'cAftppcmqRE';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import ProfileItem from '../shared/ProfileItem';
 
 import { below, above, DEFAULT_WIP_PAGE } from '../../utilities';

@@ -9,7 +9,7 @@ import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
 import { below, gridRepeat } from '../utilities';
-import LinkButton from '../components/shared/LinkButton';
+import LinkButton from '../components/shared/LinkButton/LinkButton';
 import {
   HeroGraphicDiv,
   Placeholder,

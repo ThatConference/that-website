@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import ProfileItem from '../shared/ProfileItem';
 import { below } from '../../utilities';
