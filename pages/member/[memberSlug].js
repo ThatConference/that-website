@@ -15,7 +15,7 @@ import ThatLink from '../../components/shared/ThatLink';
 import SocialLinks from '../../components/shared/SocialLinks';
 import Icon from '../../components/shared/Icon';
 
-const DEFAULT_IMAGE = '/images/person-placeholder.jpg';
+const DEFAULT_IMAGE = 'https://images.that.tech/members/person-placeholder.jpg';
 
 const StyledGrid = styled(Grid)`
   grid-gap: 2.5rem;

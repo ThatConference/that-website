@@ -190,6 +190,7 @@ const contact = () => {
                 hoverBorderColor="thatBlue"
                 hoverColor="white"
                 hoverBackgroundColor="thatBlue"
+                rel="noopener"
               />
             </StyledImageContainer>
             <StyledImageContainer>

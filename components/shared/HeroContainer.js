@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Background } from 'react-imgix';
+
 import { below } from '../../utilities';
 
 const Container = styled.div`
@@ -13,31 +15,34 @@ const Container = styled.div`
   `};
 `;
 
-const HeroImage = styled.img`
-  object-fit: cover;
+const Overlay = styled.div`
   width: 100%;
   height: 100%;
-  -webkit-filter: brightness(0.4);
-  filter: brightness(0.4);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 `;
 
-const HereContainer = ({ className, imageSource, imageAlt, children }) => {
+const HeroContainer = ({ className, imageSource, children }) => {
   return (
     <Container className={className}>
-      <HeroImage src={imageSource} loading="lazy" alt={imageAlt} />
-      {children}
+      <Background src={imageSource} className="hero-background">
+        <Overlay>{children}</Overlay>
+      </Background>
     </Container>
   );
 };
 
-HereContainer.propTypes = {
+HeroContainer.propTypes = {
   className: PropTypes.string,
   imageSource: PropTypes.string.isRequired,
-  imageAlt: PropTypes.string.isRequired,
 };
 
-HereContainer.defaultProps = {
+HeroContainer.defaultProps = {
   className: '',
 };
 
-export default styled(HereContainer)``;
+export default styled(HeroContainer)`
+  .hero-background {
+    width: 100%;
+    height: 100%;
+  }
+`;

@@ -1,21 +1,26 @@
+/**
+ * Small square button used
+ */
+
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 import * as gtag from '../../lib/gtag';
 
 const SquareButton = ({
-  className,
-  color,
   backgroundColor,
   borderColor,
+  className,
+  color,
   icon,
   iconClass,
   iconHeight,
   iconWidth,
   isSubmit,
-  onClick,
   label,
+  onClick,
   tabIndex,
 }) => {
   const clickTracking = () => {
@@ -41,6 +46,7 @@ const SquareButton = ({
       onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
       tabIndex={tabIndex}
+      ariaLabel={label || `${icon} button`}
     >
       {label && <p>{label}</p>}
       {icon && (
@@ -55,7 +61,23 @@ const SquareButton = ({
   );
 };
 
+SquareButton.propTypes = {
+  className: PropTypes.string,
+  backgroundColor: PropTypes.string.isRequired,
+  borderColor: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  iconClass: PropTypes.string.isRequired,
+  iconHeight: PropTypes.string.isRequired,
+  iconWidth: PropTypes.string.isRequired,
+  isSubmit: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  tabIndex: PropTypes.string.isRequired,
+};
+
 SquareButton.defaultProps = {
+  className: '',
   onClick: () => {},
 };
 

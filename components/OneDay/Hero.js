@@ -66,8 +66,7 @@ const Hero = ({ className, event }) => {
     <HeroContainer
       className={className}
       // imageSource={`${event.theme.heroSlug}`}
-      imageSource="/images/open-space-circle.jpg"
-      imageAlt={`${event.name}-${event.slogan}`}
+      imageSource="https://images.that.tech/site/open-space-circle.jpg"
     >
       <ContentContainer>
         <StyledH1 className="font-light">{event.name}</StyledH1>

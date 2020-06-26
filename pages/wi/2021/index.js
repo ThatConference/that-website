@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import Head from 'next/head';
 import React from 'react';
+import { Background } from 'react-imgix';
 import styled from 'styled-components';
 
 import Hero from '../../../components/EventHomePage/Hero';
@@ -68,10 +69,14 @@ const GET_EVENT = gql`
   }
 `;
 
-const BottomImage = styled.img`
-  object-fit: cover;
+const BottomImage = styled.div`
   width: 100%;
   height: 45rem;
+
+  .bottom-image {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const home = () => {
@@ -102,11 +107,13 @@ const home = () => {
       <SponsorHighlight eventSlug={event.slug} />
       <Testimonials />
       <NewsletterSignup />
-      <BottomImage
-        src="/images/mess-hall.jpg"
-        loading="lazy"
-        alt="THAT Mess Hall"
-      />
+
+      <BottomImage>
+        <Background
+          src="https://images.that.tech/site/mess-hall.jpg"
+          className="bottom-image"
+        />
+      </BottomImage>
 
       <script
         src="https://thatconference.activehosted.com/f/embed.php?id=1"
