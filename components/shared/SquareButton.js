@@ -46,7 +46,7 @@ const SquareButton = ({
       onClick={() => clickTracking(`${label} || ${icon} - ${iconClass}`)}
       type={isSubmit ? 'submit' : 'button'}
       tabIndex={tabIndex}
-      ariaLabel={label || `${icon} button`}
+      aria-label={label || `${icon} button`}
     >
       {label && <p>{label}</p>}
       {icon && (
@@ -63,22 +63,32 @@ const SquareButton = ({
 
 SquareButton.propTypes = {
   className: PropTypes.string,
-  backgroundColor: PropTypes.string.isRequired,
-  borderColor: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  iconClass: PropTypes.string.isRequired,
-  iconHeight: PropTypes.string.isRequired,
-  iconWidth: PropTypes.string.isRequired,
-  isSubmit: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  borderColor: PropTypes.string,
+  color: PropTypes.string,
+  icon: PropTypes.string,
+  iconClass: PropTypes.string,
+  iconHeight: PropTypes.string,
+  iconWidth: PropTypes.string,
+  isSubmit: PropTypes.bool,
+  label: PropTypes.string,
   onClick: PropTypes.func,
-  tabIndex: PropTypes.string.isRequired,
+  tabIndex: PropTypes.string,
 };
 
 SquareButton.defaultProps = {
   className: '',
+  backgroundColor: 'thatBlue',
+  borderColor: 'transparent',
+  color: 'white',
+  icon: null,
+  iconClass: null,
+  iconHeight: null,
+  iconWidth: null,
+  isSubmit: false,
+  label: null,
   onClick: () => {},
+  tabIndex: null,
 };
 
 export default styled(SquareButton)`

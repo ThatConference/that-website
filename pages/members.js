@@ -71,7 +71,9 @@ const LoadMoreButton = styled(SquareButton)`
   min-width: 20rem;
   height: 6rem;
   display: block;
-  margin: 2rem auto;
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
 
   &:focus {
     outline: unset;
@@ -82,18 +84,28 @@ const LoadMoreButton = styled(SquareButton)`
   `};
 `;
 
-const memberListing = () => {
-  const { loading, error, data, fetchMore } = useQuery(GET_MEMBERS);
+let fetchingMore = false;
 
-  if (loading) return <LoadingIndicator />;
+const memberListing = () => {
+  // networkStatus and notifyOnNetworkStatusChange are needed to know when fetching additional members.
+  const { loading, error, data, fetchMore, networkStatus } = useQuery(
+    GET_MEMBERS,
+    {
+      notifyOnNetworkStatusChange: true,
+    },
+  );
+  if (loading && !fetchingMore) return <LoadingIndicator />;
 
   if (error) {
     throw new Error(error);
   }
 
+  const loadingMoreMembers = networkStatus === 3;
+
   let { members, cursor } = data.members.members;
 
   const loadMoreMembers = () => {
+    fetchingMore = true;
     fetchMore({
       variables: {
         after: cursor,
@@ -111,6 +123,7 @@ const memberListing = () => {
           ...fetchMoreResult.members.members.members,
           ...previousResult.members.members.members,
         ];
+        fetchingMore = false;
         return result;
       },
     });
@@ -154,12 +167,12 @@ const memberListing = () => {
       </ContentSection>
 
       <MembersContentSection>
-        {loading && (
+        {loading && !fetchingMore && (
           <div style={{ textAlign: 'center' }}>
             <SkeletonLoader />
           </div>
         )}
-        {!loading && (
+        {(!loading || fetchingMore) && (
           <ProfileSection>
             {_.orderBy(members, ['firstName', 'lastName']).map(member => {
               return (
@@ -171,22 +184,35 @@ const memberListing = () => {
                   company={member.company}
                   showAccentLine={false}
                   profileSlug={member.profileSlug}
-                  key={`${member.firstName}-${member.lastName}`}
+                  key={member.id}
                 />
               );
             })}
           </ProfileSection>
         )}
-        <LoadMoreButton
-          label="Load More Members"
-          onClick={loadMoreMembers}
-          color="white"
-          borderColor="thatBlue"
-          backgroundColor="thatBlue"
-          hoverBorderColor="thatBlue"
-          hoverColor="thatBlue"
-          hoverBackgroundColor="white"
-        />
+        {loadingMoreMembers && (
+          <LoadMoreButton
+            label="Loading..."
+            color="thatBlue"
+            borderColor="thatBlue"
+            backgroundColor="white"
+            hoverBorderColor="thatBlue"
+            hoverColor="thatBlue"
+            hoverBackgroundColor="white"
+          />
+        )}
+        {!loadingMoreMembers && (
+          <LoadMoreButton
+            label="Load More Members"
+            onClick={loadMoreMembers}
+            color="white"
+            borderColor="thatBlue"
+            backgroundColor="thatBlue"
+            hoverBorderColor="thatBlue"
+            hoverColor="thatBlue"
+            hoverBackgroundColor="white"
+          />
+        )}
       </MembersContentSection>
     </>
   );
