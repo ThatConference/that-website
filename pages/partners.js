@@ -8,12 +8,10 @@ import { NextSeo } from 'next-seo';
 import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import ImageContainer from '../components/shared/ImageContainer';
-import { below, gridRepeat } from '../utilities';
 import LinkButton from '../components/shared/LinkButton/LinkButton';
-import {
-  HeroGraphicDiv,
-  Placeholder,
-} from '../components/shared/StandardStyles';
+import SkeletonLoader from '../components/shared/SkeletonLoader';
+import { below, gridRepeat } from '../utilities';
+import { HeroGraphicDiv } from '../components/shared/StandardStyles';
 
 const GET_ALL_PARTNERS = gql`
   query getAllPartners {
@@ -69,19 +67,6 @@ const Image = styled.img`
     cursor: pointer;
   }
 `;
-
-const SkeletonLoader = () => {
-  const items = [];
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 28; i++) {
-    items.push(<Placeholder width="17rem" height="13rem" key={i} />);
-  }
-  return (
-    <Grid columns={gridRepeat.xxsmall} alignContent="center">
-      {items}
-    </Grid>
-  );
-};
 
 const partners = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNERS);

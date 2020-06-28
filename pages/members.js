@@ -6,15 +6,13 @@ import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
 import _ from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
-import { below, gridRepeat } from '../utilities';
 import LinkButton from '../components/shared/LinkButton/LinkButton';
 import SquareButton from '../components/shared/SquareButton';
+import SkeletonLoader from '../components/shared/SkeletonLoader';
 import LoadingIndicator from '../components/shared/LoadingIndicator';
 import ProfileItem from '../components/shared/ProfileItem';
-import {
-  HeroGraphicDiv,
-  Placeholder,
-} from '../components/shared/StandardStyles';
+import { HeroGraphicDiv } from '../components/shared/StandardStyles';
+import { below, gridRepeat } from '../utilities';
 
 const GET_MEMBERS = gql`
   query getMembers($after: String) {
@@ -35,43 +33,54 @@ const GET_MEMBERS = gql`
   }
 `;
 
+const StyledHeroGraphicDiv = styled(HeroGraphicDiv)`
+  text-align: right;
+`;
+
 const HighlightImage = styled.img`
-  max-height: 30rem;
-  position: absolute;
-  top: 3rem;
-  right: 20rem;
+  max-height: 35rem;
   object-fit: contain;
+`;
+
+const MembersContentSection = styled(ContentSection)`
+  padding-top: 0;
+`;
+
+const ProfileSection = styled.div`
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 120rem;
 
   ${below.small`
-    margin-left: 0;
-    width: 90%;
+    margin-top: 2rem;
   `};
+`;
 
-  ${below.med`
-    position: relative;
-    left: -2rem;
+const StyledProfileItem = styled(ProfileItem)`
+  margin: 3rem 1rem 0;
+  width: 22rem;
+
+  ${below.small`
+    width: 15rem;
   `};
 `;
 
 const LoadMoreButton = styled(SquareButton)`
-  width: 20rem;
-  height: 5rem;
+  min-width: 20rem;
+  height: 6rem;
   display: block;
   margin: 2rem auto;
-`;
 
-const SkeletonLoader = () => {
-  const items = [];
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < 28; i++) {
-    items.push(<Placeholder width="17rem" height="13rem" />);
+  &:focus {
+    outline: unset;
   }
-  return (
-    <Grid columns={gridRepeat.xxsmall} alignContent="center">
-      {items}
-    </Grid>
-  );
-};
+
+  ${below.small`
+    width: 100%;
+  `};
+`;
 
 const memberListing = () => {
   const { loading, error, data, fetchMore } = useQuery(GET_MEMBERS);
@@ -135,41 +144,50 @@ const memberListing = () => {
               hoverBackgroundColor="thatBlue"
             />
           </Cell>
-          <HeroGraphicDiv>
+          <StyledHeroGraphicDiv>
             <HighlightImage
               src="/images/pink_bear_and_green_bear.png"
               alt="THAT Members"
             />
-          </HeroGraphicDiv>
+          </StyledHeroGraphicDiv>
         </Grid>
       </ContentSection>
 
-      <ContentSection>
+      <MembersContentSection>
         {loading && (
           <div style={{ textAlign: 'center' }}>
             <SkeletonLoader />
           </div>
         )}
         {!loading && (
-          <Grid columns={gridRepeat.xxsmall} alignContent="center">
+          <ProfileSection>
             {_.orderBy(members, ['firstName', 'lastName']).map(member => {
               return (
-                <ProfileItem
+                <StyledProfileItem
                   imageUrl={member.profileImage}
-                  size="150"
+                  size="120"
                   name={`${member.firstName} ${member.lastName}`}
                   title={member.jobTitle}
                   company={member.company}
-                  slug={member.profileSlug}
                   showAccentLine={false}
-                  nameFontSize="1"
+                  profileSlug={member.profileSlug}
+                  key={`${member.firstName}-${member.lastName}`}
                 />
               );
             })}
-          </Grid>
+          </ProfileSection>
         )}
-        <LoadMoreButton label="Load More Members" onClick={loadMoreMembers} />
-      </ContentSection>
+        <LoadMoreButton
+          label="Load More Members"
+          onClick={loadMoreMembers}
+          color="white"
+          borderColor="thatBlue"
+          backgroundColor="thatBlue"
+          hoverBorderColor="thatBlue"
+          hoverColor="thatBlue"
+          hoverBackgroundColor="white"
+        />
+      </MembersContentSection>
     </>
   );
 };
