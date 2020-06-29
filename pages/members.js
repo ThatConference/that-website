@@ -141,11 +141,11 @@ const memberListing = () => {
           <Cell width={1}>
             <h1>Members</h1>
             <p className="medium-body-copy">
-              ** Need heartfelt blurb about members ** Lorem ipsum dolor sit
-              amet, consectetur adipisicing elit. Sequi nisi rem voluptates
-              voluptas facere beatae itaque accusantium unde corrupti libero
-              ullam obcaecati reiciendis eaque nihil, debitis corporis facilis,
-              assumenda rerum!
+              At the heart of everything we do, you can find our THAT Community
+              Members. We absolutely love our Members and welcome each and every
+              one. Each Member brings a unique skill set and background that
+              enriches our conversations and relationships. If you haven’t
+              already signed up to become a member, we’d love it if you did!
             </p>
             <LinkButton
               href="/api/login"
