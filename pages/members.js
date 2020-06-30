@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
@@ -84,37 +84,25 @@ const LoadMoreButton = styled(SquareButton)`
   `};
 `;
 
-let fetchingMore = false;
-
 const memberListing = () => {
-  // networkStatus and notifyOnNetworkStatusChange are needed to know when fetching additional members.
-  const { loading, error, data, fetchMore, networkStatus } = useQuery(
-    GET_MEMBERS,
-    {
-      notifyOnNetworkStatusChange: true,
-    },
-  );
+  const [fetchingMore, setFetchingMore] = useState(false);
+  const { loading, error, data, fetchMore } = useQuery(GET_MEMBERS);
   if (loading && !fetchingMore) return <LoadingIndicator />;
 
   if (error) {
     throw new Error(error);
   }
 
-  const loadingMoreMembers = networkStatus === 3;
-
-  let { members, cursor } = data.members.members;
+  const { members } = data.members.members;
+  let { cursor } = data.members.members;
 
   const loadMoreMembers = () => {
-    fetchingMore = true;
+    setFetchingMore(true);
     fetchMore({
       variables: {
         after: cursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        members = [
-          ...previousResult.members.members.members,
-          ...fetchMoreResult.members.members.members,
-        ];
         cursor = fetchMoreResult.members.members.cursor;
         const result = {
           ...fetchMoreResult,
@@ -123,7 +111,7 @@ const memberListing = () => {
           ...fetchMoreResult.members.members.members,
           ...previousResult.members.members.members,
         ];
-        fetchingMore = false;
+        setFetchingMore(false);
         return result;
       },
     });
@@ -190,7 +178,7 @@ const memberListing = () => {
             })}
           </ProfileSection>
         )}
-        {loadingMoreMembers && (
+        {fetchingMore && (
           <LoadMoreButton
             label="Loading..."
             color="thatBlue"
@@ -201,7 +189,7 @@ const memberListing = () => {
             hoverBackgroundColor="white"
           />
         )}
-        {!loadingMoreMembers && (
+        {!fetchingMore && (
           <LoadMoreButton
             label="Load More Members"
             onClick={loadMoreMembers}
