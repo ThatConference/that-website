@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { NextSeo, JobPostingJsonLd } from 'next-seo';
-import LinkButton from '../../../../components/shared/LinkButton';
+import LinkButton from '../../../../components/shared/LinkButton/LinkButton';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
 import { ActionButtonRow } from '../../../../components/shared/StandardStyles';

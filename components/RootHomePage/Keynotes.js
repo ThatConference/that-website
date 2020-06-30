@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import YouTubeVideo from '../shared/YouTubeVideo';
 
 import { SlimCenteredH2 } from '../shared/StandardStyles';
@@ -85,6 +85,7 @@ const Keynotes = ({ className }) => {
           href="http://youtube.com/thatconference/"
           label="See More on THAT YouTube"
           target="_blank"
+          rel="noopener"
           backgroundColor="primary"
           borderColor="white"
           color="white"

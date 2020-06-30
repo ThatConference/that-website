@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import Icon from '../shared/Icon';
 
 import { below } from '../../utilities';

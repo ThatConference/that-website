@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 import { below } from '../../utilities';
 
 const TicketGrid = styled.div`
@@ -112,6 +112,7 @@ const Tickets = ({ className, tickets }) => {
                   hoverColor="darkGray"
                   label="Reserve Your Spot Today!"
                   target="_blank"
+                  rel="noopener"
                 />
               </Detail>
             </TicketBlock>

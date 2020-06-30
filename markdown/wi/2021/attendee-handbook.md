@@ -8,15 +8,15 @@ Hi, and welcome to the awesome that makes up THAT Conference! This Handbook shou
 If for some reason, this guide does not answer a question you may have, here are a couple resources that you can use to get you out of the woods:
 
 - Email us at [Hello@THATConference.com](mailto:Hello@THATConference.com)
-- <a href="https://www.facebook.com/ThatConference" target="_blank">THAT Conference on Facebook</a>
-- <a href="https://thatslack.thatconference.com/" target="_blank">THAT Slack</a>
+- <a href="https://www.facebook.com/ThatConference" target="_blank" rel="noopener">THAT Conference on Facebook</a>
+- <a href="https://thatslack.thatconference.com/" target="_blank" rel="noopener">THAT Slack</a>
 - Tweet us @THATConference
 
 ### Purchasing Tickets
 
 Tickets for THAT Conference will go on sale April 13th on <a href="https://www.thatconference.com/wi/tickets" target="_blank">our tickets page</a>.
 
-The purchase of the ticket should be pretty self explanatory, but if you run into problems, hit us up on <a href="https://thatslack.thatconference.com/" target="_blank">THAT Slack</a>, Twitter, or via email with questions.
+The purchase of the ticket should be pretty self explanatory, but if you run into problems, hit us up on <a href="https://thatslack.thatconference.com/" target="_blank" rel="noopener">THAT Slack</a>, Twitter, or via email with questions.
 
 We are, after all, a Big Tent conference, and we want you to know that your families are not only welcomed, but encouraged to join us for Geekling sessions. Each family member requires their own ticket to THAT Conference; tickets can be purchased through the same link as the main conference tickets.
 

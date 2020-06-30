@@ -17,7 +17,7 @@ const RoundImage = ({ className, imageUrl, size, showAccentLine, alt }) => {
       <Imgix
         className={className}
         src={
-          imageUrl || 'https://that.imgix.net/members/person-placeholder.jpg'
+          imageUrl || 'https://images.that.tech/members/person-placeholder.jpg'
         }
         width={intsize}
         height={intsize}

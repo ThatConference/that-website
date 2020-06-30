@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import * as gtag from '../../lib/gtag';
+import * as gtag from '../../../lib/gtag';
 
-import { below } from '../../utilities';
+import { below } from '../../../utilities';
 
 const StyledOutlineLink = styled.a`
   display: inline-block;
@@ -56,11 +56,12 @@ const LinkButton = ({
   hoverBorderColor,
   hoverColor,
   href,
-  isLocal,
-  onClick,
-  label,
-  target,
   image,
+  isLocal,
+  label,
+  onClick,
+  rel,
+  target,
 }) => {
   const clickTracking = () => {
     gtag.event({
@@ -97,6 +98,7 @@ const LinkButton = ({
         hoverColor={hoverColor}
         hoverBackgroundColor={hoverBackgroundColor}
         hoverBorderColor={hoverBorderColor}
+        rel={rel}
       >
         <>
           {image && <img src={image} alt={label} />}
@@ -113,9 +115,11 @@ LinkButton.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
+  image: PropTypes.string,
   isLocal: PropTypes.bool,
   label: PropTypes.string,
   onClick: PropTypes.func,
+  rel: PropTypes.string,
   target: PropTypes.string,
 };
 
@@ -124,9 +128,11 @@ LinkButton.defaultProps = {
   borderColor: '',
   className: '',
   color: '',
+  image: '',
   isLocal: true,
   label: '',
   onClick: () => {},
+  rel: '',
   target: '',
 };
 

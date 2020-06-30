@@ -9,7 +9,7 @@ import { below, gridRepeat } from '../../../utilities';
 
 import ContentSection from '../../../components/shared/ContentSection';
 import ImageContainer from '../../../components/shared/ImageContainer';
-import LinkButton from '../../../components/shared/LinkButton';
+import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
 import TimelineSection from '../../../components/shared/Timeline';
 
@@ -190,6 +190,7 @@ const contact = () => {
                 hoverBorderColor="thatBlue"
                 hoverColor="white"
                 hoverBackgroundColor="thatBlue"
+                rel="noopener"
               />
             </StyledImageContainer>
             <StyledImageContainer>

@@ -84,6 +84,7 @@ const SocialLinks = ({
               key={key}
               onClick={() => clickTracking(key)}
               size={size}
+              ariaLabel={key}
             >
               <Icon
                 icon={socialConstants.socialIcons[key].icon.name}

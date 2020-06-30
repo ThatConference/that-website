@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { above, below } from '../../utilities';
 import HeroContainer from '../shared/HeroContainer';
 import YouTubeVideo from '../shared/YouTubeVideo';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 
 const VIDEO_ID = 'cAftppcmqRE';
 
@@ -66,8 +66,7 @@ const Hero = ({ className, event }) => {
     <HeroContainer
       className={className}
       // imageSource={`${event.theme.heroSlug}`}
-      imageSource="/images/open-space-circle.jpg"
-      imageAlt={`${event.name}-${event.slogan}`}
+      imageSource="https://images.that.tech/site/open-space-circle.jpg"
     >
       <ContentContainer>
         <StyledH1 className="font-light">{event.name}</StyledH1>

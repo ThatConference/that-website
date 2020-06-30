@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ContentSection from '../shared/ContentSection';
-import LinkButton from '../shared/LinkButton';
+import LinkButton from '../shared/LinkButton/LinkButton';
 
 import { below, DEFAULT_WIP_PAGE } from '../../utilities';
 

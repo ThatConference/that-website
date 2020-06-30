@@ -14,7 +14,9 @@
     "test:watch": "npm run test -- --watch",
     "lint": "eslint '**/*.js'",
     "prevalidate": "npm run build",
-    "validate": "concurrently npm:test npm:lint"
+    "validate": "concurrently npm:test npm:lint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -24,6 +26,7 @@
     "@sentry/browser": "^5.15.5",
     "@sentry/integrations": "^5.15.5",
     "@sentry/node": "^5.15.5",
+    "@storybook/addon-knobs": "^5.3.19",
     "@zeit/next-source-maps": "0.0.3",
     "apollo-boost": "^0.4.8",
     "apollo-link-batch-http": "^1.2.14",
@@ -73,8 +76,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-styled-components": "^1.10.7",
     "concurrently": "^5.2.0",
