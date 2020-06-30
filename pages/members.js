@@ -107,7 +107,6 @@ const memberListing = () => {
         after: cursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        console.log(fetchMoreResult);
         const result = {
           ...fetchMoreResult,
         };
