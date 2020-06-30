@@ -86,6 +86,8 @@ const LoadMoreButton = styled(SquareButton)`
 
 const memberListing = () => {
   const [fetchingMore, setFetchingMore] = useState(false);
+  const [moreToFetch, setMoreToFetch] = useState(true);
+  const [visibleMembers, setVisibleMembers] = useState([]);
   const { loading, error, data, fetchMore } = useQuery(GET_MEMBERS);
   if (loading && !fetchingMore) return <LoadingIndicator />;
 
@@ -93,8 +95,10 @@ const memberListing = () => {
     throw new Error(error);
   }
 
-  const { members } = data.members.members;
-  let { cursor } = data.members.members;
+  let members = data.members.members
+    ? data.members.members.members
+    : visibleMembers;
+  let cursor = data.members.members ? data.members.members.cursor : null;
 
   const loadMoreMembers = () => {
     setFetchingMore(true);
@@ -103,14 +107,22 @@ const memberListing = () => {
         after: cursor,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
-        cursor = fetchMoreResult.members.members.cursor;
+        console.log(fetchMoreResult);
         const result = {
           ...fetchMoreResult,
         };
-        result.members.members.members = [
-          ...fetchMoreResult.members.members.members,
-          ...previousResult.members.members.members,
-        ];
+        if (result.members.members) {
+          const membersResult = [
+            ...fetchMoreResult.members.members.members,
+            ...previousResult.members.members.members,
+          ];
+          setVisibleMembers(membersResult);
+          members = membersResult;
+          cursor = fetchMoreResult.members.members.cursor;
+          result.members.members.members = membersResult;
+        } else {
+          setMoreToFetch(false);
+        }
         setFetchingMore(false);
         return result;
       },
@@ -178,7 +190,7 @@ const memberListing = () => {
             })}
           </ProfileSection>
         )}
-        {fetchingMore && (
+        {moreToFetch && fetchingMore && (
           <LoadMoreButton
             label="Loading..."
             color="thatBlue"
@@ -189,7 +201,7 @@ const memberListing = () => {
             hoverBackgroundColor="white"
           />
         )}
-        {!fetchingMore && (
+        {moreToFetch && !fetchingMore && (
           <LoadMoreButton
             label="Load More Members"
             onClick={loadMoreMembers}
