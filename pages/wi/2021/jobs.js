@@ -108,6 +108,10 @@ const PartnerSection = styled.div`
   padding-bottom: 4rem;
 
   &:not(:first-child) {
+    padding-top: 4rem;
+  }
+
+  &:not(:last-child) {
     border-bottom: 1px solid ${({ theme }) => theme.colors.mediumGray};
   }
 
@@ -119,6 +123,11 @@ const PartnerSection = styled.div`
 const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
   max-width: 27rem;
   flex-grow: 1;
+
+  img {
+    max-width: 27rem;
+    padding-bottom: 0;
+  }
 
   ${below.large`
     max-width: unset;
@@ -142,17 +151,17 @@ const jobs = () => {
   return (
     <>
       <NextSeo
-        title="WI 2020 Jobs - THAT Conference"
+        title="WI 2021 Jobs - THAT Conference"
         description="Job openings for all WI 2020 THAT partners"
       />
 
       <ContentSection>
         <Main>
           <SideDetail>
-            <h1>THAT WI 2020 - Partner Jobs</h1>
+            <h1>THAT WI 2021 - Partner Jobs</h1>
             <p className="medium-body-copy">
               Full list of all the open opportunities at the amazing
-              organizations partnering with us to make THAT Wisconsin 2020
+              organizations partnering with us to make THAT Wisconsin 2021
               happen.
             </p>
             <ActionButtonRow>
@@ -184,12 +193,12 @@ const jobs = () => {
 
       <ContentSection>
         {filteredPartners.map(partner => (
-          <PartnerSection>
+          <PartnerSection key={partner.id}>
             <StyledPartnerLogoWithInfo partner={partner} alignment="center" />
             <Jobs>
               {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
                 job => (
-                  <JobListing job={job} partner={partner} />
+                  <JobListing job={job} partner={partner} key={job.id} />
                 ),
               )}
             </Jobs>

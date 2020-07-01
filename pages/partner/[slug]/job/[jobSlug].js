@@ -249,7 +249,7 @@ const jobDetail = () => {
                 </AttributeTag>
               )}
             </AttributesRow>
-            <p className="medium-body-copy">{job.description}</p>
+            <pre className="medium-body-copy">{job.description}</pre>
             <ActionButtonRow>
               <LinkButton
                 href={`/partner/${partner.slug}`}
