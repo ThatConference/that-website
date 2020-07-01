@@ -139,7 +139,7 @@ const JobListing = ({ job, partner }) => {
             onClick={() => setExpandedDescription(!expandedDescription)}
             className="show-more"
           >
-            {`Show ${expandedDescription ? 'Less' : 'More'}`}
+            {`Show ${expandedDescription ? 'Less ' : 'More '}`}
           </ShowMore>
         )}
       </JobDetail>

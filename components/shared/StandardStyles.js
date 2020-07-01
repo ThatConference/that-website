@@ -128,6 +128,8 @@ export const ShowMore = styled.p`
   text-align: right;
 
   &:hover {
+    cursor: pointer;
+    filter: brightness(10%);
     fill: ${({ theme }) => theme.colors.highlight};
   }
 `;
