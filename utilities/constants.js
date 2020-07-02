@@ -13,6 +13,9 @@ export const sessionConstants = {
     { value: 'KEYNOTE', label: 'Keynote (90 minute talk)' },
     { value: 'HALF_DAY_WORKSHOP', label: 'Half-day Workshop (pre-conference)' },
     { value: 'FULL_DAY_WORKSHOP', label: 'Full-day Workshop (pre-conference)' },
+    { value: 'WORKSHOP', label: 'Workshop (pre-conference)' },
+    { value: 'OPEN_SPACE', label: 'Open Space session' },
+    { value: 'PANEL', label: 'Panel session' },
   ],
 
   SessionCategories: [
@@ -59,6 +62,7 @@ export const sessionConstants = {
     { value: 'WAIT_LIST', label: 'Wait List' },
     { value: 'CANCELLED', label: 'Canceled' },
     { value: 'SCHEDULED', label: 'Scheduled' },
+    { value: 'ARCHIVED', label: 'Archived' },
   ],
 
   sessionValidations: {

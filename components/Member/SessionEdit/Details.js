@@ -79,10 +79,12 @@ const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
     sessions {
       session(id: $sessionId) {
-        update(session: $session) {
-          id
-          title
-          status
+        update {
+          update(session: $session) {
+            id
+            title
+            status
+          }
         }
       }
     }
