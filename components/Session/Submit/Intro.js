@@ -21,12 +21,14 @@ const dlog = debug('that:session:intro');
 const CREATE_SESSION = gql`
   mutation createSession($eventId: ID!, $session: SessionCreateInput!) {
     sessions {
-      create(eventId: $eventId, session: $session) {
-        id
-        type
-        title
-        category
-        status
+      create {
+        create(eventId: $eventId, session: $session) {
+          id
+          type
+          title
+          category
+          status
+        }
       }
     }
   }
@@ -51,12 +53,14 @@ const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
     sessions {
       session(id: $sessionId) {
-        update(session: $session) {
-          id
-          type
-          title
-          category
-          status
+        update {
+          update(session: $session) {
+            id
+            type
+            title
+            category
+            status
+          }
         }
       }
     }

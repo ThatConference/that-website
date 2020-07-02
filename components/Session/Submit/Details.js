@@ -23,20 +23,22 @@ const UPDATE_SESSION = gql`
   mutation updateSession($sessionId: ID!, $session: SessionUpdateInput!) {
     sessions {
       session(id: $sessionId) {
-        update(session: $session) {
-          id
-          type
-          category
-          status
-          title
-          shortDescription
-          longDescription
-          primaryCategory
-          secondaryCategory
-          targetAudience
-          supportingArtifacts {
-            name
-            url
+        update {
+          update(session: $session) {
+            id
+            type
+            category
+            status
+            title
+            shortDescription
+            longDescription
+            primaryCategory
+            secondaryCategory
+            targetAudience
+            supportingArtifacts {
+              name
+              url
+            }
           }
         }
       }
