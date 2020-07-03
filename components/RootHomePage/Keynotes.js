@@ -4,7 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton/LinkButton';
-import YouTubeVideo from '../shared/YouTubeVideo';
+import YouTubeVideo from '../shared/YouTubeVideo/YouTubeVideo';
 
 import { SlimCenteredH2 } from '../shared/StandardStyles';
 import { gridRepeat, below } from '../../utilities';
