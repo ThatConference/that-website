@@ -12,7 +12,7 @@ import EventSeo from '../../../components/shared/EventSeo';
 import TimelineSection from '../../../components/shared/Timeline';
 import SponsorHighlight from '../../../components/EventHomePage/SponsorHighlight';
 import Testimonials from '../../../components/EventHomePage/Testimonials';
-import WhatToExpect from '../../../components/shared/WhatToExpect';
+import WhatToExpect from '../../../components/shared/WhatToExpect/WhatToExpect';
 import NewsletterSignup from '../../../components/EventHomePage/NewsletterSignup';
 
 const GET_EVENT = gql`

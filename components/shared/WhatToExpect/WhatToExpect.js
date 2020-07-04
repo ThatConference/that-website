@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import ContentSection from './ContentSection';
-import ImageContainer from './ImageContainer';
+import ContentSection from '../ContentSection';
+import ImageContainer from '../ImageContainer';
 
-import { gridRepeat } from '../../utilities';
+import { gridRepeat } from '../../../utilities';
 
 const WhatToExpectImage = styled.img`
   max-width: 16rem;

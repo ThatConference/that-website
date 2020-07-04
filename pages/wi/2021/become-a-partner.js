@@ -6,7 +6,7 @@ import { below } from '../../../utilities/breakpoint';
 
 import ContentSection from '../../../components/shared/ContentSection';
 import LinkButton from '../../../components/shared/LinkButton/LinkButton';
-import WhatToExpect from '../../../components/shared/WhatToExpect';
+import WhatToExpect from '../../../components/shared/WhatToExpect/WhatToExpect';
 
 const PartnerH3 = styled.h3`
   margin-bottom: 2.5rem;
