@@ -6,7 +6,7 @@ const defaultProps = {
   videoId: 'cAftppcmqRE',
 };
 
-describe('LinkButton', () => {
+describe('YouTubeVideo', () => {
   test('renders', () => {
     const wrapper = shallow(<YouTubeVideo {...defaultProps} />);
     expect(wrapper.exists()).toBe(true);
