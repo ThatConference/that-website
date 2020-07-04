@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
+import { PropTypes } from 'prop-types';
 import ContentSection from '../ContentSection';
 import ImageContainer from '../ImageContainer';
 
@@ -78,6 +79,19 @@ const WhatToExpect = ({ className }) => {
       </Grid>
     </ContentSection>
   );
+};
+
+WhatToExpectSection.propTypes = {
+  src: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+WhatToExpect.propTypes = {
+  className: PropTypes.string,
+};
+
+WhatToExpect.defaultProps = {
+  className: '',
 };
 
 export default styled(WhatToExpect)``;
