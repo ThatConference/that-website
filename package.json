@@ -15,7 +15,7 @@
     "lint": "eslint '**/*.js'",
     "prevalidate": "npm run build",
     "validate": "concurrently npm:test npm:lint",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
