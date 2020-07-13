@@ -189,7 +189,7 @@ const member = ({ slug, user, loading: loadingUser }) => {
         key => memberConstants.linkTypes[key] === item.linkType,
       );
       return {
-        [newKey]: item.url,
+        [newKey]: item,
       };
     });
 
