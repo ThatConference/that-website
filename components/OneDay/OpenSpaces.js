@@ -10,7 +10,7 @@ const OpenSpaces = ({ className }) => {
       titleColor="white"
       subtitle="Your pick the topics. We all make the conversation!"
       subtitleColor="white"
-      text="What is Open Spaces? Open Space creates a facility, an opportunity to talk about anything we like. Yes anything, from some low level assembler code to BBQ, anything goes. It’s as simple as putting the topic on the Camp board. From there other campers find the conversations they’re interested in participating in and we come together at the scheduled time. Then we let the conversation guide us where it takes us."
+      text="What is Open Spaces? Open Spaces creates a facility, an opportunity to talk about anything we like. Yes anything, from some low level assembler code to BBQ, anything goes. It’s as simple as putting the topic on the Camp board. From there other campers find the conversations they’re interested in participating in and we come together at the scheduled time. Then we let the conversation guide us where it takes us."
       textColor="white"
       backgroundColor="primary"
       backgroundOpacity={0.7}
