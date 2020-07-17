@@ -38,7 +38,7 @@ const Bio = ({
           errors={errors}
           touched={touched}
           values={values}
-          label="Can we feature your profile as a Camper on THAT home page?"
+          label="Make my profile public (list on members pages, required to create sessions)"
           inputType="checkbox"
         />
       </FormRow>
