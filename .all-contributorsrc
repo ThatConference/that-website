@@ -1,0 +1,111 @@
+{
+  "projectName": "that-website",
+  "projectOwner": "ThatConference",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "saragibby",
+      "name": "Sara Gibbons",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/82035?v=4",
+      "profile": "https://github.com/saragibby",
+      "contributions": [
+        "code",
+        "content",
+        "doc",
+        "review"
+      ]
+    },
+    {
+      "login": "csell5",
+      "name": "Clark Sell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/772569?v=4",
+      "profile": "http://unspecified.io/",
+      "contributions": [
+        "code",
+        "maintenance",
+        "content"
+      ]
+    },
+    {
+      "login": "kburnell",
+      "name": "Keith Burnell",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/590291?v=4",
+      "profile": "http://www.dotnetdevdude.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "brettski",
+      "name": "Brett Slaski",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/473633?v=4",
+      "profile": "http://blog.brettski.com/",
+      "contributions": [
+        "infra",
+        "code",
+        "test",
+        "review"
+      ]
+    },
+    {
+      "login": "zaudtke",
+      "name": "Al",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1631560?v=4",
+      "profile": "https://github.com/zaudtke",
+      "contributions": [
+        "bug",
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "astralbodies",
+      "name": "Aaron Douglas",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/373903?v=4",
+      "profile": "https://aaron.blog/",
+      "contributions": [
+        "test",
+        "bug"
+      ]
+    },
+    {
+      "login": "tsidel",
+      "name": "Jeana",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/194128?v=4",
+      "profile": "https://www.jeana.dev/",
+      "contributions": [
+        "test",
+        "code"
+      ]
+    },
+    {
+      "login": "GeekOnCoffee",
+      "name": "Andrew Hooker",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/240650?v=4",
+      "profile": "https://leanpub.com/os-support",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "mcookWI",
+      "name": "Mike",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5367626?v=4",
+      "profile": "https://github.com/mcookWI",
+      "contributions": [
+        "test",
+        "bug",
+        "content"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
