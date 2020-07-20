@@ -105,7 +105,17 @@
         "bug",
         "content"
       ]
+    },
+    {
+      "login": "brandonmartinez",
+      "name": "Brandon Martinez",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/32435?v=4",
+      "profile": "http://www.brandonmartinez.com/",
+      "contributions": [
+        "design"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
