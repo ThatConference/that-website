@@ -50,8 +50,8 @@
       "contributions": [
         "infra",
         "code",
-        "test",
-        "review"
+        "review",
+        "bug"
       ]
     },
     {
@@ -61,7 +61,7 @@
       "profile": "https://github.com/zaudtke",
       "contributions": [
         "bug",
-        "test",
+        "userTesting",
         "code"
       ]
     },
@@ -71,7 +71,7 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/373903?v=4",
       "profile": "https://aaron.blog/",
       "contributions": [
-        "test",
+        "userTesting",
         "bug"
       ]
     },
@@ -81,7 +81,7 @@
       "avatar_url": "https://avatars2.githubusercontent.com/u/194128?v=4",
       "profile": "https://www.jeana.dev/",
       "contributions": [
-        "test",
+        "userTesting",
         "code"
       ]
     },
@@ -101,7 +101,7 @@
       "avatar_url": "https://avatars0.githubusercontent.com/u/5367626?v=4",
       "profile": "https://github.com/mcookWI",
       "contributions": [
-        "test",
+        "userTesting",
         "bug",
         "content"
       ]
@@ -113,6 +113,16 @@
       "profile": "http://www.brandonmartinez.com/",
       "contributions": [
         "design"
+      ]
+    },
+    {
+      "login": "gemolle",
+      "name": "Erin Gemoll",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/60487024?v=4",
+      "profile": "https://github.com/gemolle",
+      "contributions": [
+        "userTesting",
+        "bug"
       ]
     }
   ],
