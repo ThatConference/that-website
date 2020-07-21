@@ -217,7 +217,6 @@ const CompanyNotFound = () => (
       companyName="Not Yet A THAT Partner"
       heroImageUrl=""
       connectWithUsUrl="/wi/2021/become-a-partner"
-      location="wi"
     />
     <ContentSection
       style={{
@@ -384,7 +383,6 @@ function PartnerDetail() {
           companyName={partner.companyName}
           heroImageUrl={partner.heroImage}
           connectWithUsUrl={partner.website}
-          location="wi"
         />
         <MainLogoSection partner={partner} />
 

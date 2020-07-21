@@ -81,14 +81,8 @@ const DownArrow = styled(Icon)`
   margin-top: 3rem;
 `;
 
-const HeroSection = ({
-  companyName,
-  heroImageUrl,
-  connectWithUsUrl,
-  location,
-}) => {
-  const loc = location || 'wi';
-  const backToPartnerUrl = `/${loc}/partners`;
+const HeroSection = ({ companyName, heroImageUrl, connectWithUsUrl }) => {
+  const backToPartnerUrl = `/partners`;
   const heroUrl = heroImageUrl || DEFAULT_HERO_IMAGE;
   const background = `linear-gradient(rgba(17, 53, 95, 0.65), rgba(17, 53, 95, 0.65)),
     url('${heroUrl}');`;
