@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { below } from '../../utilities';
 
 /** * BEGIN: Page elements shared in layouts ** */
