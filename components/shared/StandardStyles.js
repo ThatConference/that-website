@@ -46,6 +46,7 @@ export const StyledPre = styled.pre`
   font-weight: 200;
   line-height: 1.6;
   font-size: 1.5rem;
+  height: auto;
 
   ${below.med`
     margin-top: 0;
