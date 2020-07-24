@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { below } from '../../utilities';
 
 /** * BEGIN: Page elements shared in layouts ** */
@@ -29,7 +29,7 @@ export const InnerPage = styled.div`
 `;
 /** * END: Page elements shared in layouts ** */
 
-export const StyledP = styled.p`
+const ParagraphAndPreSharedStyles = css`
   padding-right: 1rem;
   margin-top: 0;
   font-weight: 200;
@@ -40,16 +40,12 @@ export const StyledP = styled.p`
   `};
 `;
 
-export const StyledPre = styled.pre`
-  padding-right: 1rem;
-  margin-top: 0;
-  font-weight: 200;
-  line-height: 1.6;
-  font-size: 1.5rem;
+export const StyledP = styled.p`
+  ${ParagraphAndPreSharedStyles}
+`;
 
-  ${below.med`
-    margin-top: 0;
-  `};
+export const StyledPre = styled.pre`
+  ${ParagraphAndPreSharedStyles}
 `;
 
 export const ActionButtonRow = styled.div`

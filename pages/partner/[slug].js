@@ -18,6 +18,7 @@ import LinkButton from '../../components/shared/LinkButton/LinkButton';
 import {
   ActionButtonRow,
   StyledP,
+  StyledPre,
 } from '../../components/shared/StandardStyles';
 
 import { below, gridRepeat } from '../../utilities';
@@ -102,6 +103,11 @@ const JobDescription = styled.p`
   ${below.med`
     margin-top: 0;
   `};
+`;
+
+const PartnerStyledPre = styled(StyledPre)`
+  font-size: 1.5rem;
+  height: auto;
 `;
 
 const GoalsList = styled.ul`
@@ -296,7 +302,7 @@ function PartnerDetail() {
       <PartnerDetailSubHeading>
         About {partner.companyName}
       </PartnerDetailSubHeading>
-      <StyledP>{partner.aboutUs}</StyledP>
+      <PartnerStyledPre>{partner.aboutUs}</PartnerStyledPre>
       <StyledP>{getCityState({ partner })}</StyledP>
     </>
   );
@@ -356,7 +362,7 @@ function PartnerDetail() {
             </Speaker>
             <SessionDetail>
               <Title>{session.title}</Title>
-              <StyledP>{session.shortDescription}</StyledP>
+              <PartnerStyledPre>{session.shortDescription}</PartnerStyledPre>
               {/* Uncomment once sessionb view is wired up */}
               {/* <ViewLink href="/">
                   <span>View Session</span>
