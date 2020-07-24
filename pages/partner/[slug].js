@@ -105,11 +105,6 @@ const JobDescription = styled.p`
   `};
 `;
 
-const PartnerStyledPre = styled(StyledPre)`
-  font-size: 1.5rem;
-  height: auto;
-`;
-
 const GoalsList = styled.ul`
   padding-inline-start: 2rem;
   font-weight: 200;
@@ -302,7 +297,7 @@ function PartnerDetail() {
       <PartnerDetailSubHeading>
         About {partner.companyName}
       </PartnerDetailSubHeading>
-      <PartnerStyledPre>{partner.aboutUs}</PartnerStyledPre>
+      <StyledPre>{partner.aboutUs}</StyledPre>
       <StyledP>{getCityState({ partner })}</StyledP>
     </>
   );
@@ -362,7 +357,7 @@ function PartnerDetail() {
             </Speaker>
             <SessionDetail>
               <Title>{session.title}</Title>
-              <PartnerStyledPre>{session.shortDescription}</PartnerStyledPre>
+              <StyledPre>{session.shortDescription}</StyledPre>
               {/* Uncomment once sessionb view is wired up */}
               {/* <ViewLink href="/">
                   <span>View Session</span>

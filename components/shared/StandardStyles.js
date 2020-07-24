@@ -29,7 +29,7 @@ export const InnerPage = styled.div`
 `;
 /** * END: Page elements shared in layouts ** */
 
-const ParagraphAndPreSharedStyles = css`
+export const StyledP = styled.p`
   padding-right: 1rem;
   margin-top: 0;
   font-weight: 200;
@@ -40,12 +40,17 @@ const ParagraphAndPreSharedStyles = css`
   `};
 `;
 
-export const StyledP = styled.p`
-  ${ParagraphAndPreSharedStyles}
-`;
-
 export const StyledPre = styled.pre`
-  ${ParagraphAndPreSharedStyles}
+  padding-right: 1rem;
+  margin-top: 0;
+  font-weight: 200;
+  line-height: 1.6;
+  font-size: 1.5rem;
+  height: auto;
+
+  ${below.med`
+    margin-top: 0;
+  `};
 `;
 
 export const ActionButtonRow = styled.div`
