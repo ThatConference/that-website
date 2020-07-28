@@ -13,7 +13,7 @@ It’s so hard to believe that in only one week August is upon us. Next Monday, 
 
 A year ago on the keynote stage, I made mention of [THAT.us](https://that.us/). A place where we didn’t have to wait until August or some event. A place where we could collaborate on any topic at the time it was the most important for us. Today is that day and while I’m excited as ever, I’m also honestly scared beyond belief.
 
-I started THAT to be part of building a community of people that wanted to support one another each and every day, through the good and bad, regardless of tech stack, location, gender, color, or whatever. The past 7 months have proven we have so many awesome Geeks and Geeklings here who do exactly that. It’s also shown we have so much more we can do too. I’m grateful to be surrounded by each and everyone of you and truly our journey is just getting started.
+I started THAT to be part of building a community of people that wanted to support one another each and every day, through the good and bad, regardless of tech stack, location, gender, color, or whatever. The past 7 months have proven we have so many awesome Geeks and Geeklings here who do exactly that. It’s also shown we have so much more we can do too. I’m grateful to be surrounded by each and every one of you and truly our journey is just getting started.
 
 On August 3rd we are taking a different approach. We’re not trying to replicate what we’ve done when we’re together at THAT Conference. I want you to think un-conference meets open spaces, meets conference call, meets screen sharing, meets THAT. Our goal was to create a safe place where we can all collaborate on whatever we want, however we want, whenever we want.
 
