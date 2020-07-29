@@ -138,7 +138,7 @@ const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
 const jobs = () => {
   const { loading, error, data } = useQuery(GET_EVENT_PARTNER_JOBS, {
     variables: {
-      eventId: process.env.CURRENT_EVENT_ID,
+      eventId: 'ByE7Dc7eCGcRFzLhWhuI',
     },
   });
 
@@ -158,7 +158,7 @@ const jobs = () => {
       <ContentSection>
         <Main>
           <SideDetail>
-            <h1>THAT Onilne 2020 - Partner Jobs</h1>
+            <h1>THAT Online 2020 - Partner Jobs</h1>
             <p className="medium-body-copy">
               Full list of all the open opportunities at the amazing
               organizations partnering with us to make THAT Online 2020 happen.
