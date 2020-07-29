@@ -174,7 +174,7 @@ const jobs = () => {
                 hoverBackgroundColor="thatBlue"
               />
               <LinkButton
-                href="/wi/2020/partners"
+                href="/wi/2020#partners"
                 label="View All THAT WI 2020 Partners"
                 color="thatBlue"
                 borderColor="thatBlue"
