@@ -14,7 +14,7 @@ const Partners = ({ partners }) => {
   topPartners = _.sortBy(topPartners, p => p.level);
 
   return (
-    <ContentSection>
+    <ContentSection id="partners">
       <TopPartners
         title="Event Brought To You By"
         partners={topPartners}
