@@ -7,6 +7,11 @@ author: THAT Crew
 excerpt: It’s so hard to believe that in only one week August is upon us. Next Monday, August 3rd marks the very first THAT Online. Honestly it marks something much bigger than a day of sessions, it’s the beginning of THAT Online, https://that.us.
 ---
 
+<img src="../../images/blog/introducing-that-dot-us.png"
+     alt="THAT Tickets"
+     style="width: 100%" />
+<br/>
+
 ### It's THAT Time.
 
 It’s so hard to believe that in only one week August is upon us. Next Monday, August 3rd marks the very first THAT Online. Honestly it marks something much bigger than a day of sessions, it’s the beginning of THAT Online, [https://THAT.us](https://that.us/). So grab your favorite camping chair, get comfy, and let me explain.

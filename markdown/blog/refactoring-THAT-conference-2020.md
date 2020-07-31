@@ -7,6 +7,11 @@ author: THAT Crew
 excerpt: The vast majority of us have been sheltered at home now for months. At first what seemed like a few screwed up timelines, has quickly become a global historic event. Uniformly, our road ahead has many unanswered questions, but one thing still remains true, our community is more important than ever and so is our collective safety.
 ---
 
+<img src="../../images/blog/refactoring-THAT-conference-2020.jpg"
+     alt="Refactoring that conference"
+     style="width: 100%" />
+<br/>
+
 ### Refactoring THAT Conference 2020
 
 Last week we were faced with the incredibly difficult task of announcing our new plans for THAT Conference 2020, or better said, this year we're refactoring THAT Conference 2020. Not cancelled, not postponed, and not in-person, just different and refactored in such a way we hope we can bring everyone the most value given our current climate.
