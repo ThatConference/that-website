@@ -7,6 +7,11 @@ author: Clark Sell
 excerpt: "Monday marks our first ever THAT Online. As you might already know, we've taken a different approach to the "virtual conference". Our approach: create a platform removing artificial boundaries, a safe place where we can ALL collaborate in a more creative meaningful way, enabling our true inner practitioner. Of course, we can do it anytime, anywhere, and any way we see fit."
 ---
 
+<img src="../../images/blog/load-the-board-keynotes-announced.jpg"
+     alt="THAT Workstation"
+     style="width: 100%" />
+<br/>
+
 Get ready Campers, it's time to setup camp. In fact, the fun starts today at 4pm CDT [https://that.us/sessions/DGHIy8ud1wXgCp5ZZe0k](https://that.us/sessions/DGHIy8ud1wXgCp5ZZe0k). Join us for a pre-THAT social call.
 
 Monday marks our first ever THAT Online. As you might already know, we've taken a different approach to the "virtual conference". Our approach: create a platform removing artificial boundaries, a safe place where we can ALL collaborate in a more creative meaningful way, enabling our true inner practitioner. Of course, we can do it anytime, anywhere, and any way we see fit.
@@ -27,7 +32,7 @@ Our first keynote is kicking off at 8:00am CDT by ~~our very own Clark Sell~~ ME
 
 > The idea of "THAT" started on a napkin during lunch just a few miles from where I still live today. That was 2010, but just one year ago I proclaimed "We're just getting started". Fast forward and today, right this very instance, we need one another more than ever. People are the backbone of any community but our actions represent the things we can be proud of. I'm going to reflect on the past, address the present, and talk about my vision for a brighter future. Hint, hint, it started today and it's all of us, [THAT.US](https://that.us).
 
-The idea of "THAT" started on a napkin during lunch just a few miles from where I still live today. That was 2010, but just one year ago I proclaimed "We're just getting started". Fast forward and today, right this very instance, we need one another more than ever. People are the backbone of any community but our actions represent the things we can be proud of. I'm going to reflect on the past, address the present, and talk about my vision for a brighter future. Hint, hint, it started today and it's all of us, THAT.US.
+Then, at 5pm CDT our second keynote will hit the airwaves. This time it's an in-depth panel discussion and, like always, your questions are welcomed. Clark will be joined by an amazing group of women: April Monique Shields, Sara Gibbons, Jaimee Newberry, Caroline Sober-James, Jill Hauwiller, Rachel Krause, and Cassie Breviu.
 
 #### Intentionally creating balance
 
