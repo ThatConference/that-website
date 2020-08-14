@@ -61,22 +61,28 @@ const Keynotes = ({ className }) => {
     <ContentSection className={className}>
       <SlimCenteredH2>Past Keynotes</SlimCenteredH2>
       <VideosGrid columns={gridRepeat.small} alignContent="center">
+        <VideoCell>
+          <ResponsiveYouTube videoId="gwFbwzKHtiw" />
+          <Title className="bold">
+            Remember where we've been. Look to where we're going!
+          </Title>
+          <Counselor>Clark Sell</Counselor>
+        </VideoCell>
         <VideoCell center>
+          <ResponsiveYouTube videoId="5K1Jdz0onX8" />
+          <Title className="bold">Intentionally creating balance.</Title>
+          <Counselor>
+            Clark Sell, Cassie Breviu, April Monique, Rachel Krause, Jill
+            Hauwiller, Caroline Sober-James, Jaimee Newberry, Denise Jacobs,
+            Sara Gibbons
+          </Counselor>
+        </VideoCell>
+        <VideoCell>
           <ResponsiveYouTube videoId="Lp-Xqj8wSMg" />
           <Title className="bold">
             The History of Opera and the Future of Programming
           </Title>
           <Counselor>Jessica Kerr</Counselor>
-        </VideoCell>
-        <VideoCell>
-          <ResponsiveYouTube videoId="Nks_Fb5TUjs" />
-          <Title className="bold">The 7 Pillar Developer</Title>
-          <Counselor>Cory House</Counselor>
-        </VideoCell>
-        <VideoCell>
-          <ResponsiveYouTube videoId="cU2q7SxE9Vw" />
-          <Title className="bold">Adventure as a Career Plan</Title>
-          <Counselor>Jason Lengstorf</Counselor>
         </VideoCell>
       </VideosGrid>
 
