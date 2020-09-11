@@ -136,9 +136,7 @@ export const memberConstants = {
       firstName: Yup.string()
         .min(2, 'Must be at least 2 characters')
         .required('Required'),
-      email: Yup.string()
-        .email('Invalid email address')
-        .required('Required'),
+      email: Yup.string().email('Invalid email address').required('Required'),
       country: Yup.string().nullable(),
       jobTitle: Yup.string().nullable(),
       lastName: Yup.string()
