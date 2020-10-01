@@ -6,7 +6,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-### Table of Contents
+### Table of Content
 
 1. Types of contributions we are looking for
 2. Ground rules and expectations
@@ -31,8 +31,8 @@ There are many ways you can contribute, here are just some of the broader items 
 
 Before we get started, here are a few things we expect from you (and that you should expect from others):
 
-- Be kind and thoughtful in your conversations around this project. We all come from different backgrounds and projects, which means we likely have different perspectives on "how open source is done." Try to listen to others rather than convince them that your way is correct.
-- THAT Conference has a released [Code of Conduct](https://www.thatconference.com/code-of-conduct). By participating in this project, you agree to abide by its terms.
+- Be kind and thoughtful in your conversations around this project. We all come from different backgrounds and projects, which means we likely have different perspectives on "how open source is done." Try to listen to others rather than convincing them that your way is correct.
+- THAT Conference has released [Code of Conduct](https://www.thatconference.com/code-of-conduct). By participating in this project, you agree to abide by its terms.
 - If you open a pull request, please ensure that your contribution passes all tests. If there are test failures, you will need to address them before we can merge your contribution.
 
 #### 3. How to contribute
