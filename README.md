@@ -1,4 +1,4 @@
-# THATConference.com
+# THATConference.com an amazing website
 
 ## Contributing
 
