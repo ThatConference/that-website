@@ -11,6 +11,8 @@
 1. Types of contributions we are looking for
 2. Ground rules and expectations
 3. How to contribute
+
+
 4. Style guide
 5. Setting up your environment  
    5b. Vercel/Zeit linked project setup
