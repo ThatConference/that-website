@@ -12,39 +12,45 @@ import TopPartners from '../shared/TopPartners';
 import { gridRepeat, below } from '../../utilities';
 
 const GET_EVENTS = gql`
-  query activeEvents {
-    communities(name: "that") {
-      active {
-        id
-        name
-        slug
-        slogan
-        description
-        startDate
-        endDate
-        website
-        partners {
+  query activeEvents($communityInput: CommunityQueryInput!) {
+    communities {
+      community(input: $communityInput) {
+        get {
           id
-          slug
-          level
-          placement
-          companyName
-          companyLogo
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
-          startDate
-          endDate
-          link
-          linkText
-        }
-        theme {
-          primary
-          secondary
-          heroSlug
+          name
+          events(filter: ACTIVE) {
+            id
+            name
+            slug
+            slogan
+            description
+            startDate
+            endDate
+            website
+            partners {
+              id
+              slug
+              level
+              placement
+              companyName
+              companyLogo
+            }
+            notifications {
+              id
+              shouldFeature
+              title
+              message
+              startDate
+              endDate
+              link
+              linkText
+            }
+            theme {
+              primary
+              secondary
+              heroSlug
+            }
+          }
         }
       }
     }
@@ -158,7 +164,13 @@ const BuildEvent = e => {
 };
 
 const Events = ({ className }) => {
-  const { loading, error, data } = useQuery(GET_EVENTS);
+  const { loading, error, data } = useQuery(GET_EVENTS, {
+    variables: {
+      communityInput: {
+        slug: 'that',
+      },
+    },
+  });
 
   if (loading) return null;
 
@@ -166,7 +178,8 @@ const Events = ({ className }) => {
     throw new Error(error);
   }
 
-  let events = _.sortBy(data.communities.active, e => {
+  // let events = _.sortBy(data.communities.active, e => {
+  let events = _.sortBy(data.communities.community.get.events, e => {
     return e.startDate;
   });
 
