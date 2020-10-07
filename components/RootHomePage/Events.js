@@ -14,7 +14,7 @@ import { gridRepeat, below } from '../../utilities';
 const GET_EVENTS = gql`
   query activeEvents($communityInput: CommunityQueryInput!) {
     communities {
-      community(input: $communityInput) {
+      community(findBy: $communityInput) {
         get {
           id
           name
