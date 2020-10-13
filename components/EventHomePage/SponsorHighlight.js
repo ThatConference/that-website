@@ -85,7 +85,7 @@ const PartnerUpLink = styled(LinkButton)`
 const GET_PARTNERS = gql`
   query getPartnerByLevel($eventId: ID!, $level: PartnershipLevel!) {
     events {
-      event(id: $eventId) {
+      event(findBy: { id: $eventId }) {
         partners {
           level(level: $level) {
             id

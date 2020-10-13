@@ -19,20 +19,22 @@ const dlog = debug('that:partners');
 const GET_PARTNERS = gql`
   query getPartners($slug: String!) {
     events {
-      event: eventBySlug(slug: $slug) {
-        id
-        name
-        slug
-        year
-        partners {
+      event(findBy: { slug: $slug }) {
+        get {
           id
+          name
           slug
-          level
-          placement
-          companyName
-          companyLogo
-          heroImage
-          website
+          year
+          partners {
+            id
+            slug
+            level
+            placement
+            companyName
+            companyLogo
+            heroImage
+            website
+          }
         }
       }
     }
@@ -148,14 +150,14 @@ const partnerListing = () => {
     throw new Error(error);
   }
 
-  dlog('data %o', data.events.event.partners);
+  dlog('data %o', data.events.event.get.partners);
 
-  const partners = data.events.event.partners.sort((a, b) => {
+  const partners = data.events.event.get.partners.sort((a, b) => {
     if (a.placement < b.placement) return -1;
     if (a.placement > b.placement) return 1;
     return 0;
   });
-  const eventYear = data.events.event.year;
+  const eventYear = data.events.event.get.year;
 
   dlog('partners %o', partners);
   return (

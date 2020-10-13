@@ -16,51 +16,53 @@ import TimelineSection from '../../../components/shared/Timeline';
 const GET_EVENT = gql`
   query getEvent($slug: String!) {
     events {
-      eventBySlug(slug: $slug) {
-        id
-        name
-        slogan
-        slug
-        description
-        startDate
-        endDate
-        isVotingOpen
-        isCallForSpeakersOpen
-        theme {
-          primary
-          secondary
-          heroSlug
-        }
-        venues {
+      event(findBy: { slug: $slug }) {
+        get {
           id
           name
-          address
-          city
-          state
-          zip
-        }
-        milestones {
-          title
+          slogan
+          slug
           description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
           startDate
           endDate
-          link
-          linkText
-        }
-        partners {
-          id
-          slug
-          level
-          placement
-          companyName
-          companyLogo
+          isVotingOpen
+          isCallForSpeakersOpen
+          theme {
+            primary
+            secondary
+            heroSlug
+          }
+          venues {
+            id
+            name
+            address
+            city
+            state
+            zip
+          }
+          milestones {
+            title
+            description
+            dueDate
+          }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
+          partners {
+            id
+            slug
+            level
+            placement
+            companyName
+            companyLogo
+          }
         }
       }
     }
@@ -116,7 +118,7 @@ const contact = () => {
   if (error) throw new Error(error);
 
   if (!loading) {
-    event = data.events.eventBySlug;
+    event = data.events.event.get;
     formattedStartDate = moment(event.startDate).format('dddd, MMMM D, YYYY');
     formattedEndDate = moment(event.endDate).format('dddd, MMMM D, YYYY');
   }

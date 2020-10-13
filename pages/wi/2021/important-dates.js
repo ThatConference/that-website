@@ -14,7 +14,7 @@ const _ = require('lodash');
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
     events {
-      event(id: $eventId) {
+      event(findBy: { id: $eventId }) {
         get {
           id
           milestones {
