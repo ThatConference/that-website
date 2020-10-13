@@ -19,7 +19,7 @@ import { below, above } from '../../../utilities';
 const GET_EVENT_PARTNER_JOBS = gql`
   query getPartners($eventId: ID!) {
     events {
-      event(id: $eventId) {
+      event(findBy: { id: $eventId }) {
         get {
           id
           name

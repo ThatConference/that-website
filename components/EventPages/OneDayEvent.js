@@ -25,51 +25,53 @@ import { SlimCenteredH2 } from '../shared/StandardStyles';
 const GET_EVENT = gql`
   query getEvent($slug: String!) {
     events {
-      eventBySlug(slug: $slug) {
-        id
-        name
-        slogan
-        description
-        slug
-        startDate
-        endDate
-        isVotingOpen
-        isCallForSpeakersOpen
-        venues {
+      event(findBy: { slug: $slug }) {
+        get {
           id
           name
-          address
-          city
-          state
-          zip
-        }
-        milestones {
-          title
+          slogan
           description
-          dueDate
-        }
-        notifications {
-          id
-          shouldFeature
-          title
-          message
+          slug
           startDate
           endDate
-          link
-          linkText
-        }
-        theme {
-          primary
-          secondary
-          heroSlug
-        }
-        partners {
-          id
-          slug
-          level
-          placement
-          companyName
-          companyLogo
+          isVotingOpen
+          isCallForSpeakersOpen
+          venues {
+            id
+            name
+            address
+            city
+            state
+            zip
+          }
+          milestones {
+            title
+            description
+            dueDate
+          }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
+          theme {
+            primary
+            secondary
+            heroSlug
+          }
+          partners {
+            id
+            slug
+            level
+            placement
+            companyName
+            companyLogo
+          }
         }
       }
     }
@@ -122,7 +124,7 @@ const OneDayEvent = ({ eventSlug, tickets }) => {
     throw new Error(error);
   }
 
-  const { eventBySlug: event } = data.events;
+  const event = data.events.event.get;
 
   return (
     <div>
