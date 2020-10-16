@@ -14,9 +14,9 @@ import JobListing from '../../../components/shared/JobListing';
 import { below, above } from '../../../utilities';
 
 const GET_ALL_PARTNER_JOBS = gql`
-  query getJobListingBySlug($partnerSlug: String!) {
+  query getJobListingBySlug($partnerSlug: Slug!) {
     partners {
-      partnerBySlug(slug: $partnerSlug) {
+      partner(findBy: { slug: $partnerSlug }) {
         id
         companyName
         companyLogo
@@ -93,7 +93,7 @@ const jobs = () => {
   const { loading, data } = useQuery(GET_ALL_PARTNER_JOBS, {
     variables: { partnerSlug: router.query.slug },
     onCompleted(d) {
-      const { partnerBySlug: partner } = d.partners;
+      const { partner } = d.partners;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -105,7 +105,7 @@ const jobs = () => {
 
   if (loading) return <LoadingIndicator />;
 
-  const { partnerBySlug: partner } = data.partners;
+  const { partner } = data.partners;
 
   return (
     <>

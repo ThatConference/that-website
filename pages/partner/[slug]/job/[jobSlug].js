@@ -12,9 +12,9 @@ import PartnerLogoWithInfo from '../../../../components/shared/PartnerLogoWithIn
 import { below, above } from '../../../../utilities';
 
 const GET_PARTNER_JOB = gql`
-  query getJobListingBySlug($partnerSlug: String!, $jobListingSlug: String!) {
+  query getJobListingBySlug($partnerSlug: Slug!, $jobListingSlug: String!) {
     partners {
-      partnerBySlug(slug: $partnerSlug) {
+      partner(findBy: { slug: $partnerSlug }) {
         id
         companyName
         companyLogo
@@ -171,7 +171,7 @@ const jobDetail = () => {
       jobListingSlug: router.query.jobSlug,
     },
     onCompleted(d) {
-      const { partnerBySlug: partner } = d.partners;
+      const { partner } = d.partners;
       let hostName = new URL(partner.website).hostname;
       if (hostName.toLowerCase().startsWith('www.')) {
         hostName = hostName.replace('www.', '');
@@ -189,7 +189,7 @@ const jobDetail = () => {
     );
   }
 
-  const { partnerBySlug: partner } = data.partners;
+  const { partner } = data.partners;
   const job = partner.jobListing;
 
   return (
