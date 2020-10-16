@@ -24,9 +24,9 @@ import {
 import { below, gridRepeat } from '../../utilities';
 
 const GET_PARTNER = gql`
-  query getPartnerBySlug($slug: String!) {
+  query getPartnerBySlug($slug: Slug!) {
     partners {
-      partnerBySlug(slug: $slug) {
+      partner(findBy: { slug: $slug }) {
         id
         slug
         companyName
@@ -262,7 +262,7 @@ function PartnerDetail() {
   const { loading, error, data } = useQuery(GET_PARTNER, {
     variables: { slug: router.query.slug },
     onCompleted(d) {
-      const partner = d.partners.partnerBySlug;
+      const { partner } = d.partners;
       if (partner !== null) {
         let hostName = new URL(partner.website).hostname;
         if (hostName.toLowerCase().startsWith('www.')) {
@@ -288,7 +288,7 @@ function PartnerDetail() {
     );
   if (error) throw new Error(error);
 
-  const { partnerBySlug: partner } = data.partners;
+  const { partner } = data.partners;
 
   if (partner === null) return <CompanyNotFound />;
 
