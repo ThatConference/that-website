@@ -180,7 +180,7 @@ const partnerListing = () => {
             </p>
             <ActionButtonRow>
               <LinkButton
-                href={`/${data.events.event.slug}/become-a-partner`}
+                href={`/${data.events.event.get.slug}/become-a-partner`}
                 label="Become a Partner"
                 color="thatBlue"
                 borderColor="thatBlue"
