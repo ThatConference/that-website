@@ -241,7 +241,7 @@ const ContactInfoForm = ({
             getFieldProps={getFieldProps}
             errors={errors}
             touched={touched}
-            label="Are you over 13 years old?"
+            label="Are >= 13 years old?"
             inputType="checkbox"
             values={values}
             required
