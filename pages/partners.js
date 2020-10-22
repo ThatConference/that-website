@@ -42,7 +42,7 @@ const HighlightImage = styled.img`
 `;
 
 const PaddedImageContainer = styled(ImageContainer)`
-  margin: 1rem 0.5rem;
+  margin: 1rem 1rem;
   height: 13rem;
   width: 17rem;
   background-color: ${({ theme }) => theme.colors.white};
@@ -86,6 +86,13 @@ const PartnerSearchTitle = styled.h5`
 
 const PartnerSearchInput = styled.input`
   width: 40rem;
+`;
+
+const PartnerContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
 `;
 
 const partners = () => {
@@ -157,7 +164,7 @@ const partners = () => {
           </div>
         )}
         {!loading && (
-          <Grid columns={gridRepeat.xxsmall} alignContent="center">
+          <PartnerContainer>
             {sortBy(searchedPartners(), p => p.companyName.toLowerCase()).map(
               partner => {
                 return (
@@ -177,7 +184,7 @@ const partners = () => {
                 );
               },
             )}
-          </Grid>
+          </PartnerContainer>
         )}
       </ContentSection>
     </>
