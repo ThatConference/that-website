@@ -1,6 +1,9 @@
 import * as Yup from 'yup';
 import { RegularExpressions } from './validation';
 
+export const placeHolderImageUrl =
+  'https://images.that.tech/members/person-placeholder.jpg';
+
 // eslint-disable-next-line import/prefer-default-export
 export const sessionConstants = {
   SessionFors: [

@@ -8,14 +8,17 @@ import { gql } from 'apollo-boost';
 import Imgix from 'react-imgix';
 import Error from '../_error';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import { below, memberConstants, socialConstants } from '../../utilities';
+import {
+  below,
+  memberConstants,
+  placeHolderImageUrl,
+  socialConstants,
+} from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import RoundImage from '../../components/shared/RoundImage';
 import ThatLink from '../../components/shared/ThatLink';
 import SocialLinks from '../../components/shared/SocialLinks';
 import Icon from '../../components/shared/Icon';
-
-const DEFAULT_IMAGE = 'https://images.that.tech/members/person-placeholder.jpg';
 
 const StyledGrid = styled(Grid)`
   grid-gap: 2.5rem;
@@ -254,7 +257,7 @@ const member = ({ slug, user, loading: loadingUser }) => {
             )}
             {!profileImage && (
               <RoundImage
-                imageUrl={DEFAULT_IMAGE}
+                imageUrl={placeHolderImageUrl}
                 size="250"
                 showAccentLine={false}
               />
