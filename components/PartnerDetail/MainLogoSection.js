@@ -6,7 +6,7 @@ import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import PartnerLogoWithInfo from '../shared/PartnerLogoWithInfo';
 import PartnerDetailSubHeading from './PartnerDetailSubHeading';
-import { below, gridRepeat } from '../../utilities';
+import { below, gridRepeat, placeHolderImageUrl } from '../../utilities';
 
 const LogoMemberSection = styled.div`
   display: flex;
@@ -65,7 +65,7 @@ const renderMember = member => {
   return (
     <Member key={member.id}>
       <Imgix
-        src={member.profileImage}
+        src={member.profileImage || placeHolderImageUrl}
         width={60}
         height={60}
         imgixParams={{ mask: 'ellipse', fit: 'facearea', facepad: 4 }}
