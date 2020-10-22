@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Imgix from 'react-imgix';
+import { placeHolderImageUrl } from '../../utilities';
 
 const AccentLine = styled.span`
   height: ${({ size }) => size}rem;
@@ -16,9 +17,7 @@ const RoundImage = ({ className, imageUrl, size, showAccentLine, alt }) => {
     <>
       <Imgix
         className={className}
-        src={
-          imageUrl || 'https://images.that.tech/members/person-placeholder.jpg'
-        }
+        src={imageUrl || placeHolderImageUrl}
         width={intsize}
         height={intsize}
         imgixParams={{
