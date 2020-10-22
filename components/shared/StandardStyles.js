@@ -79,11 +79,8 @@ export const ActionButtonRow = styled.div`
 export const HeroGraphicDiv = styled.div`
   min-width: 45rem;
   margin: 0;
-
-  ${below.larger`
-    display: flex;
-    justify-content: center;
-  `};
+  display: flex;
+  justify-content: center;
 
   ${below.med`
     min-width: unset;
