@@ -7,7 +7,10 @@ import { NextSeo, JobPostingJsonLd } from 'next-seo';
 import LinkButton from '../../../../components/shared/LinkButton/LinkButton';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
-import { ActionButtonRow } from '../../../../components/shared/StandardStyles';
+import {
+  ActionButtonRow,
+  StyledPre,
+} from '../../../../components/shared/StandardStyles';
 import PartnerLogoWithInfo from '../../../../components/shared/PartnerLogoWithInfo';
 import { below, above } from '../../../../utilities';
 
@@ -39,6 +42,7 @@ const GET_PARTNER_JOB = gql`
           remote
           role
           featured
+          applyNowLink
         }
       }
     }
@@ -123,7 +127,7 @@ const StyledPartnerLogoWithInfo = styled(PartnerLogoWithInfo)`
 
 const AttributesRow = styled.div`
   display: flex;
-  margin-top: 1rem;
+  margin-bottom: 2rem;
 `;
 
 const AttributeTag = styled.div`
@@ -141,6 +145,13 @@ const AttributeTag = styled.div`
     font-weight: 700;
     vertical-align: middle;
   }
+`;
+
+const ApplyNowLinkButton = styled(LinkButton)`
+  width: 25rem;
+  min-width: 25rem;
+  margin-top: -1rem;
+  margin-bottom: 3rem;
 `;
 
 const JobNotFound = ({ slug }) => (
@@ -249,7 +260,21 @@ const jobDetail = () => {
                 </AttributeTag>
               )}
             </AttributesRow>
-            <pre className="medium-body-copy">{job.description}</pre>
+            {job.applyNowLink && (
+              <ApplyNowLinkButton
+                href={job.applyNowLink}
+                label="Apply Now"
+                color="thatBlue"
+                borderColor="thatBlue"
+                className="stretch-sm"
+                hoverBorderColor="thatBlue"
+                hoverColor="white"
+                hoverBackgroundColor="thatBlue"
+                target="blank"
+                rel="noopener"
+              />
+            )}
+            <StyledPre>{job.description}</StyledPre>
             <ActionButtonRow>
               <LinkButton
                 href={`/partner/${partner.slug}`}
@@ -283,6 +308,7 @@ const jobDetail = () => {
                 hoverBackgroundColor="thatBlue"
                 isLocal={false}
                 target="blank"
+                rel="noopener"
               />
             </ActionButtonRow>
           </SideDetail>

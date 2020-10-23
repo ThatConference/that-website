@@ -14,6 +14,7 @@ const SocialLinksContainer = styled.div`
 
 const SocialBlock = styled.div`
   width: ${props => props.size};
+  margin: 0 0.25rem;
 `;
 
 const StyledLink = styled.a`
