@@ -7,6 +7,7 @@ import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
+import { isEmpty, omit } from 'lodash';
 import ContentSection from '../../components/shared/ContentSection';
 import ContactInfo from '../../components/Member/Profile/ContactInfo';
 import OnlinePresence from '../../components/Member/Profile/OnlinePresence';
@@ -20,8 +21,6 @@ import {
   FormSubmit,
   FormRuleWithRequired,
 } from '../../components/shared/FormLayout';
-
-const _ = require('lodash');
 
 const dlog = debug('that:member:edit');
 
@@ -101,7 +100,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!loadingUser && _.isEmpty(user)) {
+    if (!loadingUser && isEmpty(user)) {
       router
         .push('/api/login?redirect-url=/member/edit')
         .then(() => window.scrollTo(0, 0));
@@ -221,7 +220,7 @@ const editProfile = ({ user, loading: loadingUser }) => {
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               // don't include non-editable fields only being displayed
-              const valuesToSave = _.omit(values, ['profileSlug']);
+              const valuesToSave = omit(values, ['profileSlug']);
               const profileLinksToSave = Object.keys(linkTypes)
                 .filter(key =>
                   valuesToSave[key] ? valuesToSave[key].length > 0 : false,

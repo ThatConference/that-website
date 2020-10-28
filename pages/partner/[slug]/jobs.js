@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { NextSeo } from 'next-seo';
-import _ from 'lodash';
+import { sortBy } from 'lodash';
 import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import ContentSection from '../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
@@ -155,11 +155,9 @@ const jobs = () => {
       <ContentSection style={{ paddingTop: 0 }}>
         <h3>{`Current Opportunites at ${partner.companyName}`}</h3>
         <Jobs>
-          {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
-            job => (
-              <JobListing job={job} partner={partner} key={job.id} />
-            ),
-          )}
+          {sortBy(partner.jobListings, j => j.title.toLowerCase()).map(job => (
+            <JobListing job={job} partner={partner} key={job.id} />
+          ))}
         </Jobs>
       </ContentSection>
     </>

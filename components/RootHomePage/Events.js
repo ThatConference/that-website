@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
+import { each, filter, find, map, sortBy, uniqBy } from 'lodash';
 import Link from 'next/link';
 
 import ContentSection from '../shared/ContentSection';
@@ -178,14 +178,14 @@ const Events = ({ className }) => {
     throw new Error(error);
   }
 
-  // let events = _.sortBy(data.communities.active, e => {
-  let events = _.sortBy(data.communities.community.get.events, e => {
+  // let events = sortBy(data.communities.active, e => {
+  let events = sortBy(data.communities.community.get.events, e => {
     return e.startDate;
   });
 
   // This will go away once the theme fields are added to the Graph result
-  events = _.map(events, e => {
-    e.featuredNotification = _.find(e.notifications, n => {
+  events = map(events, e => {
+    e.featuredNotification = find(e.notifications, n => {
       return n.shouldFeature === true;
     }) || {
       title: 'Some Amazing Announcement!',
@@ -196,14 +196,14 @@ const Events = ({ className }) => {
   });
 
   let partners = [];
-  _.each(events, e => {
-    const pioneers = _.filter(e.partners, p => {
+  each(events, e => {
+    const pioneers = filter(e.partners, p => {
       return p.level === 'PIONEER';
     });
     partners = partners.concat(pioneers);
   });
-  partners = _.uniqBy(partners, 'id');
-  partners = _.sortBy(partners, p => {
+  partners = uniqBy(partners, 'id');
+  partners = sortBy(partners, p => {
     return p.placement;
   });
 

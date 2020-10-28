@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 import ContentSection from '../../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../../components/shared/LoadingIndicator';
 import SessionContent from '../../../../components/Session/Voting/Shared/SessionContent';
@@ -72,7 +72,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
 
   useEffect(() => {
     if (!loadingUser) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         router.push('/api/login?redirect-url=/member/create');
       }
 

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
+import { find, isEmpty } from 'lodash';
 import { below } from '../../utilities';
 import ThatLink from '../shared/ThatLink';
-
-const _ = require('lodash');
 
 const Message = styled.p`
   color: ${({ theme }) => theme.colors.fonts.light};
@@ -43,7 +42,7 @@ const getLinkForEnvironment = url => {
 };
 
 const MessageBar = ({ className, user, loading, notifications }) => {
-  const featured = _.find(notifications, n => {
+  const featured = find(notifications, n => {
     return n.shouldFeature === true;
   });
 
@@ -71,7 +70,7 @@ const MessageBar = ({ className, user, loading, notifications }) => {
 
   const getMessage = () => {
     if (loading) return '';
-    if (_.isEmpty(user)) return featuredMessage();
+    if (isEmpty(user)) return featuredMessage();
 
     return user.profileComplete ? featuredMessage() : createProfileMessage();
   };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
+import { isEmpty } from 'lodash';
 import ContentSection from '../../../../components/shared/ContentSection';
 import Header from '../../../../components/Session/Submit/Header';
 import Intro from '../../../../components/Session/Submit/Intro';
@@ -11,8 +12,6 @@ import Lastly from '../../../../components/Session/Submit/Lastly';
 import Preview from '../../../../components/Session/Submit/Preview';
 import User from '../../../../components/User';
 import { useFetchUser } from '../../../../hooks/user';
-
-const _ = require('lodash');
 
 const dlog = debug('that:session:create');
 
@@ -28,7 +27,7 @@ const SessionCreate = () => {
 
   useEffect(() => {
     if (!loadingUser) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         router.push('/api/login?redirect-url=/member/create');
       }
 

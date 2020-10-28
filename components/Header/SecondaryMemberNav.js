@@ -1,22 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import ThatLink from '../shared/ThatLink';
-
-const _ = require('lodash');
 
 const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
   return (
     <ul className={className}>
       <li>
-        {!_.isEmpty(user) && !user.profileComplete && (
+        {!isEmpty(user) && !user.profileComplete && (
           <ThatLink
             title="Create Profile"
             href="/member/create"
             onClick={() => onLinkClick()}
           />
         )}
-        {!_.isEmpty(user) && user.profileComplete && (
+        {!isEmpty(user) && user.profileComplete && (
           <ThatLink
             title="My Profile"
             href={`/member/${user.profileSlug}`}
@@ -24,7 +23,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
           />
         )}
       </li>
-      {!_.isEmpty(user) && user.profileComplete && (
+      {!isEmpty(user) && user.profileComplete && (
         <li>
           <ThatLink
             title="My Sessions"
@@ -33,7 +32,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
           />
         </li>
       )}
-      {!_.isEmpty(user) && (
+      {!isEmpty(user) && (
         <li>
           <ThatLink
             title="Log Out"
@@ -43,7 +42,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
         </li>
       )}
 
-      {_.isEmpty(user) && (
+      {isEmpty(user) && (
         <ThatLink
           title="Sign In"
           href="/api/login"

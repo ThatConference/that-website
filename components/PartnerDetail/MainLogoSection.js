@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Imgix from 'react-imgix';
-import _ from 'lodash';
+import { isEmpty, sortBy } from 'lodash';
 import { Grid, Cell } from 'styled-css-grid';
 import ContentSection from '../shared/ContentSection';
 import PartnerLogoWithInfo from '../shared/PartnerLogoWithInfo';
@@ -80,19 +80,16 @@ const renderMember = member => {
 
 const MainLogoSection = ({ partner }) => {
   const { members } = partner;
-  const sortedMembers = _.sortBy(members, [
-    'partnerFeaturedOrder',
-    'firstName',
-  ]);
+  const sortedMembers = sortBy(members, ['partnerFeaturedOrder', 'firstName']);
 
   return (
     <ContentSection id="partner-about" backgroundColor="lightGray">
       <LogoMemberSection>
         <PartnerLogoWithInfo
           partner={partner}
-          alignment={_.isEmpty(sortedMembers) ? 'center' : 'flex-start'}
+          alignment={isEmpty(sortedMembers) ? 'center' : 'flex-start'}
         />
-        {!_.isEmpty(sortedMembers) && (
+        {!isEmpty(sortedMembers) && (
           <SayHiDetail>
             <PartnerDetailSubHeading>
               Who to Say Hi to During THAT Conference

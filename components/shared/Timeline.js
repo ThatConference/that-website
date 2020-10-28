@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
+import { find, groupBy, sortBy } from 'lodash';
 import ContentSection from './ContentSection';
 import LinkButton from './LinkButton/LinkButton';
 import { below } from '../../utilities';
-
-const _ = require('lodash');
 
 const Main = styled(ContentSection)`
   margin-top: 10rem;
@@ -166,12 +165,12 @@ const Date = styled(Detail)`
 
 const TimelineSection = ({ event, className }) => {
   const { milestones, notifications } = event;
-  const sortedMilestones = _.sortBy(milestones, m => moment.utc(m.dueDate));
-  const groupedMilestones = _.groupBy(sortedMilestones, m =>
+  const sortedMilestones = sortBy(milestones, m => moment.utc(m.dueDate));
+  const groupedMilestones = groupBy(sortedMilestones, m =>
     moment.utc(m.dueDate),
   );
 
-  const featured = _.find(notifications, n => {
+  const featured = find(notifications, n => {
     return n.shouldFeature === true;
   });
 

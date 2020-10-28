@@ -5,11 +5,10 @@ import { NextSeo } from 'next-seo';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
+import { groupBy } from 'lodash';
 import { above, below, gridRepeat } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import TimelineSection from '../../../components/shared/Timeline';
-
-const _ = require('lodash');
 
 const GET_EVENT = gql`
   query getEvent($eventId: ID!) {
@@ -153,7 +152,7 @@ const importantDates = () => {
   if (!loading) {
     event = data.events.event;
     milestones = event.get.milestones;
-    groupedMilestones = _.groupBy(milestones, m => moment.utc(m.dueDate));
+    groupedMilestones = groupBy(milestones, m => moment.utc(m.dueDate));
   }
 
   return (

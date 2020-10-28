@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { isEmpty } from 'lodash';
 import LinkButton from '../shared/LinkButton/LinkButton';
 import Title from '../shared/Title';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import { below } from '../../utilities/breakpoint';
 import ThatLink from '../shared/ThatLink';
-
-const _ = require('lodash');
 
 const GetStartedDetail = styled.div`
   display: flex;
@@ -44,7 +43,7 @@ const Header = ({ user, loading }) => {
 
   const getStartedHref = () => {
     if (!loading) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         return '/api/login?redirect-url=/member/create';
       }
 
@@ -61,7 +60,7 @@ const Header = ({ user, loading }) => {
 
   const getHelpText = () => {
     if (!loading) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         return (
           <>
             To get started you will need to{' '}
@@ -98,7 +97,7 @@ const Header = ({ user, loading }) => {
 
   const getButtonText = () => {
     if (!loading) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         return 'Sign In To Get Started';
       }
 

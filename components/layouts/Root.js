@@ -4,7 +4,7 @@ import { DefaultSeo, LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
-import _ from 'lodash';
+import { isNil, map } from 'lodash';
 
 import GlobalStyle from '../../styles/globalStyle';
 import baseTheme from '../../styles/baseTheme';
@@ -27,7 +27,7 @@ const Default = ({ children }) => {
   const { user, loading } = useFetchUser();
   const router = useRouter();
 
-  if (!_.isNil(user)) {
+  if (!isNil(user)) {
     document.tidioIdentify = {
       distinct_id: user.id,
       email: user.email,
@@ -46,7 +46,7 @@ const Default = ({ children }) => {
     });
   }
 
-  const socialUrls = _.map(
+  const socialUrls = map(
     socialConstants.thatSocialLinks,
     socialLink => socialLink.url,
   );

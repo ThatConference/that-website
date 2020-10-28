@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
@@ -51,7 +51,7 @@ const CounselorAgreement = ({ user, loading: loadingUser }) => {
 
   useEffect(() => {
     if (!loadingUser) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         router.push('/api/login?redirect-url=/member/create');
       }
 

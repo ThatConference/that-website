@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { useRouter } from 'next/router';
 import debug from 'debug';
+import { isEmpty, isString, omitBy } from 'lodash';
 import { below, memberConstants } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
@@ -21,8 +22,6 @@ import {
   FormSubmit,
   FormRuleWithRequired,
 } from '../../components/shared/FormLayout';
-
-const _ = require('lodash');
 
 const twoColBp = 'large';
 
@@ -69,7 +68,7 @@ const createProfile = ({ user, loading }) => {
   const [fileUploading, setFileUplaoding] = useState(false);
 
   useEffect(() => {
-    if (!loading && _.isEmpty(user)) {
+    if (!loading && isEmpty(user)) {
       router
         .push('/api/login?redirect-url=/member/create')
         .then(() => window.scrollTo(0, 0));
@@ -174,9 +173,9 @@ const createProfile = ({ user, loading }) => {
             if (currentStep === steps.length - 1) {
               setTimeout(() => {
                 // only want to save fields with value, empty strings don't count
-                const valuesToSave = _.omitBy(
+                const valuesToSave = omitBy(
                   values,
-                  val => _.isString(val) && val.length === 0,
+                  val => isString(val) && val.length === 0,
                 );
                 const profileLinks = Object.keys(linkTypes)
                   .filter(key =>

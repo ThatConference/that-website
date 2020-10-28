@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import debug from 'debug';
 import styled from 'styled-components';
-import _ from 'lodash';
+import { isEmpty, sortBy } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { below } from '../../../../utilities';
@@ -79,7 +79,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
 
   useEffect(() => {
     if (!loadingUser) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         router.push('/api/login?redirect-url=/member/create');
       }
 
@@ -139,7 +139,7 @@ const SessionVoting = ({ user, loading: loadingUser }) => {
               totalRemaining={totalSubmitted - votedOnCount}
             />
             <SessionsContainer>
-              {_.sortBy(voted, s => s.title.toLowerCase()).map(session => (
+              {sortBy(voted, s => s.title.toLowerCase()).map(session => (
                 <SlimSession session={session} key={session.sessionId} />
               ))}
             </SessionsContainer>

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 
+import { remove } from 'lodash';
 import { generateUuid, IsValidUrl } from '../../utilities';
 import { FormInputValidationMessage } from './FormLayout';
 import SquareButton from './SquareButton';
-
-const _ = require('lodash');
 
 const MainGrid = styled(Grid)`
   grid-row-gap: 1rem;
@@ -126,7 +125,7 @@ const LinksInput = ({
   };
 
   const onDelete = e => {
-    const l = _.remove(stateLinks, i => {
+    const l = remove(stateLinks, i => {
       return i.id !== e;
     });
     update(l);
