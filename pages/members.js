@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import { Grid, Cell } from 'styled-css-grid';
 import { NextSeo } from 'next-seo';
-import _ from 'lodash';
+import { orderBy } from 'lodash';
 import ContentSection from '../components/shared/ContentSection';
 import LinkButton from '../components/shared/LinkButton/LinkButton';
 import SquareButton from '../components/shared/SquareButton';
@@ -173,7 +173,7 @@ const memberListing = () => {
         )}
         {(!loading || fetchingMore) && (
           <ProfileSection>
-            {_.orderBy(members, ['firstName', 'lastName']).map(member => {
+            {orderBy(members, ['firstName', 'lastName']).map(member => {
               return (
                 <StyledProfileItem
                   imageUrl={member.profileImage}

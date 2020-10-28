@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { NextSeo } from 'next-seo';
-import _ from 'lodash';
+import { sortBy } from 'lodash';
 import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 import ContentSection from '../../../components/shared/ContentSection';
 import LoadingIndicator from '../../../components/shared/LoadingIndicator';
@@ -195,7 +195,7 @@ const jobs = () => {
           <PartnerSection key={partner.id}>
             <StyledPartnerLogoWithInfo partner={partner} alignment="center" />
             <Jobs>
-              {_.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
+              {sortBy(partner.jobListings, j => j.title.toLowerCase()).map(
                 job => (
                   <JobListing job={job} partner={partner} key={job.id} />
                 ),

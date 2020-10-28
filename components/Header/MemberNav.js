@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import ThatLink from '../shared/ThatLink';
 import { below } from '../../utilities';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import SecondaryMemberNav from './SecondaryMemberNav';
-
-const _ = require('lodash');
 
 const StyledSecondaryNav = styled(SecondaryMemberNav)`
   display: ${({ userMenuOpen }) => (userMenuOpen ? 'block' : 'none')};
@@ -50,7 +49,7 @@ const MemberNav = ({ className, color, onClick, user, loading }) => {
 
   return (
     <div className={className}>
-      {!_.isEmpty(user) && (
+      {!isEmpty(user) && (
         <>
           <ThatLink
             title={greeting()}
@@ -69,7 +68,7 @@ const MemberNav = ({ className, color, onClick, user, loading }) => {
         </>
       )}
 
-      {_.isEmpty(user) && (
+      {isEmpty(user) && (
         <ThatLink
           title="Sign In"
           href="/api/login"

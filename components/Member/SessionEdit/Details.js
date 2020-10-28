@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import debug from 'debug';
+import { isEmpty } from 'lodash';
 import { sessionConstants } from '../../../utilities';
 import FormInput from '../../shared/FormInput';
 import LoadingIndicator from '../../shared/LoadingIndicator';
@@ -19,8 +20,6 @@ import {
   RadioButtonGroupItem,
   RadioButtonGroup,
 } from '../../shared/CheckboxAndRadioButtonInput';
-
-const _ = require('lodash');
 
 const SecondaryAction = styled.button`
   margin-right: 2rem;
@@ -469,7 +468,7 @@ const DetailForm = ({ sessionId }) => {
             <SecondaryAction
               onClick={() =>
                 validateForm().then(errs => {
-                  if (_.isEmpty(errs)) {
+                  if (isEmpty(errs)) {
                     window.location = `/member/session-preview/${sessionId}`;
                   }
                 })

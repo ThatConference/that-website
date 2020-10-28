@@ -2,7 +2,7 @@ import React from 'react';
 import { NextSeo } from 'next-seo';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
+import { isEmpty } from 'lodash';
 import { getMomentDate } from '../../../utilities/dates/wi-dates';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
@@ -85,7 +85,7 @@ const Notes = styled.div`
 const VotingStart = ({ user, loading }) => {
   const getStartedHref = () => {
     if (!loading) {
-      if (_.isEmpty(user)) return '/api/login?redirect-url=/member/create';
+      if (isEmpty(user)) return '/api/login?redirect-url=/member/create';
       if (!user.profileComplete) return '/member/create';
     }
     return '/wi/voting/vote';
@@ -93,7 +93,7 @@ const VotingStart = ({ user, loading }) => {
 
   const getHelpText = () => {
     if (!loading) {
-      if (_.isEmpty(user)) {
+      if (isEmpty(user)) {
         return (
           <>
             To get started you will need to{' '}
@@ -130,7 +130,7 @@ const VotingStart = ({ user, loading }) => {
 
   const getButtonText = () => {
     if (!loading) {
-      if (_.isEmpty(user)) return 'Sign In To Get Started';
+      if (isEmpty(user)) return 'Sign In To Get Started';
       if (!user.profileComplete) return 'Create Profile To Get Started';
     }
     return 'Get Started';

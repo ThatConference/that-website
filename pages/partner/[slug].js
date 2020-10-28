@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
 import Imgix from 'react-imgix';
-import _ from 'lodash';
+import { isEmpty, sortBy } from 'lodash';
 import { NextSeo } from 'next-seo';
 import pluralize from 'pluralize';
 import ContentSection from '../../components/shared/ContentSection';
@@ -320,7 +320,7 @@ function PartnerDetail() {
         {`Job ${pluralize('Listing', partner.jobListings.length)}`}
       </PartnerDetailSubHeading>
       {partner.jobListings &&
-        _.sortBy(partner.jobListings, j => j.title.toLowerCase()).map(job => (
+        sortBy(partner.jobListings, j => j.title.toLowerCase()).map(job => (
           <JobDiv key={job.id}>
             <Title>{job.title}</Title>
             <JobDescription>{job.description}</JobDescription>
@@ -348,7 +348,7 @@ function PartnerDetail() {
         }`}
       </PartnerDetailSubHeading>
       {filteredSessions &&
-        _.sortBy(filteredSessions, s => s.title.toLowerCase()).map(session => (
+        sortBy(filteredSessions, s => s.title.toLowerCase()).map(session => (
           <Session key={session.id}>
             <Speaker>
               {session.speakers.map(speaker => (
@@ -390,12 +390,12 @@ function PartnerDetail() {
         <ContentSection>
           <MainGrid columns={gridRepeat.xsmall}>
             <Cell>
-              {!_.isEmpty(partner.aboutUs) && <AboutUs />}
-              {!_.isEmpty(partner.sessions) && <Sessions />}
+              {!isEmpty(partner.aboutUs) && <AboutUs />}
+              {!isEmpty(partner.sessions) && <Sessions />}
             </Cell>
             <Cell>
-              {!_.isEmpty(partner.goals) && <Goals />}
-              {!_.isEmpty(partner.jobListings) && <Jobs />}
+              {!isEmpty(partner.goals) && <Goals />}
+              {!isEmpty(partner.jobListings) && <Jobs />}
             </Cell>
           </MainGrid>
         </ContentSection>

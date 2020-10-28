@@ -4,7 +4,7 @@ import { DefaultSeo, LogoJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
-import _ from 'lodash';
+import { isNil } from 'lodash';
 
 import GlobalStyle from '../../styles/globalStyle';
 import baseTheme from '../../styles/baseTheme';
@@ -32,7 +32,7 @@ const Default = ({ children, headerType }) => {
     setLayeredHeader(headerType === 'layered');
   });
 
-  if (!_.isNil(user)) {
+  if (!isNil(user)) {
     document.tidioIdentify = {
       distinct_id: user.id,
       email: user.email,

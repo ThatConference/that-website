@@ -6,7 +6,7 @@ import debug from 'debug';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Grid, Cell } from 'styled-css-grid';
-import _ from 'lodash';
+import { sortBy } from 'lodash';
 import ButterToast, { Cinnamon, POS_TOP, POS_RIGHT } from 'butter-toast';
 import LoadingIndicator from '../../shared/LoadingIndicator';
 
@@ -169,7 +169,7 @@ const CurrentSessions = ({ user, loading: loadingUser }) => {
   const yesCurrentSessions = () => {
     return (
       <SessionsGrid columns={12}>
-        {_.sortBy(sessions, s => s.title.toLowerCase()).map(session => {
+        {sortBy(sessions, s => s.title.toLowerCase()).map(session => {
           return (
             <React.Fragment key={session.id}>
               <SessionTitle className="cell" width={8}>
