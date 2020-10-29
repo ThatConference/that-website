@@ -39,20 +39,20 @@ const SectionHeading = styled.h2`
 `;
 
 const Moose = styled.img`
-  max-height: 45rem;
+  max-height: 37rem;
   position: absolute;
-  top: 10rem;
+  top: 14rem;
   right: 5%;
 
   ${below.xlarge`
-    max-height: 35rem;
+    max-height: 33rem;
     top: 15rem;
   `};
 
   ${below.large`
     max-width: 20rem;
-    top: 29rem;
-    right: 2rem;
+    top: 20rem;
+    right: 4rem;
   `};
 
   ${below.med`
