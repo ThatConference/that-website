@@ -30,6 +30,8 @@ MyError.getInitialProps = async ctx => {
       typeof res === 'object',
     );
     console.log('$$$$$ Status code', res.statusCode);
+    console.log('$$$$$ asPath is: ', asPath);
+    console.log('$$$$$ err is: ', err);
 
     // Next.js will pass an err on the server if a page's `getInitialProps`
     // threw or returned a Promise that rejected
