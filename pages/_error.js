@@ -8,6 +8,7 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
     // getInitialProps is not called in case of
     // https://github.com/zeit/next.js/issues/8592. As a workaround, we pass
     // err via _app.js so it can be captured
+    console.log('$$$$$ error at: getInitialProps is not called in case of');
     captureException(err);
   }
 
@@ -24,6 +25,11 @@ MyError.getInitialProps = async ctx => {
 
   if (res) {
     // Running on the server, the response object is available.
+    console.log(
+      '$$$$$ do we have a response object? ',
+      typeof res === 'object',
+    );
+    console.log('$$$$$ Status code', res.statusCode);
 
     // Next.js will pass an err on the server if a page's `getInitialProps`
     // threw or returned a Promise that rejected
@@ -48,6 +54,8 @@ MyError.getInitialProps = async ctx => {
     //    Boundary. Read more about what types of exceptions are caught by Error
     //    Boundaries: https://reactjs.org/docs/error-boundaries.html
 
+    console.log('$$$$$ we have an error object');
+
     captureException(err, ctx);
     return errorInitialProps;
   }
@@ -55,6 +63,7 @@ MyError.getInitialProps = async ctx => {
   // If this point is reached, getInitialProps was called without any
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
+  console.log('$$$$$ we ahve a conditions which shouldnt happen');
   captureException(
     new Error(`_error.js getInitialProps missing data at path: ${asPath}`),
     ctx,
