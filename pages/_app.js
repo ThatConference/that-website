@@ -3,7 +3,7 @@ import React from 'react';
 import App from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Router from 'next/router';
-import LogRocket from 'logrocket';
+// import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/node';
 
 import { getSentryConfig } from '../lib/sentry';
@@ -17,7 +17,7 @@ Sentry.init(getSentryConfig());
 if (process.env.NODE_ENV !== 'development') {
   // only initialize LogRocket in non-dev environments
   // https://docs.logrocket.com/docs/development#using-logrocket-in-development
-  LogRocket.init(process.env.LOG_ROCKET);
+  // LogRocket.init(process.env.LOG_ROCKET);
 }
 class MyApp extends App {
   render() {
