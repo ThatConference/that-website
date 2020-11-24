@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { DefaultSeo, LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
-import LogRocket from 'logrocket';
+// import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
 import { isNil, map } from 'lodash';
 
@@ -33,16 +33,16 @@ const Default = ({ children }) => {
       email: user.email,
     };
 
-    LogRocket.identify(user.id, {
-      email: user.email,
-    });
+    // LogRocket.identify(user.id, {
+    //   email: user.email,
+    // });
 
     Sentry.configureScope(scope => {
       scope.setUser({
         email: user.email,
         id: user.id,
       });
-      scope.setExtra('sessionURL', LogRocket.sessionURL);
+      // scope.setExtra('sessionURL', LogRocket.sessionURL);
     });
   }
 
