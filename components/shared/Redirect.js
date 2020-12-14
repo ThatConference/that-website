@@ -4,11 +4,13 @@ import redirect from '../../lib/redirect';
 export default url => {
   return class extends React.Component {
     static async getInitialProps({ res }) {
-      return redirect({ res, url });
+      redirect({ res, url });
+
+      return {};
     }
 
-    render() {
-      return <> </>;
-    }
+    // render() {
+    //   return <> </>;
+    // }
   };
 };
