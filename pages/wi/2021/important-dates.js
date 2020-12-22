@@ -9,11 +9,16 @@ import { groupBy } from 'lodash';
 import { above, below, gridRepeat } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
 import TimelineSection from '../../../components/shared/Timeline';
+import {
+  HeroGraphicDiv,
+  HeroGraphicImg,
+} from '../../../components/shared/StandardStyles';
+import { getSlug } from '../../../utilities/utilityFunctions';
 
 const GET_EVENT = gql`
-  query getEvent($eventId: ID!) {
+  query getEvent($slug: String!) {
     events {
-      event(findBy: { id: $eventId }) {
+      event(findBy: { slug: $slug }) {
         get {
           id
           milestones {
@@ -21,86 +26,30 @@ const GET_EVENT = gql`
             description
             dueDate
           }
+          notifications {
+            id
+            shouldFeature
+            title
+            message
+            startDate
+            endDate
+            link
+            linkText
+          }
         }
       }
     }
   }
 `;
 
-const ImageCell = styled(Cell)`
-  ${below.med`
-    text-align: center;
-  `};
-`;
-
-const HighlightImage = styled.img`
-  max-height: 40rem;
+const HighlightImage = styled(HeroGraphicImg)`
+  max-height: 38rem;
   transform: scaleX(-1);
-  position: absolute;
-  top: 0;
-  margin-left: 6rem;
-
-  ${below.small`
-    margin-left: 0;
-    width: 90%;
-  `};
+  margin-top: -4rem;
 
   ${below.med`
-    position: relative;
-    margin-top: 2rem;
-  `};
-`;
-
-const StyledTimelineSection = styled(TimelineSection)`
-  &.important-dates {
-    background-color: transparent;
     margin-top: 0;
-
-    > img {
-      display: none;
-    }
-
-    h2 {
-      display: none;
-    }
-
-    img.moose {
-      display: none;
-    }
-
-    div.past {
-      span.date,
-      span.name {
-        color: ${({ theme }) => theme.colors.mediumGray};
-      }
-      hr.line,
-      span.marker {
-        background-color: ${({ theme }) => theme.colors.teal};
-      }
-
-      hr.line {
-        border-color: ${({ theme }) => theme.colors.teal};
-      }
-    }
-    div.future {
-      span.date,
-      span.name {
-        color: ${({ theme }) => theme.colors.fonts.dark};
-      }
-      hr.line,
-      span.marker {
-        background-color: ${({ theme }) => theme.colors.mediumGray};
-      }
-
-      hr.line,
-      span.marker {
-        border: solid 1px ${({ theme }) => theme.colors.mediumGray};
-      }
-    }
-  }
-
-  ${below.med`
-    display: none;
+    max-height: 28rem;
   `};
 `;
 
@@ -133,15 +82,13 @@ const Date = styled.span`
   margin-top: 3rem;
 `;
 
-const Name = styled.span``;
-
 const importantDates = () => {
   let event = {};
   let milestones = [];
   let groupedMilestones = [];
 
   const { loading, error, data } = useQuery(GET_EVENT, {
-    variables: { eventId: process.env.CURRENT_EVENT_ID },
+    variables: { slug: getSlug() },
     onCompleted(d) {
       return d;
     },
@@ -150,8 +97,8 @@ const importantDates = () => {
   if (error) throw new Error(error);
 
   if (!loading) {
-    event = data.events.event;
-    milestones = event.get.milestones;
+    event = data.events.event.get;
+    milestones = event.milestones;
     groupedMilestones = groupBy(milestones, m => moment.utc(m.dueDate));
   }
 
@@ -162,7 +109,7 @@ const importantDates = () => {
         description="All the important dates related to THAT!"
       />
       <ContentSection>
-        <Grid columns={gridRepeat.xsmall}>
+        <Grid columns={gridRepeat.small}>
           <Cell width={1}>
             <h1>Important Dates</h1>
             <p className="medium-body-copy">
@@ -170,17 +117,17 @@ const importantDates = () => {
               THAT Conference.
             </p>
           </Cell>
-          <ImageCell>
+          <HeroGraphicDiv>
             <HighlightImage
               src="/images/sasquatch_kayaking.png"
-              alt="Plan Your THAT Trip"
+              alt="THAT Partners"
             />
-          </ImageCell>
+          </HeroGraphicDiv>
         </Grid>
       </ContentSection>
       {!loading && (
         <>
-          <StyledTimelineSection className="important-dates" event={event} />
+          <TimelineSection className="important-dates" event={event} />
           <MobileTimeline>
             {Object.entries(groupedMilestones).map(([key, value]) => {
               const momentDue = moment.utc(key, 'ddd MMM DD YYYY');
@@ -196,9 +143,9 @@ const importantDates = () => {
                   </Date>
                   {value.map(milestone => {
                     return (
-                      <Name key={milestone.title} className={nameClassName}>
+                      <span key={milestone.title} className={nameClassName}>
                         {milestone.title}
-                      </Name>
+                      </span>
                     );
                   })}
                 </div>
