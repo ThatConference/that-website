@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash';
 import { getMomentDate } from '../../../utilities/dates/wi-dates';
 import { below } from '../../../utilities';
 import ContentSection from '../../../components/shared/ContentSection';
-import Title from '../../../components/shared/Title';
+import Title from '../../../components/shared/Title/Title';
 import ThatLink from '../../../components/shared/ThatLink';
 import LinkButton from '../../../components/shared/LinkButton/LinkButton';
 

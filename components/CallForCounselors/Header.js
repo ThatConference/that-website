@@ -4,7 +4,7 @@ import { Grid, Cell } from 'styled-css-grid';
 
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton/LinkButton';
-import Title from '../shared/Title';
+import Title from '../shared/Title/Title';
 
 import { below, gridRepeat } from '../../utilities';
 
