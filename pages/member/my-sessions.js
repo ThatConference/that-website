@@ -7,7 +7,7 @@ import { below } from '../../utilities';
 import ContentSection from '../../components/shared/ContentSection';
 import CurrentSessions from '../../components/Member/MySessions/Current';
 import LoadingIndicator from '../../components/shared/LoadingIndicator';
-import Title from '../../components/shared/Title';
+import Title from '../../components/shared/Title/Title';
 
 const MainGrid = styled(Grid)`
   grid-gap: 2.5rem;

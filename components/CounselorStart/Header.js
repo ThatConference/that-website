@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { isEmpty } from 'lodash';
 import LinkButton from '../shared/LinkButton/LinkButton';
-import Title from '../shared/Title';
+import Title from '../shared/Title/Title';
 import LoadingIndicator from '../shared/LoadingIndicator';
 import { below } from '../../utilities/breakpoint';
 import ThatLink from '../shared/ThatLink';
