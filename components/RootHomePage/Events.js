@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 import ContentSection from '../shared/ContentSection';
 import LinkButton from '../shared/LinkButton/LinkButton';
-import TopPartners from '../shared/TopPartners';
+import TopPartners from '../shared/TopPartners/TopPartners';
 import { gridRepeat, below } from '../../utilities';
 
 const GET_EVENTS = gql`

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import Link from 'next/link';
-import ThatLink from './ThatLink';
-import { gridRepeat, below } from '../../utilities';
+import ThatLink from '../ThatLink';
+import { gridRepeat, below } from '../../../utilities';
 
 const BecomeAPartner = styled.div`
   margin-top: 5rem;
@@ -48,7 +48,12 @@ const BuildPartner = p => {
   );
 };
 
-const TopPartners = ({ becomePartnerLink, className, partners, title }) => {
+const StyledTopPartners = ({
+  becomePartnerLink,
+  className,
+  partners,
+  title,
+}) => {
   return (
     <div className={className}>
       <h2 className="centered-text">{title}</h2>
@@ -73,10 +78,11 @@ const TopPartners = ({ becomePartnerLink, className, partners, title }) => {
   );
 };
 
+const TopPartners = styled(StyledTopPartners)``;
+
 TopPartners.propTypes = {
   becomePartnerLink: PropTypes.string.isRequired,
   className: PropTypes.string,
-  // event: PropTypes.shape({}).isRequired,
   partners: PropTypes.oneOfType([PropTypes.array]).isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -85,4 +91,4 @@ TopPartners.defaultProps = {
   className: '',
 };
 
-export default styled(TopPartners)``;
+export default TopPartners;
