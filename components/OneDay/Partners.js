@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { sortBy } from 'lodash';
 import ContentSection from '../shared/ContentSection';
-import TopPartners from '../shared/TopPartners';
+import TopPartners from '../shared/TopPartners/TopPartners';
 
 const PARTNER_LEVELS_TO_DISPLAY = ['CORPORATE_PARTNER', 'PARTNER'];
 
