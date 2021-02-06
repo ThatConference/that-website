@@ -112,22 +112,18 @@ const RootHeader = ({ className, loading, user }) => {
           </Greeting>
         )}
       </Member>
-
-      {/* Soon to be built into full site nav */}
-      {!isEmpty(user) && (
-        <RootNav>
-          <NavIcon
-            icon="arrow"
-            className={navOpen ? 'up' : 'down'}
-            onClick={() => setNavOpen(!navOpen)}
-          />
-          <StyledSecondaryNav
-            user={user}
-            onLinkClick={() => setNavOpen(false)}
-            navOpen={navOpen}
-          />
-        </RootNav>
-      )}
+      <RootNav>
+        <NavIcon
+          icon="arrow"
+          className={navOpen ? 'up' : 'down'}
+          onClick={() => setNavOpen(!navOpen)}
+        />
+        <StyledSecondaryNav
+          user={user}
+          onLinkClick={() => setNavOpen(false)}
+          navOpen={navOpen}
+        />
+      </RootNav>
     </header>
   );
 };
