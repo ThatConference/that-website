@@ -23,7 +23,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 const Member = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.dark};
   display: flex;
   align-items: center;
 `;
@@ -39,7 +39,7 @@ const Greeting = styled.p`
 `;
 
 const RootNav = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkBlue};
+  background-color: ${({ theme }) => theme.colors.secondary};
   position: relative;
 `;
 
@@ -47,20 +47,20 @@ const NavIcon = styled(Icon)`
   fill: ${({ theme }) => theme.colors.white};
   width: 5rem;
   padding: 0 1rem;
+  cursor: pointer;
 `;
 
 const StyledSecondaryNav = styled(SecondaryMemberNav)`
   display: ${({ navOpen }) => (navOpen ? 'block' : 'none')};
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.thatBlue};
   position: absolute;
-  list-style: none;
-  right: -1rem;
+
   padding: 2rem;
   margin: 0;
   top: 10rem;
-  width: 20rem;
+  width: 100%;
   z-index: 100;
-  text-align: right;
+
   padding-right: 3rem;
 
   &.on {
@@ -118,12 +118,12 @@ const RootHeader = ({ className, loading, user }) => {
           className={navOpen ? 'up' : 'down'}
           onClick={() => setNavOpen(!navOpen)}
         />
-        <StyledSecondaryNav
-          user={user}
-          onLinkClick={() => setNavOpen(false)}
-          navOpen={navOpen}
-        />
       </RootNav>
+      <StyledSecondaryNav
+        user={user}
+        onLinkClick={() => setNavOpen(false)}
+        navOpen={navOpen}
+      />
     </header>
   );
 };

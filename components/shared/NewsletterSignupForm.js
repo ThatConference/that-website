@@ -9,7 +9,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   min-width: 20rem;
   justify-content: center;
-
+  align-items: center;
   ${below.larger`
     max-width: 33rem;
   `};
