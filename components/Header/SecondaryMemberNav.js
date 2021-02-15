@@ -87,6 +87,7 @@ const SlackButton = styled(LinkButton)`
     margin-top: 0;
     margin-right: 1rem;
     font-size: 2rem;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -208,6 +209,89 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
         </Cell>
         <Cell>
           <LinkGroup>
+            <h3>Featured</h3>
+            <ul>
+              <li>
+                <StyledLink
+                  title="THAT.US"
+                  href="/thatus/2020"
+                  onClick={() => onLinkClick()}
+                />
+              </li>
+              <li>
+                <StyledLink
+                  title="THAT Online - March"
+                  href="/thatus/2021-3"
+                  onClick={() => onLinkClick()}
+                />
+              </li>
+              <li>
+                <StyledLink
+                  title="THAT WI 2021"
+                  href="/wi/2021"
+                  onClick={() => onLinkClick()}
+                />
+              </li>
+              <li>
+                <StyledLink
+                  title="THAT TX 2021"
+                  href="/tx/2021"
+                  onClick={() => onLinkClick()}
+                />
+              </li>
+            </ul>
+          </LinkGroup>
+        </Cell>
+        <Cell>
+          <LinkGroup>
+            <h3>Account</h3>
+            <ul>
+              <li>
+                {!isEmpty(user) && !user.profileComplete && (
+                  <StyledLink
+                    title="Create Profile"
+                    href="/member/create"
+                    onClick={() => onLinkClick()}
+                  />
+                )}
+                {!isEmpty(user) && user.profileComplete && (
+                  <StyledLink
+                    title="My Profile"
+                    href={`/member/${user.profileSlug}`}
+                    onClick={() => onLinkClick()}
+                  />
+                )}
+              </li>
+              {!isEmpty(user) && user.profileComplete && (
+                <li>
+                  <StyledLink
+                    title="My Sessions"
+                    href="/member/my-sessions"
+                    onClick={() => onLinkClick()}
+                  />
+                </li>
+              )}
+              {!isEmpty(user) && (
+                <li>
+                  <StyledLink
+                    title="Log Out"
+                    href="/api/logout"
+                    onClick={() => onLinkClick()}
+                  />
+                </li>
+              )}
+              {isEmpty(user) && (
+                <StyledLink
+                  title="Sign In"
+                  href="/api/login"
+                  onClick={() => onLinkClick()}
+                />
+              )}
+            </ul>
+          </LinkGroup>
+        </Cell>
+        <Cell>
+          <LinkGroup>
             <h3>That</h3>
             <ul>
               <li>
@@ -279,37 +363,6 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
 
         <Cell>
           <LinkGroup>
-            <h3>Featured</h3>
-            <ul>
-              <li>
-                <StyledLink href="/thatus/2020" onClick={() => onLinkClick()} />
-              </li>
-              <li>
-                <StyledLink
-                  href="/thatus/2021-3"
-                  title="THAT Online - March"
-                  onClick={() => onLinkClick()}
-                />
-              </li>
-              <li>
-                <StyledLink
-                  title="THAT WI 2021"
-                  href="/wi/2021"
-                  onClick={() => onLinkClick()}
-                />
-              </li>
-              <li>
-                <StyledLink
-                  title="THAT TX 2021"
-                  href="/tx/2021"
-                  onClick={() => onLinkClick()}
-                />
-              </li>
-            </ul>
-          </LinkGroup>
-        </Cell>
-        <Cell>
-          <LinkGroup>
             <h3>Polices</h3>
             <ul>
               <li>
@@ -353,54 +406,7 @@ const SecondaryMemberNav = ({ className, onLinkClick, user }) => {
             </ul>
           </LinkGroup>
         </Cell>
-        <Cell>
-          <LinkGroup>
-            <h3>Account</h3>
-            <ul>
-              <li>
-                {!isEmpty(user) && !user.profileComplete && (
-                  <StyledLink
-                    title="Create Profile"
-                    href="/member/create"
-                    onClick={() => onLinkClick()}
-                  />
-                )}
-                {!isEmpty(user) && user.profileComplete && (
-                  <StyledLink
-                    title="My Profile"
-                    href={`/member/${user.profileSlug}`}
-                    onClick={() => onLinkClick()}
-                  />
-                )}
-              </li>
-              {!isEmpty(user) && user.profileComplete && (
-                <li>
-                  <StyledLink
-                    title="My Sessions"
-                    href="/member/my-sessions"
-                    onClick={() => onLinkClick()}
-                  />
-                </li>
-              )}
-              {!isEmpty(user) && (
-                <li>
-                  <StyledLink
-                    title="Log Out"
-                    href="/api/logout"
-                    onClick={() => onLinkClick()}
-                  />
-                </li>
-              )}
-              {isEmpty(user) && (
-                <StyledLink
-                  title="Sign In"
-                  href="/api/login"
-                  onClick={() => onLinkClick()}
-                />
-              )}
-            </ul>
-          </LinkGroup>
-        </Cell>
+
         <Cell area="community">
           <NewsletterSection>
             <NewsletterSignupForm
