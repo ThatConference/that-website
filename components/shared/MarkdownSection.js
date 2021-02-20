@@ -14,6 +14,11 @@ const StyledContentSection = styled(ContentSection)`
       outline: none;
     }
   }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
 `;
 
 const replaceVariables = (markdownBody, variables) => {
