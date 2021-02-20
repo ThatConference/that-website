@@ -13,7 +13,7 @@ import ContentSection from '../../components/shared/ContentSection';
 const SlimContentSection = styled(ContentSection)`
   width: 70vw;
   margin: auto;
-  padding-top: 0;
+  padding-top: 5;
 
   ${below.small`
     width 100vw;
