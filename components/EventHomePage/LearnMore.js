@@ -98,7 +98,7 @@ const LearnMore = ({ className }) => {
               hoverBackgroundColor="thatBlue"
             />
             <LinkButton
-              href="/wi/faq"
+              href="/wi/2021/faq"
               label="FAQ"
               borderColor="thatBlue"
               className="stretch-sm"
