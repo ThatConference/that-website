@@ -1,7 +1,7 @@
 ---
 title: It's time we chat
 description: Join us live on March 31st at noon central to talk about 2021.
-leadImage: 3-31-2021-LiveStream.png
+leadImage: 3-31-2021-liveStream.png
 publishedDate: March 19, 2021
 author: Clark Sell
 excerpt: Now it's time we talk about 2021 and the future of THAT. Join us on March 31st at noon live on YouTube. We will recap the past 370 days of March and discuss our exciting plans for the future.
@@ -10,8 +10,8 @@ excerpt: Now it's time we talk about 2021 and the future of THAT. Join us on Mar
 <p>
 <br />
 <br />
-<img src="../../images/blog/3-31-2021-LiveStream.png"
-     alt="THAT 2020"
+<img src="../../images/blog/3-31-2021-liveStream.png"
+     alt="it's time we chat"
      style="width: 100%; margin:0 auto; display:block" />
 <br />
 </p>
