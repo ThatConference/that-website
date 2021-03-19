@@ -32,12 +32,12 @@ All blog posts are rendered markdown content. Each blog post has it's own file i
 
 To add a blog post all you need to do is create a new markdown file in `/markdown/blog` with a unique name, set the front matter items for:
 
-All fields are required in a blog post's front matter
+All fields are **required** in a blog post's front matter
 
 - **title** The title of the blog post
-- **description** A short descriptiong describing the blog post
+- **description** A short description describing the blog post
 - **leadImage** Hero image to show with blog, image name only. Store image at `/public/images/blog`
-- **publishedDate** Displayed publish date of blog poost
+- **publishedDate** Displayed publish date of blog post
 - **author** Who wrote the blog post, e.g. THAT Crew, You!
 - **excerpt** A short excerpt from the blog's body. Keep to less than 400 characters
 
