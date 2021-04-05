@@ -30,6 +30,7 @@ const blog = () => (
       </Grid>
     </ContentSection>
     <BlogList>
+      <BlogListItem slug="april-2021-recap" />
       <BlogListItem slug="its-time-we-chat" />
       <BlogListItem slug="that-year-a-retrospective" />
       <BlogListItem slug="that-online-recap-that-board-is-officially-open" />
