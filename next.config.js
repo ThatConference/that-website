@@ -58,7 +58,7 @@ module.exports = {
     API_GATEWAY: process.env.API_GATEWAY,
     WI_PROSPECTUS_URL:
       'https://storage.googleapis.com/that-bucket/2021_THATConference_Prospectus.pdf',
-    THAT_US_TICKETS: 'https://feature.that.us/events/wi/2021/tickets',
+    THAT_US_TICKETS: 'https://that.us/events/wi/2021/tickets',
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
     AUTH0_CLIENT_SECRET: process.env.AUTH0_CLIENT_SECRET,
