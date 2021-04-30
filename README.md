@@ -4,6 +4,7 @@
 
 [![GitHub issues open](https://img.shields.io/github/issues/thatconference/that-website.svg)](https://github.com/thatconference/that-website/issues) [![release](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/thatconference/that.us/issues)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ### Table of Contents
@@ -138,9 +139,9 @@ We utilize Jest + Enzyme to unit test each component. Each component should be c
 
 ## Feature/Page Development
 
-In order to iterate collectivlely when developing a new page we have a higher order component you can wrap your page component around so that it is only rendered for a matching query param.
+In order to iterate collectively when developing a new page we have a higher order component you can wrap your page component around so that it is only rendered for a matching query param.
 
-Here is how it works, in your `.env` file give `FEATURE_KEYWORD` some value. Then wrap your page componet (_NOTE: currently only works for pages_) in `togglePage`. This adds the logic that will allow this page to render **only when** a query param is present and matches the value set in `FEATURE_KEYWORD`.
+Here is how it works, in your `.env` file give `FEATURE_KEYWORD` some value. Then wrap your page component (_NOTE: currently only works for pages_) in `togglePage`. This adds the logic that will allow this page to render **only when** a query param is present and matches the value set in `FEATURE_KEYWORD`.
 
 Example - Check out `samples/toggle-page.js`. Here is a sample page wrapped in `togglePage`. Now, set FEATURE_KEYWORD in your `.env` to a value, let's go with `baconisgreat`, then fire up the local environment.
 
@@ -175,6 +176,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
