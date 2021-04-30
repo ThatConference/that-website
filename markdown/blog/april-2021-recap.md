@@ -20,7 +20,7 @@ Last week, March 31st, we turned on [YouTube](https://youtube.com/c/thatconferen
 
 <>
 
-## TL;DR;
+### TL;DR;
 
 THAT Online, a monthly unconference, is kicking off on April 15th. Get your ticket [here](https://that.us/events/thatus/2021-4), and it only costs \$15.
 THAT Conference 2021 is on! Our new standing time is the last week in July, which is July 26-29th.
@@ -28,7 +28,7 @@ We launched THAT Membership — a way where we can better support one another al
 
 </>
 
-## Recapping Our Past Year
+### Recapping Our Past Year
 
 2020 was a year full of disruption. As we made our way through April, we quickly realized THAT Conference wasn't going to happen in August and that our events in the future may never be the same. We could have packed up the tents and waited out the pandemic in hopes things would quickly return to normal, but THAT is more than an event; it's a solid and passionate community of geeks who during these times demonstrated the true spirit of what community is all about.
 
@@ -42,7 +42,7 @@ We want a system that removes restrictions on time, space, and format. One that 
 
 Since then, we have continued to grow. Every week, we continue to expand the platform's feature set while doing it all in the open, sharing what we've learned along the way. Today [THAT](https://that.us) has over 1300 [Members](https://that.us/members) who've hosted over 200 [Activities](https://that.us/activities) at well over 200 hours. I feel like I keep saying it, but it's true we're just getting started. The possibilities are endless, and no pandemic is going to get in the way.
 
-## Introducing THAT Online — THAT Event Every Month
+### Introducing THAT Online — THAT Event Every Month
 
 Activities on THAT can and do happen at any hour of the day from places stretching across the globe. It is also lovely to get everyone together for something a bit larger. Like a family reunion! Every month we'll host THAT Online to bring us all back together to recenter and recharge in an unconference array of activities.
 
@@ -55,7 +55,7 @@ Starting April 15th [THAT](https://that.us) will begin hosting monthly online ev
 
 [Get your ticket today!](https://that.us/events/thatus/2021-4)
 
-## Introducing THAT Membership
+### Introducing THAT Membership
 
 We could create a free platform, but then you become the product. To that, we say no thank you; we're the product, not you. We're taking the approach of creating a monetization approach of helping us help you.
 
@@ -72,7 +72,7 @@ Daily usage of [THAT.us](https://that.us) is free and allows anyone to create an
 
 [Sign up Today!](https://that.us/membership/pricing)
 
-## THAT Conference 2021
+### THAT Conference 2021
 
 **It's our 10th year!** THAT Conference 2021 at the Kalahari in the Wisconsin Dells **will be back this July 26th -29th**! Wait, July, you ask? Isn't THAT Conference always in August? Historically yes, but this often caused issues with some families who were already going back to school. So we refactored.
 
