@@ -133,28 +133,39 @@ const Description = styled.p`
   color: ${({ theme }) => theme.colors.fonts.light};
 `;
 
-const BuildEvent = e => {
-  const primary = `#${e.theme.primary}`;
-  const secondary = `#${e.theme.secondary}`;
+const BuildEvent = ({
+  theme,
+  slug,
+  description,
+  featuredNotification,
+  themheroSlug,
+  name,
+}) => {
+  const primary = `#${theme.primary}`;
+  const secondary = `#${theme.secondary}`;
 
   return (
-    <Cell center key={e.slug}>
+    <Cell center key={slug}>
       <Event primaryColor={primary} secondaryColor={secondary}>
-        <EventHeading>{e.name}</EventHeading>
-        <img src={e.theme.heroSlug} alt={e.name} />
-        <Description>{e.description}</Description>
+        <EventHeading>{name}</EventHeading>
+        <img src={themheroSlug} alt={name} />
+        <Description>{description}</Description>
         <EventLink
-          href={e.slug === 'thatus/daily' ? `https://that.us/activities` : `https://that.us/events/${e.slug}`}
+          href={
+            slug === 'thatus/daily'
+              ? `https://that.us/activities`
+              : `https://that.us/events/${slug}`
+          }
           label="Visit Camp"
           primaryColor={primary}
           secondaryColor={secondary}
         />
         <div className="message">
-          <Link href={e.featuredNotification.link} prefetch={false}>
+          <Link href={featuredNotification.link} prefetch={false}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a>
-              <h5>{e.featuredNotification.title}</h5>
-              <h5>{e.featuredNotification.linkText}</h5>
+              <h5>{featuredNotification.title}</h5>
+              <h5>{featuredNotification.linkText}</h5>
             </a>
           </Link>
         </div>

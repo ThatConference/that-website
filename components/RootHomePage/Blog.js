@@ -7,6 +7,7 @@ const Blog = () => {
   const currentBlogSlug = 'that-year-a-retrospective';
 
   try {
+    // prettier-ignore
     // eslint-disable-next-line global-require, import/no-dynamic-require
     markdownContent = require(`../../markdown/blog/${currentBlogSlug}.md`)
       .default;

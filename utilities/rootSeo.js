@@ -21,6 +21,7 @@ export const rootSeo = {
     handle: '@thatconference',
     title: 'THAT Conference',
     cardType: 'summary_large_image',
+    // prettier-ignore
     card:
       'What started as an annual technology conference has grown into community of practitioners teaching, sharing and supporting each other through multiple in-person and virtual events each year.',
     description:

@@ -19,6 +19,7 @@ export default class MyDocument extends Document {
     resetId();
 
     const sheet = new ServerStyleSheet();
+    // prettier-ignore
     const page = renderPage(App => props =>
       // eslint-disable-next-line react/jsx-props-no-spreading
       sheet.collectStyles(<App {...props} />),
