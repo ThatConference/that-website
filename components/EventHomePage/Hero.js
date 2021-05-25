@@ -104,7 +104,7 @@ const ThirdButton = ({ event }) => {
   let href = null;
   let label = null;
   if (event.isCallForSpeakersOpen) {
-    href = `${event.slug}/call-for-counselors`;
+    href = `https://that.us/activities/call-for-counselors/${event.slug}`;
     label = 'Become A Counselor';
   }
   if (event.isVotingOpen) {

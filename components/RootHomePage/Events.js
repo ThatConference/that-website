@@ -144,7 +144,7 @@ const BuildEvent = e => {
         <img src={e.theme.heroSlug} alt={e.name} />
         <Description>{e.description}</Description>
         <EventLink
-          href={`/${e.slug}`}
+          href={e.slug === 'thatus/daily' ? `https://that.us/activities` : `https://that.us/events/${e.slug}`}
           label="Visit Camp"
           primaryColor={primary}
           secondaryColor={secondary}
