@@ -27,7 +27,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it fails with undefined becomeParterLink', () => {
@@ -36,7 +36,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it fails with null partners', () => {
@@ -45,7 +45,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it fails with undefined partners', () => {
@@ -54,7 +54,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it renders with empty partners', () => {
@@ -71,7 +71,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it fails with undefined title', () => {
@@ -80,7 +80,7 @@ describe('TopPartners', () => {
 
     expect(() => {
       shallow(<TopPartners {...props} />);
-    }).toThrow(/(Failed prop type)/);
+    }).toThrow();
   });
 
   test('it sets div className to value passed in', () => {
