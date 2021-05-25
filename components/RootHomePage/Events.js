@@ -138,7 +138,6 @@ const BuildEvent = ({
   slug,
   description,
   featuredNotification,
-  themheroSlug,
   name,
 }) => {
   const primary = `#${theme.primary}`;
@@ -148,7 +147,7 @@ const BuildEvent = ({
     <Cell center key={slug}>
       <Event primaryColor={primary} secondaryColor={secondary}>
         <EventHeading>{name}</EventHeading>
-        <img src={themheroSlug} alt={name} />
+        <img src={theme.heroSlug} alt={name} />
         <Description>{description}</Description>
         <EventLink
           href={
