@@ -60,6 +60,7 @@ RenderedMarkdown.getInitialProps = async context => {
   const slug = context.query.markdown;
 
   try {
+    // prettier-ignore
     const markdownContent = require(`../../../markdown/wi/2021/${slug}.md`)
       .default;
     return { markdownContent };

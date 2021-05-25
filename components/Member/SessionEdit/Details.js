@@ -92,6 +92,7 @@ const UPDATE_SESSION = gql`
 
 const DetailForm = ({ sessionId }) => {
   const router = useRouter();
+  // prettier-ignore
   const { loading, error: sessionError, data } = useQuery(GET_MY_SESSION, {
     variables: {
       sessionId,

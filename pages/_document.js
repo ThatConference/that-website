@@ -1,5 +1,5 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import * as Sentry from '@sentry/browser';
 import { resetId } from 'react-id-generator';
@@ -19,6 +19,7 @@ export default class MyDocument extends Document {
     resetId();
 
     const sheet = new ServerStyleSheet();
+    // prettier-ignore
     const page = renderPage(App => props =>
       // eslint-disable-next-line react/jsx-props-no-spreading
       sheet.collectStyles(<App {...props} />),
@@ -29,7 +30,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en-US">
+      <Html lang="en-US">
         <Head>{this.props.styleTags}</Head>
         <body>
           <Main />
@@ -53,7 +54,7 @@ export default class MyDocument extends Document {
             async
           />
         </body>
-      </html>
+      </Html>
     );
   }
 }

@@ -22,6 +22,7 @@ export const defaultSeo = {
     title: 'THAT Conference - Wisconsin Dells, WI',
     cardType: 'summary_large_image',
     card:
+      // prettier-ignore
       'Over four days, folks of diverse technology backgrounds and expertise levels gather to take advantage of multiple learning mediums to maximize one’s community and career advancements.',
     description:
       'THAT Conference is the Summer Camp for Geeks that combines technology, networking, social events and exposure in an inspirational, family friendly environment at the The Kalahari Resort in Wisconsin Dells.',
