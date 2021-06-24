@@ -23,7 +23,7 @@ const HeroBlock = styled.div`
   height: 75rem;
   align-items: center;
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: 0;
 
   ${below.med`
     height: 43.3rem;

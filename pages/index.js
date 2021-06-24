@@ -1,6 +1,5 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
-import RootLayout from '../components/layouts/Root';
 
 import ContentSection from '../components/shared/ContentSection';
 
@@ -56,7 +55,5 @@ const index = () => {
     </div>
   );
 };
-
-index.Layout = RootLayout;
 
 export default index;

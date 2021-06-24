@@ -16,7 +16,7 @@ const StyledIcon = styled(Icon)`
   &:hover {
     cursor: pointer;
   }
-
+  margin-top: 1rem;
   ${below.small`    
     height: 7rem;
   `};
@@ -95,12 +95,14 @@ const RootHeader = ({ className, loading, user }) => {
   return (
     <header className={className}>
       <Link href="/" prefetch={false}>
-        <StyledIcon
-          icon="thatLogo"
-          width="250"
-          height="50"
-          viewBoxWidth="400"
-        />
+        <a href="/">
+          <StyledIcon
+            icon="thatLogo"
+            width="250"
+            height="50"
+            viewBoxWidth="400"
+          />
+        </a>
       </Link>
       <div style={{ flexGrow: 2 }} />
 

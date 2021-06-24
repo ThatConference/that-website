@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import RootLayout from '../../../components/layouts/Root';
+
 import OneDayEvent from '../../../components/EventPages/OneDayEvent';
 
 const TICKETS = [
@@ -71,8 +71,6 @@ const TICKETS = [
 const Index = ({ eventSlug }) => {
   return <OneDayEvent eventSlug={eventSlug.substring(1)} tickets={TICKETS} />;
 };
-
-Index.Layout = RootLayout;
 
 Index.getInitialProps = async context => {
   return { eventSlug: context.pathname };

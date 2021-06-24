@@ -49,7 +49,7 @@ const Title = styled.h1`
 `;
 
 const MainContent = styled(ContentSection)`
-  padding-top: 0;
+  padding-top: 5;
 `;
 
 const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {

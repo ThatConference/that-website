@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { DefaultSeo, LogoJsonLd } from 'next-seo';
+import { DefaultSeo, LogoJsonLd, SocialProfileJsonLd } from 'next-seo';
 import { useRouter } from 'next/router';
 // import LogRocket from 'logrocket';
 import * as Sentry from '@sentry/browser';
-import { isNil } from 'lodash';
+import { isNil, map } from 'lodash';
 
 import GlobalStyle from '../../styles/globalStyle';
 import baseTheme from '../../styles/baseTheme';
 import Meta from '../Meta';
-import Header from '../Header/default';
+import Header from '../Header/root';
 import Footer from '../Footer';
-import { defaultSeo } from '../../utilities';
+import { rootSeo, socialConstants } from '../../utilities';
 import User from '../User';
 import { useFetchUser } from '../../hooks/user';
 import {
@@ -21,16 +21,11 @@ import {
   InnerPage,
 } from '../shared/StandardStyles';
 
-const Default = ({ children, headerType }) => {
+const Default = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [layeredHeader, setLayeredHeader] = useState(false);
 
   const { user, loading } = useFetchUser();
   const router = useRouter();
-
-  useEffect(() => {
-    setLayeredHeader(headerType === 'layered');
-  });
 
   if (!isNil(user)) {
     document.tidioIdentify = {
@@ -51,6 +46,11 @@ const Default = ({ children, headerType }) => {
     });
   }
 
+  const socialUrls = map(
+    socialConstants.thatSocialLinks,
+    socialLink => socialLink.url,
+  );
+
   return (
     <ThemeProvider theme={baseTheme}>
       <>
@@ -58,12 +58,19 @@ const Default = ({ children, headerType }) => {
         <StyledPage>
           <Meta />
           <DefaultSeo
-            {...defaultSeo}
+            {...rootSeo}
             canonical={`https://www.thatconference.com/${router.pathname}`}
           />
           <LogoJsonLd
-            logo="https://www.thatconference.com/svgs/THATConference-WI.svg"
-            url={`https://www.thatconference.com/${router.pathname}`}
+            logo="https://www.thatconference.com/svgs/THAT.svg"
+            url="https://www.thatconference.com"
+          />
+          <SocialProfileJsonLd
+            type="Organization"
+            name="THAT"
+            url="http://www.thatconference.com"
+            logo="https://www.thatconference.com/svgs/THAT.svg"
+            sameAs={socialUrls}
           />
           <CorePage>
             <User user={user} loading={loading}>
@@ -71,7 +78,6 @@ const Default = ({ children, headerType }) => {
                 <Header
                   user={user}
                   loading={loading}
-                  layered={layeredHeader}
                   mobileMenuOpen={mobileMenuOpen}
                   setMobileMenuOpen={setMobileMenuOpen}
                 />

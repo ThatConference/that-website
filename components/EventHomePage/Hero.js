@@ -80,6 +80,7 @@ const Main = styled.div`
   flex-direction: row;
   margin: auto;
   justify-content: center;
+  padding-top: 5rem;
 
   ${below[twoColBp]`
     flex-direction: column;

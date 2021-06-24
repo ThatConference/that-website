@@ -38,7 +38,7 @@ const MainGrid = styled(Grid)`
 `;
 
 const MainContent = styled(ContentSection)`
-  padding-top: 0;
+  padding-top: 5;
 `;
 
 const SessionEdit = ({ user, loading: loadingUser, sessionId }) => {
