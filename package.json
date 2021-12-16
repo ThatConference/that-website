@@ -21,7 +21,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@apollo/react-ssr": "^4.0.0",
-    "@auth0/nextjs-auth0": "^0.12.0",
+    "@auth0/nextjs-auth0": "^1.6.2",
     "@loadable/component": "^5.15.0",
     "@sentry/browser": "^6.4.1",
     "@sentry/integrations": "^6.4.1",
